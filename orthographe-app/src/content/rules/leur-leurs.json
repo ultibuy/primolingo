@@ -1,0 +1,844 @@
+{
+  "id": "leur-leurs",
+  "title": "leur · leurs",
+  "shortTitle": "leur / leurs",
+  "description": "Distinguer : leur pronom (invariable, devant un verbe, = lui) et leur/leurs déterminant (accord avec le nom qui suit).",
+
+  "choices": [
+    { "id": "leur",  "label": "leur",  "isPronom": null, "note": "pronom invariable OU déterminant singulier" },
+    { "id": "leurs", "label": "leurs", "isPronom": false, "note": "déterminant pluriel uniquement" }
+  ],
+
+  "decisionAxes": [
+    {
+      "id": "isPronom",
+      "question": "Est-ce un pronom (devant un verbe) ?",
+      "options": [
+        { "value": true,  "label": "Oui, pronom → leur", "sub": "Test : remplace par « lui » → ça marche", "eliminates": ["leurs"] },
+        { "value": false, "label": "Non, déterminant (devant un nom)", "sub": "Test : remplace par « son/sa/ses »", "eliminates": [] }
+      ]
+    },
+    {
+      "id": "nombre",
+      "question": "Le nom qui suit est…",
+      "dependsOn": "isPronom",
+      "showWhen": false,
+      "options": [
+        { "value": "singulier", "label": "Singulier → leur", "eliminates": ["leurs"] },
+        { "value": "pluriel",   "label": "Pluriel → leurs",  "eliminates": ["leur"] }
+      ]
+    }
+  ],
+
+  "memoCard": {
+    "title": "La règle en un coup d'œil",
+    "rows": [
+      { "form": "leur (pronom)",  "test": "remplace par « lui »", "example": "Je leur parle. → Je lui parle. ✓" },
+      { "form": "leur (dét. sg)", "test": "nom singulier après", "example": "leur maison (une maison)" },
+      { "form": "leurs (dét. pl)","test": "nom pluriel après",   "example": "leurs maisons (des maisons)" }
+    ]
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "before": "Je ",
+      "after": " ai expliqué la situation.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « je lui ai expliqué » → leur invariable."
+    },
+    {
+      "id": "q002",
+      "before": "Tu ",
+      "after": " as donné un cadeau.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui as donné » → leur pronom invariable."
+    },
+    {
+      "id": "q003",
+      "before": "Il ",
+      "after": " a montré les photos.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « il lui a montré » → leur invariable."
+    },
+    {
+      "id": "q004",
+      "before": "Nous ",
+      "after": " avons téléphoné hier soir.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui avons téléphoné » → leur pronom invariable."
+    },
+    {
+      "id": "q005",
+      "before": "Vous ",
+      "after": " avez promis une surprise.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « vous lui avez promis » → leur invariable."
+    },
+    {
+      "id": "q006",
+      "before": "Elle ",
+      "after": " a envoyé une invitation.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui a envoyé » → leur pronom invariable."
+    },
+    {
+      "id": "q007",
+      "before": "Je ",
+      "after": " conseille de partir tôt.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « je lui conseille » → leur invariable."
+    },
+    {
+      "id": "q008",
+      "before": "Tu ",
+      "after": " demandes un service.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui demandes » → leur pronom invariable."
+    },
+    {
+      "id": "q009",
+      "before": "Elles ",
+      "after": " ont présenté une excuse.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « elles lui ont présenté » → leur invariable."
+    },
+    {
+      "id": "q010",
+      "before": "Nous ",
+      "after": " écrivons un message.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui écrivons » → leur pronom invariable."
+    },
+    {
+      "id": "q011",
+      "before": "J'ai découvert ",
+      "after": " secret.",
+      "answer": "leur",
+      "difficulty": 2,
+      "explanation": "Déterminant singulier : un seul secret → leur (pas leurs)."
+    },
+    {
+      "id": "q012",
+      "before": "C'est ",
+      "after": " tour de jouer.",
+      "answer": "leur",
+      "difficulty": 2,
+      "explanation": "Déterminant singulier : le tour (singulier) → leur."
+    },
+    {
+      "id": "q013",
+      "before": "Nous respectons ",
+      "after": " opinion.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : une opinion (singulier) → leur."
+    },
+    {
+      "id": "q014",
+      "before": "Il faut préserver ",
+      "after": " environnement.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : l'environnement (singulier) → leur."
+    },
+    {
+      "id": "q015",
+      "before": "Vous admirez ",
+      "after": " courage.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : le courage (singulier) → leur."
+    },
+    {
+      "id": "q016",
+      "before": "Je comprends ",
+      "after": " motivation.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : la motivation (singulier) → leur."
+    },
+    {
+      "id": "q017",
+      "before": "Tu dois respecter ",
+      "after": " choix.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : le choix (singulier) → leur."
+    },
+    {
+      "id": "q018",
+      "before": "Elle a visité ",
+      "after": " maison.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : la maison (singulier) → leur."
+    },
+    {
+      "id": "q019",
+      "before": "Nous admirons ",
+      "after": " talent musical.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : le talent (singulier) → leur."
+    },
+    {
+      "id": "q020",
+      "before": "On célèbre ",
+      "after": " anniversaire.",
+      "answer": "leur",
+      "difficulty": 2,
+      "explanation": "Déterminant singulier : l'anniversaire (singulier) → leur."
+    },
+    {
+      "id": "q021",
+      "before": "Je découvre ",
+      "after": " passion pour la danse.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : la passion (singulier) → leur."
+    },
+    {
+      "id": "q022",
+      "before": "Tu ignores ",
+      "after": " histoire.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : l'histoire (singulier) → leur."
+    },
+    {
+      "id": "q023",
+      "before": "Elles oublient ",
+      "after": " promesse.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : la promesse (singulier) → leur."
+    },
+    {
+      "id": "q024",
+      "before": "Nous saluons ",
+      "after": " effort.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : l'effort (singulier) → leur."
+    },
+    {
+      "id": "q025",
+      "before": "Vous apportez ",
+      "after": " soutien.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : le soutien (singulier) → leur."
+    },
+    {
+      "id": "q026",
+      "before": "Il découvre ",
+      "after": " secret de famille.",
+      "answer": "leur",
+      "difficulty": 2,
+      "explanation": "Déterminant singulier : le secret (singulier) → leur."
+    },
+    {
+      "id": "q027",
+      "before": "Je reconnais ",
+      "after": " voix.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : la voix (singulier) → leur."
+    },
+    {
+      "id": "q028",
+      "before": "Tu admires ",
+      "after": " projet.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : le projet (singulier) → leur."
+    },
+    {
+      "id": "q029",
+      "before": "Elles aiment ",
+      "after": " jardin.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : le jardin (singulier) → leur."
+    },
+    {
+      "id": "q030",
+      "before": "Nous envions ",
+      "after": " chance.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : la chance (singulier) → leur."
+    },
+    {
+      "id": "q031",
+      "before": "J'aime ",
+      "after": " maisons.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les maisons (pluriel) → leurs."
+    },
+    {
+      "id": "q032",
+      "before": "Tu connais ",
+      "after": " amis.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les amis (pluriel) → leurs."
+    },
+    {
+      "id": "q033",
+      "before": "Il collectionne ",
+      "after": " livres.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les livres (pluriel) → leurs."
+    },
+    {
+      "id": "q034",
+      "before": "Nous voyons ",
+      "after": " enfants chaque semaine.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les enfants (pluriel) → leurs."
+    },
+    {
+      "id": "q035",
+      "before": "Vous respectez ",
+      "after": " opinions.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les opinions (pluriel) → leurs."
+    },
+    {
+      "id": "q036",
+      "before": "Elle admire ",
+      "after": " talents.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les talents (pluriel) → leurs."
+    },
+    {
+      "id": "q037",
+      "before": "Je visite ",
+      "after": " pays d'origine.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les pays (pluriel) → leurs."
+    },
+    {
+      "id": "q038",
+      "before": "Tu lis ",
+      "after": " emails.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les emails (pluriel) → leurs."
+    },
+    {
+      "id": "q039",
+      "before": "Elles adorent ",
+      "after": " parents.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les parents (pluriel) → leurs."
+    },
+    {
+      "id": "q040",
+      "before": "Nous étudirons ",
+      "after": " projets.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les projets (pluriel) → leurs."
+    },
+    {
+      "id": "q041",
+      "before": "Je reconnais ",
+      "after": " voix.",
+      "answer": "leurs",
+      "difficulty": 2,
+      "explanation": "Déterminant pluriel : les voix (pluriel) → leurs."
+    },
+    {
+      "id": "q042",
+      "before": "Tu regardes ",
+      "after": " photos de vacances.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les photos (pluriel) → leurs."
+    },
+    {
+      "id": "q043",
+      "before": "Il organise ",
+      "after": " fêtes d'anniversaire.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les fêtes (pluriel) → leurs."
+    },
+    {
+      "id": "q044",
+      "before": "Nous invitons ",
+      "after": " collègues.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les collègues (pluriel) → leurs."
+    },
+    {
+      "id": "q045",
+      "before": "Vous récupérez ",
+      "after": " clés.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les clés (pluriel) → leurs."
+    },
+    {
+      "id": "q046",
+      "before": "Elle comprend ",
+      "after": " frustrations.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les frustrations (pluriel) → leurs."
+    },
+    {
+      "id": "q047",
+      "before": "Je partage ",
+      "after": " repas.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les repas (pluriel) → leurs."
+    },
+    {
+      "id": "q048",
+      "before": "Tu notes ",
+      "after": " adresses.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les adresses (pluriel) → leurs."
+    },
+    {
+      "id": "q049",
+      "before": "Elles défendent ",
+      "after": " droits.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les droits (pluriel) → leurs."
+    },
+    {
+      "id": "q050",
+      "before": "Nous accueillons ",
+      "after": " invités.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les invités (pluriel) → leurs."
+    },
+    {
+      "id": "q051",
+      "before": "Je ",
+      "after": " rapporte les bonnes nouvelles.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « je lui rapporte » → leur invariable."
+    },
+    {
+      "id": "q052",
+      "before": "Tu ",
+      "after": " transmets le message.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui transmets » → leur pronom invariable."
+    },
+    {
+      "id": "q053",
+      "before": "Il ",
+      "after": " explique la règle.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « il lui explique » → leur invariable."
+    },
+    {
+      "id": "q054",
+      "before": "Nous ",
+      "after": " recommandons ce restaurant.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui recommandons » → leur invariable."
+    },
+    {
+      "id": "q055",
+      "before": "Vous ",
+      "after": " souhaitez une bonne année.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « vous lui souhaitez » → leur invariable."
+    },
+    {
+      "id": "q056",
+      "before": "Elle ",
+      "after": " propose une solution.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui propose » → leur pronom invariable."
+    },
+    {
+      "id": "q057",
+      "before": "Je ",
+      "after": " demande une faveur.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « je lui demande » → leur invariable."
+    },
+    {
+      "id": "q058",
+      "before": "Tu ",
+      "after": " montres ton travail.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui montres » → leur pronom invariable."
+    },
+    {
+      "id": "q059",
+      "before": "Elles ",
+      "after": " posent une question importante.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « elles lui posent » → leur invariable."
+    },
+    {
+      "id": "q060",
+      "before": "Nous ",
+      "after": " accordons une permission.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui accordons » → leur pronom invariable."
+    },
+    {
+      "id": "q061",
+      "before": "Avez-vous donné ",
+      "after": " clés ?",
+      "answer": "leurs",
+      "difficulty": 2,
+      "explanation": "Déterminant pluriel : les clés (pluriel) → leurs."
+    },
+    {
+      "id": "q062",
+      "before": "Je reconnais ",
+      "after": " caractères.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les caractères (pluriel) → leurs."
+    },
+    {
+      "id": "q063",
+      "before": "Tu évalues ",
+      "after": " compétences.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les compétences (pluriel) → leurs."
+    },
+    {
+      "id": "q064",
+      "before": "Il félicite ",
+      "after": " efforts.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les efforts (pluriel) → leurs."
+    },
+    {
+      "id": "q065",
+      "before": "Nous attendons ",
+      "after": " résultats.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les résultats (pluriel) → leurs."
+    },
+    {
+      "id": "q066",
+      "before": "Vous approuvez ",
+      "after": " décisions.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les décisions (pluriel) → leurs."
+    },
+    {
+      "id": "q067",
+      "before": "Elle comprend ",
+      "after": " besoins.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les besoins (pluriel) → leurs."
+    },
+    {
+      "id": "q068",
+      "before": "Je critique ",
+      "after": " solutions.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les solutions (pluriel) → leurs."
+    },
+    {
+      "id": "q069",
+      "before": "Tu admires ",
+      "after": " œuvres d'art.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les œuvres (pluriel) → leurs."
+    },
+    {
+      "id": "q070",
+      "before": "Elles vendent ",
+      "after": " voitures.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les voitures (pluriel) → leurs."
+    },
+    {
+      "id": "q071",
+      "before": "Je ",
+      "after": " ai parlé sans détour.",
+      "answer": "leur",
+      "difficulty": 2,
+      "explanation": "Pronom : on peut dire « je lui ai parlé » → leur invariable."
+    },
+    {
+      "id": "q072",
+      "before": "Tu ",
+      "after": " rends visite régulièrement.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui rends visite » → leur pronom invariable."
+    },
+    {
+      "id": "q073",
+      "before": "Il ",
+      "after": " verse un salaire chaque mois.",
+      "answer": "leur",
+      "difficulty": 2,
+      "explanation": "Pronom : on peut dire « il lui verse » → leur invariable."
+    },
+    {
+      "id": "q074",
+      "before": "Nous ",
+      "after": " confions nos secrets.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui confions » → leur pronom invariable."
+    },
+    {
+      "id": "q075",
+      "before": "Vous ",
+      "after": " offrez un cadeau surprise.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « vous lui offrez » → leur invariable."
+    },
+    {
+      "id": "q076",
+      "before": "Elle ",
+      "after": " confie ses enfants.",
+      "answer": "leur",
+      "difficulty": 2,
+      "explanation": "Pronom : remplace par « lui confie » → leur pronom invariable."
+    },
+    {
+      "id": "q077",
+      "before": "Je ",
+      "after": " dois dire la vérité.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « je lui dois » → leur invariable."
+    },
+    {
+      "id": "q078",
+      "before": "Tu ",
+      "after": " apprends à cuisiner.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui apprends » → leur pronom invariable."
+    },
+    {
+      "id": "q079",
+      "before": "Elles ",
+      "after": " cachent rien.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « elles lui cachent » → leur invariable."
+    },
+    {
+      "id": "q080",
+      "before": "Nous ",
+      "after": " destinons ce livre.",
+      "answer": "leur",
+      "difficulty": 2,
+      "explanation": "Pronom : remplace par « lui destinons » → leur pronom invariable."
+    },
+    {
+      "id": "q081",
+      "before": "C'est ",
+      "after": " anniversaire demain.",
+      "answer": "leur",
+      "difficulty": 3,
+      "explanation": "Piège : déterminant singulier (l'anniversaire) → leur, pas leurs."
+    },
+    {
+      "id": "q082",
+      "before": "Ils ont donné ",
+      "after": " clés à Marie.",
+      "answer": "leurs",
+      "difficulty": 3,
+      "explanation": "Piège : deux formes dans une phrase - « leurs » pour les clés (pluriel)."
+    },
+    {
+      "id": "q083",
+      "before": "Je ",
+      "after": " dois tout pardonner.",
+      "answer": "leur",
+      "difficulty": 2,
+      "explanation": "Pronom : on peut dire « je lui dois » → leur invariable."
+    },
+    {
+      "id": "q084",
+      "before": "Tu oublies ",
+      "after": " anniversaire.",
+      "answer": "leur",
+      "difficulty": 2,
+      "explanation": "Déterminant singulier : l'anniversaire (singulier) → leur."
+    },
+    {
+      "id": "q085",
+      "before": "Elle distribue ",
+      "after": " prix.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les prix (pluriel) → leurs."
+    },
+    {
+      "id": "q086",
+      "before": "Nous trouvons ",
+      "after": " attitude menaçante.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : l'attitude (singulier) → leur."
+    },
+    {
+      "id": "q087",
+      "before": "Vous louez ",
+      "after": " idées géniales.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les idées (pluriel) → leurs."
+    },
+    {
+      "id": "q088",
+      "before": "Il achète ",
+      "after": " cadeaux au marché.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les cadeaux (pluriel) → leurs."
+    },
+    {
+      "id": "q089",
+      "before": "Je ne comprends pas ",
+      "after": " logique.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : la logique (singulier) → leur."
+    },
+    {
+      "id": "q090",
+      "before": "Tu empruntes ",
+      "after": " livres.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les livres (pluriel) → leurs."
+    },
+    {
+      "id": "q091",
+      "before": "Elles ",
+      "after": " racontent des histoires.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « elles lui racontent » → leur invariable."
+    },
+    {
+      "id": "q092",
+      "before": "Nous envoyons ",
+      "after": " documents.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les documents (pluriel) → leurs."
+    },
+    {
+      "id": "q093",
+      "before": "Vous changez ",
+      "after": " plans.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les plans (pluriel) → leurs."
+    },
+    {
+      "id": "q094",
+      "before": "Elle ",
+      "after": " donne des nouvelles.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : remplace par « lui donne » → leur pronom invariable."
+    },
+    {
+      "id": "q095",
+      "before": "Je préfère ",
+      "after": " style.",
+      "answer": "leur",
+      "difficulty": 2,
+      "explanation": "Déterminant singulier : le style (singulier) → leur."
+    },
+    {
+      "id": "q096",
+      "before": "Tu remarques ",
+      "after": " erreurs.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les erreurs (pluriel) → leurs."
+    },
+    {
+      "id": "q097",
+      "before": "Il augmente ",
+      "after": " salaires.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les salaires (pluriel) → leurs."
+    },
+    {
+      "id": "q098",
+      "before": "Elles partagent ",
+      "after": " passion.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Déterminant singulier : la passion (singulier) → leur."
+    },
+    {
+      "id": "q099",
+      "before": "Nous célébrons ",
+      "after": " succès.",
+      "answer": "leurs",
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les succès (pluriel) → leurs."
+    },
+    {
+      "id": "q100",
+      "before": "Vous ",
+      "after": " prêtez une main bienveillante.",
+      "answer": "leur",
+      "difficulty": 1,
+      "explanation": "Pronom : on peut dire « vous lui prêtez » → leur invariable."
+    }
+  ]
+}

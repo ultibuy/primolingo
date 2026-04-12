@@ -1,0 +1,388 @@
+{
+  "id": "ces-ses",
+  "title": "ces · ses · s'est · c'est",
+  "shortTitle": "ces / ses",
+  "description": "Distinguer les quatre homophones : ces (démonstratif pluriel), ses (possessif pluriel), s'est (pronom réfléchi + être), c'est (ce + est).",
+
+  "choices": [
+    { "id": "ces",  "label": "ces",   "hasEtre": false, "startsWithC": true  },
+    { "id": "ses",  "label": "ses",   "hasEtre": false, "startsWithC": false },
+    { "id": "sest", "label": "s'est", "hasEtre": true,  "startsWithC": false },
+    { "id": "cest", "label": "c'est", "hasEtre": true,  "startsWithC": true  }
+  ],
+
+  "decisionAxes": [
+    {
+      "id": "hasEtre",
+      "question": "Verbe être présent ?",
+      "options": [
+        {
+          "value": true,
+          "label": "Oui, avec être",
+          "sub": "s'est / c'est → verbe être conjugué",
+          "eliminates": ["ces", "ses"]
+        },
+        {
+          "value": false,
+          "label": "Non, sans être",
+          "sub": "ses / ces → déterminant devant un nom",
+          "eliminates": ["sest", "cest"]
+        }
+      ]
+    },
+    {
+      "id": "initiale",
+      "question": "Commence par ?",
+      "dependsOn": "hasEtre",
+      "options": [
+        {
+          "value": "C",
+          "labelWhenEtre": "C → cela est",
+          "labelWhenNoEtre": "C → ceux-là",
+          "labelDefault": "C",
+          "eliminates": ["ses", "sest"]
+        },
+        {
+          "value": "S",
+          "labelWhenEtre": "S → se + être",
+          "labelWhenNoEtre": "S → les siens",
+          "labelDefault": "S",
+          "eliminates": ["ces", "cest"]
+        }
+      ]
+    }
+  ],
+
+  "memoCard": {
+    "title": "La règle en un coup d'œil",
+    "rows": [
+      { "form": "c'est",  "test": "cela est",  "example": "C'est beau." },
+      { "form": "s'est",  "test": "se + est",  "example": "Il s'est trompé." },
+      { "form": "ces",    "test": "ceux-là",   "example": "Ces livres-là." },
+      { "form": "ses",    "test": "les siens", "example": "Ses affaires à lui." }
+    ]
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "before": "L'enfant ",
+      "after": " réveillé en pleine nuit.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "L'enfant se est réveillé → verbe être (se réveiller), pronom réfléchi « se » → S. Donc : s'est."
+    },
+    {
+      "id": "q002",
+      "before": "Mon collègue ",
+      "after": " inscrit à un marathon.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Mon collègue se est inscrit → verbe être (s'inscrire), pronom réfléchi « se » → S. Donc : s'est."
+    },
+    {
+      "id": "q003",
+      "before": "La porte ",
+      "after": " ouverte toute seule.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "La porte se est ouverte → verbe être (s'ouvrir), pronom réfléchi « se » → S. Donc : s'est."
+    },
+    {
+      "id": "q004",
+      "before": "L'avion ",
+      "after": " posé avec du retard.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "L'avion se est posé → verbe être (se poser), pronom réfléchi « se » → S. Donc : s'est."
+    },
+    {
+      "id": "q005",
+      "before": "Elle ",
+      "after": " rendu compte de son erreur.",
+      "answer": "sest",
+      "difficulty": 2,
+      "explanation": "Elle se est rendu compte → verbe être (se rendre compte), pronom réfléchi « se » → S. Donc : s'est."
+    },
+    {
+      "id": "q006",
+      "before": "",
+      "after": " toujours pareil avec lui !",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est toujours pareil → verbe être, « ce » → C. Donc : c'est."
+    },
+    {
+      "id": "q007",
+      "before": "",
+      "after": " dommage de rater ce film.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est dommage → verbe être, « ce » → C. Donc : c'est."
+    },
+    {
+      "id": "q008",
+      "before": "",
+      "after": " grâce à toi qu'on a gagné.",
+      "answer": "cest",
+      "difficulty": 2,
+      "explanation": "Cela est grâce à toi → verbe être, « ce » → C. Donc : c'est."
+    },
+    {
+      "id": "q009",
+      "before": "",
+      "after": " exactement ce que je voulais dire.",
+      "answer": "cest",
+      "difficulty": 2,
+      "explanation": "Cela est exactement ce que… → verbe être, « ce » → C. Donc : c'est."
+    },
+    {
+      "id": "q010",
+      "before": "Ah, ",
+      "after": " toi qui as pris mon stylo !",
+      "answer": "cest",
+      "difficulty": 2,
+      "explanation": "Cela est toi qui… → verbe être, « ce » → C. Donc : c'est."
+    },
+    {
+      "id": "q011",
+      "before": "Le directeur a annulé ",
+      "after": " réunions de l'après-midi.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les réunions à lui → pas de verbe être, on peut dire « les siennes » → S. Donc : ses."
+    },
+    {
+      "id": "q012",
+      "before": "Elle cherche ",
+      "after": " lunettes depuis ce matin.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les lunettes à elle → pas de verbe être, on peut dire « les siennes » → S. Donc : ses."
+    },
+    {
+      "id": "q013",
+      "before": "Il a oublié ",
+      "after": " devoirs à la maison.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les devoirs à lui → pas de verbe être, on peut dire « les siens » → S. Donc : ses."
+    },
+    {
+      "id": "q014",
+      "before": "Ma grand-mère raconte toujours ",
+      "after": " histoires du passé.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les histoires à elle → pas de verbe être, on peut dire « les siennes » → S. Donc : ses."
+    },
+    {
+      "id": "q015",
+      "before": "Le joueur a enlevé ",
+      "after": " crampons après le match.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les crampons à lui → pas de verbe être, on peut dire « les siens » → S. Donc : ses."
+    },
+    {
+      "id": "q016",
+      "before": "D'où viennent ",
+      "after": " bruits bizarres la nuit ?",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de bruits précis (ceux-là) → pas de verbe être, « ceux-là » → C. Donc : ces."
+    },
+    {
+      "id": "q017",
+      "before": "Il faut arroser ",
+      "after": " plantes sur le balcon.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des plantes précises (celles-là) → pas de verbe être, « ceux-là » → C. Donc : ces."
+    },
+    {
+      "id": "q018",
+      "before": "Je me souviens bien de ",
+      "after": " vacances en Bretagne.",
+      "answer": "ces",
+      "difficulty": 2,
+      "explanation": "On parle de vacances précises (celles-là) → pas de verbe être, « ceux-là » → C. Donc : ces."
+    },
+    {
+      "id": "q019",
+      "before": "",
+      "after": " enfants jouent trop près de la route.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des enfants précis (ceux-là) → pas de verbe être, « ceux-là » → C. Donc : ces."
+    },
+    {
+      "id": "q020",
+      "before": "Tu connais ",
+      "after": " restaurants près de la gare ?",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de restaurants précis (ceux-là) → pas de verbe être, « ceux-là » → C. Donc : ces."
+    },
+    {
+      "id": "q021",
+      "before": "Le bébé ",
+      "after": " mis à pleurer d'un coup.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Le bébé se est mis à pleurer → verbe être (se mettre), pronom réfléchi « se » → S. Donc : s'est."
+    },
+    {
+      "id": "q022",
+      "before": "La branche ",
+      "after": " cassée sous le poids de la neige.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "La branche se est cassée → verbe être (se casser), pronom réfléchi « se » → S. Donc : s'est."
+    },
+    {
+      "id": "q023",
+      "before": "Mon voisin ",
+      "after": " plaint du bruit toute la soirée.",
+      "answer": "sest",
+      "difficulty": 2,
+      "explanation": "Mon voisin se est plaint → verbe être (se plaindre), pronom réfléchi « se » → S. Donc : s'est."
+    },
+    {
+      "id": "q024",
+      "before": "Le match ",
+      "after": " terminé par un match nul.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Le match se est terminé → verbe être (se terminer), pronom réfléchi « se » → S. Donc : s'est."
+    },
+    {
+      "id": "q025",
+      "before": "Elle ",
+      "after": " souvenue de notre rendez-vous.",
+      "answer": "sest",
+      "difficulty": 2,
+      "explanation": "Elle se est souvenue → verbe être (se souvenir), pronom réfléchi « se » → S. Donc : s'est."
+    },
+    {
+      "id": "q026",
+      "before": "",
+      "after": " impossible de tout faire en un jour.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est impossible → verbe être, « ce » → C. Donc : c'est."
+    },
+    {
+      "id": "q027",
+      "before": "",
+      "after": " lui qui m'a tout appris.",
+      "answer": "cest",
+      "difficulty": 2,
+      "explanation": "Cela est lui qui… → verbe être, « ce » → C. Donc : c'est."
+    },
+    {
+      "id": "q028",
+      "before": "",
+      "after": " bizarre, il ne répond plus au téléphone.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est bizarre → verbe être, « ce » → C. Donc : c'est."
+    },
+    {
+      "id": "q029",
+      "before": "Oui, ",
+      "after": " bien ce que je pensais.",
+      "answer": "cest",
+      "difficulty": 2,
+      "explanation": "Cela est bien ce que… → verbe être, « ce » → C. Donc : c'est."
+    },
+    {
+      "id": "q030",
+      "before": "",
+      "after": " pour demain, pas pour aujourd'hui.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est pour demain → verbe être, « ce » → C. Donc : c'est."
+    },
+    {
+      "id": "q031",
+      "before": "L'artiste expose ",
+      "after": " tableaux dans une galerie parisienne.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les tableaux à lui → pas de verbe être, on peut dire « les siens » → S. Donc : ses."
+    },
+    {
+      "id": "q032",
+      "before": "Le médecin a consulté ",
+      "after": " notes avant de répondre.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les notes à lui → pas de verbe être, on peut dire « les siennes » → S. Donc : ses."
+    },
+    {
+      "id": "q033",
+      "before": "Ma fille a mis ",
+      "after": " bottes pour aller dans les flaques.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les bottes à elle → pas de verbe être, on peut dire « les siennes » → S. Donc : ses."
+    },
+    {
+      "id": "q034",
+      "before": "Le pilote a vérifié ",
+      "after": " instruments avant le décollage.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les instruments à lui → pas de verbe être, on peut dire « les siens » → S. Donc : ses."
+    },
+    {
+      "id": "q035",
+      "before": "Le chien a retrouvé ",
+      "after": " jouets sous le lit.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les jouets à lui → pas de verbe être, on peut dire « les siens » → S. Donc : ses."
+    },
+    {
+      "id": "q036",
+      "before": "Qui a laissé ",
+      "after": " cartons dans le couloir ?",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des cartons précis (ceux-là) → pas de verbe être, « ceux-là » → C. Donc : ces."
+    },
+    {
+      "id": "q037",
+      "before": "Je déteste ",
+      "after": " jours de pluie interminable.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de jours précis (ceux-là) → pas de verbe être, « ceux-là » → C. Donc : ces."
+    },
+    {
+      "id": "q038",
+      "before": "",
+      "after": " nuages annoncent un orage.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On montre des nuages précis (ceux-là) → pas de verbe être, « ceux-là » → C. Donc : ces."
+    },
+    {
+      "id": "q039",
+      "before": "Tu te rappelles ",
+      "after": " étés qu'on passait à la campagne ?",
+      "answer": "ces",
+      "difficulty": 2,
+      "explanation": "On parle d'étés précis (ceux-là) → pas de verbe être, « ceux-là » → C. Donc : ces."
+    },
+    {
+      "id": "q040",
+      "before": "Il faudrait repeindre ",
+      "after": " murs du salon.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des murs précis (ceux-là) → pas de verbe être, « ceux-là » → C. Donc : ces."
+    }
+  ]
+}

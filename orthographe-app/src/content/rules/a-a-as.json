@@ -1,0 +1,853 @@
+{
+  "id": "a-a-as",
+  "title": "a · à · as",
+  "shortTitle": "a / à / as",
+  "description": "Distinguer : a (verbe avoir, il/elle/on), as (verbe avoir, tu), à (préposition).",
+
+  "choices": [
+    { "id": "a",  "label": "a",  "isVerbe": true,  "sujet": "il/elle/on" },
+    { "id": "as", "label": "as", "isVerbe": true,  "sujet": "tu" },
+    { "id": "ap", "label": "à",  "isVerbe": false, "sujet": null }
+  ],
+
+  "decisionAxes": [
+    {
+      "id": "isVerbe",
+      "question": "Est-ce un verbe avoir ?",
+      "sub": "Test : remplace par « avait » ou « avais »",
+      "options": [
+        { "value": true,  "label": "Oui, c'est un verbe", "sub": "avait/avais → fonctionne", "eliminates": ["ap"] },
+        { "value": false, "label": "Non, c'est une préposition", "sub": "avait/avais → ne fonctionne pas", "eliminates": ["a", "as"] }
+      ]
+    },
+    {
+      "id": "sujet",
+      "question": "Quel est le sujet ?",
+      "dependsOn": "isVerbe",
+      "showWhen": true,
+      "options": [
+        { "value": "tu",        "label": "tu → as", "eliminates": ["a"] },
+        { "value": "il/elle/on","label": "il / elle / on → a", "eliminates": ["as"] }
+      ]
+    }
+  ],
+
+  "memoCard": {
+    "title": "La règle en un coup d'œil",
+    "rows": [
+      { "form": "a",  "test": "remplacer par « avait »", "example": "Il a faim. → Il avait faim. ✓" },
+      { "form": "as", "test": "remplacer par « avais »", "example": "Tu as raison. → Tu avais raison. ✓" },
+      { "form": "à",  "test": "avait/avais ne marche pas", "example": "Je vais à Paris. → Je vais avait Paris. ✗" }
+    ]
+  },
+
+  "questions": [
+    {
+      "id": "q001",
+      "before": "Il ",
+      "after": " faim après le sport.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « il avait faim » → verbe avoir, sujet il → a."
+    },
+    {
+      "id": "q002",
+      "before": "Elle ",
+      "after": " une belle robe rouge.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « elle avait une belle robe » → verbe avoir, sujet elle → a."
+    },
+    {
+      "id": "q003",
+      "before": "Tu ",
+      "after": " compris la leçon ?",
+      "answer": "as",
+      "difficulty": 1,
+      "explanation": "On peut dire « tu avais compris » → verbe avoir, sujet tu → as."
+    },
+    {
+      "id": "q004",
+      "before": "Je vais ",
+      "after": " l'école le matin.",
+      "answer": "ap",
+      "difficulty": 1,
+      "explanation": "« Je vais avait l'école » ne fonctionne pas → préposition → à."
+    },
+    {
+      "id": "q005",
+      "before": "On ",
+      "after": " décidé d'aller au cinéma.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « on avait décidé » → verbe avoir, sujet on → a."
+    },
+    {
+      "id": "q006",
+      "before": "Tu ",
+      "after": " besoin d'aide ?",
+      "answer": "as",
+      "difficulty": 1,
+      "explanation": "On peut dire « tu avais besoin » → verbe avoir, sujet tu → as."
+    },
+    {
+      "id": "q007",
+      "before": "Il commence ",
+      "after": " 9 heures.",
+      "answer": "ap",
+      "difficulty": 1,
+      "explanation": "« Il commence avait 9 heures » ne fonctionne pas → préposition → à."
+    },
+    {
+      "id": "q008",
+      "before": "Ella ",
+      "after": " trois enfants.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « elle avait trois enfants » → verbe avoir, sujet elle → a."
+    },
+    {
+      "id": "q009",
+      "before": "Tu ",
+      "after": " l'adresse du restaurant ?",
+      "answer": "as",
+      "difficulty": 1,
+      "explanation": "On peut dire « tu avais l'adresse » → verbe avoir, sujet tu → as."
+    },
+    {
+      "id": "q010",
+      "before": "Le chat ",
+      "after": " une queue longue.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « le chat avait une queue longue » → verbe avoir, sujet il (le chat) → a."
+    },
+    {
+      "id": "q011",
+      "before": "Je vais ",
+      "after": " Paris demain.",
+      "answer": "ap",
+      "difficulty": 1,
+      "explanation": "« Je vais avait Paris » ne fonctionne pas → préposition → à."
+    },
+    {
+      "id": "q012",
+      "before": "Elle ",
+      "after": " les cheveux blonds.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « elle avait les cheveux blonds » → verbe avoir, sujet elle → a."
+    },
+    {
+      "id": "q013",
+      "before": "Tu ",
+      "after": " oublié ton livre.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais oublié » → verbe avoir au passé composé, sujet tu → as."
+    },
+    {
+      "id": "q014",
+      "before": "C'est ",
+      "after": " vous de jouer.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« C'est avait vous » ne fonctionne pas → préposition d'attribution → à."
+    },
+    {
+      "id": "q015",
+      "before": "Mon père ",
+      "after": " un nouveau travail.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « mon père avait un nouveau travail » → verbe avoir, sujet il (père) → a."
+    },
+    {
+      "id": "q016",
+      "before": "Tu ",
+      "after": " raison de refuser.",
+      "answer": "as",
+      "difficulty": 1,
+      "explanation": "On peut dire « tu avais raison » → verbe avoir, sujet tu → as."
+    },
+    {
+      "id": "q017",
+      "before": "Il apprend ",
+      "after": " nager à la piscine.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Il apprend avait nager » ne fonctionne pas → préposition devant infinitif → à."
+    },
+    {
+      "id": "q018",
+      "before": "Elle ",
+      "after": " du mal ",
+      "after_complete": " comprendre la physique.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « elle avait du mal » → verbe avoir → a. (Et la deuxième préposition est aussi « à »)"
+    },
+    {
+      "id": "q019",
+      "before": "Tu ",
+      "after": " peur des araignées.",
+      "answer": "as",
+      "difficulty": 1,
+      "explanation": "On peut dire « tu avais peur » → verbe avoir, sujet tu → as."
+    },
+    {
+      "id": "q020",
+      "before": "On rencontre le directeur ",
+      "after": " 2 heures.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« On rencontre avait 2 heures » ne fonctionne pas → préposition d'heure → à."
+    },
+    {
+      "id": "q021",
+      "before": "Il ",
+      "after": " 25 ans aujourd'hui.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « il avait 25 ans » → verbe avoir, sujet il → a."
+    },
+    {
+      "id": "q022",
+      "before": "Elle habitait ",
+      "after": " 5 km de la gare.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Elle habitait avait 5 km » ne fonctionne pas → préposition de distance → à."
+    },
+    {
+      "id": "q023",
+      "before": "Tu ",
+      "after": " fini tes devoirs ?",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais fini » → verbe avoir au passé composé, sujet tu → as."
+    },
+    {
+      "id": "q024",
+      "before": "Un verre ",
+      "after": " vin blanc.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Un verre avait vin » ne fonctionne pas → préposition d'appartenance/contenu → à."
+    },
+    {
+      "id": "q025",
+      "before": "Vous ",
+      "after": " aimé ce film ?",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « vous aviez aimé » → verbe avoir (vous = il/elle/on en termes grammaticaux) → a."
+    },
+    {
+      "id": "q026",
+      "before": "Je dis merci ",
+      "after": " ma mère.",
+      "answer": "ap",
+      "difficulty": 1,
+      "explanation": "« Je dis merci avait ma mère » ne fonctionne pas → préposition d'attribution → à."
+    },
+    {
+      "id": "q027",
+      "before": "Il ",
+      "after": " vu un fantôme.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « il avait vu » → verbe avoir au passé composé, sujet il → a."
+    },
+    {
+      "id": "q028",
+      "before": "Tu ",
+      "after": " écouté le concert hier ?",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais écouté » → verbe avoir au passé composé, sujet tu → as."
+    },
+    {
+      "id": "q029",
+      "before": "Elle commence ",
+      "after": " 8h30 demain.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Elle commence avait 8h30 » ne fonctionne pas → préposition d'heure → à."
+    },
+    {
+      "id": "q030",
+      "before": "Un pantalon ",
+      "after": " cinq poches.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Un pantalon avait cinq poches » ne fonctionne pas (attente : « a ») → préposition d'appartenance → à."
+    },
+    {
+      "id": "q031",
+      "before": "Il ",
+      "after": " passé son examen avec succès.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « il avait passé » → verbe avoir au passé composé → a."
+    },
+    {
+      "id": "q032",
+      "before": "Tu ",
+      "after": " promis de venir.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais promis » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q033",
+      "before": "Le restaurant est ",
+      "after": " côté de la mairie.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Le restaurant est avait côté » ne fonctionne pas → préposition de localisation → à."
+    },
+    {
+      "id": "q034",
+      "before": "Elle ",
+      "after": " oublié son parapluie.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « elle avait oublié » → verbe avoir au passé composé → a."
+    },
+    {
+      "id": "q035",
+      "before": "Tu ",
+      "after": " montré la photo ",
+      "after_complete": " tes amis.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais montré » → verbe avoir au passé composé → as. (Et la deuxième préposition est aussi « à »)"
+    },
+    {
+      "id": "q036",
+      "before": "On donnerait du pain ",
+      "after": " tous les oiseaux.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« On donnerait avait oiseaux » ne fonctionne pas → préposition d'attribution → à."
+    },
+    {
+      "id": "q037",
+      "before": "Il ",
+      "after": " les yeux bleus.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « il avait les yeux bleus » → verbe avoir, sujet il → a."
+    },
+    {
+      "id": "q038",
+      "before": "Tu vas ",
+      "after": " l'épicerie.",
+      "answer": "ap",
+      "difficulty": 1,
+      "explanation": "« Tu vas avait l'épicerie » ne fonctionne pas → préposition de destination → à."
+    },
+    {
+      "id": "q039",
+      "before": "Elle ",
+      "after": " une chance incroyable.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « elle avait une chance » → verbe avoir, sujet elle → a."
+    },
+    {
+      "id": "q040",
+      "before": "Tu ",
+      "after": " invité les voisins.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais invité » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q041",
+      "before": "Je pense ",
+      "after": " vous souvent.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Je pense avait vous » ne fonctionne pas → préposition d'objet indirect → à."
+    },
+    {
+      "id": "q042",
+      "before": "Il ",
+      "after": " le temps d'appeler.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « il avait le temps » → verbe avoir, sujet il → a."
+    },
+    {
+      "id": "q043",
+      "before": "Un couteau ",
+      "after": " beurre.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Un couteau avait beurre » ne fonctionne pas → préposition d'usage/destination → à."
+    },
+    {
+      "id": "q044",
+      "before": "Tu ",
+      "after": " confiance en toi.",
+      "answer": "as",
+      "difficulty": 1,
+      "explanation": "On peut dire « tu avais confiance » → verbe avoir, sujet tu → as."
+    },
+    {
+      "id": "q045",
+      "before": "Elle commence ",
+      "after": " parler français.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Elle commence avait parler » ne fonctionne pas → préposition devant infinitif → à."
+    },
+    {
+      "id": "q046",
+      "before": "Il ",
+      "after": " été choisi pour l'équipe.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « il avait été choisi » → verbe avoir au passé composé → a."
+    },
+    {
+      "id": "q047",
+      "before": "Tu ",
+      "after": " arrêté de fumer.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais arrêté » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q048",
+      "before": "La maison est exposée ",
+      "after": " l'ouest.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« La maison avait l'ouest » ne fonctionne pas → préposition de direction/exposition → à."
+    },
+    {
+      "id": "q049",
+      "before": "Il ",
+      "after": " du courage pour avouer.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « il avait du courage » → verbe avoir, sujet il → a."
+    },
+    {
+      "id": "q050",
+      "before": "Tu ",
+      "after": " parlé trop fort.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais parlé » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q051",
+      "before": "Je suis heureux ",
+      "after": " te revoir.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Je suis heureux avait te revoir » ne fonctionne pas → préposition devant infinitif → à."
+    },
+    {
+      "id": "q052",
+      "before": "Elle ",
+      "after": " une envie de chocolat.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « elle avait une envie » → verbe avoir, sujet elle → a."
+    },
+    {
+      "id": "q053",
+      "before": "Tu ",
+      "after": " aidé la personne âgée.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais aidé » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q054",
+      "before": "Il tient ",
+      "after": " sa sœur.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Il tient avait sa sœur » ne fonctionne pas → préposition de rapport/relation → à."
+    },
+    {
+      "id": "q055",
+      "before": "Elle ",
+      "after": " grandi très vite.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « elle avait grandi » → verbe avoir au passé composé → a."
+    },
+    {
+      "id": "q056",
+      "before": "Tu ",
+      "after": " intérêt ",
+      "after_complete": " apprendre l'allemand.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais intérêt » → verbe avoir (expression avoir intérêt à) → as. (La deuxième préposition est aussi « à »)"
+    },
+    {
+      "id": "q057",
+      "before": "C'est une robe ",
+      "after": " fleurs.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Une robe avait fleurs » ne fonctionne pas → préposition de décoration/motif → à."
+    },
+    {
+      "id": "q058",
+      "before": "Il ",
+      "after": " finalement changé d'avis.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « il avait finalement changé » → verbe avoir au passé composé → a."
+    },
+    {
+      "id": "q059",
+      "before": "Tu ",
+      "after": " refusé l'offre.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais refusé » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q060",
+      "before": "Le restaurant est fermé ",
+      "after": " partir de minuit.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Le restaurant avait partir » ne fonctionne pas → préposition de commencement → à."
+    },
+    {
+      "id": "q061",
+      "before": "Elle ",
+      "after": " une robe splendide.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « elle avait une robe splendide » → verbe avoir, sujet elle → a."
+    },
+    {
+      "id": "q062",
+      "before": "Tu ",
+      "after": " sûrement oublié la date.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais sûrement oublié » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q063",
+      "before": "Il s'intéresse ",
+      "after": " la musique classique.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Il s'intéresse avait la musique » ne fonctionne pas → préposition d'intérêt → à."
+    },
+    {
+      "id": "q064",
+      "before": "Elle ",
+      "after": " demandé la permission.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « elle avait demandé » → verbe avoir au passé composé → a."
+    },
+    {
+      "id": "q065",
+      "before": "Tu ",
+      "after": " répondu trop vite.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais répondu » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q066",
+      "before": "Je suis facile ",
+      "after": " vivre avec.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Je suis facile avait vivre » ne fonctionne pas → préposition devant infinitif → à."
+    },
+    {
+      "id": "q067",
+      "before": "Il ",
+      "after": " gagné au loto.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « il avait gagné » → verbe avoir au passé composé → a."
+    },
+    {
+      "id": "q068",
+      "before": "Tu ",
+      "after": " vendu ta voiture.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais vendu » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q069",
+      "before": "Elle apprend ",
+      "after": " danser le tango.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Elle apprend avait danser » ne fonctionne pas → préposition devant infinitif → à."
+    },
+    {
+      "id": "q070",
+      "before": "Il ",
+      "after": " une dent qui fait mal.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « il avait une dent » → verbe avoir, sujet il → a."
+    },
+    {
+      "id": "q071",
+      "before": "Tu ",
+      "after": " reconnu son erreur.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais reconnu » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q072",
+      "before": "Je vais partager ce secret ",
+      "after": " mon meilleur ami.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Je vais partager avait mon ami » ne fonctionne pas → préposition d'attribution → à."
+    },
+    {
+      "id": "q073",
+      "before": "Elle ",
+      "after": " un sourire magnifique.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « elle avait un sourire » → verbe avoir, sujet elle → a."
+    },
+    {
+      "id": "q074",
+      "before": "Tu ",
+      "after": " goûté ce gâteau délicieux.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais goûté » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q075",
+      "before": "Il faut que tu penses ",
+      "after": " moi.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Tu penses avait moi » ne fonctionne pas → préposition devant moi → à."
+    },
+    {
+      "id": "q076",
+      "before": "Elle ",
+      "after": " monté l'escalier quatre ",
+      "after_complete": " quatre.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « elle avait monté » → verbe avoir au passé composé → a. (Et la deuxième préposition est aussi « à »)"
+    },
+    {
+      "id": "q077",
+      "before": "Tu ",
+      "after": " rendu visite ",
+      "after_complete": " ta grand-mère.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais rendu » → verbe avoir au passé composé → as. (Et la deuxième préposition est aussi « à »)"
+    },
+    {
+      "id": "q078",
+      "before": "Cette ville est proche de la mer, ",
+      "after": " seulement 15 km.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Elle est avait seulement 15 km » ne fonctionne pas → préposition de distance → à."
+    },
+    {
+      "id": "q079",
+      "before": "Il ",
+      "after": " acquis une nouvelle maison.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « il avait acquis » → verbe avoir au passé composé → a."
+    },
+    {
+      "id": "q080",
+      "before": "Tu ",
+      "after": " traversé la rue en courant.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais traversé » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q081",
+      "before": "Elle cherche ",
+      "after": " trouver du travail.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Elle cherche avait trouver » ne fonctionne pas → préposition devant infinitif → à."
+    },
+    {
+      "id": "q082",
+      "before": "Il ",
+      "after": " mille raisons de rester.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « il avait mille raisons » → verbe avoir, sujet il → a."
+    },
+    {
+      "id": "q083",
+      "before": "Tu ",
+      "after": " regardé le film en entier.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais regardé » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q084",
+      "before": "L'école est dédiée ",
+      "after": " tous les enfants.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« L'école est avait tous les enfants » ne fonctionne pas → préposition de destination → à."
+    },
+    {
+      "id": "q085",
+      "before": "Elle ",
+      "after": " modifié son emploi du temps.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « elle avait modifié » → verbe avoir au passé composé → a."
+    },
+    {
+      "id": "q086",
+      "before": "Tu ",
+      "after": " offert un cadeau magnifique.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais offert » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q087",
+      "before": "Elle tient beaucoup ",
+      "after": " son indépendance.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Elle tient avait son indépendance » ne fonctionne pas → préposition de rapport → à."
+    },
+    {
+      "id": "q088",
+      "before": "Il ",
+      "after": " échoué ",
+      "after_complete": " deux reprises.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « il avait échoué » → verbe avoir au passé composé → a. (Et la deuxième préposition est aussi « à »)"
+    },
+    {
+      "id": "q089",
+      "before": "Tu ",
+      "after": " manqué un appel important.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais manqué » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q090",
+      "before": "Je préfère rester loyal ",
+      "after": " mes amis.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Je reste avait mes amis » ne fonctionne pas → préposition de destination/loyauté → à."
+    },
+    {
+      "id": "q091",
+      "before": "Il ",
+      "after": " oublié son portefeuille.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « il avait oublié » → verbe avoir au passé composé → a."
+    },
+    {
+      "id": "q092",
+      "before": "Tu ",
+      "after": " cru au père Noël autrefois.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais cru » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q093",
+      "before": "Le film commence ",
+      "after": " 20h précises.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Le film commence avait 20h » ne fonctionne pas → préposition d'heure → à."
+    },
+    {
+      "id": "q094",
+      "before": "Elle ",
+      "after": " grâce ",
+      "after_complete": " ces efforts.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « elle avait grâce » → verbe avoir (expression avoir grâce à) → a. (Et la deuxième préposition est aussi « à »)"
+    },
+    {
+      "id": "q095",
+      "before": "Tu ",
+      "after": " appris trois langues.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais appris » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q096",
+      "before": "Je suis occupé ",
+      "after": " ranger ma chambre.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« Je suis occupé avait ranger » ne fonctionne pas → préposition devant infinitif → à."
+    },
+    {
+      "id": "q097",
+      "before": "Il ",
+      "after": " toutes les informations qu'il lui faut.",
+      "answer": "a",
+      "difficulty": 1,
+      "explanation": "On peut dire « il avait toutes les informations » → verbe avoir, sujet il → a."
+    },
+    {
+      "id": "q098",
+      "before": "Tu ",
+      "after": " sauvé la situation.",
+      "answer": "as",
+      "difficulty": 2,
+      "explanation": "On peut dire « tu avais sauvé » → verbe avoir au passé composé → as."
+    },
+    {
+      "id": "q099",
+      "before": "L'enfant réussit ",
+      "after": " compter jusqu'à dix.",
+      "answer": "ap",
+      "difficulty": 2,
+      "explanation": "« L'enfant réussit avait compter » ne fonctionne pas → préposition devant infinitif → à."
+    },
+    {
+      "id": "q100",
+      "before": "Il ",
+      "after": " bâti sa fortune.",
+      "answer": "a",
+      "difficulty": 2,
+      "explanation": "On peut dire « il avait bâti » → verbe avoir au passé composé → a."
+    }
+  ]
+}
