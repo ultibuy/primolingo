@@ -7,6 +7,7 @@ export default function QuizDirect({
   rule,
   questions,
   onFinish,
+  onClose,
   isFirstSessionOfDay,
   ruleProgress,
   streak,
@@ -70,9 +71,29 @@ export default function QuizDirect({
           <h1 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-accent)', letterSpacing: '-0.02em', margin: 0 }}>
             {rule.title}
           </h1>
-          <span style={{ fontSize: '0.85rem', color: '#9ca3af', fontWeight: 600 }}>
-            {currentIndex + 1}/{questions.length}
-          </span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
+            <span style={{ fontSize: '0.85rem', color: '#9ca3af', fontWeight: 600 }}>
+              {currentIndex + 1}/{questions.length}
+            </span>
+            <button
+              onClick={onClose}
+              aria-label="Fermer"
+              style={{
+                width: 34,
+                height: 34,
+                borderRadius: 999,
+                border: '1px solid rgba(255,255,255,0.12)',
+                background: 'rgba(255,255,255,0.05)',
+                color: '#d1d5db',
+                cursor: 'pointer',
+                fontSize: '1.05rem',
+                fontWeight: 800,
+                lineHeight: 1,
+              }}
+            >
+              ×
+            </button>
+          </div>
         </div>
 
         <ProgressBar current={currentIndex} total={questions.length} showResult={showResult} />
