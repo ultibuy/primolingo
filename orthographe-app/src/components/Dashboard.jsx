@@ -6,6 +6,7 @@ import FlameIcon from './FlameIcon.jsx';
 import CrownIcon from './CrownIcon.jsx';
 import DiamondIcon from './DiamondIcon.jsx';
 import DiamondStatus from './DiamondStatus.jsx';
+import PopupCloseButton from './PopupCloseButton.jsx';
 import { getStreakInfo } from '../engine/scoring.js';
 import { getToday, parseLocalDate } from '../engine/sm2.js';
 import { getEquipped, SHOP_CATALOG, rollWeeklyChest } from '../engine/economy.js';
@@ -54,6 +55,14 @@ const EVENT_CONFIG = {
   doubleCoins:      null, // skip
   levelMilestoneCoins: null, // skip
   milestone:        { icon: '🎯' }, // dynamic — handled in buildOverlayData
+};
+
+const STREAK_MILESTONE_COINS = {
+  7: 50,
+  14: 100,
+  30: 150,
+  60: 300,
+  100: 500,
 };
 
 function getGreeting() {
@@ -370,6 +379,35 @@ export default function Dashboard({
 
   // A4 — Only show level summary if there's at least one crown or diamond
   const showLevelSummary = summary.couronne > 0 || summary.diamant > 0 || summary.diamondVivant > 0;
+  const streakHeadline = streak > 0
+    ? `${streak} jour${streak > 1 ? 's' : ''} d'affilée`
+    : 'Allume la première flamme';
+  const streakSupportText = streak > 0
+    ? 'Ton streak garde le coffre du lundi actif, donne des pièces aux paliers 7, 14, 30, 60 et 100 jours, et peut te rapporter un bouclier tous les 7 jours.'
+    : 'Dès 1 jour, tu actives le coffre du lundi.';
+  const nextCoinMilestone = [7, 14, 30, 60, 100].find((day) => day > streak) || null;
+  const nextCoinReward = nextCoinMilestone ? STREAK_MILESTONE_COINS[nextCoinMilestone] : null;
+  const nextShieldDay = shields >= 2 ? null : Math.max(7, Math.ceil((streak + 1) / 7) * 7);
+  const nextUsefulDay = Math.min(nextCoinMilestone ?? Infinity, nextShieldDay ?? Infinity);
+  const nextUsefulLabel = Number.isFinite(nextUsefulDay) ? `${nextUsefulDay} jours` : 'Streak solide';
+  const nextUsefulBenefits = [];
+  if (Number.isFinite(nextUsefulDay) && nextUsefulDay === nextCoinMilestone && nextCoinReward !== null) {
+    nextUsefulBenefits.push(`+${nextCoinReward} pièces`);
+  }
+  if (Number.isFinite(nextUsefulDay) && nextUsefulDay === nextShieldDay) {
+    nextUsefulBenefits.push('+1 bouclier');
+  }
+  const nextUsefulText = Number.isFinite(nextUsefulDay)
+    ? nextUsefulBenefits.join(' et ')
+    : 'Tous les gros paliers de pièces sont déjà passés.';
+  const chestValue = streak > 0 ? 'Coffre du lundi actif' : 'Pas de coffre actif';
+  const chestHint = streak > 0
+    ? 'Si le streak tient jusqu’à lundi: 10 à 50 pièces.'
+    : 'À partir de 1 jour de streak, tu peux ouvrir le coffre du lundi.';
+  const riskValue = shields > 0 ? 'Un jour raté = 1 bouclier consommé' : 'Un jour raté = retour à 1';
+  const riskText = shields > 0
+    ? 'Sans bouclier derrière, le prochain jour manqué casse la série et repousse les gains.'
+    : 'La série retombe, le coffre du lundi saute, et les prochaines pièces s’éloignent.';
 
   const handleOpenChest = () => {
     const result = rollWeeklyChest(progress);
@@ -381,6 +419,19 @@ export default function Dashboard({
 
   // Counter for staggered animation
   let animIdx = 0;
+
+  useEffect(() => {
+    if (!showStreakHelp) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setShowStreakHelp(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [showStreakHelp]);
 
   return (
     <>
@@ -406,27 +457,7 @@ export default function Dashboard({
             position: 'relative',
             animation: overlayVisible ? 'bounce-in 0.5s ease forwards' : 'none',
           }} onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={dismissOverlay}
-              aria-label="Fermer"
-              style={{
-                position: 'absolute',
-                top: 12,
-                right: 12,
-                width: 34,
-                height: 34,
-                borderRadius: 999,
-                border: '1px solid rgba(255,255,255,0.14)',
-                background: 'rgba(255,255,255,0.06)',
-                color: '#d1d5db',
-                cursor: 'pointer',
-                fontSize: '1rem',
-                fontWeight: 800,
-                lineHeight: 1,
-              }}
-            >
-              ×
-            </button>
+            <PopupCloseButton onClick={dismissOverlay} />
             <div style={{ fontSize: '5.5rem', marginBottom: '1rem', animation: 'glow-gold 2s ease-in-out infinite' }}>
               {overlay.icon}
             </div>
@@ -434,22 +465,6 @@ export default function Dashboard({
               {overlay.msg}
             </p>
             {overlay.sub && <p style={{ fontSize: '0.9rem', color: '#9ca3af', fontWeight: 500 }}>{overlay.sub}</p>}
-            <button
-              onClick={dismissOverlay}
-              style={{
-                marginTop: '1.1rem',
-                padding: '0.65rem 1.25rem',
-                borderRadius: 12,
-                border: 'none',
-                background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
-                color: '#fff',
-                cursor: 'pointer',
-                fontSize: '0.92rem',
-                fontWeight: 700,
-              }}
-            >
-              Fermer
-            </button>
           </div>
         </div>
       )}
@@ -476,8 +491,10 @@ export default function Dashboard({
         }}>
           {/* Left side: flame + streak count + tier + today done badge */}
           {streak > 0 ? (
-            <div
+            <button
+              type="button"
               onClick={() => setShowStreakHelp(true)}
+              className="streak-help-trigger"
               style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}
               aria-label="En savoir plus sur le streak"
             >
@@ -513,11 +530,13 @@ export default function Dashboard({
                   </div>
                 )}
               </div>
-            </div>
+            </button>
           ) : (
             /* Streak is 0: just show a muted flame */
-            <div
+            <button
+              type="button"
               onClick={() => setShowStreakHelp(true)}
+              className="streak-help-trigger"
               style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer' }}
               aria-label="En savoir plus sur le streak"
             >
@@ -525,7 +544,7 @@ export default function Dashboard({
               <span style={{ fontSize: '0.82rem', color: '#4b5563', fontWeight: 700 }}>
                 0 jour
               </span>
-            </div>
+            </button>
           )}
 
           {/* Right side: shields + coins + shop */}
@@ -865,6 +884,7 @@ export default function Dashboard({
     {showStreakHelp && (
       <div
         onClick={() => setShowStreakHelp(false)}
+        className="streak-help-overlay"
         style={{
           position: 'fixed', inset: 0,
           background: 'rgba(0,0,0,0.6)',
@@ -876,169 +896,79 @@ export default function Dashboard({
       >
         <div
           onClick={(e) => e.stopPropagation()}
-          style={{
-            background: 'rgba(30,30,46,0.95)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            borderRadius: 28, padding: '2rem 2.2rem',
-            maxWidth: 620, width: '92%',
-            boxShadow: '0 12px 60px rgba(0,0,0,0.5)',
-            animation: 'bounce-in 0.35s ease forwards',
-            display: 'flex', gap: '2rem', alignItems: 'center',
-          }}
+          className="streak-help-shell"
         >
-          {/* Left column — flame + streak count */}
-          <div style={{
-            display: 'flex', flexDirection: 'column', alignItems: 'center',
-            minWidth: 140, flexShrink: 0,
-          }}>
-            <div style={{
-              animation: 'flame-dance 1.5s ease-in-out infinite',
-              marginBottom: '0.6rem',
-            }}>
-              <FlameIcon size={80} intensity={getFlameIntensity(streak)} />
-            </div>
-            <div style={{
-              background: 'rgba(251,191,36,0.08)',
-              border: '1px solid rgba(251,191,36,0.2)',
-              borderRadius: 14, padding: '0.5rem 1rem',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem',
-            }}>
-              <span style={{ fontSize: '2.2rem', fontWeight: 900, color: '#fbbf24' }}>
-                {streak}
-              </span>
-              <span style={{ fontSize: '1rem', color: '#fbbf24', fontWeight: 700 }}>
-                jour{streak !== 1 ? 's' : ''}
-              </span>
-            </div>
-          </div>
+          <PopupCloseButton
+            onClick={() => setShowStreakHelp(false)}
+            ariaLabel="Fermer la fenêtre streak"
+          />
 
-          {/* Right column — text + tiers */}
-          <div style={{ flex: 1, textAlign: 'left' }}>
-            <h2 style={{
-              fontSize: '1.4rem', fontWeight: 800, color: '#fbbf24',
-              margin: '0 0 0.3rem',
-            }}>
-              Ton streak
-            </h2>
-            <p style={{
-              fontSize: '0.95rem', color: '#9ca3af', lineHeight: 1.5,
-              margin: '0 0 1rem',
-            }}>
-              Joue chaque jour pour maintenir ta flamme. Plus ta série est longue, plus ta flamme grandit.
-            </p>
-
-            {/* Tier ladder */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem', marginBottom: '0.8rem' }}>
-              {[
-                { min: 1,  label: 'Bon début',     emoji: '🔥',    color: '#f59e0b' },
-                { min: 3,  label: 'Sur la lancée',  emoji: '🔥🔥',  color: '#f97316' },
-                { min: 7,  label: 'En feu',         emoji: '🔥🔥🔥', color: '#ef4444' },
-                { min: 14, label: 'Inarrêtable',    emoji: '⚡',     color: '#a78bfa' },
-                { min: 30, label: 'Légende',         emoji: '💥',     color: '#fbbf24' },
-              ].map((tier) => {
-                const isActive = streak >= tier.min;
-                const isCurrent = isActive && (
-                  tier.min === 30 ? streak >= 30 :
-                  tier.min === 14 ? streak >= 14 && streak < 30 :
-                  tier.min === 7 ? streak >= 7 && streak < 14 :
-                  tier.min === 3 ? streak >= 3 && streak < 7 :
-                  streak >= 1 && streak < 3
-                );
-                return (
-                  <div
-                    key={tier.min}
-                    style={{
-                      display: 'flex', alignItems: 'center', gap: '0.6rem',
-                      padding: '0.4rem 0.7rem',
-                      borderRadius: 10,
-                      background: isCurrent
-                        ? 'rgba(251,191,36,0.12)'
-                        : isActive
-                          ? 'rgba(255,255,255,0.03)'
-                          : 'transparent',
-                      border: isCurrent
-                        ? '1px solid rgba(251,191,36,0.3)'
-                        : '1px solid transparent',
-                      opacity: isActive ? 1 : 0.35,
-                      transition: 'all 0.3s ease',
-                    }}
-                  >
-                    <span style={{ fontSize: '1.1rem', width: 36, textAlign: 'center' }}>
-                      {tier.emoji}
-                    </span>
-                    <span style={{
-                      fontSize: '0.95rem', fontWeight: 700,
-                      color: isCurrent ? tier.color : isActive ? '#d1d5db' : '#6b7280',
-                      flex: 1,
-                    }}>
-                      {tier.label}
-                    </span>
-                    <span style={{
-                      fontSize: '0.8rem', color: '#6b7280', fontWeight: 600,
-                    }}>
-                      {tier.min}j+
-                    </span>
-                    {isCurrent && (
-                      <span style={{
-                        fontSize: '0.7rem', fontWeight: 800,
-                        color: '#fbbf24',
-                        background: 'rgba(251,191,36,0.15)',
-                        padding: '0.15rem 0.5rem',
-                        borderRadius: 4,
-                      }}>
-                        ICI
-                      </span>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Next tier hint */}
-            {streak > 0 && streak < 30 && (() => {
-              const nextTier = [3, 7, 14, 30].find(t => t > streak);
-              const nextLabel = { 3: 'Sur la lancée', 7: 'En feu', 14: 'Inarrêtable', 30: 'Légende' }[nextTier];
-              const daysLeft = nextTier - streak;
-              return (
-                <p style={{
-                  fontSize: '0.9rem', color: '#9ca3af',
-                  margin: '0 0 0.6rem', lineHeight: 1.4,
-                }}>
-                  Encore <span style={{ color: '#fbbf24', fontWeight: 800 }}>{daysLeft} jour{daysLeft > 1 ? 's' : ''}</span> pour atteindre « {nextLabel} »
-                </p>
-              );
-            })()}
-
-            {/* Shield info */}
-            {shields > 0 && (
-              <div style={{
-                display: 'flex', alignItems: 'center', gap: '0.4rem',
-                fontSize: '0.85rem', color: '#60a5fa',
-                marginBottom: '0.6rem',
-              }}>
-                <ShieldIcon size={18} active />
-                <span>{shields} bouclier{shields > 1 ? 's' : ''} — protège{shields > 1 ? 'nt' : ''} ton streak si tu rates un jour</span>
+          <div
+            className="streak-help-panel"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="streak-help-title"
+            aria-describedby="streak-help-description"
+          >
+            <div className="streak-help-main">
+              <div className="streak-help-hero">
+                <div className="streak-help-flame">
+                  <FlameIcon size={72} intensity={getFlameIntensity(streak)} />
+                </div>
+                <div className="streak-help-counter">
+                  <span className="streak-help-counter-value">{streak}</span>
+                  <span className="streak-help-counter-label">jour{streak !== 1 ? 's' : ''}</span>
+                </div>
               </div>
-            )}
 
-            {/* Close button */}
-            <button
-              onClick={() => setShowStreakHelp(false)}
-              style={{
-                padding: '0.6rem 2rem',
-                borderRadius: 12,
-                border: 'none',
-                background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
-                color: '#fff',
-                cursor: 'pointer',
-                fontSize: '0.95rem',
-                fontWeight: 700,
-                boxShadow: '0 2px 12px rgba(124,58,237,0.25)',
-                marginTop: '0.3rem',
-              }}
-            >
-              Compris !
-            </button>
+              <div className="streak-help-body">
+              <p className="streak-help-kicker">Pourquoi y faire attention</p>
+              <h2
+                id="streak-help-title"
+                style={{
+                    fontSize: '1.85rem',
+                    lineHeight: 1.05,
+                    fontWeight: 800,
+                    color: '#fff7ed',
+                    margin: '0 0 0.35rem',
+                    fontFamily: 'var(--font-display)',
+                  }}
+                >
+                  {streakHeadline}
+                </h2>
+                <p
+                  id="streak-help-description"
+                  style={{
+                    fontSize: '0.98rem',
+                    color: '#d6d3d1',
+                    lineHeight: 1.5,
+                    margin: '0 0 1rem',
+                    maxWidth: 440,
+                  }}
+                >
+                  {streakSupportText}
+                </p>
+
+              <div className="streak-help-stats">
+                <div className="streak-help-stat-card">
+                  <span className="streak-help-stat-label">Ce que ça t’apporte</span>
+                  <strong className="streak-help-stat-value">{chestValue}</strong>
+                  <span className="streak-help-stat-hint">{chestHint}</span>
+                </div>
+                <div className="streak-help-stat-card">
+                  <span className="streak-help-stat-label">Prochain cap utile</span>
+                  <strong className="streak-help-stat-value">{nextUsefulLabel}</strong>
+                  <span className="streak-help-stat-hint">{nextUsefulText}</span>
+                </div>
+                <div className="streak-help-stat-card streak-help-stat-card--shield">
+                  <span className="streak-help-stat-label">Si tu l’ignores</span>
+                  <strong className="streak-help-stat-value">{riskValue}</strong>
+                  <span className="streak-help-stat-hint">{riskText}</span>
+                </div>
+              </div>
+
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1125,6 +1055,6 @@ const pageStyle = {
   minHeight: '100vh',
   background: 'linear-gradient(135deg, var(--color-bg1) 0%, var(--color-bg2) 100%)',
   display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
-  fontFamily: "'Segoe UI', system-ui, -apple-system, sans-serif",
+  fontFamily: 'var(--font-body)',
   color: '#e2e2e2',
 };

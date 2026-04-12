@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ProgressBar from './ProgressBar.jsx';
 import EndScreen from './EndScreen.jsx';
+import PopupCloseButton from './PopupCloseButton.jsx';
 import { getEndScreenLevelProgress, getNextStreakTierInfo } from '../engine/scoring.js';
 
 function getEliminated(rule, axisSelections) {
@@ -99,34 +100,16 @@ export default function QuizGuided({
   return (
     <div style={pageStyle}>
       <div style={cardStyle}>
+        <PopupCloseButton onClick={onClose} />
+
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.3rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.3rem', paddingRight: '4rem' }}>
           <h1 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-accent)', letterSpacing: '-0.02em', margin: 0 }}>
             {rule.title}
           </h1>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
-            <span style={{ fontSize: '0.85rem', color: '#9ca3af', fontWeight: 600 }}>
-              {currentIndex + 1}/{questions.length}
-            </span>
-            <button
-              onClick={onClose}
-              aria-label="Fermer"
-              style={{
-                width: 34,
-                height: 34,
-                borderRadius: 999,
-                border: '1px solid rgba(255,255,255,0.12)',
-                background: 'rgba(255,255,255,0.05)',
-                color: '#d1d5db',
-                cursor: 'pointer',
-                fontSize: '1.05rem',
-                fontWeight: 800,
-                lineHeight: 1,
-              }}
-            >
-              ×
-            </button>
-          </div>
+          <span style={{ fontSize: '0.85rem', color: '#9ca3af', fontWeight: 600 }}>
+            {currentIndex + 1}/{questions.length}
+          </span>
         </div>
 
         <ProgressBar current={currentIndex} total={questions.length} showResult={showResult} />
@@ -409,7 +392,7 @@ const pageStyle = {
   minHeight: '100vh',
   background: 'linear-gradient(135deg, var(--color-bg1) 0%, var(--color-bg2) 100%)',
   display: 'flex', alignItems: 'center', justifyContent: 'center',
-  fontFamily: "'Segoe UI', system-ui, -apple-system, sans-serif",
+  fontFamily: 'var(--font-body)',
   padding: '1.5rem', color: '#e2e2e2',
 };
 
@@ -417,6 +400,7 @@ const cardStyle = {
   maxWidth: 620, width: '100%',
   background: 'rgba(255,255,255,0.06)',
   borderRadius: 20, padding: '2rem 2.2rem',
+  position: 'relative',
   backdropFilter: 'blur(12px)',
   border: '1px solid rgba(255,255,255,0.1)',
   boxShadow: '0 20px 60px rgba(0,0,0,0.4)',

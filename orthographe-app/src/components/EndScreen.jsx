@@ -409,7 +409,7 @@ const pageStyle = {
   minHeight: '100vh',
   background: 'linear-gradient(135deg, var(--color-bg1) 0%, var(--color-bg2) 100%)',
   display: 'flex', alignItems: 'center', justifyContent: 'center',
-  fontFamily: "'Segoe UI', system-ui, -apple-system, sans-serif",
+  fontFamily: 'var(--font-body)',
   padding: '1.5rem', color: '#e2e2e2',
 };
 

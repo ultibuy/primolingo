@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import CoinIcon from './CoinIcon.jsx';
+import PopupCloseButton from './PopupCloseButton.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
 import { SHOP_CATALOG, canAfford, isOwned, getEquipped } from '../engine/economy.js';
 
@@ -113,9 +114,11 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
               maxWidth: 340, textAlign: 'center',
               boxShadow: '0 8px 40px rgba(0,0,0,0.5)',
               animation: 'bounce-in 0.3s ease forwards',
+              position: 'relative',
             }}
             onClick={(e) => e.stopPropagation()}
           >
+            <PopupCloseButton onClick={handleCancelPurchase} />
             <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '0.8rem', lineHeight: 1.4 }}>
               Acheter {'\u00ab\u00a0'}{confirmItem.name}{'\u00a0\u00bb'} pour {confirmItem.price} {'\uD83E\uDE99'}{'\u00a0'}?
             </p>
@@ -455,6 +458,6 @@ const pageStyle = {
   minHeight: '100vh',
   background: 'linear-gradient(135deg, var(--color-bg1) 0%, var(--color-bg2) 100%)',
   display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
-  fontFamily: "'Segoe UI', system-ui, -apple-system, sans-serif",
+  fontFamily: 'var(--font-body)',
   color: '#e2e2e2',
 };

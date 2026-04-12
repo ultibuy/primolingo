@@ -407,7 +407,7 @@ export default function ReturnScreen({ streakLost, diamondChanges, onContinue })
       backdropFilter: 'blur(16px)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       zIndex: 1000,
-      fontFamily: "'Segoe UI', system-ui, -apple-system, sans-serif",
+      fontFamily: 'var(--font-body)',
       color: '#e2e2e2',
       opacity: mounted ? 1 : 0,
       transition: 'opacity 0.5s ease',

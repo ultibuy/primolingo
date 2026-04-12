@@ -23,7 +23,7 @@ import ReturnScreen from './components/ReturnScreen.jsx';
 // ---------------------------------------------------------------------------
 // Constants
 // ---------------------------------------------------------------------------
-export const DEBUG_MODE = false;
+export const DEBUG_MODE = true;
 if (typeof window !== 'undefined') window.__ORTHO_DEBUG__ = DEBUG_MODE;
 const SESSION_SIZE = DEBUG_MODE ? 1 : 20;
 const FIRST_SESSION_BONUS = 10;
@@ -831,7 +831,7 @@ export default function App() {
         background: 'linear-gradient(135deg, var(--color-bg1) 0%, var(--color-bg2) 100%)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         color: 'var(--color-accent)', fontSize: '1.2rem', fontWeight: 600,
-        fontFamily: "'Segoe UI', system-ui, sans-serif",
+        fontFamily: 'var(--font-body)',
       }}>
         Chargement…
       </div>
