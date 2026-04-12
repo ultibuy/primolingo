@@ -800,6 +800,16 @@ export default function App() {
     setScreen('dashboard');
   }, []);
 
+  const handleCloseQuiz = useCallback(() => {
+    setScreen('dashboard');
+    setActiveRule(null);
+    setActiveMode('guided');
+    setIsSM2Review(false);
+    setSessionQuestions([]);
+    setPendingEvents([]);
+    setIsSniper(false);
+  }, []);
+
   const renderWithSaveError = (content) => (
     <>
       {saveError && (
@@ -860,6 +870,7 @@ export default function App() {
         isFirstSessionOfDay={isFirstSessionOfDay}
         ruleProgress={ruleProgress}
         streak={progress.streak}
+        onClose={handleCloseQuiz}
       />
     );
   }
