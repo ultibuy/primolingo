@@ -17,6 +17,7 @@ const LEVEL_KEYS = ['bronze', 'silver', 'crown', 'diamond'];
 
 export default function LevelPath({ currentLevel, progress = 0, onNodeClick }) {
   const lvl = Math.max(0, Math.min(currentLevel, 5));
+  const ariaLevel = Math.min(lvl, N);
 
   // Each node sits at center of its flex column = at positions 12.5%, 37.5%, 62.5%, 87.5%
   // (i.e. (2*i+1) / (2*N) * 100%)
@@ -42,10 +43,10 @@ export default function LevelPath({ currentLevel, progress = 0, onNodeClick }) {
   return (
     <div
       role="progressbar"
-      aria-valuenow={lvl}
+      aria-valuenow={ariaLevel}
       aria-valuemin={0}
       aria-valuemax={N}
-      aria-label={`Niveau ${lvl} sur ${N}`}
+      aria-label={`Niveau ${ariaLevel} sur ${N}`}
       style={{
         position: 'relative',
         display: 'flex',

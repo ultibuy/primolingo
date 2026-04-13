@@ -1,4 +1,5 @@
 import PopupCloseButton from './PopupCloseButton.jsx';
+import { getToday, parseLocalDate } from '../engine/sm2.js';
 
 function getSessionSize() {
   try { return window.__ORTHO_SESSION_SIZE__ || 20; } catch { return 20; }
@@ -148,20 +149,17 @@ function getDiamondStatusContent(ruleProgress) {
   const repetitions = sm2.repetitions || 0;
 
   // Check if review is overdue
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const review = nextDate ? new Date(nextDate) : null;
-  let daysOverdue = 0;
+  const today = parseLocalDate(getToday());
+  const review = nextDate ? parseLocalDate(nextDate) : null;
   let dateLabel = '';
   if (review) {
     const diff = Math.round((review - today) / (1000 * 60 * 60 * 24));
-    daysOverdue = diff < 0 ? Math.abs(diff) : 0;
     if (diff < 0) dateLabel = `En retard de ${Math.abs(diff)} jour${Math.abs(diff) > 1 ? 's' : ''}`;
     else if (diff === 0) dateLabel = "Aujourd'hui";
     else if (diff === 1) dateLabel = 'Demain';
     else dateLabel = `Dans ${diff} jours`;
   }
-  const isDue = review && review <= today;
+  const isDue = !!review && review <= today;
 
   let headline, description;
   if (health <= 0) {

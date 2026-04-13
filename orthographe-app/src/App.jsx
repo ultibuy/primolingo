@@ -8,7 +8,7 @@ import { allRules } from './content/loader.js';
 import { selectSessionQuestions, selectSniperQuestions } from './engine/session.js';
 import { initRuleSM2, updateRuleSM2, calculateDiamondHealth, getToday, parseLocalDate } from './engine/sm2.js';
 import { calculateCoins, checkLevelUp, updateStreak } from './engine/scoring.js';
-import { rollWeeklyChest, applyTheme } from './engine/economy.js';
+import { applyTheme } from './engine/economy.js';
 
 // Persistence
 import { loadProgress, saveProgress } from './store/persistence.js';
@@ -148,9 +148,6 @@ function migrateProgress(p) {
   if (!next.shop.inventory) {
     next.shop.inventory = { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 };
   }
-  if (!next.weeklyChest) {
-    next.weeklyChest = { lastOpened: null };
-  }
   if (next.shields === undefined) next.shields = 0;
   if (next.coins === undefined) next.coins = 0;
 
@@ -181,10 +178,19 @@ function checkReturnAfterInactivity(progress) {
   const daysAway = daysBetween(lastActive, today);
   if (daysAway < INACTIVITY_DAYS) return null;
 
-  // Check if streak would be lost (lastActive < yesterday and no shield or more than 1 day missed with shield)
   const streakCurrent = progress.streak?.current || 0;
   const shields = progress.shields || 0;
-  const streakLost = daysAway > 1 && (daysAway > 2 || shields === 0) && streakCurrent > 0;
+  const coins = progress.coins || 0;
+  const SHIELD_PRICE = 80;
+
+  const daysMissed = daysAway - 1;
+  // Use stock shields first, buy the rest
+  const shieldsToUse = Math.min(shields, Math.min(daysMissed, 2));
+  const shieldsToBuy = Math.max(0, Math.min(daysMissed, 2) - shieldsToUse);
+  const costToBuy = shieldsToBuy * SHIELD_PRICE;
+  // Saveable if ≤2 days missed and can cover remaining cost with coins
+  const streakSaveable = streakCurrent > 0 && daysMissed <= 2 && coins >= costToBuy;
+  const streakLost = !streakSaveable && streakCurrent > 0 && daysMissed >= 1;
 
   // Check diamond changes
   const diamondChanges = [];
@@ -206,9 +212,9 @@ function checkReturnAfterInactivity(progress) {
   }
 
   // Only show return screen if something noteworthy happened
-  if (!streakLost && diamondChanges.length === 0) return null;
+  if (!streakLost && !streakSaveable && diamondChanges.length === 0) return null;
 
-  return { streakLost, previousStreak: streakCurrent, diamondChanges };
+  return { streakLost, streakSaveable, shieldsToUse, shieldsToBuy, costToBuy, coins, previousStreak: streakCurrent, diamondChanges };
 }
 
 /** Apply diamond health decay and handle demotions. Returns updated progress. */
@@ -541,9 +547,7 @@ export default function App() {
       if (streakResult.shieldUsed) {
         events.push({ type: 'shieldUsed', value: streakResult.streak.current });
       }
-      if (streakResult.streakLost) {
-        events.push({ type: 'streakLost' });
-      }
+      // streakLost is communicated via ReturnScreen (before session), not here
 
       // ---------------------------------------------------------------
       // Check milestones (one-shot)
@@ -572,21 +576,6 @@ export default function App() {
             events.push({ type: 'milestone', value: key, coins, streak: Number(threshold) });
           }
         }
-      }
-
-      // Streak new milestone notification (from updateStreak)
-      if (streakResult.newMilestone) {
-        events.push({ type: 'streakMilestone', value: streakResult.newMilestone });
-      }
-
-      // ---------------------------------------------------------------
-      // Weekly chest eligibility
-      // ---------------------------------------------------------------
-      const chestResult = rollWeeklyChest(next);
-      if (chestResult?.opened) {
-        next.coins += chestResult.coins;
-        next.weeklyChest = chestResult.weeklyChest;
-        events.push({ type: 'weeklyChest', value: chestResult.coins });
       }
 
       // ---------------------------------------------------------------
@@ -798,9 +787,33 @@ export default function App() {
   // Return screen handler
   // ---------------------------------------------------------------------------
   const handleReturnContinue = useCallback(() => {
+    // If the return flow ends without saving, the previous streak is gone.
+    if (returnData?.streakLost || returnData?.streakSaveable) {
+      setProgress(prev => {
+        const next = { ...prev, streak: { ...prev.streak, current: 0 } };
+        persistProgress(next);
+        return next;
+      });
+    }
     setReturnData(null);
     setScreen('dashboard');
-  }, []);
+  }, [returnData, persistProgress]);
+
+  const handleReturnSaveStreak = useCallback(() => {
+    const { shieldsToUse = 0, costToBuy = 0 } = returnData || {};
+    setProgress(prev => {
+      const next = {
+        ...prev,
+        shields: (prev.shields || 0) - shieldsToUse,
+        coins: (prev.coins || 0) - costToBuy,
+        streak: { ...prev.streak, lastActiveDate: getToday(-1) },
+      };
+      persistProgress(next);
+      return next;
+    });
+    setReturnData(null);
+    setScreen('dashboard');
+  }, [returnData, persistProgress]);
 
   const handleCloseQuiz = useCallback(() => {
     setScreen('dashboard');
@@ -846,8 +859,15 @@ export default function App() {
       <ReturnScreen
         progress={progress}
         streakLost={returnData.streakLost}
+        streakSaveable={returnData.streakSaveable}
+        shieldsToUse={returnData.shieldsToUse}
+        shieldsToBuy={returnData.shieldsToBuy}
+        costToBuy={returnData.costToBuy}
+        coins={returnData.coins}
+        previousStreak={returnData.previousStreak}
         diamondChanges={returnData.diamondChanges}
         onContinue={handleReturnContinue}
+        onSaveStreak={handleReturnSaveStreak}
       />
     );
   }
@@ -908,6 +928,11 @@ export default function App() {
         canRematch={canRematch}
         lastSessionRuleId={lastSessionRuleId}
         lastSessionScore={lastSessionScore}
+        onDebugUpdateStreak={DEBUG_MODE ? (streak, lastActiveDate) => {
+          const next = { ...progress, streak: { ...progress.streak, current: streak, lastActiveDate } };
+          persistProgress(next);
+          window.location.reload();
+        } : undefined}
       />
     )
   );

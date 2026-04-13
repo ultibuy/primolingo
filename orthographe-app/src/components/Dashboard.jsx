@@ -9,29 +9,30 @@ import DiamondStatus from './DiamondStatus.jsx';
 import LevelPath from './LevelPath.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
 import LevelHelpPopup from './LevelHelpPopup.jsx';
+import RuleEditor from './RuleEditor.jsx';
 import { getStreakInfo } from '../engine/scoring.js';
-import { getToday, parseLocalDate } from '../engine/sm2.js';
-import { getEquipped, SHOP_CATALOG, rollWeeklyChest } from '../engine/economy.js';
+import { getToday } from '../engine/sm2.js';
+import { getEquipped, SHOP_CATALOG } from '../engine/economy.js';
 import { exportProgress } from '../store/persistence.js';
 
 // ---------------------------------------------------------------------------
 // FIX 1 & FIX 3 — Corrected milestone messages with proper French accents
 // ---------------------------------------------------------------------------
 const MILESTONE_MESSAGES = {
-  3: '3 jours de suite — tu tiens le cap.',
-  7: 'Une semaine sans faillir. C\’est là que ça commence vraiment.',
-  14: '14 jours. Inarrêtable.',
-  30: 'Un mois. Tu t\’es prouvé quelque chose.',
-  60: '60 jours. C\’est devenu une partie de toi.',
-  100: '100 jours. Légendaire.',
+  3: "3 jours de suite — tu tiens le cap.\nProchain palier : 7 jours \u2192 +50 pi\u00e8ces et un bouclier.",
+  7: "Une semaine sans faillir. +50 pi\u00e8ces et 1 bouclier gagn\u00e9 !\nProchain palier : 14 jours \u2192 +100 pi\u00e8ces.",
+  14: "14 jours. Inarr\u00eatable. +100 pi\u00e8ces !\nProchain palier : 30 jours \u2192 +150 pi\u00e8ces.",
+  30: "Un mois. Tu t'es prouv\u00e9 quelque chose. +150 pi\u00e8ces !\nProchain palier : 60 jours \u2192 +300 pi\u00e8ces.",
+  60: "60 jours. C'est devenu une partie de toi. +300 pi\u00e8ces !\nProchain palier : 100 jours \u2192 +500 pi\u00e8ces.",
+  100: "100 jours. L\u00e9gendaire. +500 pi\u00e8ces !\nTu as tout d\u00e9bloqu\u00e9.",
 };
 
 // ---------------------------------------------------------------------------
 // FIX 1 — Complete event type to message/icon mapping
 // ---------------------------------------------------------------------------
 const EVENT_CONFIG = {
-  firstSession:     { msg: 'C\'est parti, Damien. La régularité fait tout.', icon: '🎯' },
-  firstQuiz:        { msg: 'C\'est parti, Damien. La régularité fait tout.', icon: '🎯' },
+  firstSession:     { msg: "Premi\u00e8re session termin\u00e9e, ton streak passe \u00e0 1 !\nReviens demain pour le faire grimper.", icon: '🔥' },
+  firstQuiz:        { msg: "Premi\u00e8re session termin\u00e9e, ton streak passe \u00e0 1 !\nReviens demain pour le faire grimper.", icon: '🔥' },
   levelUp:          { msg: 'Niveau suivant atteint\ !', icon: '\⭐' },
   level_up_1:       { msg: 'Niveau Découverte atteint\ !', icon: '\⭐' },
   level_up_2:       { msg: 'Mode direct déverrouillé\ ! 🔓', icon: '🔓' },
@@ -51,7 +52,6 @@ const EVENT_CONFIG = {
   sm2ReviewFragile: { msg: 'Presque\ ! Le diamant exige 90\ %.', icon: '⚠️' },
   sm2ReviewFailed:  { msg: 'Le diamant se fissure… Révise vite.', icon: '💥' },
   diamondBroken:    { msg: 'Le diamant s\'est brisé.', icon: '💥' },
-  weeklyChest:      { icon: '🎁' },
   coinsEarned:      null, // skip — silent event
   firstSessionOfDay: null, // skip
   doubleCoins:      null, // skip
@@ -80,7 +80,7 @@ function getGreeting() {
 // ---------------------------------------------------------------------------
 function getMotivation(progress, rules, todayDone) {
   // If today's session is done, short congratulation
-  if (todayDone) return 'Bien joué pour aujourd\’hui.';
+  if (todayDone) return 'Bien joué pour aujourd\'hui.';
 
   const streak = progress.streak?.current || 0;
   const rulesObj = progress.rules || {};
@@ -93,7 +93,7 @@ function getMotivation(progress, rules, todayDone) {
   // but old progress may still have progress.firstQuizDone
   const firstQuizDone = progress.milestones?.firstSession || progress.firstQuizDone;
 
-  if (!firstQuizDone) return "Ta première session t’attend. C’est tout.";
+  if (!firstQuizDone) return "Ta première session t'attend. C'est tout.";
   if (streak === 0 && progress.streak?.longest > 2) return 'Un nouveau départ, ça se prend maintenant.';
   if (totalDiamonds > 0) {
     const r = totalRules - totalDiamonds;
@@ -102,7 +102,7 @@ function getMotivation(progress, rules, todayDone) {
   }
   if (totalCrowns > 0) return `${totalCrowns} couronne${totalCrowns > 1 ? 's' : ''}. Le diamant est à portée.`;
   if (streak >= 14) return 'Série incroyable. Ne lâche rien.';
-  if (streak >= 7) return 'Une semaine d\’affilée. L\’habitude se construit.';
+  if (streak >= 7) return 'Une semaine d\'affilée. L\'habitude se construit.';
   if (streak >= 3) return 'Beau rythme. Le prochain palier approche.';
   if (rulesStarted > 0) return 'Chaque session te rapproche de ta première couronne.';
   return 'Choisis une règle et montre ce que tu sais faire.';
@@ -167,19 +167,6 @@ function computeGlobalLevelSummary(rules, progress) {
   return summary;
 }
 
-function canOpenWeeklyChest(progress) {
-  const today = parseLocalDate(getToday());
-  if (today.getDay() !== 1) return false;
-  if ((progress.streak?.current || 0) < 1) return false;
-  const lastOpened = progress.weeklyChest?.lastOpened;
-  if (!lastOpened) return true;
-  const lastDate = parseLocalDate(lastOpened);
-  const startOfWeek = new Date(today);
-  startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay() + 1);
-  startOfWeek.setHours(0, 0, 0, 0);
-  return lastDate < startOfWeek;
-}
-
 // ---------------------------------------------------------------------------
 // FIX 1 — Deduplicate events and build overlay data
 // ---------------------------------------------------------------------------
@@ -212,8 +199,7 @@ function buildOverlayData(evt) {
   // Special handling for events with dynamic messages
   if (evt.type === 'milestone') {
     if (evt.value === 'firstSession') {
-      msg = 'C\'est parti, Damien. La régularité fait tout.';
-      icon = '🎯';
+      return null; // Already covered by firstSession/firstQuiz event type
     } else if (typeof evt.streak === 'number') {
       msg = MILESTONE_MESSAGES[evt.streak] || `Streak de ${evt.streak} jours\ !`;
       icon = '🔥';
@@ -228,17 +214,54 @@ function buildOverlayData(evt) {
     msg = `Bouclier activé — ton streak de ${evt.value} jours est sauvé.`;
     sub = 'Un bouclier a été consommé.';
   } else if (evt.type === 'directUnlocked') {
-    sub = `«\ ${evt.value}\ » — plus d\’aide, juste toi.`;
-  } else if (evt.type === 'weeklyChest') {
-    msg = `Coffre hebdomadaire\ : +${evt.value} pièces\ !`;
-  } else if (evt.type === 'levelUp' && evt.value) {
-    // Generic level up — pick the right message based on level number
-    const levelCfg = EVENT_CONFIG[`level_up_${evt.value}`];
-    if (levelCfg) {
-      msg = levelCfg.msg;
-      icon = levelCfg.icon;
+    sub = `«\ ${evt.value}\ » — plus d\'aide, juste toi.`;
+  } else if (evt.type === 'streakLost') {
+    const coins = evt.coins || 0;
+    const shields = evt.shields || 0;
+    const SHIELD_PRICE = 80;
+    const MAX_SHIELDS = 2;
+    const canBuy = shields < MAX_SHIELDS && coins >= SHIELD_PRICE;
+    if (canBuy) {
+      const missing = MAX_SHIELDS - shields;
+      const affordable = Math.min(missing, Math.floor(coins / SHIELD_PRICE));
+      msg = "Pas de chance hier — ton streak est tombé.";
+      if (affordable >= 2) {
+        sub = `Tu as ${coins} pièces, tu peux acheter ${affordable} boucliers (${SHIELD_PRICE} pièces chacun) pour te protéger les prochains jours.`;
+      } else {
+        sub = `Tu as ${coins} pièces, tu peux acheter 1 bouclier (${SHIELD_PRICE} pièces) pour te protéger la prochaine fois.`;
+      }
+    } else {
+      msg = "Pas de chance hier — ton streak est tombé.";
+      sub = "Ça arrive. L'important c'est de revenir aujourd'hui.";
     }
-    if (evt.ruleTitle) {
+  } else if (evt.type === 'levelUp' && evt.value) {
+    const lvl = evt.value;
+    const ruleName = evt.ruleTitle || '';
+    const n = (typeof window !== 'undefined' && window.__ORTHO_SESSION_SIZE__) || 20;
+    const s80 = `${Math.ceil(n * 0.8)}/${n}`;
+    const s90 = `${Math.ceil(n * 0.9)}/${n}`;
+
+    if (lvl === 1) {
+      msg = `Bronze sur ${ruleName}`;
+      sub = `Prochain niveau : Argent. Fais 3 sessions guid\u00e9es avec ${s80} ou mieux.`;
+      icon = '\u2B50';
+    } else if (lvl === 2) {
+      msg = `Argent sur ${ruleName}`;
+      sub = `Mode direct d\u00e9bloqu\u00e9 ! Prochain : Couronne. Fais 3 sessions directes avec ${s80} ou mieux.`;
+      icon = '\u2B50\u2B50';
+    } else if (lvl === 3) {
+      msg = `Couronne sur ${ruleName}`;
+      sub = `Prochain : Diamant. Fais 3 sessions directes cons\u00e9cutives avec ${s90} ou mieux.`;
+      icon = '\uD83D\uDC51';
+    } else if (lvl === 4) {
+      msg = `Diamant sur ${ruleName}`;
+      sub = "Le diamant est vivant. Maintiens-le avec des r\u00e9visions r\u00e9guli\u00e8res.";
+      icon = '\uD83D\uDC8E';
+    } else {
+      const levelCfg = EVENT_CONFIG[`level_up_${lvl}`];
+      if (levelCfg) { msg = levelCfg.msg; icon = levelCfg.icon; }
+    }
+    if (!sub && evt.ruleTitle) {
       sub = `«\ ${evt.ruleTitle}\ »`;
     }
   }
@@ -287,15 +310,18 @@ export default function Dashboard({
   canRematch,
   lastSessionRuleId,
   lastSessionScore,
+  onDebugUpdateStreak,
 }) {
   const [overlay, setOverlay] = useState(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [chestOpen, setChestOpen] = useState(false);
-  const [chestCoins, setChestCoins] = useState(null);
   const [showStreakHelp, setShowStreakHelp] = useState(false);
   const [levelHelp, setLevelHelp] = useState(null); // { level: 'bronze', ruleTitle, ruleProgress }
+  const [editingRule, setEditingRule] = useState(null); // rule object being edited
+  const isDebug = typeof window !== 'undefined' && window.__ORTHO_DEBUG__;
   const overlayTimeoutsRef = useRef([]);
+  const [debugStreak, setDebugStreak] = useState(String(progress.streak?.current || 0));
+  const [debugDate, setDebugDate] = useState(progress.streak?.lastActiveDate || '');
 
   useEffect(() => { requestAnimationFrame(() => setMounted(true)); }, []);
 
@@ -374,7 +400,6 @@ export default function Dashboard({
   // A6 — Split rules into sections
   const { revisions, inProgress, toDiscover } = splitRulesIntoSections(rules, progress);
 
-  const showChest = canOpenWeeklyChest(progress);
   const sniperCharges = progress.shop?.inventory?.modeSniper || 0;
   const lastRuleTitle = rules.find(rule => rule.id === lastSessionRuleId)?.shortTitle
     || rules.find(rule => rule.id === lastSessionRuleId)?.title
@@ -386,8 +411,8 @@ export default function Dashboard({
     ? `${streak} jour${streak > 1 ? 's' : ''} d'affilée`
     : 'Allume la première flamme';
   const streakSupportText = streak > 0
-    ? 'Ton streak garde le coffre du lundi actif, donne des pièces aux paliers 7, 14, 30, 60 et 100 jours, et peut te rapporter un bouclier tous les 7 jours.'
-    : 'Dès 1 jour, tu actives le coffre du lundi.';
+    ? 'Ton streak te donne des pièces aux paliers 7, 14, 30, 60 et 100 jours, et peut te rapporter un bouclier tous les 7 jours.'
+    : 'Lance ta première session pour démarrer ton streak.';
   const nextCoinMilestone = [7, 14, 30, 60, 100].find((day) => day > streak) || null;
   const nextCoinReward = nextCoinMilestone ? STREAK_MILESTONE_COINS[nextCoinMilestone] : null;
   const nextShieldDay = shields >= 2 ? null : Math.max(7, Math.ceil((streak + 1) / 7) * 7);
@@ -403,22 +428,10 @@ export default function Dashboard({
   const nextUsefulText = Number.isFinite(nextUsefulDay)
     ? nextUsefulBenefits.join(' et ')
     : 'Tous les gros paliers de pièces sont déjà passés.';
-  const chestValue = streak > 0 ? 'Coffre du lundi actif' : 'Pas de coffre actif';
-  const chestHint = streak > 0
-    ? 'Si le streak tient jusqu’à lundi: 10 à 50 pièces.'
-    : 'À partir de 1 jour de streak, tu peux ouvrir le coffre du lundi.';
   const riskValue = shields > 0 ? 'Un jour raté = 1 bouclier consommé' : 'Un jour raté = retour à 1';
   const riskText = shields > 0
     ? 'Sans bouclier derrière, le prochain jour manqué casse la série et repousse les gains.'
-    : 'La série retombe, le coffre du lundi saute, et les prochaines pièces s’éloignent.';
-
-  const handleOpenChest = () => {
-    const result = rollWeeklyChest(progress);
-    if (result.opened) {
-      setChestOpen(true);
-      setChestCoins(result.coins);
-    }
-  };
+    : "La série retombe et les prochaines pièces s'éloignent.";
 
   // Counter for staggered animation
   let animIdx = 0;
@@ -464,9 +477,13 @@ export default function Dashboard({
             <div style={{ fontSize: '5.5rem', marginBottom: '1rem', animation: 'glow-gold 2s ease-in-out infinite' }}>
               {overlay.icon}
             </div>
-            <p style={{ fontSize: '1.5rem', color: '#fff', fontWeight: 700, maxWidth: 400, lineHeight: 1.5, textShadow: '0 2px 15px rgba(0,0,0,0.5)', marginBottom: overlay.sub ? '0.5rem' : 0 }}>
-              {overlay.msg}
-            </p>
+            <div style={{ fontSize: '1.5rem', color: '#fff', fontWeight: 700, maxWidth: 420, lineHeight: 1.5, textShadow: '0 2px 15px rgba(0,0,0,0.5)', marginBottom: overlay.sub ? '0.5rem' : 0, textAlign: 'center' }}>
+              {overlay.msg.split('\n').map((line, i) => (
+                <div key={i} style={i > 0 ? { fontSize: '0.9rem', color: '#9ca3af', fontWeight: 500, marginTop: '0.4rem' } : undefined}>
+                  {line}
+                </div>
+              ))}
+            </div>
             {overlay.sub && <p style={{ fontSize: '0.9rem', color: '#9ca3af', fontWeight: 500 }}>{overlay.sub}</p>}
           </div>
         </div>
@@ -636,53 +653,6 @@ export default function Dashboard({
           </div>
         )}
 
-        {/* Weekly chest */}
-        {showChest && !chestOpen && (
-          <button
-            onClick={handleOpenChest}
-            style={{
-              width: '100%',
-              background: 'linear-gradient(135deg, rgba(251,191,36,0.08), rgba(var(--color-accent-rgb),0.06))',
-              border: '1px solid rgba(251,191,36,0.2)',
-              borderRadius: 18, padding: '1rem 1.3rem',
-              marginBottom: '0.8rem',
-              display: 'flex', alignItems: 'center', gap: '0.8rem',
-              cursor: 'pointer',
-              animation: 'card-glow 3s ease-in-out infinite',
-              transition: 'all 0.15s ease',
-            }}
-          >
-            <div style={{ fontSize: '2rem', animation: 'subtle-float 2s ease-in-out infinite' }}>{'🎁'}</div>
-            <div style={{ textAlign: 'left' }}>
-              <div style={{ fontSize: '0.9rem', fontWeight: 700, color: '#fbbf24' }}>
-                Coffre hebdomadaire
-              </div>
-              <div style={{ fontSize: '0.73rem', color: '#9ca3af' }}>
-                Tap pour ouvrir — bonus surprise !
-              </div>
-            </div>
-          </button>
-        )}
-
-        {chestOpen && chestCoins && (
-          <div style={{
-            background: 'linear-gradient(135deg, rgba(251,191,36,0.1), rgba(var(--color-accent-rgb),0.08))',
-            border: '1px solid rgba(251,191,36,0.25)',
-            borderRadius: 18, padding: '1rem 1.3rem',
-            marginBottom: '0.8rem', textAlign: 'center',
-            animation: 'bounce-in 0.5s ease forwards',
-          }}>
-            <div style={{ fontSize: '2rem', marginBottom: '0.3rem' }}>{'🎁'}</div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem' }}>
-              <CoinIcon size={20} animate />
-              <span style={{ fontSize: '1.3rem', fontWeight: 900, color: '#fbbf24' }}>+{chestCoins}</span>
-            </div>
-            <div style={{ fontSize: '0.75rem', color: '#9ca3af', marginTop: '0.2rem' }}>
-              Coffre ouvert !
-            </div>
-          </div>
-        )}
-
         {(sniperCharges > 0 || canRematch) && (
           <div style={{ marginTop: '1.2rem' }}>
             <SectionLabel>COUPS SPÉCIAUX</SectionLabel>
@@ -754,6 +724,7 @@ export default function Dashboard({
                       ruleProgress={rp}
                       onPlay={onPlay}
                       onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
+                      onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
                     />
                   </div>
                 );
@@ -781,6 +752,7 @@ export default function Dashboard({
                       ruleProgress={rp}
                       onPlay={onPlay}
                       onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
+                      onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
                     />
                   </div>
                 );
@@ -842,6 +814,17 @@ export default function Dashboard({
                         )}
                         {/* No LevelPath on mini-cards — too heavy for undiscovered rules */}
                       </div>
+                      {isDebug && (
+                        <button
+                          onClick={(e) => { e.stopPropagation(); setEditingRule(rules.find(x => x.id === rule.id)); }}
+                          style={{
+                            background: 'rgba(248,113,113,0.15)', border: '1px solid rgba(248,113,113,0.3)',
+                            borderRadius: 6, padding: '0.15rem 0.35rem', cursor: 'pointer',
+                            fontSize: '0.6rem', color: '#f87171', fontWeight: 700, flexShrink: 0,
+                          }}
+                          title="Debug: éditer la règle"
+                        >✏️</button>
+                      )}
                       <button
                         onClick={() => onPlay(rule.id, 'guided')}
                         style={{
@@ -871,17 +854,94 @@ export default function Dashboard({
           </div>
         )}
 
-        {/* Export */}
-        <div style={{ marginTop: '2.5rem', textAlign: 'center' }}>
+        {/* Export + Debug reset */}
+        <div style={{ marginTop: '2.5rem', textAlign: 'center', display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
           <button onClick={() => exportProgress(progress)} style={{
             padding: '0.5rem 1.2rem', borderRadius: 8,
             border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)',
             color: '#4b5563', cursor: 'pointer', fontSize: '0.72rem',
           }}>
-            Exporter ma progression
+            Exporter
           </button>
+          {isDebug && (
+            <button onClick={() => {
+              if (confirm('Réinitialiser toute la progression ? (irréversible)')) {
+                localStorage.removeItem('orthographe-progress');
+                window.location.reload();
+              }
+            }} style={{
+              padding: '0.5rem 1.2rem', borderRadius: 8,
+              border: '1px solid rgba(248,113,113,0.25)', background: 'rgba(248,113,113,0.08)',
+              color: '#f87171', cursor: 'pointer', fontSize: '0.72rem', fontWeight: 700,
+            }}>
+              Réinitialiser
+            </button>
+          )}
         </div>
       </div>
+
+      {/* ── Debug: streak editor ── */}
+      {isDebug && onDebugUpdateStreak && (
+        <div style={{
+          margin: '1.5rem 1rem 0',
+          padding: '1rem 1.2rem',
+          background: 'rgba(248,113,113,0.05)',
+          border: '1px dashed rgba(248,113,113,0.2)',
+          borderRadius: 14,
+        }}>
+          <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
+            🛠 Debug — Streak
+          </div>
+          <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-end', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+              <label style={{ fontSize: '0.65rem', color: '#9ca3af' }}>Streak (jours)</label>
+              <input
+                type="number"
+                min="0"
+                value={debugStreak}
+                onChange={e => setDebugStreak(e.target.value)}
+                style={{
+                  width: 70, padding: '0.35rem 0.5rem', borderRadius: 6,
+                  border: '1px solid rgba(248,113,113,0.3)',
+                  background: 'rgba(0,0,0,0.3)', color: '#e2e2e2',
+                  fontSize: '0.85rem', fontWeight: 700,
+                }}
+              />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+              <label style={{ fontSize: '0.65rem', color: '#9ca3af' }}>Dernière date active</label>
+              <input
+                type="date"
+                value={debugDate}
+                onChange={e => setDebugDate(e.target.value)}
+                style={{
+                  padding: '0.35rem 0.5rem', borderRadius: 6,
+                  border: '1px solid rgba(248,113,113,0.3)',
+                  background: 'rgba(0,0,0,0.3)', color: '#e2e2e2',
+                  fontSize: '0.82rem',
+                }}
+              />
+            </div>
+            <button
+              onClick={() => {
+                const n = parseInt(debugStreak, 10);
+                if (!isNaN(n) && n >= 0 && debugDate) {
+                  onDebugUpdateStreak(n, debugDate);
+                }
+              }}
+              style={{
+                padding: '0.38rem 0.9rem', borderRadius: 6,
+                border: '1px solid rgba(248,113,113,0.3)',
+                background: 'rgba(248,113,113,0.12)',
+                color: '#f87171', cursor: 'pointer',
+                fontSize: '0.75rem', fontWeight: 700,
+              }}
+            >
+              Appliquer
+            </button>
+          </div>
+        </div>
+      )}
     </div>
 
     {/* =====================================================================
@@ -957,17 +1017,12 @@ export default function Dashboard({
 
               <div className="streak-help-stats">
                 <div className="streak-help-stat-card">
-                  <span className="streak-help-stat-label">Ce que ça t’apporte</span>
-                  <strong className="streak-help-stat-value">{chestValue}</strong>
-                  <span className="streak-help-stat-hint">{chestHint}</span>
-                </div>
-                <div className="streak-help-stat-card">
                   <span className="streak-help-stat-label">Prochain cap utile</span>
                   <strong className="streak-help-stat-value">{nextUsefulLabel}</strong>
                   <span className="streak-help-stat-hint">{nextUsefulText}</span>
                 </div>
                 <div className="streak-help-stat-card streak-help-stat-card--shield">
-                  <span className="streak-help-stat-label">Si tu l’ignores</span>
+                  <span className="streak-help-stat-label">Si tu l'ignores</span>
                   <strong className="streak-help-stat-value">{riskValue}</strong>
                   <span className="streak-help-stat-hint">{riskText}</span>
                 </div>
@@ -976,8 +1031,8 @@ export default function Dashboard({
                   <strong className="streak-help-stat-value">{shields > 0 ? `${shields}/2 en réserve` : "Aucun"}</strong>
                   <span className="streak-help-stat-hint">
                     {shields > 0
-                      ? "Si tu rates un jour, un bouclier sauve automatiquement ton streak."
-                      : "Atteins 7 jours de streak pour en gagner un. Il absorbe 1 jour raté."}
+                      ? "Si tu rates un jour, tu peux consommer un bouclier pour sauver ton streak."
+                      : "Atteins 7 jours de streak pour en gagner un. Il peut absorber 1 jour raté."}
                   </span>
                 </div>
               </div>
@@ -996,6 +1051,19 @@ export default function Dashboard({
         ruleTitle={levelHelp.ruleTitle}
         ruleProgress={levelHelp.ruleProgress}
         onClose={() => setLevelHelp(null)}
+      />
+    )}
+
+    {/* Debug: Rule Editor */}
+    {editingRule && (
+      <RuleEditor
+        rule={editingRule}
+        onSave={(updated) => {
+          // Mutate the rule in-place (debug only — lost on reload)
+          Object.assign(editingRule, updated);
+          setEditingRule(null);
+        }}
+        onClose={() => setEditingRule(null)}
       />
     )}
     </>
