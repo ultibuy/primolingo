@@ -32,6 +32,9 @@ const DIAMOND_PASS_THRESHOLD = 90; // >=90% to pass SM-2 review
 const INACTIVITY_DAYS = 2;
 const SNIPER_SESSION_SIZE = 5;
 const SNIPER_COIN_MULTIPLIER = 1.5;
+const SECRET_CODE_LENGTH = 4;
+const SECRET_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const SECRET_CODE_BASE_LOCK_MS = 15000;
 
 // Milestone definitions (one-shot coin rewards)
 const MILESTONE_COINS = {
@@ -50,6 +53,26 @@ const STREAK_MILESTONES = {
   60: 'streak60',
   100: 'streak100',
 };
+
+function normalizeSecretCode(value) {
+  return (value || '')
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, '')
+    .slice(0, SECRET_CODE_LENGTH);
+}
+
+function generateSecretCode() {
+  let code = '';
+  for (let i = 0; i < SECRET_CODE_LENGTH; i += 1) {
+    code += SECRET_CODE_ALPHABET[Math.floor(Math.random() * SECRET_CODE_ALPHABET.length)];
+  }
+  return code;
+}
+
+function getSecretCodeLockDurationMs(failedAttempts) {
+  if (failedAttempts <= 0) return 0;
+  return Math.min(SECRET_CODE_BASE_LOCK_MS * (2 ** (failedAttempts - 1)), 60 * 60 * 1000);
+}
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -150,6 +173,17 @@ function migrateProgress(p) {
   }
   if (next.shields === undefined) next.shields = 0;
   if (next.coins === undefined) next.coins = 0;
+  if (!next.parentalCode || typeof next.parentalCode !== 'object') {
+    next.parentalCode = {
+      code: generateSecretCode(),
+      failedAttempts: 0,
+      lockedUntil: 0,
+    };
+  } else {
+    next.parentalCode.code = normalizeSecretCode(next.parentalCode.code) || generateSecretCode();
+    next.parentalCode.failedAttempts = Number.isFinite(next.parentalCode.failedAttempts) ? next.parentalCode.failedAttempts : 0;
+    next.parentalCode.lockedUntil = Number.isFinite(next.parentalCode.lockedUntil) ? next.parentalCode.lockedUntil : 0;
+  }
 
   // DEBUG: unlimited coins for testing shop
   if (DEBUG_MODE) next.coins = 9999;
@@ -214,7 +248,7 @@ function checkReturnAfterInactivity(progress) {
   // Only show return screen if something noteworthy happened
   if (!streakLost && !streakSaveable && diamondChanges.length === 0) return null;
 
-  return { streakLost, streakSaveable, shieldsToUse, shieldsToBuy, costToBuy, coins, previousStreak: streakCurrent, diamondChanges };
+  return { streakLost, streakSaveable, shieldsToUse, shieldsToBuy, costToBuy, coins, previousStreak: streakCurrent, daysMissed, diamondChanges };
 }
 
 /** Apply diamond health decay and handle demotions. Returns updated progress. */
@@ -815,6 +849,89 @@ export default function App() {
     setScreen('dashboard');
   }, [returnData, persistProgress]);
 
+  const handleReturnSecretCodeSubmit = useCallback((rawCode) => {
+    const enteredCode = normalizeSecretCode(rawCode);
+    const parentalCode = progress?.parentalCode || {};
+    const storedCode = normalizeSecretCode(parentalCode.code);
+    const now = Date.now();
+
+    if (enteredCode.length !== SECRET_CODE_LENGTH) {
+      return { ok: false, error: `Le code doit contenir ${SECRET_CODE_LENGTH} caractères.` };
+    }
+
+    if (parentalCode.lockedUntil && parentalCode.lockedUntil > now) {
+      return {
+        ok: false,
+        error: 'Réessaie un peu plus tard.',
+        lockedUntil: parentalCode.lockedUntil,
+      };
+    }
+
+    if (enteredCode !== storedCode) {
+      const failedAttempts = (parentalCode.failedAttempts || 0) + 1;
+      const lockedUntil = now + getSecretCodeLockDurationMs(failedAttempts);
+
+      setProgress(prev => {
+        const next = {
+          ...prev,
+          parentalCode: {
+            ...prev.parentalCode,
+            code: normalizeSecretCode(prev.parentalCode?.code) || storedCode,
+            failedAttempts,
+            lockedUntil,
+          },
+        };
+        persistProgress(next);
+        return next;
+      });
+
+      return {
+        ok: false,
+        error: 'Code incorrect.',
+        lockedUntil,
+      };
+    }
+
+    setProgress(prev => {
+      const next = {
+        ...prev,
+        parentalCode: {
+          ...prev.parentalCode,
+          code: storedCode,
+          failedAttempts: 0,
+          lockedUntil: 0,
+        },
+        streak: { ...prev.streak, lastActiveDate: getToday(-1) },
+      };
+      persistProgress(next);
+      return next;
+    });
+    setReturnData(null);
+    setScreen('dashboard');
+
+    return { ok: true };
+  }, [persistProgress, progress]);
+
+  const handleDebugUpdateSecretCode = useCallback((rawCode) => {
+    const code = normalizeSecretCode(rawCode);
+    if (code.length !== SECRET_CODE_LENGTH) return false;
+
+    setProgress(prev => {
+      const next = {
+        ...prev,
+        parentalCode: {
+          ...prev.parentalCode,
+          code,
+          failedAttempts: 0,
+          lockedUntil: 0,
+        },
+      };
+      persistProgress(next);
+      return next;
+    });
+    return true;
+  }, [persistProgress]);
+
   const handleCloseQuiz = useCallback(() => {
     setScreen('dashboard');
     setActiveRule(null);
@@ -865,9 +982,13 @@ export default function App() {
         costToBuy={returnData.costToBuy}
         coins={returnData.coins}
         previousStreak={returnData.previousStreak}
+        daysMissed={returnData.daysMissed}
         diamondChanges={returnData.diamondChanges}
         onContinue={handleReturnContinue}
         onSaveStreak={handleReturnSaveStreak}
+        onSecretCodeSubmit={handleReturnSecretCodeSubmit}
+        secretCodeFailedAttempts={progress.parentalCode?.failedAttempts || 0}
+        secretCodeLockedUntil={progress.parentalCode?.lockedUntil || 0}
       />
     );
   }
@@ -933,6 +1054,8 @@ export default function App() {
           persistProgress(next);
           window.location.reload();
         } : undefined}
+        onDebugUpdateSecretCode={DEBUG_MODE ? handleDebugUpdateSecretCode : undefined}
+        debugSecretCode={DEBUG_MODE ? (progress.parentalCode?.code || '') : undefined}
       />
     )
   );

@@ -6,7 +6,6 @@ import FlameIcon from './FlameIcon.jsx';
 import CrownIcon from './CrownIcon.jsx';
 import DiamondIcon from './DiamondIcon.jsx';
 import DiamondStatus from './DiamondStatus.jsx';
-import LevelPath from './LevelPath.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
 import LevelHelpPopup from './LevelHelpPopup.jsx';
 import RuleEditor from './RuleEditor.jsx';
@@ -311,6 +310,8 @@ export default function Dashboard({
   lastSessionRuleId,
   lastSessionScore,
   onDebugUpdateStreak,
+  onDebugUpdateSecretCode,
+  debugSecretCode,
 }) {
   const [overlay, setOverlay] = useState(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
@@ -318,12 +319,15 @@ export default function Dashboard({
   const [showStreakHelp, setShowStreakHelp] = useState(false);
   const [levelHelp, setLevelHelp] = useState(null); // { level: 'bronze', ruleTitle, ruleProgress }
   const [editingRule, setEditingRule] = useState(null); // rule object being edited
+  const [memoRule, setMemoRule] = useState(null);
   const isDebug = typeof window !== 'undefined' && window.__ORTHO_DEBUG__;
   const overlayTimeoutsRef = useRef([]);
   const [debugStreak, setDebugStreak] = useState(String(progress.streak?.current || 0));
   const [debugDate, setDebugDate] = useState(progress.streak?.lastActiveDate || '');
+  const [debugSecret, setDebugSecret] = useState(debugSecretCode || '');
 
   useEffect(() => { requestAnimationFrame(() => setMounted(true)); }, []);
+  useEffect(() => { setDebugSecret(debugSecretCode || ''); }, [debugSecretCode]);
 
   const clearOverlayTimers = useCallback(() => {
     for (const timeoutId of overlayTimeoutsRef.current) {
@@ -437,17 +441,18 @@ export default function Dashboard({
   let animIdx = 0;
 
   useEffect(() => {
-    if (!showStreakHelp) return undefined;
+    if (!showStreakHelp && !memoRule) return undefined;
 
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
-        setShowStreakHelp(false);
+        if (memoRule) setMemoRule(null);
+        else setShowStreakHelp(false);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [showStreakHelp]);
+  }, [showStreakHelp, memoRule]);
 
   return (
     <>
@@ -723,6 +728,7 @@ export default function Dashboard({
                       rule={rule}
                       ruleProgress={rp}
                       onPlay={onPlay}
+                      onOpenMemo={setMemoRule}
                       onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
                       onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
                     />
@@ -751,6 +757,7 @@ export default function Dashboard({
                       rule={rule}
                       ruleProgress={rp}
                       onPlay={onPlay}
+                      onOpenMemo={setMemoRule}
                       onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
                       onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
                     />
@@ -789,9 +796,23 @@ export default function Dashboard({
                     }}>
                       <span style={{ fontSize: '1rem', opacity: 0.4 }}>{'🔒'}</span>
                       <div style={{ flex: 1, minWidth: 0 }}>
-                        <span style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--color-accent)' }}>
+                        <button
+                          type="button"
+                          onClick={() => setMemoRule(rule)}
+                          style={{
+                            padding: 0,
+                            border: 'none',
+                            background: 'transparent',
+                            color: 'var(--color-accent)',
+                            cursor: 'pointer',
+                            fontSize: '0.88rem',
+                            fontWeight: 700,
+                            textAlign: 'left',
+                          }}
+                          title="Ouvrir la fiche mémo"
+                        >
                           {rule.title}
-                        </span>
+                        </button>
                         {isRecommended ? (
                           <span style={{
                             fontSize: '0.6rem',
@@ -812,7 +833,6 @@ export default function Dashboard({
                             Nouvelle
                           </span>
                         )}
-                        {/* No LevelPath on mini-cards — too heavy for undiscovered rules */}
                       </div>
                       {isDebug && (
                         <button
@@ -939,6 +959,40 @@ export default function Dashboard({
             >
               Appliquer
             </button>
+            {onDebugUpdateSecretCode && (
+              <>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                  <label style={{ fontSize: '0.65rem', color: '#9ca3af' }}>Code secret Papa</label>
+                  <input
+                    value={debugSecret}
+                    maxLength={4}
+                    onChange={e => setDebugSecret(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 4))}
+                    style={{
+                      width: 90, padding: '0.35rem 0.5rem', borderRadius: 6,
+                      border: '1px solid rgba(248,113,113,0.3)',
+                      background: 'rgba(0,0,0,0.3)', color: '#e2e2e2',
+                      fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase',
+                    }}
+                  />
+                </div>
+                <button
+                  onClick={() => {
+                    if (onDebugUpdateSecretCode(debugSecret)) {
+                      setDebugSecret(debugSecret.toUpperCase());
+                    }
+                  }}
+                  style={{
+                    padding: '0.38rem 0.9rem', borderRadius: 6,
+                    border: '1px solid rgba(248,113,113,0.3)',
+                    background: 'rgba(248,113,113,0.12)',
+                    color: '#f87171', cursor: 'pointer',
+                    fontSize: '0.75rem', fontWeight: 700,
+                  }}
+                >
+                  Code Papa
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
@@ -1052,6 +1106,127 @@ export default function Dashboard({
         ruleProgress={levelHelp.ruleProgress}
         onClose={() => setLevelHelp(null)}
       />
+    )}
+
+    {memoRule && (
+      <div
+        onClick={() => setMemoRule(null)}
+        style={{
+          position: 'fixed',
+          inset: 0,
+          background: 'rgba(0,0,0,0.66)',
+          backdropFilter: 'blur(8px)',
+          WebkitBackdropFilter: 'blur(8px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 1020,
+          animation: 'fade-in 0.2s ease',
+        }}
+      >
+        <div
+          onClick={(e) => e.stopPropagation()}
+          className="streak-help-shell"
+        >
+          <PopupCloseButton onClick={() => setMemoRule(null)} ariaLabel="Fermer la fiche mémo" />
+
+          <div
+          style={{
+            width: 'min(680px, 92vw)',
+            maxHeight: 'calc(100vh - 2rem)',
+            overflowY: 'auto',
+            padding: '1.4rem 1.3rem 1.25rem',
+            borderRadius: 22,
+            border: '1px solid rgba(167,139,250,0.22)',
+            background: 'linear-gradient(160deg, rgba(30,30,46,0.98), rgba(39,35,68,0.97))',
+            boxShadow: '0 20px 80px rgba(0,0,0,0.56)',
+            animation: 'bounce-in 0.3s ease forwards',
+          }}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="memo-popup-title"
+        >
+          <div style={{
+            fontSize: '0.68rem',
+            textTransform: 'uppercase',
+            letterSpacing: '0.12em',
+            fontWeight: 800,
+            color: '#a78bfa',
+            marginBottom: '0.35rem',
+          }}>
+            Fiche mémo
+          </div>
+          <h2
+            id="memo-popup-title"
+            style={{
+              fontSize: '1.45rem',
+              lineHeight: 1.08,
+              fontWeight: 800,
+              color: '#f5f3ff',
+              margin: '0 0 0.28rem',
+              fontFamily: 'var(--font-display)',
+            }}
+          >
+            {memoRule.title}
+          </h2>
+          <p style={{
+            fontSize: '0.92rem',
+            color: '#a1a1aa',
+            lineHeight: 1.5,
+            margin: '0 0 1rem',
+          }}>
+            {memoRule.memoCard?.title || 'Rappel rapide de la règle.'}
+          </p>
+
+          <div style={{ display: 'grid', gap: '0.6rem' }}>
+            {(memoRule.memoCard?.rows || []).map((row, index) => (
+              <div
+                key={`${memoRule.id}-memo-${index}`}
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '88px minmax(0, 1fr)',
+                  gap: '0.8rem',
+                  alignItems: 'start',
+                  padding: '0.85rem 0.9rem',
+                  borderRadius: 16,
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                }}
+              >
+                <div style={{
+                  fontSize: '0.96rem',
+                  fontWeight: 800,
+                  color: '#fbbf24',
+                  lineHeight: 1.2,
+                }}>
+                  {row.form}
+                </div>
+                <div style={{ minWidth: 0 }}>
+                  <div style={{
+                    fontSize: '0.83rem',
+                    color: '#e4e4e7',
+                    fontWeight: 700,
+                    marginBottom: row.example ? '0.2rem' : 0,
+                    lineHeight: 1.35,
+                  }}>
+                    {row.test}
+                  </div>
+                  {row.example && (
+                    <div style={{
+                      fontSize: '0.8rem',
+                      color: '#9ca3af',
+                      lineHeight: 1.45,
+                    }}>
+                      {row.example}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        </div>
+      </div>
     )}
 
     {/* Debug: Rule Editor */}

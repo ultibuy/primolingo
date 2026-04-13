@@ -151,7 +151,7 @@ function formatDate(dateStr) {
   return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
 }
 
-export default function RuleCard({ rule, ruleProgress, onPlay, onLevelHelp, onEditRule }) {
+export default function RuleCard({ rule, ruleProgress, onPlay, onLevelHelp, onEditRule, onOpenMemo }) {
   const level = getRuleLevel(ruleProgress);
   const config = LEVEL_CONFIG[level] || LEVEL_CONFIG[0];
   const prog = getLevelProgress(level, ruleProgress);
@@ -196,6 +196,7 @@ export default function RuleCard({ rule, ruleProgress, onPlay, onLevelHelp, onEd
     : recentTrophy
       ? 'card-glow 4s ease-in-out infinite'
       : 'none';
+  const hasMemo = !!(rule.memoCard?.title || rule.memoCard?.rows?.length);
 
   return (
     <div style={{
@@ -215,8 +216,31 @@ export default function RuleCard({ rule, ruleProgress, onPlay, onLevelHelp, onEd
         alignItems: 'flex-start', marginBottom: '0.5rem',
       }}>
         <div style={{ flex: 1 }}>
-          <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-accent)', margin: 0, display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-            {rule.title}
+          <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-accent)', margin: 0, display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
+            {hasMemo ? (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onOpenMemo?.(rule);
+                }}
+                style={{
+                  padding: 0,
+                  border: 'none',
+                  background: 'transparent',
+                  color: 'var(--color-accent)',
+                  cursor: 'pointer',
+                  fontSize: 'inherit',
+                  fontWeight: 'inherit',
+                  textAlign: 'left',
+                }}
+                title="Ouvrir la fiche mémo"
+              >
+                {rule.title}
+              </button>
+            ) : (
+              rule.title
+            )}
             {onEditRule && (
               <button
                 onClick={(e) => { e.stopPropagation(); onEditRule(rule.id); }}

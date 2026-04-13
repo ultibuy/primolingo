@@ -14,10 +14,29 @@ import ShieldIcon from './ShieldIcon.jsx';
  *   diamondChanges — [{ ruleId, ruleTitle, oldHealth, newHealth, broken }]
  *   onContinue     — callback to dismiss and go to dashboard
  */
-export default function ReturnScreen({ streakLost, streakSaveable, shieldsToUse, shieldsToBuy, costToBuy, coins, previousStreak, diamondChanges, onContinue, onSaveStreak }) {
+export default function ReturnScreen({
+  streakLost,
+  streakSaveable,
+  shieldsToUse,
+  shieldsToBuy,
+  costToBuy,
+  coins,
+  previousStreak,
+  daysMissed,
+  diamondChanges,
+  onContinue,
+  onSaveStreak,
+  onSecretCodeSubmit,
+  secretCodeFailedAttempts,
+  secretCodeLockedUntil,
+}) {
   const [step, setStep] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [stepVisible, setStepVisible] = useState(false);
+  const [showSecretCodeStep, setShowSecretCodeStep] = useState(false);
+  const [secretCode, setSecretCode] = useState('');
+  const [secretCodeError, setSecretCodeError] = useState(null);
+  const [lockNow, setLockNow] = useState(Date.now());
 
   // Streak animation state
   const [streakCountdown, setStreakCountdown] = useState(previousStreak || 0);
@@ -31,10 +50,15 @@ export default function ReturnScreen({ streakLost, streakSaveable, shieldsToUse,
   const [showButton, setShowButton] = useState(false);
 
   const hasStreakStep = streakLost || streakSaveable;
-  const totalSteps = (hasStreakStep ? 1 : 0) + (diamondChanges?.length || 0) + 1;
-  const streakStep = hasStreakStep ? 0 : -1;
-  const diamondStartStep = hasStreakStep ? 1 : 0;
+  const hasMissedDaysIntro = hasStreakStep && (daysMissed || 0) > 0;
+  const introStep = hasMissedDaysIntro ? 0 : -1;
+  const streakStep = hasStreakStep ? (hasMissedDaysIntro ? 1 : 0) : -1;
+  const totalSteps = (hasStreakStep ? (hasMissedDaysIntro ? 2 : 1) : 0) + (diamondChanges?.length || 0) + 1;
+  const diamondStartStep = hasStreakStep ? streakStep + 1 : 0;
   const actionStep = totalSteps - 1;
+  const lockRemainingMs = Math.max((secretCodeLockedUntil || 0) - lockNow, 0);
+  const isCodeLocked = lockRemainingMs > 0;
+  const lockRemainingSeconds = Math.ceil(lockRemainingMs / 1000);
 
   // Mount fade-in
   useEffect(() => {
@@ -51,6 +75,12 @@ export default function ReturnScreen({ streakLost, streakSaveable, shieldsToUse,
       if (frameId !== null) cancelAnimationFrame(frameId);
     };
   }, [step]);
+
+  useEffect(() => {
+    if (!secretCodeLockedUntil) return undefined;
+    const timer = setInterval(() => setLockNow(Date.now()), 1000);
+    return () => clearInterval(timer);
+  }, [secretCodeLockedUntil]);
 
   // ─── Streak countdown animation ─────────────────────────────────
   useEffect(() => {
@@ -121,12 +151,130 @@ export default function ReturnScreen({ streakLost, streakSaveable, shieldsToUse,
   }, [step, actionStep]);
 
   const goNext = useCallback(() => {
+    setShowSecretCodeStep(false);
+    setSecretCodeError(null);
     if (step < actionStep) {
       setStep(s => s + 1);
     } else {
       onContinue();
     }
   }, [step, actionStep, onContinue]);
+
+  const handleSecretCodeSubmit = () => {
+    if (!onSecretCodeSubmit) return;
+    const result = onSecretCodeSubmit(secretCode);
+    if (!result?.ok) {
+      setSecretCodeError(result?.error || 'Code incorrect.');
+      setLockNow(Date.now());
+      return;
+    }
+    setSecretCode('');
+    setSecretCodeError(null);
+  };
+
+  const renderMissedDaysIntro = () => {
+    if (step !== introStep || !hasMissedDaysIntro) return null;
+
+    return (
+      <div style={{
+        textAlign: 'center',
+        opacity: stepVisible ? 1 : 0,
+        transform: stepVisible ? 'translateY(0)' : 'translateY(20px)',
+        transition: 'opacity 0.5s ease, transform 0.5s ease',
+      }}>
+        {!showSecretCodeStep ? (
+          <>
+            <div style={{ fontSize: '2.6rem', marginBottom: '0.9rem' }}>{'📆'}</div>
+            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#e2e2e2', marginBottom: '0.5rem' }}>
+              Retour après une pause
+            </h2>
+            <p style={{ fontSize: '0.98rem', color: '#cbd5e1', lineHeight: 1.6, maxWidth: 360, margin: '0 auto 1.4rem' }}>
+              {daysMissed} jour{daysMissed > 1 ? 's' : ''} de streak raté{daysMissed > 1 ? 's' : ''}, si tu avais une bonne raison choisis « demander à Papa ».
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: 320, margin: '0 auto' }}>
+              <button
+                onClick={goNext}
+                style={primaryButtonStyle}
+              >
+                Continuer
+              </button>
+              <button
+                onClick={() => {
+                  setShowSecretCodeStep(true);
+                  setSecretCodeError(null);
+                  setSecretCode('');
+                }}
+                style={secondaryButtonStyle}
+              >
+                Demander à Papa
+              </button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div style={{ fontSize: '2.6rem', marginBottom: '0.9rem' }}>{'🔐'}</div>
+            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#e2e2e2', marginBottom: '0.5rem' }}>
+              Code secret
+            </h2>
+            <p style={{ fontSize: '0.92rem', color: '#9ca3af', lineHeight: 1.6, maxWidth: 360, margin: '0 auto 1rem' }}>
+              Entre le code donné par Papa pour conserver ton streak.
+            </p>
+            <input
+              value={secretCode}
+              maxLength={4}
+              autoFocus
+              onChange={(e) => {
+                setSecretCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 4));
+                setSecretCodeError(null);
+              }}
+              style={{
+                width: 160,
+                textAlign: 'center',
+                letterSpacing: '0.35em',
+                textTransform: 'uppercase',
+                padding: '0.85rem 1rem',
+                borderRadius: 14,
+                border: `1px solid ${secretCodeError ? 'rgba(248,113,113,0.4)' : 'rgba(167,139,250,0.3)'}`,
+                background: 'rgba(255,255,255,0.04)',
+                color: '#fff',
+                fontSize: '1.1rem',
+                fontWeight: 800,
+                marginBottom: '0.8rem',
+              }}
+            />
+            <div style={{ minHeight: 24, fontSize: '0.82rem', color: secretCodeError ? '#fca5a5' : '#6b7280', marginBottom: '1rem' }}>
+              {isCodeLocked
+                ? `Trop d’essais. Réessaie dans ${lockRemainingSeconds}s.`
+                : secretCodeError || (secretCodeFailedAttempts > 0 ? `${secretCodeFailedAttempts} essai${secretCodeFailedAttempts > 1 ? 's' : ''} raté${secretCodeFailedAttempts > 1 ? 's' : ''}.` : '')}
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: 320, margin: '0 auto' }}>
+              <button
+                onClick={handleSecretCodeSubmit}
+                disabled={isCodeLocked}
+                style={{
+                  ...primaryButtonStyle,
+                  opacity: isCodeLocked ? 0.45 : 1,
+                  cursor: isCodeLocked ? 'default' : 'pointer',
+                }}
+              >
+                Valider le code
+              </button>
+              <button
+                onClick={() => {
+                  setShowSecretCodeStep(false);
+                  setSecretCodeError(null);
+                  setSecretCode('');
+                }}
+                style={secondaryButtonStyle}
+              >
+                Retour
+              </button>
+            </div>
+          </>
+        )}
+      </div>
+    );
+  };
 
   // ─── Render: Streak news ────────────────────────────────────────
   const renderStreakNews = () => {
@@ -466,6 +614,7 @@ export default function ReturnScreen({ streakLost, streakSaveable, shieldsToUse,
         {/* Content */}
         <div style={{ minHeight: 260, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ width: '100%' }}>
+            {renderMissedDaysIntro()}
             {renderStreakNews()}
             {diamondChanges?.map((change, i) => renderDiamondNews(change, i))}
             {renderAction()}
@@ -473,7 +622,7 @@ export default function ReturnScreen({ streakLost, streakSaveable, shieldsToUse,
         </div>
 
         {/* Navigation — only show before action step */}
-        {step < actionStep && (
+        {step < actionStep && !showSecretCodeStep && (
           <div style={{
             textAlign: 'center', marginTop: '2rem',
             opacity: stepVisible ? 1 : 0,
@@ -586,3 +735,26 @@ function HealthBadge({ value }) {
     </span>
   );
 }
+
+const primaryButtonStyle = {
+  padding: '0.85rem 1.5rem',
+  borderRadius: 14,
+  border: 'none',
+  background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+  color: '#fff',
+  cursor: 'pointer',
+  fontSize: '1rem',
+  fontWeight: 700,
+  boxShadow: '0 4px 20px rgba(124,58,237,0.3)',
+};
+
+const secondaryButtonStyle = {
+  padding: '0.7rem 1.2rem',
+  borderRadius: 12,
+  border: '1px solid rgba(255,255,255,0.1)',
+  background: 'transparent',
+  color: '#9ca3af',
+  cursor: 'pointer',
+  fontSize: '0.9rem',
+  fontWeight: 600,
+};
