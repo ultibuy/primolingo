@@ -55,16 +55,6 @@ export const SHOP_CATALOG = {
     type: 'permanent',
     tier: 'premium',
   },
-  'theme-my-hero-academia': {
-    id: 'theme-my-hero-academia',
-    category: 'themes',
-    name: 'Plus Ultra',
-    description: 'Bleu heroique, rouge impact et jaune manga.',
-    price: 180,
-    type: 'permanent',
-    tier: 'premium',
-  },
-
   // ── Cosmetic: Flames ──
   'flame-lightning': {
     id: 'flame-lightning',
@@ -226,15 +216,6 @@ export const SHOP_CATALOG = {
     price: 120,
     type: 'permanent',
   },
-  'bg-plus-ultra': {
-    id: 'bg-plus-ultra',
-    category: 'backgrounds',
-    name: 'Plus Ultra',
-    description: 'Rayons manga et impact héroïque sur le dashboard',
-    price: 180,
-    type: 'permanent',
-  },
-
   // ── Consumables: Insurance & Comfort ──
   'streak-freeze': {
     id: 'streak-freeze',
@@ -298,7 +279,6 @@ export const THEMES = {
   'theme-warm-amber': { primary: '#fbbf24', accent: '#fde68a', bg1: '#27200f', bg2: '#3d3112' },
   'theme-aurora': { primary: '#34d399', accent: '#a78bfa', bg1: '#0f1729', bg2: '#162033' },
   'theme-midnight-purple': { primary: '#c084fc', accent: '#e879f9', bg1: '#1a0a2e', bg2: '#2d1452' },
-  'theme-my-hero-academia': { primary: '#dc2626', accent: '#facc15', bg1: '#0b1736', bg2: '#1a2f63' },
 };
 
 /**
@@ -482,7 +462,8 @@ export function isOwned(progress, itemId) {
  * @returns {string|null} The equipped item ID, or null.
  */
 export function getEquipped(progress, category) {
-  return progress.shop?.equipped?.[category] || null;
+  const itemId = progress.shop?.equipped?.[category] || null;
+  return itemId && SHOP_CATALOG[itemId] ? itemId : null;
 }
 
 /**

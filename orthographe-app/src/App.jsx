@@ -23,9 +23,9 @@ import ReturnScreen from './components/ReturnScreen.jsx';
 // ---------------------------------------------------------------------------
 // Constants
 // ---------------------------------------------------------------------------
-export const DEBUG_MODE = true;
+export const DEBUG_MODE = false;
 if (typeof window !== 'undefined') window.__ORTHO_DEBUG__ = DEBUG_MODE;
-const SESSION_SIZE = DEBUG_MODE ? 1 : 20;
+const SESSION_SIZE = 20;
 if (typeof window !== 'undefined') window.__ORTHO_SESSION_SIZE__ = SESSION_SIZE;
 const FIRST_SESSION_BONUS = 10;
 const DIAMOND_PASS_THRESHOLD = 90; // >=90% to pass SM-2 review
