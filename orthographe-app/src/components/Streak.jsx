@@ -1,6 +1,7 @@
 import { getStreakInfo } from '../engine/scoring.js';
+import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 
-export default function Streak({ streak, shields }) {
+export default function Streak({ streak, shields, flameId = null }) {
   const info = getStreakInfo(streak);
   if (!streak || streak.current === 0) return null;
 
@@ -11,12 +12,7 @@ export default function Streak({ streak, shields }) {
       borderRadius: 10, padding: '0.35rem 0.7rem',
       border: '1px solid rgba(251,191,36,0.15)',
     }}>
-      <span style={{
-        fontSize: '1.1rem',
-        filter: 'drop-shadow(0 0 4px rgba(251,191,36,0.4))',
-      }}>
-        {info.flame}
-      </span>
+      <CosmeticFlameIcon size={28} intensity={streak.current >= 7 ? 1 : 0} flameId={flameId} />
       <span style={{ fontWeight: 800, color: '#fbbf24', fontSize: '1rem' }}>
         {streak.current}j
       </span>

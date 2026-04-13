@@ -31,6 +31,7 @@ export default function QuizGuided({
   isFirstSessionOfDay,
   ruleProgress,
   streak,
+  victoryAnimationId,
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [axisSelections, setAxisSelections] = useState({});
@@ -92,6 +93,7 @@ export default function QuizGuided({
         isFirstSessionOfDay={isFirstSessionOfDay}
         levelProgress={levelProgress}
         streakInfo={streakInfo}
+        victoryAnimationId={victoryAnimationId}
         onFinish={() => onFinish(score, questions.length, answers)}
       />
     );

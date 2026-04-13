@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import CoinIcon from './CoinIcon.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
+import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
+import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
 import { SHOP_CATALOG, canAfford, isOwned, getEquipped } from '../engine/economy.js';
 
 const CATEGORIES = [
@@ -26,8 +28,8 @@ const CATEGORY_ICONS = {
 
 const SUBCATEGORY_LABELS = {
   themes: 'Th\u00e8mes',
-  flames: 'Flammes',
-  titles: 'Titres',
+  flames: 'Flamme de ton streak',
+  titles: 'Titre sous le streak',
   victoryAnimations: 'Animations de victoire',
   backgrounds: 'Fonds',
 };
@@ -46,6 +48,9 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
   const [mounted, setMounted] = useState(false);
   // FIX 4 — Purchase confirmation state
   const [confirmItem, setConfirmItem] = useState(null);
+  const [previewFlameItem, setPreviewFlameItem] = useState(null);
+  const [previewTitleItem, setPreviewTitleItem] = useState(null);
+  const [previewVictoryItem, setPreviewVictoryItem] = useState(null);
 
   useEffect(() => {
     requestAnimationFrame(() => setMounted(true));
@@ -86,6 +91,42 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
 
   const handleCancelPurchase = () => {
     setConfirmItem(null);
+  };
+
+  const handlePreviewFlame = (itemId) => {
+    const item = SHOP_CATALOG[itemId];
+    if (!item) return;
+    setPreviewFlameItem(item);
+  };
+
+  const handleConfirmFlamePreview = () => {
+    if (!previewFlameItem) return;
+    handleEquip(previewFlameItem.id, previewFlameItem.category);
+    setPreviewFlameItem(null);
+  };
+
+  const handlePreviewTitle = (itemId) => {
+    const item = SHOP_CATALOG[itemId];
+    if (!item) return;
+    setPreviewTitleItem(item);
+  };
+
+  const handleConfirmTitlePreview = () => {
+    if (!previewTitleItem) return;
+    handleEquip(previewTitleItem.id, previewTitleItem.category);
+    setPreviewTitleItem(null);
+  };
+
+  const handlePreviewVictory = (itemId) => {
+    const item = SHOP_CATALOG[itemId];
+    if (!item) return;
+    setPreviewVictoryItem(item);
+  };
+
+  const handleConfirmVictoryPreview = () => {
+    if (!previewVictoryItem) return;
+    handleEquip(previewVictoryItem.id, previewVictoryItem.category);
+    setPreviewVictoryItem(null);
   };
 
   const handleEquip = (itemId, category, unequip = false) => {
@@ -155,6 +196,266 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
                 }}
               >
                 Confirmer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {previewFlameItem && (
+        <div style={{
+          position: 'fixed', inset: 0,
+          background: 'rgba(0,0,0,0.6)',
+          backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 1000,
+        }} onClick={() => setPreviewFlameItem(null)}>
+          <div
+            style={{
+              background: 'rgba(var(--color-bg1-rgb),0.96)',
+              border: '1px solid rgba(var(--color-accent-rgb),0.2)',
+              borderRadius: 24, padding: '1.6rem 2rem',
+              maxWidth: 360, width: 'calc(100% - 2rem)', textAlign: 'center',
+              boxShadow: '0 8px 40px rgba(0,0,0,0.5)',
+              animation: 'bounce-in 0.3s ease forwards',
+              position: 'relative',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <PopupCloseButton onClick={() => setPreviewFlameItem(null)} />
+            <div style={{ marginBottom: '0.55rem', fontSize: '0.68rem', color: '#9ca3af', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+              Aperçu de la flamme
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+              <div style={{
+                width: 108,
+                height: 108,
+                borderRadius: 28,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'radial-gradient(circle at 50% 40%, rgba(255,255,255,0.08), rgba(255,255,255,0.02) 65%)',
+                border: '1px solid rgba(255,255,255,0.08)',
+              }}>
+                <CosmeticFlameIcon size={72} intensity={1} flameId={previewFlameItem.id} />
+              </div>
+            </div>
+            <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#fff', marginBottom: '0.25rem' }}>
+              {previewFlameItem.name}
+            </div>
+            <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, marginBottom: '1.15rem' }}>
+              Voilà l’animation qui sera utilisée pour la flamme de ton streak.
+            </div>
+            <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'center' }}>
+              <button
+                onClick={() => setPreviewFlameItem(null)}
+                style={{
+                  flex: 1,
+                  padding: '0.7rem 1rem',
+                  borderRadius: 12,
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'rgba(255,255,255,0.06)',
+                  color: '#9ca3af',
+                  cursor: 'pointer',
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
+                }}
+              >
+                Fermer
+              </button>
+              <button
+                onClick={handleConfirmFlamePreview}
+                style={{
+                  flex: 1,
+                  padding: '0.7rem 1rem',
+                  borderRadius: 12,
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+                  color: '#fff',
+                  cursor: 'pointer',
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
+                  boxShadow: '0 2px 10px rgba(124,58,237,0.25)',
+                }}
+              >
+                Installer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {previewTitleItem && (
+        <div style={{
+          position: 'fixed', inset: 0,
+          background: 'rgba(0,0,0,0.6)',
+          backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 1000,
+        }} onClick={() => setPreviewTitleItem(null)}>
+          <div
+            style={{
+              background: 'rgba(var(--color-bg1-rgb),0.96)',
+              border: '1px solid rgba(var(--color-accent-rgb),0.2)',
+              borderRadius: 24, padding: '1.6rem 2rem',
+              maxWidth: 380, width: 'calc(100% - 2rem)', textAlign: 'center',
+              boxShadow: '0 8px 40px rgba(0,0,0,0.5)',
+              animation: 'bounce-in 0.3s ease forwards',
+              position: 'relative',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <PopupCloseButton onClick={() => setPreviewTitleItem(null)} />
+            <div style={{ marginBottom: '0.55rem', fontSize: '0.68rem', color: '#9ca3af', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+              Aperçu du titre
+            </div>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '1rem',
+            }}>
+              <div style={{
+                minWidth: 200,
+                padding: '1rem 1.2rem',
+                borderRadius: 18,
+                background: 'linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))',
+                border: '1px solid rgba(255,255,255,0.08)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
+              }}>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.45rem',
+                  marginBottom: '0.35rem',
+                }}>
+                  <CosmeticFlameIcon size={28} intensity={1} />
+                  <span style={{ fontSize: '1.05rem', fontWeight: 900, color: '#fbbf24', lineHeight: 1 }}>
+                    8 jours
+                  </span>
+                </div>
+                <div style={{
+                  fontSize: '0.82rem',
+                  color: '#d4a020',
+                  fontWeight: 700,
+                  letterSpacing: '0.03em',
+                  lineHeight: 1.1,
+                }}>
+                  {previewTitleItem.titleText}
+                </div>
+              </div>
+            </div>
+            <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#fff', marginBottom: '0.25rem' }}>
+              {previewTitleItem.name}
+            </div>
+            <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, marginBottom: '1.15rem' }}>
+              Voilà comment le titre apparaîtra sous ton streak sur le dashboard.
+            </div>
+            <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'center' }}>
+              <button
+                onClick={() => setPreviewTitleItem(null)}
+                style={{
+                  flex: 1,
+                  padding: '0.7rem 1rem',
+                  borderRadius: 12,
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'rgba(255,255,255,0.06)',
+                  color: '#9ca3af',
+                  cursor: 'pointer',
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
+                }}
+              >
+                Fermer
+              </button>
+              <button
+                onClick={handleConfirmTitlePreview}
+                style={{
+                  flex: 1,
+                  padding: '0.7rem 1rem',
+                  borderRadius: 12,
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+                  color: '#fff',
+                  cursor: 'pointer',
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
+                  boxShadow: '0 2px 10px rgba(124,58,237,0.25)',
+                }}
+              >
+                Installer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {previewVictoryItem && (
+        <div style={{
+          position: 'fixed', inset: 0,
+          background: 'rgba(0,0,0,0.6)',
+          backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 1000,
+        }} onClick={() => setPreviewVictoryItem(null)}>
+          <div
+            style={{
+              background: 'rgba(var(--color-bg1-rgb),0.96)',
+              border: '1px solid rgba(var(--color-accent-rgb),0.2)',
+              borderRadius: 24, padding: '1.6rem 2rem',
+              maxWidth: 390, width: 'calc(100% - 2rem)', textAlign: 'center',
+              boxShadow: '0 8px 40px rgba(0,0,0,0.5)',
+              animation: 'bounce-in 0.3s ease forwards',
+              position: 'relative',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <PopupCloseButton onClick={() => setPreviewVictoryItem(null)} />
+            <div style={{ marginBottom: '0.55rem', fontSize: '0.68rem', color: '#9ca3af', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+              Aperçu de la victoire
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
+              <VictoryAnimationPreview animationId={previewVictoryItem.id} size={144} />
+            </div>
+            <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#fff', marginBottom: '0.25rem' }}>
+              {previewVictoryItem.name}
+            </div>
+            <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, marginBottom: '1.15rem' }}>
+              Voilà l’animation qui apparaîtra sur l’écran de fin après une session réussie.
+            </div>
+            <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'center' }}>
+              <button
+                onClick={() => setPreviewVictoryItem(null)}
+                style={{
+                  flex: 1,
+                  padding: '0.7rem 1rem',
+                  borderRadius: 12,
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'rgba(255,255,255,0.06)',
+                  color: '#9ca3af',
+                  cursor: 'pointer',
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
+                }}
+              >
+                Fermer
+              </button>
+              <button
+                onClick={handleConfirmVictoryPreview}
+                style={{
+                  flex: 1,
+                  padding: '0.7rem 1rem',
+                  borderRadius: 12,
+                  border: 'none',
+                  background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+                  color: '#fff',
+                  cursor: 'pointer',
+                  fontSize: '0.88rem',
+                  fontWeight: 700,
+                  boxShadow: '0 2px 10px rgba(124,58,237,0.25)',
+                }}
+              >
+                Installer
               </button>
             </div>
           </div>
@@ -266,6 +567,9 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
                   purchaseAnim={purchaseAnim}
                   onPurchase={handleRequestPurchase}
                   onEquip={handleEquip}
+                  onPreviewFlame={handlePreviewFlame}
+                  onPreviewTitle={handlePreviewTitle}
+                  onPreviewVictory={handlePreviewVictory}
                 />
               ))}
             </div>
@@ -285,7 +589,7 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
   );
 }
 
-function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEquip }) {
+function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEquip, onPreviewFlame, onPreviewTitle, onPreviewVictory }) {
   const owned = item.type === 'permanent' && isOwned(progress, item.id);
   const affordable = canAfford(progress, item.id);
   const coins = progress.coins || 0;
@@ -316,7 +620,13 @@ function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEqu
     };
   } else if (owned && !equipped) {
     buttonText = 'Installer';
-    buttonAction = () => onEquip(item.id, item.category);
+    buttonAction = item.category === 'flames'
+      ? () => onPreviewFlame(item.id)
+      : item.category === 'titles'
+        ? () => onPreviewTitle(item.id)
+        : item.category === 'victoryAnimations'
+          ? () => onPreviewVictory(item.id)
+          : () => onEquip(item.id, item.category);
     buttonStyle = {
       background: 'rgba(var(--color-accent-rgb),0.1)',
       border: '1px solid rgba(var(--color-accent-rgb),0.25)',

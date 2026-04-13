@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import CoinIcon from './CoinIcon.jsx';
+import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
 import { calculateCoins } from '../engine/scoring.js';
 
 /**
@@ -38,6 +39,7 @@ export default function EndScreen({
   isFirstSessionOfDay,
   levelProgress,
   streakInfo,
+  victoryAnimationId,
 }) {
   const total = questions.length;
   const pct = total > 0 ? Math.round((score / total) * 100) : 0;
@@ -147,9 +149,26 @@ export default function EndScreen({
         {/* 1. Big emoji + score with counting animation */}
         <div style={{ textAlign: 'center', marginBottom: '0.6rem' }}>
           <div style={{
-            fontSize: '3.5rem', marginBottom: '0.4rem',
+            display: 'flex',
+            justifyContent: 'center',
+            marginBottom: victoryAnimationId ? '0.55rem' : '0.4rem',
             animation: 'bounce-in 0.5s ease forwards',
-          }}>{emoji}</div>
+          }}>
+            {victoryAnimationId ? (
+              <VictoryAnimationPreview animationId={victoryAnimationId} size={126} showLabel={false} />
+            ) : (
+              <div style={{ fontSize: '3.5rem' }}>{emoji}</div>
+            )}
+          </div>
+          {victoryAnimationId && (
+            <div style={{
+              fontSize: '1.25rem',
+              marginBottom: '0.15rem',
+              lineHeight: 1,
+            }}>
+              {emoji}
+            </div>
+          )}
           <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-accent)', marginBottom: '0.3rem' }}>
             Session terminée !
           </h1>

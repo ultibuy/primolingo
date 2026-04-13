@@ -12,6 +12,7 @@ export default function QuizDirect({
   isFirstSessionOfDay,
   ruleProgress,
   streak,
+  victoryAnimationId,
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -59,6 +60,7 @@ export default function QuizDirect({
         isFirstSessionOfDay={isFirstSessionOfDay}
         levelProgress={levelProgress}
         streakInfo={streakInfo}
+        victoryAnimationId={victoryAnimationId}
         onFinish={() => onFinish(score, questions.length, answers)}
       />
     );

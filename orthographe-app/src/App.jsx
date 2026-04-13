@@ -1000,6 +1000,7 @@ export default function App() {
     const hasDoubleCoinsActive = !!progress.shop?.activeBoosts?.doubleCoins;
     const isFirstSessionOfDay = progress.streak?.lastActiveDate !== getToday();
     const ruleProgress = activeRule.id === '__sniper__' ? null : progress.rules?.[activeRule.id];
+    const victoryAnimationId = progress.shop?.equipped?.victoryAnimation || null;
     return renderWithSaveError(
       <QuizComponent
         rule={activeRule}
@@ -1013,6 +1014,7 @@ export default function App() {
         isFirstSessionOfDay={isFirstSessionOfDay}
         ruleProgress={ruleProgress}
         streak={progress.streak}
+        victoryAnimationId={victoryAnimationId}
         onClose={handleCloseQuiz}
       />
     );

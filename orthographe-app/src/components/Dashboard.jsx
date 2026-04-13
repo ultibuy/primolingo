@@ -2,13 +2,13 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import RuleCard from './RuleCard.jsx';
 import CoinIcon from './CoinIcon.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
-import FlameIcon from './FlameIcon.jsx';
 import CrownIcon from './CrownIcon.jsx';
 import DiamondIcon from './DiamondIcon.jsx';
 import DiamondStatus from './DiamondStatus.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
 import LevelHelpPopup from './LevelHelpPopup.jsx';
 import RuleEditor from './RuleEditor.jsx';
+import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 import { getStreakInfo } from '../engine/scoring.js';
 import { getToday } from '../engine/sm2.js';
 import { getEquipped, SHOP_CATALOG } from '../engine/economy.js';
@@ -398,6 +398,8 @@ export default function Dashboard({
   const equippedTitle = getEquipped(progress, 'title');
   const titleItem = equippedTitle ? SHOP_CATALOG[equippedTitle] : null;
   const displayTitle = titleItem?.titleText || streakInfo.title;
+  const equippedFlame = getEquipped(progress, 'flame');
+  const equippedBackground = getEquipped(progress, 'dashboardBackground');
 
   const summary = computeGlobalLevelSummary(rules, progress);
 
@@ -456,7 +458,8 @@ export default function Dashboard({
 
   return (
     <>
-    <div style={pageStyle}>
+    <div style={{ ...pageStyle, position: 'relative', overflow: 'hidden' }}>
+      <DashboardBackground backgroundId={equippedBackground} />
       {/* ---------------------------------------------------------------------------
         Overlay for pending events
       --------------------------------------------------------------------------- */}
@@ -498,6 +501,8 @@ export default function Dashboard({
         maxWidth: 640, width: '100%', padding: '0 1.5rem 3rem',
         opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(12px)',
         transition: 'all 0.6s ease',
+        position: 'relative',
+        zIndex: 1,
       }}>
 
         {/* =====================================================================
@@ -523,7 +528,7 @@ export default function Dashboard({
               style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}
               aria-label="En savoir plus sur le streak"
             >
-              <FlameIcon size={36} intensity={getFlameIntensity(streak)} />
+              <CosmeticFlameIcon size={36} intensity={getFlameIntensity(streak)} flameId={equippedFlame} />
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                   <span style={{
@@ -565,10 +570,25 @@ export default function Dashboard({
               style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer' }}
               aria-label="En savoir plus sur le streak"
             >
-              <FlameIcon size={28} intensity={0} />
-              <span style={{ fontSize: '0.82rem', color: '#4b5563', fontWeight: 700 }}>
-                0 jour
-              </span>
+              <CosmeticFlameIcon size={28} intensity={0} flameId={equippedFlame} />
+              <div>
+                <span style={{ fontSize: '0.82rem', color: '#4b5563', fontWeight: 700, display: 'block', lineHeight: 1.1 }}>
+                  0 jour
+                </span>
+                {displayTitle && (
+                  <span style={{
+                    fontSize: '0.72rem',
+                    color: '#d4a020',
+                    fontWeight: 700,
+                    letterSpacing: '0.03em',
+                    display: 'block',
+                    marginTop: '0.15rem',
+                    lineHeight: 1.1,
+                  }}>
+                    {displayTitle}
+                  </span>
+                )}
+              </div>
             </button>
           )}
 
@@ -1033,7 +1053,7 @@ export default function Dashboard({
             <div className="streak-help-main">
               <div className="streak-help-hero">
                 <div className="streak-help-flame">
-                  <FlameIcon size={72} intensity={getFlameIntensity(streak)} />
+                  <CosmeticFlameIcon size={72} intensity={getFlameIntensity(streak)} flameId={equippedFlame} />
                 </div>
                 <div className="streak-help-counter">
                   <span className="streak-help-counter-value">{streak}</span>
@@ -1285,6 +1305,7 @@ function LevelBadge({ icon, count, color, label, onClick }) {
   );
 }
 
+
 const specialActionButtonStyle = {
   width: '100%',
   display: 'flex',
@@ -1322,6 +1343,242 @@ function DiamondSparkBadge() {
       </span>
     </div>
   );
+}
+
+function DashboardBackground({ backgroundId }) {
+  if (!backgroundId) return null;
+
+  const baseStyle = {
+    position: 'absolute',
+    inset: 0,
+    pointerEvents: 'none',
+    zIndex: 0,
+    overflow: 'hidden',
+  };
+
+  if (backgroundId === 'bg-geometric') {
+    return (
+      <div style={baseStyle} aria-hidden="true">
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          opacity: 0.48,
+          backgroundImage: `
+            linear-gradient(30deg, rgba(255,255,255,0.16) 1px, transparent 1px),
+            linear-gradient(150deg, rgba(167,139,250,0.18) 1px, transparent 1px)
+          `,
+          backgroundSize: '42px 42px, 42px 42px',
+          backgroundPosition: '0 0, 21px 21px',
+        }} />
+        <div style={{
+          position: 'absolute',
+          top: '-8%',
+          right: '-3%',
+          width: 320,
+          height: 320,
+          transform: 'rotate(18deg)',
+          border: '1px solid rgba(255,255,255,0.16)',
+          borderRadius: 40,
+          opacity: 0.42,
+        }} />
+        <div style={{
+          position: 'absolute',
+          bottom: '8%',
+          left: '-2%',
+          width: 220,
+          height: 220,
+          transform: 'rotate(22deg)',
+          border: '1px solid rgba(192,132,252,0.28)',
+          borderRadius: 30,
+          opacity: 0.56,
+        }} />
+      </div>
+    );
+  }
+
+  if (backgroundId === 'bg-gradient') {
+    return (
+      <div style={baseStyle} aria-hidden="true">
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: `
+            radial-gradient(circle at 12% 18%, rgba(251,191,36,0.24), transparent 30%),
+            radial-gradient(circle at 82% 22%, rgba(96,165,250,0.28), transparent 26%),
+            radial-gradient(circle at 68% 76%, rgba(167,139,250,0.34), transparent 30%),
+            radial-gradient(circle at 22% 86%, rgba(74,222,128,0.22), transparent 24%)
+          `,
+          opacity: 1,
+        }} />
+      </div>
+    );
+  }
+
+  if (backgroundId === 'bg-dots') {
+    return (
+      <div style={baseStyle} aria-hidden="true">
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          opacity: 0.48,
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.32) 1.6px, transparent 1.6px)',
+          backgroundSize: '20px 20px',
+          backgroundPosition: '0 0',
+        }} />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          opacity: 0.34,
+          backgroundImage: 'radial-gradient(circle, rgba(167,139,250,0.45) 1.8px, transparent 1.8px)',
+          backgroundSize: '40px 40px',
+          backgroundPosition: '20px 20px',
+        }} />
+      </div>
+    );
+  }
+
+  if (backgroundId === 'bg-waves') {
+    return (
+      <div style={baseStyle} aria-hidden="true">
+        <svg
+          viewBox="0 0 1200 900"
+          preserveAspectRatio="none"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.62 }}
+        >
+          <path d="M0 620 C160 570, 260 710, 420 660 S700 540, 860 610 S1030 740, 1200 680" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="4" />
+          <path d="M0 700 C140 660, 300 770, 470 720 S760 600, 910 660 S1060 770, 1200 730" fill="none" stroke="rgba(96,165,250,0.32)" strokeWidth="4" />
+          <path d="M0 790 C130 750, 320 850, 500 800 S790 690, 950 750 S1080 850, 1200 810" fill="none" stroke="rgba(167,139,250,0.34)" strokeWidth="4" />
+        </svg>
+        <div style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: '34%',
+          background: 'linear-gradient(180deg, transparent, rgba(59,130,246,0.08) 38%, rgba(167,139,250,0.14))',
+        }} />
+      </div>
+    );
+  }
+
+  if (backgroundId === 'bg-plus-ultra') {
+    return (
+      <div style={baseStyle} aria-hidden="true">
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: `
+            radial-gradient(circle at 14% 18%, rgba(250,204,21,0.24), transparent 18%),
+            radial-gradient(circle at 82% 16%, rgba(220,38,38,0.22), transparent 20%),
+            radial-gradient(circle at 70% 76%, rgba(250,204,21,0.18), transparent 24%)
+          `,
+        }} />
+        <div style={{
+          position: 'absolute',
+          inset: '-10% -20%',
+          transform: 'rotate(-16deg)',
+          background: 'repeating-linear-gradient(90deg, rgba(250,204,21,0.16) 0 14px, transparent 14px 72px)',
+          opacity: 0.55,
+        }} />
+        <div style={{
+          position: 'absolute',
+          top: '8%',
+          left: '-8%',
+          width: '54%',
+          height: 220,
+          transform: 'rotate(-12deg)',
+          background: 'linear-gradient(90deg, rgba(220,38,38,0.34), rgba(220,38,38,0.04))',
+          clipPath: 'polygon(0 0, 100% 24%, 82% 100%, 0 76%)',
+          opacity: 0.75,
+        }} />
+        <div style={{
+          position: 'absolute',
+          top: '18%',
+          right: '-10%',
+          width: '48%',
+          height: 180,
+          transform: 'rotate(10deg)',
+          background: 'linear-gradient(270deg, rgba(250,204,21,0.34), rgba(250,204,21,0.03))',
+          clipPath: 'polygon(18% 0, 100% 18%, 82% 100%, 0 82%)',
+          opacity: 0.78,
+        }} />
+        <svg
+          viewBox="0 0 260 420"
+          preserveAspectRatio="xMidYMid meet"
+          style={{
+            position: 'absolute',
+            left: '2%',
+            bottom: '-2%',
+            width: 210,
+            height: 340,
+            opacity: 0.72,
+            filter: 'drop-shadow(0 8px 22px rgba(0,0,0,0.34))',
+          }}
+        >
+          <path d="M120 26 L150 10 L171 34 L158 58 L173 83 L148 92 L132 118 L103 120 L80 97 L58 106 L54 78 L72 56 L68 30 L92 24 Z" fill="rgba(74,222,128,0.92)" />
+          <path d="M106 118 L146 120 L164 156 L178 214 L164 292 L138 376 L102 376 L90 296 L72 236 L78 166 Z" fill="rgba(15,23,42,0.92)" />
+          <path d="M86 150 L50 188 L30 252 L58 264 L76 222 L88 196 Z" fill="rgba(220,38,38,0.88)" />
+          <path d="M166 148 L200 178 L222 248 L196 262 L178 226 L168 192 Z" fill="rgba(250,204,21,0.9)" />
+          <path d="M104 374 L92 418 L126 418 L136 376 Z" fill="rgba(220,38,38,0.88)" />
+          <path d="M142 374 L150 418 L184 418 L174 370 Z" fill="rgba(250,204,21,0.9)" />
+          <path d="M86 164 L118 138 L152 142 L174 168 L166 214 L150 232 L118 238 L88 214 L82 190 Z" fill="rgba(22,101,52,0.35)" />
+        </svg>
+        <svg
+          viewBox="0 0 280 420"
+          preserveAspectRatio="xMidYMid meet"
+          style={{
+            position: 'absolute',
+            right: '0%',
+            bottom: '0%',
+            width: 220,
+            height: 340,
+            opacity: 0.72,
+            filter: 'drop-shadow(0 8px 22px rgba(0,0,0,0.34))',
+          }}
+        >
+          <path d="M126 28 L152 12 L174 24 L186 52 L214 62 L196 88 L204 118 L174 112 L150 130 L128 114 L98 116 L108 86 L90 60 L110 46 Z" fill="rgba(250,204,21,0.94)" />
+          <path d="M120 126 L164 126 L188 166 L198 232 L182 322 L154 382 L124 382 L102 320 L84 236 L92 170 Z" fill="rgba(17,24,39,0.92)" />
+          <path d="M92 154 L54 174 L24 230 L54 244 L84 210 L96 184 Z" fill="rgba(220,38,38,0.9)" />
+          <path d="M188 154 L224 186 L246 246 L214 258 L188 218 L180 188 Z" fill="rgba(220,38,38,0.9)" />
+          <path d="M102 376 L86 420 L126 420 L136 382 Z" fill="rgba(250,204,21,0.94)" />
+          <path d="M146 380 L156 420 L194 420 L176 372 Z" fill="rgba(250,204,21,0.94)" />
+          <circle cx="34" cy="220" r="24" fill="rgba(250,204,21,0.22)" />
+          <circle cx="242" cy="240" r="28" fill="rgba(250,204,21,0.22)" />
+          <circle cx="242" cy="240" r="14" fill="rgba(250,204,21,0.38)" />
+        </svg>
+        <svg
+          viewBox="0 0 1200 900"
+          preserveAspectRatio="none"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.78 }}
+        >
+          <g strokeLinecap="round">
+            <path d="M600 440 L600 0" stroke="rgba(255,255,255,0.2)" strokeWidth="4" />
+            <path d="M600 440 L760 20" stroke="rgba(250,204,21,0.5)" strokeWidth="4" />
+            <path d="M600 440 L980 120" stroke="rgba(250,204,21,0.34)" strokeWidth="3" />
+            <path d="M600 440 L1120 250" stroke="rgba(250,204,21,0.26)" strokeWidth="3" />
+            <path d="M600 440 L440 24" stroke="rgba(255,255,255,0.18)" strokeWidth="3" />
+            <path d="M600 440 L220 120" stroke="rgba(220,38,38,0.42)" strokeWidth="4" />
+            <path d="M600 440 L84 256" stroke="rgba(220,38,38,0.26)" strokeWidth="3" />
+            <path d="M600 440 L1040 520" stroke="rgba(250,204,21,0.24)" strokeWidth="3" />
+            <path d="M600 440 L160 560" stroke="rgba(220,38,38,0.22)" strokeWidth="3" />
+          </g>
+        </svg>
+        <div style={{
+          position: 'absolute',
+          left: '50%',
+          top: '48%',
+          width: 320,
+          height: 320,
+          transform: 'translate(-50%, -50%)',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(250,204,21,0.22), rgba(250,204,21,0.08) 28%, transparent 58%)',
+          filter: 'blur(4px)',
+        }} />
+      </div>
+    );
+  }
+
+  return null;
 }
 
 const pageStyle = {
