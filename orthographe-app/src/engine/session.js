@@ -7,6 +7,14 @@
 
 import { getToday, calculateDiamondHealth, parseLocalDate } from './sm2.js';
 
+function sessionSize() {
+  try { return (typeof window !== 'undefined' && window.__ORTHO_SESSION_SIZE__) || 20; } catch { return 20; }
+}
+function scoreLabel(pct) {
+  const n = sessionSize();
+  return `${Math.ceil(n * pct / 100)}/${n}`;
+}
+
 /**
  * Fisher-Yates shuffle.
  */
@@ -231,21 +239,21 @@ export function getRuleReviewStats(rule, ruleProgress) {
   } else if (level === 1) {
     progressToNextLevel = {
       nextLevel: 2,
-      label: '3 sessions guidées >= 80%',
+      label: `3 sessions guidées ≥ ${scoreLabel(80)}`,
       current: progress.guidedSessionsAbove80 || 0,
       target: 3,
     };
   } else if (level === 2) {
     progressToNextLevel = {
       nextLevel: 3,
-      label: '3 sessions directes >= 80%',
+      label: `3 sessions directes ≥ ${scoreLabel(80)}`,
       current: progress.directSessionsAbove80 || 0,
       target: 3,
     };
   } else if (level === 3) {
     progressToNextLevel = {
       nextLevel: 4,
-      label: '3 sessions directes consécutives >= 90%',
+      label: `3 sessions directes consécutives ≥ ${scoreLabel(90)}`,
       current: progress.directConsecutiveAbove90 || 0,
       target: 3,
     };

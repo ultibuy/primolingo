@@ -56,6 +56,14 @@ function getRuleLevel(ruleProgress) {
   return 0;
 }
 
+function sessionSize() {
+  try { return window.__ORTHO_SESSION_SIZE__ || 20; } catch { return 20; }
+}
+function scoreLabel(pct) {
+  const n = sessionSize();
+  return `${Math.ceil(n * pct / 100)}/${n}`;
+}
+
 function getLevelProgress(level, rp) {
   if (!rp) return { fraction: '0/1', pct: 0, desc: 'Complète 1 session guidée' };
 
@@ -78,8 +86,8 @@ function getLevelProgress(level, rp) {
         fraction: `${countGood}/3`,
         pct: countGood / 3,
         desc: countGood > 0
-          ? `${countGood}/3 sessions guidées ≥ 80%`
-          : `Score ≥ 80% en guidé (actuel : ${guidedBest}%)`,
+          ? `${countGood}/3 sessions guidées ≥ ${scoreLabel(80)}`
+          : `Score ≥ ${scoreLabel(80)} en guidé`,
       };
     }
     case 2: {
@@ -88,8 +96,8 @@ function getLevelProgress(level, rp) {
         fraction: `${countDirect}/3`,
         pct: countDirect / 3,
         desc: countDirect > 0
-          ? `${countDirect}/3 sessions directes ≥ 80%`
-          : `Score ≥ 80% en direct (actuel : ${directBest}%)`,
+          ? `${countDirect}/3 sessions directes ≥ ${scoreLabel(80)}`
+          : `Score ≥ ${scoreLabel(80)} en direct`,
       };
     }
     case 3: {
@@ -97,7 +105,7 @@ function getLevelProgress(level, rp) {
       return {
         fraction: `${count}/3`,
         pct: count / 3,
-        desc: `${count}/3 sessions directes ≥ 90% d'affilée`,
+        desc: `${count}/3 sessions directes ≥ ${scoreLabel(90)} d'affilée`,
       };
     }
     case 4:
@@ -143,7 +151,7 @@ function formatDate(dateStr) {
   return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
 }
 
-export default function RuleCard({ rule, ruleProgress, onPlay }) {
+export default function RuleCard({ rule, ruleProgress, onPlay, onLevelHelp }) {
   const level = getRuleLevel(ruleProgress);
   const config = LEVEL_CONFIG[level] || LEVEL_CONFIG[0];
   const prog = getLevelProgress(level, ruleProgress);
@@ -224,7 +232,12 @@ export default function RuleCard({ rule, ruleProgress, onPlay }) {
           alignItems: 'center',
         }}>
           {isDiamondLevel ? (
-            <DiamondStatus health={health} size={38} />
+            <div
+              onClick={(e) => { e.stopPropagation(); onLevelHelp && onLevelHelp('diamond_status'); }}
+              style={{ cursor: 'pointer' }}
+            >
+              <DiamondStatus health={health} size={38} />
+            </div>
           ) : level === 3 ? (
             <div style={{ animation: recentTrophy ? 'bounce-in 0.6s ease' : 'none' }}>
               <CrownIcon size={30} active />
@@ -244,7 +257,7 @@ export default function RuleCard({ rule, ruleProgress, onPlay }) {
 
       {/* Level path */}
       <div style={{ marginBottom: '0.6rem' }}>
-        <LevelPath currentLevel={level} progress={progressPct} />
+        <LevelPath currentLevel={level} progress={progressPct} onNodeClick={onLevelHelp} />
       </div>
 
       {/* Due review badge */}
@@ -390,7 +403,7 @@ export default function RuleCard({ rule, ruleProgress, onPlay }) {
           transition: 'all 0.15s ease',
         }}
       >
-        {isDue ? '🔄  ' : level === 0 ? '▶  ' : ''}
+        {level === 0 ? '▶  ' : ''}
         {buttonText}
       </button>
     </div>

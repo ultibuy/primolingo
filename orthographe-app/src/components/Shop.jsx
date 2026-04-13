@@ -119,9 +119,9 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
             onClick={(e) => e.stopPropagation()}
           >
             <PopupCloseButton onClick={handleCancelPurchase} />
-            <p style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '0.8rem', lineHeight: 1.4 }}>
-              Acheter {'\u00ab\u00a0'}{confirmItem.name}{'\u00a0\u00bb'} pour {confirmItem.price} {'\uD83E\uDE99'}{'\u00a0'}?
-            </p>
+            <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff', marginBottom: '0.8rem', lineHeight: 1.4 }}>
+              Acheter «&nbsp;{confirmItem.name}&nbsp;» pour {confirmItem.price} <CoinIcon size={18} />&nbsp;?
+            </div>
             <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'center' }}>
               <button
                 onClick={handleCancelPurchase}
@@ -306,7 +306,7 @@ function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEqu
   let buttonStyle = {};
 
   if (owned && equipped) {
-    buttonText = 'D\u00e9s\u00e9quiper';
+    buttonText = 'Désinstaller';
     buttonAction = () => onEquip(item.id, item.category, true);
     buttonStyle = {
       background: 'rgba(74,222,128,0.12)',
@@ -315,7 +315,7 @@ function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEqu
       cursor: 'pointer',
     };
   } else if (owned && !equipped) {
-    buttonText = '\u00c9quiper';
+    buttonText = 'Installer';
     buttonAction = () => onEquip(item.id, item.category);
     buttonStyle = {
       background: 'rgba(var(--color-accent-rgb),0.1)',

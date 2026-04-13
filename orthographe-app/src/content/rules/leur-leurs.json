@@ -331,10 +331,10 @@
     {
       "id": "q037",
       "before": "Je visite ",
-      "after": " pays d'origine.",
+      "after": " villes d'origine.",
       "answer": "leurs",
       "difficulty": 1,
-      "explanation": "Déterminant pluriel : les pays (pluriel) → leurs."
+      "explanation": "Déterminant pluriel : les villes (pluriel) → leurs."
     },
     {
       "id": "q038",
@@ -354,7 +354,7 @@
     },
     {
       "id": "q040",
-      "before": "Nous étudirons ",
+      "before": "Nous étudierons ",
       "after": " projets.",
       "answer": "leurs",
       "difficulty": 1,
@@ -362,11 +362,11 @@
     },
     {
       "id": "q041",
-      "before": "Je reconnais ",
-      "after": " voix.",
+      "before": "Je connais ",
+      "after": " habitudes.",
       "answer": "leurs",
-      "difficulty": 2,
-      "explanation": "Déterminant pluriel : les voix (pluriel) → leurs."
+      "difficulty": 1,
+      "explanation": "Déterminant pluriel : les habitudes (pluriel) → leurs."
     },
     {
       "id": "q042",
@@ -411,10 +411,10 @@
     {
       "id": "q047",
       "before": "Je partage ",
-      "after": " repas.",
+      "after": " recettes.",
       "answer": "leurs",
       "difficulty": 1,
-      "explanation": "Déterminant pluriel : les repas (pluriel) → leurs."
+      "explanation": "Déterminant pluriel : les recettes (pluriel) → leurs."
     },
     {
       "id": "q048",
@@ -666,7 +666,7 @@
     },
     {
       "id": "q079",
-      "before": "Elles ",
+      "before": "Elles ne ",
       "after": " cachent rien.",
       "answer": "leur",
       "difficulty": 1,
@@ -827,10 +827,10 @@
     {
       "id": "q099",
       "before": "Nous célébrons ",
-      "after": " succès.",
+      "after": " victoires.",
       "answer": "leurs",
       "difficulty": 1,
-      "explanation": "Déterminant pluriel : les succès (pluriel) → leurs."
+      "explanation": "Déterminant pluriel : les victoires (pluriel) → leurs."
     },
     {
       "id": "q100",

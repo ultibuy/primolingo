@@ -6,7 +6,9 @@ import FlameIcon from './FlameIcon.jsx';
 import CrownIcon from './CrownIcon.jsx';
 import DiamondIcon from './DiamondIcon.jsx';
 import DiamondStatus from './DiamondStatus.jsx';
+import LevelPath from './LevelPath.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
+import LevelHelpPopup from './LevelHelpPopup.jsx';
 import { getStreakInfo } from '../engine/scoring.js';
 import { getToday, parseLocalDate } from '../engine/sm2.js';
 import { getEquipped, SHOP_CATALOG, rollWeeklyChest } from '../engine/economy.js';
@@ -91,7 +93,7 @@ function getMotivation(progress, rules, todayDone) {
   // but old progress may still have progress.firstQuizDone
   const firstQuizDone = progress.milestones?.firstSession || progress.firstQuizDone;
 
-  if (!firstQuizDone) return 'Ta première session t\’attend. 20 questions, c\’est tout.';
+  if (!firstQuizDone) return "Ta première session t’attend. C’est tout.";
   if (streak === 0 && progress.streak?.longest > 2) return 'Un nouveau départ, ça se prend maintenant.';
   if (totalDiamonds > 0) {
     const r = totalRules - totalDiamonds;
@@ -292,6 +294,7 @@ export default function Dashboard({
   const [chestOpen, setChestOpen] = useState(false);
   const [chestCoins, setChestCoins] = useState(null);
   const [showStreakHelp, setShowStreakHelp] = useState(false);
+  const [levelHelp, setLevelHelp] = useState(null); // { level: 'bronze', ruleTitle, ruleProgress }
   const overlayTimeoutsRef = useRef([]);
 
   useEffect(() => { requestAnimationFrame(() => setMounted(true)); }, []);
@@ -616,19 +619,19 @@ export default function Dashboard({
             gap: '0.5rem', flexWrap: 'wrap', padding: '0.8rem 0.5rem', marginBottom: '0.6rem',
           }}>
             {summary.diamondVivant > 0 && (
-              <LevelBadge icon={<DiamondStatus health={1.0} size={18} />} count={summary.diamondVivant} color="#67e8f9" label="Vivant" />
+              <LevelBadge icon={<DiamondStatus health={1.0} size={18} />} count={summary.diamondVivant} color="#67e8f9" label="Vivant" onClick={() => setLevelHelp({ level: 'badge_diamond' })} />
             )}
             {summary.diamant > 0 && (
-              <LevelBadge icon={<DiamondStatus health={0.7} size={16} />} count={summary.diamant} color="#60a5fa" label="Diamant" />
+              <LevelBadge icon={<DiamondStatus health={0.7} size={16} />} count={summary.diamant} color="#60a5fa" label="Diamant" onClick={() => setLevelHelp({ level: 'badge_diamond' })} />
             )}
             {summary.couronne > 0 && (
-              <LevelBadge icon={<CrownIcon size={14} active animate={false} />} count={summary.couronne} color="#fbbf24" label="Couronne" />
+              <LevelBadge icon={<CrownIcon size={14} active animate={false} />} count={summary.couronne} color="#fbbf24" label="Couronne" onClick={() => setLevelHelp({ level: 'crown' })} />
             )}
             {summary.enCours > 0 && (
-              <LevelBadge icon={<span style={{ fontSize: '0.7rem' }}>{'\⭐'}</span>} count={summary.enCours} color="#c0c0c0" label="En cours" />
+              <LevelBadge icon={<span style={{ fontSize: '0.7rem' }}>{'\⭐'}</span>} count={summary.enCours} color="#c0c0c0" label="En cours" onClick={() => setLevelHelp({ level: 'badge_en_cours' })} />
             )}
             {summary.nouveau > 0 && (
-              <LevelBadge icon={<span style={{ fontSize: '0.7rem' }}>{'🔒'}</span>} count={summary.nouveau} color="#4b5563" label="Nouvelle" />
+              <LevelBadge icon={<span style={{ fontSize: '0.7rem' }}>{'🔒'}</span>} count={summary.nouveau} color="#4b5563" label="Nouvelle" onClick={() => setLevelHelp({ level: 'badge_nouvelle' })} />
             )}
           </div>
         )}
@@ -750,6 +753,7 @@ export default function Dashboard({
                       rule={rule}
                       ruleProgress={rp}
                       onPlay={onPlay}
+                      onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
                     />
                   </div>
                 );
@@ -776,6 +780,7 @@ export default function Dashboard({
                       rule={rule}
                       ruleProgress={rp}
                       onPlay={onPlay}
+                      onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
                     />
                   </div>
                 );
@@ -835,6 +840,7 @@ export default function Dashboard({
                             Nouvelle
                           </span>
                         )}
+                        {/* No LevelPath on mini-cards — too heavy for undiscovered rules */}
                       </div>
                       <button
                         onClick={() => onPlay(rule.id, 'guided')}
@@ -965,6 +971,15 @@ export default function Dashboard({
                   <strong className="streak-help-stat-value">{riskValue}</strong>
                   <span className="streak-help-stat-hint">{riskText}</span>
                 </div>
+                <div className="streak-help-stat-card">
+                  <span className="streak-help-stat-label">Bouclier 🛡️</span>
+                  <strong className="streak-help-stat-value">{shields > 0 ? `${shields}/2 en réserve` : "Aucun"}</strong>
+                  <span className="streak-help-stat-hint">
+                    {shields > 0
+                      ? "Si tu rates un jour, un bouclier sauve automatiquement ton streak."
+                      : "Atteins 7 jours de streak pour en gagner un. Il absorbe 1 jour raté."}
+                  </span>
+                </div>
               </div>
 
               </div>
@@ -972,6 +987,16 @@ export default function Dashboard({
           </div>
         </div>
       </div>
+    )}
+
+    {/* Level help popup */}
+    {levelHelp && (
+      <LevelHelpPopup
+        level={levelHelp.level}
+        ruleTitle={levelHelp.ruleTitle}
+        ruleProgress={levelHelp.ruleProgress}
+        onClose={() => setLevelHelp(null)}
+      />
     )}
     </>
   );
@@ -993,14 +1018,19 @@ function SectionLabel({ children }) {
   );
 }
 
-function LevelBadge({ icon, count, color, label }) {
+function LevelBadge({ icon, count, color, label, onClick }) {
   return (
-    <div style={{
-      display: 'flex', alignItems: 'center', gap: '0.3rem',
-      background: `${color}10`,
-      border: `1px solid ${color}25`,
-      borderRadius: 10, padding: '0.3rem 0.6rem',
-    }}>
+    <div
+      onClick={onClick}
+      style={{
+        display: 'flex', alignItems: 'center', gap: '0.3rem',
+        background: `${color}10`,
+        border: `1px solid ${color}25`,
+        borderRadius: 10, padding: '0.3rem 0.6rem',
+        cursor: onClick ? 'pointer' : 'default',
+        transition: 'all 0.15s ease',
+      }}
+    >
       {icon}
       <span style={{ fontSize: '0.82rem', fontWeight: 800, color }}>
         {count}

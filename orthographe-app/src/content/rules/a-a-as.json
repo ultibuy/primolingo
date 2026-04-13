@@ -100,7 +100,7 @@
     },
     {
       "id": "q008",
-      "before": "Ella ",
+      "before": "Elle ",
       "after": " trois enfants.",
       "answer": "a",
       "difficulty": 1,
@@ -237,11 +237,11 @@
     },
     {
       "id": "q025",
-      "before": "Vous ",
-      "after": " aimé ce film ?",
+      "before": "On ",
+      "after": " aimé ce film.",
       "answer": "a",
       "difficulty": 1,
-      "explanation": "On peut dire « vous aviez aimé » → verbe avoir (vous = il/elle/on en termes grammaticaux) → a."
+      "explanation": "On peut dire « on avait aimé » → verbe avoir au passé composé, sujet on → a."
     },
     {
       "id": "q026",
@@ -277,11 +277,11 @@
     },
     {
       "id": "q030",
-      "before": "Un pantalon ",
-      "after": " cinq poches.",
+      "before": "Une tarte ",
+      "after": " la crème.",
       "answer": "ap",
       "difficulty": 2,
-      "explanation": "« Un pantalon avait cinq poches » ne fonctionne pas (attente : « a ») → préposition d'appartenance → à."
+      "explanation": "« Une tarte avait la crème » ne fonctionne pas → préposition de composition → à."
     },
     {
       "id": "q031",
@@ -568,7 +568,7 @@
     {
       "id": "q066",
       "before": "Je suis facile ",
-      "after": " vivre avec.",
+      "after": " vivre.",
       "answer": "ap",
       "difficulty": 2,
       "explanation": "« Je suis facile avait vivre » ne fonctionne pas → préposition devant infinitif → à."
@@ -795,11 +795,10 @@
     {
       "id": "q094",
       "before": "Elle ",
-      "after": " grâce ",
-      "after_complete": " ces efforts.",
+      "after": " préparé le dîner pour ce soir.",
       "answer": "a",
       "difficulty": 2,
-      "explanation": "On peut dire « elle avait grâce » → verbe avoir (expression avoir grâce à) → a. (Et la deuxième préposition est aussi « à »)"
+      "explanation": "On peut dire « elle avait préparé » → verbe avoir au passé composé → a."
     },
     {
       "id": "q095",

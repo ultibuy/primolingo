@@ -495,11 +495,11 @@
     },
     {
       "id": "q059",
-      "before": "C'est peu importe la méthode, dormir 8h ",
-      "after": " c'est bon pour la santé.",
+      "before": "Dormir 8 heures ",
+      "after": " 9 heures, c'est bon pour la santé.",
       "answer": "ou",
-      "difficulty": 2,
-      "explanation": "Conjonction → ou. (« 8h ou bien c'est bon »)"
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« 8 heures ou bien 9 heures »)"
     },
     {
       "id": "q060",
@@ -519,11 +519,11 @@
     },
     {
       "id": "q062",
-      "before": "Combien de routes ",
-      "after": " tu dois emprunter pour arriver ?",
-      "answer": "ou",
+      "before": "Je me demande ",
+      "after": " ils ont rangé les dossiers.",
+      "answer": "ouu",
       "difficulty": 1,
-      "explanation": "Conjonction dans une question → ou. (« routes ou bien tu dois emprunter »)"
+      "explanation": "Adverbe interrogatif indirect de lieu → où. (« ou bien ils ont rangé » ne marche pas)"
     },
     {
       "id": "q063",
@@ -568,10 +568,10 @@
     {
       "id": "q068",
       "before": "Je voudrais savoir ",
-      "after": " va-t-il en vacances.",
+      "after": " il va en vacances.",
       "answer": "ouu",
       "difficulty": 1,
-      "explanation": "Adverbe interrogatif indirect de lieu → où."
+      "explanation": "Adverbe interrogatif indirect de lieu → où. (pas d'inversion dans l'interrogation indirecte)"
     },
     {
       "id": "q069",
@@ -767,11 +767,11 @@
     },
     {
       "id": "q093",
-      "before": "Entends-moi, je ne comprends pas ",
-      "after": " aller chercher l'aide.",
-      "answer": "ou",
+      "before": "Je ne comprends pas ",
+      "after": " aller chercher de l'aide.",
+      "answer": "ouu",
       "difficulty": 2,
-      "explanation": "Conjonction d'alternative → ou. (« où aller ou bien chercher » ne marche pas bien, c'est « ou »)"
+      "explanation": "Adverbe interrogatif indirect de lieu → où. (« je ne comprends pas où aller » = en quel lieu)"
     },
     {
       "id": "q094",

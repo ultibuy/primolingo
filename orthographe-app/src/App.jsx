@@ -26,6 +26,7 @@ import ReturnScreen from './components/ReturnScreen.jsx';
 export const DEBUG_MODE = true;
 if (typeof window !== 'undefined') window.__ORTHO_DEBUG__ = DEBUG_MODE;
 const SESSION_SIZE = DEBUG_MODE ? 1 : 20;
+if (typeof window !== 'undefined') window.__ORTHO_SESSION_SIZE__ = SESSION_SIZE;
 const FIRST_SESSION_BONUS = 10;
 const DIAMOND_PASS_THRESHOLD = 90; // >=90% to pass SM-2 review
 const INACTIVITY_DAYS = 2;
@@ -367,6 +368,7 @@ export default function App() {
 
     // Select session questions
     const questions = selectSessionQuestions(rule, ruleProgress, SESSION_SIZE);
+    if (questions.length === 0) return; // No questions available — cannot launch quiz
 
     setActiveRule(rule);
     setActiveMode(quizMode);

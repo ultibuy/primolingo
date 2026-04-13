@@ -688,10 +688,10 @@
     {
       "id": "q081",
       "before": "Elle est",
-      "after": " petite.",
+      "after": " émue.",
       "answer": "tout",
       "difficulty": 2,
-      "explanation": "Adverbe invariable (= entièrement, très) modifiant l'adjectif « petite » → tout invariable."
+      "explanation": "Adverbe (= entièrement) devant adjectif féminin commençant par une voyelle → tout reste invariable."
     },
     {
       "id": "q082",
@@ -703,19 +703,19 @@
     },
     {
       "id": "q083",
-      "before": "Cette maison est",
-      "after": " neuve.",
+      "before": "Ce bâtiment est",
+      "after": " neuf.",
       "answer": "tout",
       "difficulty": 2,
-      "explanation": "Adverbe invariable (= entièrement, très) modifiant l'adjectif « neuve » → tout invariable."
+      "explanation": "Adverbe (= entièrement) modifiant un adjectif masculin → tout invariable."
     },
     {
       "id": "q084",
       "before": "Elle était",
-      "after": " seule.",
+      "after": " étonnée.",
       "answer": "tout",
       "difficulty": 2,
-      "explanation": "Adverbe invariable (= entièrement, complètement) modifiant l'adjectif « seule » → tout invariable."
+      "explanation": "Adverbe (= entièrement) devant adjectif féminin commençant par une voyelle → tout reste invariable."
     },
     {
       "id": "q085",
@@ -735,11 +735,11 @@
     },
     {
       "id": "q087",
-      "before": "Elle est",
-      "after": " jeune.",
+      "before": "Il est",
+      "after": " calme.",
       "answer": "tout",
       "difficulty": 2,
-      "explanation": "Adverbe invariable (= entièrement, très) modifiant l'adjectif « jeune » → tout invariable."
+      "explanation": "Adverbe (= entièrement) modifiant un adjectif masculin → tout invariable."
     },
     {
       "id": "q088",

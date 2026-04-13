@@ -41,7 +41,7 @@ export function initRuleSM2() {
     easiness: 2.5,
     interval: 1,
     repetitions: 0,
-    nextReviewDate: getToday(),
+    nextReviewDate: getToday(1), // First review tomorrow, not immediately
     lastReviewScore: null,
     diamondHealth: 1.0,
   };
@@ -61,6 +61,7 @@ export function initRuleSM2() {
  *   < 80%   → fail: interval resets to 1, easiness decreases
  */
 export function updateRuleSM2(sm2State, sessionScore, totalQuestions) {
+  if (totalQuestions === 0) return sm2State;
   const pct = Math.round((sessionScore / totalQuestions) * 100);
   let { easiness, interval, repetitions } = sm2State;
 

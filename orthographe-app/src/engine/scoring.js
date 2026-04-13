@@ -49,6 +49,7 @@ export function calculateCoins(score, total) {
  *   - updatedProgress: the updated ruleProgress fields to merge
  */
 export function checkLevelUp(ruleProgress, mode, score, total) {
+  if (total === 0) return { newLevel: null, coinsEarned: 0, events: [], updatedProgress: {} };
   const pct = Math.round((score / total) * 100);
   const level = ruleProgress.level || 0;
   const events = [];
