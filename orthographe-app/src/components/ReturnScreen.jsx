@@ -14,13 +14,13 @@ import ShieldIcon from './ShieldIcon.jsx';
  *   diamondChanges — [{ ruleId, ruleTitle, oldHealth, newHealth, broken }]
  *   onContinue     — callback to dismiss and go to dashboard
  */
-export default function ReturnScreen({ streakLost, diamondChanges, onContinue }) {
+export default function ReturnScreen({ streakLost, streakSaveable, shieldsToUse, shieldsToBuy, costToBuy, coins, previousStreak, diamondChanges, onContinue, onSaveStreak }) {
   const [step, setStep] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [stepVisible, setStepVisible] = useState(false);
 
   // Streak animation state
-  const [streakCountdown, setStreakCountdown] = useState(streakLost?.was || 0);
+  const [streakCountdown, setStreakCountdown] = useState(previousStreak || 0);
   const [flamePhase, setFlamePhase] = useState('visible'); // 'visible' | 'extinguishing' | 'smoke'
   const countdownRef = useRef(null);
 
@@ -30,9 +30,10 @@ export default function ReturnScreen({ streakLost, diamondChanges, onContinue })
   // Button visibility
   const [showButton, setShowButton] = useState(false);
 
-  const totalSteps = (streakLost ? 1 : 0) + (diamondChanges?.length || 0) + 1;
-  const streakStep = streakLost ? 0 : -1;
-  const diamondStartStep = streakLost ? 1 : 0;
+  const hasStreakStep = streakLost || streakSaveable;
+  const totalSteps = (hasStreakStep ? 1 : 0) + (diamondChanges?.length || 0) + 1;
+  const streakStep = hasStreakStep ? 0 : -1;
+  const diamondStartStep = hasStreakStep ? 1 : 0;
   const actionStep = totalSteps - 1;
 
   // Mount fade-in
@@ -53,9 +54,9 @@ export default function ReturnScreen({ streakLost, diamondChanges, onContinue })
 
   // ─── Streak countdown animation ─────────────────────────────────
   useEffect(() => {
-    if (step !== streakStep || !streakLost || streakLost.shields) return;
+    if (step !== streakStep || !streakLost || streakSaveable) return;
 
-    const startVal = streakLost.was;
+    const startVal = previousStreak;
     const duration = 500;
     const startTime = Date.now();
 
@@ -129,9 +130,21 @@ export default function ReturnScreen({ streakLost, diamondChanges, onContinue })
 
   // ─── Render: Streak news ────────────────────────────────────────
   const renderStreakNews = () => {
-    if (!streakLost || step !== streakStep) return null;
+    if (step !== streakStep) return null;
+    if (!streakLost && !streakSaveable) return null;
 
-    if (streakLost.shields) {
+    // Streak en danger — can be saved using stock shields + buying more
+    if (streakSaveable) {
+      // Build detail lines
+      const lines = [];
+      if (shieldsToUse > 0) lines.push(`${shieldsToUse} bouclier${shieldsToUse > 1 ? 's' : ''} du stock`);
+      if (shieldsToBuy > 0) lines.push(`${shieldsToBuy} bouclier${shieldsToBuy > 1 ? 's' : ''} à acheter (${costToBuy} pièces)`);
+      const detail = lines.join(' + ');
+
+      const btnLabel = costToBuy > 0
+        ? `🛡️ Sauver le streak — ${costToBuy} pièces`
+        : '🛡️ Utiliser mes boucliers';
+
       return (
         <div style={{
           textAlign: 'center',
@@ -139,28 +152,46 @@ export default function ReturnScreen({ streakLost, diamondChanges, onContinue })
           transform: stepVisible ? 'translateY(0)' : 'translateY(20px)',
           transition: 'opacity 0.5s ease, transform 0.5s ease',
         }}>
-          <div style={{
-            marginBottom: '1rem',
-            display: 'flex', justifyContent: 'center',
-          }}>
-            <ShieldIcon size={64} active />
+          <div style={{ marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
+            <ShieldIcon size={64} active={false} />
           </div>
-          <h2 style={{
-            fontSize: '1.4rem', fontWeight: 800, color: '#60a5fa',
-            marginBottom: '0.5rem',
-          }}>
-            Bouclier activé
+          <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fbbf24', marginBottom: '0.5rem' }}>
+            Streak en danger
           </h2>
-          <p style={{
-            fontSize: '1rem', color: '#9ca3af', lineHeight: 1.6,
-            maxWidth: 340, margin: '0 auto',
-          }}>
-            Ton streak de <strong style={{ color: '#fbbf24' }}>{streakLost.was} jours</strong> est sauf.
-            <br />Un bouclier a été consommé.
+          <p style={{ fontSize: '1rem', color: '#9ca3af', lineHeight: 1.6, maxWidth: 340, margin: '0 auto 0.5rem' }}>
+            Ton streak de <strong style={{ color: '#fbbf24' }}>{previousStreak} jours</strong> n&apos;est pas encore perdu.
           </p>
+          <p style={{ fontSize: '0.85rem', color: '#6b7280', maxWidth: 320, margin: '0 auto 1.5rem' }}>
+            {detail}
+          </p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: 300, margin: '0 auto' }}>
+            <button
+              onClick={() => onSaveStreak()}
+              style={{
+                padding: '0.85rem 1.5rem', borderRadius: 14, border: 'none',
+                background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+                color: '#fff', cursor: 'pointer', fontSize: '1rem', fontWeight: 700,
+                boxShadow: '0 4px 20px rgba(124,58,237,0.3)',
+              }}
+            >
+              {btnLabel}
+            </button>
+            <button
+              onClick={goNext}
+              style={{
+                padding: '0.6rem 1.2rem', borderRadius: 10,
+                border: '1px solid rgba(255,255,255,0.1)',
+                background: 'transparent', color: '#6b7280',
+                cursor: 'pointer', fontSize: '0.85rem',
+              }}
+            >
+              Laisser tomber le streak
+            </button>
+          </div>
         </div>
       );
     }
+
 
     // Streak lost — full animation sequence
     return (
@@ -238,7 +269,7 @@ export default function ReturnScreen({ streakLost, diamondChanges, onContinue })
           fontSize: '0.9rem', color: '#9ca3af', lineHeight: 1.6,
           maxWidth: 340, margin: '0 auto',
         }}>
-          Ton streak de <strong style={{ color: '#fbbf24' }}>{streakLost.was} jours</strong> est revenu à zéro.
+          Ton streak de <strong style={{ color: '#fbbf24' }}>{previousStreak} jours</strong> est revenu à zéro.
           <br />Ça arrive. L&apos;important c&apos;est de reprendre.
         </p>
       </div>

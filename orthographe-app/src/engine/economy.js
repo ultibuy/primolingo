@@ -2,7 +2,6 @@
  * Economy system — shop catalog, purchasing, equipping, and weekly chest.
  */
 
-import { getToday, parseLocalDate } from './sm2.js';
 
 /**
  * Complete shop catalog.
@@ -466,60 +465,6 @@ export function isOwned(progress, itemId) {
  */
 export function getEquipped(progress, category) {
   return progress.shop?.equipped?.[category] || null;
-}
-
-/**
- * Roll the weekly chest. Available on Mondays if streak is active
- * and not already opened this week.
- *
- * Gives 10-50 random coins.
- *
- * @param {object} progress - Full progress object (will be mutated).
- * @returns {object} { opened, coins, progress, message }
- */
-export function rollWeeklyChest(progress) {
-  const today = getToday();
-  const todayDate = parseLocalDate(today);
-
-  // Check it's Monday (getDay() === 1)
-  if (todayDate.getDay() !== 1) {
-    return { opened: false, coins: 0, progress, message: 'Le coffre est disponible le lundi.' };
-  }
-
-  // Check streak is active (>= 1)
-  const currentStreak = progress.streak?.current || 0;
-  if (currentStreak < 1) {
-    return { opened: false, coins: 0, progress, message: 'Il faut un streak actif pour ouvrir le coffre.' };
-  }
-
-  // Check not already opened this week
-  if (!progress.weeklyChest) {
-    progress.weeklyChest = { lastOpened: null };
-  }
-
-  if (progress.weeklyChest.lastOpened) {
-    const lastOpened = parseLocalDate(progress.weeklyChest.lastOpened);
-    // Check if last opened was this week (same Monday or later)
-    const startOfWeek = new Date(todayDate);
-    startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay() + 1); // Monday of this week
-    startOfWeek.setHours(0, 0, 0, 0);
-    if (lastOpened >= startOfWeek) {
-      return { opened: false, coins: 0, progress, message: 'Coffre déjà ouvert cette semaine.' };
-    }
-  }
-
-  // Roll random coins 10-50
-  const coinsWon = Math.floor(Math.random() * 41) + 10; // 10 to 50 inclusive
-
-  progress.coins = (progress.coins || 0) + coinsWon;
-  progress.weeklyChest.lastOpened = today;
-
-  return {
-    opened: true,
-    coins: coinsWon,
-    progress,
-    message: `Coffre ouvert ! +${coinsWon} coins.`,
-  };
 }
 
 /**

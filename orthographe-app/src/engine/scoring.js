@@ -283,18 +283,9 @@ export function updateStreak(progress) {
     // Played yesterday — streak continues
     newStreak.current += 1;
   } else if (streak.lastActiveDate && streak.lastActiveDate < yesterdayStr) {
-    // Missed day(s) — check for shields
-    const daysBefore2Str = getToday(-2);
-
-    if (streak.lastActiveDate >= daysBefore2Str && (progress.shields || 0) > 0) {
-      // Use a shield — only protect 1 missed day
-      shieldUsed = true;
-      newStreak.current += 1;
-      progress.shields = (progress.shields || 0) - 1;
-    } else {
-      streakLost = true;
-      newStreak.current = 1;
-    }
+    // Missed day(s) — shields are handled manually via ReturnScreen, never auto-consumed here
+    streakLost = true;
+    newStreak.current = 1;
   } else {
     // First ever session
     newStreak.current = 1;

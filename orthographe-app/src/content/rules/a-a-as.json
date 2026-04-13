@@ -3,21 +3,49 @@
   "title": "a · à · as",
   "shortTitle": "a / à / as",
   "description": "Distinguer : a (verbe avoir, il/elle/on), as (verbe avoir, tu), à (préposition).",
-
   "choices": [
-    { "id": "a",  "label": "a",  "isVerbe": true,  "sujet": "il/elle/on" },
-    { "id": "as", "label": "as", "isVerbe": true,  "sujet": "tu" },
-    { "id": "ap", "label": "à",  "isVerbe": false, "sujet": null }
+    {
+      "id": "a",
+      "label": "a",
+      "isVerbe": true,
+      "sujet": "il/elle/on"
+    },
+    {
+      "id": "as",
+      "label": "as",
+      "isVerbe": true,
+      "sujet": "tu"
+    },
+    {
+      "id": "ap",
+      "label": "à",
+      "isVerbe": false,
+      "sujet": null
+    }
   ],
-
   "decisionAxes": [
     {
       "id": "isVerbe",
-      "question": "Est-ce un verbe avoir ?",
+      "question": "Est-ce le verbe avoir ?",
       "sub": "Test : remplace par « avait » ou « avais »",
       "options": [
-        { "value": true,  "label": "Oui, c'est un verbe", "sub": "avait/avais → fonctionne", "eliminates": ["ap"] },
-        { "value": false, "label": "Non, c'est une préposition", "sub": "avait/avais → ne fonctionne pas", "eliminates": ["a", "as"] }
+        {
+          "value": true,
+          "label": "Oui, c'est un verbe",
+          "sub": "avait/avais → fonctionne",
+          "eliminates": [
+            "ap"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non, c'est une préposition",
+          "sub": "avait/avais → ne fonctionne pas",
+          "eliminates": [
+            "a",
+            "as"
+          ]
+        }
       ]
     },
     {
@@ -26,21 +54,43 @@
       "dependsOn": "isVerbe",
       "showWhen": true,
       "options": [
-        { "value": "tu",        "label": "tu → as", "eliminates": ["a"] },
-        { "value": "il/elle/on","label": "il / elle / on → a", "eliminates": ["as"] }
+        {
+          "value": "tu",
+          "label": "tu → as",
+          "eliminates": [
+            "a"
+          ]
+        },
+        {
+          "value": "il/elle/on",
+          "label": "il / elle / on → a",
+          "eliminates": [
+            "as"
+          ]
+        }
       ]
     }
   ],
-
   "memoCard": {
     "title": "La règle en un coup d'œil",
     "rows": [
-      { "form": "a",  "test": "remplacer par « avait »", "example": "Il a faim. → Il avait faim. ✓" },
-      { "form": "as", "test": "remplacer par « avais »", "example": "Tu as raison. → Tu avais raison. ✓" },
-      { "form": "à",  "test": "avait/avais ne marche pas", "example": "Je vais à Paris. → Je vais avait Paris. ✗" }
+      {
+        "form": "a",
+        "test": "remplacer par « avait »",
+        "example": "Il a faim. → Il avait faim. ✓"
+      },
+      {
+        "form": "as",
+        "test": "remplacer par « avais »",
+        "example": "Tu as raison. → Tu avais raison. ✓"
+      },
+      {
+        "form": "à",
+        "test": "avait/avais ne marche pas",
+        "example": "Je vais à Paris. → Je vais avait Paris. ✗"
+      }
     ]
   },
-
   "questions": [
     {
       "id": "q001",

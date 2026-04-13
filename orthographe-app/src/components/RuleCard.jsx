@@ -151,7 +151,7 @@ function formatDate(dateStr) {
   return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
 }
 
-export default function RuleCard({ rule, ruleProgress, onPlay, onLevelHelp }) {
+export default function RuleCard({ rule, ruleProgress, onPlay, onLevelHelp, onEditRule }) {
   const level = getRuleLevel(ruleProgress);
   const config = LEVEL_CONFIG[level] || LEVEL_CONFIG[0];
   const prog = getLevelProgress(level, ruleProgress);
@@ -215,8 +215,21 @@ export default function RuleCard({ rule, ruleProgress, onPlay, onLevelHelp }) {
         alignItems: 'flex-start', marginBottom: '0.5rem',
       }}>
         <div style={{ flex: 1 }}>
-          <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-accent)', margin: 0 }}>
+          <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-accent)', margin: 0, display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
             {rule.title}
+            {onEditRule && (
+              <button
+                onClick={(e) => { e.stopPropagation(); onEditRule(rule.id); }}
+                style={{
+                  background: 'rgba(248,113,113,0.15)', border: '1px solid rgba(248,113,113,0.3)',
+                  borderRadius: 6, padding: '0.15rem 0.35rem', cursor: 'pointer',
+                  fontSize: '0.6rem', color: '#f87171', fontWeight: 700, flexShrink: 0,
+                }}
+                title="Debug: éditer la règle"
+              >
+                ✏️
+              </button>
+            )}
           </h3>
           <p style={{
             fontSize: '0.73rem', color: '#6b7280',
@@ -226,33 +239,20 @@ export default function RuleCard({ rule, ruleProgress, onPlay, onLevelHelp }) {
           </p>
         </div>
 
-        {/* Level icon */}
-        <div style={{
-          display: 'flex', flexShrink: 0, marginLeft: '0.6rem',
-          alignItems: 'center',
-        }}>
-          {isDiamondLevel ? (
+        {/* Level icon — only show for diamond level (others are redundant with LevelPath) */}
+        {isDiamondLevel && (
+          <div style={{
+            display: 'flex', flexShrink: 0, marginLeft: '0.6rem',
+            alignItems: 'center',
+          }}>
             <div
               onClick={(e) => { e.stopPropagation(); onLevelHelp && onLevelHelp('diamond_status'); }}
               style={{ cursor: 'pointer' }}
             >
               <DiamondStatus health={health} size={38} />
             </div>
-          ) : level === 3 ? (
-            <div style={{ animation: recentTrophy ? 'bounce-in 0.6s ease' : 'none' }}>
-              <CrownIcon size={30} active />
-            </div>
-          ) : level >= 1 ? (
-            <span style={{
-              fontSize: '1.4rem',
-              filter: `drop-shadow(0 0 4px ${config.color}66)`,
-            }}>
-              {level === 2 ? '⭐' : '⭐'}
-            </span>
-          ) : (
-            <span style={{ fontSize: '1.2rem', opacity: 0.3 }}>🔒</span>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
       {/* Level path */}

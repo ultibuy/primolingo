@@ -133,21 +133,22 @@ export default function QuizGuided({
               ? (hasVerb
                 ? choices.find(c => c.id === selected)?.label.replace('-', '')
                 : choices.find(c => c.id === selected)?.label)
-              : (hasVerb ? '___' : '______')}
+              : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
           </span>
           {question.after}
         </div>
 
-        {/* B5 — Label above the decision panel */}
+        {/* B5 — Label above the decision panel (same style as "Ta réponse") */}
         {!showResult && (
           <div style={{
-            display: 'flex', alignItems: 'center', gap: '0.5rem',
-            marginBottom: '0.6rem',
+            display: 'flex', alignItems: 'center', gap: '0.8rem',
+            margin: '0.5rem 0 1rem',
           }}>
-            <span style={{ fontSize: '0.9rem' }}>🧠</span>
-            <span style={{ fontSize: '0.72rem', color: 'var(--color-accent)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
-              Aide — Pavé de décision
+            <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.08)' }} />
+            <span style={{ fontSize: '0.7rem', color: '#6b7280', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+              Aide
             </span>
+            <div style={{ flex: 1, height: 1, background: 'rgba(255,255,255,0.08)' }} />
           </div>
         )}
 
@@ -195,9 +196,8 @@ export default function QuizGuided({
 
             // B3 — Eliminated options: more visible with line-through
             if (isEliminated) {
-              opacity = 0.4;
-              textColor = '#6b7280';
-              textDecoration = 'line-through';
+              opacity = 0.55;
+              textColor = '#9ca3af';
             }
             // B2 — Gold color for remaining (highlighted) answer options
             if (isHighlighted && !showResult) {
@@ -287,17 +287,27 @@ function DecisionPanel({ rule, axisSelections, setAxisSelections }) {
   const axes = rule.decisionAxes;
   if (!axes || axes.length === 0) return null;
 
+  // Filter out axes that shouldn't be visible yet
+  const visibleAxes = axes.filter(axis => {
+    if (!axis.dependsOn) return true;
+    const parentValue = axisSelections[axis.dependsOn];
+    // Not selected yet — hide
+    if (parentValue === undefined || parentValue === null) return false;
+    // If axis has showWhen, only show when parent value matches
+    if (axis.showWhen !== undefined) return axis.showWhen === parentValue;
+    return true;
+  });
+
+  // Always 2 columns to keep the layout stable
+  const gridCols = '1fr 1fr';
+
   return (
     <div style={{
-      display: 'grid', gridTemplateColumns: '1fr 1fr',
+      display: 'grid', gridTemplateColumns: gridCols,
       gap: '0.75rem', marginBottom: '1.5rem',
     }}>
-      {axes.map((axis, axisIdx) => {
-        const dependsOnAxis = axis.dependsOn
-          ? axes.find(a => a.id === axis.dependsOn)
-          : null;
-        const parentValue = dependsOnAxis ? axisSelections[axis.dependsOn] : null;
-        const isDisabled = axis.dependsOn && (parentValue === undefined || parentValue === null);
+      {visibleAxes.map((axis, axisIdx) => {
+        const parentValue = axis.dependsOn ? axisSelections[axis.dependsOn] : null;
 
         // Filter options based on showWhen if parent is selected
         let visibleOptions = axis.options;
@@ -315,25 +325,22 @@ function DecisionPanel({ rule, axisSelections, setAxisSelections }) {
           <div key={axis.id}>
             <div style={{
               fontSize: '0.78rem', textTransform: 'uppercase', letterSpacing: '0.08em',
-              color: '#9ca3af', marginBottom: '0.45rem', fontWeight: 600,
+              color: '#9ca3af', marginBottom: '0.2rem', fontWeight: 600,
             }}>
               <span style={{ color: 'var(--color-accent)', fontWeight: 700 }}>{circledNum}</span>{' '}
-              {isDisabled && axis.dependsOn
-                ? 'Choisis d\'abord l\'axe 1'
-                : axis.question}
+              {axis.question}
             </div>
+            {/* Show axis sub/hint if present */}
+            {axis.sub && (
+              <div style={{
+                fontSize: '0.72rem', color: '#6b7280', fontStyle: 'italic',
+                marginBottom: '0.4rem', lineHeight: 1.4,
+              }}>
+                {axis.sub}
+              </div>
+            )}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-              {isDisabled ? (
-                <div style={{
-                  padding: '0.8rem', borderRadius: 8,
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  background: 'rgba(255,255,255,0.02)',
-                  color: '#4b5563', fontSize: '0.82rem',
-                  textAlign: 'center', fontStyle: 'italic',
-                }}>
-                  Choisis d'abord l'axe 1
-                </div>
-              ) : visibleOptions.map(opt => {
+              {visibleOptions.map(opt => {
                 const active = axisSelections[axis.id] === opt.value;
                 // Build label — use context-aware labels if available
                 let label = opt.label;
