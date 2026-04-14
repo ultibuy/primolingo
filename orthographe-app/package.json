@@ -4,10 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "backend": "node server/local-api.mjs",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server/local-api.mjs"
   },
   "dependencies": {
     "puppeteer": "^24.40.0",

@@ -1,16 +1,32 @@
-# React + Vite
+# Orthographe App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+L'application n'utilise plus `localStorage` pour la progression. La persistance passe par un backend Node local qui écrit :
 
-Currently, two official plugins are available:
+- `user-data/progress.json` pour l'état courant
+- `user-data/backups/YYYY-MM-DD.json` pour une sauvegarde quotidienne glissante sur 30 jours
+- `user-data/restore-points/*.json` pour les points de restauration créés avant un restore
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Lancer en local
 
-## React Compiler
+Dans un terminal :
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm run backend
+```
 
-## Expanding the ESLint configuration
+Dans un second terminal :
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run dev
+```
+
+Vite proxyfie automatiquement `/api` vers `http://127.0.0.1:3001`.
+
+## Servir la build
+
+```bash
+npm run build
+npm run start
+```
+
+Le serveur local expose à la fois l'API `/api/*` et les fichiers statiques de `dist/`.

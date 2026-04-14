@@ -9,6 +9,7 @@ import PopupCloseButton from './PopupCloseButton.jsx';
 import LevelHelpPopup from './LevelHelpPopup.jsx';
 import RuleEditor from './RuleEditor.jsx';
 import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
+import { clearCurrentStoredProgress } from '../store/persistence.js';
 import { getStreakInfo } from '../engine/scoring.js';
 import { getToday } from '../engine/sm2.js';
 import { getEquipped, SHOP_CATALOG } from '../engine/economy.js';
@@ -312,6 +313,8 @@ export default function Dashboard({
   onDebugUpdateStreak,
   onDebugUpdateSecretCode,
   debugSecretCode,
+  dailyBackups = [],
+  onDebugRestoreBackup,
 }) {
   const [overlay, setOverlay] = useState(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
@@ -325,6 +328,7 @@ export default function Dashboard({
   const [debugStreak, setDebugStreak] = useState(String(progress.streak?.current || 0));
   const [debugDate, setDebugDate] = useState(progress.streak?.lastActiveDate || '');
   const [debugSecret, setDebugSecret] = useState(debugSecretCode || '');
+  const [restoringBackupDate, setRestoringBackupDate] = useState(null);
 
   useEffect(() => { requestAnimationFrame(() => setMounted(true)); }, []);
   useEffect(() => { setDebugSecret(debugSecretCode || ''); }, [debugSecretCode]);
@@ -904,10 +908,10 @@ export default function Dashboard({
             Exporter
           </button>
           {isDebug && (
-            <button onClick={() => {
-              if (confirm('Réinitialiser toute la progression ? (irréversible)')) {
-                localStorage.removeItem('orthographe-progress');
-                window.location.reload();
+            <button onClick={async () => {
+              if (confirm('Réinitialiser toute la progression, les pièces et les achats ?')) {
+                const result = await clearCurrentStoredProgress();
+                if (result?.success) window.location.reload();
               }
             }} style={{
               padding: '0.5rem 1.2rem', borderRadius: 8,
@@ -931,6 +935,27 @@ export default function Dashboard({
         }}>
           <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
             🛠 Debug — Streak
+          </div>
+          <div style={{ marginBottom: '0.8rem' }}>
+            <button
+              onClick={() => {
+                const url = new URL(window.location.href);
+                url.searchParams.set('debug', '0');
+                window.location.href = url.toString();
+              }}
+              style={{
+                padding: '0.38rem 0.9rem',
+                borderRadius: 6,
+                border: '1px solid rgba(250,204,21,0.28)',
+                background: 'rgba(250,204,21,0.12)',
+                color: '#fde68a',
+                cursor: 'pointer',
+                fontSize: '0.75rem',
+                fontWeight: 700,
+              }}
+            >
+              Passer en debug = false
+            </button>
           </div>
           <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-end', flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
@@ -1014,6 +1039,77 @@ export default function Dashboard({
               </>
             )}
           </div>
+
+          {onDebugRestoreBackup && (
+            <div style={{
+              marginTop: '1rem',
+              paddingTop: '0.9rem',
+              borderTop: '1px dashed rgba(248,113,113,0.18)',
+            }}>
+              <div style={{ fontSize: '0.65rem', color: '#fca5a5', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.6rem' }}>
+                Sauvegardes quotidiennes
+              </div>
+              {dailyBackups.length === 0 ? (
+                <div style={{ fontSize: '0.78rem', color: '#9ca3af' }}>
+                  Aucune sauvegarde quotidienne disponible.
+                </div>
+              ) : (
+                <div style={{ display: 'grid', gap: '0.45rem' }}>
+                  {[...dailyBackups].reverse().map((backup) => (
+                    <div
+                      key={`${backup.profile || 'prod'}-${backup.date}`}
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: '0.75rem',
+                        padding: '0.55rem 0.65rem',
+                        borderRadius: 10,
+                        background: 'rgba(255,255,255,0.03)',
+                        border: '1px solid rgba(255,255,255,0.06)',
+                      }}
+                    >
+                      <div style={{ minWidth: 0 }}>
+                        <div style={{ fontSize: '0.82rem', color: '#fff', fontWeight: 700 }}>
+                          {backup.date}
+                        </div>
+                        <div style={{ fontSize: '0.68rem', color: '#fca5a5', fontWeight: 700 }}>
+                          {backup.profile === 'debug' ? 'Profil debug' : 'Profil Damien'}
+                        </div>
+                        <div style={{ fontSize: '0.7rem', color: '#9ca3af' }}>
+                          {new Date(backup.savedAt).toLocaleString('fr-FR')}
+                        </div>
+                      </div>
+                      <button
+                        onClick={async () => {
+                          if (!confirm(`Restaurer la sauvegarde du ${backup.date} (${backup.profile === 'debug' ? 'profil debug' : 'profil Damien'}) ?`)) return;
+                          setRestoringBackupDate(`${backup.profile || 'prod'}-${backup.date}`);
+                          const ok = await onDebugRestoreBackup(backup);
+                          setRestoringBackupDate(null);
+                          if (ok) window.location.reload();
+                        }}
+                        disabled={restoringBackupDate === `${backup.profile || 'prod'}-${backup.date}`}
+                        style={{
+                          padding: '0.35rem 0.75rem',
+                          borderRadius: 8,
+                          border: '1px solid rgba(248,113,113,0.28)',
+                          background: 'rgba(248,113,113,0.12)',
+                          color: '#fca5a5',
+                          cursor: 'pointer',
+                          fontSize: '0.72rem',
+                          fontWeight: 700,
+                          flexShrink: 0,
+                          opacity: restoringBackupDate === `${backup.profile || 'prod'}-${backup.date}` ? 0.65 : 1,
+                        }}
+                      >
+                        {restoringBackupDate === `${backup.profile || 'prod'}-${backup.date}` ? 'Restauration...' : 'Restaurer'}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

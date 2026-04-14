@@ -1,20 +1,23 @@
 /**
  * Persistence layer — load, save, export, import progress.
  *
- * V2: Updated default progress structure with level system, shop, economy.
- * Includes migration from V1 format (per-question SM-2) to V2 format (rule-level SM-2).
- * V5-F1: Added try-catch around localStorage.setItem for quota exceeded errors,
- *         and getStorageUsage() helper.
+ * Backed by a local Node API that writes `user-data/progress.json`
+ * and keeps one daily backup per day for the last 30 days.
  */
 
 import { getToday } from '../engine/sm2.js';
 
-const STORAGE_KEY = 'orthographe-progress';
+const API_BASE = '/api';
+
+function getProfile() {
+  if (typeof window === 'undefined') return 'prod';
+  return window.__ORTHO_DEBUG__ ? 'debug' : 'prod';
+}
 
 /**
  * Create the default V2 progress structure.
  */
-function createDefaultProgress() {
+export function createDefaultProgress() {
   return {
     userId: 'local',
     createdAt: getToday(),
@@ -50,8 +53,42 @@ function createDefaultProgress() {
     },
     weeklyChest: { lastOpened: null },
     firstQuizDone: false,
+    parentalCode: null,
     rules: {},
   };
+}
+
+function clone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+async function apiFetch(path, options = {}) {
+  const response = await fetch(`${API_BASE}${path}`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Ortho-Profile': getProfile(),
+      ...(options.headers || {}),
+    },
+    ...options,
+  });
+
+  if (response.status === 204) return null;
+
+  let payload = null;
+  try {
+    payload = await response.json();
+  } catch {
+    payload = null;
+  }
+
+  if (!response.ok) {
+    const message = payload?.error || `HTTP ${response.status}`;
+    const error = new Error(message);
+    error.status = response.status;
+    throw error;
+  }
+
+  return payload;
 }
 
 /**
@@ -75,43 +112,26 @@ export function createDefaultRuleProgress() {
 
 /**
  * Detect if progress data is in V1 format and needs migration.
- * V1 indicators:
- *   - Has `crowns` or `diamonds` top-level fields
- *   - Has per-question SM-2 data in rule progress (rule.questions with easiness/interval)
- *   - Has `directUnlocked` or `directPerfectStreak` in rule progress
- *   - Milestones is an array instead of an object
- *   - Missing `shop`, `weeklyChest`, or `milestones` as object
  */
 function isV1Format(data) {
   if (!data || typeof data !== 'object') return false;
-
-  // Check for V1-specific top-level fields
   if ('crowns' in data || 'diamonds' in data) return true;
-
-  // Check if milestones is an array (V1) instead of object (V2)
   if (Array.isArray(data.milestones)) return true;
-
-  // Check if shop structure is missing
   if (!data.shop || typeof data.shop !== 'object') return true;
 
-  // Check rule progress for V1 per-question SM-2 data
   if (data.rules && typeof data.rules === 'object') {
     for (const ruleId of Object.keys(data.rules)) {
       const rp = data.rules[ruleId];
-      // V1 had `questions` object with per-question SM-2 states
       if (rp.questions && typeof rp.questions === 'object') {
         const questionIds = Object.keys(rp.questions);
         if (questionIds.length > 0) {
           const firstQ = rp.questions[questionIds[0]];
-          // V1 per-question state has easiness, interval, repetitions
           if (firstQ && ('easiness' in firstQ || 'interval' in firstQ)) {
             return true;
           }
         }
       }
-      // V1 had `directUnlocked` boolean
       if ('directUnlocked' in rp) return true;
-      // V1 had `directPerfectStreak`
       if ('directPerfectStreak' in rp) return true;
     }
   }
@@ -121,26 +141,16 @@ function isV1Format(data) {
 
 /**
  * Migrate V1 progress to V2 format.
- *
- * Strategy:
- *   - Preserve coins, streak, shields
- *   - Convert milestones array to object
- *   - Add shop, weeklyChest structures
- *   - Convert each rule's progress to the new level system
- *   - Infer current level from V1 data (directUnlocked, crown, diamond states)
- *   - Discard per-question SM-2 data
  */
 function migrateV1ToV2(v1Data) {
   const v2 = createDefaultProgress();
 
-  // Preserve basic fields
   v2.userId = v1Data.userId || 'local';
   v2.createdAt = v1Data.createdAt || getToday();
   v2.coins = v1Data.coins || 0;
   v2.shields = v1Data.shields || 0;
   v2.firstQuizDone = v1Data.firstQuizDone || false;
 
-  // Preserve streak
   if (v1Data.streak) {
     v2.streak = {
       current: v1Data.streak.current || 0,
@@ -149,7 +159,6 @@ function migrateV1ToV2(v1Data) {
     };
   }
 
-  // Convert milestones from array to object
   if (Array.isArray(v1Data.milestones)) {
     v2.milestones.firstSession = v1Data.firstQuizDone || false;
     v2.milestones.streak7 = v1Data.milestones.includes(7);
@@ -161,13 +170,11 @@ function migrateV1ToV2(v1Data) {
     v2.milestones = { ...v2.milestones, ...v1Data.milestones };
   }
 
-  // Migrate rules
   if (v1Data.rules && typeof v1Data.rules === 'object') {
     for (const ruleId of Object.keys(v1Data.rules)) {
       const oldRule = v1Data.rules[ruleId];
       const newRule = createDefaultRuleProgress();
 
-      // Carry over session counts
       newRule.guidedSessionsCompleted = oldRule.guidedSessionsCompleted || 0;
       newRule.guidedSessionsAbove80 = oldRule.guidedSessionsAbove80 || 0;
       newRule.guidedBestScore = oldRule.guidedBestScore || 0;
@@ -176,32 +183,17 @@ function migrateV1ToV2(v1Data) {
       newRule.directBestScore = oldRule.directBestScore || 0;
       newRule.directConsecutiveAbove90 = oldRule.directPerfectStreak || oldRule.directConsecutiveAbove90 || 0;
 
-      // Infer level from V1 data
-      // V1 had: directUnlocked, checkCrown(), checkDiamond()
-      // We infer the level based on what they achieved:
       if (oldRule.directPerfectStreak >= 3 || (v1Data.diamonds && v1Data.diamonds > 0)) {
-        // Had diamond → level 4
         newRule.level = 4;
-        // If there was already SM-2 data at rule level, preserve it
-        if (oldRule.sm2) {
-          newRule.sm2 = { ...oldRule.sm2 };
-        }
+        if (oldRule.sm2) newRule.sm2 = { ...oldRule.sm2 };
       } else if (oldRule.directUnlocked && (oldRule.directSessionsAbove80 || 0) >= 3) {
-        // Had crown → level 3
         newRule.level = 3;
       } else if (oldRule.directUnlocked) {
-        // Direct unlocked → level 2
         newRule.level = 2;
       } else if ((oldRule.guidedSessionsCompleted || 0) >= 1) {
-        // At least 1 guided session → level 1
-        newRule.level = 1;
-        if ((oldRule.guidedSessionsAbove80 || 0) >= 3) {
-          // Actually qualifies for level 2 too
-          newRule.level = 2;
-        }
+        newRule.level = (oldRule.guidedSessionsAbove80 || 0) >= 3 ? 2 : 1;
       }
 
-      // Convert per-question stats (discard SM-2 per question, keep basic stats)
       if (oldRule.questions && typeof oldRule.questions === 'object') {
         for (const qId of Object.keys(oldRule.questions)) {
           const qState = oldRule.questions[qId];
@@ -220,67 +212,111 @@ function migrateV1ToV2(v1Data) {
 }
 
 /**
- * Load progress from localStorage.
- * Automatically migrates V1 data to V2 format if detected.
- *
- * @returns {Promise<object>} The progress object.
+ * Load progress from the local file-backed API.
  */
 export async function loadProgress() {
-  const stored = localStorage.getItem(STORAGE_KEY);
-  if (stored) {
-    try {
-      let data = JSON.parse(stored);
-
-      // Migrate V1 to V2 if needed
-      if (isV1Format(data)) {
-        data = migrateV1ToV2(data);
-        // Save the migrated data back
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      }
-
-      return data;
-    } catch {
-      // Corrupt data — return fresh
+  try {
+    const data = await apiFetch('/progress');
+    if (!data || typeof data !== 'object') {
+      return createDefaultProgress();
     }
+    if (isV1Format(data)) {
+      const migrated = migrateV1ToV2(data);
+      await saveProgress(migrated);
+      return migrated;
+    }
+    return data;
+  } catch (error) {
+    if (error.status === 404) {
+      return createDefaultProgress();
+    }
+
+    console.error('Failed to load progress:', error);
+    return createDefaultProgress();
   }
-  return createDefaultProgress();
 }
 
 /**
- * Save progress to localStorage.
- * Returns a result object indicating success or failure (e.g. quota exceeded).
- *
- * @param {object} progress - The progress object to persist.
- * @returns {Promise<{success: boolean, error?: string}>}
+ * Save progress to the local file-backed API.
  */
 export async function saveProgress(progress) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+    await apiFetch('/progress', {
+      method: 'POST',
+      body: JSON.stringify(progress),
+    });
     return { success: true };
-  } catch (err) {
-    console.error('Failed to save progress:', err);
-    return { success: false, error: 'Espace de stockage plein. Ta progression n\'a pas pu être sauvegardée.' };
+  } catch (error) {
+    console.error('Failed to save progress:', error);
+    return {
+      success: false,
+      error: 'La progression n’a pas pu être sauvegardée sur le backend local.',
+    };
   }
 }
 
 /**
- * Estimate the storage usage (in bytes) of the progress data.
- *
- * @returns {number} Size in bytes, or 0 if unavailable.
+ * Estimate the storage usage (in bytes) of the current progress payload.
  */
-export function getStorageUsage() {
+export async function getStorageUsage() {
   try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? new Blob([data]).size : 0;
+    const progress = await apiFetch('/progress');
+    return new Blob([JSON.stringify(progress || {})]).size;
   } catch {
     return 0;
   }
 }
 
 /**
+ * Read the rolling daily backups metadata.
+ */
+export async function getDailyBackups() {
+  try {
+    const backups = await apiFetch(window.__ORTHO_DEBUG__ ? '/backups/all' : '/backups');
+    return Array.isArray(backups) ? backups : [];
+  } catch (error) {
+    console.error('Failed to read daily backups:', error);
+    return [];
+  }
+}
+
+/**
+ * Restore one daily backup by date.
+ */
+export async function restoreDailyBackup(backup) {
+  try {
+    const payload = typeof backup === 'string'
+      ? { date: backup }
+      : { date: backup?.date, profile: backup?.profile };
+    const result = await apiFetch('/backups/restore', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+    return { success: true, progress: result.progress };
+  } catch (error) {
+    console.error('Failed to restore backup:', error);
+    return {
+      success: false,
+      error: error.message || 'La sauvegarde n’a pas pu être restaurée.',
+    };
+  }
+}
+
+export async function clearCurrentStoredProgress() {
+  try {
+    await apiFetch('/progress', { method: 'DELETE' });
+    return { success: true };
+  } catch (error) {
+    console.error('Failed to clear progress:', error);
+    return {
+      success: false,
+      error: 'La progression locale n’a pas pu être réinitialisée.',
+    };
+  }
+}
+
+/**
  * Export progress as a downloadable JSON file.
- *
- * @param {object} progress - The progress object to export.
  */
 export function exportProgress(progress) {
   const blob = new Blob([JSON.stringify(progress, null, 2)], { type: 'application/json' });
@@ -294,10 +330,6 @@ export function exportProgress(progress) {
 
 /**
  * Import progress from a JSON file.
- * If the imported data is V1 format, it will be migrated on next load.
- *
- * @param {File} file - The file to read.
- * @returns {Promise<object>} The parsed progress data.
  */
 export function importProgress(file) {
   return new Promise((resolve, reject) => {
@@ -306,12 +338,11 @@ export function importProgress(file) {
       try {
         let data = JSON.parse(e.target.result);
 
-        // Migrate V1 to V2 if needed
         if (isV1Format(data)) {
           data = migrateV1ToV2(data);
         }
 
-        resolve(data);
+        resolve(clone(data));
       } catch {
         reject(new Error('Fichier invalide'));
       }

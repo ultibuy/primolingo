@@ -5,6 +5,7 @@ import ShieldIcon from './ShieldIcon.jsx';
 import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
 import { SHOP_CATALOG, canAfford, isOwned, getEquipped } from '../engine/economy.js';
+import shopMhaBg from '../assets/shop-mha-bg.webp';
 
 const CATEGORIES = [
   { key: 'cosmetique', label: 'Cosm\u00e9tique', filter: (item) => ['themes', 'flames', 'titles', 'victoryAnimations', 'backgrounds'].includes(item.category) },
@@ -137,7 +138,7 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
   };
 
   return (
-    <div style={pageStyle}>
+    <div style={pageStyle(shopMhaBg)}>
       {/* FIX 4 — Purchase confirmation overlay */}
       {confirmItem && (
         <div style={{
@@ -463,7 +464,7 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
       )}
 
       <div style={{
-        maxWidth: 640, width: '100%', padding: '1rem 1.5rem 3rem',
+        maxWidth: 700, width: '100%', padding: '1rem 1.5rem 3rem',
         opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(12px)',
         transition: 'all 0.5s ease',
       }}>
@@ -541,9 +542,72 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
           })}
         </div>
 
+        <div style={{
+          position: 'relative',
+          overflow: 'hidden',
+          minHeight: 180,
+          marginBottom: '1.2rem',
+          borderRadius: 24,
+          border: '1px solid rgba(196,181,253,0.2)',
+          backgroundImage: `linear-gradient(90deg, rgba(7,19,12,0.94) 0%, rgba(7,19,12,0.78) 48%, rgba(7,19,12,0.38) 100%), url(${shopMhaBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          boxShadow: '0 24px 70px rgba(0,0,0,0.28)',
+        }}>
+          <div style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(135deg, rgba(185,255,83,0.14), transparent 42%, rgba(196,181,253,0.08) 100%)',
+            pointerEvents: 'none',
+          }} />
+          <div style={{
+            position: 'relative',
+            zIndex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            gap: '0.7rem',
+            minHeight: 180,
+            maxWidth: 360,
+            padding: '1.4rem 1.35rem',
+          }}>
+            <div style={{
+              width: 'fit-content',
+              padding: '0.32rem 0.65rem',
+              borderRadius: 999,
+              background: 'rgba(185,255,83,0.14)',
+              border: '1px solid rgba(185,255,83,0.22)',
+              color: '#d9f36e',
+              fontSize: '0.7rem',
+              fontWeight: 800,
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+            }}>
+              Fond boutique
+            </div>
+            <div>
+              <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '0.3rem' }}>
+                Vitrine héroïque
+              </div>
+              <div style={{ fontSize: '0.84rem', lineHeight: 1.55, color: 'rgba(255,255,255,0.74)' }}>
+                Ton image sert maintenant de fond visuel à la boutique, retravaillée en ambiance manga verte avec une texture plus dense.
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Items grouped by subcategory */}
         {Object.entries(grouped).map(([groupKey, items]) => (
-          <div key={groupKey} style={{ marginBottom: '1.5rem' }}>
+          <div key={groupKey} style={{
+            marginBottom: '1.5rem',
+            padding: '1rem',
+            borderRadius: 22,
+            background: 'linear-gradient(180deg, rgba(7,19,12,0.68), rgba(15,15,28,0.74))',
+            border: '1px solid rgba(255,255,255,0.06)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
+          }}>
             {/* Subcategory label for cosm\u00e9tique */}
             {activeTab === 'cosmetique' && SUBCATEGORY_LABELS[groupKey] && (
               <div style={{
@@ -764,10 +828,15 @@ function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEqu
   );
 }
 
-const pageStyle = {
+const pageStyle = (backgroundImage) => ({
   minHeight: '100vh',
-  background: 'linear-gradient(135deg, var(--color-bg1) 0%, var(--color-bg2) 100%)',
-  display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
+  backgroundColor: '#08110c',
+  backgroundImage: `linear-gradient(180deg, rgba(6,14,10,0.76), rgba(14,10,24,0.92)), url(${backgroundImage})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  display: 'flex',
+  alignItems: 'flex-start',
+  justifyContent: 'center',
   fontFamily: 'var(--font-body)',
   color: '#e2e2e2',
-};
+});

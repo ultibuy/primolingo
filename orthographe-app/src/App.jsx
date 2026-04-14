@@ -11,7 +11,7 @@ import { calculateCoins, checkLevelUp, updateStreak } from './engine/scoring.js'
 import { applyTheme } from './engine/economy.js';
 
 // Persistence
-import { loadProgress, saveProgress } from './store/persistence.js';
+import { createDefaultProgress, loadProgress, saveProgress, getDailyBackups, restoreDailyBackup } from './store/persistence.js';
 
 // Components
 import Dashboard from './components/Dashboard.jsx';
@@ -23,9 +23,23 @@ import ReturnScreen from './components/ReturnScreen.jsx';
 // ---------------------------------------------------------------------------
 // Constants
 // ---------------------------------------------------------------------------
-export const DEBUG_MODE = false;
+function readDebugMode() {
+  if (typeof window === 'undefined') return false;
+
+  const explicit = new URLSearchParams(window.location.search).get('debug');
+  if (explicit === '1' || explicit === 'true') return true;
+  if (explicit === '0' || explicit === 'false') return false;
+
+  if (typeof import.meta.env.VITE_DEBUG_MODE === 'string') {
+    return import.meta.env.VITE_DEBUG_MODE === 'true';
+  }
+
+  return false;
+}
+
+const DEBUG_MODE = readDebugMode();
 if (typeof window !== 'undefined') window.__ORTHO_DEBUG__ = DEBUG_MODE;
-const SESSION_SIZE = 20;
+const SESSION_SIZE = DEBUG_MODE ? 1 : 20;
 if (typeof window !== 'undefined') window.__ORTHO_SESSION_SIZE__ = SESSION_SIZE;
 const FIRST_SESSION_BONUS = 10;
 const DIAMOND_PASS_THRESHOLD = 90; // >=90% to pass SM-2 review
@@ -82,7 +96,8 @@ function getSecretCodeLockDurationMs(failedAttempts) {
 function migrateProgress(p) {
   // Detect old format: rules have 'guidedUnlocked' or 'hasCrown' but no 'level'
   let migrated = false;
-  const next = JSON.parse(JSON.stringify(p));
+  const source = p && typeof p === 'object' ? p : createDefaultProgress();
+  const next = JSON.parse(JSON.stringify(source));
 
   for (const [, rp] of Object.entries(next.rules || {})) {
     if (rp.level === undefined) {
@@ -351,22 +366,30 @@ export default function App() {
   const [lastSessionScore, setLastSessionScore] = useState(null);
   const [isSniper, setIsSniper] = useState(false);
   const [saveError, setSaveError] = useState(null);
+  const [dailyBackups, setDailyBackups] = useState([]);
 
-  const persistProgress = useCallback((nextProgress) => {
-    saveProgress(nextProgress).then((result) => {
-      if (!result?.success) {
-        setSaveError(result?.error || 'La progression n’a pas pu être sauvegardée.');
-        return;
-      }
-      setSaveError(null);
-    });
+  const refreshDailyBackups = useCallback(async () => {
+    const backups = await getDailyBackups();
+    setDailyBackups(backups);
+    return backups;
   }, []);
+
+  const persistProgress = useCallback(async (nextProgress) => {
+    const result = await saveProgress(nextProgress);
+    if (!result?.success) {
+      setSaveError(result?.error || 'La progression n’a pas pu être sauvegardée.');
+      return result;
+    }
+    setSaveError(null);
+    await refreshDailyBackups();
+    return result;
+  }, [refreshDailyBackups]);
 
   // ---------------------------------------------------------------------------
   // Load progress on mount
   // ---------------------------------------------------------------------------
   useEffect(() => {
-    loadProgress().then(raw => {
+    loadProgress().then(async (raw) => {
       // Migrate old format if needed
       const { progress: migratedProgress } = migrateProgress(raw);
       let p = migratedProgress;
@@ -382,7 +405,7 @@ export default function App() {
       }
 
       // Save updated progress (decay applied)
-      persistProgress(p);
+      await persistProgress(p);
       setProgress(p);
       setLoading(false);
 
@@ -390,7 +413,7 @@ export default function App() {
       const equippedTheme = p.shop?.equipped?.theme;
       if (equippedTheme) applyTheme(equippedTheme);
     });
-  }, [persistProgress]);
+  }, [persistProgress, refreshDailyBackups]);
 
   // ---------------------------------------------------------------------------
   // Handle play: start a quiz session for a rule
@@ -1058,6 +1081,20 @@ export default function App() {
         } : undefined}
         onDebugUpdateSecretCode={DEBUG_MODE ? handleDebugUpdateSecretCode : undefined}
         debugSecretCode={DEBUG_MODE ? (progress.parentalCode?.code || '') : undefined}
+        dailyBackups={DEBUG_MODE ? dailyBackups : []}
+        onDebugRestoreBackup={DEBUG_MODE ? async (backup) => {
+          const result = await restoreDailyBackup(backup);
+          if (!result?.success || !result.progress) {
+            setSaveError(result?.error || 'La sauvegarde n’a pas pu être restaurée.');
+            return false;
+          }
+          setSaveError(null);
+          setProgress(result.progress);
+          await refreshDailyBackups();
+          const equippedTheme = result.progress.shop?.equipped?.theme;
+          applyTheme(equippedTheme || 'default');
+          return true;
+        } : undefined}
       />
     )
   );
