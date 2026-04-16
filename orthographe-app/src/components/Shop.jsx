@@ -61,8 +61,8 @@ const EQUIP_SLOT_MAP = {
 };
 
 const MYSTERY_IMAGE_ASSETS = {
-  manga: mangaImage,
-  ryu: ryuImage,
+  manga: ryuImage,
+  ryu: mangaImage,
 };
 
 function getMysteryImageSource(imageId, mysteryImageDefinitions) {
@@ -536,9 +536,6 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
             onClick={(e) => e.stopPropagation()}
           >
             <PopupCloseButton onClick={() => setPreviewMysteryImageId(null)} />
-            <div style={{ marginBottom: '0.7rem', fontSize: '0.72rem', color: '#9ca3af', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em' }}>
-              Image mystère en grand
-            </div>
             <MysteryImageArtwork imageId={previewMysteryImageId} mysteryImageDefinitions={mysteryImageDefinitions} progress={progress} large />
           </div>
         </div>
@@ -761,9 +758,9 @@ function MysteryImageArtwork({ imageId, mysteryImageDefinitions, progress, large
               height: '50%',
               border: '1px solid rgba(255,255,255,0.08)',
               boxSizing: 'border-box',
-              background: revealed ? 'transparent' : 'linear-gradient(180deg, rgba(10,14,24,0.76), rgba(5,8,15,0.88))',
-              backdropFilter: revealed ? 'none' : 'blur(10px)',
-              WebkitBackdropFilter: revealed ? 'none' : 'blur(10px)',
+              background: revealed ? 'transparent' : 'linear-gradient(180deg, rgba(7,10,18,0.88), rgba(3,5,10,0.94))',
+              backdropFilter: revealed ? 'none' : 'blur(18px) saturate(0.7) brightness(0.55)',
+              WebkitBackdropFilter: revealed ? 'none' : 'blur(18px) saturate(0.7) brightness(0.55)',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',

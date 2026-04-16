@@ -34,6 +34,42 @@ export function buildMysteryRevealOrder(finalTileIndex) {
   return order;
 }
 
+function getMysteryFinalTileIndex(definition) {
+  if (Number.isInteger(definition?.finalTileIndex)) {
+    return Math.max(0, Math.min(MYSTERY_IMAGE_PARTS - 1, definition.finalTileIndex));
+  }
+  const fallback = Array.isArray(definition?.revealOrder)
+    ? definition.revealOrder[definition.revealOrder.length - 1]
+    : MYSTERY_IMAGE_PARTS - 1;
+  return Math.max(0, Math.min(MYSTERY_IMAGE_PARTS - 1, Number(fallback) || 0));
+}
+
+function createRandomMysteryRevealOrder(definition) {
+  const finalTileIndex = getMysteryFinalTileIndex(definition);
+  const order = [];
+  for (let tileIndex = 0; tileIndex < MYSTERY_IMAGE_PARTS; tileIndex += 1) {
+    if (tileIndex !== finalTileIndex) order.push(tileIndex);
+  }
+
+  for (let index = order.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1));
+    [order[index], order[swapIndex]] = [order[swapIndex], order[index]];
+  }
+
+  order.push(finalTileIndex);
+  return order;
+}
+
+function isValidMysteryRevealOrder(order, definition) {
+  if (!Array.isArray(order) || order.length !== MYSTERY_IMAGE_PARTS) return false;
+  const normalized = order.map((tileIndex) => Number(tileIndex));
+  if (normalized.some((tileIndex) => !Number.isInteger(tileIndex) || tileIndex < 0 || tileIndex >= MYSTERY_IMAGE_PARTS)) {
+    return false;
+  }
+  if (new Set(normalized).size !== MYSTERY_IMAGE_PARTS) return false;
+  return normalized[MYSTERY_IMAGE_PARTS - 1] === getMysteryFinalTileIndex(definition);
+}
+
 function sanitizeCustomMysteryImageDefinition(entry) {
   if (!entry || typeof entry !== 'object') return null;
   const id = String(entry.id || '').trim();
@@ -425,7 +461,13 @@ export function createDefaultMysteryImagesState(definitions = MYSTERY_IMAGE_DEFI
       purchases: 0,
     },
     collections: Object.fromEntries(
-      Object.keys(definitions).map((imageId) => [imageId, { revealedCount: 0 }]),
+      Object.keys(definitions).map((imageId) => [
+        imageId,
+        {
+          revealedCount: 0,
+          revealOrder: createRandomMysteryRevealOrder(definitions[imageId]),
+        },
+      ]),
     ),
   };
 }
@@ -458,8 +500,12 @@ export function normalizeMysteryImagesState(mysteryImages, definitions = MYSTERY
   for (const imageId of Object.keys(definitions)) {
     const entry = next.collections[imageId];
     const revealedCount = Number(entry?.revealedCount || 0);
+    const revealOrder = isValidMysteryRevealOrder(entry?.revealOrder, definitions[imageId])
+      ? entry.revealOrder.map((tileIndex) => Number(tileIndex))
+      : createRandomMysteryRevealOrder(definitions[imageId]);
     next.collections[imageId] = {
       revealedCount: Math.max(0, Math.min(MYSTERY_IMAGE_PARTS, revealedCount)),
+      revealOrder,
     };
   }
 
@@ -498,8 +544,11 @@ export function getMysteryNextUnlockDate(progress, today = getToday(), definitio
 export function getMysteryRevealedTileIndices(progress, imageId, definitions = MYSTERY_IMAGE_DEFINITIONS) {
   const config = definitions[imageId];
   if (!config) return [];
-  const revealedCount = getMysteryImageProgress(progress, imageId, definitions).revealedCount;
-  return config.revealOrder.slice(0, revealedCount);
+  const mysteryProgress = getMysteryImageProgress(progress, imageId, definitions);
+  const revealOrder = isValidMysteryRevealOrder(mysteryProgress.revealOrder, config)
+    ? mysteryProgress.revealOrder
+    : createRandomMysteryRevealOrder(config);
+  return revealOrder.slice(0, mysteryProgress.revealedCount);
 }
 
 export function canPurchaseMysteryImagePiece(progress, imageId, today = getToday(), definitions = MYSTERY_IMAGE_DEFINITIONS) {

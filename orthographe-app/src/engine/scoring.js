@@ -138,6 +138,7 @@ export function checkLevelUp(ruleProgress, mode, score, total) {
       if (newAbove80 >= THRESHOLD) {
         newLevel = 3;
         coinsEarned = 100;
+        updates.directConsecutiveAbove90 = 0;
         events.push('level_up_3');
         events.push('crown_earned');
       }

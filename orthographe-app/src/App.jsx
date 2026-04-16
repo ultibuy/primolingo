@@ -40,6 +40,7 @@ import QuizDirect from './components/QuizDirect.jsx';
 import Shop from './components/Shop.jsx';
 import ReturnScreen from './components/ReturnScreen.jsx';
 import AdminPage from './components/AdminPage.jsx';
+import CoinIcon from './components/CoinIcon.jsx';
 import PopupCloseButton from './components/PopupCloseButton.jsx';
 
 // ---------------------------------------------------------------------------
@@ -1121,9 +1122,11 @@ export default function App() {
               size={38}
             />
             <div style={firstQuizBonusKickerStyle}>Bonus du jour</div>
-            <div style={firstQuizBonusTitleStyle}>Va jusqu’au bout de ce 1er quiz de ta journée et gagne un bonus de 10 pièces !</div>
+            <div style={firstQuizBonusTitleStyle}>
+              Bonus de 10 <span style={firstQuizBonusCoinInlineStyle}><CoinIcon size={26} /></span> disponible !
+            </div>
             <div style={firstQuizBonusTextStyle}>
-              Termine ton quiz d’aujourd’hui pour débloquer immédiatement les 10 pièces bonus du premier quiz du jour.
+              Termine ton premier quiz de la journée pour remporter ce bonus.
             </div>
             <div style={firstQuizBonusActionsStyle}>
               <button
@@ -1354,6 +1357,12 @@ const firstQuizBonusTitleStyle = {
   lineHeight: 1.25,
   fontWeight: 900,
   color: '#fff',
+};
+
+const firstQuizBonusCoinInlineStyle = {
+  display: 'inline-flex',
+  verticalAlign: 'middle',
+  margin: '0 0.12em',
 };
 
 const firstQuizBonusTextStyle = {

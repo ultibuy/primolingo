@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import ProgressBar from './ProgressBar.jsx';
 import EndScreen from './EndScreen.jsx';
+import PerfectSessionBonusModal from './PerfectSessionBonusModal.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
-import { getEndScreenLevelProgress, getNextStreakTierInfo } from '../engine/scoring.js';
+import { calculatePerfectSessionBonus, getEndScreenLevelProgress, getNextStreakTierInfo } from '../engine/scoring.js';
 
 export default function QuizDirect({
   rule,
@@ -21,6 +22,7 @@ export default function QuizDirect({
   const [score, setScore] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [finished, setFinished] = useState(false);
+  const [perfectBonusSeen, setPerfectBonusSeen] = useState(false);
 
   const question = questions[currentIndex];
   const choices = question?._ruleChoices || rule.choices || [];
@@ -50,6 +52,15 @@ export default function QuizDirect({
   };
 
   if (finished) {
+    const perfectSessionBonus = calculatePerfectSessionBonus(score, questions.length);
+    if (perfectSessionBonus > 0 && !perfectBonusSeen) {
+      return (
+        <PerfectSessionBonusModal
+          bonus={perfectSessionBonus}
+          onContinue={() => setPerfectBonusSeen(true)}
+        />
+      );
+    }
     const levelProgress = getEndScreenLevelProgress(ruleProgress, 'direct', score, questions.length);
     const streakInfo = getNextStreakTierInfo(streak, isFirstSessionOfDay);
     return (
