@@ -6,8 +6,10 @@
  */
 
 import { getToday } from '../engine/sm2.js';
+import { createDefaultMysteryImagesState } from '../engine/economy.js';
 
 const API_BASE = '/api';
+const SECRET_CODE_LENGTH = 4;
 
 function getProfile() {
   if (typeof window === 'undefined') return 'prod';
@@ -31,11 +33,13 @@ export function createDefaultProgress() {
         flame: null,
         title: null,
         victoryAnimation: null,
-        dashboardBackground: null,
       },
       activeBoosts: {
         doubleCoins: false,
+        doubleCoinsRemainingSessions: 0,
+        doubleCoinsLastPurchasedWeek: null,
       },
+      mysteryImages: createDefaultMysteryImagesState(),
       inventory: {
         revealHint: 0,
         rematch: 0,
@@ -60,6 +64,34 @@ export function createDefaultProgress() {
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
+}
+
+function normalizeSecretCode(value) {
+  return String(value || '')
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, '')
+    .slice(0, SECRET_CODE_LENGTH);
+}
+
+export function createDefaultAdminSettings() {
+  return {
+    prodQuestionCount: 20,
+    debugQuestionCount: 1,
+    parentalCode: 'PAPA',
+    customMysteryImages: [],
+  };
+}
+
+function normalizeCustomMysteryImages(value) {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((entry) => ({
+      id: String(entry?.id || '').trim(),
+      title: String(entry?.title || '').trim(),
+      imageDataUrl: String(entry?.imageDataUrl || '').trim(),
+      finalTileIndex: Math.max(0, Math.min(Number.parseInt(entry?.finalTileIndex, 10) || 0, 5)),
+    }))
+    .filter((entry) => entry.id && entry.title && entry.imageDataUrl);
 }
 
 async function apiFetch(path, options = {}) {
@@ -311,6 +343,47 @@ export async function clearCurrentStoredProgress() {
     return {
       success: false,
       error: 'La progression locale n’a pas pu être réinitialisée.',
+    };
+  }
+}
+
+export async function loadAdminSettings() {
+  try {
+    const settings = await apiFetch('/admin-settings');
+    if (!settings || typeof settings !== 'object') {
+      return createDefaultAdminSettings();
+    }
+
+    return {
+      prodQuestionCount: Math.max(1, Math.min(Number.parseInt(settings.prodQuestionCount, 10) || 20, 50)),
+      debugQuestionCount: Math.max(1, Math.min(Number.parseInt(settings.debugQuestionCount, 10) || 1, 50)),
+      parentalCode: normalizeSecretCode(settings.parentalCode) || createDefaultAdminSettings().parentalCode,
+      customMysteryImages: normalizeCustomMysteryImages(settings.customMysteryImages),
+    };
+  } catch (error) {
+    console.error('Failed to load admin settings:', error);
+    return createDefaultAdminSettings();
+  }
+}
+
+export async function saveAdminSettings(settings) {
+  try {
+    const payload = {
+      prodQuestionCount: Math.max(1, Math.min(Number.parseInt(settings?.prodQuestionCount, 10) || 20, 50)),
+      debugQuestionCount: Math.max(1, Math.min(Number.parseInt(settings?.debugQuestionCount, 10) || 1, 50)),
+      parentalCode: normalizeSecretCode(settings?.parentalCode) || createDefaultAdminSettings().parentalCode,
+      customMysteryImages: normalizeCustomMysteryImages(settings?.customMysteryImages),
+    };
+    const result = await apiFetch('/admin-settings', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+    });
+    return { success: true, settings: result?.settings || payload };
+  } catch (error) {
+    console.error('Failed to save admin settings:', error);
+    return {
+      success: false,
+      error: 'Les paramètres admin n’ont pas pu être sauvegardés.',
     };
   }
 }

@@ -3,14 +3,24 @@
   "title": "ces · ses · s'est · c'est",
   "shortTitle": "ces / ses",
   "description": "Distinguer les quatre homophones : ces (démonstratif pluriel), ses (possessif pluriel), s'est (pronom réfléchi + être), c'est (ce + est).",
-
   "choices": [
-    { "id": "ces",  "label": "ces",   "hasEtre": false, "startsWithC": true  },
-    { "id": "ses",  "label": "ses",   "hasEtre": false, "startsWithC": false },
-    { "id": "sest", "label": "s'est", "hasEtre": true,  "startsWithC": false },
-    { "id": "cest", "label": "c'est", "hasEtre": true,  "startsWithC": true  }
+    {
+      "id": "ces",
+      "label": "ces"
+    },
+    {
+      "id": "ses",
+      "label": "ses"
+    },
+    {
+      "id": "sest",
+      "label": "s'est"
+    },
+    {
+      "id": "cest",
+      "label": "c'est"
+    }
   ],
-
   "decisionAxes": [
     {
       "id": "hasEtre",
@@ -19,16 +29,23 @@
         {
           "value": true,
           "label": "Oui, avec être",
-          "sub": "s'est / c'est → verbe être conjugué",
-          "eliminates": ["ces", "ses"]
+          "sub": "on peut dire \"était\"",
+          "eliminates": [
+            "ces",
+            "ses"
+          ]
         },
         {
           "value": false,
           "label": "Non, sans être",
-          "sub": "ses / ces → déterminant devant un nom",
-          "eliminates": ["sest", "cest"]
+          "sub": "On ne peut pas dire \"était\"",
+          "eliminates": [
+            "sest",
+            "cest"
+          ]
         }
-      ]
+      ],
+      "sub": "On peut mettre c'était ou s'était ? "
     },
     {
       "id": "initiale",
@@ -40,29 +57,49 @@
           "labelWhenEtre": "C → cela est",
           "labelWhenNoEtre": "C → ceux-là",
           "labelDefault": "C",
-          "eliminates": ["ses", "sest"]
+          "eliminates": [
+            "ses",
+            "sest"
+          ]
         },
         {
           "value": "S",
           "labelWhenEtre": "S → se + être",
           "labelWhenNoEtre": "S → les siens",
           "labelDefault": "S",
-          "eliminates": ["ces", "cest"]
+          "eliminates": [
+            "ces",
+            "cest"
+          ]
         }
       ]
     }
   ],
-
   "memoCard": {
     "title": "La règle en un coup d'œil",
     "rows": [
-      { "form": "c'est",  "test": "cela est",  "example": "C'est beau." },
-      { "form": "s'est",  "test": "se + est",  "example": "Il s'est trompé." },
-      { "form": "ces",    "test": "ceux-là",   "example": "Ces livres-là." },
-      { "form": "ses",    "test": "les siens", "example": "Ses affaires à lui." }
+      {
+        "form": "c'est",
+        "test": "cela est",
+        "example": "C'est beau."
+      },
+      {
+        "form": "s'est",
+        "test": "se + est",
+        "example": "Il s'est trompé."
+      },
+      {
+        "form": "ces",
+        "test": "ceux-là",
+        "example": "Ces livres-là."
+      },
+      {
+        "form": "ses",
+        "test": "les siens",
+        "example": "Ses affaires à lui."
+      }
     ]
   },
-
   "questions": [
     {
       "id": "q001",

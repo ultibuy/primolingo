@@ -9,6 +9,7 @@ export default function QuizDirect({
   questions,
   onFinish,
   onClose,
+  hasDoubleCoinsActive,
   isFirstSessionOfDay,
   ruleProgress,
   streak,
@@ -57,6 +58,7 @@ export default function QuizDirect({
         questions={questions}
         answers={answers}
         score={score}
+        hasDoubleCoinsActive={hasDoubleCoinsActive}
         isFirstSessionOfDay={isFirstSessionOfDay}
         levelProgress={levelProgress}
         streakInfo={streakInfo}
@@ -188,7 +190,10 @@ export default function QuizDirect({
 
 const pageStyle = {
   minHeight: '100vh',
-  background: 'linear-gradient(135deg, var(--color-bg1) 0%, var(--color-bg2) 100%)',
+  backgroundColor: 'var(--color-bg1)',
+  backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
+  backgroundSize: 'cover, cover',
+  backgroundPosition: 'center, center',
   display: 'flex', alignItems: 'center', justifyContent: 'center',
   fontFamily: 'var(--font-body)',
   padding: '1.5rem', color: '#e2e2e2',

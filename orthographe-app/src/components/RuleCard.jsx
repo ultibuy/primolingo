@@ -409,7 +409,7 @@ export default function RuleCard({ rule, ruleProgress, onPlay, onLevelHelp, onEd
             : isDue
               ? 'linear-gradient(135deg, #ea580c, #fb923c)'
               : level <= 1
-                ? 'linear-gradient(135deg, #7c3aed, var(--color-primary))'
+                ? 'linear-gradient(135deg, var(--color-primary), var(--color-accent))'
                 : level <= 2
                   ? 'linear-gradient(135deg, #059669, #34d399)'
                   : level === 3

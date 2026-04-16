@@ -6,21 +6,15 @@
   "choices": [
     {
       "id": "a",
-      "label": "a",
-      "isVerbe": true,
-      "sujet": "il/elle/on"
+      "label": "a"
     },
     {
       "id": "as",
-      "label": "as",
-      "isVerbe": true,
-      "sujet": "tu"
+      "label": "as"
     },
     {
       "id": "ap",
-      "label": "à",
-      "isVerbe": false,
-      "sujet": null
+      "label": "à"
     }
   ],
   "decisionAxes": [
@@ -232,7 +226,6 @@
       "id": "q018",
       "before": "Elle ",
       "after": " du mal ",
-      "after_complete": " comprendre la physique.",
       "answer": "a",
       "difficulty": 2,
       "explanation": "On peut dire « elle avait du mal » → verbe avoir → a. (Et la deuxième préposition est aussi « à »)"
@@ -369,7 +362,6 @@
       "id": "q035",
       "before": "Tu ",
       "after": " montré la photo ",
-      "after_complete": " tes amis.",
       "answer": "as",
       "difficulty": 2,
       "explanation": "On peut dire « tu avais montré » → verbe avoir au passé composé → as. (Et la deuxième préposition est aussi « à »)"
@@ -538,7 +530,6 @@
       "id": "q056",
       "before": "Tu ",
       "after": " intérêt ",
-      "after_complete": " apprendre l'allemand.",
       "answer": "as",
       "difficulty": 2,
       "explanation": "On peut dire « tu avais intérêt » → verbe avoir (expression avoir intérêt à) → as. (La deuxième préposition est aussi « à »)"
@@ -699,7 +690,6 @@
       "id": "q076",
       "before": "Elle ",
       "after": " monté l'escalier quatre ",
-      "after_complete": " quatre.",
       "answer": "a",
       "difficulty": 2,
       "explanation": "On peut dire « elle avait monté » → verbe avoir au passé composé → a. (Et la deuxième préposition est aussi « à »)"
@@ -708,7 +698,6 @@
       "id": "q077",
       "before": "Tu ",
       "after": " rendu visite ",
-      "after_complete": " ta grand-mère.",
       "answer": "as",
       "difficulty": 2,
       "explanation": "On peut dire « tu avais rendu » → verbe avoir au passé composé → as. (Et la deuxième préposition est aussi « à »)"
@@ -797,7 +786,6 @@
       "id": "q088",
       "before": "Il ",
       "after": " échoué ",
-      "after_complete": " deux reprises.",
       "answer": "a",
       "difficulty": 2,
       "explanation": "On peut dire « il avait échoué » → verbe avoir au passé composé → a. (Et la deuxième préposition est aussi « à »)"

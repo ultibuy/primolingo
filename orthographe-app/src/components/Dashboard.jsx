@@ -12,7 +12,7 @@ import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 import { clearCurrentStoredProgress } from '../store/persistence.js';
 import { getStreakInfo } from '../engine/scoring.js';
 import { getToday } from '../engine/sm2.js';
-import { getEquipped, SHOP_CATALOG } from '../engine/economy.js';
+import { getDoubleCoinsBonusEarned, getDoubleCoinsRemainingSessions, getEquipped, SHOP_CATALOG } from '../engine/economy.js';
 import { exportProgress } from '../store/persistence.js';
 
 // ---------------------------------------------------------------------------
@@ -302,6 +302,7 @@ export default function Dashboard({
   rules,
   progress,
   onPlay,
+  onOpenAdmin,
   onOpenShop,
   pendingEvents,
   onEventsSeen,
@@ -311,8 +312,6 @@ export default function Dashboard({
   lastSessionRuleId,
   lastSessionScore,
   onDebugUpdateStreak,
-  onDebugUpdateSecretCode,
-  debugSecretCode,
   dailyBackups = [],
   onDebugRestoreBackup,
 }) {
@@ -327,11 +326,18 @@ export default function Dashboard({
   const overlayTimeoutsRef = useRef([]);
   const [debugStreak, setDebugStreak] = useState(String(progress.streak?.current || 0));
   const [debugDate, setDebugDate] = useState(progress.streak?.lastActiveDate || '');
-  const [debugSecret, setDebugSecret] = useState(debugSecretCode || '');
   const [restoringBackupDate, setRestoringBackupDate] = useState(null);
+  const [isCompactLayout, setIsCompactLayout] = useState(() => (
+    typeof window !== 'undefined' ? window.innerWidth <= 760 : false
+  ));
 
   useEffect(() => { requestAnimationFrame(() => setMounted(true)); }, []);
-  useEffect(() => { setDebugSecret(debugSecretCode || ''); }, [debugSecretCode]);
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const onResize = () => setIsCompactLayout(window.innerWidth <= 760);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   const clearOverlayTimers = useCallback(() => {
     for (const timeoutId of overlayTimeoutsRef.current) {
@@ -403,7 +409,8 @@ export default function Dashboard({
   const titleItem = equippedTitle ? SHOP_CATALOG[equippedTitle] : null;
   const displayTitle = titleItem?.titleText || streakInfo.title;
   const equippedFlame = getEquipped(progress, 'flame');
-  const equippedBackground = getEquipped(progress, 'dashboardBackground');
+  const doubleCoinsRemaining = getDoubleCoinsRemainingSessions(progress);
+  const doubleCoinsBonusEarned = getDoubleCoinsBonusEarned(progress);
 
   const summary = computeGlobalLevelSummary(rules, progress);
 
@@ -462,8 +469,13 @@ export default function Dashboard({
 
   return (
     <>
-    <div style={{ ...pageStyle, position: 'relative', overflow: 'hidden' }}>
-      <DashboardBackground backgroundId={equippedBackground} />
+    <div style={{
+      ...pageStyle,
+      position: 'relative',
+      overflow: 'hidden',
+      flexDirection: isCompactLayout ? 'column' : 'row',
+      alignItems: isCompactLayout ? 'stretch' : 'flex-start',
+    }}>
       {/* ---------------------------------------------------------------------------
         Overlay for pending events
       --------------------------------------------------------------------------- */}
@@ -502,13 +514,12 @@ export default function Dashboard({
       )}
 
       <div style={{
-        maxWidth: 640, width: '100%', padding: '0 1.5rem 3rem',
+        maxWidth: 640, width: '100%', padding: isCompactLayout ? '0 0.9rem 2rem' : '0 1.5rem 3rem',
         opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(12px)',
         transition: 'all 0.6s ease',
         position: 'relative',
         zIndex: 1,
       }}>
-
         {/* =====================================================================
           A1 + A2 + A3 + A7 — Sticky header with merged streak, shop button, shields
         ===================================================================== */}
@@ -518,9 +529,13 @@ export default function Dashboard({
           zIndex: 100,
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
-          background: 'rgba(var(--color-bg1-rgb),0.9)',
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
-          padding: '0.6rem 0',
+          background: 'linear-gradient(180deg, rgba(var(--color-bg1-rgb),0.96), rgba(var(--color-bg2-rgb),0.82))',
+          border: '1px solid rgba(var(--color-primary-rgb),0.16)',
+          boxShadow: '0 12px 30px rgba(0,0,0,0.24), inset 0 1px 0 rgba(255,255,255,0.03)',
+          borderRadius: 20,
+          padding: '0.7rem 0.9rem',
+          marginTop: '0.35rem',
+          marginBottom: '0.5rem',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         }}>
           {/* Left side: flame + streak count + tier + today done badge */}
@@ -537,13 +552,13 @@ export default function Dashboard({
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}>
                   <span style={{
                     fontSize: '1.6rem', fontWeight: 900,
-                    color: '#fbbf24',
-                    textShadow: '0 0 10px rgba(251,191,36,0.3)',
+                    color: 'var(--color-accent)',
+                    textShadow: '0 0 12px rgba(var(--color-accent-rgb),0.2)',
                     lineHeight: 1,
                   }}>
                     <AnimatedNumber value={streak} />
                   </span>
-                  <span style={{ fontSize: '0.78rem', color: '#fbbf24', fontWeight: 700 }}>
+                  <span style={{ fontSize: '0.78rem', color: 'var(--color-accent)', fontWeight: 700 }}>
                     jour{streak !== 1 ? 's' : ''}
                   </span>
                   {/* A1 — Green check badge when todayDone */}
@@ -559,7 +574,7 @@ export default function Dashboard({
                   )}
                 </div>
                 {displayTitle && (
-                  <div style={{ fontSize: '0.72rem', color: '#d4a020', fontWeight: 700, letterSpacing: '0.03em' }}>
+                  <div style={{ fontSize: '0.72rem', color: 'rgba(var(--color-accent-rgb),0.9)', fontWeight: 700, letterSpacing: '0.03em' }}>
                     {displayTitle}
                   </div>
                 )}
@@ -582,7 +597,7 @@ export default function Dashboard({
                 {displayTitle && (
                   <span style={{
                     fontSize: '0.72rem',
-                    color: '#d4a020',
+                    color: 'rgba(var(--color-accent-rgb),0.9)',
                     fontWeight: 700,
                     letterSpacing: '0.03em',
                     display: 'block',
@@ -614,33 +629,120 @@ export default function Dashboard({
               </div>
             )}
 
+            <button
+              type="button"
+              onClick={onOpenAdmin}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.28rem',
+                background: 'rgba(255,255,255,0.04)',
+                border: '1px solid rgba(255,255,255,0.08)',
+                borderRadius: 12,
+                padding: '0.38rem 0.6rem',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease',
+                color: 'rgba(255,255,255,0.74)',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+                e.currentTarget.style.borderColor = 'rgba(var(--color-accent-rgb),0.2)';
+                e.currentTarget.style.color = 'var(--color-accent)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
+                e.currentTarget.style.color = 'rgba(255,255,255,0.74)';
+              }}
+              aria-label="Ouvrir l'administration"
+            >
+              <span style={{ fontSize: '0.85rem', lineHeight: 1 }}>⚙️</span>
+              <span style={{ fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.02em' }}>
+                Admin
+              </span>
+            </button>
+
             {/* A2 — Coin counter + shop icon with hover glow */}
             <button
+              type="button"
               onClick={onOpenShop}
               style={{
                 display: 'flex', alignItems: 'center', gap: '0.3rem',
-                background: 'rgba(251,191,36,0.1)',
-                border: '1px solid rgba(251,191,36,0.2)',
-                borderRadius: 10, padding: '0.35rem 0.7rem',
+                background: 'linear-gradient(135deg, rgba(var(--color-accent-rgb),0.16), rgba(var(--color-primary-rgb),0.14))',
+                border: '1px solid rgba(var(--color-accent-rgb),0.22)',
+                borderRadius: 12, padding: '0.4rem 0.78rem',
                 cursor: 'pointer', transition: 'all 0.2s ease',
               }}
               onMouseEnter={e => {
-                e.currentTarget.style.boxShadow = '0 0 12px rgba(251,191,36,0.3)';
-                e.currentTarget.style.background = 'rgba(251,191,36,0.16)';
+                e.currentTarget.style.boxShadow = '0 0 16px rgba(var(--color-accent-rgb),0.22)';
+                e.currentTarget.style.background = 'linear-gradient(135deg, rgba(var(--color-accent-rgb),0.22), rgba(var(--color-primary-rgb),0.18))';
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.boxShadow = 'none';
-                e.currentTarget.style.background = 'rgba(251,191,36,0.1)';
+                e.currentTarget.style.background = 'linear-gradient(135deg, rgba(var(--color-accent-rgb),0.16), rgba(var(--color-primary-rgb),0.14))';
               }}
             >
               <CoinIcon size={16} />
-              <span style={{ fontSize: '0.88rem', fontWeight: 800, color: '#fbbf24' }}>
+              <span style={{ fontSize: '0.88rem', fontWeight: 800, color: 'var(--color-accent)' }}>
                 <AnimatedNumber value={coins} />
               </span>
               <span style={{ fontSize: '0.9rem', marginLeft: '0.15rem' }}>{'🛒'}</span>
             </button>
           </div>
         </div>
+
+        {doubleCoinsRemaining > 0 && (
+          <div style={{
+            marginBottom: '0.9rem',
+            padding: '0.8rem 0.95rem',
+            borderRadius: 18,
+            background: 'linear-gradient(135deg, rgba(var(--color-accent-rgb),0.16), rgba(var(--color-primary-rgb),0.12))',
+            border: '1px solid rgba(var(--color-accent-rgb),0.2)',
+            boxShadow: '0 10px 24px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.04)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '0.9rem',
+            flexWrap: 'wrap',
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', minWidth: 0 }}>
+              <div style={{
+                width: 34,
+                height: 34,
+                borderRadius: 999,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'rgba(var(--color-accent-rgb),0.18)',
+                border: '1px solid rgba(var(--color-accent-rgb),0.24)',
+                fontSize: '1rem',
+                flexShrink: 0,
+              }}>
+                {'💰'}
+              </div>
+              <div style={{ minWidth: 0 }}>
+                <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#fff' }}>
+                  Double coins actif
+                </div>
+                <div style={{ fontSize: '0.74rem', color: '#d1d5db', lineHeight: 1.45 }}>
+                  +{doubleCoinsBonusEarned} pièces gagnées grâce au boost
+                </div>
+              </div>
+            </div>
+            <div style={{
+              padding: '0.42rem 0.75rem',
+              borderRadius: 999,
+              background: 'rgba(0,0,0,0.18)',
+              border: '1px solid rgba(var(--color-accent-rgb),0.16)',
+              fontSize: '0.76rem',
+              fontWeight: 800,
+              color: 'var(--color-accent)',
+              flexShrink: 0,
+            }}>
+              {doubleCoinsRemaining} quiz restant{doubleCoinsRemaining > 1 ? 's' : ''}
+            </div>
+          </div>
+        )}
 
         {/* =====================================================================
           A5 — Conditional greeting: only show if !todayDone
@@ -876,8 +978,8 @@ export default function Dashboard({
                           borderRadius: 10,
                           border: 'none',
                           background: isRecommended
-                            ? 'linear-gradient(135deg, #7c3aed, var(--color-primary))'
-                            : 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+                            ? 'linear-gradient(135deg, var(--color-primary), var(--color-accent))'
+                            : 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
                           color: '#fff',
                           cursor: 'pointer',
                           fontSize: '0.78rem',
@@ -927,38 +1029,67 @@ export default function Dashboard({
       {/* ── Debug: streak editor ── */}
       {isDebug && onDebugUpdateStreak && (
         <div style={{
-          margin: '1.5rem 1rem 0',
-          padding: '1rem 1.2rem',
+          width: isCompactLayout ? 'calc(100% - 1.8rem)' : 'min(360px, calc(100% - 2rem))',
+          alignSelf: isCompactLayout ? 'center' : 'flex-start',
+          margin: isCompactLayout ? '0.4rem auto 1.2rem' : '1.5rem 1rem 0',
+          padding: isCompactLayout ? '0.9rem 0.95rem' : '1rem 1.2rem',
           background: 'rgba(248,113,113,0.05)',
           border: '1px dashed rgba(248,113,113,0.2)',
           borderRadius: 14,
+          flexShrink: 0,
         }}>
           <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
             🛠 Debug — Streak
           </div>
           <div style={{ marginBottom: '0.8rem' }}>
-            <button
-              onClick={() => {
-                const url = new URL(window.location.href);
-                url.searchParams.set('debug', '0');
-                window.location.href = url.toString();
-              }}
-              style={{
-                padding: '0.38rem 0.9rem',
-                borderRadius: 6,
-                border: '1px solid rgba(250,204,21,0.28)',
-                background: 'rgba(250,204,21,0.12)',
-                color: '#fde68a',
-                cursor: 'pointer',
-                fontSize: '0.75rem',
-                fontWeight: 700,
-              }}
-            >
-              Passer en debug = false
-            </button>
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => {
+                  const url = new URL(window.location.href);
+                  url.searchParams.set('debug', '0');
+                  window.location.href = url.toString();
+                }}
+                style={{
+                  padding: '0.38rem 0.9rem',
+                  borderRadius: 6,
+                  border: '1px solid rgba(250,204,21,0.28)',
+                  background: 'rgba(250,204,21,0.12)',
+                  color: '#fde68a',
+                  cursor: 'pointer',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                }}
+              >
+                Passer en debug = false
+              </button>
+              <a
+                href="/admin"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '0.38rem 0.9rem',
+                  borderRadius: 6,
+                  border: '1px solid rgba(var(--color-primary-rgb),0.22)',
+                  background: 'rgba(var(--color-primary-rgb),0.1)',
+                  color: 'var(--color-accent)',
+                  textDecoration: 'none',
+                  fontSize: '0.75rem',
+                  fontWeight: 700,
+                }}
+              >
+                Ouvrir /admin
+              </a>
+            </div>
           </div>
-          <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-end', flexWrap: 'wrap' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+          <div style={{
+            display: 'flex',
+            gap: '0.6rem',
+            alignItems: isCompactLayout ? 'stretch' : 'flex-end',
+            flexWrap: 'wrap',
+            flexDirection: isCompactLayout ? 'column' : 'row',
+          }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', minWidth: 0 }}>
               <label style={{ fontSize: '0.65rem', color: '#9ca3af' }}>Streak (jours)</label>
               <input
                 type="number"
@@ -966,20 +1097,21 @@ export default function Dashboard({
                 value={debugStreak}
                 onChange={e => setDebugStreak(e.target.value)}
                 style={{
-                  width: 70, padding: '0.35rem 0.5rem', borderRadius: 6,
+                  width: isCompactLayout ? '100%' : 70, padding: '0.35rem 0.5rem', borderRadius: 6,
                   border: '1px solid rgba(248,113,113,0.3)',
                   background: 'rgba(0,0,0,0.3)', color: '#e2e2e2',
                   fontSize: '0.85rem', fontWeight: 700,
                 }}
               />
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', minWidth: 0 }}>
               <label style={{ fontSize: '0.65rem', color: '#9ca3af' }}>Dernière date active</label>
               <input
                 type="date"
                 value={debugDate}
                 onChange={e => setDebugDate(e.target.value)}
                 style={{
+                  width: '100%',
                   padding: '0.35rem 0.5rem', borderRadius: 6,
                   border: '1px solid rgba(248,113,113,0.3)',
                   background: 'rgba(0,0,0,0.3)', color: '#e2e2e2',
@@ -995,6 +1127,7 @@ export default function Dashboard({
                 }
               }}
               style={{
+                width: isCompactLayout ? '100%' : 'auto',
                 padding: '0.38rem 0.9rem', borderRadius: 6,
                 border: '1px solid rgba(248,113,113,0.3)',
                 background: 'rgba(248,113,113,0.12)',
@@ -1004,40 +1137,6 @@ export default function Dashboard({
             >
               Appliquer
             </button>
-            {onDebugUpdateSecretCode && (
-              <>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-                  <label style={{ fontSize: '0.65rem', color: '#9ca3af' }}>Code secret Papa</label>
-                  <input
-                    value={debugSecret}
-                    maxLength={4}
-                    onChange={e => setDebugSecret(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 4))}
-                    style={{
-                      width: 90, padding: '0.35rem 0.5rem', borderRadius: 6,
-                      border: '1px solid rgba(248,113,113,0.3)',
-                      background: 'rgba(0,0,0,0.3)', color: '#e2e2e2',
-                      fontSize: '0.85rem', fontWeight: 700, textTransform: 'uppercase',
-                    }}
-                  />
-                </div>
-                <button
-                  onClick={() => {
-                    if (onDebugUpdateSecretCode(debugSecret)) {
-                      setDebugSecret(debugSecret.toUpperCase());
-                    }
-                  }}
-                  style={{
-                    padding: '0.38rem 0.9rem', borderRadius: 6,
-                    border: '1px solid rgba(248,113,113,0.3)',
-                    background: 'rgba(248,113,113,0.12)',
-                    color: '#f87171', cursor: 'pointer',
-                    fontSize: '0.75rem', fontWeight: 700,
-                  }}
-                >
-                  Code Papa
-                </button>
-              </>
-            )}
           </div>
 
           {onDebugRestoreBackup && (
@@ -1060,13 +1159,14 @@ export default function Dashboard({
                       key={`${backup.profile || 'prod'}-${backup.date}`}
                       style={{
                         display: 'flex',
-                        alignItems: 'center',
+                        alignItems: isCompactLayout ? 'stretch' : 'center',
                         justifyContent: 'space-between',
                         gap: '0.75rem',
                         padding: '0.55rem 0.65rem',
                         borderRadius: 10,
                         background: 'rgba(255,255,255,0.03)',
                         border: '1px solid rgba(255,255,255,0.06)',
+                        flexDirection: isCompactLayout ? 'column' : 'row',
                       }}
                     >
                       <div style={{ minWidth: 0 }}>
@@ -1090,6 +1190,7 @@ export default function Dashboard({
                         }}
                         disabled={restoringBackupDate === `${backup.profile || 'prod'}-${backup.date}`}
                         style={{
+                          width: isCompactLayout ? '100%' : 'auto',
                           padding: '0.35rem 0.75rem',
                           borderRadius: 8,
                           border: '1px solid rgba(248,113,113,0.28)',
@@ -1253,8 +1354,8 @@ export default function Dashboard({
             overflowY: 'auto',
             padding: '1.4rem 1.3rem 1.25rem',
             borderRadius: 22,
-            border: '1px solid rgba(167,139,250,0.22)',
-            background: 'linear-gradient(160deg, rgba(30,30,46,0.98), rgba(39,35,68,0.97))',
+            border: '1px solid rgba(var(--color-primary-rgb),0.22)',
+            background: 'linear-gradient(160deg, rgba(var(--color-bg1-rgb),0.98), rgba(var(--color-bg2-rgb),0.97))',
             boxShadow: '0 20px 80px rgba(0,0,0,0.56)',
             animation: 'bounce-in 0.3s ease forwards',
           }}
@@ -1267,7 +1368,7 @@ export default function Dashboard({
             textTransform: 'uppercase',
             letterSpacing: '0.12em',
             fontWeight: 800,
-            color: '#a78bfa',
+            color: 'var(--color-accent)',
             marginBottom: '0.35rem',
           }}>
             Fiche mémo
@@ -1441,128 +1542,12 @@ function DiamondSparkBadge() {
   );
 }
 
-function DashboardBackground({ backgroundId }) {
-  if (!backgroundId) return null;
-
-  const baseStyle = {
-    position: 'absolute',
-    inset: 0,
-    pointerEvents: 'none',
-    zIndex: 0,
-    overflow: 'hidden',
-  };
-
-  if (backgroundId === 'bg-geometric') {
-    return (
-      <div style={baseStyle} aria-hidden="true">
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          opacity: 0.48,
-          backgroundImage: `
-            linear-gradient(30deg, rgba(255,255,255,0.16) 1px, transparent 1px),
-            linear-gradient(150deg, rgba(167,139,250,0.18) 1px, transparent 1px)
-          `,
-          backgroundSize: '42px 42px, 42px 42px',
-          backgroundPosition: '0 0, 21px 21px',
-        }} />
-        <div style={{
-          position: 'absolute',
-          top: '-8%',
-          right: '-3%',
-          width: 320,
-          height: 320,
-          transform: 'rotate(18deg)',
-          border: '1px solid rgba(255,255,255,0.16)',
-          borderRadius: 40,
-          opacity: 0.42,
-        }} />
-        <div style={{
-          position: 'absolute',
-          bottom: '8%',
-          left: '-2%',
-          width: 220,
-          height: 220,
-          transform: 'rotate(22deg)',
-          border: '1px solid rgba(192,132,252,0.28)',
-          borderRadius: 30,
-          opacity: 0.56,
-        }} />
-      </div>
-    );
-  }
-
-  if (backgroundId === 'bg-gradient') {
-    return (
-      <div style={baseStyle} aria-hidden="true">
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: `
-            radial-gradient(circle at 12% 18%, rgba(251,191,36,0.24), transparent 30%),
-            radial-gradient(circle at 82% 22%, rgba(96,165,250,0.28), transparent 26%),
-            radial-gradient(circle at 68% 76%, rgba(167,139,250,0.34), transparent 30%),
-            radial-gradient(circle at 22% 86%, rgba(74,222,128,0.22), transparent 24%)
-          `,
-          opacity: 1,
-        }} />
-      </div>
-    );
-  }
-
-  if (backgroundId === 'bg-dots') {
-    return (
-      <div style={baseStyle} aria-hidden="true">
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          opacity: 0.48,
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.32) 1.6px, transparent 1.6px)',
-          backgroundSize: '20px 20px',
-          backgroundPosition: '0 0',
-        }} />
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          opacity: 0.34,
-          backgroundImage: 'radial-gradient(circle, rgba(167,139,250,0.45) 1.8px, transparent 1.8px)',
-          backgroundSize: '40px 40px',
-          backgroundPosition: '20px 20px',
-        }} />
-      </div>
-    );
-  }
-
-  if (backgroundId === 'bg-waves') {
-    return (
-      <div style={baseStyle} aria-hidden="true">
-        <svg
-          viewBox="0 0 1200 900"
-          preserveAspectRatio="none"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.62 }}
-        >
-          <path d="M0 620 C160 570, 260 710, 420 660 S700 540, 860 610 S1030 740, 1200 680" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="4" />
-          <path d="M0 700 C140 660, 300 770, 470 720 S760 600, 910 660 S1060 770, 1200 730" fill="none" stroke="rgba(96,165,250,0.32)" strokeWidth="4" />
-          <path d="M0 790 C130 750, 320 850, 500 800 S790 690, 950 750 S1080 850, 1200 810" fill="none" stroke="rgba(167,139,250,0.34)" strokeWidth="4" />
-        </svg>
-        <div style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: '34%',
-          background: 'linear-gradient(180deg, transparent, rgba(59,130,246,0.08) 38%, rgba(167,139,250,0.14))',
-        }} />
-      </div>
-    );
-  }
-
-  return null;
-}
-
 const pageStyle = {
   minHeight: '100vh',
-  background: 'linear-gradient(135deg, var(--color-bg1) 0%, var(--color-bg2) 100%)',
+  backgroundColor: 'var(--color-bg1)',
+  backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
+  backgroundSize: 'cover, cover',
+  backgroundPosition: 'center, center',
   display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
   fontFamily: 'var(--font-body)',
   color: '#e2e2e2',

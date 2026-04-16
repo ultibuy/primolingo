@@ -3,19 +3,35 @@
   "title": "leur · leurs",
   "shortTitle": "leur / leurs",
   "description": "Distinguer : leur pronom (invariable, devant un verbe, = lui) et leur/leurs déterminant (accord avec le nom qui suit).",
-
   "choices": [
-    { "id": "leur",  "label": "leur",  "isPronom": null, "note": "pronom invariable OU déterminant singulier" },
-    { "id": "leurs", "label": "leurs", "isPronom": false, "note": "déterminant pluriel uniquement" }
+    {
+      "id": "leur",
+      "label": "leur"
+    },
+    {
+      "id": "leurs",
+      "label": "leurs"
+    }
   ],
-
   "decisionAxes": [
     {
       "id": "isPronom",
       "question": "Est-ce un pronom (devant un verbe) ?",
       "options": [
-        { "value": true,  "label": "Oui, pronom → leur", "sub": "Test : remplace par « lui » → ça marche", "eliminates": ["leurs"] },
-        { "value": false, "label": "Non, déterminant (devant un nom)", "sub": "Test : remplace par « son/sa/ses »", "eliminates": [] }
+        {
+          "value": true,
+          "label": "Oui, pronom → leur",
+          "sub": "Test : remplace par « lui » → ça marche",
+          "eliminates": [
+            "leurs"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non, déterminant (devant un nom)",
+          "sub": "Test : remplace par « son/sa/ses »",
+          "eliminates": []
+        }
       ]
     },
     {
@@ -24,21 +40,43 @@
       "dependsOn": "isPronom",
       "showWhen": false,
       "options": [
-        { "value": "singulier", "label": "Singulier → leur", "eliminates": ["leurs"] },
-        { "value": "pluriel",   "label": "Pluriel → leurs",  "eliminates": ["leur"] }
+        {
+          "value": "singulier",
+          "label": "Singulier → leur",
+          "eliminates": [
+            "leurs"
+          ]
+        },
+        {
+          "value": "pluriel",
+          "label": "Pluriel → leurs",
+          "eliminates": [
+            "leur"
+          ]
+        }
       ]
     }
   ],
-
   "memoCard": {
     "title": "La règle en un coup d'œil",
     "rows": [
-      { "form": "leur (pronom)",  "test": "remplace par « lui »", "example": "Je leur parle. → Je lui parle. ✓" },
-      { "form": "leur (dét. sg)", "test": "nom singulier après", "example": "leur maison (une maison)" },
-      { "form": "leurs (dét. pl)","test": "nom pluriel après",   "example": "leurs maisons (des maisons)" }
+      {
+        "form": "leur (pronom)",
+        "test": "remplace par « lui »",
+        "example": "Je leur parle. → Je lui parle. ✓"
+      },
+      {
+        "form": "leur (dét. sg)",
+        "test": "nom singulier après",
+        "example": "leur maison (une maison)"
+      },
+      {
+        "form": "leurs (dét. pl)",
+        "test": "nom pluriel après",
+        "example": "leurs maisons (des maisons)"
+      }
     ]
   },
-
   "questions": [
     {
       "id": "q001",

@@ -4,13 +4,32 @@ import PopupCloseButton from './PopupCloseButton.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
 import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
-import { SHOP_CATALOG, canAfford, isOwned, getEquipped } from '../engine/economy.js';
-import shopMhaBg from '../assets/shop-mha-bg.webp';
+import mangaImage from '../assets/manga.png';
+import ryuImage from '../assets/ryu.png';
+import {
+  SHOP_CATALOG,
+  canAfford,
+  canPurchaseMysteryImagePiece,
+  getDoubleCoinsNextUnlockDate,
+  getDoubleCoinsRemainingSessions,
+  getEquipped,
+  getMysteryImageDefinitions,
+  getMysteryImageProgress,
+  getMysteryNextUnlockDate,
+  getMysteryPurchasesLeftToday,
+  getMysteryRevealedTileIndices,
+  isDoubleCoinsWeeklyLocked,
+  MYSTERY_IMAGE_PARTS,
+  MYSTERY_IMAGE_PRICE,
+  MYSTERY_IMAGE_PURCHASE_PREFIX,
+  isOwned,
+} from '../engine/economy.js';
 
 const CATEGORIES = [
-  { key: 'cosmetique', label: 'Cosm\u00e9tique', filter: (item) => ['themes', 'flames', 'titles', 'victoryAnimations', 'backgrounds'].includes(item.category) },
+  { key: 'cosmetique', label: 'Cosm\u00e9tique', filter: (item) => ['themes', 'flames', 'titles', 'victoryAnimations'].includes(item.category) },
   { key: 'assurance', label: 'Assurance', filter: (item) => ['streakFreeze', 'doubleCoins'].includes(item.category) },
   { key: 'enjeu', label: 'En jeu', filter: (item) => ['revealHint', 'rematch', 'modeSniper', 'questionMystery'].includes(item.category) },
+  { key: 'mystere', label: 'Image mystère', filter: () => false },
 ];
 
 const CATEGORY_ICONS = {
@@ -18,13 +37,13 @@ const CATEGORY_ICONS = {
   flames: '\uD83D\uDD25',
   titles: '\uD83C\uDFF7\uFE0F',
   victoryAnimations: '\uD83C\uDFAC',
-  backgrounds: '\uD83D\uDDBC\uFE0F',
   streakFreeze: '\uD83D\uDEE1\uFE0F',
   doubleCoins: '\uD83D\uDCB0',
   revealHint: '\uD83D\uDCA1',
   rematch: '\uD83D\uDD04',
   modeSniper: '\uD83C\uDFAF',
   questionMystery: '\u2753',
+  mystere: '\uD83E\uDDE9',
 };
 
 const SUBCATEGORY_LABELS = {
@@ -32,7 +51,6 @@ const SUBCATEGORY_LABELS = {
   flames: 'Flamme de ton streak',
   titles: 'Titre sous le streak',
   victoryAnimations: 'Animations de victoire',
-  backgrounds: 'Fonds',
 };
 
 const EQUIP_SLOT_MAP = {
@@ -40,10 +58,28 @@ const EQUIP_SLOT_MAP = {
   flames: 'flame',
   titles: 'title',
   victoryAnimations: 'victoryAnimation',
-  backgrounds: 'dashboardBackground',
 };
 
-export default function Shop({ progress, onPurchase, onEquip, onClose }) {
+const MYSTERY_IMAGE_ASSETS = {
+  manga: mangaImage,
+  ryu: ryuImage,
+};
+
+function getMysteryImageSource(imageId, mysteryImageDefinitions) {
+  return mysteryImageDefinitions?.[imageId]?.imageDataUrl || MYSTERY_IMAGE_ASSETS[imageId] || '';
+}
+
+function formatFrenchDate(dateStr) {
+  if (!dateStr) return '';
+  const [year, month, day] = dateStr.split('-').map(Number);
+  if (!year || !month || !day) return dateStr;
+  return new Intl.DateTimeFormat('fr-FR', {
+    day: 'numeric',
+    month: 'long',
+  }).format(new Date(year, month - 1, day));
+}
+
+export default function Shop({ progress, adminSettings, onPurchase, onEquip, onClose }) {
   const [activeTab, setActiveTab] = useState('cosmetique');
   const [purchaseAnim, setPurchaseAnim] = useState(null);
   const [mounted, setMounted] = useState(false);
@@ -52,6 +88,7 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
   const [previewFlameItem, setPreviewFlameItem] = useState(null);
   const [previewTitleItem, setPreviewTitleItem] = useState(null);
   const [previewVictoryItem, setPreviewVictoryItem] = useState(null);
+  const [previewMysteryImageId, setPreviewMysteryImageId] = useState(null);
 
   useEffect(() => {
     requestAnimationFrame(() => setMounted(true));
@@ -59,6 +96,7 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
 
   const coins = progress.coins || 0;
   const shields = progress.shields || 0;
+  const mysteryImageDefinitions = getMysteryImageDefinitions(adminSettings?.customMysteryImages);
 
   const allItems = Object.values(SHOP_CATALOG);
   const activeCat = CATEGORIES.find(c => c.key === activeTab);
@@ -78,8 +116,20 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
     if (!item) return;
     if (!canAfford(progress, itemId)) return;
     if (itemId === 'streak-freeze' && shields >= 2) return;
+    if (itemId === 'double-coins' && isDoubleCoinsWeeklyLocked(progress)) return;
     if (item.type === 'permanent' && isOwned(progress, itemId)) return;
     setConfirmItem(item);
+  };
+
+  const handleRequestMysteryPurchase = (imageId) => {
+    const definition = mysteryImageDefinitions[imageId];
+    if (!definition) return;
+    if (!canPurchaseMysteryImagePiece(progress, imageId, undefined, mysteryImageDefinitions)) return;
+    setConfirmItem({
+      id: `${MYSTERY_IMAGE_PURCHASE_PREFIX}${imageId}`,
+      name: `1 fragment - ${definition.name}`,
+      price: MYSTERY_IMAGE_PRICE,
+    });
   };
 
   const handleConfirmPurchase = () => {
@@ -138,7 +188,7 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
   };
 
   return (
-    <div style={pageStyle(shopMhaBg)}>
+    <div style={pageStyle}>
       {/* FIX 4 — Purchase confirmation overlay */}
       {confirmItem && (
         <div style={{
@@ -188,12 +238,12 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
                   padding: '0.65rem 1rem',
                   borderRadius: 10,
                   border: 'none',
-                  background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+                  background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
                   color: '#fff',
                   cursor: 'pointer',
                   fontSize: '0.88rem',
                   fontWeight: 700,
-                  boxShadow: '0 2px 10px rgba(124,58,237,0.25)',
+                  boxShadow: '0 2px 10px rgba(var(--color-primary-rgb),0.25)',
                 }}
               >
                 Confirmer
@@ -271,12 +321,12 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
                   padding: '0.7rem 1rem',
                   borderRadius: 12,
                   border: 'none',
-                  background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+                  background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
                   color: '#fff',
                   cursor: 'pointer',
                   fontSize: '0.88rem',
                   fontWeight: 700,
-                  boxShadow: '0 2px 10px rgba(124,58,237,0.25)',
+                  boxShadow: '0 2px 10px rgba(var(--color-primary-rgb),0.25)',
                 }}
               >
                 Installer
@@ -376,12 +426,12 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
                   padding: '0.7rem 1rem',
                   borderRadius: 12,
                   border: 'none',
-                  background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+                  background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
                   color: '#fff',
                   cursor: 'pointer',
                   fontSize: '0.88rem',
                   fontWeight: 700,
-                  boxShadow: '0 2px 10px rgba(124,58,237,0.25)',
+                  boxShadow: '0 2px 10px rgba(var(--color-primary-rgb),0.25)',
                 }}
               >
                 Installer
@@ -448,17 +498,48 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
                   padding: '0.7rem 1rem',
                   borderRadius: 12,
                   border: 'none',
-                  background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+                  background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
                   color: '#fff',
                   cursor: 'pointer',
                   fontSize: '0.88rem',
                   fontWeight: 700,
-                  boxShadow: '0 2px 10px rgba(124,58,237,0.25)',
+                  boxShadow: '0 2px 10px rgba(var(--color-primary-rgb),0.25)',
                 }}
               >
                 Installer
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {previewMysteryImageId && (
+        <div style={{
+          position: 'fixed', inset: 0,
+          background: 'rgba(0,0,0,0.72)',
+          backdropFilter: 'blur(10px)', WebkitBackdropFilter: 'blur(10px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 1000,
+          padding: '1rem',
+        }} onClick={() => setPreviewMysteryImageId(null)}>
+          <div
+            style={{
+              background: 'rgba(var(--color-bg1-rgb),0.96)',
+              border: '1px solid rgba(var(--color-accent-rgb),0.2)',
+              borderRadius: 24,
+              padding: '1.2rem',
+              width: 'min(1120px, calc(100vw - 2rem))',
+              boxShadow: '0 8px 40px rgba(0,0,0,0.5)',
+              animation: 'bounce-in 0.3s ease forwards',
+              position: 'relative',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <PopupCloseButton onClick={() => setPreviewMysteryImageId(null)} />
+            <div style={{ marginBottom: '0.7rem', fontSize: '0.72rem', color: '#9ca3af', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em' }}>
+              Image mystère en grand
+            </div>
+            <MysteryImageArtwork imageId={previewMysteryImageId} mysteryImageDefinitions={mysteryImageDefinitions} progress={progress} large />
           </div>
         </div>
       )}
@@ -471,15 +552,22 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
         {/* Header */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-          padding: '1.2rem 0 1rem',
+          padding: '0.8rem 0.9rem',
+          marginBottom: '0.85rem',
+          borderRadius: 20,
+          background: 'linear-gradient(180deg, rgba(var(--color-bg1-rgb),0.96), rgba(var(--color-bg2-rgb),0.82))',
+          border: '1px solid rgba(var(--color-primary-rgb),0.16)',
+          boxShadow: '0 12px 30px rgba(0,0,0,0.24), inset 0 1px 0 rgba(255,255,255,0.03)',
+          backdropFilter: 'blur(14px)',
+          WebkitBackdropFilter: 'blur(14px)',
         }}>
           <button
             onClick={onClose}
             style={{
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              borderRadius: 10, padding: '0.5rem 0.8rem',
-              color: '#9ca3af', cursor: 'pointer',
+              background: 'rgba(var(--color-primary-rgb),0.1)',
+              border: '1px solid rgba(var(--color-primary-rgb),0.18)',
+              borderRadius: 12, padding: '0.5rem 0.8rem',
+              color: 'var(--color-accent)', cursor: 'pointer',
               fontSize: '0.85rem', fontWeight: 600,
               display: 'flex', alignItems: 'center', gap: '0.3rem',
             }}
@@ -496,12 +584,12 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
 
           <div style={{
             display: 'flex', alignItems: 'center', gap: '0.4rem',
-            background: 'rgba(251,191,36,0.1)',
-            border: '1px solid rgba(251,191,36,0.2)',
-            borderRadius: 10, padding: '0.4rem 0.8rem',
+            background: 'linear-gradient(135deg, rgba(var(--color-accent-rgb),0.16), rgba(var(--color-primary-rgb),0.14))',
+            border: '1px solid rgba(var(--color-accent-rgb),0.22)',
+            borderRadius: 12, padding: '0.42rem 0.82rem',
           }}>
             <CoinIcon size={18} />
-            <span style={{ fontSize: '1rem', fontWeight: 800, color: '#fbbf24' }}>
+            <span style={{ fontSize: '1rem', fontWeight: 800, color: 'var(--color-accent)' }}>
               {coins}
             </span>
           </div>
@@ -511,9 +599,9 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
         <div style={{
           display: 'flex', gap: '0.4rem',
           marginBottom: '1.2rem',
-          background: 'rgba(255,255,255,0.03)',
+          background: 'rgba(var(--color-bg1-rgb),0.32)',
           borderRadius: 14, padding: '0.3rem',
-          border: '1px solid rgba(255,255,255,0.06)',
+          border: '1px solid rgba(var(--color-primary-rgb),0.1)',
         }}>
           {CATEGORIES.map(cat => {
             const isActive = activeTab === cat.key;
@@ -542,105 +630,88 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
           })}
         </div>
 
-        <div style={{
-          position: 'relative',
-          overflow: 'hidden',
-          minHeight: 180,
-          marginBottom: '1.2rem',
-          borderRadius: 24,
-          border: '1px solid rgba(196,181,253,0.2)',
-          backgroundImage: `linear-gradient(90deg, rgba(7,19,12,0.94) 0%, rgba(7,19,12,0.78) 48%, rgba(7,19,12,0.38) 100%), url(${shopMhaBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          boxShadow: '0 24px 70px rgba(0,0,0,0.28)',
-        }}>
+        {activeTab === 'mystere' ? (
           <div style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(135deg, rgba(185,255,83,0.14), transparent 42%, rgba(196,181,253,0.08) 100%)',
-            pointerEvents: 'none',
-          }} />
-          <div style={{
-            position: 'relative',
-            zIndex: 1,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            gap: '0.7rem',
-            minHeight: 180,
-            maxWidth: 360,
-            padding: '1.4rem 1.35rem',
-          }}>
-            <div style={{
-              width: 'fit-content',
-              padding: '0.32rem 0.65rem',
-              borderRadius: 999,
-              background: 'rgba(185,255,83,0.14)',
-              border: '1px solid rgba(185,255,83,0.22)',
-              color: '#d9f36e',
-              fontSize: '0.7rem',
-              fontWeight: 800,
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-            }}>
-              Fond boutique
-            </div>
-            <div>
-              <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em', marginBottom: '0.3rem' }}>
-                Vitrine héroïque
-              </div>
-              <div style={{ fontSize: '0.84rem', lineHeight: 1.55, color: 'rgba(255,255,255,0.74)' }}>
-                Ton image sert maintenant de fond visuel à la boutique, retravaillée en ambiance manga verte avec une texture plus dense.
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Items grouped by subcategory */}
-        {Object.entries(grouped).map(([groupKey, items]) => (
-          <div key={groupKey} style={{
             marginBottom: '1.5rem',
             padding: '1rem',
             borderRadius: 22,
-            background: 'linear-gradient(180deg, rgba(7,19,12,0.68), rgba(15,15,28,0.74))',
-            border: '1px solid rgba(255,255,255,0.06)',
+            background: 'linear-gradient(180deg, rgba(7,19,12,0.52), rgba(15,15,28,0.58))',
+            border: '1px solid rgba(255,255,255,0.05)',
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
             boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
           }}>
-            {/* Subcategory label for cosm\u00e9tique */}
-            {activeTab === 'cosmetique' && SUBCATEGORY_LABELS[groupKey] && (
-              <div style={{
-                fontSize: '0.78rem', color: '#6b7280', fontWeight: 700,
-                textTransform: 'uppercase', letterSpacing: '0.06em',
-                marginBottom: '0.6rem', paddingLeft: '0.2rem',
-                display: 'flex', alignItems: 'center', gap: '0.4rem',
-              }}>
-                <span>{CATEGORY_ICONS[groupKey] || ''}</span>
-                {SUBCATEGORY_LABELS[groupKey]}
-              </div>
-            )}
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              {items.map(item => (
-                <ShopItemCard
-                  key={item.id}
-                  item={item}
+            <div style={{
+              fontSize: '0.78rem', color: '#6b7280', fontWeight: 700,
+              textTransform: 'uppercase', letterSpacing: '0.06em',
+              marginBottom: '0.6rem', paddingLeft: '0.2rem',
+              display: 'flex', alignItems: 'center', gap: '0.4rem',
+            }}>
+              <span>{CATEGORY_ICONS.mystere}</span>
+              Image mystère
+            </div>
+            <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, margin: '0 0 1rem 0.2rem' }}>
+              Dévoile un fragment pour 60 pièces. Maximum 2 fragments par jour, sur les deux images confondues.
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+              {Object.keys(mysteryImageDefinitions).map((imageId) => (
+                <MysteryImageCard
+                  key={imageId}
+                  imageId={imageId}
+                  mysteryImageDefinitions={mysteryImageDefinitions}
                   progress={progress}
-                  shields={shields}
                   purchaseAnim={purchaseAnim}
-                  onPurchase={handleRequestPurchase}
-                  onEquip={handleEquip}
-                  onPreviewFlame={handlePreviewFlame}
-                  onPreviewTitle={handlePreviewTitle}
-                  onPreviewVictory={handlePreviewVictory}
+                  onPurchase={handleRequestMysteryPurchase}
+                  onPreview={() => setPreviewMysteryImageId(imageId)}
                 />
               ))}
             </div>
           </div>
-        ))}
+        ) : (
+          Object.entries(grouped).map(([groupKey, items]) => (
+            <div key={groupKey} style={{
+              marginBottom: '1.5rem',
+              padding: '1rem',
+              borderRadius: 22,
+              background: 'linear-gradient(180deg, rgba(7,19,12,0.52), rgba(15,15,28,0.58))',
+              border: '1px solid rgba(255,255,255,0.05)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
+            }}>
+              {activeTab === 'cosmetique' && SUBCATEGORY_LABELS[groupKey] && (
+                <div style={{
+                  fontSize: '0.78rem', color: '#6b7280', fontWeight: 700,
+                  textTransform: 'uppercase', letterSpacing: '0.06em',
+                  marginBottom: '0.6rem', paddingLeft: '0.2rem',
+                  display: 'flex', alignItems: 'center', gap: '0.4rem',
+                }}>
+                  <span>{CATEGORY_ICONS[groupKey] || ''}</span>
+                  {SUBCATEGORY_LABELS[groupKey]}
+                </div>
+              )}
 
-        {filteredItems.length === 0 && (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                {items.map(item => (
+                  <ShopItemCard
+                    key={item.id}
+                    item={item}
+                    progress={progress}
+                    shields={shields}
+                    purchaseAnim={purchaseAnim}
+                    onPurchase={handleRequestPurchase}
+                    onEquip={handleEquip}
+                    onPreviewFlame={handlePreviewFlame}
+                    onPreviewTitle={handlePreviewTitle}
+                    onPreviewVictory={handlePreviewVictory}
+                  />
+                ))}
+              </div>
+            </div>
+          ))
+        )}
+
+        {activeTab !== 'mystere' && filteredItems.length === 0 && (
           <div style={{
             textAlign: 'center', padding: '3rem 1rem',
             color: '#4b5563', fontSize: '0.9rem',
@@ -653,12 +724,208 @@ export default function Shop({ progress, onPurchase, onEquip, onClose }) {
   );
 }
 
+function MysteryImageArtwork({ imageId, mysteryImageDefinitions, progress, large = false, onClick }) {
+  const definition = mysteryImageDefinitions[imageId];
+  const revealedCount = getMysteryImageProgress(progress, imageId, mysteryImageDefinitions).revealedCount;
+  const revealedTiles = new Set(getMysteryRevealedTileIndices(progress, imageId, mysteryImageDefinitions));
+
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        position: 'relative',
+        borderRadius: large ? 20 : 16,
+        overflow: 'hidden',
+        aspectRatio: '1408 / 768',
+        background: 'rgba(9,12,20,0.88)',
+        cursor: onClick ? 'pointer' : 'default',
+      }}
+    >
+      <img
+        src={getMysteryImageSource(imageId, mysteryImageDefinitions)}
+        alt={definition.name}
+        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+      />
+      {[0, 1, 2, 3, 4, 5].map((tileIndex) => {
+        const col = tileIndex % 3;
+        const row = Math.floor(tileIndex / 3);
+        const revealed = revealedTiles.has(tileIndex);
+        return (
+          <div
+            key={tileIndex}
+            style={{
+              position: 'absolute',
+              left: `${col * 33.3333}%`,
+              top: `${row * 50}%`,
+              width: '33.3333%',
+              height: '50%',
+              border: '1px solid rgba(255,255,255,0.08)',
+              boxSizing: 'border-box',
+              background: revealed ? 'transparent' : 'linear-gradient(180deg, rgba(10,14,24,0.76), rgba(5,8,15,0.88))',
+              backdropFilter: revealed ? 'none' : 'blur(10px)',
+              WebkitBackdropFilter: revealed ? 'none' : 'blur(10px)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              transition: 'all 0.35s ease',
+            }}
+          >
+            {!revealed && (
+              <div style={{
+                width: large ? 52 : 34,
+                height: large ? 52 : 34,
+                borderRadius: 999,
+                background: 'rgba(255,255,255,0.08)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#f8fafc',
+                fontSize: large ? '1.3rem' : '1rem',
+                fontWeight: 800,
+                boxShadow: '0 8px 22px rgba(0,0,0,0.28)',
+              }}>
+                ?
+              </div>
+            )}
+          </div>
+        );
+      })}
+      <div style={{
+        position: 'absolute',
+        left: large ? 16 : 12,
+        bottom: large ? 16 : 12,
+        padding: large ? '0.48rem 0.74rem' : '0.38rem 0.6rem',
+        borderRadius: 999,
+        background: 'rgba(10,14,24,0.68)',
+        border: '1px solid rgba(255,255,255,0.08)',
+        color: '#fff',
+        fontSize: large ? '0.88rem' : '0.74rem',
+        fontWeight: 700,
+      }}>
+        {revealedCount}/{MYSTERY_IMAGE_PARTS} fragments
+      </div>
+    </div>
+  );
+}
+
+function MysteryImageCard({ imageId, mysteryImageDefinitions, progress, purchaseAnim, onPurchase, onPreview }) {
+  const definition = mysteryImageDefinitions[imageId];
+  const progressEntry = getMysteryImageProgress(progress, imageId, mysteryImageDefinitions);
+  const revealedCount = progressEntry.revealedCount;
+  const purchasesLeftToday = getMysteryPurchasesLeftToday(progress, undefined, mysteryImageDefinitions);
+  const nextUnlockDate = getMysteryNextUnlockDate(progress, undefined, mysteryImageDefinitions);
+  const affordable = (progress.coins || 0) >= MYSTERY_IMAGE_PRICE;
+  const complete = revealedCount >= MYSTERY_IMAGE_PARTS;
+  const dailyLocked = purchasesLeftToday <= 0;
+  const canPurchase = canPurchaseMysteryImagePiece(progress, imageId, undefined, mysteryImageDefinitions);
+  const isAnimating = purchaseAnim === `${MYSTERY_IMAGE_PURCHASE_PREFIX}${imageId}`;
+  const missing = MYSTERY_IMAGE_PRICE - (progress.coins || 0);
+
+  let buttonText = '';
+  let buttonAction = null;
+  let buttonStyle = {};
+
+  if (complete) {
+    buttonText = 'Image complète';
+    buttonStyle = {
+      background: 'rgba(74,222,128,0.12)',
+      border: '1px solid rgba(74,222,128,0.22)',
+      color: '#4ade80',
+      cursor: 'default',
+    };
+  } else if (dailyLocked) {
+    buttonText = 'Max du jour';
+    buttonStyle = {
+      background: 'rgba(255,255,255,0.04)',
+      border: '1px solid rgba(255,255,255,0.06)',
+      color: '#4b5563',
+      cursor: 'default',
+    };
+  } else if (!affordable) {
+    buttonText = `Manque ${missing}`;
+    buttonStyle = {
+      background: 'rgba(255,255,255,0.04)',
+      border: '1px solid rgba(255,255,255,0.06)',
+      color: '#4b5563',
+      cursor: 'default',
+    };
+  } else if (canPurchase) {
+    buttonText = 'Dévoiler 1 fragment';
+    buttonAction = () => onPurchase(imageId);
+    buttonStyle = {
+      background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
+      border: 'none',
+      color: '#fff',
+      cursor: 'pointer',
+      boxShadow: '0 2px 10px rgba(var(--color-primary-rgb),0.25)',
+    };
+  }
+
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.8rem',
+      padding: '0.95rem',
+      borderRadius: 18,
+      background: 'rgba(255,255,255,0.04)',
+      border: '1px solid rgba(255,255,255,0.06)',
+      animation: isAnimating ? 'bounce-in 0.5s ease' : 'none',
+    }}>
+      <MysteryImageArtwork imageId={imageId} mysteryImageDefinitions={mysteryImageDefinitions} progress={progress} onClick={onPreview} />
+
+      <div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', gap: '0.6rem', alignItems: 'baseline', marginBottom: '0.15rem' }}>
+          <div style={{ fontSize: '0.95rem', fontWeight: 800, color: '#fff' }}>
+            {definition.name}
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.28rem', color: '#fbbf24', fontSize: '0.78rem', fontWeight: 700 }}>
+            <CoinIcon size={14} />
+            {MYSTERY_IMAGE_PRICE}
+          </div>
+        </div>
+        <div style={{ fontSize: '0.76rem', color: '#9ca3af', lineHeight: 1.45 }}>
+          6 fragments à révéler. La tête se débloque en dernier.
+        </div>
+        <div style={{ fontSize: '0.74rem', color: '#6b7280', lineHeight: 1.45, marginTop: '0.28rem' }}>
+          {complete
+            ? 'Image entièrement dévoilée.'
+            : dailyLocked
+              ? `Limite du jour atteinte. Retour à partir du ${formatFrenchDate(nextUnlockDate)}.`
+              : `Il reste ${purchasesLeftToday} fragment${purchasesLeftToday > 1 ? 's' : ''} à dévoiler aujourd’hui.`}
+        </div>
+      </div>
+
+      <button
+        onClick={buttonAction || undefined}
+        disabled={!buttonAction}
+        style={{
+          width: '100%',
+          padding: '0.72rem 0.9rem',
+          borderRadius: 12,
+          fontSize: '0.82rem',
+          fontWeight: 800,
+          transition: 'all 0.15s ease',
+          ...buttonStyle,
+        }}
+      >
+        {buttonText}
+      </button>
+    </div>
+  );
+}
+
 function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEquip, onPreviewFlame, onPreviewTitle, onPreviewVictory }) {
   const owned = item.type === 'permanent' && isOwned(progress, item.id);
   const affordable = canAfford(progress, item.id);
   const coins = progress.coins || 0;
   const missing = item.price - coins;
   const isAnimating = purchaseAnim === item.id;
+  const isDoubleCoins = item.id === 'double-coins';
+  const doubleCoinsLocked = isDoubleCoins && isDoubleCoinsWeeklyLocked(progress);
+  const doubleCoinsNextUnlockDate = isDoubleCoins ? getDoubleCoinsNextUnlockDate(progress) : null;
+  const doubleCoinsRemainingSessions = isDoubleCoins ? getDoubleCoinsRemainingSessions(progress) : 0;
 
   // Check if equipped
   const equipSlot = EQUIP_SLOT_MAP[item.category];
@@ -705,6 +972,14 @@ function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEqu
       color: '#4b5563',
       cursor: 'default',
     };
+  } else if (doubleCoinsLocked) {
+    buttonText = 'Déjà pris';
+    buttonStyle = {
+      background: 'rgba(255,255,255,0.04)',
+      border: '1px solid rgba(255,255,255,0.06)',
+      color: '#4b5563',
+      cursor: 'default',
+    };
   } else if (!affordable) {
     buttonText = `Manque ${missing}`;
     buttonStyle = {
@@ -717,11 +992,11 @@ function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEqu
     buttonText = 'Acheter';
     buttonAction = () => onPurchase(item.id);
     buttonStyle = {
-      background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+      background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
       border: 'none',
       color: '#fff',
       cursor: 'pointer',
-      boxShadow: '0 2px 10px rgba(124,58,237,0.25)',
+      boxShadow: '0 2px 10px rgba(var(--color-primary-rgb),0.25)',
     };
   }
 
@@ -791,6 +1066,16 @@ function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEqu
         <div style={{ fontSize: '0.72rem', color: '#6b7280', lineHeight: 1.4 }}>
           {item.description}
         </div>
+        {isDoubleCoins && doubleCoinsLocked && (
+          <div style={{ fontSize: '0.72rem', color: '#9ca3af', lineHeight: 1.4, marginTop: '0.22rem' }}>
+            Achat hebdo déjà utilisé. Débloqué à partir du {formatFrenchDate(doubleCoinsNextUnlockDate)}.
+          </div>
+        )}
+        {isDoubleCoins && !doubleCoinsLocked && doubleCoinsRemainingSessions > 0 && (
+          <div style={{ fontSize: '0.72rem', color: '#9ca3af', lineHeight: 1.4, marginTop: '0.22rem' }}>
+            Boost actif: {doubleCoinsRemainingSessions} quiz restant{doubleCoinsRemainingSessions > 1 ? 's' : ''}.
+          </div>
+        )}
         {!owned && (
           <div style={{
             display: 'flex', alignItems: 'center', gap: '0.25rem',
@@ -828,15 +1113,15 @@ function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEqu
   );
 }
 
-const pageStyle = (backgroundImage) => ({
+const pageStyle = {
   minHeight: '100vh',
-  backgroundColor: '#08110c',
-  backgroundImage: `linear-gradient(180deg, rgba(6,14,10,0.76), rgba(14,10,24,0.92)), url(${backgroundImage})`,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
+  backgroundColor: 'var(--color-bg1)',
+  backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
+  backgroundSize: 'cover, cover',
+  backgroundPosition: 'center, center',
   display: 'flex',
   alignItems: 'flex-start',
   justifyContent: 'center',
   fontFamily: 'var(--font-body)',
   color: '#e2e2e2',
-});
+};

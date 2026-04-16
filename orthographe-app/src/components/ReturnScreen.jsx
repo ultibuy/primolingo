@@ -234,7 +234,7 @@ export default function ReturnScreen({
                 textTransform: 'uppercase',
                 padding: '0.85rem 1rem',
                 borderRadius: 14,
-                border: `1px solid ${secretCodeError ? 'rgba(248,113,113,0.4)' : 'rgba(167,139,250,0.3)'}`,
+                border: `1px solid ${secretCodeError ? 'rgba(248,113,113,0.4)' : 'rgba(var(--color-primary-rgb),0.3)'}`,
                 background: 'rgba(255,255,255,0.04)',
                 color: '#fff',
                 fontSize: '1.1rem',
@@ -317,7 +317,7 @@ export default function ReturnScreen({
               onClick={() => onSaveStreak()}
               style={{
                 padding: '0.85rem 1.5rem', borderRadius: 14, border: 'none',
-                background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+                background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
                 color: '#fff', cursor: 'pointer', fontSize: '1rem', fontWeight: 700,
                 boxShadow: '0 4px 20px rgba(124,58,237,0.3)',
               }}
@@ -563,7 +563,7 @@ export default function ReturnScreen({
               padding: '0.9rem 2rem',
               borderRadius: 14,
               border: 'none',
-              background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+              background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
               color: '#fff',
               cursor: 'pointer',
               fontSize: '1.05rem',
@@ -582,7 +582,10 @@ export default function ReturnScreen({
   return (
     <div style={{
       position: 'fixed', inset: 0,
-      background: 'linear-gradient(135deg, rgba(var(--color-bg1-rgb),0.97) 0%, rgba(var(--color-bg2-rgb),0.97) 100%)',
+      backgroundColor: 'rgba(var(--color-bg1-rgb),0.97)',
+      backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
+      backgroundSize: 'cover, cover',
+      backgroundPosition: 'center, center',
       backdropFilter: 'blur(16px)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       zIndex: 1000,
@@ -740,7 +743,7 @@ const primaryButtonStyle = {
   padding: '0.85rem 1.5rem',
   borderRadius: 14,
   border: 'none',
-  background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+  background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
   color: '#fff',
   cursor: 'pointer',
   fontSize: '1rem',

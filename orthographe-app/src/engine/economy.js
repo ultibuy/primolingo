@@ -1,11 +1,71 @@
 /**
  * Economy system — shop catalog, purchasing, equipping, and weekly chest.
  */
+import mhaTransparent from '../assets/mha-transparent.png';
+import { formatLocalDate, getToday, parseLocalDate } from './sm2.js';
+
+export const DOUBLE_COINS_PRICE = 100;
+export const DOUBLE_COINS_SESSION_COUNT = 5;
+export const MYSTERY_IMAGE_PRICE = 60;
+export const MYSTERY_IMAGE_PARTS = 6;
+export const MYSTERY_IMAGE_DAILY_LIMIT = 2;
+export const MYSTERY_IMAGE_PURCHASE_PREFIX = 'mystery-piece:';
+export const MYSTERY_IMAGE_STATE_VERSION = 2;
+export const MYSTERY_IMAGE_DEFINITIONS = {
+  manga: {
+    id: 'manga',
+    name: 'Dragon céleste',
+    revealOrder: [1, 2, 3, 4, 5, 0],
+  },
+  ryu: {
+    id: 'ryu',
+    name: 'Guerrier fulgurant',
+    revealOrder: [0, 2, 3, 4, 5, 1],
+  },
+};
+
+export function buildMysteryRevealOrder(finalTileIndex) {
+  const safeFinalTileIndex = Math.max(0, Math.min(MYSTERY_IMAGE_PARTS - 1, Number(finalTileIndex) || 0));
+  const order = [];
+  for (let tileIndex = 0; tileIndex < MYSTERY_IMAGE_PARTS; tileIndex += 1) {
+    if (tileIndex !== safeFinalTileIndex) order.push(tileIndex);
+  }
+  order.push(safeFinalTileIndex);
+  return order;
+}
+
+function sanitizeCustomMysteryImageDefinition(entry) {
+  if (!entry || typeof entry !== 'object') return null;
+  const id = String(entry.id || '').trim();
+  const title = String(entry.title || '').trim();
+  const imageDataUrl = String(entry.imageDataUrl || '').trim();
+  if (!id || !title || !imageDataUrl) return null;
+  return {
+    id,
+    name: title,
+    imageDataUrl,
+    finalTileIndex: Math.max(0, Math.min(MYSTERY_IMAGE_PARTS - 1, Number(entry.finalTileIndex) || 0)),
+    revealOrder: buildMysteryRevealOrder(entry.finalTileIndex),
+    source: 'custom',
+  };
+}
+
+export function getMysteryImageDefinitions(customMysteryImages = []) {
+  const definitions = {
+    ...MYSTERY_IMAGE_DEFINITIONS,
+  };
+  for (const entry of customMysteryImages) {
+    const sanitized = sanitizeCustomMysteryImageDefinition(entry);
+    if (!sanitized) continue;
+    definitions[sanitized.id] = sanitized;
+  }
+  return definitions;
+}
 
 
 /**
  * Complete shop catalog.
- * Categories: themes, flames, titles, victoryAnimations, backgrounds, streakFreeze,
+ * Categories: themes, flames, titles, victoryAnimations, streakFreeze,
  *             doubleCoins, revealHint, rematch, modeSniper, questionMystery
  */
 export const SHOP_CATALOG = {
@@ -52,6 +112,15 @@ export const SHOP_CATALOG = {
     name: 'Midnight Purple',
     description: 'Violet profond et mystérieux.',
     price: 320,
+    type: 'permanent',
+    tier: 'premium',
+  },
+  'theme-my-hero-academy': {
+    id: 'theme-my-hero-academy',
+    category: 'themes',
+    name: 'My Hero Academy',
+    description: 'Palette héroïque vert olive et or doux avec ambiance manga.',
+    price: 360,
     type: 'permanent',
     tier: 'premium',
   },
@@ -183,39 +252,6 @@ export const SHOP_CATALOG = {
     type: 'permanent',
   },
 
-  // ── Cosmetic: Dashboard Backgrounds ──
-  'bg-geometric': {
-    id: 'bg-geometric',
-    category: 'backgrounds',
-    name: 'Géométrique',
-    description: 'Motif de lignes fines en arrière-plan',
-    price: 240,
-    type: 'permanent',
-  },
-  'bg-gradient': {
-    id: 'bg-gradient',
-    category: 'backgrounds',
-    name: 'Gradient doux',
-    description: 'Dégradé subtil qui change lentement',
-    price: 240,
-    type: 'permanent',
-  },
-  'bg-dots': {
-    id: 'bg-dots',
-    category: 'backgrounds',
-    name: 'Points',
-    description: 'Grille de points espacés',
-    price: 240,
-    type: 'permanent',
-  },
-  'bg-waves': {
-    id: 'bg-waves',
-    category: 'backgrounds',
-    name: 'Vagues',
-    description: 'Lignes ondulées au bas de l\'écran',
-    price: 240,
-    type: 'permanent',
-  },
   // ── Consumables: Insurance & Comfort ──
   'streak-freeze': {
     id: 'streak-freeze',
@@ -229,8 +265,8 @@ export const SHOP_CATALOG = {
     id: 'double-coins',
     category: 'doubleCoins',
     name: 'Double coins',
-    description: 'La prochaine session rapporte 2x les coins.',
-    price: 130,
+    description: 'Double les gains des 5 prochains quiz. 1 achat par semaine.',
+    price: DOUBLE_COINS_PRICE,
     type: 'consumable',
   },
 
@@ -273,12 +309,23 @@ export const SHOP_CATALOG = {
  * Theme definitions for the app color palette.
  */
 export const THEMES = {
-  default: { primary: '#a78bfa', accent: '#c4b5fd', bg1: '#1e1e2e', bg2: '#2d2b55' },
-  'theme-dark-blue': { primary: '#60a5fa', accent: '#93c5fd', bg1: '#0f172a', bg2: '#1e293b' },
-  'theme-forest-green': { primary: '#4ade80', accent: '#86efac', bg1: '#14261c', bg2: '#1a3a2a' },
-  'theme-warm-amber': { primary: '#fbbf24', accent: '#fde68a', bg1: '#27200f', bg2: '#3d3112' },
-  'theme-aurora': { primary: '#34d399', accent: '#a78bfa', bg1: '#0f1729', bg2: '#162033' },
-  'theme-midnight-purple': { primary: '#c084fc', accent: '#e879f9', bg1: '#1a0a2e', bg2: '#2d1452' },
+  default: { primary: '#a78bfa', accent: '#c4b5fd', bg1: '#1e1e2e', bg2: '#2d2b55', pageOverlay: 'linear-gradient(135deg, #1e1e2e 0%, #2d2b55 100%)', pageImage: 'none', pageImageSize: 'cover', pageImagePosition: 'center center', pageImageRepeat: 'no-repeat' },
+  'theme-dark-blue': { primary: '#60a5fa', accent: '#93c5fd', bg1: '#0f172a', bg2: '#1e293b', pageOverlay: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)', pageImage: 'none', pageImageSize: 'cover', pageImagePosition: 'center center', pageImageRepeat: 'no-repeat' },
+  'theme-forest-green': { primary: '#4ade80', accent: '#86efac', bg1: '#14261c', bg2: '#1a3a2a', pageOverlay: 'linear-gradient(135deg, #14261c 0%, #1a3a2a 100%)', pageImage: 'none', pageImageSize: 'cover', pageImagePosition: 'center center', pageImageRepeat: 'no-repeat' },
+  'theme-warm-amber': { primary: '#fbbf24', accent: '#fde68a', bg1: '#27200f', bg2: '#3d3112', pageOverlay: 'linear-gradient(135deg, #27200f 0%, #3d3112 100%)', pageImage: 'none', pageImageSize: 'cover', pageImagePosition: 'center center', pageImageRepeat: 'no-repeat' },
+  'theme-aurora': { primary: '#34d399', accent: '#a78bfa', bg1: '#0f1729', bg2: '#162033', pageOverlay: 'linear-gradient(135deg, #0f1729 0%, #162033 100%)', pageImage: 'none', pageImageSize: 'cover', pageImagePosition: 'center center', pageImageRepeat: 'no-repeat' },
+  'theme-midnight-purple': { primary: '#c084fc', accent: '#e879f9', bg1: '#1a0a2e', bg2: '#2d1452', pageOverlay: 'linear-gradient(135deg, #1a0a2e 0%, #2d1452 100%)', pageImage: 'none', pageImageSize: 'cover', pageImagePosition: 'center center', pageImageRepeat: 'no-repeat' },
+  'theme-my-hero-academy': {
+    primary: '#b7d94c',
+    accent: '#f0d36a',
+    bg1: '#111b11',
+    bg2: '#23361b',
+    pageOverlay: 'linear-gradient(145deg, rgba(10,18,10,0.9) 0%, rgba(25,42,19,0.78) 48%, rgba(12,18,10,0.94) 100%)',
+    pageImage: `url(${mhaTransparent})`,
+    pageImageSize: 'min(78vw, 540px) auto',
+    pageImagePosition: 'center center',
+    pageImageRepeat: 'no-repeat',
+  },
 };
 
 /**
@@ -308,6 +355,11 @@ export function applyTheme(themeId) {
   root.style.setProperty('--color-bg1-rgb', hexToRgb(theme.bg1));
   root.style.setProperty('--color-bg2', theme.bg2);
   root.style.setProperty('--color-bg2-rgb', hexToRgb(theme.bg2));
+  root.style.setProperty('--app-page-overlay', theme.pageOverlay || THEMES.default.pageOverlay);
+  root.style.setProperty('--app-page-image', theme.pageImage || 'none');
+  root.style.setProperty('--app-page-image-size', theme.pageImageSize || 'cover');
+  root.style.setProperty('--app-page-image-position', theme.pageImagePosition || 'center center');
+  root.style.setProperty('--app-page-image-repeat', theme.pageImageRepeat || 'no-repeat');
 }
 
 /**
@@ -321,6 +373,174 @@ export function canAfford(progress, itemId) {
   const item = SHOP_CATALOG[itemId];
   if (!item) return false;
   return (progress.coins || 0) >= item.price;
+}
+
+function getWeekStartDate(dateStr) {
+  const date = parseLocalDate(dateStr) || parseLocalDate(getToday());
+  const day = date.getDay();
+  const offset = day === 0 ? -6 : 1 - day;
+  date.setDate(date.getDate() + offset);
+  return date;
+}
+
+export function getCurrentShopWeek(dateStr = getToday()) {
+  return formatLocalDate(getWeekStartDate(dateStr));
+}
+
+export function getNextShopWeek(dateStr = getToday()) {
+  const date = getWeekStartDate(dateStr);
+  date.setDate(date.getDate() + 7);
+  return formatLocalDate(date);
+}
+
+export function getDoubleCoinsRemainingSessions(progress) {
+  const remaining = Number(progress?.shop?.activeBoosts?.doubleCoinsRemainingSessions || 0);
+  if (remaining > 0) return remaining;
+  return progress?.shop?.activeBoosts?.doubleCoins ? 1 : 0;
+}
+
+export function getDoubleCoinsBonusEarned(progress) {
+  return Number(progress?.shop?.activeBoosts?.doubleCoinsBonusEarned || 0);
+}
+
+export function hasDoubleCoinsActive(progress) {
+  return getDoubleCoinsRemainingSessions(progress) > 0;
+}
+
+export function isDoubleCoinsWeeklyLocked(progress, today = getToday()) {
+  const lastPurchasedWeek = progress?.shop?.activeBoosts?.doubleCoinsLastPurchasedWeek || null;
+  return !!lastPurchasedWeek && lastPurchasedWeek === getCurrentShopWeek(today);
+}
+
+export function getDoubleCoinsNextUnlockDate(progress, today = getToday()) {
+  if (!isDoubleCoinsWeeklyLocked(progress, today)) return null;
+  return getNextShopWeek(today);
+}
+
+export function createDefaultMysteryImagesState(definitions = MYSTERY_IMAGE_DEFINITIONS) {
+  return {
+    version: MYSTERY_IMAGE_STATE_VERSION,
+    daily: {
+      date: null,
+      purchases: 0,
+    },
+    collections: Object.fromEntries(
+      Object.keys(definitions).map((imageId) => [imageId, { revealedCount: 0 }]),
+    ),
+  };
+}
+
+export function normalizeMysteryImagesState(mysteryImages, definitions = MYSTERY_IMAGE_DEFINITIONS) {
+  const next = mysteryImages && typeof mysteryImages === 'object'
+    ? JSON.parse(JSON.stringify(mysteryImages))
+    : createDefaultMysteryImagesState(definitions);
+
+  const stateVersion = Number(next.version || 0);
+  next.version = MYSTERY_IMAGE_STATE_VERSION;
+
+  if (!next.daily || typeof next.daily !== 'object') {
+    next.daily = { date: null, purchases: 0 };
+  }
+  if (!Number.isFinite(next.daily.purchases)) {
+    next.daily.purchases = 0;
+  }
+  if (typeof next.daily.date !== 'string') {
+    next.daily.date = null;
+  }
+  if (stateVersion < MYSTERY_IMAGE_STATE_VERSION) {
+    next.daily.date = null;
+    next.daily.purchases = 0;
+  }
+  if (!next.collections || typeof next.collections !== 'object') {
+    next.collections = {};
+  }
+
+  for (const imageId of Object.keys(definitions)) {
+    const entry = next.collections[imageId];
+    const revealedCount = Number(entry?.revealedCount || 0);
+    next.collections[imageId] = {
+      revealedCount: Math.max(0, Math.min(MYSTERY_IMAGE_PARTS, revealedCount)),
+    };
+  }
+
+  return next;
+}
+
+export function isMysteryPurchaseId(itemId) {
+  return typeof itemId === 'string' && itemId.startsWith(MYSTERY_IMAGE_PURCHASE_PREFIX);
+}
+
+export function getMysteryImageIdFromPurchaseId(itemId, definitions = MYSTERY_IMAGE_DEFINITIONS) {
+  if (!isMysteryPurchaseId(itemId)) return null;
+  const imageId = itemId.slice(MYSTERY_IMAGE_PURCHASE_PREFIX.length);
+  return definitions[imageId] ? imageId : null;
+}
+
+export function getMysteryImageProgress(progress, imageId, definitions = MYSTERY_IMAGE_DEFINITIONS) {
+  const normalized = normalizeMysteryImagesState(progress?.shop?.mysteryImages, definitions);
+  return normalized.collections[imageId] || { revealedCount: 0 };
+}
+
+export function getMysteryPurchasesToday(progress, today = getToday(), definitions = MYSTERY_IMAGE_DEFINITIONS) {
+  const normalized = normalizeMysteryImagesState(progress?.shop?.mysteryImages, definitions);
+  if (normalized.daily.date !== today) return 0;
+  return normalized.daily.purchases;
+}
+
+export function getMysteryPurchasesLeftToday(progress, today = getToday(), definitions = MYSTERY_IMAGE_DEFINITIONS) {
+  return Math.max(0, MYSTERY_IMAGE_DAILY_LIMIT - getMysteryPurchasesToday(progress, today, definitions));
+}
+
+export function getMysteryNextUnlockDate(progress, today = getToday(), definitions = MYSTERY_IMAGE_DEFINITIONS) {
+  return getMysteryPurchasesLeftToday(progress, today, definitions) > 0 ? null : getToday(1);
+}
+
+export function getMysteryRevealedTileIndices(progress, imageId, definitions = MYSTERY_IMAGE_DEFINITIONS) {
+  const config = definitions[imageId];
+  if (!config) return [];
+  const revealedCount = getMysteryImageProgress(progress, imageId, definitions).revealedCount;
+  return config.revealOrder.slice(0, revealedCount);
+}
+
+export function canPurchaseMysteryImagePiece(progress, imageId, today = getToday(), definitions = MYSTERY_IMAGE_DEFINITIONS) {
+  if (!definitions[imageId]) return false;
+  if ((progress?.coins || 0) < MYSTERY_IMAGE_PRICE) return false;
+  if (getMysteryPurchasesLeftToday(progress, today, definitions) <= 0) return false;
+  return getMysteryImageProgress(progress, imageId, definitions).revealedCount < MYSTERY_IMAGE_PARTS;
+}
+
+export function purchaseMysteryImagePiece(progress, imageId, today = getToday(), definitions = MYSTERY_IMAGE_DEFINITIONS) {
+  if (!definitions[imageId]) {
+    return { success: false, progress, message: 'Image mystère inconnue.' };
+  }
+  if ((progress?.coins || 0) < MYSTERY_IMAGE_PRICE) {
+    return { success: false, progress, message: 'Tu n’as pas assez de pièces.' };
+  }
+
+  if (!progress.shop) {
+    progress.shop = createDefaultShop();
+  }
+
+  progress.shop.mysteryImages = normalizeMysteryImagesState(progress.shop.mysteryImages, definitions);
+
+  if (getMysteryPurchasesLeftToday(progress, today, definitions) <= 0) {
+    return { success: false, progress, message: 'Tu as déjà dévoilé 2 morceaux aujourd’hui.' };
+  }
+
+  const collection = progress.shop.mysteryImages.collections[imageId];
+  if (collection.revealedCount >= MYSTERY_IMAGE_PARTS) {
+    return { success: false, progress, message: 'Cette image est déjà complète.' };
+  }
+
+  progress.coins = (progress.coins || 0) - MYSTERY_IMAGE_PRICE;
+  collection.revealedCount += 1;
+  if (progress.shop.mysteryImages.daily.date !== today) {
+    progress.shop.mysteryImages.daily.date = today;
+    progress.shop.mysteryImages.daily.purchases = 0;
+  }
+  progress.shop.mysteryImages.daily.purchases += 1;
+
+  return { success: true, progress, message: 'Nouveau morceau dévoilé !' };
 }
 
 /**
@@ -379,6 +599,8 @@ export function purchaseItem(progress, itemId) {
       case 'double-coins':
         progress.shop.activeBoosts = progress.shop.activeBoosts || {};
         progress.shop.activeBoosts.doubleCoins = true;
+        progress.shop.activeBoosts.doubleCoinsRemainingSessions = getDoubleCoinsRemainingSessions(progress) + DOUBLE_COINS_SESSION_COUNT;
+        progress.shop.activeBoosts.doubleCoinsLastPurchasedWeek = getCurrentShopWeek();
         break;
       case 'reveal-hint':
         progress.shop.inventory.revealHint = (progress.shop.inventory.revealHint || 0) + 1;
@@ -429,7 +651,6 @@ export function equipItem(progress, itemId) {
     flames: 'flame',
     titles: 'title',
     victoryAnimations: 'victoryAnimation',
-    backgrounds: 'dashboardBackground',
   };
 
   const slot = categoryToSlot[item.category];
@@ -458,7 +679,7 @@ export function isOwned(progress, itemId) {
  * Get the currently equipped item for a given category.
  *
  * @param {object} progress - Full progress object.
- * @param {string} category - Category slot: 'theme', 'flame', 'title', 'victoryAnimation', 'dashboardBackground'.
+ * @param {string} category - Category slot: 'theme', 'flame', 'title', 'victoryAnimation'.
  * @returns {string|null} The equipped item ID, or null.
  */
 export function getEquipped(progress, category) {
@@ -477,11 +698,14 @@ function createDefaultShop() {
       flame: null,
       title: null,
       victoryAnimation: null,
-      dashboardBackground: null,
     },
     activeBoosts: {
       doubleCoins: false,
+      doubleCoinsRemainingSessions: 0,
+      doubleCoinsBonusEarned: 0,
+      doubleCoinsLastPurchasedWeek: null,
     },
+    mysteryImages: createDefaultMysteryImagesState(),
     inventory: {
       revealHint: 0,
       rematch: 0,

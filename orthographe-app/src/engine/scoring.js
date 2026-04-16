@@ -33,6 +33,19 @@ export function calculateCoins(score, total) {
 }
 
 /**
+ * Perfect session bonus.
+ *
+ * Applies to any session completed with a 100% score.
+ *
+ * @param {number} score - Number of correct answers.
+ * @param {number} total - Total number of questions.
+ * @returns {number} Bonus coins.
+ */
+export function calculatePerfectSessionBonus(score, total) {
+  return total > 0 && score === total ? 10 : 0;
+}
+
+/**
  * Check if a level-up has occurred and return the result.
  *
  * This function does NOT mutate ruleProgress — the caller is responsible

@@ -1,0 +1,890 @@
+{
+  "id": "groupes-verbes",
+  "title": "1er groupe · 2ème groupe · 3ème groupe",
+  "shortTitle": "Groupes de verbes",
+  "description": "Savoir identifier le groupe d'un verbe français : 1er groupe (verbes en -er sauf aller), 2ème groupe (verbes en -ir qui font -issons), 3ème groupe (tous les autres).",
+  "choices": [
+    {
+      "id": "g1",
+      "label": "1er groupe"
+    },
+    {
+      "id": "g2",
+      "label": "2ème groupe"
+    },
+    {
+      "id": "g3",
+      "label": "3ème groupe"
+    }
+  ],
+  "decisionAxes": [
+    {
+      "id": "terminaison",
+      "question": "Comment se termine le verbe à l'infinitif ?",
+      "sub": "Attention : « aller » est le seul verbe en -er qui n'est PAS du 1er groupe.",
+      "options": [
+        {
+          "value": "er",
+          "label": "En -er",
+          "sub": "Sauf « aller » → 1er groupe",
+          "eliminates": ["g2", "g3"]
+        },
+        {
+          "value": "ir",
+          "label": "En -ir",
+          "sub": "Peut être 2ème ou 3ème groupe → voir axe 2",
+          "eliminates": ["g1"]
+        },
+        {
+          "value": "autre",
+          "label": "Autre (-re, -oir, -dre…)",
+          "sub": "Forcément 3ème groupe",
+          "eliminates": ["g1", "g2"]
+        }
+      ]
+    },
+    {
+      "id": "issons",
+      "question": "Conjugué avec « nous », fait-il « -issons » ?",
+      "sub": "Exemple : nous finissons (2ème) / nous partons (3ème).",
+      "dependsOn": "terminaison",
+      "showWhen": "ir",
+      "options": [
+        {
+          "value": true,
+          "label": "Oui",
+          "sub": "Nous …issons → 2ème groupe",
+          "eliminates": ["g3"]
+        },
+        {
+          "value": false,
+          "label": "Non",
+          "sub": "Pas de -issons → 3ème groupe",
+          "eliminates": ["g2"]
+        }
+      ]
+    }
+  ],
+  "memoCard": {
+    "title": "Les trois groupes de verbes",
+    "rows": [
+      {
+        "form": "1er groupe",
+        "test": "Infinitif en -er (sauf aller)",
+        "example": "chanter, manger, jouer"
+      },
+      {
+        "form": "2ème groupe",
+        "test": "Infinitif en -ir + « nous …issons »",
+        "example": "finir → nous finissons"
+      },
+      {
+        "form": "3ème groupe",
+        "test": "Tous les autres (+ aller)",
+        "example": "partir, voir, prendre, aller"
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "before": "Le verbe « chanter » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Chanter se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q002",
+      "before": "Le verbe « manger » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Manger se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q003",
+      "before": "Le verbe « parler » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Parler se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q004",
+      "before": "Le verbe « jouer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Jouer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q005",
+      "before": "Le verbe « danser » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Danser se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q006",
+      "before": "Le verbe « travailler » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Travailler se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q007",
+      "before": "Le verbe « regarder » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Regarder se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q008",
+      "before": "Le verbe « écouter » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Écouter se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q009",
+      "before": "Le verbe « aimer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Aimer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q010",
+      "before": "Le verbe « chercher » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Chercher se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q011",
+      "before": "Le verbe « donner » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Donner se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q012",
+      "before": "Le verbe « marcher » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Marcher se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q013",
+      "before": "Le verbe « acheter » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Acheter se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q014",
+      "before": "Le verbe « voyager » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Voyager se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q015",
+      "before": "Le verbe « commencer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Commencer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q016",
+      "before": "Le verbe « penser » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Penser se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q017",
+      "before": "Le verbe « oublier » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Oublier se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q018",
+      "before": "Le verbe « nager » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Nager se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q019",
+      "before": "Le verbe « essayer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Essayer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q020",
+      "before": "Le verbe « créer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Créer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q021",
+      "before": "Le verbe « finir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 1,
+      "explanation": "Finir se termine en -ir et on dit « nous finissons » → 2ème groupe."
+    },
+    {
+      "id": "q022",
+      "before": "Le verbe « choisir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 1,
+      "explanation": "Choisir se termine en -ir et on dit « nous choisissons » → 2ème groupe."
+    },
+    {
+      "id": "q023",
+      "before": "Le verbe « réussir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 1,
+      "explanation": "Réussir se termine en -ir et on dit « nous réussissons » → 2ème groupe."
+    },
+    {
+      "id": "q024",
+      "before": "Le verbe « grandir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 1,
+      "explanation": "Grandir se termine en -ir et on dit « nous grandissons » → 2ème groupe."
+    },
+    {
+      "id": "q025",
+      "before": "Le verbe « grossir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 1,
+      "explanation": "Grossir se termine en -ir et on dit « nous grossissons » → 2ème groupe."
+    },
+    {
+      "id": "q026",
+      "before": "Le verbe « remplir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 1,
+      "explanation": "Remplir se termine en -ir et on dit « nous remplissons » → 2ème groupe."
+    },
+    {
+      "id": "q027",
+      "before": "Le verbe « obéir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Obéir se termine en -ir et on dit « nous obéissons » → 2ème groupe."
+    },
+    {
+      "id": "q028",
+      "before": "Le verbe « agir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Agir se termine en -ir et on dit « nous agissons » → 2ème groupe."
+    },
+    {
+      "id": "q029",
+      "before": "Le verbe « réfléchir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Réfléchir se termine en -ir et on dit « nous réfléchissons » → 2ème groupe."
+    },
+    {
+      "id": "q030",
+      "before": "Le verbe « nourrir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Nourrir se termine en -ir et on dit « nous nourrissons » → 2ème groupe."
+    },
+    {
+      "id": "q031",
+      "before": "Le verbe « applaudir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Applaudir se termine en -ir et on dit « nous applaudissons » → 2ème groupe."
+    },
+    {
+      "id": "q032",
+      "before": "Le verbe « guérir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Guérir se termine en -ir et on dit « nous guérissons » → 2ème groupe."
+    },
+    {
+      "id": "q033",
+      "before": "Le verbe « établir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Établir se termine en -ir et on dit « nous établissons » → 2ème groupe."
+    },
+    {
+      "id": "q034",
+      "before": "Le verbe « maigrir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Maigrir se termine en -ir et on dit « nous maigrissons » → 2ème groupe."
+    },
+    {
+      "id": "q035",
+      "before": "Le verbe « définir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Définir se termine en -ir et on dit « nous définissons » → 2ème groupe."
+    },
+    {
+      "id": "q036",
+      "before": "Le verbe « vieillir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Vieillir se termine en -ir et on dit « nous vieillissons » → 2ème groupe."
+    },
+    {
+      "id": "q037",
+      "before": "Le verbe « punir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Punir se termine en -ir et on dit « nous punissons » → 2ème groupe."
+    },
+    {
+      "id": "q038",
+      "before": "Le verbe « saisir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Saisir se termine en -ir et on dit « nous saisissons » → 2ème groupe."
+    },
+    {
+      "id": "q039",
+      "before": "Le verbe « ralentir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Ralentir se termine en -ir et on dit « nous ralentissons » → 2ème groupe."
+    },
+    {
+      "id": "q040",
+      "before": "Le verbe « réagir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Réagir se termine en -ir et on dit « nous réagissons » → 2ème groupe."
+    },
+    {
+      "id": "q041",
+      "before": "Le verbe « envahir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Envahir se termine en -ir et on dit « nous envahissons » → 2ème groupe."
+    },
+    {
+      "id": "q042",
+      "before": "Le verbe « embellir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Embellir se termine en -ir et on dit « nous embellissons » → 2ème groupe."
+    },
+    {
+      "id": "q043",
+      "before": "Le verbe « unir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Unir se termine en -ir et on dit « nous unissons » → 2ème groupe."
+    },
+    {
+      "id": "q044",
+      "before": "Le verbe « atterrir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Atterrir se termine en -ir et on dit « nous atterrissons » → 2ème groupe."
+    },
+    {
+      "id": "q045",
+      "before": "Le verbe « adoucir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Adoucir se termine en -ir et on dit « nous adoucissons » → 2ème groupe."
+    },
+    {
+      "id": "q046",
+      "before": "Le verbe « subir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Subir se termine en -ir et on dit « nous subissons » → 2ème groupe."
+    },
+    {
+      "id": "q047",
+      "before": "Le verbe « bâtir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Bâtir se termine en -ir et on dit « nous bâtissons » → 2ème groupe."
+    },
+    {
+      "id": "q048",
+      "before": "Le verbe « fournir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Fournir se termine en -ir et on dit « nous fournissons » → 2ème groupe."
+    },
+    {
+      "id": "q049",
+      "before": "Le verbe « divertir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Divertir se termine en -ir et on dit « nous divertissons » → 2ème groupe."
+    },
+    {
+      "id": "q050",
+      "before": "Le verbe « enrichir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Enrichir se termine en -ir et on dit « nous enrichissons » → 2ème groupe."
+    },
+    {
+      "id": "q051",
+      "before": "Le verbe « abolir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 3,
+      "explanation": "Abolir se termine en -ir et on dit « nous abolissons » → 2ème groupe."
+    },
+    {
+      "id": "q052",
+      "before": "Le verbe « démolir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Démolir se termine en -ir et on dit « nous démolissons » → 2ème groupe."
+    },
+    {
+      "id": "q053",
+      "before": "Le verbe « réunir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Réunir se termine en -ir et on dit « nous réunissons » → 2ème groupe."
+    },
+    {
+      "id": "q054",
+      "before": "Le verbe « avertir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Avertir se termine en -ir et on dit « nous avertissons » → 2ème groupe."
+    },
+    {
+      "id": "q055",
+      "before": "Le verbe « rougir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 1,
+      "explanation": "Rougir se termine en -ir et on dit « nous rougissons » → 2ème groupe."
+    },
+    {
+      "id": "q056",
+      "before": "Le verbe « pâlir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Pâlir se termine en -ir et on dit « nous pâlissons » → 2ème groupe."
+    },
+    {
+      "id": "q057",
+      "before": "Le verbe « noircir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Noircir se termine en -ir et on dit « nous noircissons » → 2ème groupe."
+    },
+    {
+      "id": "q058",
+      "before": "Le verbe « garnir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Garnir se termine en -ir et on dit « nous garnissons » → 2ème groupe."
+    },
+    {
+      "id": "q059",
+      "before": "Le verbe « épaissir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 3,
+      "explanation": "Épaissir se termine en -ir et on dit « nous épaississons » → 2ème groupe."
+    },
+    {
+      "id": "q060",
+      "before": "Le verbe « approfondir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 3,
+      "explanation": "Approfondir se termine en -ir et on dit « nous approfondissons » → 2ème groupe."
+    },
+    {
+      "id": "q061",
+      "before": "Le verbe « aller » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Aller se termine en -er mais c'est l'unique exception : il est du 3ème groupe."
+    },
+    {
+      "id": "q062",
+      "before": "Le verbe « prendre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Prendre se termine en -dre (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q063",
+      "before": "Le verbe « voir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Voir se termine en -oir (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q064",
+      "before": "Le verbe « faire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Faire se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q065",
+      "before": "Le verbe « partir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Partir se termine en -ir mais on dit « nous partons » (pas « partissons ») → 3ème groupe."
+    },
+    {
+      "id": "q066",
+      "before": "Le verbe « pouvoir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Pouvoir se termine en -oir (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q067",
+      "before": "Le verbe « vouloir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Vouloir se termine en -oir (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q068",
+      "before": "Le verbe « savoir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Savoir se termine en -oir (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q069",
+      "before": "Le verbe « devoir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Devoir se termine en -oir (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q070",
+      "before": "Le verbe « dormir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Dormir se termine en -ir mais on dit « nous dormons » (pas « dormissons ») → 3ème groupe."
+    },
+    {
+      "id": "q071",
+      "before": "Le verbe « venir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Venir se termine en -ir mais on dit « nous venons » (pas « venissons ») → 3ème groupe."
+    },
+    {
+      "id": "q072",
+      "before": "Le verbe « écrire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Écrire se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q073",
+      "before": "Le verbe « lire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Lire se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q074",
+      "before": "Le verbe « boire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Boire se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q075",
+      "before": "Le verbe « dire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Dire se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q076",
+      "before": "Le verbe « mettre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Mettre se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q077",
+      "before": "Le verbe « conduire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Conduire se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q078",
+      "before": "Le verbe « sortir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Sortir se termine en -ir mais on dit « nous sortons » (pas « sortissons ») → 3ème groupe."
+    },
+    {
+      "id": "q079",
+      "before": "Le verbe « croire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Croire se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q080",
+      "before": "Le verbe « courir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Courir se termine en -ir mais on dit « nous courons » (pas « courissons ») → 3ème groupe."
+    },
+    {
+      "id": "q081",
+      "before": "Le verbe « recevoir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Recevoir se termine en -oir (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q082",
+      "before": "Le verbe « vivre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Vivre se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q083",
+      "before": "Le verbe « ouvrir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Ouvrir se termine en -ir mais on dit « nous ouvrons » (pas « ouvrissons ») → 3ème groupe."
+    },
+    {
+      "id": "q084",
+      "before": "Le verbe « suivre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Suivre se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q085",
+      "before": "Le verbe « sentir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Sentir se termine en -ir mais on dit « nous sentons » (pas « sentissons ») → 3ème groupe."
+    },
+    {
+      "id": "q086",
+      "before": "Le verbe « construire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Construire se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q087",
+      "before": "Le verbe « peindre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Peindre se termine en -dre (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q088",
+      "before": "Le verbe « comprendre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Comprendre se termine en -dre (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q089",
+      "before": "Le verbe « craindre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Craindre se termine en -dre (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q090",
+      "before": "Le verbe « naître » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Naître se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q091",
+      "before": "Le verbe « tenir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Tenir se termine en -ir mais on dit « nous tenons » (pas « tenissons ») → 3ème groupe."
+    },
+    {
+      "id": "q092",
+      "before": "Le verbe « traduire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 1,
+      "explanation": "Traduire se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q093",
+      "before": "Le verbe « résoudre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Résoudre se termine en -dre (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q094",
+      "before": "Le verbe « mentir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Mentir se termine en -ir mais on dit « nous mentons » (pas « mentissons ») → 3ème groupe."
+    },
+    {
+      "id": "q095",
+      "before": "Le verbe « servir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Servir se termine en -ir mais on dit « nous servons » (pas « servissons ») → 3ème groupe."
+    },
+    {
+      "id": "q096",
+      "before": "Le verbe « mourir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Mourir se termine en -ir mais on dit « nous mourons » (pas « mourissons ») → 3ème groupe."
+    },
+    {
+      "id": "q097",
+      "before": "Le verbe « fuir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Fuir se termine en -ir mais on dit « nous fuyons » (pas « fuissons ») → 3ème groupe."
+    },
+    {
+      "id": "q098",
+      "before": "Le verbe « offrir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Offrir se termine en -ir mais on dit « nous offrons » (pas « offrissons ») → 3ème groupe."
+    },
+    {
+      "id": "q099",
+      "before": "Le verbe « cueillir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Cueillir se termine en -ir mais on dit « nous cueillons » (pas « cueillissons ») → 3ème groupe."
+    },
+    {
+      "id": "q100",
+      "before": "Le verbe « rire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Rire se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    }
+  ]
+}

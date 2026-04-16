@@ -1,0 +1,930 @@
+{
+  "id": "feminin-e-ee",
+  "title": "Terminaison du fémin -é  ou -ée",
+  "shortTitle": "-é / -ée",
+  "description": "Comment écrire le féminin des noms en -é, -té et -tié ? La plupart des noms féminins en -é prennent -ée, mais ceux en -té et -tié s'écrivent sans -e final (sauf exceptions).",
+  "choices": [
+    {
+      "id": "e",
+      "label": "-é"
+    },
+    {
+      "id": "ee",
+      "label": "-ée"
+    }
+  ],
+  "decisionAxes": [
+    {
+      "id": "son-final",
+      "question": "Le mot se termine-t-il par le son…",
+      "sub": "Écoute la fin du mot",
+      "options": [
+        {
+          "value": "te",
+          "label": "-té",
+          "sub": "liberté, beauté, dictée…",
+          "eliminates": []
+        },
+        {
+          "value": "tie",
+          "label": "-tié",
+          "sub": "amitié, moitié, pitié…",
+          "eliminates": [
+            "ee"
+          ]
+        },
+        {
+          "value": "autre",
+          "label": "Autre",
+          "sub": "cheminée, rentrée, clé…",
+          "eliminates": []
+        }
+      ]
+    },
+    {
+      "id": "exception-te",
+      "question": "Ce mot en -té est-il…",
+      "sub": "Certains mots en -té prennent quand même -ée",
+      "dependsOn": "son-final",
+      "showWhen": "te",
+      "options": [
+        {
+          "value": "exception",
+          "label": "Une exception (dictée, jetée, montée, pâtée, portée)",
+          "sub": "Noms dérivés d'un verbe → -ée",
+          "eliminates": [
+            "e"
+          ]
+        },
+        {
+          "value": "quantite",
+          "label": "Un nom de quantité (cuillerée, pelletée, brouettée, assiettée…)",
+          "sub": "Contenu d'un récipient → -ée",
+          "eliminates": [
+            "e"
+          ]
+        },
+        {
+          "value": "autre",
+          "label": "Autre",
+          "sub": "Nom abstrait classique → -é",
+          "eliminates": [
+            "ee"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exception-cle",
+      "question": "Est-ce le mot 'clé' ?",
+      "sub": "Seule exception des noms en -é : pas de -e final",
+      "dependsOn": "son-final",
+      "showWhen": "autre",
+      "options": [
+        {
+          "value": true,
+          "label": "Oui",
+          "sub": "Exception unique → -é",
+          "eliminates": [
+            "ee"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non",
+          "sub": "Règle générale → -ée",
+          "eliminates": [
+            "e"
+          ]
+        }
+      ]
+    }
+  ],
+  "memoCard": {
+    "title": "Féminin des noms en -é, -té, -tié",
+    "rows": [
+      {
+        "form": "-ée",
+        "test": "Nom féminin en -é → ajouter -e (règle générale)",
+        "example": "la cheminée, la rentrée, l'allée"
+      },
+      {
+        "form": "-é",
+        "test": "Nom en -té ou -tié → pas de -e final",
+        "example": "la liberté, la beauté, l'amitié"
+      },
+      {
+        "form": "-ée (exception)",
+        "test": "Exceptions en -té : dictée, jetée, montée, pâtée, portée + noms de contenu",
+        "example": "la dictée, la brouettée"
+      },
+      {
+        "form": "-é (exception)",
+        "test": "Exception unique : clé",
+        "example": "la clé"
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "before": "La chemin",
+      "after": " fume encore après l'incendie.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheminée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q002",
+      "before": "La rentr",
+      "after": " des classes est en septembre.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Rentrée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q003",
+      "before": "La libert",
+      "after": " est un droit fondamental.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Liberté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q004",
+      "before": "Il a perdu sa cl",
+      "after": " de voiture.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Clé est l'unique exception des noms en -é : pas de -e final → -é."
+    },
+    {
+      "id": "q005",
+      "before": "La dict",
+      "after": " était vraiment difficile.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Dictée se termine par [-té] mais c'est une exception (nom dérivé d'un verbe) → -ée."
+    },
+    {
+      "id": "q006",
+      "before": "L'amiti",
+      "after": " entre eux est sincère.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Amitié se termine par le son [-tié] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q007",
+      "before": "Cette journ",
+      "after": " a été magnifique.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Journée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q008",
+      "before": "La beaut",
+      "after": " du paysage les a émerveillés.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Beauté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q009",
+      "before": "La jet",
+      "after": " s'avançait loin dans la mer.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Jetée se termine par [-té] mais c'est une exception (nom dérivé d'un verbe) → -ée."
+    },
+    {
+      "id": "q010",
+      "before": "Une all",
+      "after": " de tilleuls bordait le chemin.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Allée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q011",
+      "before": "La sant",
+      "after": " passe avant tout.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Santé se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q012",
+      "before": "La mont",
+      "after": " était raide et glissante.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Montée se termine par [-té] mais c'est une exception (nom dérivé d'un verbe) → -ée."
+    },
+    {
+      "id": "q013",
+      "before": "La matin",
+      "after": " a été productive.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Matinée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q014",
+      "before": "La fiert",
+      "after": " se lisait dans son regard.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Fierté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q015",
+      "before": "Il mange une assiett",
+      "after": " de pâtes.",
+      "answer": "ee",
+      "difficulty": 3,
+      "explanation": "Assiettée se termine par [-té] mais c'est un nom de contenu (le contenu d'une assiette) → -ée."
+    },
+    {
+      "id": "q016",
+      "before": "La soir",
+      "after": " s'annonce belle.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Soirée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q017",
+      "before": "La curiosit",
+      "after": " est un vilain défaut.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Curiosité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q018",
+      "before": "La port",
+      "after": " de ce projet est considérable.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Portée se termine par [-té] mais c'est une exception (nom dérivé d'un verbe) → -ée."
+    },
+    {
+      "id": "q019",
+      "before": "La fum",
+      "after": " s'élevait dans le ciel.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Fumée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q020",
+      "before": "La difficult",
+      "after": " de l'exercice l'a surpris.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Difficulté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q021",
+      "before": "La moiti",
+      "after": " du gâteau a disparu.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Moitié se termine par le son [-tié] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q022",
+      "before": "L'entr",
+      "after": " du musée est gratuite.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Entrée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q023",
+      "before": "La pât",
+      "after": " pour le chat est dans le placard.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Pâtée se termine par [-té] mais c'est une exception → -ée."
+    },
+    {
+      "id": "q024",
+      "before": "La vanit",
+      "after": " est son plus grand défaut.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Vanité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q025",
+      "before": "La vall",
+      "after": " était couverte de brouillard.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Vallée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q026",
+      "before": "L'égalit",
+      "after": " est un principe fondamental.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Égalité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q027",
+      "before": "Il a transporté une brouett",
+      "after": " de sable.",
+      "answer": "ee",
+      "difficulty": 3,
+      "explanation": "Brouettée se termine par [-té] mais c'est un nom de contenu (le contenu d'une brouette) → -ée."
+    },
+    {
+      "id": "q028",
+      "before": "La pens",
+      "after": " du philosophe est profonde.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Pensée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q029",
+      "before": "La volont",
+      "after": " ne suffit pas toujours.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Volonté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q030",
+      "before": "La travers",
+      "after": " du désert a duré trois jours.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Traversée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q031",
+      "before": "La sociét",
+      "after": " a beaucoup changé.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Société se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q032",
+      "before": "La randonn",
+      "after": " dans les Alpes était superbe.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Randonnée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q033",
+      "before": "La piti",
+      "after": " se lisait dans ses yeux.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Pitié se termine par le son [-tié] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q034",
+      "before": "La mar",
+      "after": " était haute ce matin.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Marée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q035",
+      "before": "La sécurit",
+      "after": " des passagers est assurée.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Sécurité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q036",
+      "before": "La dur",
+      "after": " du film est de deux heures.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Durée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q037",
+      "before": "La clart",
+      "after": " de son explication m'a convaincu.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Clarté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q038",
+      "before": "Elle a mangé une pellet",
+      "after": " de bonbons.",
+      "answer": "ee",
+      "difficulty": 3,
+      "explanation": "Pelletée se termine par [-té] mais c'est un nom de contenu (le contenu d'une pelle) → -ée."
+    },
+    {
+      "id": "q039",
+      "before": "L'arriv",
+      "after": " du train est prévue à midi.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Arrivée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q040",
+      "before": "La qualit",
+      "after": " de ce produit est remarquable.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Qualité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q041",
+      "before": "La flamb",
+      "after": " des prix inquiète les consommateurs.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Flambée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q042",
+      "before": "L'autorit",
+      "after": " du professeur est respectée.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Autorité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q043",
+      "before": "La dict",
+      "after": " de ce matin portait sur les accords.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Dictée se termine par [-té] mais c'est une exception (nom dérivé d'un verbe) → -ée."
+    },
+    {
+      "id": "q044",
+      "before": "Quelle belle id",
+      "after": " tu as eue !",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Idée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q045",
+      "before": "La bont",
+      "after": " de cette personne est rare.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Bonté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q046",
+      "before": "La gel",
+      "after": " de framboise est délicieuse.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Gelée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q047",
+      "before": "La réalit",
+      "after": " dépasse parfois la fiction.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Réalité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q048",
+      "before": "La pur",
+      "after": " de pommes de terre était onctueuse.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Purée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q049",
+      "before": "La vérit",
+      "after": " finit toujours par éclater.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Vérité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q050",
+      "before": "Donne-moi la cl",
+      "after": " du garage.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Clé est l'unique exception des noms en -é : pas de -e final → -é."
+    },
+    {
+      "id": "q051",
+      "before": "La poign",
+      "after": " de main était ferme.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Poignée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q052",
+      "before": "La propriét",
+      "after": " est entourée d'un grand jardin.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Propriété se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q053",
+      "before": "La mont",
+      "after": " en puissance de cette équipe est impressionnante.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Montée se termine par [-té] mais c'est une exception (nom dérivé d'un verbe) → -ée."
+    },
+    {
+      "id": "q054",
+      "before": "La ros",
+      "after": " brillait sur les pétales.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Rosée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q055",
+      "before": "La loyaut",
+      "after": " est une vertu rare.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Loyauté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q056",
+      "before": "La tranch",
+      "after": " était remplie d'eau boueuse.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Tranchée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q057",
+      "before": "La gravit",
+      "after": " de la situation est préoccupante.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Gravité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q058",
+      "before": "La jet",
+      "after": " du port était battue par les vagues.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Jetée se termine par [-té] mais c'est une exception (nom dérivé d'un verbe) → -ée."
+    },
+    {
+      "id": "q059",
+      "before": "La maisonn",
+      "after": " entière était réunie pour le dîner.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Maisonnée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q060",
+      "before": "La cruaut",
+      "after": " de cette décision les a choqués.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Cruauté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q061",
+      "before": "L'ann",
+      "after": " prochaine, il partira en voyage.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Année ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q062",
+      "before": "L'honnêtet",
+      "after": " est la meilleure politique.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Honnêteté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q063",
+      "before": "La port",
+      "after": " de voix du chanteur est impressionnante.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Portée se termine par [-té] mais c'est une exception (nom dérivé d'un verbe) → -ée."
+    },
+    {
+      "id": "q064",
+      "before": "La corv",
+      "after": " de vaisselle ne plaît à personne.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Corvée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q065",
+      "before": "La générosit",
+      "after": " de nos voisins nous a touchés.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Générosité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q066",
+      "before": "La plong",
+      "after": " sous-marine demande de l'entraînement.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Plongée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q067",
+      "before": "L'identit",
+      "after": " du suspect reste inconnue.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Identité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q068",
+      "before": "Il a versé une charret",
+      "after": " de graviers dans l'allée.",
+      "answer": "ee",
+      "difficulty": 3,
+      "explanation": "Charretée se termine par [-té] mais c'est un nom de contenu (le contenu d'une charrette) → -ée."
+    },
+    {
+      "id": "q069",
+      "before": "La perc",
+      "after": " technologique a été saluée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Percée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q070",
+      "before": "La solidarit",
+      "after": " entre voisins s'est renforcée.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Solidarité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q071",
+      "before": "La cl",
+      "after": " de la réussite est le travail.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Clé est l'unique exception des noms en -é : pas de -e final → -é."
+    },
+    {
+      "id": "q072",
+      "before": "La mêl",
+      "after": " était confuse sur le terrain.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Mêlée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q073",
+      "before": "La pauvret",
+      "after": " touche des millions de personnes.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Pauvreté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q074",
+      "before": "La pât",
+      "after": " du chien est servie à dix-huit heures.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Pâtée se termine par [-té] mais c'est une exception → -ée."
+    },
+    {
+      "id": "q075",
+      "before": "La bouch",
+      "after": " de chocolat lui a fait plaisir.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Bouchée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q076",
+      "before": "La responsabilit",
+      "after": " de cette erreur lui incombe.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Responsabilité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q077",
+      "before": "La dict",
+      "after": " sera notée sur vingt.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Dictée se termine par [-té] mais c'est une exception (nom dérivé d'un verbe) → -ée."
+    },
+    {
+      "id": "q078",
+      "before": "L'orchid",
+      "after": " est une fleur délicate.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Orchidée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q079",
+      "before": "La propret",
+      "after": " de la cuisine est irréprochable.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Propreté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q080",
+      "before": "La lev",
+      "after": " de fonds a été un succès.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Levée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q081",
+      "before": "L'amiti",
+      "after": " ne se commande pas.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Amitié se termine par le son [-tié] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q082",
+      "before": "La pinc",
+      "after": " de sel a relevé le plat.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Pincée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q083",
+      "before": "La nouveaut",
+      "after": " de cette technologie attire les foules.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Nouveauté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q084",
+      "before": "La pes",
+      "after": " des bagages a pris du temps.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Pesée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q085",
+      "before": "La majorit",
+      "after": " des élèves a réussi l'examen.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Majorité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q086",
+      "before": "La mont",
+      "after": " des eaux inquiète les riverains.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Montée se termine par [-té] mais c'est une exception (nom dérivé d'un verbe) → -ée."
+    },
+    {
+      "id": "q087",
+      "before": "L'épop",
+      "after": " napoléonienne fascine les historiens.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Épopée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q088",
+      "before": "La publicit",
+      "after": " envahit notre quotidien.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Publicité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q089",
+      "before": "La moiti",
+      "after": " du chemin est déjà parcourue.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Moitié se termine par le son [-tié] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q090",
+      "before": "La tomb",
+      "after": " de la nuit les a surpris.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Tombée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q091",
+      "before": "L'obscurit",
+      "after": " régnait dans la pièce.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Obscurité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q092",
+      "before": "La jet",
+      "after": " servait de promenade aux touristes.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Jetée se termine par [-té] mais c'est une exception (nom dérivé d'un verbe) → -ée."
+    },
+    {
+      "id": "q093",
+      "before": "La lign",
+      "after": " royale s'est éteinte au XVIIIe siècle.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Lignée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q094",
+      "before": "La méchancet",
+      "after": " de ses propos l'a blessé.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Méchanceté se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q095",
+      "before": "La piti",
+      "after": " l'a poussé à l'aider.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Pitié se termine par le son [-tié] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q096",
+      "before": "La fourn",
+      "after": " de pains sortait du four.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Fournée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q097",
+      "before": "La fraternit",
+      "after": " est inscrite sur les frontons de la République.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Fraternité se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q098",
+      "before": "La port",
+      "after": " d'un fusil est de plusieurs centaines de mètres.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Portée se termine par [-té] mais c'est une exception (nom dérivé d'un verbe) → -ée."
+    },
+    {
+      "id": "q099",
+      "before": "La vir",
+      "after": " entre amis était très réussie.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Virée ne se termine pas par le son [-té] → règle générale : -ée."
+    },
+    {
+      "id": "q100",
+      "before": "L'universit",
+      "after": " accueille des milliers d'étudiants.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Université se termine par le son [-té] et n'est pas une exception → -é."
+    }
+  ]
+}

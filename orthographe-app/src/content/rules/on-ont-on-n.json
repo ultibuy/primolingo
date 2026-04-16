@@ -3,21 +3,43 @@
   "title": "on · ont · on n'",
   "shortTitle": "on / ont / on n'",
   "description": "Distinguer : on (pronom sujet = il/elle), ont (verbe avoir, ils/elles), on n' (on ne, négation devant voyelle).",
-
   "choices": [
-    { "id": "on",   "label": "on",    "isVerbe": false, "negatif": false },
-    { "id": "ont",  "label": "ont",   "isVerbe": true,  "negatif": false },
-    { "id": "onn",  "label": "on n'", "isVerbe": false, "negatif": true  }
+    {
+      "id": "on",
+      "label": "on"
+    },
+    {
+      "id": "ont",
+      "label": "ont"
+    },
+    {
+      "id": "onn",
+      "label": "on n'"
+    }
   ],
-
   "decisionAxes": [
     {
       "id": "isVerbe",
       "question": "Est-ce le verbe avoir ?",
       "sub": "Test : remplace par « avaient »",
       "options": [
-        { "value": true,  "label": "Oui → ont", "sub": "ils avaient → fonctionne", "eliminates": ["on","onn"] },
-        { "value": false, "label": "Non → on ou on n'", "sub": "pronom sujet = il/elle", "eliminates": ["ont"] }
+        {
+          "value": true,
+          "label": "Oui → ont",
+          "sub": "ils avaient → fonctionne",
+          "eliminates": [
+            "on",
+            "onn"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non → on ou on n'",
+          "sub": "pronom sujet = il/elle",
+          "eliminates": [
+            "ont"
+          ]
+        }
       ]
     },
     {
@@ -26,26 +48,48 @@
       "dependsOn": "isVerbe",
       "showWhen": false,
       "options": [
-        { "value": true,  "label": "Oui, négation devant voyelle → on n'", "eliminates": ["on"] },
-        { "value": false, "label": "Non → on", "eliminates": ["onn"] }
+        {
+          "value": true,
+          "label": "Oui, négation devant voyelle → on n'",
+          "eliminates": [
+            "on"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non → on",
+          "eliminates": [
+            "onn"
+          ]
+        }
       ]
     }
   ],
-
   "memoCard": {
     "title": "La règle en un coup d'œil",
     "rows": [
-      { "form": "on",    "test": "pronom = il/elle",         "example": "On part demain." },
-      { "form": "ont",   "test": "remplace par « avaient »", "example": "Ils ont fini. → Ils avaient fini. ✓" },
-      { "form": "on n'", "test": "on ne + voyelle",          "example": "On n'a pas le temps." }
+      {
+        "form": "on",
+        "test": "pronom = il/elle",
+        "example": "On part demain."
+      },
+      {
+        "form": "ont",
+        "test": "remplace par « avaient »",
+        "example": "Ils ont fini. → Ils avaient fini. ✓"
+      },
+      {
+        "form": "on n'",
+        "test": "on ne + voyelle",
+        "example": "On n'a pas le temps."
+      }
     ]
   },
-
   "questions": [
     {
       "id": "q001",
-      "before": "On ",
-      "after": " décidé de partir en vacances.",
+      "before": "",
+      "after": " a décidé de partir en vacances.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Sujet implicite 'on' (nous informel). Pas de verbe avoir ici."
@@ -60,7 +104,7 @@
     },
     {
       "id": "q003",
-      "before": "On n'",
+      "before": "",
       "after": "a pas vu ce film.",
       "answer": "onn",
       "difficulty": 1,
@@ -76,8 +120,8 @@
     },
     {
       "id": "q005",
-      "before": "On ",
-      "after": " rencontré de nouveaux amis.",
+      "before": "",
+      "after": " a rencontré de nouveaux amis.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet 'on'. Pas de négation."
@@ -92,7 +136,7 @@
     },
     {
       "id": "q007",
-      "before": "On n'",
+      "before": "",
       "after": "y comprenait rien.",
       "answer": "onn",
       "difficulty": 2,
@@ -100,8 +144,8 @@
     },
     {
       "id": "q008",
-      "before": "On ",
-      "after": " entendu une musique étrange.",
+      "before": "",
+      "after": " a entendu une musique étrange.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Pas de verbe avoir."
@@ -116,7 +160,7 @@
     },
     {
       "id": "q010",
-      "before": "On n'",
+      "before": "",
       "after": "était jamais allés là-bas.",
       "answer": "onn",
       "difficulty": 2,
@@ -124,8 +168,8 @@
     },
     {
       "id": "q011",
-      "before": "On ",
-      "after": " cherché partout mais sans succès.",
+      "before": "",
+      "after": " a cherché partout mais sans succès.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Structure : on + verbe."
@@ -140,7 +184,7 @@
     },
     {
       "id": "q013",
-      "before": "On n'",
+      "before": "",
       "after": "osait pas bouger.",
       "answer": "onn",
       "difficulty": 1,
@@ -148,8 +192,8 @@
     },
     {
       "id": "q014",
-      "before": "On ",
-      "after": " appelé le médecin immédiatement.",
+      "before": "",
+      "after": " a appelé le médecin immédiatement.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Pas de négation devant consonne."
@@ -164,7 +208,7 @@
     },
     {
       "id": "q016",
-      "before": "On n'",
+      "before": "",
       "after": "accepte pas cette offre.",
       "answer": "onn",
       "difficulty": 1,
@@ -172,8 +216,8 @@
     },
     {
       "id": "q017",
-      "before": "On ",
-      "after": " regardé le coucher de soleil.",
+      "before": "",
+      "after": " a regardé le coucher de soleil.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet informel. Pas de verbe avoir."
@@ -188,7 +232,7 @@
     },
     {
       "id": "q019",
-      "before": "On n'",
+      "before": "",
       "after": "a jamais compris pourquoi.",
       "answer": "onn",
       "difficulty": 2,
@@ -196,8 +240,8 @@
     },
     {
       "id": "q020",
-      "before": "On ",
-      "after": " trouvé la clé.",
+      "before": "",
+      "after": " a trouvé la clé.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Pas de négation."
@@ -212,7 +256,7 @@
     },
     {
       "id": "q022",
-      "before": "On n'",
+      "before": "",
       "after": "aura plus de temps.",
       "answer": "onn",
       "difficulty": 2,
@@ -220,8 +264,8 @@
     },
     {
       "id": "q023",
-      "before": "On ",
-      "after": " voyagé à travers l'Europe.",
+      "before": "",
+      "after": " a voyagé à travers l'Europe.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Structure affirmative."
@@ -236,7 +280,7 @@
     },
     {
       "id": "q025",
-      "before": "On n'",
+      "before": "",
       "after": "en parlait jamais.",
       "answer": "onn",
       "difficulty": 2,
@@ -244,8 +288,8 @@
     },
     {
       "id": "q026",
-      "before": "On ",
-      "after": " écouté la radio toute la nuit.",
+      "before": "",
+      "after": " a écouté la radio toute la nuit.",
       "answer": "on",
       "difficulty": 2,
       "explanation": "Pronom sujet avec durée (toute la nuit). Pas de verbe avoir."
@@ -260,7 +304,7 @@
     },
     {
       "id": "q028",
-      "before": "On n'",
+      "before": "",
       "after": "oublie pas ce moment.",
       "answer": "onn",
       "difficulty": 1,
@@ -268,8 +312,8 @@
     },
     {
       "id": "q029",
-      "before": "On ",
-      "after": " dansé jusqu'à minuit.",
+      "before": "",
+      "after": " a dansé jusqu'à minuit.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Pas de verbe avoir."
@@ -284,7 +328,7 @@
     },
     {
       "id": "q031",
-      "before": "On n'",
+      "before": "",
       "after": "imagine pas à quel point c'était difficile.",
       "answer": "onn",
       "difficulty": 2,
@@ -292,8 +336,8 @@
     },
     {
       "id": "q032",
-      "before": "On ",
-      "after": " mangé trop de chocolat.",
+      "before": "",
+      "after": " a mangé trop de chocolat.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Phrase affirmative."
@@ -308,7 +352,7 @@
     },
     {
       "id": "q034",
-      "before": "On n'",
+      "before": "",
       "after": "était pas d'accord avec cette décision.",
       "answer": "onn",
       "difficulty": 2,
@@ -316,8 +360,8 @@
     },
     {
       "id": "q035",
-      "before": "On ",
-      "after": " passé un excellent examen.",
+      "before": "",
+      "after": " a passé un excellent examen.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Pas de négation."
@@ -332,7 +376,7 @@
     },
     {
       "id": "q037",
-      "before": "On n'",
+      "before": "",
       "after": "entendait rien du tout.",
       "answer": "onn",
       "difficulty": 1,
@@ -340,8 +384,8 @@
     },
     {
       "id": "q038",
-      "before": "On ",
-      "after": " joué au football hier.",
+      "before": "",
+      "after": " a joué au football hier.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Structure simple."
@@ -356,7 +400,7 @@
     },
     {
       "id": "q040",
-      "before": "On n'",
+      "before": "",
       "after": "aurait jamais pensé que c'était possible.",
       "answer": "onn",
       "difficulty": 3,
@@ -364,8 +408,8 @@
     },
     {
       "id": "q041",
-      "before": "On ",
-      "after": " respiré profondément.",
+      "before": "",
+      "after": " a respiré profondément.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Action simple affirmative."
@@ -380,7 +424,7 @@
     },
     {
       "id": "q043",
-      "before": "On n'",
+      "before": "",
       "after": "arrivait à la maison qu'à minuit.",
       "answer": "onn",
       "difficulty": 2,
@@ -388,8 +432,8 @@
     },
     {
       "id": "q044",
-      "before": "On ",
-      "after": " travaillé dur tout l'été.",
+      "before": "",
+      "after": " a travaillé dur tout l'été.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet avec durée. Pas de verbe avoir."
@@ -404,7 +448,7 @@
     },
     {
       "id": "q046",
-      "before": "On n'",
+      "before": "",
       "after": "existe que pour ça.",
       "answer": "onn",
       "difficulty": 2,
@@ -412,8 +456,8 @@
     },
     {
       "id": "q047",
-      "before": "On ",
-      "after": " sorti sous la pluie.",
+      "before": "",
+      "after": " est sorti sous la pluie.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Phrase affirmative."
@@ -428,7 +472,7 @@
     },
     {
       "id": "q049",
-      "before": "On n'",
+      "before": "",
       "after": "avait nulle part où aller.",
       "answer": "onn",
       "difficulty": 2,
@@ -436,8 +480,8 @@
     },
     {
       "id": "q050",
-      "before": "On ",
-      "after": " lu ce roman durant les vacances.",
+      "before": "",
+      "after": " a lu ce roman durant les vacances.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Pas de négation."
@@ -452,7 +496,7 @@
     },
     {
       "id": "q052",
-      "before": "On n'",
+      "before": "",
       "after": "ouvre jamais cette porte.",
       "answer": "onn",
       "difficulty": 1,
@@ -460,8 +504,8 @@
     },
     {
       "id": "q053",
-      "before": "On ",
-      "after": " attendu trois heures.",
+      "before": "",
+      "after": " a attendu trois heures.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Pas de verbe avoir comme verbe principal."
@@ -476,7 +520,7 @@
     },
     {
       "id": "q055",
-      "before": "On n'",
+      "before": "",
       "after": "arrêtait pas de rire.",
       "answer": "onn",
       "difficulty": 2,
@@ -484,8 +528,8 @@
     },
     {
       "id": "q056",
-      "before": "On ",
-      "after": " grandi ensemble.",
+      "before": "",
+      "after": " a grandi ensemble.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Pas de négation."
@@ -500,7 +544,7 @@
     },
     {
       "id": "q058",
-      "before": "On n'",
+      "before": "",
       "after": "était absolument pas surpris.",
       "answer": "onn",
       "difficulty": 2,
@@ -508,8 +552,8 @@
     },
     {
       "id": "q059",
-      "before": "On ",
-      "after": " pensé à toi tous les jours.",
+      "before": "",
+      "after": " a pensé à toi tous les jours.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Structure affirmative."
@@ -524,7 +568,7 @@
     },
     {
       "id": "q061",
-      "before": "On n'",
+      "before": "",
       "after": "en savait rien.",
       "answer": "onn",
       "difficulty": 2,
@@ -532,8 +576,8 @@
     },
     {
       "id": "q062",
-      "before": "On ",
-      "after": " visité tous les musées.",
+      "before": "",
+      "after": " a visité tous les musées.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Pas de verbe avoir comme verbe principal."
@@ -548,7 +592,7 @@
     },
     {
       "id": "q064",
-      "before": "On n'",
+      "before": "",
       "after": "avait pas assez d'argent.",
       "answer": "onn",
       "difficulty": 2,
@@ -556,8 +600,8 @@
     },
     {
       "id": "q065",
-      "before": "On ",
-      "after": " célébré notre anniversaire.",
+      "before": "",
+      "after": " a célébré notre anniversaire.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Pas de négation."
@@ -572,7 +616,7 @@
     },
     {
       "id": "q067",
-      "before": "On n'",
+      "before": "",
       "after": "écoute que la musique classique.",
       "answer": "onn",
       "difficulty": 2,
@@ -580,8 +624,8 @@
     },
     {
       "id": "q068",
-      "before": "On ",
-      "after": " remarqué un détail.",
+      "before": "",
+      "after": " a remarqué un détail.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Phrase simple affirmative."
@@ -596,7 +640,7 @@
     },
     {
       "id": "q070",
-      "before": "On n'",
+      "before": "",
       "after": "allait nulle part.",
       "answer": "onn",
       "difficulty": 1,
@@ -604,8 +648,8 @@
     },
     {
       "id": "q071",
-      "before": "On ",
-      "after": " rêvé toute la nuit.",
+      "before": "",
+      "after": " a rêvé toute la nuit.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet avec durée. Pas de verbe avoir."
@@ -620,7 +664,7 @@
     },
     {
       "id": "q073",
-      "before": "On n'",
+      "before": "",
       "after": "aime que toi.",
       "answer": "onn",
       "difficulty": 3,
@@ -628,7 +672,7 @@
     },
     {
       "id": "q074",
-      "before": "On ",
+      "before": "",
       "after": " voyait les étoiles.",
       "answer": "on",
       "difficulty": 1,
@@ -644,7 +688,7 @@
     },
     {
       "id": "q076",
-      "before": "On n'",
+      "before": "",
       "after": "oublie jamais les gens qu'on aime.",
       "answer": "onn",
       "difficulty": 2,
@@ -652,8 +696,8 @@
     },
     {
       "id": "q077",
-      "before": "On ",
-      "after": " marché pendant des heures.",
+      "before": "",
+      "after": " a marché pendant des heures.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Pas de verbe avoir comme verbe principal."
@@ -668,7 +712,7 @@
     },
     {
       "id": "q079",
-      "before": "On n'",
+      "before": "",
       "after": "en parle plus.",
       "answer": "onn",
       "difficulty": 2,
@@ -676,8 +720,8 @@
     },
     {
       "id": "q080",
-      "before": "On ",
-      "after": " pris le train à 8 heures.",
+      "before": "",
+      "after": " a pris le train à 8 heures.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Passé composé affirmative, pas de verbe avoir principal."
@@ -692,7 +736,7 @@
     },
     {
       "id": "q082",
-      "before": "On n'",
+      "before": "",
       "after": "est jamais content.",
       "answer": "onn",
       "difficulty": 1,
@@ -700,8 +744,8 @@
     },
     {
       "id": "q083",
-      "before": "On ",
-      "after": " appris beaucoup de choses.",
+      "before": "",
+      "after": " a appris beaucoup de choses.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Pas de négation."
@@ -716,7 +760,7 @@
     },
     {
       "id": "q085",
-      "before": "On n'",
+      "before": "",
       "after": "accepte pas cela.",
       "answer": "onn",
       "difficulty": 2,
@@ -724,8 +768,8 @@
     },
     {
       "id": "q086",
-      "before": "On ",
-      "after": " senti une odeur bizarre.",
+      "before": "",
+      "after": " a senti une odeur bizarre.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet. Pas de verbe avoir comme verbe principal."
@@ -740,7 +784,7 @@
     },
     {
       "id": "q088",
-      "before": "On n'",
+      "before": "",
       "after": "imagine pas ce qui s'est passé.",
       "answer": "onn",
       "difficulty": 2,
@@ -748,7 +792,7 @@
     },
     {
       "id": "q089",
-      "before": "On ",
+      "before": "",
       "after": " voulait partir tôt.",
       "answer": "on",
       "difficulty": 1,
@@ -764,7 +808,7 @@
     },
     {
       "id": "q091",
-      "before": "On n'",
+      "before": "",
       "after": "ignore pas la gravité de la situation.",
       "answer": "onn",
       "difficulty": 3,
@@ -772,8 +816,8 @@
     },
     {
       "id": "q092",
-      "before": "On ",
-      "after": " skié toute la journée.",
+      "before": "",
+      "after": " a skié toute la journée.",
       "answer": "on",
       "difficulty": 1,
       "explanation": "Pronom sujet avec durée. Pas de verbe avoir."
@@ -788,7 +832,7 @@
     },
     {
       "id": "q094",
-      "before": "On n'",
+      "before": "",
       "after": "a pas assez de preuves.",
       "answer": "onn",
       "difficulty": 2,
@@ -796,11 +840,11 @@
     },
     {
       "id": "q095",
-      "before": "On ",
-      "after": " comprendre parfaitement.",
+      "before": "",
+      "after": " comprenait tout parfaitement.",
       "answer": "on",
       "difficulty": 2,
-      "explanation": "Pronom sujet. Verbe sans auxiliaire, infinitif nécessaire mais pas d'auxiliaire avoir."
+      "explanation": "Pronom sujet 'on'. Le test 'avaient' ne fonctionne pas : 'ils avaient comprenaient' ✗ → c'est 'on'."
     },
     {
       "id": "q096",
@@ -812,16 +856,16 @@
     },
     {
       "id": "q097",
-      "before": "On n'",
-      "after": "est censés faire cela.",
+      "before": "",
+      "after": "est pas censés faire cela.",
       "answer": "onn",
       "difficulty": 2,
-      "explanation": "Négation 'on ne' devant voyelle 'est' → on n'est."
+      "explanation": "Négation 'on ne' devant voyelle 'est' → on n'est. Avec 'pas' pour la négation complète."
     },
     {
       "id": "q098",
-      "before": "On ",
-      "after": " couru à toute vitesse.",
+      "before": "",
+      "after": " a couru à toute vitesse.",
       "answer": "on",
       "difficulty": 2,
       "explanation": "Pronom sujet. Pas de verbe avoir comme verbe principal."
@@ -836,7 +880,7 @@
     },
     {
       "id": "q100",
-      "before": "On n'",
+      "before": "",
       "after": "aurait pu faire mieux.",
       "answer": "onn",
       "difficulty": 3,

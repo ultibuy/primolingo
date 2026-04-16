@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import './index.css';
 
 // Content
@@ -7,11 +7,31 @@ import { allRules } from './content/loader.js';
 // Engine
 import { selectSessionQuestions, selectSniperQuestions } from './engine/session.js';
 import { initRuleSM2, updateRuleSM2, calculateDiamondHealth, getToday, parseLocalDate } from './engine/sm2.js';
-import { calculateCoins, checkLevelUp, updateStreak } from './engine/scoring.js';
-import { applyTheme } from './engine/economy.js';
+import { calculateCoins, calculatePerfectSessionBonus, checkLevelUp, updateStreak } from './engine/scoring.js';
+import {
+  applyTheme,
+  canPurchaseMysteryImagePiece,
+  createDefaultMysteryImagesState,
+  DOUBLE_COINS_SESSION_COUNT,
+  getCurrentShopWeek,
+  hasDoubleCoinsActive,
+  getMysteryImageDefinitions,
+  getMysteryImageIdFromPurchaseId,
+  isMysteryPurchaseId,
+  normalizeMysteryImagesState,
+  purchaseMysteryImagePiece,
+} from './engine/economy.js';
 
 // Persistence
-import { createDefaultProgress, loadProgress, saveProgress, getDailyBackups, restoreDailyBackup } from './store/persistence.js';
+import {
+  createDefaultProgress,
+  loadProgress,
+  saveProgress,
+  getDailyBackups,
+  restoreDailyBackup,
+  loadAdminSettings,
+  saveAdminSettings,
+} from './store/persistence.js';
 
 // Components
 import Dashboard from './components/Dashboard.jsx';
@@ -19,6 +39,8 @@ import QuizGuided from './components/QuizGuided.jsx';
 import QuizDirect from './components/QuizDirect.jsx';
 import Shop from './components/Shop.jsx';
 import ReturnScreen from './components/ReturnScreen.jsx';
+import AdminPage from './components/AdminPage.jsx';
+import PopupCloseButton from './components/PopupCloseButton.jsx';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -39,8 +61,8 @@ function readDebugMode() {
 
 const DEBUG_MODE = readDebugMode();
 if (typeof window !== 'undefined') window.__ORTHO_DEBUG__ = DEBUG_MODE;
-const SESSION_SIZE = DEBUG_MODE ? 1 : 20;
-if (typeof window !== 'undefined') window.__ORTHO_SESSION_SIZE__ = SESSION_SIZE;
+const DEFAULT_SESSION_SIZE = 20;
+const DEFAULT_DEBUG_SESSION_SIZE = 1;
 const FIRST_SESSION_BONUS = 10;
 const DIAMOND_PASS_THRESHOLD = 90; // >=90% to pass SM-2 review
 const INACTIVITY_DAYS = 2;
@@ -93,7 +115,7 @@ function getSecretCodeLockDurationMs(failedAttempts) {
 // ---------------------------------------------------------------------------
 
 /** Migrate V1 progress format to V2 if needed. */
-function migrateProgress(p) {
+function migrateProgress(p, mysteryImageDefinitions) {
   // Detect old format: rules have 'guidedUnlocked' or 'hasCrown' but no 'level'
   let migrated = false;
   const source = p && typeof p === 'object' ? p : createDefaultProgress();
@@ -177,11 +199,34 @@ function migrateProgress(p) {
   if (!next.shop) {
     next.shop = {
       owned: [],
-      equipped: { theme: null, flame: null, title: null, victoryAnimation: null, dashboardBackground: null },
-      activeBoosts: { doubleCoins: false },
+      equipped: { theme: null, flame: null, title: null, victoryAnimation: null },
+      activeBoosts: { doubleCoins: false, doubleCoinsRemainingSessions: 0, doubleCoinsLastPurchasedWeek: null },
+      mysteryImages: createDefaultMysteryImagesState(),
       inventory: { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 },
     };
   }
+  if (!next.shop.activeBoosts || typeof next.shop.activeBoosts !== 'object') {
+    next.shop.activeBoosts = { doubleCoins: false, doubleCoinsRemainingSessions: 0, doubleCoinsBonusEarned: 0, doubleCoinsLastPurchasedWeek: null };
+  }
+  if (typeof next.shop.activeBoosts.doubleCoinsRemainingSessions !== 'number') {
+    next.shop.activeBoosts.doubleCoinsRemainingSessions = next.shop.activeBoosts.doubleCoins ? 1 : 0;
+  }
+  if (typeof next.shop.activeBoosts.doubleCoinsBonusEarned !== 'number') {
+    next.shop.activeBoosts.doubleCoinsBonusEarned = 0;
+  }
+  if (typeof next.shop.activeBoosts.doubleCoinsLastPurchasedWeek !== 'string') {
+    next.shop.activeBoosts.doubleCoinsLastPurchasedWeek = null;
+  }
+  next.shop.activeBoosts.doubleCoins = next.shop.activeBoosts.doubleCoinsRemainingSessions > 0;
+  next.shop.equipped = next.shop.equipped && typeof next.shop.equipped === 'object'
+    ? {
+        theme: next.shop.equipped.theme || null,
+        flame: next.shop.equipped.flame || null,
+        title: next.shop.equipped.title || null,
+        victoryAnimation: next.shop.equipped.victoryAnimation || null,
+      }
+    : { theme: null, flame: null, title: null, victoryAnimation: null };
+  next.shop.mysteryImages = normalizeMysteryImagesState(next.shop.mysteryImages, mysteryImageDefinitions);
   // Ensure inventory exists (V5 migration)
   if (!next.shop.inventory) {
     next.shop.inventory = { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 };
@@ -352,6 +397,8 @@ function createDefaultRuleProgress() {
 // ---------------------------------------------------------------------------
 export default function App() {
   const [progress, setProgress] = useState(null);
+  const [adminSettings, setAdminSettings] = useState(null);
+  const [sessionSize, setSessionSize] = useState(DEBUG_MODE ? DEFAULT_DEBUG_SESSION_SIZE : DEFAULT_SESSION_SIZE);
   const [screen, setScreen] = useState('dashboard');
   const [activeRule, setActiveRule] = useState(null);
   const [activeMode, setActiveMode] = useState('guided');
@@ -367,6 +414,40 @@ export default function App() {
   const [isSniper, setIsSniper] = useState(false);
   const [saveError, setSaveError] = useState(null);
   const [dailyBackups, setDailyBackups] = useState([]);
+  const [adminSaveError, setAdminSaveError] = useState(null);
+  const [adminSaving, setAdminSaving] = useState(false);
+  const [pathname, setPathname] = useState(() => (typeof window !== 'undefined' ? window.location.pathname : '/'));
+  const [showFirstQuizBonusModal, setShowFirstQuizBonusModal] = useState(false);
+  const pendingQuizLaunchRef = useRef(null);
+  const mysteryImageDefinitions = getMysteryImageDefinitions(adminSettings?.customMysteryImages);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.__ORTHO_SESSION_SIZE__ = sessionSize;
+    }
+  }, [sessionSize]);
+
+  useEffect(() => {
+    if (!adminSettings) return;
+    setSessionSize(DEBUG_MODE ? adminSettings.debugQuestionCount : adminSettings.prodQuestionCount);
+  }, [adminSettings]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const handlePopState = () => setPathname(window.location.pathname);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const launchQuizWithFirstSessionModal = useCallback((launchFn) => {
+    const isFirstQuizOfDay = progress?.streak?.lastActiveDate !== getToday();
+    if (!isFirstQuizOfDay) {
+      launchFn();
+      return;
+    }
+    pendingQuizLaunchRef.current = launchFn;
+    setShowFirstQuizBonusModal(true);
+  }, [progress]);
 
   const refreshDailyBackups = useCallback(async () => {
     const backups = await getDailyBackups();
@@ -389,9 +470,12 @@ export default function App() {
   // Load progress on mount
   // ---------------------------------------------------------------------------
   useEffect(() => {
-    loadProgress().then(async (raw) => {
+    Promise.all([loadProgress(), loadAdminSettings()]).then(async ([raw, settings]) => {
+      setAdminSettings(settings);
+
       // Migrate old format if needed
-      const { progress: migratedProgress } = migrateProgress(raw);
+      const definitions = getMysteryImageDefinitions(settings?.customMysteryImages);
+      const { progress: migratedProgress } = migrateProgress(raw, definitions);
       let p = migratedProgress;
 
       // Apply diamond health decay
@@ -430,16 +514,18 @@ export default function App() {
     const quizMode = sm2Review ? 'direct' : (mode || determineQuizMode(ruleProgress));
 
     // Select session questions
-    const questions = selectSessionQuestions(rule, ruleProgress, SESSION_SIZE);
+    const questions = selectSessionQuestions(rule, ruleProgress, sessionSize);
     if (questions.length === 0) return; // No questions available — cannot launch quiz
 
-    setActiveRule(rule);
-    setActiveMode(quizMode);
-    setIsSM2Review(sm2Review);
-    setSessionQuestions(questions);
-    setPendingEvents([]);
-    setScreen('quiz');
-  }, [progress]);
+    launchQuizWithFirstSessionModal(() => {
+      setActiveRule(rule);
+      setActiveMode(quizMode);
+      setIsSM2Review(sm2Review);
+      setSessionQuestions(questions);
+      setPendingEvents([]);
+      setScreen('quiz');
+    });
+  }, [launchQuizWithFirstSessionModal, progress, sessionSize]);
 
   // ---------------------------------------------------------------------------
   // Handle quiz finish: process results, update progress, build events
@@ -502,13 +588,18 @@ export default function App() {
         rp.recentlyShown = [
           ...currentShown,
           ...previousShown.filter(id => !currentShown.includes(id)),
-        ].slice(0, SESSION_SIZE * 2);
+        ].slice(0, sessionSize * 2);
       }
 
       // ---------------------------------------------------------------
       // Calculate coins earned
       // ---------------------------------------------------------------
       let sessionCoins = calculateCoins(score, total);
+      const perfectSessionBonus = calculatePerfectSessionBonus(score, total);
+      if (perfectSessionBonus > 0) {
+        sessionCoins += perfectSessionBonus;
+        events.push({ type: 'perfectSessionBonus', value: perfectSessionBonus });
+      }
 
       // First session of day bonus
       const isFirstSessionToday = next.streak?.lastActiveDate !== today;
@@ -524,9 +615,12 @@ export default function App() {
       }
 
       // Double coins boost
-      if (next.shop?.activeBoosts?.doubleCoins) {
+      if (hasDoubleCoinsActive(next)) {
+        const baseSessionCoins = sessionCoins;
         sessionCoins *= 2;
-        next.shop.activeBoosts.doubleCoins = false;
+        next.shop.activeBoosts.doubleCoinsBonusEarned = (next.shop.activeBoosts.doubleCoinsBonusEarned || 0) + baseSessionCoins;
+        next.shop.activeBoosts.doubleCoinsRemainingSessions = Math.max((next.shop.activeBoosts.doubleCoinsRemainingSessions || 0) - 1, 0);
+        next.shop.activeBoosts.doubleCoins = next.shop.activeBoosts.doubleCoinsRemainingSessions > 0;
         events.push({ type: 'doubleCoins' });
       }
 
@@ -676,7 +770,7 @@ export default function App() {
     setIsSM2Review(false);
     setSessionQuestions([]);
     setIsSniper(false);
-  }, [activeRule, activeMode, isSM2Review, isSniper, persistProgress, sessionQuestions]);
+  }, [activeRule, activeMode, isSM2Review, isSniper, persistProgress, sessionQuestions, sessionSize]);
 
   // ---------------------------------------------------------------------------
   // FIX 1 — Clear pending events after Dashboard has shown them all
@@ -693,25 +787,43 @@ export default function App() {
       const next = JSON.parse(JSON.stringify(prev));
       if (next.coins < cost) return prev; // not enough coins
 
-      next.coins -= cost;
-
       if (!next.shop) {
         next.shop = {
           owned: [],
-          equipped: { theme: null, flame: null, title: null, victoryAnimation: null, dashboardBackground: null },
-          activeBoosts: { doubleCoins: false },
+          equipped: { theme: null, flame: null, title: null, victoryAnimation: null },
+          activeBoosts: { doubleCoins: false, doubleCoinsRemainingSessions: 0, doubleCoinsBonusEarned: 0, doubleCoinsLastPurchasedWeek: null },
+          mysteryImages: createDefaultMysteryImagesState(),
           inventory: { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 },
         };
       }
+      if (!next.shop.activeBoosts) {
+        next.shop.activeBoosts = { doubleCoins: false, doubleCoinsRemainingSessions: 0, doubleCoinsBonusEarned: 0, doubleCoinsLastPurchasedWeek: null };
+      }
+      next.shop.mysteryImages = normalizeMysteryImagesState(next.shop.mysteryImages, mysteryImageDefinitions);
       // Ensure inventory exists
       if (!next.shop.inventory) {
         next.shop.inventory = { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 };
       }
 
+      if (isMysteryPurchaseId(itemId)) {
+        const imageId = getMysteryImageIdFromPurchaseId(itemId, mysteryImageDefinitions);
+        if (!imageId || !canPurchaseMysteryImagePiece(next, imageId, undefined, mysteryImageDefinitions)) return prev;
+        const result = purchaseMysteryImagePiece(next, imageId, undefined, mysteryImageDefinitions);
+        if (!result.success) return prev;
+        persistProgress(next);
+        return next;
+      }
+
       // Handle consumables vs permanents
+      next.coins -= cost;
       if (itemId === 'streak-freeze') {
         next.shields = Math.min((next.shields || 0) + 1, 2);
       } else if (itemId === 'double-coins') {
+        const currentWeek = getCurrentShopWeek();
+        if (next.shop.activeBoosts.doubleCoinsLastPurchasedWeek === currentWeek) return prev;
+        next.shop.activeBoosts.doubleCoinsRemainingSessions = (next.shop.activeBoosts.doubleCoinsRemainingSessions || 0) + DOUBLE_COINS_SESSION_COUNT;
+        next.shop.activeBoosts.doubleCoinsBonusEarned = 0;
+        next.shop.activeBoosts.doubleCoinsLastPurchasedWeek = currentWeek;
         next.shop.activeBoosts.doubleCoins = true;
       } else if (itemId === 'reveal-hint') {
         next.shop.inventory.revealHint = (next.shop.inventory.revealHint || 0) + 1;
@@ -731,14 +843,14 @@ export default function App() {
       persistProgress(next);
       return next;
     });
-  }, [persistProgress]);
+  }, [mysteryImageDefinitions, persistProgress]);
 
   const handleEquip = useCallback((category, itemId) => {
     setProgress(prev => {
       const next = JSON.parse(JSON.stringify(prev));
       if (!next.shop) return prev;
       if (!next.shop.equipped) {
-        next.shop.equipped = { theme: null, flame: null, title: null, victoryAnimation: null, dashboardBackground: null };
+        next.shop.equipped = { theme: null, flame: null, title: null, victoryAnimation: null };
       }
       next.shop.equipped[category] = itemId;
       persistProgress(next);
@@ -754,6 +866,18 @@ export default function App() {
 
   const handleOpenShop = useCallback(() => {
     setScreen('shop');
+  }, []);
+
+  const handleOpenAdmin = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    window.history.pushState({}, '', `/admin${window.location.search}`);
+    setPathname('/admin');
+  }, []);
+
+  const handleCloseAdmin = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    window.history.pushState({}, '', `/${window.location.search}`);
+    setPathname('/');
   }, []);
 
   // ---------------------------------------------------------------------------
@@ -788,14 +912,16 @@ export default function App() {
       questions: questions,
     };
 
-    setActiveRule(sniperRule);
-    setActiveMode('direct');
-    setIsSM2Review(false);
-    setIsSniper(true);
-    setSessionQuestions(questions);
-    setPendingEvents([]);
-    setScreen('quiz');
-  }, [persistProgress, progress]);
+    launchQuizWithFirstSessionModal(() => {
+      setActiveRule(sniperRule);
+      setActiveMode('direct');
+      setIsSM2Review(false);
+      setIsSniper(true);
+      setSessionQuestions(questions);
+      setPendingEvents([]);
+      setScreen('quiz');
+    });
+  }, [launchQuizWithFirstSessionModal, persistProgress, progress]);
 
   // ---------------------------------------------------------------------------
   // B2 — Rematch: replay last session with the same questions
@@ -817,14 +943,16 @@ export default function App() {
     const rule = allRules.find(r => r.id === lastSessionRuleId);
     if (!rule) return;
 
-    setActiveRule(rule);
-    setActiveMode(lastSessionMode || 'direct');
-    setIsSM2Review(false);
-    setIsSniper(false);
-    setSessionQuestions([...lastSessionQuestions]);
-    setPendingEvents([]);
-    setScreen('quiz');
-  }, [lastSessionMode, lastSessionQuestions, lastSessionRuleId, persistProgress, progress]);
+    launchQuizWithFirstSessionModal(() => {
+      setActiveRule(rule);
+      setActiveMode(lastSessionMode || 'direct');
+      setIsSM2Review(false);
+      setIsSniper(false);
+      setSessionQuestions([...lastSessionQuestions]);
+      setPendingEvents([]);
+      setScreen('quiz');
+    });
+  }, [lastSessionMode, lastSessionQuestions, lastSessionRuleId, launchQuizWithFirstSessionModal, persistProgress, progress]);
 
   // ---------------------------------------------------------------------------
   // B1 — Use inventory item during quiz (callback passed to quiz components)
@@ -872,10 +1000,40 @@ export default function App() {
     setScreen('dashboard');
   }, [returnData, persistProgress]);
 
+  const handleAdminSave = useCallback(async (nextSettings) => {
+    setAdminSaving(true);
+    const result = await saveAdminSettings(nextSettings);
+    setAdminSaving(false);
+
+    if (!result?.success) {
+      setAdminSaveError(result?.error || 'Les paramètres admin n’ont pas pu être sauvegardés.');
+      return result;
+    }
+
+    setAdminSaveError(null);
+    setAdminSettings(result.settings);
+
+    setProgress((prev) => {
+      if (!prev) return prev;
+      const next = {
+        ...prev,
+        parentalCode: {
+          ...prev.parentalCode,
+          failedAttempts: 0,
+          lockedUntil: 0,
+        },
+      };
+      persistProgress(next);
+      return next;
+    });
+
+    return result;
+  }, [persistProgress]);
+
   const handleReturnSecretCodeSubmit = useCallback((rawCode) => {
     const enteredCode = normalizeSecretCode(rawCode);
     const parentalCode = progress?.parentalCode || {};
-    const storedCode = normalizeSecretCode(parentalCode.code);
+    const storedCode = normalizeSecretCode(adminSettings?.parentalCode);
     const now = Date.now();
 
     if (enteredCode.length !== SECRET_CODE_LENGTH) {
@@ -899,7 +1057,6 @@ export default function App() {
           ...prev,
           parentalCode: {
             ...prev.parentalCode,
-            code: normalizeSecretCode(prev.parentalCode?.code) || storedCode,
             failedAttempts,
             lockedUntil,
           },
@@ -920,7 +1077,6 @@ export default function App() {
         ...prev,
         parentalCode: {
           ...prev.parentalCode,
-          code: storedCode,
           failedAttempts: 0,
           lockedUntil: 0,
         },
@@ -933,27 +1089,7 @@ export default function App() {
     setScreen('dashboard');
 
     return { ok: true };
-  }, [persistProgress, progress]);
-
-  const handleDebugUpdateSecretCode = useCallback((rawCode) => {
-    const code = normalizeSecretCode(rawCode);
-    if (code.length !== SECRET_CODE_LENGTH) return false;
-
-    setProgress(prev => {
-      const next = {
-        ...prev,
-        parentalCode: {
-          ...prev.parentalCode,
-          code,
-          failedAttempts: 0,
-          lockedUntil: 0,
-        },
-      };
-      persistProgress(next);
-      return next;
-    });
-    return true;
-  }, [persistProgress]);
+  }, [adminSettings, persistProgress, progress]);
 
   const handleCloseQuiz = useCallback(() => {
     setScreen('dashboard');
@@ -972,6 +1108,50 @@ export default function App() {
           {saveError}
         </div>
       )}
+      {showFirstQuizBonusModal && (
+        <div style={firstQuizModalBackdropStyle}>
+          <div style={firstQuizModalCardStyle}>
+            <PopupCloseButton
+              onClick={() => {
+                pendingQuizLaunchRef.current = null;
+                setShowFirstQuizBonusModal(false);
+              }}
+              top={12}
+              right={12}
+              size={38}
+            />
+            <div style={firstQuizBonusKickerStyle}>Bonus du jour</div>
+            <div style={firstQuizBonusTitleStyle}>Va jusqu’au bout de ce 1er quiz de ta journée et gagne un bonus de 10 pièces !</div>
+            <div style={firstQuizBonusTextStyle}>
+              Termine ton quiz d’aujourd’hui pour débloquer immédiatement les 10 pièces bonus du premier quiz du jour.
+            </div>
+            <div style={firstQuizBonusActionsStyle}>
+              <button
+                type="button"
+                onClick={() => {
+                  pendingQuizLaunchRef.current = null;
+                  setShowFirstQuizBonusModal(false);
+                }}
+                style={firstQuizBonusSecondaryButtonStyle}
+              >
+                Plus tard
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  const launchFn = pendingQuizLaunchRef.current;
+                  pendingQuizLaunchRef.current = null;
+                  setShowFirstQuizBonusModal(false);
+                  if (launchFn) launchFn();
+                }}
+                style={firstQuizBonusPrimaryButtonStyle}
+              >
+                Commencer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       {content}
     </>
   );
@@ -979,17 +1159,32 @@ export default function App() {
   // ---------------------------------------------------------------------------
   // Render
   // ---------------------------------------------------------------------------
-  if (loading || !progress) {
+  if (loading || !progress || !adminSettings) {
     return renderWithSaveError(
       <div style={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, var(--color-bg1) 0%, var(--color-bg2) 100%)',
+        backgroundColor: 'var(--color-bg1)',
+        backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
+        backgroundSize: 'cover, cover',
+        backgroundPosition: 'center, center',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         color: 'var(--color-accent)', fontSize: '1.2rem', fontWeight: 600,
         fontFamily: 'var(--font-body)',
       }}>
         Chargement…
       </div>
+    );
+  }
+
+  if (pathname === '/admin') {
+    return renderWithSaveError(
+      <AdminPage
+        settings={adminSettings}
+        onSave={handleAdminSave}
+        onBack={handleCloseAdmin}
+        saving={adminSaving}
+        saveError={adminSaveError}
+      />
     );
   }
 
@@ -1020,7 +1215,7 @@ export default function App() {
   if (screen === 'quiz' && activeRule) {
     const QuizComponent = activeMode === 'direct' ? QuizDirect : QuizGuided;
     const inventory = progress.shop?.inventory || { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 };
-    const hasDoubleCoinsActive = !!progress.shop?.activeBoosts?.doubleCoins;
+    const hasDoubleCoinsActiveNow = hasDoubleCoinsActive(progress);
     const isFirstSessionOfDay = progress.streak?.lastActiveDate !== getToday();
     const ruleProgress = activeRule.id === '__sniper__' ? null : progress.rules?.[activeRule.id];
     const victoryAnimationId = progress.shop?.equipped?.victoryAnimation || null;
@@ -1032,7 +1227,7 @@ export default function App() {
         inventory={inventory}
         onUseItem={handleUseItem}
         isSniper={isSniper}
-        hasDoubleCoinsActive={hasDoubleCoinsActive}
+        hasDoubleCoinsActive={hasDoubleCoinsActiveNow}
         allRules={allRules}
         isFirstSessionOfDay={isFirstSessionOfDay}
         ruleProgress={ruleProgress}
@@ -1048,6 +1243,7 @@ export default function App() {
     return renderWithSaveError(
       <Shop
         progress={progress}
+        adminSettings={adminSettings}
         onPurchase={handlePurchase}
         onEquip={handleEquip}
         onClose={handleCloseShop}
@@ -1066,6 +1262,7 @@ export default function App() {
         rules={sortedRules}
         progress={progress}
         onPlay={handlePlay}
+        onOpenAdmin={handleOpenAdmin}
         onOpenShop={handleOpenShop}
         pendingEvents={pendingEvents}
         onEventsSeen={handleEventsSeen}
@@ -1079,8 +1276,6 @@ export default function App() {
           persistProgress(next);
           window.location.reload();
         } : undefined}
-        onDebugUpdateSecretCode={DEBUG_MODE ? handleDebugUpdateSecretCode : undefined}
-        debugSecretCode={DEBUG_MODE ? (progress.parentalCode?.code || '') : undefined}
         dailyBackups={DEBUG_MODE ? dailyBackups : []}
         onDebugRestoreBackup={DEBUG_MODE ? async (backup) => {
           const result = await restoreDailyBackup(backup);
@@ -1117,4 +1312,82 @@ const saveErrorStyle = {
   textAlign: 'center',
   fontSize: '0.9rem',
   fontWeight: 600,
+};
+
+const firstQuizModalBackdropStyle = {
+  position: 'fixed',
+  inset: 0,
+  background: 'rgba(0,0,0,0.62)',
+  backdropFilter: 'blur(8px)',
+  WebkitBackdropFilter: 'blur(8px)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  zIndex: 1200,
+  padding: '1rem',
+};
+
+const firstQuizModalCardStyle = {
+  width: 'min(460px, calc(100vw - 2rem))',
+  background: 'linear-gradient(180deg, rgba(var(--color-bg1-rgb),0.98), rgba(var(--color-bg2-rgb),0.94))',
+  border: '1px solid rgba(var(--color-accent-rgb),0.2)',
+  borderRadius: 24,
+  padding: '1.35rem 1.25rem 1.15rem',
+  boxShadow: '0 24px 60px rgba(0,0,0,0.38)',
+  position: 'relative',
+  display: 'grid',
+  gap: '0.75rem',
+  textAlign: 'center',
+};
+
+const firstQuizBonusKickerStyle = {
+  fontSize: '0.72rem',
+  textTransform: 'uppercase',
+  letterSpacing: '0.12em',
+  color: 'var(--color-accent)',
+  fontWeight: 800,
+  marginTop: '0.25rem',
+};
+
+const firstQuizBonusTitleStyle = {
+  fontSize: '1.3rem',
+  lineHeight: 1.25,
+  fontWeight: 900,
+  color: '#fff',
+};
+
+const firstQuizBonusTextStyle = {
+  fontSize: '0.9rem',
+  lineHeight: 1.55,
+  color: '#cbd5e1',
+};
+
+const firstQuizBonusActionsStyle = {
+  display: 'flex',
+  gap: '0.7rem',
+  justifyContent: 'center',
+  flexWrap: 'wrap',
+};
+
+const firstQuizBonusSecondaryButtonStyle = {
+  border: '1px solid rgba(255,255,255,0.1)',
+  borderRadius: 14,
+  padding: '0.8rem 1rem',
+  background: 'rgba(255,255,255,0.05)',
+  color: '#cbd5e1',
+  fontSize: '0.88rem',
+  fontWeight: 800,
+  cursor: 'pointer',
+};
+
+const firstQuizBonusPrimaryButtonStyle = {
+  border: 'none',
+  borderRadius: 14,
+  padding: '0.8rem 1.1rem',
+  background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
+  color: '#fff',
+  fontSize: '0.88rem',
+  fontWeight: 900,
+  cursor: 'pointer',
+  boxShadow: '0 12px 28px rgba(var(--color-primary-rgb),0.24)',
 };

@@ -3,31 +3,55 @@
   "title": "ou · où",
   "shortTitle": "ou / où",
   "description": "Distinguer : ou (conjonction de coordination = ou bien) et où (adverbe de lieu ou de temps, pronom relatif).",
-
   "choices": [
-    { "id": "ou",  "label": "ou",  "isConjonction": true  },
-    { "id": "ouu", "label": "où",  "isConjonction": false }
+    {
+      "id": "ou",
+      "label": "ou"
+    },
+    {
+      "id": "ouu",
+      "label": "où"
+    }
   ],
-
   "decisionAxes": [
     {
       "id": "isConjonction",
       "question": "Peut-on remplacer par « ou bien » ?",
       "options": [
-        { "value": true,  "label": "Oui → ou", "sub": "café ou thé → café ou bien thé ✓", "eliminates": ["ouu"] },
-        { "value": false, "label": "Non → où", "sub": "la ville où j'habite → la ville ou bien j'habite ✗", "eliminates": ["ou"] }
+        {
+          "value": true,
+          "label": "Oui → ou",
+          "sub": "café ou thé → café ou bien thé ✓",
+          "eliminates": [
+            "ouu"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non → où",
+          "sub": "la ville où j'habite → la ville ou bien j'habite ✗",
+          "eliminates": [
+            "ou"
+          ]
+        }
       ]
     }
   ],
-
   "memoCard": {
     "title": "La règle en un coup d'œil",
     "rows": [
-      { "form": "ou",  "test": "remplacer par « ou bien »", "example": "Thé ou café ? → Thé ou bien café ? ✓" },
-      { "form": "où",  "test": "ou bien ne fonctionne pas", "example": "La ville où je vis → La ville ou bien je vis ✗" }
+      {
+        "form": "ou",
+        "test": "remplacer par « ou bien »",
+        "example": "Thé ou café ? → Thé ou bien café ? ✓"
+      },
+      {
+        "form": "où",
+        "test": "ou bien ne fonctionne pas",
+        "example": "La ville où je vis → La ville ou bien je vis ✗"
+      }
     ]
   },
-
   "questions": [
     {
       "id": "q001",
@@ -431,11 +455,11 @@
     },
     {
       "id": "q051",
-      "before": "En français, c'est l'",
-      "after": " la conjonction ?",
+      "before": "On se retrouve à 18h ",
+      "after": " à 19h ?",
       "answer": "ou",
-      "difficulty": 2,
-      "explanation": "« L'ou bien la conjonction » → c'est « ou » qui donne du sens. Conjonction → ou."
+      "difficulty": 1,
+      "explanation": "On peut dire 'ou bien' : 'on se retrouve à 18h ou bien à 19h' → conjonction → ou."
     },
     {
       "id": "q052",

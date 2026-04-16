@@ -3,21 +3,45 @@
   "title": "tout · tous · toute · toutes",
   "shortTitle": "tout / tous / toute / toutes",
   "description": "Accorder tout selon sa fonction (adverbe invariable ou déterminant/pronom accordé en genre et nombre).",
-
   "choices": [
-    { "id": "tout",   "label": "tout",   "fonction": "adverbe ou dét. masc. sg." },
-    { "id": "tous",   "label": "tous",   "fonction": "dét./pronom masc. pl." },
-    { "id": "toute",  "label": "toute",  "fonction": "dét./pronom fém. sg." },
-    { "id": "toutes", "label": "toutes", "fonction": "dét./pronom fém. pl." }
+    {
+      "id": "tout",
+      "label": "tout"
+    },
+    {
+      "id": "tous",
+      "label": "tous"
+    },
+    {
+      "id": "toute",
+      "label": "toute"
+    },
+    {
+      "id": "toutes",
+      "label": "toutes"
+    }
   ],
-
   "decisionAxes": [
     {
       "id": "fonction",
       "question": "Quelle est la fonction de « tout » ?",
       "options": [
-        { "value": "adverbe",    "label": "Adverbe (modifie un adjectif)", "sub": "= entièrement, complètement → tout invariable", "eliminates": ["tous", "toute", "toutes"] },
-        { "value": "determinant","label": "Déterminant/pronom (se rapporte à un nom)", "sub": "→ accord en genre et nombre", "eliminates": [] }
+        {
+          "value": "adverbe",
+          "label": "Adverbe (modifie un adjectif)",
+          "sub": "= entièrement, complètement → tout invariable",
+          "eliminates": [
+            "tous",
+            "toute",
+            "toutes"
+          ]
+        },
+        {
+          "value": "determinant",
+          "label": "Déterminant/pronom (se rapporte à un nom)",
+          "sub": "→ accord en genre et nombre",
+          "eliminates": []
+        }
       ]
     },
     {
@@ -25,25 +49,75 @@
       "question": "Genre et nombre du nom ?",
       "dependsOn": "determinant",
       "options": [
-        { "value": "masc-sg", "label": "Masculin singulier → tout",   "eliminates": ["tous","toute","toutes"] },
-        { "value": "masc-pl", "label": "Masculin pluriel → tous",     "eliminates": ["tout","toute","toutes"] },
-        { "value": "fem-sg",  "label": "Féminin singulier → toute",   "eliminates": ["tout","tous","toutes"] },
-        { "value": "fem-pl",  "label": "Féminin pluriel → toutes",    "eliminates": ["tout","tous","toute"] }
+        {
+          "value": "masc-sg",
+          "label": "Masculin singulier → tout",
+          "eliminates": [
+            "tous",
+            "toute",
+            "toutes"
+          ]
+        },
+        {
+          "value": "masc-pl",
+          "label": "Masculin pluriel → tous",
+          "eliminates": [
+            "tout",
+            "toute",
+            "toutes"
+          ]
+        },
+        {
+          "value": "fem-sg",
+          "label": "Féminin singulier → toute",
+          "eliminates": [
+            "tout",
+            "tous",
+            "toutes"
+          ]
+        },
+        {
+          "value": "fem-pl",
+          "label": "Féminin pluriel → toutes",
+          "eliminates": [
+            "tout",
+            "tous",
+            "toute"
+          ]
+        }
       ]
     }
   ],
-
   "memoCard": {
     "title": "La règle en un coup d'œil",
     "rows": [
-      { "form": "tout (adv.)",  "test": "= entièrement, modifie adjectif", "example": "Elle est tout étonnée." },
-      { "form": "tout (dét.)",  "test": "masc. sg.",  "example": "Tout le monde est là." },
-      { "form": "tous (dét.)",  "test": "masc. pl.",  "example": "Tous les élèves sont présents." },
-      { "form": "toute (dét.)", "test": "fém. sg.",   "example": "Toute la journée." },
-      { "form": "toutes (dét.)","test": "fém. pl.",   "example": "Toutes les filles." }
+      {
+        "form": "tout (adv.)",
+        "test": "= entièrement, modifie adjectif",
+        "example": "Elle est tout étonnée."
+      },
+      {
+        "form": "tout (dét.)",
+        "test": "masc. sg.",
+        "example": "Tout le monde est là."
+      },
+      {
+        "form": "tous (dét.)",
+        "test": "masc. pl.",
+        "example": "Tous les élèves sont présents."
+      },
+      {
+        "form": "toute (dét.)",
+        "test": "fém. sg.",
+        "example": "Toute la journée."
+      },
+      {
+        "form": "toutes (dét.)",
+        "test": "fém. pl.",
+        "example": "Toutes les filles."
+      }
     ]
   },
-
   "questions": [
     {
       "id": "q001",

@@ -7,8 +7,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = path.resolve(__dirname, '..');
 const DATA_DIR = path.join(ROOT_DIR, 'user-data');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
+const RULES_DIR = path.join(ROOT_DIR, 'src', 'content', 'rules');
+const ADMIN_SETTINGS_FILE = path.join(DATA_DIR, 'admin-settings.json');
 const PORT = Number(process.env.PORT || 3001);
 const MAX_DAILY_BACKUPS = 30;
+const SECRET_CODE_LENGTH = 4;
+const SECRET_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 
 function pad(value) {
   return String(value).padStart(2, '0');
@@ -26,6 +30,31 @@ function getTimestampSlug() {
     pad(now.getMonth() + 1),
     pad(now.getDate()),
   ].join('-') + `T${pad(now.getHours())}-${pad(now.getMinutes())}-${pad(now.getSeconds())}`;
+}
+
+function normalizeSecretCode(value) {
+  return String(value || '')
+    .toUpperCase()
+    .replace(/[^A-Z0-9]/g, '')
+    .slice(0, SECRET_CODE_LENGTH);
+}
+
+function generateSecretCode() {
+  let code = '';
+  for (let i = 0; i < SECRET_CODE_LENGTH; i += 1) {
+    code += SECRET_CODE_ALPHABET[Math.floor(Math.random() * SECRET_CODE_ALPHABET.length)];
+  }
+  return code;
+}
+
+function clampQuestionCount(value, fallback) {
+  const parsed = Number.parseInt(value, 10);
+  if (!Number.isFinite(parsed)) return fallback;
+  return Math.max(1, Math.min(parsed, 50));
+}
+
+function sanitizeRuleId(value) {
+  return String(value || '').replace(/[^a-z0-9-]/gi, '');
 }
 
 async function ensureDataDirs() {
@@ -82,6 +111,104 @@ async function readProgressOrNull(profile) {
     if (error.code === 'ENOENT') return null;
     throw error;
   }
+}
+
+function createDefaultAdminSettings(secretCode = generateSecretCode()) {
+  return {
+    prodQuestionCount: 20,
+    debugQuestionCount: 1,
+    parentalCode: secretCode,
+    customMysteryImages: [],
+  };
+}
+
+function sanitizeCustomMysteryImages(value) {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((entry) => ({
+      id: String(entry?.id || '').trim(),
+      title: String(entry?.title || '').trim(),
+      imageDataUrl: String(entry?.imageDataUrl || '').trim(),
+      finalTileIndex: Math.max(0, Math.min(Number.parseInt(entry?.finalTileIndex, 10) || 0, 5)),
+    }))
+    .filter((entry) => entry.id && entry.title && entry.imageDataUrl);
+}
+
+function sanitizeAdminSettings(value, fallbackCode = generateSecretCode()) {
+  const next = value && typeof value === 'object' ? value : {};
+  return {
+    prodQuestionCount: clampQuestionCount(next.prodQuestionCount, 20),
+    debugQuestionCount: clampQuestionCount(next.debugQuestionCount, 1),
+    parentalCode: normalizeSecretCode(next.parentalCode) || fallbackCode,
+    customMysteryImages: sanitizeCustomMysteryImages(next.customMysteryImages),
+  };
+}
+
+async function readLegacyParentalCode() {
+  const prodProgress = await readProgressOrNull('prod');
+  const code = normalizeSecretCode(prodProgress?.parentalCode?.code);
+  return code || null;
+}
+
+async function readAdminSettings() {
+  await ensureDataDirs();
+
+  try {
+    const payload = await readJsonFile(ADMIN_SETTINGS_FILE);
+    const fallbackCode = normalizeSecretCode(payload?.parentalCode) || generateSecretCode();
+    const normalized = sanitizeAdminSettings(payload, fallbackCode);
+    if (JSON.stringify(payload) !== JSON.stringify(normalized)) {
+      await writeJsonAtomic(ADMIN_SETTINGS_FILE, normalized);
+    }
+    return normalized;
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+
+  const legacyCode = await readLegacyParentalCode();
+  const defaults = createDefaultAdminSettings(legacyCode || generateSecretCode());
+  await writeJsonAtomic(ADMIN_SETTINGS_FILE, defaults);
+  return defaults;
+}
+
+async function saveAdminSettings(settings) {
+  const current = await readAdminSettings();
+  const normalized = sanitizeAdminSettings(settings, current.parentalCode);
+  await writeJsonAtomic(ADMIN_SETTINGS_FILE, normalized);
+  return normalized;
+}
+
+async function saveRuleDefinition(ruleId, patch) {
+  const safeRuleId = sanitizeRuleId(ruleId);
+  if (!safeRuleId) {
+    throw new Error('Invalid rule id.');
+  }
+
+  const ruleFile = path.join(RULES_DIR, `${safeRuleId}.json`);
+  let existing;
+  try {
+    existing = await readJsonFile(ruleFile);
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      const notFound = new Error('Rule not found.');
+      notFound.code = 'ENOENT';
+      throw notFound;
+    }
+    throw error;
+  }
+
+  const next = {
+    ...existing,
+    title: patch.title ?? existing.title,
+    shortTitle: patch.shortTitle ?? existing.shortTitle,
+    description: patch.description ?? existing.description,
+    choices: Array.isArray(patch.choices) ? patch.choices : existing.choices,
+    decisionAxes: Array.isArray(patch.decisionAxes) ? patch.decisionAxes : existing.decisionAxes,
+    memoCard: patch.memoCard && typeof patch.memoCard === 'object' ? patch.memoCard : existing.memoCard,
+  };
+
+  await writeJsonAtomic(ruleFile, next);
+  return next;
 }
 
 async function listBackups(profile) {
@@ -273,6 +400,47 @@ const server = createServer(async (req, res) => {
         return;
       }
       sendJson(res, 200, progress);
+      return;
+    }
+
+    if (req.method === 'GET' && url.pathname === '/api/admin-settings') {
+      const settings = await readAdminSettings();
+      sendJson(res, 200, settings);
+      return;
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/admin-settings') {
+      const payload = await readRequestJson(req);
+      if (!payload || typeof payload !== 'object') {
+        sendJson(res, 400, { error: 'Invalid admin settings payload.' });
+        return;
+      }
+
+      const settings = await saveAdminSettings(payload);
+      sendJson(res, 200, { success: true, settings });
+      return;
+    }
+
+    if (req.method === 'POST' && url.pathname === '/api/save-rule') {
+      const payload = await readRequestJson(req);
+      const ruleId = payload?.id;
+      const data = payload?.data;
+
+      if (typeof ruleId !== 'string' || !ruleId || !data || typeof data !== 'object') {
+        sendJson(res, 400, { error: 'Invalid rule payload.' });
+        return;
+      }
+
+      try {
+        const rule = await saveRuleDefinition(ruleId, data);
+        sendJson(res, 200, { success: true, rule });
+      } catch (error) {
+        if (error.code === 'ENOENT') {
+          sendJson(res, 404, { error: 'Rule not found.' });
+          return;
+        }
+        throw error;
+      }
       return;
     }
 

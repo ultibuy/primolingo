@@ -1,14 +1,16 @@
 import { useState, useEffect, useRef } from 'react';
 import CoinIcon from './CoinIcon.jsx';
 import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
-import { calculateCoins } from '../engine/scoring.js';
+import { calculateCoins, calculatePerfectSessionBonus } from '../engine/scoring.js';
 
 /**
  * Shared end-of-session screen used by both QuizGuided and QuizDirect.
  *
  * Props:
  *   rule, questions, answers, score, onFinish
+ *   hasDoubleCoinsActive (optional, boolean) — doubles the displayed quiz gains
  *   isFirstSessionOfDay (optional, boolean) — shows +10 bonus if true
+ *   A perfect 20/20 session also shows a +10 bonus
  *
  *   levelProgress (optional, object) — progression toward the next level
  *     {
@@ -36,6 +38,7 @@ export default function EndScreen({
   answers,
   score,
   onFinish,
+  hasDoubleCoinsActive,
   isFirstSessionOfDay,
   levelProgress,
   streakInfo,
@@ -44,8 +47,12 @@ export default function EndScreen({
   const total = questions.length;
   const pct = total > 0 ? Math.round((score / total) * 100) : 0;
   const baseCoins = calculateCoins(score, total);
-  const bonusCoins = isFirstSessionOfDay ? 10 : 0;
-  const totalCoins = baseCoins + bonusCoins;
+  const perfectSessionBonus = calculatePerfectSessionBonus(score, total);
+  const firstSessionBonus = isFirstSessionOfDay ? 10 : 0;
+  const coinsBeforeMultiplier = baseCoins + perfectSessionBonus + firstSessionBonus;
+  const doubleCoinsBonus = hasDoubleCoinsActive ? coinsBeforeMultiplier : 0;
+  const totalCoins = coinsBeforeMultiplier + doubleCoinsBonus;
+  const showCoinBreakdown = perfectSessionBonus > 0 || firstSessionBonus > 0 || doubleCoinsBonus > 0;
   const emoji = pct === 100 ? '\u{1F3C6}' : pct >= 70 ? '\u{1F44F}' : pct >= 50 ? '\u{1F4AA}' : '\u{1F4DA}';
 
   // Score feedback message
@@ -204,7 +211,7 @@ export default function EndScreen({
         {/* 3. Coins earned with breakdown */}
         <div style={{
           display: 'flex', flexDirection: 'column', alignItems: 'center',
-          gap: '0.3rem', marginBottom: '1.3rem',
+          gap: '0.3rem', marginBottom: '1rem',
           opacity: showCoins ? 1 : 0,
           transform: showCoins ? 'translateY(0) scale(1)' : 'translateY(10px) scale(0.8)',
           transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
@@ -221,19 +228,31 @@ export default function EndScreen({
             <span style={{ fontSize: '0.8rem', color: '#9ca3af' }}>pièces gagnées</span>
           </div>
           {/* Breakdown */}
-          <div style={{
-            display: 'flex', flexDirection: 'column', alignItems: 'center',
-            gap: '0.15rem', marginTop: '0.2rem',
-          }}>
-            <span style={{ fontSize: '0.72rem', color: '#6b7280' }}>
-              Base : +{baseCoins}
-            </span>
-            {isFirstSessionOfDay && (
+          {showCoinBreakdown && (
+            <div style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center',
+              gap: '0.15rem', marginTop: '0.2rem',
+            }}>
               <span style={{ fontSize: '0.72rem', color: '#6b7280' }}>
-                Bonus première session : +10
+                Base : +{baseCoins}
               </span>
-            )}
-          </div>
+              {perfectSessionBonus > 0 && (
+                <span style={{ fontSize: '0.72rem', color: '#6b7280' }}>
+                  Bonus 100% : +{perfectSessionBonus}
+                </span>
+              )}
+              {firstSessionBonus > 0 && (
+                <span style={{ fontSize: '0.72rem', color: '#6b7280' }}>
+                  Bonus début de quiz : +{firstSessionBonus}
+                </span>
+              )}
+              {doubleCoinsBonus > 0 && (
+                <span style={{ fontSize: '0.72rem', color: '#6b7280' }}>
+                  Double coins x2 : +{doubleCoinsBonus}
+                </span>
+              )}
+            </div>
+          )}
         </div>
 
         {/* 4. Level progress bar toward next level (C1) */}
@@ -281,7 +300,7 @@ export default function EndScreen({
                   width: progressBarAnimated
                     ? `${Math.min((levelProgress.current / levelProgress.target) * 100, 100)}%`
                     : '0%',
-                  background: 'linear-gradient(90deg, #7c3aed, var(--color-primary))',
+                  background: 'linear-gradient(90deg, var(--color-primary), var(--color-accent))',
                   borderRadius: 5,
                   transition: 'width 0.8s ease-out',
                   boxShadow: '0 0 8px rgba(124,58,237,0.4)',
@@ -339,7 +358,7 @@ export default function EndScreen({
         <div style={{
           height: 1,
           background: 'rgba(255,255,255,0.08)',
-          margin: '0 0 1.2rem 0',
+          margin: '0 0 0.9rem 0',
           opacity: showRecap ? 1 : 0,
           transition: 'opacity 0.4s ease',
         }} />
@@ -350,7 +369,7 @@ export default function EndScreen({
           transform: showRecap ? 'translateY(0)' : 'translateY(10px)',
           transition: 'all 0.4s ease',
         }}>
-          <div style={{ maxHeight: 300, overflowY: 'auto', marginBottom: '1.5rem', paddingRight: '0.3rem' }}>
+          <div style={{ maxHeight: 220, overflowY: 'auto', marginBottom: '1rem', paddingRight: '0.3rem' }}>
             {questions.map((q, i) => {
               const a = answers[i];
               const ok = a?.correct;
@@ -399,7 +418,7 @@ export default function EndScreen({
             style={{
               width: '100%', padding: '0.85rem', borderRadius: 12,
               border: 'none',
-              background: 'linear-gradient(135deg, #7c3aed, var(--color-primary))',
+              background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
               color: '#fff', cursor: 'pointer', fontSize: '1rem', fontWeight: 700,
               boxShadow: '0 4px 15px rgba(124,58,237,0.3)',
             }}
@@ -426,7 +445,10 @@ function getFeedbackMessage(pct) {
 
 const pageStyle = {
   minHeight: '100vh',
-  background: 'linear-gradient(135deg, var(--color-bg1) 0%, var(--color-bg2) 100%)',
+  backgroundColor: 'var(--color-bg1)',
+  backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
+  backgroundSize: 'cover, cover',
+  backgroundPosition: 'center, center',
   display: 'flex', alignItems: 'center', justifyContent: 'center',
   fontFamily: 'var(--font-body)',
   padding: '1.5rem', color: '#e2e2e2',
@@ -435,7 +457,7 @@ const pageStyle = {
 const cardStyle = {
   maxWidth: 620, width: '100%',
   background: 'rgba(255,255,255,0.06)',
-  borderRadius: 20, padding: '2rem 2.2rem',
+  borderRadius: 20, padding: '1.5rem 1.8rem',
   backdropFilter: 'blur(12px)',
   border: '1px solid rgba(255,255,255,0.1)',
   boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
