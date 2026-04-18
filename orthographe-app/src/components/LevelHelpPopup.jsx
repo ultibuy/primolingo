@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import PopupCloseButton from './PopupCloseButton.jsx';
 import { getToday, parseLocalDate } from '../engine/sm2.js';
 
@@ -202,6 +203,16 @@ export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, onClose
   const allData = buildLevelData();
   const data = allData[level];
   if (!data) return null;
+  const [isMobile, setIsMobile] = useState(() => (
+    typeof window !== 'undefined' ? window.innerWidth <= 640 : false
+  ));
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const handleResize = () => setIsMobile(window.innerWidth <= 640);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // For diamond_status, inject dynamic content
   let headline = data.headline;
@@ -231,87 +242,106 @@ export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, onClose
         onClick={(e) => e.stopPropagation()}
         style={{
           position: 'relative',
-          width: 'min(680px, 92vw)',
+          width: isMobile ? 'calc(100vw - 1rem)' : 'min(680px, 92vw)',
           animation: 'bounce-in 0.35s ease forwards',
         }}
       >
-        <PopupCloseButton onClick={onClose} ariaLabel="Fermer" />
+        <PopupCloseButton
+          onClick={onClose}
+          ariaLabel="Fermer"
+          top={isMobile ? 8 : -12}
+          right={isMobile ? 8 : -12}
+          size={isMobile ? 40 : 48}
+        />
 
         <div
           role="dialog"
           aria-modal="true"
           style={{
             position: 'relative', width: '100%',
-            maxHeight: 'calc(100vh - 2rem)', overflowY: 'auto',
-            padding: '1.6rem', borderRadius: 28,
+            maxHeight: isMobile ? 'calc(100vh - 1rem)' : 'calc(100vh - 2rem)', overflowY: 'auto',
+            padding: isMobile ? '1rem 0.95rem 1rem' : '1.6rem', borderRadius: isMobile ? 24 : 28,
             border: `1px solid ${data.colorBorder}`,
             background: `radial-gradient(circle at top left, ${data.colorBg}, transparent 34%), linear-gradient(160deg, ${data.gradientFrom}, ${data.gradientTo})`,
             boxShadow: '0 18px 80px rgba(0,0,0,0.52)',
           }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+          <div style={{
+            display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
+            alignItems: isMobile ? 'stretch' : 'center',
+            gap: isMobile ? '1rem' : '1.5rem',
+          }}>
             {/* Hero */}
-            <div style={{
-              display: 'flex', flexDirection: 'column', alignItems: 'center',
-              gap: '0.9rem', minWidth: 148,
-            }}>
+            {!isMobile && (
               <div style={{
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                width: 116, height: 116, borderRadius: 28,
-                background: `linear-gradient(180deg, ${data.colorBg}, rgba(255,255,255,0.02))`,
-                border: `1px solid ${data.colorBorder}`,
-                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '0.9rem',
+                minWidth: 148,
               }}>
-                <span style={{
-                  fontSize: '3.5rem',
-                  filter: `drop-shadow(0 0 12px ${data.color}80)`,
+                <div style={{
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  width: 116, height: 116, borderRadius: 28,
+                  background: `linear-gradient(180deg, ${data.colorBg}, rgba(255,255,255,0.02))`,
+                  border: `1px solid ${data.colorBorder}`,
+                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
+                  flexShrink: 0,
                 }}>
-                  {data.icon}
-                </span>
+                  <span style={{
+                    fontSize: '3.5rem',
+                    filter: `drop-shadow(0 0 12px ${data.color}80)`,
+                  }}>
+                    {data.icon}
+                  </span>
+                </div>
+                <div style={{
+                  display: 'inline-flex', alignItems: 'baseline', gap: '0.4rem',
+                  padding: '0.5rem 1rem', borderRadius: 16,
+                  background: `${data.color}18`, border: `1px solid ${data.color}35`,
+                }}>
+                  <span style={{ fontSize: '1.1rem', fontWeight: 800, color: data.color }}>
+                    {data.subtitle}
+                  </span>
+                </div>
               </div>
-              <div style={{
-                display: 'inline-flex', alignItems: 'baseline', gap: '0.4rem',
-                padding: '0.5rem 1rem', borderRadius: 16,
-                background: `${data.color}18`, border: `1px solid ${data.color}35`,
-              }}>
-                <span style={{ fontSize: '1.1rem', fontWeight: 800, color: data.color }}>
-                  {data.subtitle}
-                </span>
-              </div>
-            </div>
+            )}
 
             {/* Body */}
             <div style={{ flex: 1 }}>
               <p style={{
                 margin: '0 0 0.4rem', textTransform: 'uppercase',
-                letterSpacing: '0.16em', fontSize: '0.68rem',
+                letterSpacing: '0.16em', fontSize: isMobile ? '0.64rem' : '0.68rem',
                 fontWeight: 800, color: data.colorLight,
               }}>
                 {data.kicker}
               </p>
               <h2 style={{
-                fontSize: '1.85rem', lineHeight: 1.05, fontWeight: 800,
+                fontSize: isMobile ? '1.25rem' : '1.85rem', lineHeight: isMobile ? 1.08 : 1.05, fontWeight: 800,
                 color: '#fff7ed', margin: '0 0 0.35rem',
+                maxWidth: isMobile ? 'calc(100% - 2.6rem)' : 'none',
               }}>
                 {typeof headline === 'function' ? headline(ruleTitle) : headline}
               </h2>
               <p style={{
-                fontSize: '0.98rem', color: '#d6d3d1', lineHeight: 1.5,
-                margin: '0 0 1rem', maxWidth: 440,
+                fontSize: isMobile ? '0.88rem' : '0.98rem', color: '#d6d3d1', lineHeight: 1.5,
+                margin: '0 0 1rem', maxWidth: isMobile ? 'none' : 440,
               }}>
                 {description}
               </p>
 
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-                gap: '0.75rem',
+                gridTemplateColumns: isMobile ? 'minmax(0, 1fr)' : 'repeat(2, minmax(0, 1fr))',
+                gap: isMobile ? '0.6rem' : '0.75rem',
               }}>
                 {stats.map((stat, i) => (
                   <div key={i} style={{
                     display: 'flex', flexDirection: 'column', gap: '0.2rem',
-                    padding: '0.85rem 0.95rem', borderRadius: 16,
-                    background: 'rgba(255,255,255,0.05)',
+                    padding: isMobile ? '0.8rem 0.85rem' : '0.85rem 0.95rem', borderRadius: 16,
+                    background: isMobile ? 'rgba(255,255,255,0.04)' : 'rgba(255,255,255,0.05)',
                     border: '1px solid rgba(255,255,255,0.08)',
                   }}>
                     <span style={{
@@ -321,13 +351,13 @@ export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, onClose
                       {stat.label}
                     </span>
                     <strong style={{
-                      fontSize: '1rem', lineHeight: 1.25,
+                      fontSize: isMobile ? '0.94rem' : '1rem', lineHeight: 1.25,
                       color: '#fff7ed', fontWeight: 700,
                     }}>
                       {stat.value}
                     </strong>
                     <span style={{
-                      fontSize: '0.76rem', lineHeight: 1.45, color: '#cbd5e1',
+                      fontSize: isMobile ? '0.78rem' : '0.76rem', lineHeight: 1.45, color: '#cbd5e1',
                     }}>
                       {stat.hint}
                     </span>

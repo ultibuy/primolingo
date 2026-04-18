@@ -96,9 +96,13 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
 
   const coins = progress.coins || 0;
   const shields = progress.shields || 0;
+  const isDebug = typeof window !== 'undefined' && window.__ORTHO_DEBUG__;
   const mysteryImageDefinitions = getMysteryImageDefinitions(adminSettings?.customMysteryImages);
 
   const allItems = Object.values(SHOP_CATALOG);
+  const baseShopTotal = allItems.reduce((sum, item) => sum + (item.price || 0), 0);
+  const mysteryImagesTotal = Object.keys(mysteryImageDefinitions).length * MYSTERY_IMAGE_PARTS * MYSTERY_IMAGE_PRICE;
+  const globalShopTotal = baseShopTotal + mysteryImagesTotal;
   const activeCat = CATEGORIES.find(c => c.key === activeTab);
   const filteredItems = allItems.filter(activeCat.filter);
 
@@ -546,6 +550,22 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
         opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(12px)',
         transition: 'all 0.5s ease',
       }}>
+        {isDebug && (
+          <div style={{
+            marginBottom: '0.85rem',
+            padding: '0.75rem 0.9rem',
+            borderRadius: 16,
+            background: 'rgba(248,113,113,0.08)',
+            border: '1px dashed rgba(248,113,113,0.28)',
+            color: '#fecaca',
+            fontSize: '0.8rem',
+            lineHeight: 1.45,
+          }}>
+            <strong style={{ color: '#fff', fontWeight: 800 }}>Debug boutique</strong>
+            {' '}catalogue: {baseShopTotal} pièces · images mystère: {mysteryImagesTotal} pièces · total: {globalShopTotal} pièces
+          </div>
+        )}
+
         {/* Header */}
         <div style={{
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
