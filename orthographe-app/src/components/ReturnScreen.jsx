@@ -4,6 +4,8 @@ import DiamondIcon from './DiamondIcon.jsx';
 import DiamondStatus from './DiamondStatus.jsx';
 import CrownIcon from './CrownIcon.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
+import OtpVerification from './OtpVerification.jsx';
+import { useAuth } from '../contexts/AuthContext.jsx';
 
 /**
  * ReturnScreen — shown when Damien returns after inactivity (>= 2 days).
@@ -26,17 +28,12 @@ export default function ReturnScreen({
   diamondChanges,
   onContinue,
   onSaveStreak,
-  onSecretCodeSubmit,
-  secretCodeFailedAttempts,
-  secretCodeLockedUntil,
 }) {
+  const { user } = useAuth();
   const [step, setStep] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [stepVisible, setStepVisible] = useState(false);
   const [showSecretCodeStep, setShowSecretCodeStep] = useState(false);
-  const [secretCode, setSecretCode] = useState('');
-  const [secretCodeError, setSecretCodeError] = useState(null);
-  const [lockNow, setLockNow] = useState(Date.now());
 
   // Streak animation state
   const [streakCountdown, setStreakCountdown] = useState(previousStreak || 0);
@@ -56,10 +53,6 @@ export default function ReturnScreen({
   const totalSteps = (hasStreakStep ? (hasMissedDaysIntro ? 2 : 1) : 0) + (diamondChanges?.length || 0) + 1;
   const diamondStartStep = hasStreakStep ? streakStep + 1 : 0;
   const actionStep = totalSteps - 1;
-  const lockRemainingMs = Math.max((secretCodeLockedUntil || 0) - lockNow, 0);
-  const isCodeLocked = lockRemainingMs > 0;
-  const lockRemainingSeconds = Math.ceil(lockRemainingMs / 1000);
-
   // Mount fade-in
   useEffect(() => {
     requestAnimationFrame(() => setMounted(true));
@@ -75,12 +68,6 @@ export default function ReturnScreen({
       if (frameId !== null) cancelAnimationFrame(frameId);
     };
   }, [step]);
-
-  useEffect(() => {
-    if (!secretCodeLockedUntil) return undefined;
-    const timer = setInterval(() => setLockNow(Date.now()), 1000);
-    return () => clearInterval(timer);
-  }, [secretCodeLockedUntil]);
 
   // ─── Streak countdown animation ─────────────────────────────────
   useEffect(() => {
@@ -160,17 +147,6 @@ export default function ReturnScreen({
     }
   }, [step, actionStep, onContinue]);
 
-  const handleSecretCodeSubmit = () => {
-    if (!onSecretCodeSubmit) return;
-    const result = onSecretCodeSubmit(secretCode);
-    if (!result?.ok) {
-      setSecretCodeError(result?.error || 'Code incorrect.');
-      setLockNow(Date.now());
-      return;
-    }
-    setSecretCode('');
-    setSecretCodeError(null);
-  };
 
   const renderMissedDaysIntro = () => {
     if (step !== introStep || !hasMissedDaysIntro) return null;
@@ -199,11 +175,7 @@ export default function ReturnScreen({
                 Continuer
               </button>
               <button
-                onClick={() => {
-                  setShowSecretCodeStep(true);
-                  setSecretCodeError(null);
-                  setSecretCode('');
-                }}
+                onClick={() => setShowSecretCodeStep(true)}
                 style={secondaryButtonStyle}
               >
                 Demander à Papa
@@ -211,66 +183,15 @@ export default function ReturnScreen({
             </div>
           </>
         ) : (
-          <>
-            <div style={{ fontSize: '2.6rem', marginBottom: '0.9rem' }}>{'🔐'}</div>
-            <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#e2e2e2', marginBottom: '0.5rem' }}>
-              Code secret
-            </h2>
-            <p style={{ fontSize: '0.92rem', color: '#9ca3af', lineHeight: 1.6, maxWidth: 360, margin: '0 auto 1rem' }}>
-              Entre le code donné par Papa pour conserver ton streak.
-            </p>
-            <input
-              value={secretCode}
-              maxLength={4}
-              autoFocus
-              onChange={(e) => {
-                setSecretCode(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 4));
-                setSecretCodeError(null);
-              }}
-              style={{
-                width: 160,
-                textAlign: 'center',
-                letterSpacing: '0.35em',
-                textTransform: 'uppercase',
-                padding: '0.85rem 1rem',
-                borderRadius: 14,
-                border: `1px solid ${secretCodeError ? 'rgba(248,113,113,0.4)' : 'rgba(var(--color-primary-rgb),0.3)'}`,
-                background: 'rgba(255,255,255,0.04)',
-                color: '#fff',
-                fontSize: '1.1rem',
-                fontWeight: 800,
-                marginBottom: '0.8rem',
-              }}
-            />
-            <div style={{ minHeight: 24, fontSize: '0.82rem', color: secretCodeError ? '#fca5a5' : '#6b7280', marginBottom: '1rem' }}>
-              {isCodeLocked
-                ? `Trop d’essais. Réessaie dans ${lockRemainingSeconds}s.`
-                : secretCodeError || (secretCodeFailedAttempts > 0 ? `${secretCodeFailedAttempts} essai${secretCodeFailedAttempts > 1 ? 's' : ''} raté${secretCodeFailedAttempts > 1 ? 's' : ''}.` : '')}
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: 320, margin: '0 auto' }}>
-              <button
-                onClick={handleSecretCodeSubmit}
-                disabled={isCodeLocked}
-                style={{
-                  ...primaryButtonStyle,
-                  opacity: isCodeLocked ? 0.45 : 1,
-                  cursor: isCodeLocked ? 'default' : 'pointer',
-                }}
-              >
-                Valider le code
-              </button>
-              <button
-                onClick={() => {
-                  setShowSecretCodeStep(false);
-                  setSecretCodeError(null);
-                  setSecretCode('');
-                }}
-                style={secondaryButtonStyle}
-              >
-                Retour
-              </button>
-            </div>
-          </>
+          <OtpVerification
+            uid={user?.uid}
+            email={user?.email}
+            onSuccess={() => {
+              setShowSecretCodeStep(false);
+              onSaveStreak();
+            }}
+            onCancel={() => setShowSecretCodeStep(false)}
+          />
         )}
       </div>
     );

@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Parents : accès uniquement à leur propre document
+    match /users/{uid} {
+      allow read, write: if request.auth != null && request.auth.uid == uid;
+
+      match /children/{childId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      match /children/{childId}/backups/{date} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+
+      // OTP sous-collection (utilisé pour le code parental)
+      match /otp/{otpId} {
+        allow read, write: if request.auth != null && request.auth.uid == uid;
+      }
+    }
+  }
+}

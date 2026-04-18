@@ -18,13 +18,12 @@ function createCustomMysteryImageId() {
 export default function AdminPage({
   settings,
   onSave,
+  onBack,
   saving = false,
   saveError = null,
 }) {
   const [form, setForm] = useState(() => ({
     prodQuestionCount: String(settings?.prodQuestionCount || 20),
-    debugQuestionCount: String(settings?.debugQuestionCount || 1),
-    parentalCode: settings?.parentalCode || '',
     customMysteryImages: settings?.customMysteryImages || [],
   }));
   const [localMessage, setLocalMessage] = useState('');
@@ -33,8 +32,6 @@ export default function AdminPage({
   useEffect(() => {
     setForm({
       prodQuestionCount: String(settings?.prodQuestionCount || 20),
-      debugQuestionCount: String(settings?.debugQuestionCount || 1),
-      parentalCode: settings?.parentalCode || '',
       customMysteryImages: settings?.customMysteryImages || [],
     });
   }, [settings]);
@@ -43,8 +40,6 @@ export default function AdminPage({
     event.preventDefault();
     const result = await onSave({
       prodQuestionCount: form.prodQuestionCount,
-      debugQuestionCount: form.debugQuestionCount,
-      parentalCode: form.parentalCode,
       customMysteryImages: form.customMysteryImages,
     });
 
@@ -98,23 +93,25 @@ export default function AdminPage({
     <div style={pageStyle}>
       <div style={shellStyle}>
         <div style={headerStyle}>
-          <a href="/" style={backLinkStyle}>Retour à l’app</a>
+          {onBack && (
+            <button type="button" onClick={onBack} style={backLinkStyle}>← Retour</button>
+          )}
           <div style={{ textAlign: 'center', flex: 1 }}>
-            <div style={kickerStyle}>Administration locale</div>
+            <div style={kickerStyle}>Administration</div>
             <h1 style={titleStyle}>Paramètres admin</h1>
           </div>
-          <a href="/?debug=1" style={debugLinkStyle}>Mode debug</a>
+          <div style={{ minWidth: 100 }} />
         </div>
 
         <form onSubmit={handleSubmit} style={formStyle}>
           <section style={sectionStyle}>
-            <div style={sectionTitleStyle}>Nombre de questions</div>
+            <div style={sectionTitleStyle}>Nombre de questions par session</div>
             <p style={sectionTextStyle}>
-              Ces valeurs pilotent directement les tailles de session en `prod` et en `debug`.
+              Nombre de questions par session de quiz (entre 1 et 50).
             </p>
 
             <label style={fieldStyle}>
-              <span style={labelStyle}>Questions en prod</span>
+              <span style={labelStyle}>Questions par session</span>
               <input
                 type="number"
                 min="1"
@@ -124,46 +121,12 @@ export default function AdminPage({
                 style={inputStyle}
               />
             </label>
-
-            <label style={fieldStyle}>
-              <span style={labelStyle}>Questions en debug</span>
-              <input
-                type="number"
-                min="1"
-                max="50"
-                value={form.debugQuestionCount}
-                onChange={(event) => setForm((prev) => ({ ...prev, debugQuestionCount: event.target.value }))}
-                style={inputStyle}
-              />
-            </label>
-          </section>
-
-          <section style={sectionStyle}>
-            <div style={sectionTitleStyle}>Code secret Papa</div>
-            <p style={sectionTextStyle}>
-              Code utilisé sur l’écran de retour après absence pour sauver le streak.
-            </p>
-
-            <label style={fieldStyle}>
-              <span style={labelStyle}>Code</span>
-              <input
-                type="text"
-                inputMode="text"
-                maxLength="4"
-                value={form.parentalCode}
-                onChange={(event) => setForm((prev) => ({
-                  ...prev,
-                  parentalCode: event.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 4),
-                }))}
-                style={{ ...inputStyle, letterSpacing: '0.28em', textTransform: 'uppercase' }}
-              />
-            </label>
           </section>
 
           <section style={sectionStyle}>
             <div style={sectionTitleStyle}>Nouvelle image mystère</div>
             <p style={sectionTextStyle}>
-              Workflow: 1) upload une image, 2) choisis la case qui contient la tête pour qu’elle soit dévoilée en dernier, 3) donne un titre mystérieux visible dans la boutique.
+              Workflow: 1) upload une image, 2) choisis la case qui contient la tête pour qu'elle soit dévoilée en dernier, 3) donne un titre mystérieux visible dans la boutique.
             </p>
 
             <div style={stepBoxStyle}>
@@ -199,7 +162,7 @@ export default function AdminPage({
                 <div style={stepBoxStyle}>
                   <div style={stepLabelStyle}>3. Titre mystérieux</div>
                   <label style={fieldStyle}>
-                    <span style={labelStyle}>Titre affiché à l’enfant</span>
+                    <span style={labelStyle}>Titre affiché à l'enfant</span>
                     <input
                       type="text"
                       value={mysteryDraft.title}
@@ -232,7 +195,7 @@ export default function AdminPage({
             <div style={stepBoxStyle}>
               <div style={stepLabelStyle}>Images mystère personnalisées</div>
               {form.customMysteryImages.length === 0 ? (
-                <p style={miniHelpStyle}>Aucune image personnalisée pour l’instant.</p>
+                <p style={miniHelpStyle}>Aucune image personnalisée pour l'instant.</p>
               ) : (
                 <div style={customListStyle}>
                   {form.customMysteryImages.map((entry) => (
@@ -277,7 +240,7 @@ export default function AdminPage({
 function MysteryTileSelector({ imageDataUrl, selectedTileIndex, onSelect }) {
   return (
     <div style={mysterySelectorStyle}>
-      <img src={imageDataUrl} alt="Découpage de l’image mystère" style={mysterySelectorImageStyle} />
+      <img src={imageDataUrl} alt="Découpage de l'image mystère" style={mysterySelectorImageStyle} />
       {Array.from({ length: TILE_COUNT }).map((_, tileIndex) => {
         const col = tileIndex % 3;
         const row = Math.floor(tileIndex / 3);
