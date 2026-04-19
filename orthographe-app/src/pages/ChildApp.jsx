@@ -34,7 +34,6 @@ import {
   getDailyBackups,
   restoreDailyBackup,
   loadAdminSettings,
-  saveAdminSettings,
 } from '../store/persistence.js';
 
 // Components
@@ -43,7 +42,6 @@ import QuizGuided from '../components/QuizGuided.jsx';
 import QuizDirect from '../components/QuizDirect.jsx';
 import Shop from '../components/Shop.jsx';
 import ReturnScreen from '../components/ReturnScreen.jsx';
-import AdminPage from '../components/AdminPage.jsx';
 import CoinIcon from '../components/CoinIcon.jsx';
 import PopupCloseButton from '../components/PopupCloseButton.jsx';
 
@@ -365,8 +363,6 @@ export default function ChildApp() {
   const [isSniper, setIsSniper] = useState(false);
   const [saveError, setSaveError] = useState(null);
   const [dailyBackups, setDailyBackups] = useState([]);
-  const [adminSaveError, setAdminSaveError] = useState(null);
-  const [adminSaving, setAdminSaving] = useState(false);
   const [showFirstQuizBonusModal, setShowFirstQuizBonusModal] = useState(false);
   const pendingQuizLaunchRef = useRef(null);
   const mysteryImageDefinitions = getMysteryImageDefinitions(adminSettings?.customMysteryImages);
@@ -402,11 +398,26 @@ export default function ChildApp() {
     return result;
   }, [uid, childId]);
 
+  const handleDebugUpdateStreak = useCallback(async (streak, date) => {
+    const next = { ...progress, streak: { ...progress.streak, current: streak, lastActiveDate: date } };
+    setProgress(next);
+    await persistProgress(next);
+  }, [progress, persistProgress]);
+
+  const handleDebugRestoreBackup = useCallback(async (backup) => {
+    const result = await restoreDailyBackup(backup, uid, childId);
+    if (result?.success) {
+      setProgress(result.progress);
+      await refreshDailyBackups();
+    }
+  }, [uid, childId, refreshDailyBackups]);
+
   // Load progress on mount
   useEffect(() => {
     if (!uid || !childId) return;
 
-    Promise.all([loadProgress(uid, childId), loadAdminSettings(uid)]).then(async ([raw, settings]) => {
+    refreshDailyBackups();
+    Promise.all([loadProgress(uid, childId), loadAdminSettings(uid, childId)]).then(async ([raw, settings]) => {
       setAdminSettings(settings);
       const definitions = getMysteryImageDefinitions(settings?.customMysteryImages);
       const { progress: migratedProgress } = migrateProgress(raw, definitions);
@@ -725,13 +736,6 @@ export default function ChildApp() {
     });
   }, [persistProgress]);
 
-  const handleOpenAdmin = useCallback(() => {
-    setScreen('admin');
-  }, []);
-
-  const handleCloseAdmin = useCallback(() => {
-    setScreen('dashboard');
-  }, []);
 
   const handleSniper = useCallback(() => {
     if (!progress) return;
@@ -835,35 +839,6 @@ export default function ChildApp() {
     setScreen('dashboard');
   }, [returnData, persistProgress]);
 
-  const handleAdminSave = useCallback(async (nextSettings) => {
-    setAdminSaving(true);
-    const result = await saveAdminSettings(nextSettings, uid);
-    setAdminSaving(false);
-
-    if (!result?.success) {
-      setAdminSaveError(result?.error || "Les paramètres admin n'ont pas pu être sauvegardés.");
-      return result;
-    }
-
-    setAdminSaveError(null);
-    setAdminSettings(result.settings);
-
-    setProgress((prev) => {
-      if (!prev) return prev;
-      const next = {
-        ...prev,
-        parentalCode: {
-          ...prev.parentalCode,
-          failedAttempts: 0,
-          lockedUntil: 0,
-        },
-      };
-      persistProgress(next);
-      return next;
-    });
-
-    return result;
-  }, [uid, persistProgress]);
 
   const handleReturnSecretCodeSubmit = useCallback((rawCode) => {
     const enteredCode = normalizeSecretCode(rawCode);
@@ -981,19 +956,6 @@ export default function ChildApp() {
     );
   }
 
-  // Admin screen
-  if (screen === 'admin') {
-    return renderWithSaveError(
-      <AdminPage
-        settings={adminSettings}
-        onSave={handleAdminSave}
-        onBack={handleCloseAdmin}
-        saving={adminSaving}
-        saveError={adminSaveError}
-      />
-    );
-  }
-
   // Return screen
   if (screen === 'return' && returnData) {
     return renderWithSaveError(
@@ -1064,7 +1026,6 @@ export default function ChildApp() {
       rules={sortedRules}
       progress={progress}
       onPlay={handlePlay}
-      onOpenAdmin={handleOpenAdmin}
       onOpenShop={() => setScreen('shop')}
       pendingEvents={pendingEvents}
       onEventsSeen={handleEventsSeen}
@@ -1073,6 +1034,9 @@ export default function ChildApp() {
       canRematch={canRematch}
       lastSessionRuleId={lastSessionRuleId}
       lastSessionScore={lastSessionScore}
+      onDebugUpdateStreak={handleDebugUpdateStreak}
+      dailyBackups={dailyBackups}
+      onDebugRestoreBackup={handleDebugRestoreBackup}
     />
   );
 }

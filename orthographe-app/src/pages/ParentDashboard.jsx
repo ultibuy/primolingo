@@ -1,24 +1,255 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { collection, onSnapshot } from 'firebase/firestore';
 import { db } from '../firebase.js';
 import { useAuth } from '../contexts/AuthContext.jsx';
+import {
+  loadParentImages,
+  saveParentImages,
+  loadChildSettings,
+  saveChildQuestionCount,
+  saveChildImageSettings,
+} from '../store/persistence.js';
+
+// ─── Helpers ───────────────────────────────────────────────────────────────────
+
+function createCustomMysteryImageId() {
+  return `custom-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+function createEmptyDraft() {
+  return { imageDataUrl: '', finalTileIndex: null, title: '', fileName: '' };
+}
+
+const TILE_COUNT = 6;
+
+// ─── MysteryTileSelector ──────────────────────────────────────────────────────
+
+function MysteryTileSelector({ imageDataUrl, selectedTileIndex, onSelect }) {
+  return (
+    <div style={{ position: 'relative', width: '100%', aspectRatio: '1408/768', overflow: 'hidden', borderRadius: 14, border: '1px solid rgba(255,255,255,0.08)', background: '#0b1020' }}>
+      <img src={imageDataUrl} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+      {Array.from({ length: TILE_COUNT }).map((_, i) => {
+        const col = i % 3;
+        const row = Math.floor(i / 3);
+        const sel = selectedTileIndex === i;
+        return (
+          <button
+            key={i}
+            type="button"
+            onClick={() => onSelect(i)}
+            style={{
+              position: 'absolute',
+              left: `${col * 33.3333}%`, top: `${row * 50}%`,
+              width: '33.3333%', height: '50%',
+              border: `1.5px solid ${sel ? '#fbbf24' : 'rgba(255,255,255,0.14)'}`,
+              background: sel ? 'rgba(251,191,36,0.18)' : 'rgba(10,14,24,0.15)',
+              cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}
+          >
+            <span style={{
+              width: 28, height: 28, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
+              background: sel ? '#fbbf24' : 'rgba(15,23,42,0.7)',
+              color: sel ? '#111827' : '#fff',
+              fontSize: '0.8rem', fontWeight: 900,
+            }}>{i + 1}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ─── ChildSettings ────────────────────────────────────────────────────────────
+
+function ChildSettings({ uid, childId, parentImages }) {
+  const [settings, setSettings] = useState(null);
+  const [qCount, setQCount] = useState('20');
+  const [savingQ, setSavingQ] = useState(false);
+  const [savingImg, setSavingImg] = useState(false);
+  const [msg, setMsg] = useState('');
+
+  useEffect(() => {
+    loadChildSettings(uid, childId).then(s => {
+      setSettings(s);
+      setQCount(String(s.prodQuestionCount ?? 20));
+    });
+  }, [uid, childId]);
+
+  async function handleSaveQCount() {
+    setSavingQ(true);
+    const result = await saveChildQuestionCount(uid, childId, qCount);
+    setSavingQ(false);
+    if (result.success) { setMsg('Sauvegardé.'); setTimeout(() => setMsg(''), 2000); }
+    else setMsg(result.error || 'Erreur.');
+  }
+
+  async function handleToggleImage(imageId, enabled) {
+    const current = settings?.enabledMysteryImageIds || [];
+    const next = enabled ? [...current, imageId] : current.filter(id => id !== imageId);
+    setSavingImg(true);
+    const result = await saveChildImageSettings(uid, childId, next);
+    setSavingImg(false);
+    if (result.success) {
+      setSettings(s => ({ ...s, enabledMysteryImageIds: next }));
+    } else {
+      setMsg(result.error || 'Erreur.');
+    }
+  }
+
+  if (!settings) return <div style={{ fontSize: '0.82rem', color: '#a78bfa', padding: '0.5rem 0' }}>Chargement…</div>;
+
+  return (
+    <div style={{ display: 'grid', gap: '0.9rem', paddingTop: '0.25rem' }}>
+      {/* Question count */}
+      <div style={settingRowStyle}>
+        <div>
+          <div style={settingLabelStyle}>Questions par session</div>
+          <div style={{ fontSize: '0.76rem', color: '#64748b' }}>Entre 1 et 50</div>
+        </div>
+        <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
+          <input
+            type="number" min="1" max="50"
+            value={qCount}
+            onChange={e => setQCount(e.target.value)}
+            style={{ ...inputStyle, width: 60, padding: '0.45rem 0.6rem', textAlign: 'center' }}
+          />
+          <button type="button" onClick={handleSaveQCount} disabled={savingQ} style={primaryBtnStyle(savingQ)}>
+            {savingQ ? '…' : 'OK'}
+          </button>
+        </div>
+      </div>
+
+      {/* Mystery images */}
+      <div>
+        <div style={settingLabelStyle}>Images mystère activées</div>
+        {parentImages.length === 0 ? (
+          <div style={{ fontSize: '0.8rem', color: '#64748b', marginTop: '0.4rem' }}>
+            Aucune image dans la bibliothèque. Ajoutez-en ci-dessus.
+          </div>
+        ) : (
+          <div style={{ display: 'grid', gap: '0.45rem', marginTop: '0.5rem' }}>
+            {parentImages.map(img => {
+              const enabled = (settings.enabledMysteryImageIds || []).includes(img.id);
+              return (
+                <label key={img.id} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer' }}>
+                  <input
+                    type="checkbox"
+                    checked={enabled}
+                    disabled={savingImg}
+                    onChange={e => handleToggleImage(img.id, e.target.checked)}
+                    style={{ width: 16, height: 16, accentColor: '#a78bfa', cursor: 'pointer' }}
+                  />
+                  <div style={{ width: 48, aspectRatio: '1408/768', overflow: 'hidden', borderRadius: 5, background: '#0b1020', flexShrink: 0 }}>
+                    <img src={img.imageDataUrl} alt={img.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                  <span style={{ fontSize: '0.85rem', fontWeight: 600, color: enabled ? '#fff' : '#64748b' }}>{img.title}</span>
+                </label>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {msg && <div style={{ fontSize: '0.78rem', color: '#a7f3d0', fontWeight: 600 }}>{msg}</div>}
+    </div>
+  );
+}
+
+// ─── ChildCard ────────────────────────────────────────────────────────────────
+
+function ChildCard({ child, uid, parentImages }) {
+  const navigate = useNavigate();
+  const progress = child.progress || {};
+  const streak = progress.streak?.current || 0;
+  const coins = progress.coins || 0;
+  const rulesDone = Object.values(progress.rules || {}).filter(r => r.level >= 3).length;
+  const lastActive = progress.streak?.lastActiveDate || null;
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  return (
+    <div style={cardStyle}>
+      {/* Top row */}
+      <div style={cardTopStyle}>
+        <div style={avatarStyle}>{child.avatar || '🦊'}</div>
+        <div style={{ flex: 1 }}>
+          <div style={childNameStyle}>{child.name}</div>
+          {lastActive && <div style={lastActiveStyle}>Dernière activité : {lastActive}</div>}
+        </div>
+        <button type="button" onClick={() => navigate(`/parent/child/${child.id}/edit`)} style={iconBtnStyle} title="Modifier le profil">✏️</button>
+        <button
+          type="button"
+          onClick={() => setSettingsOpen(o => !o)}
+          style={{ ...iconBtnStyle, color: settingsOpen ? '#a78bfa' : 'rgba(255,255,255,0.5)' }}
+          title="Paramètres"
+        >
+          ⚙️
+        </button>
+      </div>
+
+      {/* Stats */}
+      <div style={statsRowStyle}>
+        <div style={statItemStyle}>
+          <span style={statValueStyle}>🔥 {streak}</span>
+          <span style={statLabelStyle}>Série</span>
+        </div>
+        <div style={statItemStyle}>
+          <span style={statValueStyle}>👑 {rulesDone}/10</span>
+          <span style={statLabelStyle}>Règles</span>
+        </div>
+        <div style={statItemStyle}>
+          <span style={statValueStyle}>🪙 {coins}</span>
+          <span style={statLabelStyle}>Pièces</span>
+        </div>
+      </div>
+
+      {/* Settings panel */}
+      {settingsOpen && (
+        <div style={settingsPanelStyle}>
+          <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#a78bfa', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.6rem' }}>
+            Paramètres de {child.name}
+          </div>
+          <ChildSettings uid={uid} childId={child.id} parentImages={parentImages} />
+        </div>
+      )}
+
+      {/* Play button */}
+      <button type="button" onClick={() => navigate(`/play/${child.id}`)} style={playBtnStyle}>
+        ▶ Jouer
+      </button>
+    </div>
+  );
+}
+
+// ─── ParentDashboard ──────────────────────────────────────────────────────────
 
 export default function ParentDashboard() {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const [children, setChildren] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [parentImages, setParentImages] = useState([]);
+  const [libOpen, setLibOpen] = useState(false);
 
   useEffect(() => {
     if (!user?.uid) return;
     const ref = collection(db, 'users', user.uid, 'children');
-    const unsub = onSnapshot(ref, (snap) => {
-      const list = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-      setChildren(list);
+    const unsub = onSnapshot(ref, snap => {
+      setChildren(snap.docs.map(d => ({ id: d.id, ...d.data() })));
       setLoading(false);
     });
     return unsub;
+  }, [user?.uid]);
+
+  // Load parent image library (needed by all child cards)
+  useEffect(() => {
+    if (!user?.uid) return;
+    loadParentImages(user.uid).then(setParentImages);
+  }, [user?.uid]);
+
+  // Refresh parent images after upload (passed as callback to ImageLibrary)
+  const refreshParentImages = useCallback(() => {
+    loadParentImages(user?.uid).then(setParentImages);
   }, [user?.uid]);
 
   async function handleSignOut() {
@@ -37,13 +268,26 @@ export default function ParentDashboard() {
           </div>
           <p style={welcomeStyle}>Bonjour, {user?.displayName?.split(' ')[0] || 'parent'} 👋</p>
         </div>
-        <button type="button" onClick={handleSignOut} style={logoutBtnStyle}>
-          Déconnexion
-        </button>
+        <button type="button" onClick={handleSignOut} style={logoutBtnStyle}>Déconnexion</button>
       </div>
 
       {/* Content */}
       <div style={contentStyle}>
+
+        {/* Image library (collapsible) */}
+        <div style={{ marginBottom: '2rem' }}>
+          <button
+            type="button"
+            onClick={() => setLibOpen(o => !o)}
+            style={libToggleStyle}
+          >
+            <span>🖼️ Bibliothèque d'images mystère</span>
+            <span style={{ fontSize: '0.85rem', opacity: 0.6 }}>{libOpen ? '▲' : '▼'}</span>
+          </button>
+          {libOpen && <ImageLibraryWithRefresh uid={user?.uid} onSaved={refreshParentImages} />}
+        </div>
+
+        {/* Children section */}
         <div style={sectionHeaderStyle}>
           <h2 style={sectionTitleStyle}>Mes enfants</h2>
           <button type="button" onClick={() => navigate('/parent/child/new')} style={addBtnStyle}>
@@ -57,8 +301,7 @@ export default function ParentDashboard() {
           <div style={emptyStyle}>
             <div style={{ fontSize: 48, marginBottom: 16 }}>👶</div>
             <p style={{ color: '#94a3b8', fontSize: '1rem', margin: 0 }}>
-              Aucun enfant pour l'instant.<br />
-              Commencez par créer un profil !
+              Aucun enfant pour l'instant.<br />Commencez par créer un profil !
             </p>
             <button type="button" onClick={() => navigate('/parent/child/new')} style={createFirstBtnStyle}>
               Créer le premier profil
@@ -67,7 +310,7 @@ export default function ParentDashboard() {
         ) : (
           <div style={childrenGridStyle}>
             {children.map(child => (
-              <ChildCard key={child.id} child={child} uid={user.uid} />
+              <ChildCard key={child.id} child={child} uid={user.uid} parentImages={parentImages} />
             ))}
           </div>
         )}
@@ -76,51 +319,108 @@ export default function ParentDashboard() {
   );
 }
 
-function ChildCard({ child, uid }) {
-  const navigate = useNavigate();
-  const progress = child.progress || {};
-  const streak = progress.streak?.current || 0;
-  const coins = progress.coins || 0;
-  const rulesDone = Object.values(progress.rules || {}).filter(r => r.level >= 3).length;
-  const rulesTotal = 10;
-  const lastActive = progress.streak?.lastActiveDate || null;
+// Wrapper that refreshes parent images list after a save
+function ImageLibraryWithRefresh({ uid, onSaved }) {
+  const [images, setImages] = useState([]);
+  const [draft, setDraft] = useState(createEmptyDraft());
+  const [saving, setSaving] = useState(false);
+  const [msg, setMsg] = useState('');
+
+  useEffect(() => {
+    loadParentImages(uid).then(setImages);
+  }, [uid]);
+
+  function handleFileChange(e) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => setDraft({ imageDataUrl: String(reader.result || ''), finalTileIndex: null, title: '', fileName: file.name });
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  }
+
+  async function handleAdd() {
+    if (!draft.imageDataUrl || draft.finalTileIndex === null || !draft.title.trim()) return;
+    const next = [...images, { id: createCustomMysteryImageId(), title: draft.title.trim(), imageDataUrl: draft.imageDataUrl, finalTileIndex: draft.finalTileIndex }];
+    setSaving(true);
+    const result = await saveParentImages(uid, next);
+    setSaving(false);
+    if (result.success) { setImages(next); setDraft(createEmptyDraft()); setMsg('Image ajoutée.'); setTimeout(() => setMsg(''), 2000); onSaved?.(); }
+    else setMsg(result.error || 'Erreur.');
+  }
+
+  async function handleRemove(id) {
+    const next = images.filter(img => img.id !== id);
+    setSaving(true);
+    const result = await saveParentImages(uid, next);
+    setSaving(false);
+    if (result.success) { setImages(next); setMsg('Image supprimée.'); setTimeout(() => setMsg(''), 2000); onSaved?.(); }
+    else setMsg(result.error || 'Erreur.');
+  }
 
   return (
-    <div style={cardStyle}>
-      <div style={cardTopStyle}>
-        <div style={avatarStyle}>{child.avatar || '🦊'}</div>
-        <div style={{ flex: 1 }}>
-          <div style={childNameStyle}>{child.name}</div>
-          {lastActive && (
-            <div style={lastActiveStyle}>Dernière activité : {lastActive}</div>
-          )}
-        </div>
-        <button type="button" onClick={() => navigate(`/parent/child/${child.id}/edit`)} style={editBtnStyle}>
-          ✏️
-        </button>
+    <div style={libShellStyle}>
+      <p style={{ margin: '0 0 1rem', fontSize: '0.85rem', color: '#94a3b8', lineHeight: 1.5 }}>
+        Uploadez des images ici, puis activez-les par compte enfant dans le ⚙️ de chaque enfant.
+      </p>
+
+      <div style={stepBoxStyle}>
+        <div style={stepLabelStyle}>1. Upload</div>
+        <label style={{ display: 'grid', gap: '0.4rem', cursor: 'pointer' }}>
+          <input type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} />
+          <span style={uploadBtnStyle}>Choisir une image</span>
+          <span style={{ fontSize: '0.76rem', color: '#9ca3af' }}>{draft.fileName || 'PNG, JPG ou WEBP'}</span>
+        </label>
       </div>
 
-      <div style={statsRowStyle}>
-        <div style={statItemStyle}>
-          <span style={statValueStyle}>🔥 {streak}</span>
-          <span style={statLabelStyle}>Série</span>
-        </div>
-        <div style={statItemStyle}>
-          <span style={statValueStyle}>👑 {rulesDone}/{rulesTotal}</span>
-          <span style={statLabelStyle}>Règles</span>
-        </div>
-        <div style={statItemStyle}>
-          <span style={statValueStyle}>🪙 {coins}</span>
-          <span style={statLabelStyle}>Pièces</span>
-        </div>
-      </div>
+      {draft.imageDataUrl && (
+        <>
+          <div style={stepBoxStyle}>
+            <div style={stepLabelStyle}>2. Case de la tête (révélée en dernier)</div>
+            <MysteryTileSelector imageDataUrl={draft.imageDataUrl} selectedTileIndex={draft.finalTileIndex} onSelect={i => setDraft(d => ({ ...d, finalTileIndex: i }))} />
+          </div>
+          <div style={stepBoxStyle}>
+            <div style={stepLabelStyle}>3. Titre mystérieux</div>
+            <input type="text" value={draft.title} onChange={e => setDraft(d => ({ ...d, title: e.target.value }))} placeholder="Ex: Le dragon des cascades" style={inputStyle} />
+            <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'space-between', flexWrap: 'wrap' }}>
+              <button type="button" onClick={() => setDraft(createEmptyDraft())} style={secBtnStyle}>Réinitialiser</button>
+              <button
+                type="button"
+                onClick={handleAdd}
+                disabled={saving || !draft.imageDataUrl || draft.finalTileIndex === null || !draft.title.trim()}
+                style={primaryBtnStyle(saving || !draft.imageDataUrl || draft.finalTileIndex === null || !draft.title.trim())}
+              >
+                {saving ? 'Ajout…' : 'Ajouter à la bibliothèque'}
+              </button>
+            </div>
+          </div>
+        </>
+      )}
 
-      <button type="button" onClick={() => navigate(`/play/${child.id}`)} style={playBtnStyle}>
-        ▶ Jouer
-      </button>
+      {images.length > 0 && (
+        <div style={{ display: 'grid', gap: '0.6rem', marginTop: '0.5rem' }}>
+          <div style={stepLabelStyle}>Images dans la bibliothèque ({images.length})</div>
+          {images.map(img => (
+            <div key={img.id} style={imgCardStyle}>
+              <div style={{ width: 100, aspectRatio: '1408/768', overflow: 'hidden', borderRadius: 8, flexShrink: 0, background: '#0b1020' }}>
+                <img src={img.imageDataUrl} alt={img.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontWeight: 700, fontSize: '0.9rem', color: '#fff', marginBottom: 2 }}>{img.title}</div>
+                <div style={{ fontSize: '0.75rem', color: '#64748b' }}>Tête : case {img.finalTileIndex + 1}</div>
+              </div>
+              <button type="button" onClick={() => handleRemove(img.id)} style={dangerBtnStyle} disabled={saving}>Supprimer</button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {msg && <div style={{ fontSize: '0.82rem', color: '#a7f3d0', fontWeight: 600, marginTop: '0.5rem' }}>{msg}</div>}
     </div>
   );
 }
+
+// ─── Styles ───────────────────────────────────────────────────────────────────
 
 const containerStyle = {
   minHeight: '100vh',
@@ -132,206 +432,156 @@ const containerStyle = {
 const headerStyle = {
   padding: '1.25rem 1.5rem',
   borderBottom: '1px solid rgba(255,255,255,0.08)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  flexWrap: 'wrap',
-  gap: '0.75rem',
+  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+  flexWrap: 'wrap', gap: '0.75rem',
 };
 
-const logoRowStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '0.6rem',
-  marginBottom: '0.25rem',
-};
-
+const logoRowStyle = { display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.25rem' };
 const logoIconStyle = {
-  width: 36,
-  height: 36,
-  borderRadius: 10,
+  width: 36, height: 36, borderRadius: 10,
   background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  fontSize: 14,
-  fontWeight: 900,
-  color: '#fff',
-  fontFamily: 'Outfit, sans-serif',
+  display: 'flex', alignItems: 'center', justifyContent: 'center',
+  fontSize: 14, fontWeight: 900, color: '#fff', fontFamily: 'Outfit, sans-serif',
 };
-
-const logoTitleStyle = {
-  fontSize: '1.2rem',
-  fontWeight: 900,
-  color: '#fff',
-  fontFamily: 'Outfit, sans-serif',
-};
-
-const welcomeStyle = {
-  margin: 0,
-  fontSize: '0.85rem',
-  color: '#94a3b8',
-};
-
+const logoTitleStyle = { fontSize: '1.2rem', fontWeight: 900, color: '#fff', fontFamily: 'Outfit, sans-serif' };
+const welcomeStyle = { margin: 0, fontSize: '0.85rem', color: '#94a3b8' };
 const logoutBtnStyle = {
-  padding: '0.5rem 1rem',
-  borderRadius: 10,
+  padding: '0.5rem 1rem', borderRadius: 10,
   border: '1px solid rgba(255,255,255,0.12)',
-  background: 'rgba(255,255,255,0.05)',
-  color: '#94a3b8',
-  fontSize: '0.85rem',
-  cursor: 'pointer',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  background: 'rgba(255,255,255,0.05)', color: '#94a3b8',
+  fontSize: '0.85rem', cursor: 'pointer', fontFamily: 'Plus Jakarta Sans, sans-serif',
 };
 
-const contentStyle = {
-  maxWidth: 900,
-  margin: '0 auto',
-  padding: '2rem 1.5rem',
+const contentStyle = { maxWidth: 900, margin: '0 auto', padding: '2rem 1.5rem' };
+
+const libToggleStyle = {
+  width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+  padding: '0.9rem 1.1rem', borderRadius: 14,
+  border: '1px solid rgba(167,139,250,0.2)',
+  background: 'rgba(167,139,250,0.06)',
+  color: '#c4b5fd', fontSize: '0.95rem', fontWeight: 700,
+  cursor: 'pointer', fontFamily: 'Plus Jakarta Sans, sans-serif',
+  marginBottom: 0,
+};
+
+const libShellStyle = {
+  background: 'rgba(255,255,255,0.04)',
+  border: '1px solid rgba(255,255,255,0.06)',
+  borderTop: 'none',
+  borderRadius: '0 0 14px 14px',
+  padding: '1.25rem',
+  display: 'grid', gap: '0.9rem',
 };
 
 const sectionHeaderStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  marginBottom: '1.5rem',
-  flexWrap: 'wrap',
-  gap: '0.75rem',
+  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+  marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.75rem',
 };
-
-const sectionTitleStyle = {
-  margin: 0,
-  fontSize: '1.4rem',
-  fontWeight: 800,
-  fontFamily: 'Outfit, sans-serif',
-};
-
+const sectionTitleStyle = { margin: 0, fontSize: '1.4rem', fontWeight: 800, fontFamily: 'Outfit, sans-serif' };
 const addBtnStyle = {
-  padding: '0.6rem 1.2rem',
-  borderRadius: 12,
-  border: 'none',
+  padding: '0.6rem 1.2rem', borderRadius: 12, border: 'none',
   background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
-  color: '#fff',
-  fontSize: '0.9rem',
-  fontWeight: 700,
-  cursor: 'pointer',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  color: '#fff', fontSize: '0.9rem', fontWeight: 700,
+  cursor: 'pointer', fontFamily: 'Plus Jakarta Sans, sans-serif',
 };
 
-const loadingStyle = {
-  textAlign: 'center',
-  color: '#a78bfa',
-  padding: '3rem 0',
-};
-
+const loadingStyle = { textAlign: 'center', color: '#a78bfa', padding: '3rem 0' };
 const emptyStyle = {
-  textAlign: 'center',
-  padding: '3rem 1rem',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: '1rem',
+  textAlign: 'center', padding: '3rem 1rem',
+  display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem',
 };
-
 const createFirstBtnStyle = {
-  padding: '0.8rem 1.5rem',
-  borderRadius: 14,
-  border: 'none',
+  padding: '0.8rem 1.5rem', borderRadius: 14, border: 'none',
   background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
-  color: '#fff',
-  fontSize: '0.95rem',
-  fontWeight: 800,
-  cursor: 'pointer',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
-  marginTop: '0.5rem',
+  color: '#fff', fontSize: '0.95rem', fontWeight: 800,
+  cursor: 'pointer', fontFamily: 'Plus Jakarta Sans, sans-serif', marginTop: '0.5rem',
 };
-
 const childrenGridStyle = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
-  gap: '1rem',
+  display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem',
 };
 
+// Card
 const cardStyle = {
   background: 'rgba(255,255,255,0.06)',
-  backdropFilter: 'blur(12px)',
-  WebkitBackdropFilter: 'blur(12px)',
+  backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
   border: '1px solid rgba(167,139,250,0.15)',
-  borderRadius: 20,
-  padding: '1.25rem',
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '1rem',
+  borderRadius: 20, padding: '1.25rem',
+  display: 'flex', flexDirection: 'column', gap: '1rem',
 };
-
-const cardTopStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  gap: '0.75rem',
+const cardTopStyle = { display: 'flex', alignItems: 'center', gap: '0.75rem' };
+const avatarStyle = { fontSize: 36, lineHeight: 1 };
+const childNameStyle = { fontSize: '1.1rem', fontWeight: 800, color: '#fff', fontFamily: 'Outfit, sans-serif' };
+const lastActiveStyle = { fontSize: '0.75rem', color: '#64748b', marginTop: 2 };
+const iconBtnStyle = {
+  background: 'none', border: 'none', cursor: 'pointer', fontSize: 16, padding: 4,
 };
-
-const avatarStyle = {
-  fontSize: 36,
-  lineHeight: 1,
-};
-
-const childNameStyle = {
-  fontSize: '1.1rem',
-  fontWeight: 800,
-  color: '#fff',
-  fontFamily: 'Outfit, sans-serif',
-};
-
-const lastActiveStyle = {
-  fontSize: '0.75rem',
-  color: '#64748b',
-  marginTop: 2,
-};
-
-const editBtnStyle = {
-  background: 'none',
-  border: 'none',
-  cursor: 'pointer',
-  fontSize: 16,
-  padding: 4,
-};
-
 const statsRowStyle = {
-  display: 'flex',
-  justifyContent: 'space-around',
-  background: 'rgba(255,255,255,0.04)',
-  borderRadius: 12,
-  padding: '0.75rem',
+  display: 'flex', justifyContent: 'space-around',
+  background: 'rgba(255,255,255,0.04)', borderRadius: 12, padding: '0.75rem',
 };
-
-const statItemStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: 2,
+const statItemStyle = { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 };
+const statValueStyle = { fontSize: '0.95rem', fontWeight: 700, color: '#fff' };
+const statLabelStyle = { fontSize: '0.7rem', color: '#64748b' };
+const settingsPanelStyle = {
+  background: 'rgba(167,139,250,0.05)',
+  border: '1px solid rgba(167,139,250,0.15)',
+  borderRadius: 12, padding: '0.9rem',
 };
-
-const statValueStyle = {
-  fontSize: '0.95rem',
-  fontWeight: 700,
-  color: '#fff',
-};
-
-const statLabelStyle = {
-  fontSize: '0.7rem',
-  color: '#64748b',
-};
-
 const playBtnStyle = {
-  width: '100%',
-  padding: '0.75rem',
-  borderRadius: 14,
-  border: 'none',
+  width: '100%', padding: '0.75rem', borderRadius: 14, border: 'none',
   background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
-  color: '#fff',
-  fontSize: '1rem',
-  fontWeight: 800,
-  cursor: 'pointer',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  color: '#fff', fontSize: '1rem', fontWeight: 800,
+  cursor: 'pointer', fontFamily: 'Plus Jakarta Sans, sans-serif',
   boxShadow: '0 6px 20px rgba(124,58,237,0.3)',
+};
+
+// Settings
+const settingRowStyle = {
+  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+  gap: '0.8rem', flexWrap: 'wrap',
+};
+const settingLabelStyle = { fontSize: '0.85rem', fontWeight: 700, color: '#c4b5fd', marginBottom: '0.2rem' };
+
+// Shared form styles
+const stepBoxStyle = {
+  background: 'rgba(0,0,0,0.18)', border: '1px solid rgba(255,255,255,0.05)',
+  borderRadius: 14, padding: '0.85rem', display: 'grid', gap: '0.65rem',
+};
+const stepLabelStyle = { fontSize: '0.8rem', fontWeight: 800, color: '#fff' };
+const uploadBtnStyle = {
+  display: 'inline-flex', alignItems: 'center', width: 'fit-content',
+  borderRadius: 10, padding: '0.65rem 1rem',
+  background: 'rgba(167,139,250,0.12)', border: '1px solid rgba(167,139,250,0.2)',
+  color: '#a78bfa', fontSize: '0.84rem', fontWeight: 800, cursor: 'pointer',
+};
+const inputStyle = {
+  width: '100%', borderRadius: 10,
+  border: '1px solid rgba(167,139,250,0.24)',
+  background: 'rgba(0,0,0,0.24)', color: '#fff',
+  padding: '0.7rem 0.9rem', fontSize: '0.95rem', fontWeight: 700,
+  outline: 'none', boxSizing: 'border-box', fontFamily: 'Plus Jakarta Sans, sans-serif',
+};
+const primaryBtnStyle = (disabled) => ({
+  border: 'none', borderRadius: 12, padding: '0.7rem 1.1rem',
+  background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
+  color: '#fff', fontSize: '0.88rem', fontWeight: 800,
+  cursor: disabled ? 'default' : 'pointer', opacity: disabled ? 0.55 : 1,
+  fontFamily: 'Plus Jakarta Sans, sans-serif',
+});
+const secBtnStyle = {
+  border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: '0.7rem 1.1rem',
+  background: 'rgba(255,255,255,0.04)', color: '#cbd5e1',
+  fontSize: '0.88rem', fontWeight: 700, cursor: 'pointer',
+  fontFamily: 'Plus Jakarta Sans, sans-serif',
+};
+const dangerBtnStyle = {
+  border: '1px solid rgba(248,113,113,0.2)', borderRadius: 10, padding: '0.55rem 0.8rem',
+  background: 'rgba(248,113,113,0.08)', color: '#fca5a5',
+  fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer',
+  fontFamily: 'Plus Jakarta Sans, sans-serif',
+};
+const imgCardStyle = {
+  display: 'flex', gap: '0.8rem', alignItems: 'center',
+  background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)',
+  borderRadius: 12, padding: '0.6rem',
 };

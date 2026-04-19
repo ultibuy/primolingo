@@ -302,7 +302,6 @@ export default function Dashboard({
   rules,
   progress,
   onPlay,
-  onOpenAdmin,
   onOpenShop,
   pendingEvents,
   onEventsSeen,
@@ -322,11 +321,44 @@ export default function Dashboard({
   const [levelHelp, setLevelHelp] = useState(null); // { level: 'bronze', ruleTitle, ruleProgress }
   const [editingRule, setEditingRule] = useState(null); // rule object being edited
   const [memoRule, setMemoRule] = useState(null);
-  const isDebug = typeof window !== 'undefined' && window.__ORTHO_DEBUG__;
+  // Debug mode: activate via ?debug=1 (persists in localStorage), deactivate via button
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('debug') === '1') {
+      localStorage.setItem('ortho_debug', '1');
+      const url = new URL(window.location.href);
+      url.searchParams.delete('debug');
+      window.history.replaceState({}, '', url.toString());
+    } else if (params.get('debug') === '0') {
+      localStorage.removeItem('ortho_debug');
+      const url = new URL(window.location.href);
+      url.searchParams.delete('debug');
+      window.history.replaceState({}, '', url.toString());
+    }
+  }, []);
+  const isDebug = typeof window !== 'undefined' && (
+    window.__ORTHO_DEBUG__ ||
+    localStorage.getItem('ortho_debug') === '1' ||
+    new URLSearchParams(window.location.search).get('debug') === '1' ||
+    window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1'
+  );
   const overlayTimeoutsRef = useRef([]);
   const [debugStreak, setDebugStreak] = useState(String(progress.streak?.current || 0));
   const [debugDate, setDebugDate] = useState(progress.streak?.lastActiveDate || '');
   const [restoringBackupDate, setRestoringBackupDate] = useState(null);
+  const [debugOpen, setDebugOpen] = useState(false);
+  useEffect(() => {
+    if (!isDebug) return;
+    const handler = (e) => {
+      if (e.metaKey && e.shiftKey && e.key === 'D') {
+        e.preventDefault();
+        setDebugOpen(o => !o);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [isDebug]);
   const [isCompactLayout, setIsCompactLayout] = useState(() => (
     typeof window !== 'undefined' ? window.innerWidth <= 760 : false
   ));
@@ -628,39 +660,6 @@ export default function Dashboard({
                 </span>
               </div>
             )}
-
-            <button
-              type="button"
-              onClick={onOpenAdmin}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.28rem',
-                background: 'rgba(255,255,255,0.04)',
-                border: '1px solid rgba(255,255,255,0.08)',
-                borderRadius: 12,
-                padding: '0.38rem 0.6rem',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease',
-                color: 'rgba(255,255,255,0.74)',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
-                e.currentTarget.style.borderColor = 'rgba(var(--color-accent-rgb),0.2)';
-                e.currentTarget.style.color = 'var(--color-accent)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
-                e.currentTarget.style.color = 'rgba(255,255,255,0.74)';
-              }}
-              aria-label="Ouvrir l'administration"
-            >
-              <span style={{ fontSize: '0.85rem', lineHeight: 1 }}>⚙️</span>
-              <span style={{ fontSize: '0.78rem', fontWeight: 800, letterSpacing: '0.02em' }}>
-                Admin
-              </span>
-            </button>
 
             {/* A2 — Coin counter + shop icon with hover glow */}
             <button
@@ -1026,28 +1025,87 @@ export default function Dashboard({
         </div>
       </div>
 
-      {/* ── Debug: streak editor ── */}
+      {/* ── Debug panel: fixed overlay ── */}
       {isDebug && onDebugUpdateStreak && (
+        <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999 }}>
+          {/* Toggle tab */}
+          <div
+            onClick={() => setDebugOpen(o => !o)}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+              margin: '0 0 0 16px', padding: '0.3rem 0.9rem',
+              background: 'rgba(30,20,40,0.95)', border: '1px solid rgba(248,113,113,0.35)',
+              borderBottom: 'none', borderRadius: '8px 8px 0 0',
+              cursor: 'pointer', fontSize: '0.72rem', fontWeight: 700, color: '#f87171',
+            }}
+          >
+            🛠 DEBUG {debugOpen ? '▼' : '▲'}
+          </div>
+          {debugOpen && (
         <div style={{
-          width: isCompactLayout ? 'calc(100% - 1.8rem)' : 'min(360px, calc(100% - 2rem))',
-          alignSelf: isCompactLayout ? 'center' : 'flex-start',
-          margin: isCompactLayout ? '0.4rem auto 1.2rem' : '1.5rem 1rem 0',
-          padding: isCompactLayout ? '0.9rem 0.95rem' : '1rem 1.2rem',
-          background: 'rgba(248,113,113,0.05)',
-          border: '1px dashed rgba(248,113,113,0.2)',
-          borderRadius: 14,
-          flexShrink: 0,
+          padding: '1rem 1.2rem',
+          background: 'rgba(20,10,30,0.97)',
+          border: '1px solid rgba(248,113,113,0.2)',
+          borderBottom: 'none',
+          maxHeight: '60vh', overflowY: 'auto',
         }}>
           <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
             🛠 Debug — Streak
           </div>
           <div style={{ marginBottom: '0.8rem' }}>
+            <button
+              onClick={() => {
+                const body = document.body;
+                const foldId = '__debug_fold_line__';
+                if (body.style.maxWidth === '390px') {
+                  body.style.maxWidth = '';
+                  body.style.margin = '';
+                  body.style.boxShadow = '';
+                  body.style.position = '';
+                  document.getElementById(foldId)?.remove();
+                } else {
+                  body.style.maxWidth = '390px';
+                  body.style.margin = '0 auto';
+                  body.style.boxShadow = '0 0 0 9999px rgba(0,0,0,0.5)';
+                  body.style.position = 'relative';
+                  if (!document.getElementById(foldId)) {
+                    const el = document.createElement('div');
+                    el.id = foldId;
+                    el.style.cssText = `
+                      position: absolute; top: 844px; left: 0; right: 0; z-index: 99999;
+                      border-top: 2px dashed #ef4444;
+                      pointer-events: none;
+                    `;
+                    const label = document.createElement('span');
+                    label.textContent = '— ligne de flottaison 844px —';
+                    label.style.cssText = `
+                      position: absolute; top: 2px; left: 50%; transform: translateX(-50%);
+                      background: #ef4444; color: white; font-size: 10px; font-weight: 700;
+                      padding: 1px 6px; border-radius: 3px; white-space: nowrap;
+                    `;
+                    el.appendChild(label);
+                    document.body.appendChild(el);
+                  }
+                }
+              }}
+              style={{
+                padding: '0.38rem 0.9rem', borderRadius: 6,
+                border: '1px solid rgba(167,139,250,0.3)',
+                background: 'rgba(167,139,250,0.1)',
+                color: '#c4b5fd', cursor: 'pointer',
+                fontSize: '0.75rem', fontWeight: 700,
+              }}
+            >
+              📱 Toggle vue mobile (390px)
+            </button>
+          </div>
+          <div style={{ marginBottom: '0.8rem' }}>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
               <button
                 onClick={() => {
-                  const url = new URL(window.location.href);
-                  url.searchParams.set('debug', '0');
-                  window.location.href = url.toString();
+                  localStorage.removeItem('ortho_debug');
+                  window.__ORTHO_DEBUG__ = false;
+                  window.location.reload();
                 }}
                 style={{
                   padding: '0.38rem 0.9rem',
@@ -1210,6 +1268,8 @@ export default function Dashboard({
                 </div>
               )}
             </div>
+          )}
+        </div>
           )}
         </div>
       )}

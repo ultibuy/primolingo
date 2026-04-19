@@ -53,6 +53,38 @@ export async function firestoreSaveAdminSettings(uid, settings) {
 }
 
 // ---------------------------------------------------------------------------
+// Per-child settings (prodQuestionCount, enabledMysteryImageIds)
+// ---------------------------------------------------------------------------
+
+export async function firestoreLoadChildSettings(uid, childId) {
+  const ref = doc(db, 'users', uid, 'children', childId);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) return null;
+  return snap.data().childSettings || null;
+}
+
+export async function firestoreSaveChildSettings(uid, childId, settings) {
+  const ref = doc(db, 'users', uid, 'children', childId);
+  await updateDoc(ref, { childSettings: settings });
+}
+
+// ---------------------------------------------------------------------------
+// Parent-level mystery image library
+// ---------------------------------------------------------------------------
+
+export async function firestoreLoadParentImages(uid) {
+  const ref = doc(db, 'users', uid);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) return [];
+  return snap.data().mysteryImages || [];
+}
+
+export async function firestoreSaveParentImages(uid, images) {
+  const ref = doc(db, 'users', uid);
+  await updateDoc(ref, { mysteryImages: images });
+}
+
+// ---------------------------------------------------------------------------
 // Daily backups
 // ---------------------------------------------------------------------------
 

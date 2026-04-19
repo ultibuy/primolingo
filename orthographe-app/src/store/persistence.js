@@ -14,6 +14,10 @@ import {
   firestoreSaveProgress,
   firestoreLoadAdminSettings,
   firestoreSaveAdminSettings,
+  firestoreLoadChildSettings,
+  firestoreSaveChildSettings,
+  firestoreLoadParentImages,
+  firestoreSaveParentImages,
   getDailyBackupsFirestore,
   restoreDailyBackupFirestore,
 } from '../services/firestore.js';
@@ -128,18 +132,29 @@ export async function saveProgress(progress, uid, childId) {
 }
 
 // ---------------------------------------------------------------------------
-// Admin settings
+// Admin settings — now per-child, with parent-level image library
 // ---------------------------------------------------------------------------
 
-export async function loadAdminSettings(uid) {
-  if (!uid) return createDefaultAdminSettings();
+/**
+ * Load admin settings for a specific child.
+ * - prodQuestionCount comes from the child's own settings
+ * - customMysteryImages = parent library filtered by child's enabledMysteryImageIds
+ */
+export async function loadAdminSettings(uid, childId) {
+  if (!uid || !childId) return createDefaultAdminSettings();
   try {
-    const settings = await firestoreLoadAdminSettings(uid);
-    if (!settings || typeof settings !== 'object') return createDefaultAdminSettings();
+    const [childSettings, parentImages] = await Promise.all([
+      firestoreLoadChildSettings(uid, childId),
+      firestoreLoadParentImages(uid),
+    ]);
+    const settings = childSettings || {};
+    const enabledIds = settings.enabledMysteryImageIds || [];
+    const allImages = normalizeCustomMysteryImages(parentImages);
+    const customMysteryImages = allImages.filter(img => enabledIds.includes(img.id));
     return {
       prodQuestionCount: Math.max(1, Math.min(Number.parseInt(settings.prodQuestionCount, 10) || 20, 50)),
-      parentalCode: normalizeSecretCode(settings.parentalCode) || createDefaultAdminSettings().parentalCode,
-      customMysteryImages: normalizeCustomMysteryImages(settings.customMysteryImages),
+      parentalCode: createDefaultAdminSettings().parentalCode,
+      customMysteryImages,
     };
   } catch (error) {
     console.error('Failed to load admin settings from Firestore:', error);
@@ -147,19 +162,96 @@ export async function loadAdminSettings(uid) {
   }
 }
 
-export async function saveAdminSettings(settings, uid) {
-  if (!uid) return { success: false, error: 'uid requis.' };
+/**
+ * Save admin settings for a specific child (only prodQuestionCount).
+ * Image management is handled separately via saveChildImageSettings / saveParentImages.
+ */
+export async function saveAdminSettings(settings, uid, childId) {
+  if (!uid || !childId) return { success: false, error: 'uid et childId requis.' };
   try {
-    const payload = {
-      prodQuestionCount: Math.max(1, Math.min(Number.parseInt(settings?.prodQuestionCount, 10) || 20, 50)),
-      parentalCode: normalizeSecretCode(settings?.parentalCode) || createDefaultAdminSettings().parentalCode,
-      customMysteryImages: normalizeCustomMysteryImages(settings?.customMysteryImages),
-    };
-    await firestoreSaveAdminSettings(uid, payload);
-    return { success: true, settings: payload };
+    const prodQuestionCount = Math.max(1, Math.min(Number.parseInt(settings?.prodQuestionCount, 10) || 20, 50));
+    const current = await firestoreLoadChildSettings(uid, childId) || {};
+    const payload = { ...current, prodQuestionCount };
+    await firestoreSaveChildSettings(uid, childId, payload);
+    return { success: true, settings: { ...createDefaultAdminSettings(), prodQuestionCount } };
   } catch (error) {
     console.error('Failed to save admin settings to Firestore:', error);
     return { success: false, error: "Les paramètres admin n'ont pas pu être sauvegardés." };
+  }
+}
+
+/**
+ * Load the parent-level mystery image library.
+ */
+export async function loadParentImages(uid) {
+  if (!uid) return [];
+  try {
+    return normalizeCustomMysteryImages(await firestoreLoadParentImages(uid));
+  } catch (error) {
+    console.error('Failed to load parent images:', error);
+    return [];
+  }
+}
+
+/**
+ * Save the parent-level mystery image library.
+ */
+export async function saveParentImages(uid, images) {
+  if (!uid) return { success: false, error: 'uid requis.' };
+  try {
+    await firestoreSaveParentImages(uid, normalizeCustomMysteryImages(images));
+    return { success: true };
+  } catch (error) {
+    console.error('Failed to save parent images:', error);
+    return { success: false, error: "Les images n'ont pas pu être sauvegardées." };
+  }
+}
+
+/**
+ * Save which images from the parent library are enabled for a specific child.
+ */
+export async function saveChildImageSettings(uid, childId, enabledMysteryImageIds) {
+  if (!uid || !childId) return { success: false, error: 'uid et childId requis.' };
+  try {
+    const current = await firestoreLoadChildSettings(uid, childId) || {};
+    await firestoreSaveChildSettings(uid, childId, { ...current, enabledMysteryImageIds });
+    return { success: true };
+  } catch (error) {
+    console.error('Failed to save child image settings:', error);
+    return { success: false, error: "Les paramètres n'ont pas pu être sauvegardés." };
+  }
+}
+
+/**
+ * Save the prodQuestionCount for a specific child.
+ */
+export async function saveChildQuestionCount(uid, childId, prodQuestionCount) {
+  if (!uid || !childId) return { success: false, error: 'uid et childId requis.' };
+  try {
+    const count = Math.max(1, Math.min(Number.parseInt(prodQuestionCount, 10) || 20, 50));
+    const current = await firestoreLoadChildSettings(uid, childId) || {};
+    await firestoreSaveChildSettings(uid, childId, { ...current, prodQuestionCount: count });
+    return { success: true };
+  } catch (error) {
+    console.error('Failed to save question count:', error);
+    return { success: false, error: "Le paramètre n'a pas pu être sauvegardé." };
+  }
+}
+
+/**
+ * Load child-specific settings (raw, for parent dashboard).
+ */
+export async function loadChildSettings(uid, childId) {
+  if (!uid || !childId) return { prodQuestionCount: 20, enabledMysteryImageIds: [] };
+  try {
+    const s = await firestoreLoadChildSettings(uid, childId);
+    return {
+      prodQuestionCount: Math.max(1, Math.min(Number.parseInt(s?.prodQuestionCount, 10) || 20, 50)),
+      enabledMysteryImageIds: Array.isArray(s?.enabledMysteryImageIds) ? s.enabledMysteryImageIds : [],
+    };
+  } catch (error) {
+    console.error('Failed to load child settings:', error);
+    return { prodQuestionCount: 20, enabledMysteryImageIds: [] };
   }
 }
 

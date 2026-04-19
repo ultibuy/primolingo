@@ -118,39 +118,43 @@ export default function QuizGuided({
         <PopupCloseButton onClick={onClose} />
 
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.3rem', paddingRight: '4rem' }}>
-          <h1 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-accent)', letterSpacing: '-0.02em', margin: 0 }}>
+        <div style={{ marginBottom: '0.3rem' }}>
+          <h1 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-accent)', letterSpacing: '-0.02em', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {rule.title}
           </h1>
-          <span style={{ fontSize: '0.85rem', color: '#9ca3af', fontWeight: 600 }}>
-            {currentIndex + 1}/{questions.length}
-          </span>
+          <div style={{ fontSize: '0.75rem', color: '#9ca3af', fontWeight: 600, textAlign: 'right', marginTop: '2px' }}>
+            {currentIndex + 1}/{questions.length} · {score}/{currentIndex + (showResult ? 1 : 0)}
+          </div>
         </div>
 
         <ProgressBar current={currentIndex} total={questions.length} showResult={showResult} />
 
-        <p style={{ textAlign: 'right', fontSize: '0.78rem', color: '#6b7280', marginBottom: '1.2rem' }}>
-          Score : {score}/{currentIndex + (showResult ? 1 : 0)}
-        </p>
-
         {/* Sentence */}
         <div style={sentenceStyle}>
           {question.before}
-          {hasVerb && <span style={{ color: '#e2e2e2', fontWeight: 600 }}>{question.verb}</span>}
-          <span style={{
-            display: 'inline-block',
-            minWidth: hasVerb ? 50 : 80,
-            borderBottom: '2px dashed var(--color-accent)',
-            color: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
-            fontWeight: 700, padding: '0 4px',
-          }}>
-            {selected
-              ? (hasVerb
-                ? choices.find(c => c.id === selected)?.label.replace('-', '')
-                : choices.find(c => c.id === selected)?.label)
-              : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
-          </span>
-          {question.after}
+          {hasVerb
+            ? <><span style={{ whiteSpace: 'nowrap' }}>
+                <span style={{ color: '#e2e2e2', fontWeight: 600 }}>{question.verb}</span>
+                <span style={{
+                  display: 'inline-block',
+                  minWidth: 50,
+                  borderBottom: '2px dashed var(--color-accent)',
+                  color: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
+                  fontWeight: 700, padding: '0 4px',
+                }}>
+                  {selected ? choices.find(c => c.id === selected)?.label.replace('-', '') : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
+                </span>
+              </span>{question.after}</>
+            : <><span style={{
+                  display: 'inline-block',
+                  minWidth: 80,
+                  borderBottom: '2px dashed var(--color-accent)',
+                  color: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
+                  fontWeight: 700, padding: '0 4px',
+                }}>
+                  {selected ? choices.find(c => c.id === selected)?.label : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
+                </span>{question.after}</>}
+
         </div>
 
         {/* B5 — Label above the decision panel (same style as "Ta réponse") */}
@@ -256,17 +260,12 @@ export default function QuizGuided({
                 }}
               >
                 {choice.label}
-                {onlyOneLeft && !isEliminated && !showResult && (
-                  <span style={{
-                    display: 'block', fontSize: '0.6rem', fontWeight: 400,
-                    color: '#fbbf24', marginTop: 2,
-                  }}>
-                    Clique pour valider
-                  </span>
-                )}
               </button>
             );
           })}
+        </div>
+        <div style={{ textAlign: 'center', fontSize: '0.72rem', color: '#6b7280', marginTop: '-0.8rem', marginBottom: '0.8rem', visibility: onlyOneLeft && !showResult ? 'visible' : 'hidden' }}>
+          Clique pour valider
         </div>
 
         {/* Result */}

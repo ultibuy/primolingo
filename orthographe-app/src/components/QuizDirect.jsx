@@ -85,38 +85,40 @@ export default function QuizDirect({
         <PopupCloseButton onClick={onClose} />
 
         {/* Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.3rem', paddingRight: '4rem' }}>
-          <h1 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--color-accent)', letterSpacing: '-0.02em', margin: 0 }}>
+        <div style={{ marginBottom: '0.3rem' }}>
+          <h1 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-accent)', letterSpacing: '-0.02em', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {rule.title}
           </h1>
-          <span style={{ fontSize: '0.85rem', color: '#9ca3af', fontWeight: 600 }}>
-            {currentIndex + 1}/{questions.length}
-          </span>
+          <div style={{ fontSize: '0.75rem', color: '#9ca3af', fontWeight: 600, textAlign: 'right', marginTop: '2px' }}>
+            {currentIndex + 1}/{questions.length} · {score}/{currentIndex + (showResult ? 1 : 0)}
+          </div>
         </div>
 
         <ProgressBar current={currentIndex} total={questions.length} showResult={showResult} />
 
-        <p style={{ textAlign: 'right', fontSize: '0.78rem', color: '#6b7280', marginBottom: '1.8rem' }}>
-          Score : {score}/{currentIndex + (showResult ? 1 : 0)}
-        </p>
-
         {/* Sentence */}
         <div style={sentenceStyle}>
           {question.before}
-          {hasVerb && <span style={{ color: '#e2e2e2', fontWeight: 600 }}>{question.verb}</span>}
-          <span style={{
-            display: 'inline-block', minWidth: hasVerb ? 45 : 80,
-            borderBottom: '2px dashed var(--color-accent)',
-            color: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
-            fontWeight: 700, padding: '0 4px',
-          }}>
-            {selected
-              ? (hasVerb
-                ? choices.find(c => c.id === selected)?.label.replace('-', '')
-                : choices.find(c => c.id === selected)?.label)
-              : (hasVerb ? '___' : '______')}
-          </span>
-          {question.after}
+          {hasVerb
+            ? <><span style={{ whiteSpace: 'nowrap' }}>
+                <span style={{ color: '#e2e2e2', fontWeight: 600 }}>{question.verb}</span>
+                <span style={{
+                  display: 'inline-block', minWidth: 45,
+                  borderBottom: '2px dashed var(--color-accent)',
+                  color: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
+                  fontWeight: 700, padding: '0 4px',
+                }}>
+                  {selected ? choices.find(c => c.id === selected)?.label.replace('-', '') : '___'}
+                </span>
+              </span>{question.after}</>
+            : <><span style={{
+                  display: 'inline-block', minWidth: 80,
+                  borderBottom: '2px dashed var(--color-accent)',
+                  color: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
+                  fontWeight: 700, padding: '0 4px',
+                }}>
+                  {selected ? choices.find(c => c.id === selected)?.label : '______'}
+                </span>{question.after}</>}
         </div>
 
         {/* Answer buttons */}

@@ -9,6 +9,13 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Debug auth bypass: set localStorage 'debug_uid' to skip real auth
+    const debugUid = localStorage.getItem('ortho_debug') === '1' && localStorage.getItem('debug_uid');
+    if (debugUid) {
+      setUser({ uid: debugUid, email: 'debug@test.com', displayName: 'Debug' });
+      setLoading(false);
+      return;
+    }
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
       setLoading(false);
