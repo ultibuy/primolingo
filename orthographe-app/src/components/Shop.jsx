@@ -4,8 +4,10 @@ import PopupCloseButton from './PopupCloseButton.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
 import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
+import CharacterSprite from './CharacterSprite.jsx';
 import mangaImage from '../assets/manga.png';
 import ryuImage from '../assets/ryu.png';
+import { SHOP_CHARACTERS, SHOP_EMOTIONS } from '../data/shopCharacters.js';
 import {
   SHOP_CATALOG,
   canAfford,
@@ -28,7 +30,7 @@ import {
 const CATEGORIES = [
   { key: 'cosmetique', label: 'Cosm\u00e9tique', filter: (item) => ['themes', 'flames', 'titles', 'victoryAnimations'].includes(item.category) },
   { key: 'assurance', label: 'Assurance', filter: (item) => ['streakFreeze', 'doubleCoins'].includes(item.category) },
-  { key: 'enjeu', label: 'En jeu', filter: (item) => ['revealHint', 'rematch', 'modeSniper', 'questionMystery'].includes(item.category) },
+  { key: 'persos', label: 'Persos', filter: () => false },
   { key: 'mystere', label: 'Image mystère', filter: () => false },
 ];
 
@@ -43,6 +45,7 @@ const CATEGORY_ICONS = {
   rematch: '\uD83D\uDD04',
   modeSniper: '\uD83C\uDFAF',
   questionMystery: '\u2753',
+  persos: '🧍',
   mystere: '\uD83E\uDDE9',
 };
 
@@ -89,6 +92,7 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
   const [previewTitleItem, setPreviewTitleItem] = useState(null);
   const [previewVictoryItem, setPreviewVictoryItem] = useState(null);
   const [previewMysteryImageId, setPreviewMysteryImageId] = useState(null);
+  const [emotionPopup, setEmotionPopup] = useState(null);
 
   useEffect(() => {
     requestAnimationFrame(() => setMounted(true));
@@ -100,7 +104,9 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
   const mysteryImageDefinitions = getMysteryImageDefinitions(adminSettings?.customMysteryImages);
 
   const allItems = Object.values(SHOP_CATALOG);
-  const baseShopTotal = allItems.reduce((sum, item) => sum + (item.price || 0), 0);
+  const charactersTotal = SHOP_CHARACTERS.length * 500
+    + (SHOP_CHARACTERS.length * SHOP_EMOTIONS.reduce((sum, emotion) => sum + emotion.price, 0));
+  const baseShopTotal = allItems.reduce((sum, item) => sum + (item.price || 0), 0) + charactersTotal;
   const mysteryImagesTotal = Object.keys(mysteryImageDefinitions).length * MYSTERY_IMAGE_PARTS * MYSTERY_IMAGE_PRICE;
   const globalShopTotal = baseShopTotal + mysteryImagesTotal;
   const activeCat = CATEGORIES.find(c => c.key === activeTab);
@@ -136,11 +142,43 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
     });
   };
 
+  const handleRequestCharacterPurchase = (char) => {
+    const itemId = `char-${char.id}`;
+    if ((progress.shop?.owned || []).includes(itemId)) return;
+    if (coins < 500) return;
+    setConfirmItem({
+      id: itemId,
+      name: char.name,
+      price: 500,
+      kind: 'character',
+    });
+  };
+
+  const handleRequestEmotionPurchase = (char, emotion) => {
+    const itemId = `char-${char.id}-${emotion.id}`;
+    if ((progress.shop?.owned || []).includes(itemId)) {
+      setEmotionPopup({ charId: char.id, emotion });
+      return;
+    }
+    if (coins < emotion.price) return;
+    setConfirmItem({
+      id: itemId,
+      name: `${emotion.symbol} ${emotion.name} · ${char.name}`,
+      price: emotion.price,
+      kind: 'emotion',
+      charId: char.id,
+      emotion,
+    });
+  };
+
   const handleConfirmPurchase = () => {
     if (!confirmItem) return;
     setPurchaseAnim(confirmItem.id);
     setTimeout(() => setPurchaseAnim(null), 800);
     onPurchase(confirmItem.id, confirmItem.price);
+    if (confirmItem.kind === 'emotion' && confirmItem.emotion) {
+      setEmotionPopup({ charId: confirmItem.charId, emotion: confirmItem.emotion });
+    }
     setConfirmItem(null);
   };
 
@@ -336,6 +374,70 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
                 Installer
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {emotionPopup && (
+        <div style={{
+          position: 'fixed', inset: 0,
+          background: 'rgba(0,0,0,0.6)',
+          backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 1000,
+        }} onClick={() => setEmotionPopup(null)}>
+          <div
+            style={{
+              background: 'rgba(var(--color-bg1-rgb),0.96)',
+              border: '1px solid rgba(var(--color-accent-rgb),0.2)',
+              borderRadius: 24,
+              padding: '1.6rem 2rem',
+              maxWidth: 360,
+              width: 'calc(100% - 2rem)',
+              textAlign: 'center',
+              boxShadow: '0 8px 40px rgba(0,0,0,0.5)',
+              animation: 'bounce-in 0.3s ease forwards',
+              position: 'relative',
+            }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <PopupCloseButton onClick={() => setEmotionPopup(null)} />
+            <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#fff', marginBottom: '0.4rem' }}>
+              {emotionPopup.emotion.symbol} {emotionPopup.emotion.name}
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.8rem' }}>
+              <div style={{
+                width: 112,
+                height: 112,
+                borderRadius: 28,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'radial-gradient(circle at 50% 45%, rgba(255,255,255,0.08), rgba(255,255,255,0.02) 68%)',
+                border: '1px solid rgba(255,255,255,0.08)',
+              }}>
+                <CharacterSprite id={emotionPopup.charId} mood={emotionPopup.emotion.id} size={80} glow={false} />
+              </div>
+            </div>
+            <div style={{ fontSize: '0.85rem', color: '#9ca3af', lineHeight: 1.55, marginBottom: '1rem' }}>
+              {emotionPopup.emotion.desc}
+            </div>
+            <button
+              onClick={() => setEmotionPopup(null)}
+              style={{
+                width: '100%',
+                padding: '0.75rem 1rem',
+                borderRadius: 12,
+                border: 'none',
+                background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
+                color: '#fff',
+                cursor: 'pointer',
+                fontSize: '0.9rem',
+                fontWeight: 800,
+              }}
+            >
+              Fermer
+            </button>
           </div>
         </div>
       )}
@@ -647,7 +749,44 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
           })}
         </div>
 
-        {activeTab === 'mystere' ? (
+        {activeTab === 'persos' ? (
+          <div style={{
+            marginBottom: '1.5rem',
+            padding: '1rem',
+            borderRadius: 22,
+            background: 'linear-gradient(180deg, rgba(7,19,12,0.52), rgba(15,15,28,0.58))',
+            border: '1px solid rgba(255,255,255,0.05)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
+            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
+          }}>
+            <div style={{
+              fontSize: '0.78rem', color: '#6b7280', fontWeight: 700,
+              textTransform: 'uppercase', letterSpacing: '0.06em',
+              marginBottom: '0.6rem', paddingLeft: '0.2rem',
+              display: 'flex', alignItems: 'center', gap: '0.4rem',
+            }}>
+              <span>{CATEGORY_ICONS.persos}</span>
+              Personnages et émotions
+            </div>
+            <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, margin: '0 0 1rem 0.2rem' }}>
+              Achète un perso pour l’activer dans tes quiz, puis débloque ses émotions spéciales.
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+              {SHOP_CHARACTERS.map((char) => (
+                <ShopCharacterCard
+                  key={char.id}
+                  char={char}
+                  progress={progress}
+                  coins={coins}
+                  purchaseAnim={purchaseAnim}
+                  onBuyCharacter={handleRequestCharacterPurchase}
+                  onBuyEmotion={handleRequestEmotionPurchase}
+                />
+              ))}
+            </div>
+          </div>
+        ) : activeTab === 'mystere' ? (
           <div style={{
             marginBottom: '1.5rem',
             padding: '1rem',
@@ -728,7 +867,7 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
           ))
         )}
 
-        {activeTab !== 'mystere' && filteredItems.length === 0 && (
+        {activeTab !== 'mystere' && activeTab !== 'persos' && filteredItems.length === 0 && (
           <div style={{
             textAlign: 'center', padding: '3rem 1rem',
             color: '#4b5563', fontSize: '0.9rem',
@@ -929,6 +1068,136 @@ function MysteryImageCard({ imageId, mysteryImageDefinitions, progress, purchase
       >
         {buttonText}
       </button>
+    </div>
+  );
+}
+
+function ShopCharacterCard({ char, progress, coins, purchaseAnim, onBuyCharacter, onBuyEmotion }) {
+  const ownedIds = progress.shop?.owned || [];
+  const charItemId = `char-${char.id}`;
+  const ownsCharacter = ownedIds.includes(charItemId);
+  const canBuyCharacter = coins >= 500;
+  const missingForCharacter = Math.max(0, 500 - coins);
+  const isAnimating = purchaseAnim === charItemId;
+
+  return (
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '0.8rem',
+      padding: '1rem',
+      borderRadius: 18,
+      background: ownsCharacter ? `${char.color}10` : 'rgba(255,255,255,0.04)',
+      border: ownsCharacter ? `1px solid ${char.color}35` : '1px solid rgba(255,255,255,0.06)',
+      animation: isAnimating ? 'bounce-in 0.5s ease' : 'none',
+    }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+        <div style={{
+          width: 46,
+          height: 46,
+          borderRadius: 14,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: ownsCharacter ? `${char.color}18` : 'rgba(255,255,255,0.04)',
+          border: `1px solid ${ownsCharacter ? `${char.color}55` : 'rgba(255,255,255,0.08)'}`,
+          flexShrink: 0,
+          fontSize: '1.4rem',
+        }}>
+          {ownsCharacter ? <CharacterSprite id={char.id} mood="walk" size={30} glow={false} /> : char.emoji}
+        </div>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div style={{ fontSize: '0.92rem', fontWeight: 800, color: ownsCharacter ? char.color : '#fff', marginBottom: '0.12rem' }}>
+            {char.name}
+          </div>
+          <div style={{ fontSize: '0.75rem', color: '#9ca3af', lineHeight: 1.4 }}>
+            {char.tag}
+          </div>
+        </div>
+        {ownsCharacter ? (
+          <div style={{
+            padding: '0.55rem 0.8rem',
+            borderRadius: 10,
+            background: 'rgba(74,222,128,0.12)',
+            border: '1px solid rgba(74,222,128,0.28)',
+            color: '#4ade80',
+            fontSize: '0.78rem',
+            fontWeight: 800,
+            whiteSpace: 'nowrap',
+          }}>
+            ✓ Possédé
+          </div>
+        ) : (
+          <button
+            onClick={() => onBuyCharacter(char)}
+            disabled={!canBuyCharacter}
+            style={{
+              padding: '0.55rem 0.8rem',
+              borderRadius: 10,
+              border: 'none',
+              background: canBuyCharacter
+                ? 'linear-gradient(135deg, var(--color-primary), var(--color-accent))'
+                : 'rgba(255,255,255,0.05)',
+              color: canBuyCharacter ? '#fff' : '#4b5563',
+              cursor: canBuyCharacter ? 'pointer' : 'default',
+              fontSize: '0.78rem',
+              fontWeight: 800,
+              whiteSpace: 'nowrap',
+            }}
+          >
+            {canBuyCharacter ? 'Acheter 500' : `Manque ${missingForCharacter}`}
+          </button>
+        )}
+      </div>
+
+      {ownsCharacter && (
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+          gap: '0.55rem',
+        }}>
+          {SHOP_EMOTIONS.map((emotion) => {
+            const owned = ownedIds.includes(`char-${char.id}-${emotion.id}`);
+            const affordable = coins >= emotion.price;
+            return (
+              <button
+                key={emotion.id}
+                onClick={() => onBuyEmotion(char, emotion)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.65rem',
+                  width: '100%',
+                  padding: '0.65rem 0.75rem',
+                  borderRadius: 12,
+                  border: owned
+                    ? '1px solid rgba(74,222,128,0.28)'
+                    : '1px solid rgba(255,255,255,0.08)',
+                  background: owned
+                    ? 'rgba(74,222,128,0.08)'
+                    : 'rgba(255,255,255,0.03)',
+                  color: '#e2e2e2',
+                  cursor: 'pointer',
+                  textAlign: 'left',
+                }}
+              >
+                <span style={{ fontSize: '1rem' }}>{emotion.symbol}</span>
+                <span style={{ flex: 1, minWidth: 0 }}>
+                  <span style={{ display: 'block', fontSize: '0.76rem', fontWeight: 800, color: owned ? '#4ade80' : '#fff' }}>
+                    {emotion.name}
+                  </span>
+                  <span style={{ display: 'block', fontSize: '0.65rem', color: '#6b7280', lineHeight: 1.35 }}>
+                    {emotion.desc}
+                  </span>
+                </span>
+                <span style={{ fontSize: '0.72rem', fontWeight: 800, color: owned ? '#4ade80' : affordable ? '#fbbf24' : '#4b5563', whiteSpace: 'nowrap' }}>
+                  {owned ? '✓' : emotion.price}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

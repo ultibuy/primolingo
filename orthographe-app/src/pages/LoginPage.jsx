@@ -25,8 +25,8 @@ export default function LoginPage() {
       <div style={cardStyle}>
         {/* Logo */}
         <div style={logoStyle}>
-          <div style={logoIconStyle}>OQ</div>
-          <h1 style={logoTitleStyle}>OrthoQuest</h1>
+          <div style={logoIconStyle}>GH</div>
+          <h1 style={logoTitleStyle}>GramHero</h1>
           <p style={logoSubStyle}>L'aventure de l'orthographe</p>
         </div>
 

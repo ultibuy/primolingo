@@ -34,6 +34,7 @@ export default function QuizGuided({
   ruleProgress,
   streak,
   victoryAnimationId,
+  shopOwned = [],
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [axisSelections, setAxisSelections] = useState({});
@@ -127,7 +128,13 @@ export default function QuizGuided({
           </div>
         </div>
 
-        <ProgressBar current={currentIndex} total={questions.length} showResult={showResult} />
+        <ProgressBar
+          current={currentIndex}
+          total={questions.length}
+          showResult={showResult}
+          shopOwned={shopOwned}
+          lastAnswer={showResult ? (isCorrect ? 'correct' : 'wrong') : null}
+        />
 
         {/* Sentence */}
         <div style={sentenceStyle}>

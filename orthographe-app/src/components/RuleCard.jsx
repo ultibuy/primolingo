@@ -151,7 +151,16 @@ function formatDate(dateStr) {
   return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
 }
 
-export default function RuleCard({ rule, ruleProgress, onPlay, onLevelHelp, onEditRule, onOpenMemo }) {
+export default function RuleCard({
+  rule,
+  ruleProgress,
+  onPlay,
+  onLevelHelp,
+  onEditRule,
+  onOpenMemo,
+  pandaMood = null,
+  characterId = 'panda',
+}) {
   const level = getRuleLevel(ruleProgress);
   const config = LEVEL_CONFIG[level] || LEVEL_CONFIG[0];
   const prog = getLevelProgress(level, ruleProgress);
@@ -281,7 +290,13 @@ export default function RuleCard({ rule, ruleProgress, onPlay, onLevelHelp, onEd
 
       {/* Level path */}
       <div style={{ marginBottom: '0.6rem' }}>
-        <LevelPath currentLevel={level} progress={progressPct} onNodeClick={onLevelHelp} />
+        <LevelPath
+          currentLevel={level}
+          progress={progressPct}
+          onNodeClick={onLevelHelp}
+          pandaMood={pandaMood}
+          characterId={characterId}
+        />
       </div>
 
       {/* Due review badge */}

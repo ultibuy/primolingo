@@ -24,6 +24,41 @@ import {
 
 const SECRET_CODE_LENGTH = 4;
 
+function isDebugLocalPersistenceEnabled() {
+  if (typeof window === 'undefined') return false;
+  try {
+    return window.localStorage.getItem('ortho_debug') === '1';
+  } catch {
+    return false;
+  }
+}
+
+function getDebugProgressKey(uid, childId) {
+  return `debug_progress:${uid || 'unknown'}:${childId || 'unknown'}`;
+}
+
+function readDebugProgress(uid, childId) {
+  if (!isDebugLocalPersistenceEnabled()) return null;
+  try {
+    const raw = window.localStorage.getItem(getDebugProgressKey(uid, childId));
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeDebugProgress(uid, childId, progress) {
+  if (!isDebugLocalPersistenceEnabled()) return false;
+  try {
+    window.localStorage.setItem(getDebugProgressKey(uid, childId), JSON.stringify(progress));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Default structures
 // ---------------------------------------------------------------------------
@@ -110,6 +145,8 @@ function normalizeCustomMysteryImages(value) {
 
 export async function loadProgress(uid, childId) {
   if (!uid || !childId) return createDefaultProgress();
+  const debugProgress = readDebugProgress(uid, childId);
+  if (debugProgress) return debugProgress;
   try {
     const data = await firestoreLoadProgress(uid, childId);
     if (!data || typeof data !== 'object') return createDefaultProgress();
@@ -122,6 +159,9 @@ export async function loadProgress(uid, childId) {
 
 export async function saveProgress(progress, uid, childId) {
   if (!uid || !childId) return { success: false, error: 'uid et childId requis.' };
+  if (writeDebugProgress(uid, childId, progress)) {
+    return { success: true };
+  }
   try {
     await firestoreSaveProgress(uid, childId, progress);
     return { success: true };

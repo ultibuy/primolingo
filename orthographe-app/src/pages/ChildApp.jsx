@@ -1,9 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { doc, getDoc } from 'firebase/firestore';
 import '../index.css';
 
 // Context
 import { useAuth } from '../contexts/AuthContext.jsx';
+import { db } from '../firebase.js';
 
 // Content
 import { allRules } from '../content/loader.js';
@@ -74,6 +76,19 @@ const STREAK_MILESTONES = {
   60: 'streak60',
   100: 'streak100',
 };
+
+function getFirstQuizBonusDismissKey(childId) {
+  return `ortho_first_quiz_bonus_dismissed:${childId || 'unknown'}`;
+}
+
+function getDebugChildName() {
+  if (typeof window === 'undefined') return '';
+  try {
+    return String(window.localStorage.getItem('debug_child_name') || '').trim();
+  } catch {
+    return '';
+  }
+}
 
 function normalizeSecretCode(value) {
   return (value || '')
@@ -346,6 +361,7 @@ export default function ChildApp() {
   const uid = user?.uid;
 
   const [progress, setProgress] = useState(null);
+  const [childName, setChildName] = useState('');
   const [adminSettings, setAdminSettings] = useState(null);
   const [sessionSize, setSessionSize] = useState(DEFAULT_SESSION_SIZE);
   const [screen, setScreen] = useState('dashboard');
@@ -372,15 +388,33 @@ export default function ChildApp() {
     setSessionSize(adminSettings.prodQuestionCount || DEFAULT_SESSION_SIZE);
   }, [adminSettings]);
 
+  const dismissFirstQuizBonusForToday = useCallback(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      window.localStorage.setItem(getFirstQuizBonusDismissKey(childId), getToday());
+    } catch {
+      // ignore storage failures
+    }
+  }, [childId]);
+
+  const hasDismissedFirstQuizBonusToday = useCallback(() => {
+    if (typeof window === 'undefined') return false;
+    try {
+      return window.localStorage.getItem(getFirstQuizBonusDismissKey(childId)) === getToday();
+    } catch {
+      return false;
+    }
+  }, [childId]);
+
   const launchQuizWithFirstSessionModal = useCallback((launchFn) => {
     const isFirstQuizOfDay = progress?.streak?.lastActiveDate !== getToday();
-    if (!isFirstQuizOfDay) {
+    if (!isFirstQuizOfDay || hasDismissedFirstQuizBonusToday()) {
       launchFn();
       return;
     }
     pendingQuizLaunchRef.current = launchFn;
     setShowFirstQuizBonusModal(true);
-  }, [progress]);
+  }, [hasDismissedFirstQuizBonusToday, progress]);
 
   const refreshDailyBackups = useCallback(async () => {
     const backups = await getDailyBackups(uid, childId);
@@ -438,6 +472,25 @@ export default function ChildApp() {
       if (equippedTheme) applyTheme(equippedTheme);
     });
   }, [uid, childId, persistProgress]);
+
+  useEffect(() => {
+    if (!uid || !childId) return;
+
+    const debugChildName = getDebugChildName();
+    if (debugChildName) {
+      setChildName(debugChildName);
+      return;
+    }
+
+    getDoc(doc(db, 'users', uid, 'children', childId))
+      .then((snap) => {
+        if (!snap.exists()) return;
+        setChildName(String(snap.data().name || '').trim());
+      })
+      .catch((error) => {
+        console.error('Failed to load child profile:', error);
+      });
+  }, [uid, childId]);
 
   const handlePlay = useCallback((ruleId, mode) => {
     const rule = allRules.find(r => r.id === ruleId);
@@ -905,6 +958,7 @@ export default function ChildApp() {
             <PopupCloseButton
               onClick={() => {
                 pendingQuizLaunchRef.current = null;
+                dismissFirstQuizBonusForToday();
                 setShowFirstQuizBonusModal(false);
               }}
               top={12}
@@ -919,7 +973,7 @@ export default function ChildApp() {
               Termine ton premier quiz de la journée pour remporter ce bonus.
             </div>
             <div style={{ display: 'flex', gap: '0.7rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <button type="button" onClick={() => { pendingQuizLaunchRef.current = null; setShowFirstQuizBonusModal(false); }} style={secondaryBtnStyle}>
+              <button type="button" onClick={() => { pendingQuizLaunchRef.current = null; dismissFirstQuizBonusForToday(); setShowFirstQuizBonusModal(false); }} style={secondaryBtnStyle}>
                 Plus tard
               </button>
               <button type="button" onClick={() => {
@@ -998,6 +1052,7 @@ export default function ChildApp() {
         ruleProgress={ruleProgress}
         streak={progress.streak}
         victoryAnimationId={victoryAnimationId}
+        shopOwned={progress.shop?.owned || []}
         onClose={handleCloseQuiz}
       />
     );
@@ -1025,6 +1080,7 @@ export default function ChildApp() {
     <Dashboard
       rules={sortedRules}
       progress={progress}
+      childName={childName}
       onPlay={handlePlay}
       onOpenShop={() => setScreen('shop')}
       pendingEvents={pendingEvents}

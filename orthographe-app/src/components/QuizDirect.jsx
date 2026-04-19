@@ -15,6 +15,7 @@ export default function QuizDirect({
   ruleProgress,
   streak,
   victoryAnimationId,
+  shopOwned = [],
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -94,7 +95,13 @@ export default function QuizDirect({
           </div>
         </div>
 
-        <ProgressBar current={currentIndex} total={questions.length} showResult={showResult} />
+        <ProgressBar
+          current={currentIndex}
+          total={questions.length}
+          showResult={showResult}
+          shopOwned={shopOwned}
+          lastAnswer={showResult ? (isCorrect ? 'correct' : 'wrong') : null}
+        />
 
         {/* Sentence */}
         <div style={sentenceStyle}>

@@ -1,4 +1,4 @@
-# Orthographe App
+# GramHero
 
 L'application n'utilise plus `localStorage` pour la progression. La persistance passe par un backend Node local qui écrit :
 

@@ -1,5 +1,5 @@
 /**
- * Firestore CRUD operations for OrthoQuest.
+ * Firestore CRUD operations for GramHero.
  * All data lives under: users/{uid}/children/{childId}
  */
 

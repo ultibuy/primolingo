@@ -8,12 +8,19 @@ import DiamondStatus from './DiamondStatus.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
 import LevelHelpPopup from './LevelHelpPopup.jsx';
 import RuleEditor from './RuleEditor.jsx';
+import LightningEntranceEffect from './LightningEntranceEffect.jsx';
+import StarsEntranceEffect from './StarsEntranceEffect.jsx';
+import InfernoEntranceEffect from './InfernoEntranceEffect.jsx';
+import FreezeEntranceEffect from './FreezeEntranceEffect.jsx';
 import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 import { clearCurrentStoredProgress } from '../store/persistence.js';
 import { getStreakInfo } from '../engine/scoring.js';
 import { getToday } from '../engine/sm2.js';
 import { getDoubleCoinsBonusEarned, getDoubleCoinsRemainingSessions, getEquipped, SHOP_CATALOG } from '../engine/economy.js';
 import { exportProgress } from '../store/persistence.js';
+import { CHARACTERS, CHARACTER_CATEGORIES } from '../data/characters.js';
+import CharacterSprite from './CharacterSprite.jsx';
+import { resolveCharacterMood, resolveShopCharacter } from '../data/shopCharacters.js';
 
 // ---------------------------------------------------------------------------
 // FIX 1 & FIX 3 — Corrected milestone messages with proper French accents
@@ -301,6 +308,7 @@ function splitRulesIntoSections(rules, progress) {
 export default function Dashboard({
   rules,
   progress,
+  childName,
   onPlay,
   onOpenShop,
   pendingEvents,
@@ -348,6 +356,28 @@ export default function Dashboard({
   const [debugDate, setDebugDate] = useState(progress.streak?.lastActiveDate || '');
   const [restoringBackupDate, setRestoringBackupDate] = useState(null);
   const [debugOpen, setDebugOpen] = useState(false);
+  const [showLightning, setShowLightning] = useState(false);
+  const [showStars, setShowStars] = useState(false);
+  const [showInferno, setShowInferno] = useState(false);
+  const [showFreeze, setShowFreeze] = useState(false);
+  const [pandaMood, setPandaMood] = useState(null); // null = default walk
+  const pandaMoodTimerRef = useRef(null);
+
+  const triggerPandaMood = useCallback((mood, duration = 4000) => {
+    if (pandaMoodTimerRef.current) clearTimeout(pandaMoodTimerRef.current);
+    setPandaMood(mood);
+    pandaMoodTimerRef.current = setTimeout(() => {
+      setPandaMood(null);
+      pandaMoodTimerRef.current = null;
+    }, duration);
+  }, []);
+
+  // Sleep for first 5 minutes — motivates the kid to "wake up" the panda
+  useEffect(() => {
+    const t = setTimeout(() => triggerPandaMood('sleep', 5 * 60 * 1000), 500);
+    return () => clearTimeout(t);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     if (!isDebug) return;
     const handler = (e) => {
@@ -388,6 +418,43 @@ export default function Dashboard({
   // ---------------------------------------------------------------------------
   // FIX 1 — Process pending events: deduplicate, show overlays, then clear
   // ---------------------------------------------------------------------------
+  const getMoodForEvent = useCallback((evt) => {
+    switch (evt.type) {
+      case 'perfectSessionBonus':  // score parfait 20/20
+        return 'clap';
+      case 'sniperBonus':          // mode sniper réussi
+        return 'victory';
+      case 'firstSession':
+      case 'firstQuiz':
+        return 'wave';
+      case 'levelUp':
+        if (evt.value >= 4) return 'victory';  // Diamant
+        if (evt.value >= 2) return 'cheer';    // Argent / Couronne
+        return 'wave';                          // Bronze
+      case 'diamond':              // trophée diamant
+        return 'victory';
+      case 'crown':                // trophée couronne
+      case 'directUnlocked':       // mode direct débloqué
+        return 'cheer';
+      case 'streakMilestone':
+      case 'milestone':
+        return 'dance';
+      case 'shieldUsed':
+        return 'kiss';
+      case 'streakLost':
+        return 'surprise';
+      case 'sm2ReviewPassed':
+        return 'cheer';
+      case 'sm2ReviewFragile':
+        return 'think';
+      case 'sm2ReviewFailed':
+      case 'diamondBroken':
+        return 'surprise';
+      default:
+        return null;
+    }
+  }, []);
+
   const showNextEvent = useCallback((events, idx) => {
     if (idx >= events.length) {
       // All events shown — notify parent to clear
@@ -403,6 +470,8 @@ export default function Dashboard({
     }
     setOverlay(data);
     setOverlayVisible(true);
+    const mood = getMoodForEvent(evt);
+    if (mood) triggerPandaMood(mood, 3500);
     const hideTimeout = setTimeout(() => {
       setOverlayVisible(false);
       const nextTimeout = setTimeout(() => {
@@ -412,7 +481,7 @@ export default function Dashboard({
       overlayTimeoutsRef.current.push(nextTimeout);
     }, 3500);
     overlayTimeoutsRef.current.push(hideTimeout);
-  }, [onEventsSeen]);
+  }, [onEventsSeen, getMoodForEvent, triggerPandaMood]);
 
   useEffect(() => {
     if (pendingEvents && pendingEvents.length > 0) {
@@ -443,6 +512,9 @@ export default function Dashboard({
   const equippedFlame = getEquipped(progress, 'flame');
   const doubleCoinsRemaining = getDoubleCoinsRemainingSessions(progress);
   const doubleCoinsBonusEarned = getDoubleCoinsBonusEarned(progress);
+  const shopOwned = progress.shop?.owned || [];
+  const activeCharacterId = resolveShopCharacter(shopOwned);
+  const activeCharacterMood = resolveCharacterMood(pandaMood, activeCharacterId, shopOwned);
 
   const summary = computeGlobalLevelSummary(rules, progress);
 
@@ -501,6 +573,10 @@ export default function Dashboard({
 
   return (
     <>
+    {showLightning && <LightningEntranceEffect onDone={() => setShowLightning(false)} />}
+    {showStars && <StarsEntranceEffect onDone={() => setShowStars(false)} />}
+    {showInferno && <InfernoEntranceEffect onDone={() => setShowInferno(false)} />}
+    {showFreeze && <FreezeEntranceEffect onDone={() => setShowFreeze(false)} />}
     <div style={{
       ...pageStyle,
       position: 'relative',
@@ -749,7 +825,7 @@ export default function Dashboard({
         {!todayDone && (
           <div style={{ textAlign: 'center', padding: '0.5rem 1rem 0.8rem' }}>
             <h1 style={{ fontSize: '1.7rem', fontWeight: 800, color: '#fff', margin: '0 0 0.3rem', letterSpacing: '-0.02em' }}>
-              {getGreeting()}, Damien
+              {getGreeting()}{childName ? `, ${childName}` : ''}
             </h1>
             <p style={{ fontSize: '0.9rem', color: '#9ca3af', fontStyle: 'italic', lineHeight: 1.5, maxWidth: 400, margin: '0 auto' }}>
               {getMotivation(progress, rules, todayDone)}
@@ -856,6 +932,8 @@ export default function Dashboard({
                       onOpenMemo={setMemoRule}
                       onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
                       onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
+                      pandaMood={activeCharacterMood}
+                      characterId={activeCharacterId}
                     />
                   </div>
                 );
@@ -885,6 +963,8 @@ export default function Dashboard({
                       onOpenMemo={setMemoRule}
                       onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
                       onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
+                      pandaMood={activeCharacterMood}
+                      characterId={activeCharacterId}
                     />
                   </div>
                 );
@@ -917,43 +997,75 @@ export default function Dashboard({
                         : '1px solid rgba(255,255,255,0.08)',
                       borderRadius: 14, padding: '0.7rem 1rem',
                       gap: '0.7rem',
+                      flexWrap: 'wrap',
                       position: 'relative',
                     }}>
                       <span style={{ fontSize: '1rem', opacity: 0.4 }}>{'🔒'}</span>
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <button
-                          type="button"
-                          onClick={() => setMemoRule(rule)}
-                          style={{
-                            padding: 0,
-                            border: 'none',
-                            background: 'transparent',
-                            color: 'var(--color-accent)',
-                            cursor: 'pointer',
-                            fontSize: '0.88rem',
-                            fontWeight: 700,
-                            textAlign: 'left',
-                          }}
-                          title="Ouvrir la fiche mémo"
-                        >
-                          {rule.title}
-                        </button>
+                      <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.7rem', flexWrap: 'wrap' }}>
+                          <button
+                            type="button"
+                            onClick={() => setMemoRule(rule)}
+                            style={{
+                              padding: 0,
+                              border: 'none',
+                              background: 'transparent',
+                              color: 'var(--color-accent)',
+                              cursor: 'pointer',
+                              fontSize: '0.88rem',
+                              fontWeight: 700,
+                              textAlign: 'left',
+                            }}
+                            title="Ouvrir la fiche mémo"
+                          >
+                            {rule.title}
+                          </button>
+                          <button
+                            onClick={() => onPlay(rule.id, 'guided')}
+                            style={{
+                              padding: '0.45rem 0.9rem',
+                              borderRadius: 10,
+                              border: 'none',
+                              background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
+                              color: '#fff',
+                              cursor: 'pointer',
+                              fontSize: '0.78rem',
+                              fontWeight: 700,
+                              flexShrink: 0,
+                              boxShadow: isRecommended
+                                ? '0 2px 12px rgba(124,58,237,0.35)'
+                                : '0 2px 8px rgba(124,58,237,0.25)',
+                            }}
+                          >
+                            Découvrir
+                          </button>
+                        </div>
                         {isRecommended ? (
                           <span style={{
+                            display: 'inline-flex',
+                            alignSelf: 'flex-start',
+                            whiteSpace: 'nowrap',
                             fontSize: '0.6rem',
                             background: 'rgba(var(--color-primary-rgb),0.2)',
                             color: 'var(--color-accent)',
                             padding: '0.1rem 0.45rem',
-                            borderRadius: 4, fontWeight: 700, marginLeft: '0.5rem',
+                            borderRadius: 4,
+                            fontWeight: 700,
                             letterSpacing: '0.02em',
                           }}>
                             Prochaine règle recommandée
                           </span>
                         ) : (
                           <span style={{
-                            fontSize: '0.62rem', background: 'rgba(107,114,128,0.15)',
-                            color: '#6b7280', padding: '0.1rem 0.4rem',
-                            borderRadius: 4, fontWeight: 700, marginLeft: '0.5rem',
+                            display: 'inline-flex',
+                            alignSelf: 'flex-start',
+                            whiteSpace: 'nowrap',
+                            fontSize: '0.62rem',
+                            background: 'rgba(107,114,128,0.15)',
+                            color: '#6b7280',
+                            padding: '0.1rem 0.4rem',
+                            borderRadius: 4,
+                            fontWeight: 700,
                           }}>
                             Nouvelle
                           </span>
@@ -970,27 +1082,6 @@ export default function Dashboard({
                           title="Debug: éditer la règle"
                         >✏️</button>
                       )}
-                      <button
-                        onClick={() => onPlay(rule.id, 'guided')}
-                        style={{
-                          padding: '0.45rem 0.9rem',
-                          borderRadius: 10,
-                          border: 'none',
-                          background: isRecommended
-                            ? 'linear-gradient(135deg, var(--color-primary), var(--color-accent))'
-                            : 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
-                          color: '#fff',
-                          cursor: 'pointer',
-                          fontSize: '0.78rem',
-                          fontWeight: 700,
-                          flexShrink: 0,
-                          boxShadow: isRecommended
-                            ? '0 2px 12px rgba(124,58,237,0.35)'
-                            : '0 2px 8px rgba(124,58,237,0.25)',
-                        }}
-                      >
-                        Découvrir
-                      </button>
                     </div>
                   </div>
                 );
@@ -1026,7 +1117,7 @@ export default function Dashboard({
       </div>
 
       {/* ── Debug panel: fixed overlay ── */}
-      {isDebug && onDebugUpdateStreak && (
+      {isDebug && (
         <div style={{ position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999 }}>
           {/* Toggle tab */}
           <div
@@ -1049,6 +1140,103 @@ export default function Dashboard({
           borderBottom: 'none',
           maxHeight: '60vh', overflowY: 'auto',
         }}>
+          <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
+            🛠 Debug — Animations
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.8rem' }}>
+            {[
+              { label: '⚡ Frappe de foudre', fn: () => setShowLightning(true), color: '#fde047' },
+              { label: '✨ Explosion d\'étoiles', fn: () => setShowStars(true), color: '#fbbf24' },
+              { label: '🔥 Inferno', fn: () => setShowInferno(true), color: '#f97316' },
+              { label: '❄️ Freeze', fn: () => setShowFreeze(true), color: '#38bdf8' },
+            ].map(({ label, fn, color }) => (
+              <button key={label} onClick={fn} style={{
+                padding: '0.38rem 0.8rem', borderRadius: 6,
+                border: `1px solid ${color}55`,
+                background: `${color}18`,
+                color, cursor: 'pointer',
+                fontSize: '0.72rem', fontWeight: 700,
+              }}>
+                {label}
+              </button>
+            ))}
+          </div>
+          <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
+            🐾 Debug — Perso actif
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.8rem' }}>
+            {[
+              { mood: null,        label: '🚶 Marche',         color: '#86efac' },
+              { mood: 'wave',      label: '👋 Coucou',          color: '#86efac' },
+              { mood: 'clap',      label: '👏 Applaudissements', color: '#fde047' },
+              { mood: 'cheer',     label: '🙌 Encouragements',  color: '#fb923c' },
+              { mood: 'kiss',      label: '😘 Bisous',          color: '#f472b6' },
+              { mood: 'sleep',     label: '😴 Dodo',            color: '#93c5fd' },
+              { mood: 'dance',     label: '🕺 Danse',           color: '#a78bfa' },
+              { mood: 'surprise',  label: '😲 Surprise',        color: '#fbbf24' },
+              { mood: 'victory',   label: '🏆 Victoire',        color: '#fbbf24' },
+              { mood: 'think',     label: '🤔 Réflexion',       color: '#60a5fa' },
+              { mood: 'challenge', label: '⚔️ Défi',            color: '#f87171' },
+            ].map(({ mood, label, color }) => (
+              <button key={label} onClick={() => setPandaMood(mood)} style={{
+                padding: '0.38rem 0.8rem', borderRadius: 6,
+                border: `1px solid ${color}55`,
+                background: pandaMood === mood ? `${color}40` : `${color}18`,
+                color, cursor: 'pointer',
+                fontSize: '0.72rem', fontWeight: 700,
+                outline: pandaMood === mood ? `1px solid ${color}` : 'none',
+              }}>
+                {label}
+              </button>
+            ))}
+          </div>
+          {/* ── Ménagerie ─────────────────────────────────────────── */}
+          <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
+            🐾 Ménagerie — {CHARACTERS.length} personnages
+          </div>
+          {Object.entries(CHARACTER_CATEGORIES).map(([catKey, cat]) => {
+            const chars = CHARACTERS.filter(c => c.cat === catKey);
+            return (
+              <div key={catKey} style={{ marginBottom: '0.9rem' }}>
+                <div style={{ fontSize: '0.6rem', color: cat.color, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.4rem', opacity: 0.85 }}>
+                  {cat.label} ({chars.length})
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(90px, 1fr))', gap: '0.35rem' }}>
+                  {chars.map(ch => (
+                    <div key={ch.id} style={{
+                      display: 'flex', flexDirection: 'column', alignItems: 'center',
+                      background: `${ch.color}12`,
+                      border: `1px solid ${ch.color}35`,
+                      borderRadius: 10, padding: '0.45rem 0.3rem 0.5rem',
+                      gap: '0.1rem',
+                      cursor: 'default',
+                    }}>
+                      {/* Emoji de référence + sprite animé */}
+                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', marginBottom: '0.1rem' }}>
+                        {/* Emoji référence */}
+                        <div style={{ fontSize: '1.8rem', lineHeight: 1, filter: `drop-shadow(0 0 4px ${ch.color}80)` }}>
+                          {ch.emoji}
+                        </div>
+                        <div style={{ width: '80%', height: '1px', background: 'rgba(255,255,255,0.1)' }} />
+                        {/* Sprite SVG animé */}
+                        <div style={{
+                          width: 64, height: 58,
+                          display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          background: `radial-gradient(circle at 50% 60%, ${ch.color}18 0%, transparent 70%)`,
+                          borderRadius: 6,
+                        }}>
+                          <CharacterSprite id={ch.id} mood="walk" size={40} glow={true} />
+                        </div>
+                      </div>
+                      <span style={{ fontSize: '0.58rem', fontWeight: 700, color: ch.color, textAlign: 'center', lineHeight: 1.2 }}>{ch.name}</span>
+                      <span style={{ fontSize: '0.5rem', color: '#6b7280', textAlign: 'center', lineHeight: 1.2 }}>{ch.tag}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
+
           <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
             🛠 Debug — Streak
           </div>

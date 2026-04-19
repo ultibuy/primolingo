@@ -14,8 +14,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'icons/*.png'],
       manifest: {
-        name: "OrthoQuest — L'aventure de l'orthographe",
-        short_name: 'OrthoQuest',
+        name: "GramHero — L'aventure de l'orthographe",
+        short_name: 'GramHero',
         description: "Apprendre l'orthographe en s'amusant",
         theme_color: '#1e1e2e',
         background_color: '#1e1e2e',

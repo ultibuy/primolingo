@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 
 // ─── Design tokens (from the real app) ───
 const T = {
@@ -654,6 +653,256 @@ function MockParentView() {
   );
 }
 
+// ─── Additional mockup screens for the hero slider ───
+
+function MockShop() {
+  const items = [
+    { name: "Flamme dorée", price: 80, icon: "🔥", owned: true },
+    { name: "Titre Champion", price: 120, icon: "🏅", owned: false },
+    { name: "Thème galaxie", price: 200, icon: "🌌", owned: false },
+    { name: "Bouclier x2", price: 50, icon: "🛡️", owned: false },
+  ];
+  return (
+    <div style={{ fontSize: 11 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
+        <div style={{ fontSize: 13, fontWeight: 700 }}>Boutique</div>
+        <span style={{ fontSize: 12, color: T.gold }}>🪙 340</span>
+      </div>
+      {items.map((item, i) => (
+        <div key={i} style={{
+          display: "flex", alignItems: "center", gap: 10,
+          padding: "10px 12px", marginBottom: 6,
+          background: "rgba(255,255,255,0.04)", borderRadius: 10,
+          border: `1px solid rgba(255,255,255,0.06)`,
+        }}>
+          <span style={{ fontSize: 20 }}>{item.icon}</span>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: 11, fontWeight: 600 }}>{item.name}</div>
+            <div style={{ fontSize: 10, color: T.gold }}>{item.price} 🪙</div>
+          </div>
+          <div style={{
+            padding: "4px 10px", borderRadius: 8, fontSize: 10, fontWeight: 700,
+            background: item.owned ? `${T.green}22` : `${T.primary}22`,
+            color: item.owned ? T.green : T.primary,
+            border: `1px solid ${item.owned ? T.green : T.primary}44`,
+          }}>
+            {item.owned ? "Équipé ✓" : "Acheter"}
+          </div>
+        </div>
+      ))}
+      {/* Mystery image teaser */}
+      <div style={{
+        marginTop: 8, padding: "12px", borderRadius: 12, textAlign: "center",
+        background: `linear-gradient(135deg, ${T.primary}15, ${T.gold}10)`,
+        border: `1px solid ${T.primary}33`,
+      }}>
+        <div style={{ fontSize: 18, marginBottom: 4 }}>🖼️</div>
+        <div style={{ fontSize: 11, fontWeight: 600, color: T.primaryLight }}>Image mystère</div>
+        <div style={{ fontSize: 10, color: T.textMuted }}>3/6 pièces révélées</div>
+        <div style={{ display: "flex", gap: 4, justifyContent: "center", marginTop: 6 }}>
+          {[1,1,1,0,0,0].map((v, j) => (
+            <div key={j} style={{
+              width: 28, height: 28, borderRadius: 4,
+              background: v ? `${T.primary}44` : "rgba(255,255,255,0.06)",
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 10, color: v ? T.primary : T.textSubtle,
+            }}>
+              {v ? "✓" : "?"}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MockEndScreen() {
+  return (
+    <div style={{ fontSize: 11, textAlign: "center", padding: "8px 0" }}>
+      <div style={{ fontSize: 36, marginBottom: 8 }}>🎉</div>
+      <div style={{ fontSize: 16, fontWeight: 800, fontFamily: T.fontDisplay, marginBottom: 4 }}>Bravo !</div>
+      <div style={{ fontSize: 12, color: T.textLight, marginBottom: 16 }}>Session terminée</div>
+
+      {/* Score circle */}
+      <div style={{
+        width: 80, height: 80, borderRadius: "50%", margin: "0 auto 16px",
+        background: `conic-gradient(${T.green} 0% 90%, rgba(255,255,255,0.08) 90% 100%)`,
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}>
+        <div style={{
+          width: 64, height: 64, borderRadius: "50%",
+          background: T.bg1, display: "flex", alignItems: "center", justifyContent: "center",
+          flexDirection: "column",
+        }}>
+          <div style={{ fontSize: 20, fontWeight: 900, color: T.green }}>18</div>
+          <div style={{ fontSize: 9, color: T.textMuted }}>/20</div>
+        </div>
+      </div>
+
+      {/* Rewards */}
+      <div style={{
+        display: "flex", gap: 16, justifyContent: "center", marginBottom: 16,
+        padding: "12px", borderRadius: 12, background: "rgba(255,255,255,0.03)",
+      }}>
+        {[
+          { icon: "🪙", value: "+20", color: T.gold },
+          { icon: "🔥", value: "13j", color: T.orange },
+          { icon: "⭐", value: "Niv.3", color: T.primary },
+        ].map((r, i) => (
+          <div key={i} style={{ textAlign: "center" }}>
+            <div style={{ fontSize: 20 }}>{r.icon}</div>
+            <div style={{ fontSize: 10, fontWeight: 700, color: r.color, marginTop: 2 }}>{r.value}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Level up banner */}
+      <div style={{
+        padding: "10px 14px", borderRadius: 10,
+        background: `linear-gradient(135deg, ${T.gold}22, ${T.orange}15)`,
+        border: `1px solid ${T.gold}44`,
+      }}>
+        <div style={{ fontSize: 14 }}>👑</div>
+        <div style={{ fontSize: 11, fontWeight: 700, color: T.gold }}>Niveau Couronne débloqué !</div>
+        <div style={{ fontSize: 10, color: T.textMuted }}>ces / ses — +100 pièces</div>
+      </div>
+    </div>
+  );
+}
+
+function MockStreak() {
+  const days = ["L", "M", "M", "J", "V", "S", "D"];
+  const done = [1, 1, 1, 1, 1, 0, 0]; // Mon-Fri done, weekend pending
+  return (
+    <div style={{ fontSize: 11 }}>
+      <div style={{ textAlign: "center", marginBottom: 12 }}>
+        <div style={{ fontSize: 40 }}>🔥</div>
+        <div style={{ fontSize: 28, fontWeight: 900, fontFamily: T.fontDisplay, color: T.orange }}>12 jours</div>
+        <div style={{ fontSize: 12, color: T.textMuted }}>Série en cours</div>
+      </div>
+
+      {/* Week grid */}
+      <div style={{ display: "flex", gap: 6, justifyContent: "center", marginBottom: 16 }}>
+        {days.map((d, i) => (
+          <div key={i} style={{
+            width: 32, height: 44, borderRadius: 10, display: "flex", flexDirection: "column",
+            alignItems: "center", justifyContent: "center", gap: 2,
+            background: done[i] ? `${T.green}22` : "rgba(255,255,255,0.04)",
+            border: `1px solid ${done[i] ? T.green + "44" : "rgba(255,255,255,0.06)"}`,
+          }}>
+            <span style={{ fontSize: 12 }}>{done[i] ? "✓" : "·"}</span>
+            <span style={{ fontSize: 9, color: T.textMuted }}>{d}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Milestones */}
+      <div style={{ padding: "10px 12px", borderRadius: 10, background: "rgba(255,255,255,0.03)", marginBottom: 8 }}>
+        <div style={{ fontSize: 10, fontWeight: 600, color: T.textMuted, marginBottom: 6 }}>Prochains paliers</div>
+        {[
+          { days: 14, reward: "100 🪙", pct: 85 },
+          { days: 30, reward: "150 🪙 + 🛡️", pct: 40 },
+        ].map((m, i) => (
+          <div key={i} style={{ marginBottom: 6 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10, marginBottom: 3 }}>
+              <span>{m.days} jours</span>
+              <span style={{ color: T.gold }}>{m.reward}</span>
+            </div>
+            <div style={{ height: 4, borderRadius: 2, background: "rgba(255,255,255,0.08)", overflow: "hidden" }}>
+              <div style={{ width: `${m.pct}%`, height: "100%", background: T.orange, borderRadius: 2 }} />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{
+        padding: "8px 12px", borderRadius: 8, textAlign: "center",
+        background: `${T.primary}11`, fontSize: 10, color: T.primaryLight,
+      }}>
+        💡 Joue chaque jour pour garder ta série !
+      </div>
+    </div>
+  );
+}
+
+// ─── Hero Phone Slider ───
+function PhoneSlider() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const screens = [
+    { component: <MockDashboard />, label: "Dashboard" },
+    { component: <MockQuiz />, label: "Quiz" },
+    { component: <MockEndScreen />, label: "Résultats" },
+    { component: <MockShop />, label: "Boutique" },
+    { component: <MockStreak />, label: "Série" },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % screens.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 16 }}>
+      <div style={{
+        ...css.phoneMockup,
+        position: "relative",
+      }}>
+        <div style={css.phoneNotch} />
+        <div style={{
+          ...css.phoneScreen,
+          position: "relative",
+          overflow: "hidden",
+        }}>
+          <div style={{
+            display: "flex",
+            width: `${screens.length * 100}%`,
+            transform: `translateX(-${activeIndex * (100 / screens.length)}%)`,
+            transition: "transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+          }}>
+            {screens.map((s, i) => (
+              <div key={i} style={{
+                width: `${100 / screens.length}%`,
+                flexShrink: 0,
+                padding: "0 2px",
+              }}>
+                {s.component}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Dots + label */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+        <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+          {screens.map((s, i) => (
+            <div
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              style={{
+                width: activeIndex === i ? 24 : 8,
+                height: 8,
+                borderRadius: 4,
+                background: activeIndex === i ? T.primary : "rgba(255,255,255,0.15)",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+              }}
+            />
+          ))}
+        </div>
+        <div style={{
+          fontSize: 13, color: T.textMuted, fontWeight: 500,
+          minHeight: 20, transition: "opacity 0.3s",
+        }}>
+          {screens[activeIndex].label}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Phone Frame Component ───
 function PhoneFrame({ children, label }) {
   return (
@@ -744,9 +993,7 @@ function RevisionTimeline() {
 // ═══════════════════════════════════════
 // MAIN LANDING PAGE
 // ═══════════════════════════════════════
-export default function LandingPage() {
-  const navigate = useNavigate();
-
+export default function GramHeroLanding() {
   const rules = [
     "a / à / as", "ces / ses", "terminaisons verbales (-er, -é, -ez, -ais, -ait)",
     "-é / -ée (féminin)", "Groupes de verbes", "leur / leurs",
@@ -756,37 +1003,22 @@ export default function LandingPage() {
 
   return (
     <div style={css.page}>
-      <style>{`
-        @media (max-width: 768px) {
-          .oq-nav { padding: 12px 16px !important; }
-          .oq-hero { padding: 40px 20px 32px !important; gap: 32px !important; }
-          .oq-two-col { grid-template-columns: 1fr !important; gap: 32px !important; }
-          .oq-reverse > :first-child { order: 2 !important; }
-          .oq-reverse > :last-child { order: 1 !important; }
-          .oq-four-col { grid-template-columns: repeat(2, 1fr) !important; }
-          .oq-three-col { grid-template-columns: 1fr !important; }
-          .oq-smart-section { padding: 32px 20px !important; }
-          .oq-section { padding: 56px 20px !important; }
-        }
-      `}</style>
-
       {/* ─── NAV ─── */}
-      <nav style={css.nav} className="oq-nav">
+      <nav style={css.nav}>
         <div style={css.navLogo}>
           <div style={css.navLogoIcon}>GH</div>
           GramHero
         </div>
         <button style={css.navCta}
-          onClick={() => navigate('/login')}
-          onMouseEnter={e => { e.currentTarget.style.background = T.primary; e.currentTarget.style.color = "#fff"; }}
-          onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = T.primary; }}
+          onMouseEnter={e => { e.target.style.background = T.primary; e.target.style.color = "#fff"; }}
+          onMouseLeave={e => { e.target.style.background = "transparent"; e.target.style.color = T.primary; }}
         >
           Se connecter
         </button>
       </nav>
 
       {/* ─── HERO ─── */}
-      <section style={css.hero} className="oq-hero">
+      <section style={css.hero}>
         <div style={css.heroText}>
           <div style={css.heroTagline}>Application gratuite</div>
           <h1 style={css.heroTitle}>
@@ -797,23 +1029,21 @@ export default function LandingPage() {
             dans la mémoire à long terme. <strong>GramHero</strong> utilise une méthode scientifique
             de révision adaptative pour que chaque règle soit réellement acquise — pas juste « vue en classe ».
           </p>
-          <button style={css.heroCta} onClick={() => navigate('/login')}>
+          <button style={css.heroCta}>
             Créer un compte gratuit →
           </button>
           <span style={css.heroCtaSub}>Connexion avec Google · Prêt en 10 secondes</span>
         </div>
 
         <div style={css.heroVisual}>
-          <PhoneFrame label="L'app de votre enfant">
-            <MockDashboard />
-          </PhoneFrame>
+          <PhoneSlider />
         </div>
       </section>
 
       <div style={css.sectionDivider} />
 
       {/* ─── LE PROBLÈME ─── */}
-      <section style={css.section} className="oq-section">
+      <section style={css.section}>
         <div style={css.sectionLabel}>Le constat</div>
         <h2 style={css.sectionTitle}>Pourquoi les fautes persistent</h2>
         <p style={css.sectionSubtitle}>
@@ -852,7 +1082,7 @@ export default function LandingPage() {
       <div style={css.sectionDivider} />
 
       {/* ─── LA SOLUTION ─── */}
-      <section style={css.section} className="oq-section">
+      <section style={css.section}>
         <div style={css.sectionLabel}>La solution</div>
         <h2 style={css.sectionTitle}>5 minutes par jour qui changent tout</h2>
         <p style={css.sectionSubtitle}>
@@ -861,7 +1091,7 @@ export default function LandingPage() {
         </p>
 
         {/* Step 1 — Guided mode */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center", marginBottom: 64 }} className="oq-two-col">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center", marginBottom: 64 }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 12 }}>
               <div style={css.howStepNum}>1</div>
@@ -919,7 +1149,7 @@ export default function LandingPage() {
         </div>
 
         {/* Step 2 — Game mode */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center", marginBottom: 64 }} className="oq-two-col oq-reverse">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center", marginBottom: 64 }}>
           <div style={{
             background: T.glass, border: `1px solid ${T.glassBorder}`,
             borderRadius: T.radius, padding: 24, minHeight: 220, order: 0,
@@ -980,7 +1210,7 @@ export default function LandingPage() {
         </div>
 
         {/* Step 3 — Adaptive rhythm */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center", marginBottom: 64 }} className="oq-two-col">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center", marginBottom: 64 }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 12 }}>
               <div style={css.howStepNum}>3</div>
@@ -1044,7 +1274,7 @@ export default function LandingPage() {
         </div>
 
         {/* Step 4 — Parent view */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }} className="oq-two-col oq-reverse">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }}>
           <div style={{
             background: T.glass, border: `1px solid ${T.glassBorder}`,
             borderRadius: T.radius, padding: 24, minHeight: 220, order: 0,
@@ -1116,8 +1346,8 @@ export default function LandingPage() {
       <div style={css.sectionDivider} />
 
       {/* ─── REVISION INTELLIGENTE (SM-2 explained simply) ─── */}
-      <section style={css.section} className="oq-section">
-        <div style={css.smartSection} className="oq-smart-section">
+      <section style={css.section}>
+        <div style={css.smartSection}>
           <div style={css.sectionLabel}>Le secret</div>
           <h2 style={{ ...css.sectionTitle, marginBottom: 8 }}>Un rythme de révision qui s'adapte</h2>
           <p style={{ ...css.sectionSubtitle, marginBottom: 0 }}>
@@ -1127,7 +1357,7 @@ export default function LandingPage() {
 
           <RevisionTimeline />
 
-          <div style={css.smartGrid} className="oq-three-col">
+          <div style={css.smartGrid}>
             <div style={css.smartCard}>
               <div style={css.smartIcon}>🔴</div>
               <div style={css.smartLabel}>Encore fragile</div>
@@ -1159,7 +1389,7 @@ export default function LandingPage() {
       <div style={css.sectionDivider} />
 
       {/* ─── ESPACE PARENT ─── */}
-      <section style={css.section} className="oq-section">
+      <section style={css.section}>
         <div style={css.sectionLabel}>Pour les parents</div>
         <h2 style={css.sectionTitle}>Suivez ses progrès sans regarder par-dessus son épaule</h2>
         <p style={css.sectionSubtitle}>
@@ -1167,7 +1397,7 @@ export default function LandingPage() {
           Votre enfant joue en autonomie, vous gardez un œil sur sa progression.
         </p>
 
-        <div style={css.parentSection} className="oq-two-col">
+        <div style={css.parentSection}>
           <div>
             <div style={{ marginBottom: 32 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
@@ -1217,7 +1447,7 @@ export default function LandingPage() {
       <div style={css.sectionDivider} />
 
       {/* ─── RULES COVERED ─── */}
-      <section style={css.section} className="oq-section">
+      <section style={css.section}>
         <div style={css.sectionLabel}>Le programme</div>
         <h2 style={css.sectionTitle}>10 règles qui couvrent 80% des fautes courantes</h2>
         <p style={css.sectionSubtitle}>
@@ -1242,8 +1472,8 @@ export default function LandingPage() {
       <div style={css.sectionDivider} />
 
       {/* ─── CHIFFRES ─── */}
-      <section style={css.section} className="oq-section">
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24, textAlign: "center" }} className="oq-four-col">
+      <section style={css.section}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24, textAlign: "center" }}>
           {[
             { value: 10, suffix: "", label: "règles d'orthographe" },
             { value: 950, suffix: "+", label: "questions uniques" },
@@ -1266,7 +1496,7 @@ export default function LandingPage() {
       <div style={css.sectionDivider} />
 
       {/* ─── GRATUIT ─── */}
-      <section style={css.section} className="oq-section">
+      <section style={css.section}>
         <div style={css.freeCard}>
           <div style={{ fontSize: 40, marginBottom: 16 }}>✨</div>
           <h2 style={{ fontFamily: T.fontDisplay, fontSize: 28, fontWeight: 800, marginBottom: 12 }}>
@@ -1289,7 +1519,7 @@ export default function LandingPage() {
         <p style={{ fontSize: 16, color: T.textLight, marginBottom: 28 }}>
           Créez un compte en 10 secondes et laissez votre enfant découvrir GramHero.
         </p>
-        <button style={css.heroCta} onClick={() => navigate('/login')}>
+        <button style={css.heroCta}>
           Commencer gratuitement →
         </button>
       </section>

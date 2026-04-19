@@ -263,8 +263,8 @@ export default function ParentDashboard() {
       <div style={headerStyle}>
         <div>
           <div style={logoRowStyle}>
-            <div style={logoIconStyle}>OQ</div>
-            <span style={logoTitleStyle}>OrthoQuest</span>
+            <div style={logoIconStyle}>GH</div>
+            <span style={logoTitleStyle}>GramHero</span>
           </div>
           <p style={welcomeStyle}>Bonjour, {user?.displayName?.split(' ')[0] || 'parent'} 👋</p>
         </div>
