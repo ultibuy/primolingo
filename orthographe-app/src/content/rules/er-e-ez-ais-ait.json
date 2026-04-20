@@ -305,7 +305,7 @@
     {
       "id": "q020",
       "before": "Pour ",
-      "verb": "réuss",
+      "verb": "progress",
       "after": ", il faut travailler dur.",
       "answer": "er",
       "difficulty": 1,
@@ -1034,7 +1034,7 @@
     {
       "id": "q101",
       "before": "Il faut ",
-      "verb": "encad",
+      "verb": "encadr",
       "after": " le projet.",
       "answer": "er",
       "difficulty": 1,
@@ -1043,7 +1043,7 @@
     {
       "id": "q102",
       "before": "Elle veut ",
-      "verb": "apprécier",
+      "verb": "appréci",
       "after": " la musique.",
       "answer": "er",
       "difficulty": 1,
@@ -1052,7 +1052,7 @@
     {
       "id": "q103",
       "before": "On doit ",
-      "verb": "renouv",
+      "verb": "renouvel",
       "after": " le bail.",
       "answer": "er",
       "difficulty": 1,
@@ -1088,7 +1088,7 @@
     {
       "id": "q107",
       "before": "Sans ",
-      "verb": "douter",
+      "verb": "dout",
       "after": ", c'est possible.",
       "answer": "er",
       "difficulty": 2,
@@ -1142,7 +1142,7 @@
     {
       "id": "q113",
       "before": "Il va ",
-      "verb": "pleuv",
+      "verb": "souffl",
       "after": " demain.",
       "answer": "er",
       "difficulty": 1,
@@ -1160,8 +1160,8 @@
     {
       "id": "q115",
       "before": "On commence à ",
-      "verb": "compren",
-      "after": " la leçon.",
+      "verb": "accept",
+      "after": " les nouvelles règles.",
       "answer": "er",
       "difficulty": 1,
       "explanation": "Après « commencer à », on utilise l'infinitif → -er."
@@ -1250,7 +1250,7 @@
     {
       "id": "q125",
       "before": "Elle va ",
-      "verb": "achét",
+      "verb": "achet",
       "after": " un nouveau téléphone.",
       "answer": "er",
       "difficulty": 1,
@@ -1313,7 +1313,7 @@
     {
       "id": "q132",
       "before": "Il a ",
-      "verb": "encad",
+      "verb": "encadr",
       "after": " le projet.",
       "answer": "e",
       "difficulty": 1,
@@ -1322,7 +1322,7 @@
     {
       "id": "q133",
       "before": "Elle a ",
-      "verb": "apprécier",
+      "verb": "appréci",
       "after": " le cadeau.",
       "answer": "e",
       "difficulty": 1,
@@ -1340,7 +1340,7 @@
     {
       "id": "q135",
       "before": "J'ai ",
-      "verb": "achét",
+      "verb": "achet",
       "after": " une nouvelle robe.",
       "answer": "e",
       "difficulty": 1,
@@ -1376,7 +1376,7 @@
     {
       "id": "q139",
       "before": "Nous avons ",
-      "verb": "danc",
+      "verb": "dans",
       "after": " toute la nuit.",
       "answer": "e",
       "difficulty": 1,
@@ -1430,7 +1430,7 @@
     {
       "id": "q145",
       "before": "Il a ",
-      "verb": "nett",
+      "verb": "nettoy",
       "after": " la maison.",
       "answer": "e",
       "difficulty": 1,
@@ -1457,8 +1457,8 @@
     {
       "id": "q148",
       "before": "Elles ont ",
-      "verb": "peint",
-      "after": " le mur.",
+      "verb": "illumin",
+      "after": " le sapin de Noël.",
       "answer": "e",
       "difficulty": 1,
       "explanation": "On peut dire « elles ont mordu » → participe passé → -é."
@@ -1466,8 +1466,8 @@
     {
       "id": "q149",
       "before": "Nous avons ",
-      "verb": "construit",
-      "after": " une maison.",
+      "verb": "rénov",
+      "after": " notre appartement.",
       "answer": "e",
       "difficulty": 1,
       "explanation": "On peut dire « nous avons mordu » → participe passé → -é."
@@ -1493,7 +1493,7 @@
     {
       "id": "q152",
       "before": "Vous ",
-      "verb": "apprécier",
+      "verb": "appréci",
       "after": " cette musique ?",
       "answer": "ez",
       "difficulty": 1,
@@ -1502,7 +1502,7 @@
     {
       "id": "q153",
       "before": "Vous ",
-      "verb": "renouv",
+      "verb": "renouvel",
       "after": " votre bail régulièrement.",
       "answer": "ez",
       "difficulty": 1,
@@ -1565,7 +1565,7 @@
     {
       "id": "q160",
       "before": "Vous ",
-      "verb": "achét",
+      "verb": "achet",
       "after": " votre pain à la boulangerie.",
       "answer": "ez",
       "difficulty": 1,
@@ -1601,7 +1601,7 @@
     {
       "id": "q164",
       "before": "Vous ",
-      "verb": "danc",
+      "verb": "dans",
       "after": " la valse très bien.",
       "answer": "ez",
       "difficulty": 1,
@@ -1646,7 +1646,7 @@
     {
       "id": "q169",
       "before": "Vous ",
-      "verb": "nett",
+      "verb": "nettoy",
       "after": " votre garage ?",
       "answer": "ez",
       "difficulty": 1,
@@ -1691,7 +1691,7 @@
     {
       "id": "q174",
       "before": "Avant, tu ",
-      "verb": "danc",
+      "verb": "dans",
       "after": " chaque samedi.",
       "answer": "ais",
       "difficulty": 1,
@@ -1700,7 +1700,7 @@
     {
       "id": "q175",
       "before": "Enfant, je ",
-      "verb": "encad",
+      "verb": "encadr",
       "after": " mes dessins.",
       "answer": "ais",
       "difficulty": 1,
@@ -1780,7 +1780,7 @@
     },
     {
       "id": "q184",
-      "before": "Autre fois, tu ",
+      "before": "Autrefois, tu ",
       "verb": "cherch",
       "after": " des solutions.",
       "answer": "ais",
@@ -1826,7 +1826,7 @@
     {
       "id": "q189",
       "before": "Avant, il ",
-      "verb": "danc",
+      "verb": "dans",
       "after": " au cabaret.",
       "answer": "ait",
       "difficulty": 1,
@@ -1835,7 +1835,7 @@
     {
       "id": "q190",
       "before": "Enfant, elle ",
-      "verb": "encad",
+      "verb": "encadr",
       "after": " ses travaux d'école.",
       "answer": "ait",
       "difficulty": 1,

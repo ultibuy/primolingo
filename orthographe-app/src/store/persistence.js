@@ -171,6 +171,25 @@ export async function saveProgress(progress, uid, childId) {
   }
 }
 
+export function hasPendingLocalSync(uid, childId) {
+  if (!uid || !childId) return false;
+  return readDebugProgress(uid, childId) !== null;
+}
+
+export async function syncLocalToCloud(uid, childId) {
+  if (!uid || !childId) return { success: false, error: 'uid et childId requis.' };
+  const local = readDebugProgress(uid, childId);
+  if (!local) return { success: false, error: 'Rien à synchroniser.' };
+  try {
+    await firestoreSaveProgress(uid, childId, local);
+    window.localStorage.removeItem(getDebugProgressKey(uid, childId));
+    return { success: true };
+  } catch (error) {
+    console.error('Sync to cloud failed:', error);
+    return { success: false, error: "Synchronisation échouée. Vérifie ta connexion." };
+  }
+}
+
 // ---------------------------------------------------------------------------
 // Admin settings — now per-child, with parent-level image library
 // ---------------------------------------------------------------------------

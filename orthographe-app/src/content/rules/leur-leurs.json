@@ -722,7 +722,7 @@
       "after": " anniversaire demain.",
       "answer": "leur",
       "difficulty": 3,
-      "explanation": "Piège : déterminant singulier (l'anniversaire) → leur, pas leurs."
+      "explanation": "Déterminant singulier : l'anniversaire (singulier) → leur."
     },
     {
       "id": "q082",
@@ -730,7 +730,7 @@
       "after": " clés à Marie.",
       "answer": "leurs",
       "difficulty": 3,
-      "explanation": "Piège : deux formes dans une phrase - « leurs » pour les clés (pluriel)."
+      "explanation": "Déterminant pluriel : les clés (pluriel) → leurs."
     },
     {
       "id": "q083",
@@ -978,7 +978,7 @@
       "answer": "leur",
       "difficulty": 2,
       "id": "q113",
-      "explanation": "Pronom : on peut dire « Il n'lui attribue pas de culpabilité.» → leur invariable."
+      "explanation": "Pronom : on peut dire « Il ne leur attribue pas de culpabilité. » → leur invariable."
     },
     {
       "before": "Nous ne ",
@@ -1002,7 +1002,7 @@
       "answer": "leur",
       "difficulty": 2,
       "id": "q116",
-      "explanation": "Pronom : on peut dire « Elle n'lui enseigne jamais cette méthode.» → leur invariable."
+      "explanation": "Pronom : on peut dire « Elle ne leur enseigne jamais cette méthode. » → leur invariable."
     },
     {
       "before": "Je ",
@@ -1269,12 +1269,12 @@
       "explanation": "Pronom : on peut dire « Aussitôt, nous lui transportons les bagages.» → leur invariable."
     },
     {
-      "before": "Jamais vous ",
-      "after": " ne devez cacher la vérité.",
+      "before": "Jamais vous ne ",
+      "after": " devez cacher la vérité.",
       "answer": "leur",
       "difficulty": 3,
       "id": "q150",
-      "explanation": "Pronom : on peut dire « Jamais vous lui ne devez cacher la vérité.» → leur invariable."
+      "explanation": "Pronom : on peut dire « Jamais vous ne lui devez cacher la vérité. » → leur invariable."
     },
     {
       "before": "Je connais ",
@@ -1285,7 +1285,7 @@
       "explanation": "Déterminant pluriel : le/les enfants. (pluriel) → leurs."
     },
     {
-      "before": "Tu oublie ",
+      "before": "Tu oublies ",
       "after": " noms.",
       "answer": "leurs",
       "difficulty": 1,
@@ -1414,11 +1414,11 @@
     },
     {
       "before": "Tu grattes ",
-      "after": " lotteries.",
+      "after": " loteries.",
       "answer": "leurs",
       "difficulty": 1,
       "id": "q168",
-      "explanation": "Déterminant pluriel : le/les lotteries. (pluriel) → leurs."
+      "explanation": "Déterminant pluriel : les loteries (pluriel) → leurs."
     },
     {
       "before": "Elles balaient ",

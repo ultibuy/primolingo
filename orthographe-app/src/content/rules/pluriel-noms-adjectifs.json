@@ -1,12 +1,21 @@
 {
   "id": "pluriel-noms-adjectifs",
-  "title": "le même · avec un s · avec un x",
+  "title": "Pluriel des noms communs",
   "shortTitle": "Pluriel",
   "description": "La plupart des noms et adjectifs prennent un s au pluriel. Ceux qui finissent par -eau, -au ou -eu prennent un x. Ceux qui finissent déjà par s, x ou z restent identiques.",
   "choices": [
-    { "id": "same", "label": "le même" },
-    { "id": "s",    "label": "avec un s" },
-    { "id": "x",    "label": "avec un x" }
+    {
+      "id": "same",
+      "label": "le même"
+    },
+    {
+      "id": "s",
+      "label": "avec un s"
+    },
+    {
+      "id": "x",
+      "label": "avec un x"
+    }
   ],
   "decisionAxes": [
     {
@@ -16,17 +25,26 @@
         {
           "value": "sxz",
           "label": "s, x ou z",
-          "eliminates": ["s", "x"]
+          "eliminates": [
+            "s",
+            "x"
+          ]
         },
         {
           "value": "eau",
           "label": "-eau, -au ou -eu",
-          "eliminates": ["same", "s"]
+          "eliminates": [
+            "same",
+            "s"
+          ]
         },
         {
           "value": "autre",
           "label": "autre lettre",
-          "eliminates": ["same", "x"]
+          "eliminates": [
+            "same",
+            "x"
+          ]
         }
       ]
     }

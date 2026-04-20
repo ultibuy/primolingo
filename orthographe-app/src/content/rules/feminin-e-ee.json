@@ -917,803 +917,803 @@
     },
     {
       "id": "q101",
-      "before": "La caress",
-      "after": "du chat était apaisante.",
+      "before": "La nu",
+      "after": " de sauterelles envahit les champs en quelques minutes.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Caressée → -ée"
+      "difficulty": 2,
+      "explanation": "Nuée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q102",
-      "before": "La caus",
-      "after": "de l'accident était claire.",
-      "answer": "ee",
+      "before": "La simplicit",
+      "after": " de ce mécanisme facilite son utilisation.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Causée → -ée"
+      "explanation": "Simplicité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q103",
-      "before": "La chass",
-      "after": "du matin a été fructueuse.",
+      "before": "La vol",
+      "after": " d'oiseaux traversait le ciel bleu.",
       "answer": "ee",
       "difficulty": 1,
-      "explanation": "Chassée → -ée"
+      "explanation": "Volée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q104",
-      "before": "La chasuble",
-      "after": "était richement brodée.",
-      "answer": "ee",
+      "before": "La naïvet",
+      "after": " de l'enfant le rendait attachant.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Chasublée → -ée"
+      "explanation": "Naïveté se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q105",
-      "before": "La chaumière",
-      "after": "était cachée dans les bois.",
+      "before": "La coul",
+      "after": " de lave progressait lentement vers le village.",
       "answer": "ee",
       "difficulty": 1,
-      "explanation": "Chaumière → -ée"
+      "explanation": "Coulée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q106",
-      "before": "La chausée",
-      "after": "était défoncée.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chaussée → -ée"
+      "before": "L'ambiguït",
+      "after": " de sa réponse laissait tout le monde perplexe.",
+      "answer": "e",
+      "difficulty": 3,
+      "explanation": "Ambiguïté se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q107",
-      "before": "La chauvi",
-      "after": "de cet homme était incroyable.",
+      "before": "La ru",
+      "after": " vers l'or avait transformé toute la région.",
       "answer": "ee",
-      "difficulty": 2,
-      "explanation": "Chauvinie → -ée (ée dans certains dérivés)"
+      "difficulty": 1,
+      "explanation": "Ruée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q108",
-      "before": "La chech",
-      "after": "était visible sur ses lèvres.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chechée → -ée"
+      "before": "La gratuit",
+      "after": " du service était très appréciée du public.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Gratuité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q109",
-      "before": "La chef",
-      "after": "a ordonné le repli.",
+      "before": "La traîn",
+      "after": " de poudre s'enflamma instantanément.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cheffee → -ée (rare, mais -ée pour les noms en chef)"
+      "difficulty": 2,
+      "explanation": "Traînée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q110",
-      "before": "La cheminée",
-      "after": "crépitait joyeusement.",
-      "answer": "ee",
+      "before": "La communaut",
+      "after": " villageoise se réunissait chaque mois.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Cheminée → -ée"
+      "explanation": "Communauté se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q111",
-      "before": "La chenailler",
-      "after": "était à l'état de ruine.",
+      "before": "La fus",
+      "after": " décolla sous les yeux ébahis des spectateurs.",
       "answer": "ee",
       "difficulty": 1,
-      "explanation": "Chenaillée → -ée"
+      "explanation": "Fusée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q112",
-      "before": "La chenill",
-      "after": "avançait lentement.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chenillée → -ée"
+      "before": "L'humilit",
+      "after": " est une qualité rare et précieuse.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Humilité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q113",
-      "before": "La chensill",
-      "after": "était très colorée.",
+      "before": "L'ép",
+      "after": " du chevalier brillait dans la lumière du matin.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chensillée → -ée"
+      "difficulty": 2,
+      "explanation": "Épée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q114",
-      "before": "La chepolé",
-      "after": "était très sucrée.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chepolée → -ée"
+      "before": "L'habilet",
+      "after": " du chirurgien était reconnue de tous.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Habileté se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q115",
-      "before": "La cheplée",
-      "after": "était bien remplie.",
+      "before": "La livr",
+      "after": " du valet était rouge et or.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cheplée → -ée"
+      "difficulty": 2,
+      "explanation": "Livrée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q116",
-      "before": "La chequill",
-      "after": "menaçait de tomber.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chequillee → -ée"
+      "before": "La légèret",
+      "after": " de ses propos avait blessé son interlocuteur.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Légèreté se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q117",
-      "before": "La cherch",
-      "after": "continuait sans relâche.",
+      "before": "La veill",
+      "after": " au coin du feu réunit toute la famille.",
       "answer": "ee",
       "difficulty": 1,
-      "explanation": "Cherchée → -ée"
+      "explanation": "Veillée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q118",
-      "before": "La chereille",
-      "after": "était couverte de cerises.",
-      "answer": "ee",
+      "before": "La gaiet",
+      "after": " de l'enfant était communicative.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Chereille → -ée"
+      "explanation": "Gaieté se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q119",
-      "before": "La cherfeuill",
-      "after": "était utilisée en cuisine.",
+      "before": "La tabl",
+      "after": " d'amis riait aux éclats autour du repas.",
       "answer": "ee",
       "difficulty": 1,
-      "explanation": "Cherfeuille → -ée"
+      "explanation": "Tablée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q120",
-      "before": "La cheria",
-      "after": "était très grande.",
-      "answer": "ee",
+      "before": "La facilit",
+      "after": " avec laquelle il travaillait impressionnait.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Cheriée → -ée"
+      "explanation": "Facilité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q121",
-      "before": "La cherisere",
-      "after": "était chargée de fruits.",
+      "before": "La nich",
+      "after": " de chatons se blottissait contre leur mère.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cheriserie → -ée"
+      "difficulty": 2,
+      "explanation": "Nichée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q122",
-      "before": "La cherouell",
-      "after": "était remplie de gerbes.",
-      "answer": "ee",
+      "before": "L'utilit",
+      "after": " de cet outil n'était plus à démontrer.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Cherouelle → -ée"
+      "explanation": "Utilité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q123",
-      "before": "La cherouill",
-      "after": "était très ornée.",
+      "before": "La cuv",
+      "after": " de cette année s'annonçait exceptionnelle.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cherouille → -ée"
+      "difficulty": 2,
+      "explanation": "Cuvée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q124",
-      "before": "La chert",
-      "after": "était une silice microcristalline.",
-      "answer": "ee",
+      "before": "La complexit",
+      "after": " du problème dépassait leur compréhension.",
+      "answer": "e",
       "difficulty": 2,
-      "explanation": "Chertée → -ée"
+      "explanation": "Complexité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q125",
-      "before": "La cherub",
-      "after": "décoraient l'église.",
+      "before": "La tourn",
+      "after": " du chanteur s'arrêtait à Lyon.",
       "answer": "ee",
       "difficulty": 1,
-      "explanation": "Cherubée → -ée"
+      "explanation": "Tournée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q126",
-      "before": "La cherveill",
-      "after": "parfumait le potage.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cherveille → -ée"
+      "before": "La mobilit",
+      "after": " du poste lui convenait parfaitement.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Mobilité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q127",
-      "before": "La chervell",
-      "after": "était fraîche et verte.",
+      "before": "L'ond",
+      "after": " du matin avait rafraîchi l'atmosphère.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chervelle → -ée"
+      "difficulty": 2,
+      "explanation": "Ondée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q128",
-      "before": "La cheveul",
-      "after": "tombait jusqu'aux épaules.",
-      "answer": "ee",
+      "before": "La rapidit",
+      "after": " de sa pensée lui donnait un avantage certain.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Cheveulée → -ée"
+      "explanation": "Rapidité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q129",
-      "before": "La chevel",
-      "after": "était très longue.",
+      "before": "La foul",
+      "after": " du coureur était régulière et puissante.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevelée → -ée"
+      "difficulty": 2,
+      "explanation": "Foulée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q130",
-      "before": "La chevelu",
-      "after": "lui donnait un air farouche.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cheveluée → -ée"
+      "before": "La nécessit",
+      "after": " de changer s'imposait d'elle-même.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Nécessité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q131",
-      "before": "La chevelu",
-      "after": "était impressionnante.",
+      "before": "La brass",
+      "after": " de fleurs parfumait toute la pièce.",
       "answer": "ee",
       "difficulty": 1,
-      "explanation": "Chevelue → -ée"
+      "explanation": "Brassée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q132",
-      "before": "La chevelu",
-      "after": "s'étalait majestueusement.",
-      "answer": "ee",
+      "before": "La priorit",
+      "after": " était donnée aux personnes les plus vulnérables.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Cheveluée → -ée"
+      "explanation": "Priorité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q133",
-      "before": "La chevelurel",
-      "after": "était sa fierté.",
+      "before": "La trou",
+      "after": " dans les nuages laissait passer le soleil.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevelurelle → -ée"
+      "difficulty": 2,
+      "explanation": "Trouée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q134",
-      "before": "La cheverol",
-      "after": "était repérée facilement.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cheverolée → -ée"
+      "before": "L'intégrit",
+      "after": " du candidat n'était pas remise en question.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Intégrité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q135",
-      "before": "La cheveroll",
-      "after": "était très fine.",
+      "before": "La gorg",
+      "after": " d'eau fraîche lui fit le plus grand bien.",
       "answer": "ee",
       "difficulty": 1,
-      "explanation": "Cheverolle → -ée"
+      "explanation": "Gorgée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q136",
-      "before": "La chevert",
-      "after": "était dorée.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevertée → -ée"
+      "before": "La prospérit",
+      "after": " économique revenait peu à peu dans la région.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Prospérité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q137",
-      "before": "La chevesquill",
-      "after": "était bien tenue.",
+      "before": "La tét",
+      "after": " du nourrisson durait environ vingt minutes.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevesquille → -ée"
+      "difficulty": 2,
+      "explanation": "Tétée se termine par [-té] mais c'est une exception (nom dérivé du verbe téter) → -ée."
     },
     {
       "id": "q138",
-      "before": "La chevét",
-      "after": " du lit était orné.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevete → -ée"
+      "before": "L'adversit",
+      "after": " l'avait rendu plus fort et déterminé.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Adversité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q139",
-      "before": "La chevét",
-      "after": "formait un demi-cercle.",
+      "before": "La but",
+      "after": " de porte empêchait le tiroir de s'ouvrir complètement.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevete → -ée"
+      "difficulty": 3,
+      "explanation": "Butée se termine par [-té] mais c'est une exception (nom dérivé du verbe buter) → -ée."
     },
     {
       "id": "q140",
-      "before": "La chevete",
-      "after": "était artistiquement peinte.",
-      "answer": "ee",
+      "before": "La diversit",
+      "after": " culturelle de cette ville était remarquable.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Chevete → -ée"
+      "explanation": "Diversité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q141",
-      "before": "La chevett",
-      "after": "était très bien conservée.",
+      "before": "L'envol",
+      "after": " du discours transporta l'auditoire entier.",
       "answer": "ee",
       "difficulty": 1,
-      "explanation": "Chevette → -ée"
+      "explanation": "Envolée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q142",
-      "before": "La chevett",
-      "after": "était l'œuvre d'un artisan.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevette → -ée"
+      "before": "La sévérit",
+      "after": " du jugement avait surpris l'accusé.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Sévérité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q143",
-      "before": "La chevett",
-      "after": "était pourvue de riches boiseries.",
+      "before": "La ris",
+      "after": " du quartier, il préférait rester chez lui.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevette → -ée"
+      "difficulty": 3,
+      "explanation": "Risée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q144",
-      "before": "La cheveutill",
-      "after": "était très bien travaillée.",
-      "answer": "ee",
+      "before": "La sincérit",
+      "after": " de ses excuses était évidente pour tous.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Cheveutille → -ée"
+      "explanation": "Sincérité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q145",
-      "before": "La cheveull",
-      "after": "formait comme une auréole.",
+      "before": "L'embard",
+      "after": " du camion évita de justesse le fossé.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cheveulle → -ée"
+      "difficulty": 3,
+      "explanation": "Embardée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q146",
-      "before": "La cheveurel",
-      "after": "était d'un blond doré.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cheveurelle → -ée"
+      "before": "La créativit",
+      "after": " des élèves avait bluffé les enseignants.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Créativité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q147",
-      "before": "La cheveuril",
-      "after": "était épaisse et riche.",
+      "before": "La gicl",
+      "after": " de peinture avait taché son vêtement.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cheveurille → -ée"
+      "difficulty": 2,
+      "explanation": "Giclée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q148",
-      "before": "La cheveuril",
-      "after": "était son atout majeur.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cheveurille → -ée"
+      "before": "La productivit",
+      "after": " de l'équipe avait doublé en un an.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Productivité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q149",
-      "before": "La cheveuril",
-      "after": "tombait en cascades.",
+      "before": "La jonch",
+      "after": " de feuilles mortes couvrait tout le sentier.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cheveurille → -ée"
+      "difficulty": 3,
+      "explanation": "Jonchée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q150",
-      "before": "La cheveur",
-      "after": "était ébouriffée.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cheveurée → -ée"
+      "before": "La sensibilit",
+      "after": " artistique se développe dès l'enfance.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Sensibilité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q151",
-      "before": "La cheveurt",
-      "after": "était bien peignée.",
+      "before": "La cri",
+      "after": " du port s'animait dès les premières heures du matin.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cheveurte → -ée"
+      "difficulty": 3,
+      "explanation": "Criée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q152",
-      "before": "La cheveurt",
-      "after": "était soignée.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Cheveurte → -ée"
+      "before": "La flexibilit",
+      "after": " des horaires arrangeait tout le monde.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Flexibilité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q153",
-      "before": "La chevez",
-      "after": "était soigneusement arrangée.",
+      "before": "La crois",
+      "after": " des chemins l'obligeait à faire un choix.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevezée → -ée"
+      "difficulty": 2,
+      "explanation": "Croisée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q154",
-      "before": "La chev",
-      "after": "allongée était sa silhouette.",
-      "answer": "ee",
+      "before": "La visibilit",
+      "after": " était nulle dans le brouillard ce matin.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Chevée → -ée"
+      "explanation": "Visibilité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q155",
-      "before": "La chevèc",
-      "after": "était très distincte.",
+      "before": "La bou",
+      "after": " de sauvetage flottait à la surface de l'eau.",
       "answer": "ee",
       "difficulty": 1,
-      "explanation": "Chevècée → -ée"
+      "explanation": "Bouée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q156",
-      "before": "La chevèche",
-      "after": "était perchée sur le toit.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevèche → -ée"
+      "before": "La durabilit",
+      "after": " des matériaux de construction était garantie.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Durabilité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q157",
-      "before": "La chevèl",
-      "after": "était blanche.",
+      "before": "La su",
+      "after": " après l'effort était impressionnante.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevèlée → -ée"
+      "difficulty": 3,
+      "explanation": "Suée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q158",
-      "before": "La chevèll",
-      "after": "était flottante.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevèlle → -ée"
+      "before": "La notoriét",
+      "after": " de cet acteur était mondiale.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Notoriété se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q159",
-      "before": "La chevèpp",
-      "after": "était brisée.",
+      "before": "La lamp",
+      "after": " de cidre lui réchauffa le cœur au retour.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevèppée → -ée"
+      "difficulty": 3,
+      "explanation": "Lampée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q160",
-      "before": "La chevère",
-      "after": "était bien fournie.",
-      "answer": "ee",
+      "before": "La célébrit",
+      "after": " ne l'avait pas du tout changé.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Chevère → -ée"
+      "explanation": "Célébrité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q161",
-      "before": "La chevét",
-      "after": "fermait le chœur.",
+      "before": "La hu",
+      "after": " de la foule accueillit l'annonce du résultat.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevete → -ée"
+      "difficulty": 2,
+      "explanation": "Huée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q162",
-      "before": "La chevét",
-      "after": "était couverte de fresques.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevete → -ée"
+      "before": "La particularit",
+      "after": " de ce vin le rendait unique en son genre.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Particularité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q163",
-      "before": "La chevét",
-      "after": "brillait sous les vitraux.",
+      "before": "La plat",
+      "after": " de riz suffisait à nourrir toute la tablée.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevete → -ée"
+      "difficulty": 2,
+      "explanation": "Platée se termine par [-té] mais c'est un nom de contenu (le contenu d'un plat) → -ée."
     },
     {
       "id": "q164",
-      "before": "La chevét",
-      "after": "était minutieusement décorée.",
-      "answer": "ee",
+      "before": "La fidélit",
+      "after": " de ce chien était vraiment exemplaire.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Chevete → -ée"
+      "explanation": "Fidélité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q165",
-      "before": "La chevét",
-      "after": "était une merveille de l'art gothique.",
+      "before": "La pot",
+      "after": " de légumes fumait sur le feu.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevete → -ée"
+      "difficulty": 2,
+      "explanation": "Potée se termine par [-té] mais c'est un nom de contenu (le contenu d'un pot) → -ée."
     },
     {
       "id": "q166",
-      "before": "La chevét",
-      "after": "était délicate et élancée.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevete → -ée"
+      "before": "L'originalit",
+      "after": " de son style était reconnaissable entre mille.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Originalité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q167",
-      "before": "La chevét",
-      "after": "était la fierté de l'église.",
+      "before": "L'or",
+      "after": " du bois cachait une mare secrète.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevete → -ée"
+      "difficulty": 3,
+      "explanation": "Orée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q168",
-      "before": "La chevét",
-      "after": "dominait tout l'édifice.",
-      "answer": "ee",
+      "before": "La fragilit",
+      "after": " du verre exigeait une grande précaution.",
+      "answer": "e",
       "difficulty": 1,
-      "explanation": "Chevete → -ée"
+      "explanation": "Fragilité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q169",
-      "before": "La chevét",
-      "after": "était illuminée par les cierges.",
+      "before": "La cul",
+      "after": " du vieux pont résistait aux crues.",
       "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevete → -ée"
+      "difficulty": 3,
+      "explanation": "Culée ne se termine pas par le son [-té] → règle générale : -ée."
     },
     {
       "id": "q170",
-      "before": "La chevét",
-      "after": "était majestueuse et imposante.",
-      "answer": "ee",
-      "difficulty": 1,
-      "explanation": "Chevete → -ée"
+      "before": "La stabilit",
+      "after": " politique favorisait les investissements étrangers.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Stabilité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q171",
       "before": "L'absurdit",
-      "after": "était flagrante.",
+      "after": " était flagrante dans cet argument.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Absurdité → -é"
+      "difficulty": 2,
+      "explanation": "Absurdité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q172",
-      "before": "L'acalit",
-      "after": "était remarquable.",
+      "before": "La timidit",
+      "after": " du candidat était palpable lors de l'entretien.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Acalité → -é"
+      "difficulty": 2,
+      "explanation": "Timidité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q173",
-      "before": "L'acialit",
-      "after": "était dure.",
+      "before": "La stupidit",
+      "after": " de cette action l'étonna profondément.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Acialité → -é"
+      "difficulty": 2,
+      "explanation": "Stupidité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q174",
       "before": "L'acidit",
-      "after": "du citron était intense.",
+      "after": " du citron était intense et rafraîchissante.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Acidité → -é"
+      "difficulty": 2,
+      "explanation": "Acidité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q175",
-      "before": "L'activit",
-      "after": "reprenait après l'été.",
+      "before": "La fluidit",
+      "after": " du mouvement était gracieuse à regarder.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Activité → -é"
+      "difficulty": 2,
+      "explanation": "Fluidité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q176",
-      "before": "L'actualiit",
-      "after": "du sujet attire les foules.",
+      "before": "L'actualit",
+      "after": " du sujet attire les foules depuis plusieurs mois.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Actualité → -é"
+      "explanation": "Actualité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q177",
       "before": "L'acuit",
-      "after": "de sa vue était remarquable.",
+      "after": " de sa vue était véritablement remarquable.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Acuité → -é"
+      "difficulty": 2,
+      "explanation": "Acuité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q178",
       "before": "L'adiposit",
-      "after": "était son plus grand problème.",
+      "after": " abdominale était un facteur de risque.",
       "answer": "e",
-      "difficulty": 2,
-      "explanation": "Adiposité → -é"
+      "difficulty": 3,
+      "explanation": "Adiposité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q179",
-      "before": "L'adolescent",
-      "after": "était typique.",
+      "before": "La liquidit",
+      "after": " des actifs de l'entreprise croissait.",
       "answer": "e",
-      "difficulty": 2,
-      "explanation": "Adolescence → -é (mais c'est -ence pas -ée)"
+      "difficulty": 3,
+      "explanation": "Liquidité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q180",
-      "before": "L'affabil",
-      "after": "du commerçant l'a séduite.",
+      "before": "L'affabilit",
+      "after": " du commerçant avait séduit tous ses clients.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Affabilité → -é"
+      "difficulty": 2,
+      "explanation": "Affabilité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q181",
-      "before": "L'affet",
-      "after": "était visible dans son geste.",
+      "before": "La lucidit",
+      "after": " de son esprit était admirable malgré son âge.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Afféterie → -é (mode -ée, affété -é)"
+      "difficulty": 2,
+      "explanation": "Lucidité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q182",
-      "before": "L'affin",
-      "after": "entre eux était naturelle.",
+      "before": "L'affinit",
+      "after": " entre eux était naturelle dès la première rencontre.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Affinité → -é"
+      "difficulty": 2,
+      "explanation": "Affinité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q183",
-      "before": "L'affirm",
-      "after": "de ses dires était catégorique.",
+      "before": "L'avidit",
+      "after": " de gain l'aveuglait complètement.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Affirmation → -é (mais plutôt -ation)"
+      "difficulty": 2,
+      "explanation": "Avidité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q184",
-      "before": "L'afflic",
-      "after": "était profonde.",
+      "before": "La rigidit",
+      "after": " de sa posture impressionnait les spectateurs.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Affliction → -é (mais -tion plutôt)"
+      "difficulty": 2,
+      "explanation": "Rigidité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q185",
-      "before": "L'affluenc",
-      "after": "était considérable.",
+      "before": "L'humidit",
+      "after": " était considérable en cette saison pluvieuse.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Affluence → -é (mais -ence plutôt)"
+      "explanation": "Humidité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q186",
-      "before": "L'affol",
-      "after": "totale saisit la foule.",
+      "before": "La validit",
+      "after": " de l'argument ne pouvait pas être contestée.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Affolement → -é (mais -ement plutôt)"
+      "difficulty": 2,
+      "explanation": "Validité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q187",
-      "before": "L'affor",
-      "after": "était le symbole de la féodalité.",
+      "before": "La fertilit",
+      "after": " des terres de la vallée attirait les paysans.",
       "answer": "e",
       "difficulty": 2,
-      "explanation": "Affourage → -é (ou affourement)"
+      "explanation": "Fertilité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q188",
-      "before": "L'affr",
-      "after": "entre rivaux était ancienne.",
+      "before": "La nullit",
+      "after": " du contrat fut prononcée par le tribunal.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Affrontement → -é (mais -ement plutôt)"
+      "difficulty": 3,
+      "explanation": "Nullité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q189",
-      "before": "L'affron",
-      "after": "l'avait humiliée profondément.",
+      "before": "L'inégalit",
+      "after": " des salaires semait le mécontentement.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Affront → -é (c'est plutôt un nom -t)"
+      "difficulty": 2,
+      "explanation": "Inégalité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q190",
-      "before": "L'agaci",
-      "after": "du bruit la mettait hors d'elle.",
+      "before": "La modernit",
+      "after": " du design séduisait tous les visiteurs.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Agacerie → -é (ou agacement)"
+      "difficulty": 2,
+      "explanation": "Modernité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q191",
-      "before": "L'agil",
-      "after": "du danseur était remarquable.",
+      "before": "L'agilit",
+      "after": " du danseur était remarquable sur scène.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Agilité → -é"
+      "difficulty": 2,
+      "explanation": "Agilité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q192",
-      "before": "L'agiotag",
-      "after": "était interdit par la loi.",
+      "before": "L'intimit",
+      "after": " de leur relation était évidente pour tous.",
       "answer": "e",
       "difficulty": 2,
-      "explanation": "Agiotage → -é"
+      "explanation": "Intimité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q193",
-      "before": "L'agi",
-      "after": "politique agitait les esprits.",
+      "before": "La spécialit",
+      "after": " du chef attira une foule de gourmands.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Agitation → -é (mais -ation plutôt)"
+      "explanation": "Spécialité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q194",
-      "before": "L'agit",
-      "after": "constante rendait tout difficile.",
+      "before": "La généralit",
+      "after": " de cette affirmation était dangereuse.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Agitation → -é (mais -ation plutôt)"
+      "difficulty": 2,
+      "explanation": "Généralité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q195",
-      "before": "L'agon",
-      "after": "antique était impressionnante.",
+      "before": "La totalit",
+      "after": " du butin fut découverte dans la cave.",
       "answer": "e",
       "difficulty": 2,
-      "explanation": "Agonie → -é (mais -ie plutôt)"
+      "explanation": "Totalité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q196",
-      "before": "L'agonal",
-      "after": "était l'étape finale.",
+      "before": "La nationalit",
+      "after": " du suspect resta longtemps inconnue.",
       "answer": "e",
       "difficulty": 2,
-      "explanation": "Agonalité → -é"
+      "explanation": "Nationalité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q197",
-      "before": "L'agora",
-      "after": "antique était le centre de la cité.",
+      "before": "La moralit",
+      "after": " de cette fable était simple et claire.",
       "answer": "e",
-      "difficulty": 2,
-      "explanation": "Agora → -é (plutôt -a)"
+      "difficulty": 1,
+      "explanation": "Moralité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q198",
-      "before": "L'agrair",
-      "after": "était importante en France.",
+      "before": "La mentalit",
+      "after": " fermée l'empêchait d'avancer et d'évoluer.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Agrairité → -é (ou agriculture)"
+      "difficulty": 2,
+      "explanation": "Mentalité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q199",
-      "before": "L'agre",
-      "after": "était liée à la royauté.",
+      "before": "La brutalit",
+      "after": " du geste avait horrifié tous les spectateurs.",
       "answer": "e",
-      "difficulty": 1,
-      "explanation": "Agrégation → -é (mais -ation plutôt)"
+      "difficulty": 2,
+      "explanation": "Brutalité se termine par le son [-té] et n'est pas une exception → -é."
     },
     {
       "id": "q200",
-      "before": "L'agrégat",
-      "after": "de ces minéraux était structurée.",
+      "before": "La normalit",
+      "after": " semblait difficile à atteindre après ce choc.",
       "answer": "e",
       "difficulty": 2,
-      "explanation": "Agrégation → -é (mais -ation plutôt)"
+      "explanation": "Normalité se termine par le son [-té] et n'est pas une exception → -é."
     }
   ]
 }

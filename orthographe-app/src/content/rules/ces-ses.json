@@ -420,11 +420,11 @@
     },
     {
       "id": "q041",
-      "before": "Les enfants ",
-      "after": " amusés toute l'après-midi au parc.",
+      "before": "Le garçon ",
+      "after": " bien amusé au parc cet après-midi.",
       "answer": "sest",
       "difficulty": 1,
-      "explanation": "Les enfants se sont amusés → verbe être (s'amuser), pronom réfléchi « se » → S'est."
+      "explanation": "Le garçon se est bien amusé → verbe être (s'amuser), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q042",
@@ -444,11 +444,11 @@
     },
     {
       "id": "q044",
-      "before": "Les deux amis ",
-      "after": " disputés pour une broutille.",
+      "before": "Mon camarade ",
+      "after": " disputé avec moi pour une broutille.",
       "answer": "sest",
       "difficulty": 2,
-      "explanation": "Les deux amis se sont disputés → verbe être (se disputer), pronom réfléchi « se » → S'est."
+      "explanation": "Mon camarade se est disputé → verbe être (se disputer), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q045",
@@ -468,11 +468,11 @@
     },
     {
       "id": "q047",
-      "before": "Nous ",
-      "after": " perdus dans ce grand magasin.",
+      "before": "Le randonneur ",
+      "after": " perdu dans la grande forêt.",
       "answer": "sest",
       "difficulty": 1,
-      "explanation": "Nous nous sommes perdus → verbe être (se perdre), pronom réfléchi « se » → S'est (variation pour « nous »)."
+      "explanation": "Le randonneur se est perdu → verbe être (se perdre), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q048",
@@ -484,11 +484,11 @@
     },
     {
       "id": "q049",
-      "before": "Vous ",
-      "after": " inquiétés sans raison pour rien.",
+      "before": "Ma sœur ",
+      "after": " inquiétée sans raison.",
       "answer": "sest",
       "difficulty": 2,
-      "explanation": "Vous vous êtes inquiétés → verbe être (s'inquiéter), pronom réfléchi « se » → S'est (variation pour « vous »)."
+      "explanation": "Ma sœur se est inquiétée → verbe être (s'inquiéter), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q050",
@@ -500,11 +500,11 @@
     },
     {
       "id": "q051",
-      "before": "Les deux couples ",
-      "after": " rencontrés par hasard au restaurant.",
+      "before": "Le couple ",
+      "after": " rencontré par hasard au restaurant.",
       "answer": "sest",
       "difficulty": 2,
-      "explanation": "Les deux couples se sont rencontrés → verbe être (se rencontrer), pronom réfléchi « se » → S'est."
+      "explanation": "Le couple se est rencontré → verbe être (se rencontrer), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q052",
@@ -524,11 +524,11 @@
     },
     {
       "id": "q054",
-      "before": "Ils ",
-      "after": " mariés en juin dernier.",
+      "before": "Il ",
+      "after": " marié au printemps dernier.",
       "answer": "sest",
       "difficulty": 1,
-      "explanation": "Ils se sont mariés → verbe être (se marier), pronom réfléchi « se » → S'est."
+      "explanation": "Il se est marié → verbe être (se marier), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q055",
@@ -556,19 +556,19 @@
     },
     {
       "id": "q058",
-      "before": "Nous ",
-      "after": " promenés le long de la rivière.",
+      "before": "Le promeneur ",
+      "after": " promené le long de la rivière.",
       "answer": "sest",
       "difficulty": 1,
-      "explanation": "Nous nous sommes promenés → verbe être (se promener), pronom réfléchi « se » → S'est."
+      "explanation": "Le promeneur se est promené → verbe être (se promener), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q059",
-      "before": "Les feuilles ",
-      "after": " envolées avec le vent.",
+      "before": "Le brouillard ",
+      "after": " dissipé en fin de matinée.",
       "answer": "sest",
       "difficulty": 1,
-      "explanation": "Les feuilles se sont envolées → verbe être (s'envoler), pronom réfléchi « se » → S'est."
+      "explanation": "Le brouillard se est dissipé → verbe être (se dissiper), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q060",
@@ -580,11 +580,11 @@
     },
     {
       "id": "q061",
-      "before": "Les nuages ",
-      "after": " dissipés après la tempête.",
+      "before": "Le jeune athlète ",
+      "after": " dépassé lors du tournoi hier soir.",
       "answer": "sest",
       "difficulty": 1,
-      "explanation": "Les nuages se sont dissipés → verbe être (se dissiper), pronom réfléchi « se » → S'est."
+      "explanation": "Le jeune athlète se est dépassé → verbe être (se dépasser), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q062",
@@ -604,11 +604,11 @@
     },
     {
       "id": "q064",
-      "before": "Vous ",
-      "after": " trompés complètement cette fois-ci.",
+      "before": "Le stagiaire ",
+      "after": " trompé complètement dans ses calculs.",
       "answer": "sest",
       "difficulty": 1,
-      "explanation": "Vous vous êtes trompés → verbe être (se tromper), pronom réfléchi « se » → S'est."
+      "explanation": "Le stagiaire se est trompé → verbe être (se tromper), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q065",
@@ -628,11 +628,11 @@
     },
     {
       "id": "q067",
-      "before": "Ils ",
-      "after": " sauvés de justesse du danger.",
+      "before": "Il ",
+      "after": " sauvé de justesse du danger.",
       "answer": "sest",
       "difficulty": 1,
-      "explanation": "Ils se sont sauvés → verbe être (se sauver), pronom réfléchi « se » → S'est."
+      "explanation": "Il se est sauvé → verbe être (se sauver), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q068",
@@ -652,11 +652,11 @@
     },
     {
       "id": "q070",
-      "before": "Nous ",
-      "after": " souvenus de toi pendant les vacances.",
+      "before": "Elle ",
+      "after": " souvenue de lui pendant les vacances.",
       "answer": "sest",
       "difficulty": 1,
-      "explanation": "Nous nous sommes souvenus → verbe être (se souvenir), pronom réfléchi « se » → S'est."
+      "explanation": "Elle se est souvenue → verbe être (se souvenir), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q071",
@@ -668,19 +668,19 @@
     },
     {
       "id": "q072",
-      "before": "Les deux rivaux ",
-      "after": " réconciliés après des années.",
+      "before": "L'enfant ",
+      "after": " réconcilié avec son frère après des années.",
       "answer": "sest",
       "difficulty": 2,
-      "explanation": "Les deux rivaux se sont réconciliés → verbe être (se réconcilier), pronom réfléchi « se » → S'est."
+      "explanation": "L'enfant se est réconcilié → verbe être (se réconcilier), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q073",
-      "before": "Je ",
-      "after": " couché tard hier soir.",
+      "before": "Il ",
+      "after": " couché très tard hier soir.",
       "answer": "sest",
       "difficulty": 1,
-      "explanation": "Je me suis couché → verbe être (se coucher), pronom réfléchi « se » → S'est."
+      "explanation": "Il se est couché → verbe être (se coucher), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q074",
@@ -692,11 +692,11 @@
     },
     {
       "id": "q075",
-      "before": "Vous ",
-      "after": " cachés derrière le canapé.",
+      "before": "L'enfant ",
+      "after": " caché derrière le grand canapé.",
       "answer": "sest",
       "difficulty": 1,
-      "explanation": "Vous vous êtes cachés → verbe être (se cacher), pronom réfléchi « se » → S'est."
+      "explanation": "L'enfant se est caché → verbe être (se cacher), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q076",
@@ -708,11 +708,11 @@
     },
     {
       "id": "q077",
-      "before": "Elles ",
-      "after": " parlé au téléphone pendant une heure.",
+      "before": "La directrice ",
+      "after": " exprimée avec clarté lors de la réunion.",
       "answer": "sest",
       "difficulty": 1,
-      "explanation": "Elles se sont parlé → verbe être (se parler), pronom réfléchi « se » → S'est."
+      "explanation": "La directrice se est exprimée → verbe être (s'exprimer), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q078",
@@ -724,11 +724,11 @@
     },
     {
       "id": "q079",
-      "before": "Nous ",
-      "after": " reposés pendant tout le week-end.",
+      "before": "Il ",
+      "after": " reposé pendant tout le week-end.",
       "answer": "sest",
       "difficulty": 1,
-      "explanation": "Nous nous sommes reposés → verbe être (se reposer), pronom réfléchi « se » → S'est."
+      "explanation": "Il se est reposé → verbe être (se reposer), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q080",
@@ -1164,11 +1164,11 @@
     },
     {
       "id": "q134",
-      "before": "Elle a accepté ",
-      "after": " conditions sans hésiter.",
-      "answer": "ses",
+      "before": "La rivière ",
+      "after": " élargie après les fortes pluies.",
+      "answer": "sest",
       "difficulty": 2,
-      "explanation": "Les conditions à elle → pas de verbe être, on peut dire « les siennes » → Ses."
+      "explanation": "La rivière se est élargie → verbe être (s'élargir), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q135",
@@ -1316,11 +1316,11 @@
     },
     {
       "id": "q153",
-      "before": "Le directeur a approuvé ",
-      "after": " projets innovants.",
-      "answer": "ses",
+      "before": "La bougie ",
+      "after": " consumée lentement sur la table.",
+      "answer": "sest",
       "difficulty": 1,
-      "explanation": "Les projets à lui → pas de verbe être, on peut dire « les siens » → Ses."
+      "explanation": "La bougie se est consumée → verbe être (se consumer), pronom réfléchi « se » → S'est."
     },
     {
       "id": "q154",

@@ -61,13 +61,7 @@ function makeCss(id) {
     @keyframes ${id}ElectricArc { 0%,100%{opacity:0.7;stroke-dashoffset:0} 50%{opacity:1;stroke-dashoffset:4} }
     @keyframes ${id}EyeZap { 0%,100%{filter:drop-shadow(0 0 1px #fde047)} 50%{filter:drop-shadow(0 0 4px #fbbf24)} }
 
-    @keyframes ${id}SolarPulse { 0%,100%{opacity:0.2;transform:scale(1)} 50%{opacity:0.45;transform:scale(1.06)} }
-    @keyframes ${id}SolarRayRotate { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
-    @keyframes ${id}SolarFlare { 0%,100%{opacity:0.5;transform:scaleY(1)} 50%{opacity:0.85;transform:scaleY(1.3)} }
-    @keyframes ${id}CrownGlow { 0%,100%{filter:drop-shadow(0 0 2px #fbbf24)} 50%{filter:drop-shadow(0 0 6px #f59e0b)} }
-    @keyframes ${id}EyeSolar { 0%,100%{filter:drop-shadow(0 0 1px #fbbf24)} 50%{filter:drop-shadow(0 0 3px #f97316)} }
-
-    @keyframes ${id}FireAuraPulse { 0%,100%{opacity:0.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.06)} }
+@keyframes ${id}FireAuraPulse { 0%,100%{opacity:0.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.06)} }
     @keyframes ${id}NostrilGlow { 0%,100%{opacity:0.35} 50%{opacity:0.85} }
 
     @keyframes ${id}SharkAura { 0%,100%{opacity:0.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.04)} }
@@ -597,126 +591,146 @@ function CharTiger({ s, m, id, blink }) {
 
 // 5. LION
 function CharLion({ s, m, id, blink }) {
-  const ei = 'ease-in-out';
   return (
-    <>
-      <defs>
-        <radialGradient id={`${id}-solarGlow`}>
-          <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.35"/>
-          <stop offset="60%" stopColor="#f97316" stopOpacity="0.12"/>
-          <stop offset="100%" stopColor="#f97316" stopOpacity="0"/>
-        </radialGradient>
-        <radialGradient id={`${id}-solarCenter`}>
-          <stop offset="0%" stopColor="#fef3c7" stopOpacity="0.5"/>
-          <stop offset="100%" stopColor="#fbbf24" stopOpacity="0"/>
-        </radialGradient>
-      </defs>
+    <g style={s.body}>
 
-      {/* Solar aura — warm pulsing glow */}
-      <circle cx="15" cy="11.5" r="26" fill={`url(#${id}-solarGlow)`}
-        style={{ animation: `${id}SolarPulse 2.5s ${ei} infinite`, transformOrigin: '15px 11.5px' }}/>
+      {/* ── Halo : Double Couronne (16 rayons + 2 anneaux) ── */}
+      <circle cx="15" cy="18" r="20" fill="#fbbf24" fillOpacity="0.1"/>
+      <circle cx="15" cy="18" r="18" fill="none" stroke="#fbbf24" strokeWidth="2.5" opacity="0.2"/>
+      <line x1="15"   y1="2"    x2="15"   y2="-1.5" stroke="#f59e0b" strokeWidth="1.8" opacity="0.5"/>
+      <line x1="21.1" y1="3.2"  x2="22.5" y2="0"    stroke="#f59e0b" strokeWidth="1.2" opacity="0.35"/>
+      <line x1="26.3" y1="6.7"  x2="28.8" y2="4.2"  stroke="#f59e0b" strokeWidth="1.8" opacity="0.5"/>
+      <line x1="29.8" y1="11.9" x2="33"   y2="10.5" stroke="#f59e0b" strokeWidth="1.2" opacity="0.35"/>
+      <line x1="31"   y1="18"   x2="34.5" y2="18"   stroke="#f59e0b" strokeWidth="1.8" opacity="0.5"/>
+      <line x1="29.8" y1="24.1" x2="33"   y2="25.5" stroke="#f59e0b" strokeWidth="1.2" opacity="0.35"/>
+      <line x1="26.3" y1="29.3" x2="28.8" y2="31.8" stroke="#f59e0b" strokeWidth="1.8" opacity="0.5"/>
+      <line x1="21.1" y1="32.8" x2="22.5" y2="36"   stroke="#f59e0b" strokeWidth="1.2" opacity="0.35"/>
+      <line x1="15"   y1="34"   x2="15"   y2="37.5" stroke="#f59e0b" strokeWidth="1.8" opacity="0.5"/>
+      <line x1="8.9"  y1="32.8" x2="7.5"  y2="36"   stroke="#f59e0b" strokeWidth="1.2" opacity="0.35"/>
+      <line x1="3.7"  y1="29.3" x2="1.2"  y2="31.8" stroke="#f59e0b" strokeWidth="1.8" opacity="0.5"/>
+      <line x1="0.2"  y1="24.1" x2="-3"   y2="25.5" stroke="#f59e0b" strokeWidth="1.2" opacity="0.35"/>
+      <line x1="-1"   y1="18"   x2="-4.5" y2="18"   stroke="#f59e0b" strokeWidth="1.8" opacity="0.5"/>
+      <line x1="0.2"  y1="11.9" x2="-3"   y2="10.5" stroke="#f59e0b" strokeWidth="1.2" opacity="0.35"/>
+      <line x1="3.7"  y1="6.7"  x2="1.2"  y2="4.2"  stroke="#f59e0b" strokeWidth="1.8" opacity="0.5"/>
+      <line x1="8.9"  y1="3.2"  x2="7.5"  y2="0"    stroke="#f59e0b" strokeWidth="1.2" opacity="0.35"/>
+      <circle cx="15" cy="18" r="13.5" fill="none" stroke="#f59e0b" strokeWidth="1.5" opacity="0.38"/>
+      <circle cx="15" cy="18" r="11"   fill="#fbbf24" fillOpacity="0.12"/>
 
-      <g style={s.body}>
-        {/* Sun rays rotating behind head */}
-        <g style={{ animation: `${id}SolarRayRotate 20s linear infinite`, transformOrigin: '15px 11.5px' }}>
-          <polygon points="15,-2 16.5,-8 13.5,-8" fill="#f59e0b" opacity="0.5"/>
-          <polygon points="22,0 27,-3 24,-5" fill="#f59e0b" opacity="0.45"/>
-          <polygon points="27,5 32,4 30,1" fill="#f59e0b" opacity="0.4"/>
-          <polygon points="29,11.5 34,11.5 33,9" fill="#f59e0b" opacity="0.45"/>
-          <polygon points="27,18 32,19 30,22" fill="#f59e0b" opacity="0.4"/>
-          <polygon points="22,23 27,26 24,28" fill="#f59e0b" opacity="0.35"/>
-          <polygon points="15,25 16.5,31 13.5,31" fill="#f59e0b" opacity="0.3"/>
-          <polygon points="8,23 3,26 6,28" fill="#f59e0b" opacity="0.35"/>
-          <polygon points="3,18 -2,19 0,22" fill="#f59e0b" opacity="0.4"/>
-          <polygon points="1,11.5 -4,11.5 -3,9" fill="#f59e0b" opacity="0.45"/>
-          <polygon points="3,5 -2,4 0,1" fill="#f59e0b" opacity="0.4"/>
-          <polygon points="8,0 3,-3 6,-5" fill="#f59e0b" opacity="0.45"/>
-        </g>
-
-        {/* Solar flares */}
-        <ellipse cx="3" cy="8" rx="2" ry="4" fill="#f97316" opacity="0.4"
-          transform="rotate(-20,3,8)"
-          style={{ animation: `${id}SolarFlare 1.8s ${ei} infinite` }}/>
-        <ellipse cx="27" cy="6" rx="1.5" ry="3.5" fill="#f97316" opacity="0.35"
-          transform="rotate(15,27,6)"
-          style={{ animation: `${id}SolarFlare 1.8s ${ei} 0.6s infinite` }}/>
-        <ellipse cx="15" cy="-2" rx="1.5" ry="3" fill="#fbbf24" opacity="0.4"
-          style={{ animation: `${id}SolarFlare 1.8s ${ei} 1.2s infinite` }}/>
-
-        {/* Legs */}
-        <g style={s.legL}>
-          <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#fbbf24"/>
-        </g>
-        <g style={s.legR}>
-          <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#fbbf24"/>
-        </g>
-
-        {/* Body */}
-        <rect x="6" y="16" width="18" height="15" rx="6" fill="#fbbf24"/>
-        <ellipse cx="15" cy="18" rx="9" ry="5" fill="#b45309"/>
-
-        {/* Arms */}
-        <g style={s.armL}>
-          <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#fbbf24"/>
-        </g>
-        <g style={s.armR}>
-          <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#fbbf24"/>
-        </g>
-
-        {/* Mane — warm gradient rings */}
-        <circle cx="15" cy="11.5" r="13" fill="#b45309"/>
-        <circle cx="15" cy="11.5" r="12.2" fill="#d97706"/>
-
-        {/* Small ears */}
-        <circle cx="8" cy="4" r="2.5" fill="#fbbf24"/>
-        <circle cx="22" cy="4" r="2.5" fill="#fbbf24"/>
-
-        {/* Face */}
-        <circle cx="15" cy="11.5" r="9.5" fill="#fbbf24"/>
-
-        {/* Inner warm glow */}
-        <circle cx="15" cy="11.5" r="6" fill={`url(#${id}-solarCenter)`}/>
-
-        {/* Eyes — solar glow */}
-        {m === 'sleep' ? (<>
-          <path d="M8.5 10.5 Q11 12.5 13.5 10.5" fill="none" stroke="#92400e" strokeWidth="1.2" strokeLinecap="round"/>
-          <path d="M16.5 10.5 Q19 12.5 21.5 10.5" fill="none" stroke="#92400e" strokeWidth="1.2" strokeLinecap="round"/>
-        </>) : (<>
-          <g style={{ animation: `${id}EyeSolar 1.5s ${ei} infinite` }}>
-            <circle cx="11" cy="10.5" r="2.5" fill="white"/>
-            <circle cx="11" cy="10.5" r="1.8" fill="#f97316"/>
-            <circle cx="11" cy="10.5" r="1.1" fill="#92400e"/>
-            <circle cx="11" cy="10.5" r="0.5" fill="#1a0a00"/>
-            <circle cx="11.6" cy="9.9" r="0.3" fill="white"/>
-          </g>
-          <g style={{ animation: `${id}EyeSolar 1.5s ${ei} 0.4s infinite` }}>
-            <circle cx="19" cy="10.5" r="2.5" fill="white"/>
-            <circle cx="19" cy="10.5" r="1.8" fill="#f97316"/>
-            <circle cx="19" cy="10.5" r="1.1" fill="#92400e"/>
-            <circle cx="19" cy="10.5" r="0.5" fill="#1a0a00"/>
-            <circle cx="19.6" cy="9.9" r="0.3" fill="white"/>
-          </g>
-        </>)}
-
-        {/* Muzzle */}
-        <ellipse cx="15" cy="15.5" rx="4.5" ry="3" fill="#fcd34d"/>
-
-        {/* Nose */}
-        <ellipse cx="15" cy="14.5" rx="2.5" ry="1.8" fill="#92400e"/>
-
-        {/* Noble smile */}
-        <path d="M11.5 17 Q15 20 18.5 17" fill="none" stroke="#92400e" strokeWidth="1.2" strokeLinecap="round"/>
-
-        {/* Crown — glowing solid gold with gems */}
-        <g style={{ animation: `${id}CrownGlow 2s ${ei} infinite` }}>
-          <polygon points="11,5.5 12,3 13,5 14,2.5 15,5 16,2.5 17,5 18,3 19,5.5"
-            fill="#fbbf24" stroke="#f59e0b" strokeWidth="0.6" strokeLinejoin="round"/>
-          <circle cx="13" cy="4.5" r="0.5" fill="#ef4444"/>
-          <circle cx="15" cy="4" r="0.6" fill="#3b82f6"/>
-          <circle cx="17" cy="4.5" r="0.5" fill="#10b981"/>
-        </g>
+      {/* ── Jambes (articulées) ── */}
+      <g style={s.legL}>
+        <rect x="7.5" y="29" width="6.5" height="10" rx="3" fill="#d97706"/>
+        <ellipse cx="10.5" cy="38.5" rx="3.5" ry="1.8" fill="#b45309"/>
+        <path d="M 8  37.5 L 7   40  L 9   38.8 Z" fill="#fbbf24"/>
+        <path d="M 10 37.5 L 9.5 40  L 11  39   Z" fill="#fbbf24"/>
+        <path d="M 12 37.5 L 12.5 40 L 11  39   Z" fill="#fbbf24"/>
       </g>
-    </>
+      <g style={s.legR}>
+        <rect x="16" y="29" width="6.5" height="10" rx="3" fill="#d97706"/>
+        <ellipse cx="19" cy="38.5" rx="3.5" ry="1.8" fill="#b45309"/>
+        <path d="M 17 37.5 L 16   40  L 18  38.8 Z" fill="#fbbf24"/>
+        <path d="M 19 37.5 L 18.5 40  L 20  39   Z" fill="#fbbf24"/>
+        <path d="M 21 37.5 L 21.5 40  L 20  39   Z" fill="#fbbf24"/>
+      </g>
+
+      {/* ── Corps + queue + médaillon solaire ── */}
+      <ellipse cx="15" cy="24" rx="8.5" ry="7.5" fill="#d97706"/>
+      <ellipse cx="15" cy="25" rx="5.5" ry="6"   fill="#fef3c7"/>
+      <path d="M 23 23 Q 28.5 20 29 14" fill="none" stroke="#92400e" strokeWidth="2.5" strokeLinecap="round"/>
+      <circle cx="29" cy="12.5" r="2.5" fill="#fbbf24"/>
+      {/* Médaillon */}
+      <circle cx="15" cy="23" r="3.8" fill="#fbbf24"/>
+      <circle cx="15" cy="23" r="2.8" fill="#f59e0b"/>
+      <circle cx="15" cy="23" r="1.6" fill="#fef3c7"/>
+      <line x1="15" y1="18.8" x2="15"  y2="18"  stroke="#fbbf24" strokeWidth="1.3"/>
+      <line x1="15" y1="27.2" x2="15"  y2="28"  stroke="#fbbf24" strokeWidth="1.3"/>
+      <line x1="10.8" y1="23" x2="10"  y2="23"  stroke="#fbbf24" strokeWidth="1.3"/>
+      <line x1="19.2" y1="23" x2="20"  y2="23"  stroke="#fbbf24" strokeWidth="1.3"/>
+
+      {/* ── Bras (articulés) ── */}
+      <g style={s.armL}>
+        <rect x="1.5" y="17" width="6" height="10" rx="3" fill="#d97706"/>
+        <ellipse cx="4.5" cy="27" rx="3" ry="1.8" fill="#b45309"/>
+      </g>
+      <g style={s.armR}>
+        <rect x="22.5" y="17" width="6" height="10" rx="3" fill="#d97706"/>
+        <ellipse cx="25.5" cy="27" rx="3" ry="1.8" fill="#b45309"/>
+      </g>
+
+      {/* ── Crinière : 8 tufts-boules en couronne ── */}
+      <circle cx="25.5" cy="11"  r="3.5" fill="#92400e"/>
+      <circle cx="22"   cy="3.5" r="3.5" fill="#92400e"/>
+      <circle cx="15"   cy="0.5" r="3.5" fill="#92400e"/>
+      <circle cx="8"    cy="3.5" r="3.5" fill="#92400e"/>
+      <circle cx="4.5"  cy="11"  r="3.5" fill="#92400e"/>
+      <circle cx="8"    cy="18.5" r="3.5" fill="#92400e"/>
+      <circle cx="15"   cy="21.5" r="3.5" fill="#92400e"/>
+      <circle cx="22"   cy="18.5" r="3.5" fill="#92400e"/>
+
+      {/* ── Oreilles (dépassent au-dessus de la crinière) ── */}
+      <circle cx="9.5"  cy="2" r="2" fill="#92400e" stroke="#78350f" strokeWidth="0.8"/>
+      <circle cx="9.5"  cy="2" r="1" fill="#fef3c7"/>
+      <circle cx="20.5" cy="2" r="2" fill="#92400e" stroke="#78350f" strokeWidth="0.8"/>
+      <circle cx="20.5" cy="2" r="1" fill="#fef3c7"/>
+
+      {/* ── Tête principale ── */}
+      <circle cx="15" cy="11" r="9.5" fill="#d97706"/>
+
+      {/* ── Museau + truffe + moustaches + joues ── */}
+      <ellipse cx="15" cy="15.5" rx="5.8" ry="3.8" fill="#fef3c7"/>
+      <ellipse cx="15" cy="14.2" rx="1.4" ry="1"   fill="#1f2937"/>
+      <line x1="9.5"  y1="14"   x2="4.5"  y2="13"   stroke="#1f2937" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="9.5"  y1="15.5" x2="4"    y2="15.5"  stroke="#1f2937" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="20.5" y1="14"   x2="25.5"  y2="13"   stroke="#1f2937" strokeWidth="1" strokeLinecap="round"/>
+      <line x1="20.5" y1="15.5" x2="26"    y2="15.5"  stroke="#1f2937" strokeWidth="1" strokeLinecap="round"/>
+      <circle cx="8.5"  cy="14.5" r="2.8" fill="#f97316" fillOpacity="0.22"/>
+      <circle cx="21.5" cy="14.5" r="2.8" fill="#f97316" fillOpacity="0.22"/>
+
+      {/* ── Yeux CUSTOM (grands, avec blink / sleep / surprise) ── */}
+      {m === 'sleep' ? (<>
+        <path d="M 8.4 9 Q 11 11.5 13.6 9" fill="none" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
+        <path d="M 16.4 9 Q 19 11.5 21.6 9" fill="none" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
+      </>) : m === 'surprise' ? (<>
+        <circle cx="11" cy="9" r="3.2" fill="white"/>
+        <circle cx="11" cy="9" r="1.9" fill="#1f2937"/>
+        <circle cx="11.8" cy="8.2" r="0.7" fill="white"/>
+        <circle cx="19"  cy="9" r="3.2" fill="white"/>
+        <circle cx="19"  cy="9" r="1.9" fill="#1f2937"/>
+        <circle cx="19.8" cy="8.2" r="0.7" fill="white"/>
+      </>) : (<>
+        <g style={{ animation: blink, transformOrigin: "11px 9px" }}>
+          <circle cx="11"   cy="9" r="2.6" fill="white" stroke="#1f2937" strokeWidth="1"/>
+          <circle cx="11"   cy="9" r="1.5" fill="#1f2937"/>
+          <circle cx="11.7" cy="8.3" r="0.7" fill="white"/>
+        </g>
+        <g style={{ animation: blink, transformOrigin: "19px 9px" }}>
+          <circle cx="19"   cy="9" r="2.6" fill="white" stroke="#1f2937" strokeWidth="1"/>
+          <circle cx="19"   cy="9" r="1.5" fill="#1f2937"/>
+          <circle cx="19.7" cy="8.3" r="0.7" fill="white"/>
+        </g>
+      </>)}
+
+      {/* ── Bouche CUSTOM (U-smile dans le museau, avec kiss / surprise) ── */}
+      {m === 'kiss'
+        ? <circle cx="15" cy="18" r="1.6" fill="#f472b6"/>
+        : m === 'surprise'
+        ? <ellipse cx="15" cy="18.5" rx="2.2" ry="2.6" fill="#1f2937"/>
+        : <path d="M 12 17.5 Q 15 20 18 17.5" fill="none" stroke="#1f2937" strokeWidth="1.3" strokeLinecap="round"/>
+      }
+
+      {/* ── Couronne (au-dessus de la crinière, zone front) ── */}
+      <path d="M 9 -2.5 Q 15 -4 21 -2.5 L 21 -1 Q 15 -2.5 9 -1 Z" fill="#f59e0b"/>
+      <path d="M 9   -2.5 L 9.5  -7   L 11  -2.5 Z" fill="#fbbf24"/>
+      <path d="M 12  -3   L 12.5 -8   L 14  -3   Z" fill="#fbbf24"/>
+      <path d="M 13.5 -3  L 15   -10  L 16.5 -3  Z" fill="#fbbf24"/>
+      <path d="M 16  -3   L 17.5 -8   L 18  -3   Z" fill="#fbbf24"/>
+      <path d="M 19  -2.5 L 20.5 -7   L 21  -2.5 Z" fill="#fbbf24"/>
+      <circle cx="10.2" cy="-5.5" r="0.7" fill="#fef3c7"/>
+      <circle cx="13.2" cy="-6.5" r="0.7" fill="#fef3c7"/>
+      <circle cx="15"   cy="-8"   r="1"   fill="#fef3c7"/>
+      <circle cx="17.8" cy="-6.5" r="0.7" fill="#fef3c7"/>
+      <circle cx="19.8" cy="-5.5" r="0.7" fill="#fef3c7"/>
+
+    </g>
   );
 }
 
@@ -2648,14 +2662,14 @@ function CharSharkNinja({ s, m, id, blink }) {
           <circle cx="10.8" cy="15" r="0.45" fill="white"/>
           <circle cx="19.8" cy="15" r="0.45" fill="white"/>
         </>) : (<>
-          {/* Yeux normaux — avec regard gauche/droite pour hésitation */}
-          <circle cx="10.5" cy="15.5" r="2.2" fill="white"/>
+          {/* Yeux normaux — blanc + pupille dans le même groupe pour que le blink soit visible */}
           <g style={m === 'think' ? { animation: `${id}SharkEyeShift 1.4s ease-in-out infinite` } : { animation: blink, transformOrigin: '10.5px 15.5px' }}>
+            <circle cx="10.5" cy="15.5" r="2.2" fill="white"/>
             <circle cx="10.5" cy="15.5" r="1.4" fill="#1a1a1a"/>
             <circle cx="11.3" cy="14.7" r="0.55" fill="white"/>
           </g>
-          <circle cx="19.5" cy="15.5" r="2.2" fill="white"/>
           <g style={m === 'think' ? { animation: `${id}SharkEyeShift 1.4s ease-in-out infinite` } : { animation: blink, transformOrigin: '19.5px 15.5px' }}>
+            <circle cx="19.5" cy="15.5" r="2.2" fill="white"/>
             <circle cx="19.5" cy="15.5" r="1.4" fill="#1a1a1a"/>
             <circle cx="20.3" cy="14.7" r="0.55" fill="white"/>
           </g>
