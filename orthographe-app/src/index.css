@@ -288,19 +288,20 @@ input, textarea, select {
 
 .streak-help-hero {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 0.9rem;
-  min-width: 148px;
+  gap: 0.75rem;
+  min-width: 0;
 }
 
 .streak-help-flame {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 116px;
-  height: 116px;
-  border-radius: 28px;
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  flex-shrink: 0;
   background: linear-gradient(180deg, rgba(251, 191, 36, 0.14), rgba(251, 146, 60, 0.04));
   border: 1px solid rgba(251, 191, 36, 0.18);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -402,14 +403,10 @@ input, textarea, select {
     gap: 1.1rem;
   }
 
-  .streak-help-hero {
-    min-width: 0;
-  }
-
   .streak-help-flame {
-    width: 96px;
-    height: 96px;
-    border-radius: 24px;
+    width: 70px;
+    height: 70px;
+    border-radius: 16px;
   }
 
   .streak-help-counter-value {

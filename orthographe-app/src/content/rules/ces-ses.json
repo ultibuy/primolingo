@@ -29,7 +29,6 @@
         {
           "value": true,
           "label": "Oui, avec être",
-          "sub": "on peut dire \"était\"",
           "eliminates": [
             "ces",
             "ses"
@@ -38,14 +37,12 @@
         {
           "value": false,
           "label": "Non, sans être",
-          "sub": "On ne peut pas dire \"était\"",
           "eliminates": [
             "sest",
             "cest"
           ]
         }
-      ],
-      "sub": "On peut mettre c'était ou s'était ? "
+      ]
     },
     {
       "id": "initiale",
@@ -420,6 +417,1286 @@
       "answer": "ces",
       "difficulty": 1,
       "explanation": "On désigne des murs précis (ceux-là) → pas de verbe être, « ceux-là » → C. Donc : ces."
+    },
+    {
+      "id": "q041",
+      "before": "Les enfants ",
+      "after": " amusés toute l'après-midi au parc.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Les enfants se sont amusés → verbe être (s'amuser), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q042",
+      "before": "Le chien ",
+      "after": " enfui lors de l'orage.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Le chien se est enfui → verbe être (s'enfuir), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q043",
+      "before": "Ma montre ",
+      "after": " arrêtée exactement à midi.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Ma montre se est arrêtée → verbe être (s'arrêter), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q044",
+      "before": "Les deux amis ",
+      "after": " disputés pour une broutille.",
+      "answer": "sest",
+      "difficulty": 2,
+      "explanation": "Les deux amis se sont disputés → verbe être (se disputer), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q045",
+      "before": "Il ",
+      "after": " trompé de chemin en revenant.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Il se est trompé → verbe être (se tromper), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q046",
+      "before": "La jeune fille ",
+      "after": " habillée pour la cérémonie.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "La jeune fille se est habillée → verbe être (s'habiller), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q047",
+      "before": "Nous ",
+      "after": " perdus dans ce grand magasin.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Nous nous sommes perdus → verbe être (se perdre), pronom réfléchi « se » → S'est (variation pour « nous »)."
+    },
+    {
+      "id": "q048",
+      "before": "Le patineur ",
+      "after": " blessé à la cheville.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Le patineur se est blessé → verbe être (se blesser), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q049",
+      "before": "Vous ",
+      "after": " inquiétés sans raison pour rien.",
+      "answer": "sest",
+      "difficulty": 2,
+      "explanation": "Vous vous êtes inquiétés → verbe être (s'inquiéter), pronom réfléchi « se » → S'est (variation pour « vous »)."
+    },
+    {
+      "id": "q050",
+      "before": "Elle ",
+      "after": " réveillée trois fois cette nuit.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Elle se est réveillée → verbe être (se réveiller), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q051",
+      "before": "Les deux couples ",
+      "after": " rencontrés par hasard au restaurant.",
+      "answer": "sest",
+      "difficulty": 2,
+      "explanation": "Les deux couples se sont rencontrés → verbe être (se rencontrer), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q052",
+      "before": "Le patient ",
+      "after": " endormi avant l'opération.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Le patient se est endormi → verbe être (s'endormir), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q053",
+      "before": "Ma mère ",
+      "after": " demandé si j'allais bien.",
+      "answer": "sest",
+      "difficulty": 2,
+      "explanation": "Ma mère se est demandé → verbe être (se demander), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q054",
+      "before": "Ils ",
+      "after": " mariés en juin dernier.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Ils se sont mariés → verbe être (se marier), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q055",
+      "before": "Le gâteau ",
+      "after": " écroulé quand je l'ai sorti du four.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Le gâteau se est écroulé → verbe être (s'écrouler), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q056",
+      "before": "Elle ",
+      "after": " approchée silencieusement de la porte.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Elle se est approchée → verbe être (s'approcher), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q057",
+      "before": "Le moteur ",
+      "after": " emballé après l'accident.",
+      "answer": "sest",
+      "difficulty": 2,
+      "explanation": "Le moteur se est emballé → verbe être (s'emballer), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q058",
+      "before": "Nous ",
+      "after": " promenés le long de la rivière.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Nous nous sommes promenés → verbe être (se promener), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q059",
+      "before": "Les feuilles ",
+      "after": " envolées avec le vent.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Les feuilles se sont envolées → verbe être (s'envoler), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q060",
+      "before": "Mon ami ",
+      "after": " concentré pour réussir l'examen.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Mon ami se est concentré → verbe être (se concentrer), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q061",
+      "before": "Les nuages ",
+      "after": " dissipés après la tempête.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Les nuages se sont dissipés → verbe être (se dissiper), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q062",
+      "before": "Elle ",
+      "after": " levée tôt pour attraper le train.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Elle se est levée → verbe être (se lever), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q063",
+      "before": "Le bateau ",
+      "after": " échoué sur les rochers.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Le bateau se est échoué → verbe être (s'échouer), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q064",
+      "before": "Vous ",
+      "after": " trompés complètement cette fois-ci.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Vous vous êtes trompés → verbe être (se tromper), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q065",
+      "before": "Il ",
+      "after": " battu avec son voisin hier.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Il se est battu → verbe être (se battre), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q066",
+      "before": "La fenêtre ",
+      "after": " fermée toute seule à cause du vent.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "La fenêtre se est fermée → verbe être (se fermer), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q067",
+      "before": "Ils ",
+      "after": " sauvés de justesse du danger.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Ils se sont sauvés → verbe être (se sauver), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q068",
+      "before": "Le soldat ",
+      "after": " couché dans les tranchées.",
+      "answer": "sest",
+      "difficulty": 2,
+      "explanation": "Le soldat se est couché → verbe être (se coucher), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q069",
+      "before": "Elle ",
+      "after": " sentie mal dès son arrivée.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Elle se est sentie → verbe être (se sentir), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q070",
+      "before": "Nous ",
+      "after": " souvenus de toi pendant les vacances.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Nous nous sommes souvenus → verbe être (se souvenir), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q071",
+      "before": "Le tableau ",
+      "after": " décroché de lui-même du mur.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Le tableau se est décroché → verbe être (se décrocher), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q072",
+      "before": "Les deux rivaux ",
+      "after": " réconciliés après des années.",
+      "answer": "sest",
+      "difficulty": 2,
+      "explanation": "Les deux rivaux se sont réconciliés → verbe être (se réconcilier), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q073",
+      "before": "Je ",
+      "after": " couché tard hier soir.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Je me suis couché → verbe être (se coucher), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q074",
+      "before": "La lampe ",
+      "after": " allumée automatiquement.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "La lampe se est allumée → verbe être (s'allumer), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q075",
+      "before": "Vous ",
+      "after": " cachés derrière le canapé.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Vous vous êtes cachés → verbe être (se cacher), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q076",
+      "before": "Le policier ",
+      "after": " approché du suspect lentement.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Le policier se est approché → verbe être (s'approcher), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q077",
+      "before": "Elles ",
+      "after": " parlé au téléphone pendant une heure.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Elles se sont parlé → verbe être (se parler), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q078",
+      "before": "Le jeune homme ",
+      "after": " enrôlé dans l'armée volontairement.",
+      "answer": "sest",
+      "difficulty": 2,
+      "explanation": "Le jeune homme se est enrôlé → verbe être (s'enrôler), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q079",
+      "before": "Nous ",
+      "after": " reposés pendant tout le week-end.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "Nous nous sommes reposés → verbe être (se reposer), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q080",
+      "before": "La porte ",
+      "after": " refermée avec un bruit sec.",
+      "answer": "sest",
+      "difficulty": 1,
+      "explanation": "La porte se est refermée → verbe être (se refermer), pronom réfléchi « se » → S'est."
+    },
+    {
+      "id": "q081",
+      "before": "",
+      "after": " merveilleux de te revoir après si longtemps.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est merveilleux → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q082",
+      "before": "",
+      "after": " vous qui avez raison sur ce coup.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est vous → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q083",
+      "before": "",
+      "after": " loin d'être terminé, on doit continuer.",
+      "answer": "cest",
+      "difficulty": 2,
+      "explanation": "Cela est loin d'être terminé → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q084",
+      "before": "",
+      "after": " normal d'avoir un peu peur.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est normal → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q085",
+      "before": "",
+      "after": " une bonne idée de partir en vacances.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est une bonne idée → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q086",
+      "before": "",
+      "after": " à cause de toi qu'il pleure.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est à cause de toi → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q087",
+      "before": "",
+      "after": " incroyable comment le temps passe vite.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est incroyable → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q088",
+      "before": "Franchement, ",
+      "after": " décevant comme film.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est décevant → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q089",
+      "before": "",
+      "after": " une surprise géniale !",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est une surprise → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q090",
+      "before": "",
+      "after": " magnifique comme musique.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est magnifique → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q091",
+      "before": "",
+      "after": " lui qui a mangé le dernier gâteau.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est lui → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q092",
+      "before": "",
+      "after": " dommage que tu ne puisses pas venir.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est dommage → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q093",
+      "before": "",
+      "after": " grâce à votre travail qu'on a réussi.",
+      "answer": "cest",
+      "difficulty": 2,
+      "explanation": "Cela est grâce à → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q094",
+      "before": "",
+      "after": " vrai que la vie est courte.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est vrai → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q095",
+      "before": "",
+      "after": " elle qui t'a donné ce conseil.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est elle → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q096",
+      "before": "",
+      "after": " étrange qu'il n'ait pas appelé.",
+      "answer": "cest",
+      "difficulty": 2,
+      "explanation": "Cela est étrange → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q097",
+      "before": "",
+      "after": " sûr et certain qu'il viendra.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est sûr → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q098",
+      "before": "Attendez, ",
+      "after": " quoi le problème exactement ?",
+      "answer": "cest",
+      "difficulty": 2,
+      "explanation": "Cela est quoi → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q099",
+      "before": "",
+      "after": " un vrai choc pour moi.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est un vrai choc → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q100",
+      "before": "",
+      "after": " important de prendre soin de soi.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est important → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q101",
+      "before": "",
+      "after": " nous qui devons décider finalement.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est nous → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q102",
+      "before": "",
+      "after": " pas facile de changer ses habitudes.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est pas facile → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q103",
+      "before": "",
+      "after": " intéressant comme histoire.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est intéressant → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q104",
+      "before": "",
+      "after": " formidable qu'il ait réussi.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est formidable → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q105",
+      "before": "Oui, oui, ",
+      "after": " vrai ce que tu dis là.",
+      "answer": "cest",
+      "difficulty": 2,
+      "explanation": "Cela est vrai → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q106",
+      "before": "",
+      "after": " fou comme les enfants grandissent.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est fou → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q107",
+      "before": "",
+      "after": " brillant comme idée, bravo !",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est brillant → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q108",
+      "before": "",
+      "after": " exagéré de lui d'agir comme ça.",
+      "answer": "cest",
+      "difficulty": 2,
+      "explanation": "Cela est exagéré → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q109",
+      "before": "",
+      "after": " inévitable, les choses changent.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est inévitable → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q110",
+      "before": "Non, ",
+      "after": " celle-ci qui est tombée.",
+      "answer": "cest",
+      "difficulty": 2,
+      "explanation": "Cela est celle-ci → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q111",
+      "before": "",
+      "after": " naturel de vouloir mieux.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est naturel → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q112",
+      "before": "",
+      "after": " certain que tu vas aimer.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est certain → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q113",
+      "before": "",
+      "after": " horrible ce qui lui est arrivé.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est horrible → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q114",
+      "before": "Je crois que ",
+      "after": " lui qui a gagné la course.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est lui → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q115",
+      "before": "",
+      "after": " stupéfiant de voir ça.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est stupéfiant → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q116",
+      "before": "",
+      "after": " sensé d'attendre avant d'agir.",
+      "answer": "cest",
+      "difficulty": 2,
+      "explanation": "Cela est sensé → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q117",
+      "before": "",
+      "after": " injuste de l'accuser sans preuves.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est injuste → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q118",
+      "before": "",
+      "after": " tellement gentil de ta part.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est tellement gentil → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q119",
+      "before": "",
+      "after": " bien sûr qu'on va t'aider.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est bien sûr → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q120",
+      "before": "",
+      "after": " eux qui ont tout cassé.",
+      "answer": "cest",
+      "difficulty": 1,
+      "explanation": "Cela est eux → verbe être, « ce » → C'est."
+    },
+    {
+      "id": "q121",
+      "before": "Le professeur a noté ",
+      "after": " erreurs sur la copie.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les erreurs à lui → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q122",
+      "before": "La musicienne a rangé ",
+      "after": " instruments avec soin.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les instruments à elle → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q123",
+      "before": "Le fermier a compté ",
+      "after": " moutons avant la nuit.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les moutons à lui → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q124",
+      "before": "Chacun doit plier ",
+      "after": " affaires avant de partir.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les affaires à soi → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q125",
+      "before": "La danseuse a changé ",
+      "after": " chaussures après le spectacle.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les chaussures à elle → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q126",
+      "before": "Le mécanicien a vérifié ",
+      "after": " outils avant de commencer.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les outils à lui → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q127",
+      "before": "Elle a perdu ",
+      "after": " documents importants.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les documents à elle → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q128",
+      "before": "Le capitaine donne ",
+      "after": " ordres à équipage.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les ordres à lui → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q129",
+      "before": "La mère a lavé ",
+      "after": " vêtements ce matin.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les vêtements à elle → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q130",
+      "before": "Le scientifique a publié ",
+      "after": " résultats de recherche.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les résultats à lui → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q131",
+      "before": "L'architecte a montré ",
+      "after": " plans au client.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les plans à lui → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q132",
+      "before": "Il a retrouvé ",
+      "after": " clés dans les poches.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les clés à lui → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q133",
+      "before": "Le gardien a fermé ",
+      "after": " portes à clé.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les portes à lui → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q134",
+      "before": "Elle a accepté ",
+      "after": " conditions sans hésiter.",
+      "answer": "ses",
+      "difficulty": 2,
+      "explanation": "Les conditions à elle → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q135",
+      "before": "Le policier a noté ",
+      "after": " observations sur le rapport.",
+      "answer": "ses",
+      "difficulty": 2,
+      "explanation": "Les observations à lui → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q136",
+      "before": "Le collectionneur a montré ",
+      "after": " pièces rares à ses amis.",
+      "answer": "ses",
+      "difficulty": 2,
+      "explanation": "Les pièces à lui → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q137",
+      "before": "La couturière a cousu ",
+      "after": " boutons avec du fil épais.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les boutons à elle → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q138",
+      "before": "Le peintre a mélangé ",
+      "after": " couleurs sur la palette.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les couleurs à lui → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q139",
+      "before": "L'athlète a entraîné ",
+      "after": " muscles pendant des mois.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les muscles à lui → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q140",
+      "before": "Le cuisinier a préparé ",
+      "after": " ingrédients avec précision.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les ingrédients à lui → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q141",
+      "before": "Chaque élève doit ranger ",
+      "after": " affaires dans le casier.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les affaires à soi → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q142",
+      "before": "Le gardien a allumé ",
+      "after": " lampadaires avant le coucher de soleil.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les lampadaires à lui → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q143",
+      "before": "Elle a distribué ",
+      "after": " chocolats aux enfants sages.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les chocolats à elle → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q144",
+      "before": "Le botaniste a étudié ",
+      "after": " plantes dans la serre.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les plantes à lui → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q145",
+      "before": "Le sculpteur a taillé ",
+      "after": " statues pendant des années.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les statues à lui → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q146",
+      "before": "L'auteur a signé ",
+      "after": " livres lors de la séance.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les livres à lui → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q147",
+      "before": "Le musicien a accordé ",
+      "after": " guitares avant le concert.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les guitares à lui → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q148",
+      "before": "Elle a comptabilisé ",
+      "after": " dépenses du mois.",
+      "answer": "ses",
+      "difficulty": 2,
+      "explanation": "Les dépenses à elle → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q149",
+      "before": "Le propriétaire a inspecté ",
+      "after": " propriétés régulièrement.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les propriétés à lui → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q150",
+      "before": "L'infirmière a changé ",
+      "after": " pansements avec délicatesse.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les pansements à elle → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q151",
+      "before": "Le fermier a soigné ",
+      "after": " blessures du cheval.",
+      "answer": "ses",
+      "difficulty": 2,
+      "explanation": "Les blessures de son animal → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q152",
+      "before": "Elle a retrouvé ",
+      "after": " souvenirs dans le grenier.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les souvenirs à elle → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q153",
+      "before": "Le directeur a approuvé ",
+      "after": " projets innovants.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les projets à lui → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q154",
+      "before": "Elle a pris ",
+      "after": " responsabilités très au sérieux.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les responsabilités à elle → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q155",
+      "before": "Le vendeur a compté ",
+      "after": " clients ce jour-là.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les clients à lui → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q156",
+      "before": "L'enfant a caché ",
+      "after": " jouets pour les retrouver.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les jouets à lui → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q157",
+      "before": "Le journaliste a vérifié ",
+      "after": " sources avant publication.",
+      "answer": "ses",
+      "difficulty": 2,
+      "explanation": "Les sources à lui → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q158",
+      "before": "Elle a accepté ",
+      "after": " défaites avec grâce.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les défaites à elle → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q159",
+      "before": "Le consultant a analysé ",
+      "after": " données attentivement.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les données à lui → pas de verbe être, on peut dire « les siennes » → Ses."
+    },
+    {
+      "id": "q160",
+      "before": "Il a expliqué ",
+      "after": " motifs d'absence au directeur.",
+      "answer": "ses",
+      "difficulty": 1,
+      "explanation": "Les motifs à lui → pas de verbe être, on peut dire « les siens » → Ses."
+    },
+    {
+      "id": "q161",
+      "before": "",
+      "after": " derniers jours ont été difficiles.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de jours précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q162",
+      "before": "Arrête de crier avec ",
+      "after": " enfants !",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des enfants précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q163",
+      "before": "Je n'aime pas ",
+      "after": " sortes de musique bruyante.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de sortes précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q164",
+      "before": "",
+      "after": " histoires-là m'ont toujours fasciné.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des histoires précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q165",
+      "before": "Ne confonds pas ",
+      "after": " deux modèles, ils sont très différents.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de modèles précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q166",
+      "before": "",
+      "after": " deux semaines ont changé ma vie.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de semaines précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q167",
+      "before": "Range tous ",
+      "after": " livres sur l'étagère, s'il te plaît.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des livres précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q168",
+      "before": "Regarde comme ",
+      "after": " papillons sont magnifiques !",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On montre des papillons précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q169",
+      "before": "Je déteste qu'on touche à ",
+      "after": " affaires sans permission.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle d'affaires précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q170",
+      "before": "",
+      "after": " années-ci vont être importantes pour toi.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle d'années précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q171",
+      "before": "Comment as-tu pu casser ",
+      "after": " assiettes ? Elles étaient anciennes !",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des assiettes précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q172",
+      "before": "Je n'ose pas manger ",
+      "after": " champignons, je ne suis pas sûr.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de champignons précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q173",
+      "before": "",
+      "after": " trois personnes te rendront visite demain.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des personnes précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q174",
+      "before": "Garde précieusement ",
+      "after": " lettres de ta grand-mère.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de lettres précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q175",
+      "before": "",
+      "after": " heures avant minuit semblaient interminables.",
+      "answer": "ces",
+      "difficulty": 2,
+      "explanation": "On parle d'heures précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q176",
+      "before": "Fais attention à ",
+      "after": " marches, elles sont glissantes.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des marches précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q177",
+      "before": "",
+      "after": " endroits sont trop touristiques à mon goût.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle d'endroits précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q178",
+      "before": "Replante ",
+      "after": " fleurs avant qu'elles ne fanent.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des fleurs précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q179",
+      "before": "Personne n'aime ",
+      "after": " films trop longs et ennuyeux.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de films précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q180",
+      "before": "",
+      "after": " occasions ne se présentent qu'une fois.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle d'occasions précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q181",
+      "before": "J'ai trouvé ",
+      "after": " objets étranges en vidant la cave.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des objets précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q182",
+      "before": "",
+      "after": " maisons-ci sont trop vieilles pour être restaurées.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de maisons précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q183",
+      "before": "Vends donc ",
+      "after": " vieux meubles qui prennent la place.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de meubles précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q184",
+      "before": "",
+      "after": " chaussures-là sont devenues trop petites.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de chaussures précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q185",
+      "before": "Méfie-toi de ",
+      "after": " deux gars, ils ne sont pas fiables.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des gars précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q186",
+      "before": "",
+      "after": " plantes ont besoin de beaucoup d'eau.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de plantes précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q187",
+      "before": "Évite ",
+      "after": " restaurants qui ne respectent pas les normes.",
+      "answer": "ces",
+      "difficulty": 2,
+      "explanation": "On parle de restaurants précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q188",
+      "before": "",
+      "after": " articles de presse soulèvent de vraies questions.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle d'articles précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q189",
+      "before": "Rends-moi ",
+      "after": " stylos que tu m'as empruntés hier.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des stylos précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q190",
+      "before": "",
+      "after": " vêtements ne te vont plus très bien.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de vêtements précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q191",
+      "before": "Tu as vu ",
+      "after": " nuages noirs à l'horizon ?",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de nuages précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q192",
+      "before": "",
+      "after": " murs-ci doivent être repeints avant l'hiver.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de murs précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q193",
+      "before": "Donne-moi ",
+      "after": " documents à signer rapidement.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des documents précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q194",
+      "before": "",
+      "after": " fenêtres laissent passer les courants d'air.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de fenêtres précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q195",
+      "before": "Je me souviens bien de ",
+      "after": " moments merveilleux ensemble.",
+      "answer": "ces",
+      "difficulty": 2,
+      "explanation": "On parle de moments précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q196",
+      "before": "",
+      "after": " rumeurs circulent depuis des semaines !",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de rumeurs précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q197",
+      "before": "Classe tous ",
+      "after": " papiers par date.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On désigne des papiers précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q198",
+      "before": "",
+      "after": " mises à jour de logiciels arrivent trop souvent.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de mises à jour précises (celles-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q199",
+      "before": "Évite d'acheter ",
+      "after": " produits trop chers pour la qualité.",
+      "answer": "ces",
+      "difficulty": 1,
+      "explanation": "On parle de produits précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
+    },
+    {
+      "id": "q200",
+      "before": "",
+      "after": " chants résonnaient dans toute l'église.",
+      "answer": "ces",
+      "difficulty": 2,
+      "explanation": "On parle de chants précis (ceux-là) → pas de verbe être, « ceux-là » → Ces."
     }
   ]
 }

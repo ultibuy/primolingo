@@ -45,6 +45,37 @@ function makeCss(id) {
     @keyframes ${id}Zzz2 { 0%{transform:translate(0,0) scale(0.4);opacity:0} 20%{opacity:0.9} 100%{transform:translate(18px,-48px) scale(1);opacity:0} }
     @keyframes ${id}Spark { 0%,100%{transform:scale(0);opacity:0} 50%{transform:scale(1);opacity:1} }
     @keyframes ${id}Qmark { 0%{transform:translateY(0) scale(0.7);opacity:0} 25%{opacity:1} 85%{opacity:1} 100%{transform:translateY(-28px) scale(1);opacity:0} }
+
+    @keyframes ${id}GhostPulse { 0%,100%{opacity:0.12;transform:scale(1)} 50%{opacity:0.3;transform:scale(1.08)} }
+    @keyframes ${id}GhostWisp1 { 0%{transform:translate(0,0) scale(1);opacity:0.5} 100%{transform:translate(-6px,-18px) scale(0.3);opacity:0} }
+    @keyframes ${id}GhostWisp2 { 0%{transform:translate(0,0) scale(1);opacity:0.4} 100%{transform:translate(8px,-22px) scale(0.2);opacity:0} }
+    @keyframes ${id}GhostWisp3 { 0%{transform:translate(0,0) scale(0.8);opacity:0.35} 100%{transform:translate(-3px,-16px) scale(0.15);opacity:0} }
+    @keyframes ${id}GhostEyeGlow { 0%,100%{filter:drop-shadow(0 0 2px #a78bfa)} 50%{filter:drop-shadow(0 0 5px #c4b5fd)} }
+    @keyframes ${id}GhostTail { 0%,100%{transform:rotate(-5deg) scaleX(1);opacity:0.5} 50%{transform:rotate(5deg) scaleX(1.1);opacity:0.7} }
+    @keyframes ${id}GhostChain { 0%,100%{opacity:0.3} 50%{opacity:0.55} }
+
+    @keyframes ${id}BoltFlash { 0%,80%,100%{opacity:1} 85%{opacity:0.3} 90%{opacity:1} 95%{opacity:0.5} }
+    @keyframes ${id}SparkJump1 { 0%{transform:translate(0,0) scale(0);opacity:0} 30%{transform:translate(-3px,-4px) scale(1);opacity:1} 100%{transform:translate(-8px,-12px) scale(0);opacity:0} }
+    @keyframes ${id}SparkJump2 { 0%{transform:translate(0,0) scale(0);opacity:0} 35%{transform:translate(4px,-5px) scale(1);opacity:1} 100%{transform:translate(10px,-14px) scale(0);opacity:0} }
+    @keyframes ${id}SparkJump3 { 0%{transform:translate(0,0) scale(0);opacity:0} 25%{transform:translate(-2px,-3px) scale(0.8);opacity:0.9} 100%{transform:translate(-6px,-10px) scale(0);opacity:0} }
+    @keyframes ${id}ElectricArc { 0%,100%{opacity:0.7;stroke-dashoffset:0} 50%{opacity:1;stroke-dashoffset:4} }
+    @keyframes ${id}EyeZap { 0%,100%{filter:drop-shadow(0 0 1px #fde047)} 50%{filter:drop-shadow(0 0 4px #fbbf24)} }
+
+    @keyframes ${id}SolarPulse { 0%,100%{opacity:0.2;transform:scale(1)} 50%{opacity:0.45;transform:scale(1.06)} }
+    @keyframes ${id}SolarRayRotate { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+    @keyframes ${id}SolarFlare { 0%,100%{opacity:0.5;transform:scaleY(1)} 50%{opacity:0.85;transform:scaleY(1.3)} }
+    @keyframes ${id}CrownGlow { 0%,100%{filter:drop-shadow(0 0 2px #fbbf24)} 50%{filter:drop-shadow(0 0 6px #f59e0b)} }
+    @keyframes ${id}EyeSolar { 0%,100%{filter:drop-shadow(0 0 1px #fbbf24)} 50%{filter:drop-shadow(0 0 3px #f97316)} }
+
+    @keyframes ${id}FireAuraPulse { 0%,100%{opacity:0.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.06)} }
+    @keyframes ${id}NostrilGlow { 0%,100%{opacity:0.35} 50%{opacity:0.85} }
+
+    @keyframes ${id}SharkAura { 0%,100%{opacity:0.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.04)} }
+    @keyframes ${id}SharkBolt { 0%,80%,100%{opacity:1} 85%{opacity:0.15} 90%{opacity:1} 95%{opacity:0.35} }
+    @keyframes ${id}SharkParticle { 0%,100%{opacity:0.9} 50%{opacity:0.4} }
+    @keyframes ${id}SharkClapL { 0%,100%{transform:rotate(-45deg)} 50%{transform:rotate(-72deg)} }
+    @keyframes ${id}SharkClapR { 0%,100%{transform:rotate(45deg)}  50%{transform:rotate(72deg)} }
+    @keyframes ${id}SharkEyeShift { 0%,100%{transform:translateX(-1.2px)} 50%{transform:translateX(1.2px)} }
   `;
 }
 
@@ -345,128 +376,219 @@ function CharFox({ s, m, id, blink }) {
 
 // 3. WOLF
 function CharWolf({ s, m, id, blink }) {
+  const ei = 'ease-in-out';
   return (
-    <g style={s.body}>
-      {/* Fluffy tail behind body */}
-      <ellipse cx="23" cy="30" rx="5" ry="3.5" fill="#64748b" opacity="0.85"/>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="6" height="9" rx="2.5" fill="#334155"/>
-        <rect x="7" y="35" width="7" height="4" rx="2" fill="#64748b"/>
+    <>
+      <defs>
+        <radialGradient id={`${id}-wolfAura`}>
+          <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.3"/>
+          <stop offset="100%" stopColor="#a78bfa" stopOpacity="0"/>
+        </radialGradient>
+      </defs>
+      {/* Ghostly aura behind everything */}
+      <circle cx="15" cy="18" r="22" fill={`url(#${id}-wolfAura)`}
+        style={{ animation: `${id}GhostPulse 2.5s ${ei} infinite`, transformOrigin: '15px 18px' }}/>
+
+      <g style={s.body}>
+        {/* Ghost wisps rising from body */}
+        <ellipse cx="10" cy="28" rx="2.5" ry="4" fill="#a78bfa" opacity="0.3"
+          style={{ animation: `${id}GhostWisp1 2.2s ease-out infinite`, transformOrigin: '10px 28px' }}/>
+        <ellipse cx="20" cy="26" rx="2" ry="3.5" fill="#c4b5fd" opacity="0.25"
+          style={{ animation: `${id}GhostWisp2 2.8s ease-out 0.4s infinite`, transformOrigin: '20px 26px' }}/>
+        <ellipse cx="14" cy="30" rx="1.8" ry="3" fill="#8b5cf6" opacity="0.2"
+          style={{ animation: `${id}GhostWisp3 2s ease-out 0.8s infinite`, transformOrigin: '14px 30px' }}/>
+
+        {/* Ghost tail — wispy, translucent */}
+        <ellipse cx="25" cy="29" rx="5.5" ry="3.5" fill="#64748b" opacity="0.45"
+          style={{ animation: `${id}GhostTail 1.8s ${ei} infinite`, transformOrigin: '22px 29px' }}/>
+        <ellipse cx="28" cy="28" rx="3" ry="2" fill="#94a3b8" opacity="0.25"
+          style={{ animation: `${id}GhostTail 1.8s ${ei} 0.3s infinite`, transformOrigin: '26px 28px' }}/>
+
+        {/* Legs — semi-transparent, fading at feet */}
+        <g style={s.legL}>
+          <rect x="7.5" y="29" width="6" height="9" rx="2.5" fill="#334155" opacity="0.7"/>
+          <rect x="7" y="35" width="7" height="4" rx="2" fill="#64748b" opacity="0.4"/>
+        </g>
+        <g style={s.legR}>
+          <rect x="16.5" y="29" width="6" height="9" rx="2.5" fill="#334155" opacity="0.7"/>
+          <rect x="16" y="35" width="7" height="4" rx="2" fill="#64748b" opacity="0.4"/>
+        </g>
+
+        {/* Body — slightly translucent */}
+        <rect x="6" y="16" width="18" height="15" rx="6" fill="#334155" opacity="0.85"/>
+        <ellipse cx="15" cy="24" rx="5" ry="5" fill="#475569" opacity="0.7"/>
+
+        {/* Ghostly chains on chest */}
+        <ellipse cx="15" cy="22" rx="4" ry="2.5" fill="none" stroke="#94a3b8" strokeWidth="0.6"
+          strokeDasharray="2 1.5" opacity="0.4"
+          style={{ animation: `${id}GhostChain 2s ${ei} infinite` }}/>
+        <circle cx="15" cy="24.5" r="1.2" fill="none" stroke="#94a3b8" strokeWidth="0.5" opacity="0.35"
+          style={{ animation: `${id}GhostChain 2s ${ei} 0.5s infinite` }}/>
+
+        {/* Arms — translucent */}
+        <g style={s.armL}>
+          <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#334155" opacity="0.8"/>
+        </g>
+        <g style={s.armR}>
+          <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#334155" opacity="0.8"/>
+        </g>
+
+        {/* Ears — with inner spectral purple glow */}
+        <polygon points="5,10 8.5,-1 13,10" fill="#475569"/>
+        <polygon points="17,10 21.5,-1 25,10" fill="#475569"/>
+        <polygon points="6.5,9 8.5,2 11.5,9" fill="#64748b"/>
+        <polygon points="18.5,9 21.5,2 23.5,9" fill="#64748b"/>
+        <polygon points="7.5,8.5 8.5,3.5 11,8.5" fill="#a78bfa" opacity="0.35"/>
+        <polygon points="19,8.5 21.5,3.5 23,8.5" fill="#a78bfa" opacity="0.35"/>
+
+        {/* Head */}
+        <circle cx="15" cy="11.5" r="10.5" fill="#94a3b8"/>
+
+        {/* Muzzle */}
+        <ellipse cx="15" cy="15" rx="4.5" ry="5" fill="#cbd5e1"/>
+
+        {/* Crescent moon — glowing */}
+        <path d="M12.5,5 Q15,1.5 17.5,5 Q15.5,3 14.5,3.2 Q13.5,3.8 12.5,5 Z" fill="#e0e7ff" opacity="0.95"/>
+
+        {/* Spectral scar across left eye */}
+        <line x1="8" y1="8" x2="12" y2="13" stroke="#c4b5fd" strokeWidth="0.7" opacity="0.5" strokeLinecap="round"/>
+
+        {/* Fur texture cheeks */}
+        <line x1="5.5" y1="12" x2="7.5" y2="11.5" stroke="#7f8ea3" strokeWidth="0.6" opacity="0.5"/>
+        <line x1="5.5" y1="13.5" x2="7" y2="13" stroke="#7f8ea3" strokeWidth="0.6" opacity="0.5"/>
+        <line x1="22.5" y1="12" x2="24.5" y2="11.5" stroke="#7f8ea3" strokeWidth="0.6" opacity="0.5"/>
+        <line x1="23" y1="13.5" x2="24.5" y2="13" stroke="#7f8ea3" strokeWidth="0.6" opacity="0.5"/>
+
+        {/* Eyes — glowing purple */}
+        {m === 'sleep' ? (<>
+          <path d="M8.5 10.5 Q11 12.5 13.5 10.5" fill="none" stroke="#ddd6fe" strokeWidth="1.2" strokeLinecap="round"/>
+          <path d="M16.5 10.5 Q19 12.5 21.5 10.5" fill="none" stroke="#ddd6fe" strokeWidth="1.2" strokeLinecap="round"/>
+        </>) : (<>
+          <g style={{ animation: `${id}GhostEyeGlow 2s ${ei} infinite` }}>
+            <circle cx="10.5" cy="10.5" r="1.8" fill="#8b5cf6" opacity="0.3"/>
+            <ellipse cx="10.5" cy="10.5" rx="2.2" ry="1.4" fill="#c4b5fd" transform="rotate(-8,10.5,10.5)"/>
+            <ellipse cx="10.5" cy="10.5" rx="1.1" ry="1.1" fill="#ddd6fe"/>
+            <circle cx="11.1" cy="10" r="0.5" fill="white"/>
+          </g>
+          <g style={{ animation: `${id}GhostEyeGlow 2s ${ei} 0.3s infinite` }}>
+            <circle cx="19.5" cy="10.5" r="1.8" fill="#8b5cf6" opacity="0.3"/>
+            <ellipse cx="19.5" cy="10.5" rx="2.2" ry="1.4" fill="#c4b5fd" transform="rotate(8,19.5,10.5)"/>
+            <ellipse cx="19.5" cy="10.5" rx="1.1" ry="1.1" fill="#ddd6fe"/>
+            <circle cx="20.1" cy="10" r="0.5" fill="white"/>
+          </g>
+        </>)}
+
+        {/* Nose */}
+        <ellipse cx="15" cy="18.5" rx="1.3" ry="0.9" fill="#334155"/>
+        {/* Mouth */}
+        <path d="M13.5,19.5 Q15,20.8 16.5,19.5" stroke="#475569" strokeWidth="0.8" fill="none" strokeLinecap="round"/>
       </g>
-      <g style={s.legR}>
-        <rect x="16.5" y="29" width="6" height="9" rx="2.5" fill="#334155"/>
-        <rect x="16" y="35" width="7" height="4" rx="2" fill="#64748b"/>
-      </g>
-      {/* Body */}
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#334155"/>
-      {/* Chest lighter area */}
-      <ellipse cx="15" cy="24" rx="5" ry="5" fill="#475569"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#334155"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#334155"/>
-      </g>
-      {/* Tall sharp ears - outer dark */}
-      <polygon points="5,10 8.5,-1 13,10" fill="#475569"/>
-      <polygon points="17,10 21.5,-1 25,10" fill="#475569"/>
-      {/* Inner ear */}
-      <polygon points="6.5,9 8.5,2 11.5,9" fill="#64748b"/>
-      <polygon points="18.5,9 21.5,2 23.5,9" fill="#64748b"/>
-      {/* Inner ear pink */}
-      <polygon points="7.5,8.5 8.5,3.5 11,8.5" fill="#f9a8d4" opacity="0.6"/>
-      <polygon points="19,8.5 21.5,3.5 23,8.5" fill="#f9a8d4" opacity="0.6"/>
-      {/* Head */}
-      <circle cx="15" cy="11.5" r="10.5" fill="#94a3b8"/>
-      {/* Muzzle elongated */}
-      <ellipse cx="15" cy="15" rx="4.5" ry="5" fill="#cbd5e1"/>
-      {/* Crescent moon on forehead */}
-      <path d="M13.5,4 Q15,2.5 16.5,4 Q15,3.2 13.5,4 Z" fill="white" opacity="0.9"/>
-      <path d="M13.2,4.5 Q15,2 16.8,4.5 Q15.5,3 14.5,3.2 Q13.8,3.5 13.2,4.5 Z" fill="white" opacity="0.85"/>
-      {/* Fur texture cheeks */}
-      <line x1="5.5" y1="12" x2="7.5" y2="11.5" stroke="#7f8ea3" strokeWidth="0.6" opacity="0.7"/>
-      <line x1="5.5" y1="13.5" x2="7" y2="13" stroke="#7f8ea3" strokeWidth="0.6" opacity="0.7"/>
-      <line x1="22.5" y1="12" x2="24.5" y2="11.5" stroke="#7f8ea3" strokeWidth="0.6" opacity="0.7"/>
-      <line x1="23" y1="13.5" x2="24.5" y2="13" stroke="#7f8ea3" strokeWidth="0.6" opacity="0.7"/>
-      {/* Custom almond-shaped yellow eyes */}
-      {/* Left eye */}
-      <ellipse cx="10.5" cy="10.5" rx="2.2" ry="1.4" fill="#fbbf24" transform="rotate(-8,10.5,10.5)"/>
-      <ellipse cx="10.5" cy="10.5" rx="1.1" ry="1.1" fill="#111"/>
-      <circle cx="11.1" cy="10" r="0.5" fill="white"/>
-      {/* Right eye */}
-      <ellipse cx="19.5" cy="10.5" rx="2.2" ry="1.4" fill="#fbbf24" transform="rotate(8,19.5,10.5)"/>
-      <ellipse cx="19.5" cy="10.5" rx="1.1" ry="1.1" fill="#111"/>
-      <circle cx="20.1" cy="10" r="0.5" fill="white"/>
-      {/* Nose */}
-      <ellipse cx="15" cy="18.5" rx="1.3" ry="0.9" fill="#334155"/>
-      {/* Mouth */}
-      <path d="M13.5,19.5 Q15,20.8 16.5,19.5" stroke="#475569" strokeWidth="0.8" fill="none" strokeLinecap="round"/>
-    </g>
+    </>
   );
 }
 
 // 4. TIGER
 function CharTiger({ s, m, id, blink }) {
+  const ei = 'ease-in-out';
   return (
     <g style={s.body}>
-      {/* Legs with stripe bands */}
+      {/* Electric sparks around paws */}
+      <g style={{ animation: `${id}SparkJump1 0.8s ease-out infinite`, transformOrigin: '8px 38px' }}>
+        <polygon points="8,38 9,36 10,38 9.5,37" fill="#fde047" opacity="0.9"/>
+      </g>
+      <g style={{ animation: `${id}SparkJump2 0.8s ease-out 0.25s infinite`, transformOrigin: '22px 38px' }}>
+        <polygon points="21,38 22,35.5 23,38 22.5,37" fill="#fbbf24" opacity="0.85"/>
+      </g>
+      <g style={{ animation: `${id}SparkJump3 0.9s ease-out 0.5s infinite`, transformOrigin: '15px 37px' }}>
+        <polygon points="14,37 15,35 16,37 15.5,36.5" fill="#fde047" opacity="0.7"/>
+      </g>
+
+      {/* Legs with zigzag lightning stripes */}
       <g style={s.legL}>
         <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#fb923c"/>
-        <rect x="7.5" y="32" width="7" height="2" rx="1" fill="#1a1a1a" opacity="0.7"/>
+        <path d="M8.5,30 L11,31.5 L9,33 L11.5,34.5 L9.5,36" fill="none" stroke="#fde047"
+          strokeWidth="1.2" strokeLinecap="round" opacity="0.8"/>
       </g>
       <g style={s.legR}>
         <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#fb923c"/>
-        <rect x="15.5" y="32" width="7" height="2" rx="1" fill="#1a1a1a" opacity="0.7"/>
+        <path d="M16.5,30 L19,31.5 L17,33 L19.5,34.5 L17.5,36" fill="none" stroke="#fde047"
+          strokeWidth="1.2" strokeLinecap="round" opacity="0.8"/>
       </g>
-      {/* Body with stripes */}
+
+      {/* Body with zigzag stripes */}
       <rect x="6" y="16" width="18" height="15" rx="6" fill="#fb923c"/>
-      <rect x="8" y="19" width="14" height="1.5" rx="0.75" fill="#1a1a1a" opacity="0.6"/>
-      <rect x="9" y="22" width="12" height="1.5" rx="0.75" fill="#1a1a1a" opacity="0.6"/>
-      <rect x="10" y="25" width="10" height="1.5" rx="0.75" fill="#1a1a1a" opacity="0.5"/>
-      {/* Arms with stripe tips */}
+      <path d="M8,19.5 L11,18.5 L9,20.5 L12,19.5 L10,21.5 L13,20.5 L11,22.5 L14,21.5 L12,23.5 L15,22.5 L14,24 L17,23 L15.5,25 L18.5,24 L17,25.5 L20,24.5 L18.5,26 L22,25"
+        fill="none" stroke="#1a1a1a" strokeWidth="1" strokeLinecap="round" opacity="0.55"/>
+
+      {/* Electric arc running down body */}
+      <path d="M15,17 L13,20 L17,22 L14,25 L16,28" fill="none" stroke="#fde047"
+        strokeWidth="0.8" strokeLinecap="round" opacity="0.6" strokeDasharray="3 2"
+        style={{ animation: `${id}ElectricArc 0.6s ${ei} infinite` }}/>
+
+      {/* Arms with lightning tips */}
       <g style={s.armL}>
         <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#fb923c"/>
-        <rect x="1.5" y="23" width="5" height="2" rx="1" fill="#1a1a1a" opacity="0.6"/>
+        <path d="M2.5,23 L4,21.5 L3,24 L4.5,22.5" fill="none" stroke="#fde047"
+          strokeWidth="1" strokeLinecap="round" opacity="0.7"/>
       </g>
       <g style={s.armR}>
         <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#fb923c"/>
-        <rect x="23.5" y="23" width="5" height="2" rx="1" fill="#1a1a1a" opacity="0.6"/>
+        <path d="M24.5,23 L26,21.5 L25,24 L26.5,22.5" fill="none" stroke="#fde047"
+          strokeWidth="1" strokeLinecap="round" opacity="0.7"/>
       </g>
-      {/* Ears: black border ring, orange base, pink inner */}
+
+      {/* Ears */}
       <circle cx="8" cy="7" r="3.5" fill="#1a1a1a"/>
       <circle cx="8" cy="7" r="2.8" fill="#fb923c"/>
       <circle cx="8" cy="7" r="1.5" fill="#fda4af"/>
       <circle cx="22" cy="7" r="3.5" fill="#1a1a1a"/>
       <circle cx="22" cy="7" r="2.8" fill="#fb923c"/>
       <circle cx="22" cy="7" r="1.5" fill="#fda4af"/>
+
       {/* Head */}
       <circle cx="15" cy="11.5" r="10.5" fill="#fb923c"/>
-      {/* Bold black forehead stripe */}
-      <rect x="11.5" y="3.5" width="7" height="2.5" rx="1.2" fill="#1a1a1a" opacity="0.85"/>
-      {/* Cheek stripes: two diagonal lines each side */}
-      <path d="M7 10 Q8.5 11 7.5 12.5" fill="none" stroke="#1a1a1a" strokeWidth="1.3" strokeLinecap="round" opacity="0.8"/>
-      <path d="M8 12 Q9.5 13 8.5 14.5" fill="none" stroke="#1a1a1a" strokeWidth="1.3" strokeLinecap="round" opacity="0.8"/>
-      <path d="M23 10 Q21.5 11 22.5 12.5" fill="none" stroke="#1a1a1a" strokeWidth="1.3" strokeLinecap="round" opacity="0.8"/>
-      <path d="M22 12 Q20.5 13 21.5 14.5" fill="none" stroke="#1a1a1a" strokeWidth="1.3" strokeLinecap="round" opacity="0.8"/>
+
+      {/* ⚡ Lightning bolt on forehead */}
+      <g style={{ animation: `${id}BoltFlash 1.5s ${ei} infinite` }}>
+        <path d="M13.5,2 L15.5,5 L14,5 L16.5,8.5 L14.5,6 L16,6 L13.5,2 Z"
+          fill="#fde047" stroke="#f59e0b" strokeWidth="0.4"/>
+      </g>
+
+      {/* Cheek stripes as mini zigzags */}
+      <path d="M6.5,10 L8,11 L7,12 L8.5,13" fill="none" stroke="#1a1a1a"
+        strokeWidth="1.2" strokeLinecap="round" opacity="0.75"/>
+      <path d="M23.5,10 L22,11 L23,12 L21.5,13" fill="none" stroke="#1a1a1a"
+        strokeWidth="1.2" strokeLinecap="round" opacity="0.75"/>
+
       {/* White muzzle */}
       <ellipse cx="15" cy="15.5" rx="6" ry="5" fill="white"/>
-      {/* Custom amber/golden almond eyes — slightly angled for fierce look */}
-      <ellipse cx="10.5" cy="10" rx="2.8" ry="2" fill="#fbbf24" transform="rotate(-8,10.5,10)"/>
-      <ellipse cx="10.5" cy="10" rx="1.4" ry="1.6" fill="#1a1a1a" transform="rotate(-8,10.5,10)"/>
-      <circle cx="11.3" cy="9.2" r="0.6" fill="white" opacity="0.9"/>
-      <ellipse cx="19.5" cy="10" rx="2.8" ry="2" fill="#fbbf24" transform="rotate(8,19.5,10)"/>
-      <ellipse cx="19.5" cy="10" rx="1.4" ry="1.6" fill="#1a1a1a" transform="rotate(8,19.5,10)"/>
-      <circle cx="20.3" cy="9.2" r="0.6" fill="white" opacity="0.9"/>
-      {/* Black nose */}
+
+      {/* Eyes — electric glow */}
+      {m === 'sleep' ? (<>
+        <path d="M8.5 10 Q11 12 13.5 10" fill="none" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round"/>
+        <path d="M16.5 10 Q19 12 21.5 10" fill="none" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round"/>
+      </>) : (<>
+        <g style={{ animation: `${id}EyeZap 1s ${ei} infinite` }}>
+          <ellipse cx="10.5" cy="10" rx="2.8" ry="2" fill="#fde047" transform="rotate(-8,10.5,10)"/>
+          <ellipse cx="10.5" cy="10" rx="1.4" ry="1.6" fill="#1a1a1a" transform="rotate(-8,10.5,10)"/>
+          <circle cx="11.3" cy="9.2" r="0.6" fill="white" opacity="0.9"/>
+        </g>
+        <g style={{ animation: `${id}EyeZap 1s ${ei} 0.3s infinite` }}>
+          <ellipse cx="19.5" cy="10" rx="2.8" ry="2" fill="#fde047" transform="rotate(8,19.5,10)"/>
+          <ellipse cx="19.5" cy="10" rx="1.4" ry="1.6" fill="#1a1a1a" transform="rotate(8,19.5,10)"/>
+          <circle cx="20.3" cy="9.2" r="0.6" fill="white" opacity="0.9"/>
+        </g>
+      </>)}
+
+      {/* Nose */}
       <ellipse cx="15" cy="14" rx="2" ry="1.3" fill="#111"/>
-      {/* Whiskers left */}
+
+      {/* Whiskers */}
       <line x1="9" y1="15" x2="3" y2="14" stroke="#1a1a1a" strokeWidth="0.8" opacity="0.7"/>
       <line x1="9" y1="16" x2="3" y2="16" stroke="#1a1a1a" strokeWidth="0.8" opacity="0.7"/>
-      <line x1="9" y1="17" x2="3" y2="18" stroke="#1a1a1a" strokeWidth="0.8" opacity="0.7"/>
-      {/* Whiskers right */}
       <line x1="21" y1="15" x2="27" y2="14" stroke="#1a1a1a" strokeWidth="0.8" opacity="0.7"/>
       <line x1="21" y1="16" x2="27" y2="16" stroke="#1a1a1a" strokeWidth="0.8" opacity="0.7"/>
-      <line x1="21" y1="17" x2="27" y2="18" stroke="#1a1a1a" strokeWidth="0.8" opacity="0.7"/>
+
       {/* Mouth */}
       <path d="M13 17 Q15 18.5 17 17" fill="none" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round"/>
     </g>
@@ -475,64 +597,126 @@ function CharTiger({ s, m, id, blink }) {
 
 // 5. LION
 function CharLion({ s, m, id, blink }) {
+  const ei = 'ease-in-out';
   return (
-    <g style={s.body}>
-      {/* Legs */}
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#fbbf24"/>
+    <>
+      <defs>
+        <radialGradient id={`${id}-solarGlow`}>
+          <stop offset="0%" stopColor="#fbbf24" stopOpacity="0.35"/>
+          <stop offset="60%" stopColor="#f97316" stopOpacity="0.12"/>
+          <stop offset="100%" stopColor="#f97316" stopOpacity="0"/>
+        </radialGradient>
+        <radialGradient id={`${id}-solarCenter`}>
+          <stop offset="0%" stopColor="#fef3c7" stopOpacity="0.5"/>
+          <stop offset="100%" stopColor="#fbbf24" stopOpacity="0"/>
+        </radialGradient>
+      </defs>
+
+      {/* Solar aura — warm pulsing glow */}
+      <circle cx="15" cy="11.5" r="26" fill={`url(#${id}-solarGlow)`}
+        style={{ animation: `${id}SolarPulse 2.5s ${ei} infinite`, transformOrigin: '15px 11.5px' }}/>
+
+      <g style={s.body}>
+        {/* Sun rays rotating behind head */}
+        <g style={{ animation: `${id}SolarRayRotate 20s linear infinite`, transformOrigin: '15px 11.5px' }}>
+          <polygon points="15,-2 16.5,-8 13.5,-8" fill="#f59e0b" opacity="0.5"/>
+          <polygon points="22,0 27,-3 24,-5" fill="#f59e0b" opacity="0.45"/>
+          <polygon points="27,5 32,4 30,1" fill="#f59e0b" opacity="0.4"/>
+          <polygon points="29,11.5 34,11.5 33,9" fill="#f59e0b" opacity="0.45"/>
+          <polygon points="27,18 32,19 30,22" fill="#f59e0b" opacity="0.4"/>
+          <polygon points="22,23 27,26 24,28" fill="#f59e0b" opacity="0.35"/>
+          <polygon points="15,25 16.5,31 13.5,31" fill="#f59e0b" opacity="0.3"/>
+          <polygon points="8,23 3,26 6,28" fill="#f59e0b" opacity="0.35"/>
+          <polygon points="3,18 -2,19 0,22" fill="#f59e0b" opacity="0.4"/>
+          <polygon points="1,11.5 -4,11.5 -3,9" fill="#f59e0b" opacity="0.45"/>
+          <polygon points="3,5 -2,4 0,1" fill="#f59e0b" opacity="0.4"/>
+          <polygon points="8,0 3,-3 6,-5" fill="#f59e0b" opacity="0.45"/>
+        </g>
+
+        {/* Solar flares */}
+        <ellipse cx="3" cy="8" rx="2" ry="4" fill="#f97316" opacity="0.4"
+          transform="rotate(-20,3,8)"
+          style={{ animation: `${id}SolarFlare 1.8s ${ei} infinite` }}/>
+        <ellipse cx="27" cy="6" rx="1.5" ry="3.5" fill="#f97316" opacity="0.35"
+          transform="rotate(15,27,6)"
+          style={{ animation: `${id}SolarFlare 1.8s ${ei} 0.6s infinite` }}/>
+        <ellipse cx="15" cy="-2" rx="1.5" ry="3" fill="#fbbf24" opacity="0.4"
+          style={{ animation: `${id}SolarFlare 1.8s ${ei} 1.2s infinite` }}/>
+
+        {/* Legs */}
+        <g style={s.legL}>
+          <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#fbbf24"/>
+        </g>
+        <g style={s.legR}>
+          <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#fbbf24"/>
+        </g>
+
+        {/* Body */}
+        <rect x="6" y="16" width="18" height="15" rx="6" fill="#fbbf24"/>
+        <ellipse cx="15" cy="18" rx="9" ry="5" fill="#b45309"/>
+
+        {/* Arms */}
+        <g style={s.armL}>
+          <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#fbbf24"/>
+        </g>
+        <g style={s.armR}>
+          <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#fbbf24"/>
+        </g>
+
+        {/* Mane — warm gradient rings */}
+        <circle cx="15" cy="11.5" r="13" fill="#b45309"/>
+        <circle cx="15" cy="11.5" r="12.2" fill="#d97706"/>
+
+        {/* Small ears */}
+        <circle cx="8" cy="4" r="2.5" fill="#fbbf24"/>
+        <circle cx="22" cy="4" r="2.5" fill="#fbbf24"/>
+
+        {/* Face */}
+        <circle cx="15" cy="11.5" r="9.5" fill="#fbbf24"/>
+
+        {/* Inner warm glow */}
+        <circle cx="15" cy="11.5" r="6" fill={`url(#${id}-solarCenter)`}/>
+
+        {/* Eyes — solar glow */}
+        {m === 'sleep' ? (<>
+          <path d="M8.5 10.5 Q11 12.5 13.5 10.5" fill="none" stroke="#92400e" strokeWidth="1.2" strokeLinecap="round"/>
+          <path d="M16.5 10.5 Q19 12.5 21.5 10.5" fill="none" stroke="#92400e" strokeWidth="1.2" strokeLinecap="round"/>
+        </>) : (<>
+          <g style={{ animation: `${id}EyeSolar 1.5s ${ei} infinite` }}>
+            <circle cx="11" cy="10.5" r="2.5" fill="white"/>
+            <circle cx="11" cy="10.5" r="1.8" fill="#f97316"/>
+            <circle cx="11" cy="10.5" r="1.1" fill="#92400e"/>
+            <circle cx="11" cy="10.5" r="0.5" fill="#1a0a00"/>
+            <circle cx="11.6" cy="9.9" r="0.3" fill="white"/>
+          </g>
+          <g style={{ animation: `${id}EyeSolar 1.5s ${ei} 0.4s infinite` }}>
+            <circle cx="19" cy="10.5" r="2.5" fill="white"/>
+            <circle cx="19" cy="10.5" r="1.8" fill="#f97316"/>
+            <circle cx="19" cy="10.5" r="1.1" fill="#92400e"/>
+            <circle cx="19" cy="10.5" r="0.5" fill="#1a0a00"/>
+            <circle cx="19.6" cy="9.9" r="0.3" fill="white"/>
+          </g>
+        </>)}
+
+        {/* Muzzle */}
+        <ellipse cx="15" cy="15.5" rx="4.5" ry="3" fill="#fcd34d"/>
+
+        {/* Nose */}
+        <ellipse cx="15" cy="14.5" rx="2.5" ry="1.8" fill="#92400e"/>
+
+        {/* Noble smile */}
+        <path d="M11.5 17 Q15 20 18.5 17" fill="none" stroke="#92400e" strokeWidth="1.2" strokeLinecap="round"/>
+
+        {/* Crown — glowing solid gold with gems */}
+        <g style={{ animation: `${id}CrownGlow 2s ${ei} infinite` }}>
+          <polygon points="11,5.5 12,3 13,5 14,2.5 15,5 16,2.5 17,5 18,3 19,5.5"
+            fill="#fbbf24" stroke="#f59e0b" strokeWidth="0.6" strokeLinejoin="round"/>
+          <circle cx="13" cy="4.5" r="0.5" fill="#ef4444"/>
+          <circle cx="15" cy="4" r="0.6" fill="#3b82f6"/>
+          <circle cx="17" cy="4.5" r="0.5" fill="#10b981"/>
+        </g>
       </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#fbbf24"/>
-      </g>
-      {/* Body */}
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#fbbf24"/>
-      {/* Mane extension onto body top */}
-      <ellipse cx="15" cy="18" rx="9" ry="5" fill="#b45309"/>
-      {/* Arms */}
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#fbbf24"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#fbbf24"/>
-      </g>
-      {/* Mane: dark amber sun-ray spikes */}
-      <polygon points="15,0 16.8,4.5 15,3.5 13.2,4.5" fill="#b45309"/>
-      <polygon points="21.5,1.5 22,6.5 20.2,5.5 20.5,4" fill="#b45309"/>
-      <polygon points="26,5.5 25,10.5 23.5,9 24.5,7.5" fill="#b45309"/>
-      <polygon points="28,11.5 26,15.5 24.5,13.5 26.5,12.5" fill="#b45309"/>
-      <polygon points="26.5,18 24,20.5 23,18.5 25.5,17.5" fill="#b45309"/>
-      <polygon points="8.5,1.5 10,4 8,5.5 7.5,6.5 9.8,5.5" fill="#b45309"/>
-      <polygon points="4,5.5 5.5,7.5 6,10.5 4.5,9 3.5,7" fill="#b45309"/>
-      <polygon points="2,11.5 3.5,12.5 5.5,13.5 4,15.5 2.5,15" fill="#b45309"/>
-      <polygon points="3.5,18 5.5,17.5 7,18.5 6,20.5" fill="#b45309"/>
-      {/* Mane: golden mid ring */}
-      <circle cx="15" cy="11.5" r="12" fill="#d97706"/>
-      {/* Small ears partially hidden in mane */}
-      <circle cx="8" cy="4" r="2.5" fill="#fbbf24"/>
-      <circle cx="22" cy="4" r="2.5" fill="#fbbf24"/>
-      {/* Face */}
-      <circle cx="15" cy="11.5" r="9.5" fill="#fbbf24"/>
-      {/* Left eye: white bg, amber iris, dark pupil */}
-      <circle cx="11" cy="10.5" r="2.5" fill="white"/>
-      <circle cx="11" cy="10.5" r="1.8" fill="#d97706"/>
-      <circle cx="11" cy="10.5" r="1.1" fill="#92400e"/>
-      <circle cx="11" cy="10.5" r="0.5" fill="#1a0a00"/>
-      <circle cx="11.6" cy="9.9" r="0.3" fill="white"/>
-      {/* Right eye: white bg, amber iris, dark pupil */}
-      <circle cx="19" cy="10.5" r="2.5" fill="white"/>
-      <circle cx="19" cy="10.5" r="1.8" fill="#d97706"/>
-      <circle cx="19" cy="10.5" r="1.1" fill="#92400e"/>
-      <circle cx="19" cy="10.5" r="0.5" fill="#1a0a00"/>
-      <circle cx="19.6" cy="9.9" r="0.3" fill="white"/>
-      {/* Broad muzzle bump */}
-      <ellipse cx="15" cy="15.5" rx="4.5" ry="3" fill="#fcd34d"/>
-      {/* Wide nose */}
-      <ellipse cx="15" cy="14.5" rx="2.5" ry="1.8" fill="#92400e"/>
-      {/* Noble smile */}
-      <path d="M11.5 17 Q15 20 18.5 17" fill="none" stroke="#92400e" strokeWidth="1.2" strokeLinecap="round"/>
-      {/* Small royal crown */}
-      <polygon points="11,5.5 12,3.5 13,5 14,3 15,5 16,3 17,5 18,3.5 19,5.5" fill="none" stroke="#f59e0b" strokeWidth="0.8" strokeLinejoin="round"/>
-    </g>
+    </>
   );
 }
 
@@ -791,33 +975,140 @@ function CharCat({ s, m, id, blink }) {
 
 // 13. DRAGON
 function CharDragon({ s, m, id, blink }) {
+  const ei = 'ease-in-out';
   return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#b91c1c"/>
+    <>
+      <defs>
+        <radialGradient id={`${id}-fireGlow`} cx="50%" cy="50%" r="60%">
+          <stop offset="0%" stopColor="#f87171" stopOpacity="0.3"/>
+          <stop offset="100%" stopColor="#f97316" stopOpacity="0.05"/>
+        </radialGradient>
+        <linearGradient id={`${id}-bellyGlow`} x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stopColor="#f97316" stopOpacity="0.8"/>
+          <stop offset="100%" stopColor="#fbbf24" stopOpacity="0.4"/>
+        </linearGradient>
+      </defs>
+
+      {/* Fire aura */}
+      <circle cx="15" cy="18" r="26" fill={`url(#${id}-fireGlow)`}
+        style={{ animation: `${id}FireAuraPulse 2.5s ${ei} infinite`, transformOrigin: '15px 18px' }}/>
+
+      <g style={s.body}>
+        {/* Wings */}
+        <ellipse cx="4" cy="20" rx="4.5" ry="7" fill="#f97316" opacity="0.7" transform="rotate(-25 4 20)"/>
+        <ellipse cx="3" cy="20" rx="2.5" ry="4.5" fill="#fca5a5" opacity="0.5" transform="rotate(-25 3 20)"/>
+        <ellipse cx="26" cy="20" rx="4.5" ry="7" fill="#f97316" opacity="0.7" transform="rotate(25 26 20)"/>
+        <ellipse cx="27" cy="20" rx="2.5" ry="4.5" fill="#fca5a5" opacity="0.5" transform="rotate(25 27 20)"/>
+
+        {/* Tail */}
+        <ellipse cx="28" cy="28" rx="4.5" ry="6.5" fill="#dc2626" transform="rotate(35 28 28)"/>
+        <polygon points="31,22 34,19 32,24 35,21 33,26" fill="#f97316" opacity="0.9"/>
+        <polygon points="32,22 35,20 33,25 36,22 34,27" fill="#fbbf24" opacity="0.7"/>
+
+        {/* Legs — scales + gold claws */}
+        <g style={s.legL}>
+          <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#dc2626"/>
+          <path d="M8,32 L9.5,31 L8,33 L9.5,32" fill="#f97316" opacity="0.6"/>
+          <path d="M8,34 L9.5,33 L8,35 L9.5,34" fill="#f97316" opacity="0.6"/>
+          <circle cx="8" cy="38.5" r="1.2" fill="#fbbf24"/>
+          <circle cx="11" cy="38.5" r="1.2" fill="#fbbf24"/>
+        </g>
+        <g style={s.legR}>
+          <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#dc2626"/>
+          <path d="M16,32 L17.5,31 L16,33 L17.5,32" fill="#f97316" opacity="0.6"/>
+          <path d="M16,34 L17.5,33 L16,35 L17.5,34" fill="#f97316" opacity="0.6"/>
+          <circle cx="16" cy="38.5" r="1.2" fill="#fbbf24"/>
+          <circle cx="19" cy="38.5" r="1.2" fill="#fbbf24"/>
+        </g>
+
+        {/* Body — belly gradient + scale chevrons + spine */}
+        <rect x="6" y="16" width="18" height="15" rx="6" fill="#b91c1c"/>
+        <ellipse cx="15" cy="23" rx="6" ry="5.5" fill={`url(#${id}-bellyGlow)`}/>
+        <path d="M8,18 L10,17 L8,19 L10,18 M8,20 L10,19 L8,21 L10,20 M8,22 L10,21 L8,23 L10,22"
+          fill="none" stroke="#fca5a5" strokeWidth="0.8" opacity="0.5"/>
+        <path d="M20,18 L22,17 L20,19 L22,18 M20,20 L22,19 L20,21 L22,20 M20,22 L22,21 L20,23 L22,22"
+          fill="none" stroke="#fca5a5" strokeWidth="0.8" opacity="0.5"/>
+        <g opacity="0.6">
+          <path d="M15,17.5 L16.5,16.5 L15,18.5 L16.5,17.5"/>
+          <path d="M15,19.5 L16.5,18.5 L15,20.5 L16.5,19.5"/>
+          <path d="M15,21.5 L16.5,20.5 L15,22.5 L16.5,21.5"/>
+          <path d="M15,23.5 L16.5,22.5 L15,24.5 L16.5,23.5"/>
+        </g>
+
+        {/* Arms — scales + gold claws + shoulder spike */}
+        <g style={s.armL}>
+          <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#dc2626"/>
+          <path d="M2.5,19 L3.5,18.5 L2.5,20 L3.5,19.5" fill="#f97316" opacity="0.6"/>
+          <path d="M2.5,22 L3.5,21.5 L2.5,23 L3.5,22.5" fill="#f97316" opacity="0.6"/>
+          <polygon points="2,26 1.5,25.5 2,27 1.2,26.5" fill="#fbbf24"/>
+          <polygon points="4,26 4.5,25.5 4,27 4.8,26.5" fill="#fbbf24"/>
+          <polygon points="3,17 3.5,15.5 4,17 3.3,16" fill="#fbbf24" opacity="0.7"/>
+        </g>
+        <g style={s.armR}>
+          <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#dc2626"/>
+          <path d="M25.5,19 L26.5,18.5 L25.5,20 L26.5,19.5" fill="#f97316" opacity="0.6"/>
+          <path d="M25.5,22 L26.5,21.5 L25.5,23 L26.5,22.5" fill="#f97316" opacity="0.6"/>
+          <polygon points="26,26 25.5,25.5 26,27 25.2,26.5" fill="#fbbf24"/>
+          <polygon points="28,26 28.5,25.5 28,27 28.8,26.5" fill="#fbbf24"/>
+          <polygon points="27,17 27.5,15.5 28,17 27.3,16" fill="#fbbf24" opacity="0.7"/>
+        </g>
+
+        {/* Horns — curved paths */}
+        <path d="M6 7 Q4 3 7 2" fill="none" stroke="#b91c1c" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M23 7 Q25 3 23 2" fill="none" stroke="#b91c1c" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M6.5 6.5 Q4.5 3.5 7 2.5" fill="none" stroke="#f97316" strokeWidth="1.2" strokeLinecap="round"/>
+        <path d="M23.5 6.5 Q24.5 3.5 23 2.5" fill="none" stroke="#f97316" strokeWidth="1.2" strokeLinecap="round"/>
+
+        {/* Head — elongated (not circular) */}
+        <ellipse cx="15" cy="11" rx="11" ry="8" fill="#b91c1c"/>
+        <ellipse cx="15" cy="10.5" rx="9.5" ry="6.5" fill="#dc2626"/>
+
+        {/* Snout */}
+        <ellipse cx="15" cy="15.5" rx="7" ry="5" fill="#b91c1c"/>
+        <ellipse cx="15" cy="15.8" rx="6.5" ry="4.5" fill="#dc2626"/>
+        <path d="M11,16 Q15,17.5 19,16" fill="#b91c1c" opacity="0.7"/>
+
+        {/* Nostrils + smoke glow */}
+        <circle cx="12.5" cy="17.5" r="1.2" fill="#444"/>
+        <circle cx="17.5" cy="17.5" r="1.2" fill="#444"/>
+        <circle cx="12.5" cy="15.5" r="0.8" fill="#f97316"
+          style={{ animation: `${id}NostrilGlow 1.8s ${ei} infinite` }}/>
+        <circle cx="12.8" cy="14.8" r="0.6" fill="#f97316" opacity="0.3"
+          style={{ animation: `${id}NostrilGlow 1.8s ${ei} 0.3s infinite` }}/>
+        <circle cx="17.5" cy="15.5" r="0.8" fill="#f97316"
+          style={{ animation: `${id}NostrilGlow 1.8s ${ei} 0.6s infinite` }}/>
+        <circle cx="17.2" cy="14.8" r="0.6" fill="#f97316" opacity="0.3"
+          style={{ animation: `${id}NostrilGlow 1.8s ${ei} 0.9s infinite` }}/>
+        <path d="M13,16 L14,15.5 M16,16 L15,15.5" stroke="#f97316" strokeWidth="0.6" opacity="0.5"/>
+
+        {/* Eyes — vertical reptilian slits */}
+        {m === 'sleep' ? (<>
+          <path d="M8.5 9.5 Q11 11 13.5 9.5" fill="none" stroke="#111" strokeWidth="1" strokeLinecap="round"/>
+          <path d="M16.5 9.5 Q19 11 21.5 9.5" fill="none" stroke="#111" strokeWidth="1" strokeLinecap="round"/>
+        </>) : m === 'surprise' ? (<>
+          <ellipse cx="11" cy="9.5" rx="2.2" ry="3.2" fill="#fbbf24"/>
+          <ellipse cx="11" cy="9.5" rx="1.4" ry="2.5" fill="#111"/>
+          <ellipse cx="19" cy="9.5" rx="2.2" ry="3.2" fill="#fbbf24"/>
+          <ellipse cx="19" cy="9.5" rx="1.4" ry="2.5" fill="#111"/>
+        </>) : (<>
+          <ellipse cx="11" cy="10.5" rx="2" ry="2.8" fill="#fbbf24"/>
+          <ellipse cx="11" cy="10.5" rx="1.2" ry="2.2" fill="#111"/>
+          <ellipse cx="19" cy="10.5" rx="2" ry="2.8" fill="#fbbf24"/>
+          <ellipse cx="19" cy="10.5" rx="1.2" ry="2.2" fill="#111"/>
+          <ellipse cx="11" cy="10.5" rx="2.4" ry="3.2" fill="none" stroke="#fde047" strokeWidth="0.4" opacity="0.7"/>
+          <ellipse cx="19" cy="10.5" rx="2.4" ry="3.2" fill="none" stroke="#fde047" strokeWidth="0.4" opacity="0.7"/>
+        </>)}
+
+        {/* Mouth + fangs */}
+        {m === 'kiss' ? (
+          <circle cx="15" cy="19" r="1.4" fill="#f472b6"/>
+        ) : (<>
+          <path d="M12 18.5 Q15 20 18 18.5" fill="none" stroke="#1a1a1a" strokeWidth="1" strokeLinecap="round"/>
+          <polygon points="13.5,19 13,20 14,19.5" fill="#fef3c7" opacity="0.8"/>
+          <polygon points="16.5,19 17,20 16,19.5" fill="#fef3c7" opacity="0.8"/>
+        </>)}
       </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#b91c1c"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#b91c1c"/>
-      <circle cx="11" cy="19" r="0.8" fill="#7f1d1d" opacity="0.6"/>
-      <circle cx="14" cy="21" r="0.8" fill="#7f1d1d" opacity="0.6"/>
-      <circle cx="17" cy="19" r="0.8" fill="#7f1d1d" opacity="0.6"/>
-      <circle cx="20" cy="21" r="0.8" fill="#7f1d1d" opacity="0.6"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#b91c1c"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#b91c1c"/>
-      </g>
-      <polygon points="11,5 13,1 14,5" fill="#7f1d1d"/>
-      <polygon points="17,5 19,1 21,5" fill="#7f1d1d"/>
-      <circle cx="15" cy="11.5" r="10.5" fill="#dc2626"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="#fbbf24"/>
-      <ellipse cx="15" cy="14.5" rx="1.8" ry="1.2" fill="#7f1d1d"/>
-      {m !== 'sleep' && <path d="M12 16.5 Q13.5 15 15 17 Q16.5 15 18 16.5" fill="#f97316" opacity="0.8"/>}
-      <Mouth m={m} color="#7f1d1d"/>
-    </g>
+    </>
   );
 }
 
@@ -2234,6 +2525,165 @@ function CharStormEagle({ s, m, id, blink }) {
   );
 }
 
+// ─── REQUIN NINJA ─────────────────────────────────────────────────────────────
+function CharSharkNinja({ s, m, id, blink }) {
+  const ei = 'ease-in-out';
+  return (
+    <>
+      <defs>
+        <radialGradient id={`${id}-auraGlow`} cx="50%" cy="52%" r="50%">
+          <stop offset="0%"   stopColor="#00BFFF" stopOpacity="0.28"/>
+          <stop offset="45%"  stopColor="#00BFFF" stopOpacity="0.12"/>
+          <stop offset="100%" stopColor="#00BFFF" stopOpacity="0"/>
+        </radialGradient>
+        <radialGradient id={`${id}-whiteGlow`} cx="50%" cy="52%" r="50%">
+          <stop offset="0%"   stopColor="white" stopOpacity="0.45"/>
+          <stop offset="40%"  stopColor="white" stopOpacity="0.18"/>
+          <stop offset="100%" stopColor="white" stopOpacity="0"/>
+        </radialGradient>
+      </defs>
+
+      {/* Aura layers */}
+      <ellipse cx="15" cy="20" rx="14" ry="17.5" fill="white" opacity="0.30"
+        style={{ filter: 'blur(2.8px)' }}/>
+      <ellipse cx="15" cy="20" rx="13" ry="16.5" fill={`url(#${id}-whiteGlow)`}
+        style={{ animation: `${id}SharkAura 2s ${ei} infinite`, transformOrigin: '15px 20px' }}/>
+      <ellipse cx="15" cy="20" rx="14" ry="17.5" fill={`url(#${id}-auraGlow)`}
+        style={{ animation: `${id}SharkAura 2s ${ei} 0.3s infinite`, transformOrigin: '15px 20px' }}/>
+      <ellipse cx="15" cy="20" rx="7" ry="9" fill="#00BFFF" opacity="0.10"/>
+      <ellipse cx="15" cy="20" rx="9" ry="11.5" fill="none" stroke="#7DF9FF" strokeWidth="0.9" opacity="0.60"/>
+      <ellipse cx="15" cy="20" rx="11.5" ry="14.5" fill="none" stroke="#00BFFF" strokeWidth="1.1" opacity="0.45"/>
+      <ellipse cx="15" cy="20" rx="14" ry="17.5" fill="none" stroke="#00BFFF" strokeWidth="1.6" opacity="0.30"/>
+
+      {/* Lightning bolts */}
+      <path d="M 15 2.5 L 13.5 5.5 L 16 5 L 14.2 8.5"    stroke="#7DF9FF" strokeWidth="1.4" fill="none" strokeLinecap="round"
+        style={{ animation: `${id}SharkBolt 3s ${ei} infinite` }}/>
+      <path d="M 15 37.5 L 13.5 34.5 L 16 35 L 14.2 31.5" stroke="#7DF9FF" strokeWidth="1.4" fill="none" strokeLinecap="round"
+        style={{ animation: `${id}SharkBolt 3s ${ei} 0.5s infinite` }}/>
+      <path d="M -0.5 19 L 2.5 17.5 L 2 20.5 L 5.5 19"    stroke="#7DF9FF" strokeWidth="1.4" fill="none" strokeLinecap="round"
+        style={{ animation: `${id}SharkBolt 3s ${ei} 1s infinite` }}/>
+      <path d="M 30.5 19 L 27.5 17.5 L 28 20.5 L 24.5 19"  stroke="#7DF9FF" strokeWidth="1.4" fill="none" strokeLinecap="round"
+        style={{ animation: `${id}SharkBolt 3s ${ei} 1.5s infinite` }}/>
+
+      {/* Particles */}
+      <circle cx="5"  cy="7.5"  r="0.85" fill="white"   style={{ animation: `${id}SharkParticle 2s ${ei} infinite` }}/>
+      <circle cx="25" cy="7.5"  r="0.85" fill="white"   style={{ animation: `${id}SharkParticle 2s ${ei} 0.4s infinite` }}/>
+      <circle cx="3.5" cy="30.5" r="0.7" fill="#7DF9FF" style={{ animation: `${id}SharkParticle 2s ${ei} 0.8s infinite` }}/>
+      <circle cx="26.5" cy="30.5" r="0.7" fill="#7DF9FF" style={{ animation: `${id}SharkParticle 2s ${ei} 1.2s infinite` }}/>
+      <circle cx="15" cy="2.2"  r="1.1"  fill="white"   style={{ animation: `${id}SharkParticle 2s ${ei} 0.2s infinite` }}/>
+      <circle cx="15" cy="37.8" r="1.1"  fill="white"   style={{ animation: `${id}SharkParticle 2s ${ei} 0.6s infinite` }}/>
+
+      <g style={s.body}>
+        {/* Tail fins (driven by legL / legR) — pivot at fin base */}
+        <g style={{ ...s.legL, transformOrigin: '12px 32px' }}>
+          <path d="M 11 32 Q 7 30 4 28 Q 3 32 7 36 Q 9.5 35.5 12 33 Z" fill="#1a1a1a" stroke="#000" strokeWidth="1"/>
+        </g>
+        <g style={{ ...s.legR, transformOrigin: '18px 32px' }}>
+          <path d="M 19 32 Q 23 30 26 28 Q 27 32 23 36 Q 20.5 35.5 18 33 Z" fill="#1a1a1a" stroke="#000" strokeWidth="1"/>
+        </g>
+        {/* Centre tail — static */}
+        <path d="M 12 32 L 15 34.5 L 18 32 Z" fill="#1a1a1a"/>
+
+        {/* Gi body */}
+        <ellipse cx="15" cy="26" rx="8" ry="7.5" fill="#1a1a1a" stroke="#000" strokeWidth="1.2"/>
+
+        {/* White V-lapels */}
+        <path d="M 11 20.5 L 15 24 L 19 20.5" fill="#F0F8FF" stroke="#ccc" strokeWidth="0.5"/>
+        <path d="M 10.5 20.5 L 15 24.5 L 19.5 20.5" fill="none" stroke="#2a2a2a" strokeWidth="0.8"/>
+
+        {/* Centerline stitch */}
+        <line x1="15" y1="24.5" x2="15" y2="31.5" stroke="#2a2a2a" strokeWidth="0.6" strokeDasharray="1,1" opacity="0.5"/>
+
+        {/* Belt */}
+        <rect x="9" y="28.8" width="12" height="1.8" fill="#111" stroke="#333" strokeWidth="0.5" rx="0.5"/>
+        <rect x="13" y="28.4" width="4" height="2.6" rx="0.6" fill="#111" stroke="#3a3a3a" strokeWidth="0.7"/>
+
+        {/* Gills */}
+        <path d="M 7.8 22.5 Q 6.3 23 6.5 24" stroke="#333" strokeWidth="1" fill="none" strokeLinecap="round"/>
+        <path d="M 7.5 24.5 Q 6 25 6.2 26" stroke="#333" strokeWidth="1" fill="none" strokeLinecap="round"/>
+        <path d="M 22.2 22.5 Q 23.7 23 23.5 24" stroke="#333" strokeWidth="1" fill="none" strokeLinecap="round"/>
+        <path d="M 22.5 24.5 Q 24 25 23.8 26" stroke="#333" strokeWidth="1" fill="none" strokeLinecap="round"/>
+
+        {/* Sleeve fins (arms) — pivot at body attachment */}
+        <g style={{ ...s.armL, transformOrigin: '8px 22px',
+          ...(m === 'clap' && { animation: `${id}SharkClapL 0.4s ease-in-out infinite` }) }}>
+          <path d="M 8 22 L 3 23 L 6 27 Z" fill="#1a1a1a" stroke="#000" strokeWidth="1"/>
+        </g>
+        <g style={{ ...s.armR, transformOrigin: '22px 22px',
+          ...(m === 'clap' && { animation: `${id}SharkClapR 0.4s ease-in-out infinite` }) }}>
+          <path d="M 22 22 L 27 23 L 24 27 Z" fill="#1a1a1a" stroke="#000" strokeWidth="1"/>
+        </g>
+
+        {/* Body dorsal fin */}
+        <path d="M 15 17.5 L 12.5 10 L 17.5 10 Z" fill="#1a1a1a" stroke="#000" strokeWidth="0.9"/>
+
+        {/* Head */}
+        <ellipse cx="15" cy="17.5" rx="9.5" ry="7.5" fill="#607B8B" stroke="#2D4A5C" strokeWidth="1.2"/>
+        <ellipse cx="15" cy="19.5" rx="8.5" ry="4.5" fill="#F0F8FF"/>
+
+        {/* Head fin */}
+        <path d="M 15 10 L 13 5 L 17 5 Z" fill="#2D4A5C" stroke="#1a1a1a" strokeWidth="0.8"/>
+
+        {/* Eyes */}
+        {m === 'sleep' ? (<>
+          <path d="M 8.5 14.5 Q 10.5 16 12.5 14.5" fill="none" stroke="#2D4A5C" strokeWidth="1.1" strokeLinecap="round"/>
+          <path d="M 17.5 14.5 Q 19.5 16 21.5 14.5" fill="none" stroke="#2D4A5C" strokeWidth="1.1" strokeLinecap="round"/>
+        </>) : m === 'surprise' ? (<>
+          {/* Yeux ronds écarquillés */}
+          <circle cx="10.5" cy="15.5" r="2.8" fill="white"/>
+          <circle cx="19.5" cy="15.5" r="2.8" fill="white"/>
+          <circle cx="10.5" cy="15.2" r="1.6" fill="#1a1a1a"/>
+          <circle cx="19.5" cy="15.2" r="1.6" fill="#1a1a1a"/>
+          <circle cx="11.1" cy="14.7" r="0.55" fill="white"/>
+          <circle cx="20.1" cy="14.7" r="0.55" fill="white"/>
+        </>) : m === 'victory' || m === 'cheer' || m === 'clap' ? (<>
+          {/* Yeux en arc — joie */}
+          <path d="M 8.5 15.8 Q 10.5 13.5 12.5 15.8" fill="none" stroke="#2D4A5C" strokeWidth="1.3" strokeLinecap="round"/>
+          <path d="M 17.5 15.8 Q 19.5 13.5 21.5 15.8" fill="none" stroke="#2D4A5C" strokeWidth="1.3" strokeLinecap="round"/>
+        </>) : m === 'kiss' ? (<>
+          <circle cx="10.5" cy="15.5" r="2.2" fill="white"/>
+          <circle cx="19.5" cy="15.5" r="2.2" fill="white"/>
+          <circle cx="10.5" cy="15.5" r="1.2" fill="#1a1a1a"/>
+          <circle cx="19.5" cy="15.5" r="1.2" fill="#1a1a1a"/>
+          <circle cx="10.8" cy="15" r="0.45" fill="white"/>
+          <circle cx="19.8" cy="15" r="0.45" fill="white"/>
+        </>) : (<>
+          {/* Yeux normaux — avec regard gauche/droite pour hésitation */}
+          <circle cx="10.5" cy="15.5" r="2.2" fill="white"/>
+          <g style={m === 'think' ? { animation: `${id}SharkEyeShift 1.4s ease-in-out infinite` } : { animation: blink, transformOrigin: '10.5px 15.5px' }}>
+            <circle cx="10.5" cy="15.5" r="1.4" fill="#1a1a1a"/>
+            <circle cx="11.3" cy="14.7" r="0.55" fill="white"/>
+          </g>
+          <circle cx="19.5" cy="15.5" r="2.2" fill="white"/>
+          <g style={m === 'think' ? { animation: `${id}SharkEyeShift 1.4s ease-in-out infinite` } : { animation: blink, transformOrigin: '19.5px 15.5px' }}>
+            <circle cx="19.5" cy="15.5" r="1.4" fill="#1a1a1a"/>
+            <circle cx="20.3" cy="14.7" r="0.55" fill="white"/>
+          </g>
+        </>)}
+
+        {/* Mouth */}
+        {m === 'kiss' ? (
+          <circle cx="15" cy="20.8" r="1.2" fill="#ff7eb3" stroke="#e05a9a" strokeWidth="0.5"/>
+        ) : m === 'surprise' ? (
+          /* Bouche "O" arrondie — choc */
+          <ellipse cx="15" cy="20.5" rx="2" ry="1.8" fill="#1a1a1a" stroke="#2D4A5C" strokeWidth="0.5"/>
+        ) : m === 'victory' || m === 'cheer' || m === 'clap' ? (
+          /* Grand sourire arc */
+          <path d="M 11.5 19.5 Q 15 22.5 18.5 19.5" fill="none" stroke="#1a1a1a" strokeWidth="1.3" strokeLinecap="round"/>
+        ) : (
+          <path d="M 12.5 20 Q 15 21.5 17.5 20" fill="none" stroke="#1a1a1a" strokeWidth="1" strokeLinecap="round"/>
+        )}
+
+        {/* Bandana */}
+        <rect x="10.5" y="10" width="9" height="3" rx="1.5" fill="#1565C0" stroke="#0D47A1" strokeWidth="0.7"/>
+        <ellipse cx="10.5" cy="11.5" rx="1.5" ry="1.2" fill="#1565C0" stroke="#0D47A1" strokeWidth="0.6"/>
+        <path d="M 9.5 10.8 Q 6 9 4 6"   fill="none" stroke="#1565C0" strokeWidth="1.5" strokeLinecap="round"/>
+        <path d="M 9 12.2 Q 5.5 12 4 10" fill="none" stroke="#1565C0" strokeWidth="1.2" strokeLinecap="round"/>
+      </g>
+    </>
+  );
+}
+
 // ─── CHARS MAP ───────────────────────────────────────────────────────────────
 const CHARS = {
   panda:      CharPanda,
@@ -2250,6 +2700,7 @@ const CHARS = {
   octopus:    CharOctopus,
   cat:        CharCat,
   dragon:     CharDragon,
+  sharkNinja: CharSharkNinja,
   unicorn:    CharUnicorn,
   phoenix:    CharPhoenix,
   kraken:     CharKraken,

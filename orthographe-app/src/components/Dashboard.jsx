@@ -8,10 +8,6 @@ import DiamondStatus from './DiamondStatus.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
 import LevelHelpPopup from './LevelHelpPopup.jsx';
 import RuleEditor from './RuleEditor.jsx';
-import LightningEntranceEffect from './LightningEntranceEffect.jsx';
-import StarsEntranceEffect from './StarsEntranceEffect.jsx';
-import InfernoEntranceEffect from './InfernoEntranceEffect.jsx';
-import FreezeEntranceEffect from './FreezeEntranceEffect.jsx';
 import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 import { clearCurrentStoredProgress } from '../store/persistence.js';
 import { getStreakInfo } from '../engine/scoring.js';
@@ -59,6 +55,7 @@ const EVENT_CONFIG = {
   sm2ReviewFragile: { msg: 'Presque\ ! Le diamant exige 90\ %.', icon: '⚠️' },
   sm2ReviewFailed:  { msg: 'Le diamant se fissure… Révise vite.', icon: '💥' },
   diamondBroken:    { msg: 'Le diamant s\'est brisé.', icon: '💥' },
+  perfectSessionBonus: null, // silent — mood + entrance anim handled separately
   coinsEarned:      null, // skip — silent event
   firstSessionOfDay: null, // skip
   doubleCoins:      null, // skip
@@ -319,8 +316,10 @@ export default function Dashboard({
   lastSessionRuleId,
   lastSessionScore,
   onDebugUpdateStreak,
+  onDebugSetCoins,
   dailyBackups = [],
   onDebugRestoreBackup,
+  onTriggerEntranceAnim,
 }) {
   const [overlay, setOverlay] = useState(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
@@ -344,7 +343,9 @@ export default function Dashboard({
       window.history.replaceState({}, '', url.toString());
     }
   }, []);
-  const isDebug = typeof window !== 'undefined' && (
+  const isRaphael = typeof childName === 'string' &&
+    childName.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') === 'raphael';
+  const isDebug = isRaphael && typeof window !== 'undefined' && (
     window.__ORTHO_DEBUG__ ||
     localStorage.getItem('ortho_debug') === '1' ||
     new URLSearchParams(window.location.search).get('debug') === '1' ||
@@ -354,14 +355,12 @@ export default function Dashboard({
   const overlayTimeoutsRef = useRef([]);
   const [debugStreak, setDebugStreak] = useState(String(progress.streak?.current || 0));
   const [debugDate, setDebugDate] = useState(progress.streak?.lastActiveDate || '');
+  const [debugCoins, setDebugCoins] = useState(String(progress.coins || 0));
   const [restoringBackupDate, setRestoringBackupDate] = useState(null);
   const [debugOpen, setDebugOpen] = useState(false);
-  const [showLightning, setShowLightning] = useState(false);
-  const [showStars, setShowStars] = useState(false);
-  const [showInferno, setShowInferno] = useState(false);
-  const [showFreeze, setShowFreeze] = useState(false);
   const [pandaMood, setPandaMood] = useState(null); // null = default walk
   const pandaMoodTimerRef = useRef(null);
+  const shopOwnedRef = useRef([]);
 
   const triggerPandaMood = useCallback((mood, duration = 4000) => {
     if (pandaMoodTimerRef.current) clearTimeout(pandaMoodTimerRef.current);
@@ -371,6 +370,12 @@ export default function Dashboard({
       pandaMoodTimerRef.current = null;
     }, duration);
   }, []);
+
+  const triggerRandomEntranceAnim = useCallback((ownedAnims) => {
+    if (!ownedAnims.length || !onTriggerEntranceAnim) return;
+    const pick = ownedAnims[Math.floor(Math.random() * ownedAnims.length)];
+    onTriggerEntranceAnim(pick);
+  }, [onTriggerEntranceAnim]);
 
   // Sleep for first 5 minutes — motivates the kid to "wake up" the panda
   useEffect(() => {
@@ -429,13 +434,13 @@ export default function Dashboard({
         return 'wave';
       case 'levelUp':
         if (evt.value >= 4) return 'victory';  // Diamant
-        if (evt.value >= 2) return 'cheer';    // Argent / Couronne
+        if (evt.value >= 2) return 'victory';  // Argent / Couronne
         return 'wave';                          // Bronze
       case 'diamond':              // trophée diamant
         return 'victory';
       case 'crown':                // trophée couronne
       case 'directUnlocked':       // mode direct débloqué
-        return 'cheer';
+        return 'victory';
       case 'streakMilestone':
       case 'milestone':
         return 'dance';
@@ -444,7 +449,7 @@ export default function Dashboard({
       case 'streakLost':
         return 'surprise';
       case 'sm2ReviewPassed':
-        return 'cheer';
+        return 'victory';
       case 'sm2ReviewFragile':
         return 'think';
       case 'sm2ReviewFailed':
@@ -462,6 +467,13 @@ export default function Dashboard({
       return;
     }
     const evt = events[idx];
+    // Always fire side effects regardless of whether overlay is shown
+    const mood = getMoodForEvent(evt);
+    if (mood) triggerPandaMood(mood, 3500);
+    if (evt.type === 'perfectSessionBonus') {
+      const ownedAnims = shopOwnedRef.current.filter(id => id.startsWith('entrance-'));
+      triggerRandomEntranceAnim(ownedAnims);
+    }
     const data = buildOverlayData(evt);
     if (!data) {
       // Skip this event and move to the next
@@ -470,8 +482,6 @@ export default function Dashboard({
     }
     setOverlay(data);
     setOverlayVisible(true);
-    const mood = getMoodForEvent(evt);
-    if (mood) triggerPandaMood(mood, 3500);
     const hideTimeout = setTimeout(() => {
       setOverlayVisible(false);
       const nextTimeout = setTimeout(() => {
@@ -481,7 +491,7 @@ export default function Dashboard({
       overlayTimeoutsRef.current.push(nextTimeout);
     }, 3500);
     overlayTimeoutsRef.current.push(hideTimeout);
-  }, [onEventsSeen, getMoodForEvent, triggerPandaMood]);
+  }, [onEventsSeen, getMoodForEvent, triggerPandaMood, triggerRandomEntranceAnim]);
 
   useEffect(() => {
     if (pendingEvents && pendingEvents.length > 0) {
@@ -513,6 +523,9 @@ export default function Dashboard({
   const doubleCoinsRemaining = getDoubleCoinsRemainingSessions(progress);
   const doubleCoinsBonusEarned = getDoubleCoinsBonusEarned(progress);
   const shopOwned = progress.shop?.owned || [];
+  // Keep ref in sync (used by showNextEvent)
+  useEffect(() => { shopOwnedRef.current = shopOwned; }, [shopOwned]);
+
   const activeCharacterId = resolveShopCharacter(shopOwned);
   const activeCharacterMood = resolveCharacterMood(pandaMood, activeCharacterId, shopOwned);
 
@@ -573,10 +586,6 @@ export default function Dashboard({
 
   return (
     <>
-    {showLightning && <LightningEntranceEffect onDone={() => setShowLightning(false)} />}
-    {showStars && <StarsEntranceEffect onDone={() => setShowStars(false)} />}
-    {showInferno && <InfernoEntranceEffect onDone={() => setShowInferno(false)} />}
-    {showFreeze && <FreezeEntranceEffect onDone={() => setShowFreeze(false)} />}
     <div style={{
       ...pageStyle,
       position: 'relative',
@@ -1002,7 +1011,7 @@ export default function Dashboard({
                     }}>
                       <span style={{ fontSize: '1rem', opacity: 0.4 }}>{'🔒'}</span>
                       <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.7rem', flexWrap: 'wrap' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.7rem', flexWrap: 'nowrap' }}>
                           <button
                             type="button"
                             onClick={() => setMemoRule(rule)}
@@ -1015,6 +1024,8 @@ export default function Dashboard({
                               fontSize: '0.88rem',
                               fontWeight: 700,
                               textAlign: 'left',
+                              flex: 1,
+                              minWidth: 0,
                             }}
                             title="Ouvrir la fiche mémo"
                           >
@@ -1169,7 +1180,6 @@ export default function Dashboard({
               { mood: null,        label: '🚶 Marche',         color: '#86efac' },
               { mood: 'wave',      label: '👋 Coucou',          color: '#86efac' },
               { mood: 'clap',      label: '👏 Applaudissements', color: '#fde047' },
-              { mood: 'cheer',     label: '🙌 Encouragements',  color: '#fb923c' },
               { mood: 'kiss',      label: '😘 Bisous',          color: '#f472b6' },
               { mood: 'sleep',     label: '😴 Dodo',            color: '#93c5fd' },
               { mood: 'dance',     label: '🕺 Danse',           color: '#a78bfa' },
@@ -1385,6 +1395,40 @@ export default function Dashboard({
             </button>
           </div>
 
+          {/* Coins setter */}
+          <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-end', flexWrap: 'wrap', marginTop: '0.6rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+              <label style={{ fontSize: '0.65rem', color: '#9ca3af' }}>Pièces</label>
+              <input
+                type="number"
+                min="0"
+                value={debugCoins}
+                onChange={e => setDebugCoins(e.target.value)}
+                style={{
+                  width: isCompactLayout ? '100%' : 90, padding: '0.35rem 0.5rem', borderRadius: 6,
+                  border: '1px solid rgba(251,191,36,0.3)',
+                  background: 'rgba(0,0,0,0.3)', color: '#fbbf24',
+                  fontSize: '0.85rem', fontWeight: 700,
+                }}
+              />
+            </div>
+            <button
+              onClick={() => {
+                const n = parseInt(debugCoins, 10);
+                if (!isNaN(n) && n >= 0) onDebugSetCoins(n);
+              }}
+              style={{
+                padding: '0.38rem 0.9rem', borderRadius: 6,
+                border: '1px solid rgba(251,191,36,0.3)',
+                background: 'rgba(251,191,36,0.12)',
+                color: '#fbbf24', cursor: 'pointer',
+                fontSize: '0.75rem', fontWeight: 700,
+              }}
+            >
+              Appliquer
+            </button>
+          </div>
+
           {onDebugRestoreBackup && (
             <div style={{
               marginTop: '1rem',
@@ -1498,7 +1542,7 @@ export default function Dashboard({
             <div className="streak-help-main">
               <div className="streak-help-hero">
                 <div className="streak-help-flame">
-                  <CosmeticFlameIcon size={72} intensity={getFlameIntensity(streak)} flameId={equippedFlame} />
+                  <CosmeticFlameIcon size={52} intensity={getFlameIntensity(streak)} flameId={equippedFlame} />
                 </div>
                 <div className="streak-help-counter">
                   <span className="streak-help-counter-value">{streak}</span>

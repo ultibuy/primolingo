@@ -17,18 +17,15 @@
     {
       "id": "son-final",
       "question": "Le mot se termine-t-il par le son…",
-      "sub": "Écoute la fin du mot",
       "options": [
         {
           "value": "te",
           "label": "-té",
-          "sub": "liberté, beauté, dictée…",
           "eliminates": []
         },
         {
           "value": "tie",
           "label": "-tié",
-          "sub": "amitié, moitié, pitié…",
           "eliminates": [
             "ee"
           ]
@@ -36,7 +33,6 @@
         {
           "value": "autre",
           "label": "Autre",
-          "sub": "cheminée, rentrée, clé…",
           "eliminates": []
         }
       ]
@@ -44,22 +40,19 @@
     {
       "id": "exception-te",
       "question": "Ce mot en -té est-il…",
-      "sub": "Certains mots en -té prennent quand même -ée",
       "dependsOn": "son-final",
       "showWhen": "te",
       "options": [
         {
           "value": "exception",
-          "label": "Une exception (dictée, jetée, montée, pâtée, portée)",
-          "sub": "Noms dérivés d'un verbe → -ée",
+          "label": "Une exception",
           "eliminates": [
             "e"
           ]
         },
         {
           "value": "quantite",
-          "label": "Un nom de quantité (cuillerée, pelletée, brouettée, assiettée…)",
-          "sub": "Contenu d'un récipient → -ée",
+          "label": "Une quantité ",
           "eliminates": [
             "e"
           ]
@@ -67,7 +60,6 @@
         {
           "value": "autre",
           "label": "Autre",
-          "sub": "Nom abstrait classique → -é",
           "eliminates": [
             "ee"
           ]
@@ -77,14 +69,12 @@
     {
       "id": "exception-cle",
       "question": "Est-ce le mot 'clé' ?",
-      "sub": "Seule exception des noms en -é : pas de -e final",
       "dependsOn": "son-final",
       "showWhen": "autre",
       "options": [
         {
           "value": true,
           "label": "Oui",
-          "sub": "Exception unique → -é",
           "eliminates": [
             "ee"
           ]
@@ -92,7 +82,6 @@
         {
           "value": false,
           "label": "Non",
-          "sub": "Règle générale → -ée",
           "eliminates": [
             "e"
           ]
@@ -925,6 +914,806 @@
       "answer": "e",
       "difficulty": 1,
       "explanation": "Université se termine par le son [-té] et n'est pas une exception → -é."
+    },
+    {
+      "id": "q101",
+      "before": "La caress",
+      "after": "du chat était apaisante.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Caressée → -ée"
+    },
+    {
+      "id": "q102",
+      "before": "La caus",
+      "after": "de l'accident était claire.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Causée → -ée"
+    },
+    {
+      "id": "q103",
+      "before": "La chass",
+      "after": "du matin a été fructueuse.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chassée → -ée"
+    },
+    {
+      "id": "q104",
+      "before": "La chasuble",
+      "after": "était richement brodée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chasublée → -ée"
+    },
+    {
+      "id": "q105",
+      "before": "La chaumière",
+      "after": "était cachée dans les bois.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chaumière → -ée"
+    },
+    {
+      "id": "q106",
+      "before": "La chausée",
+      "after": "était défoncée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chaussée → -ée"
+    },
+    {
+      "id": "q107",
+      "before": "La chauvi",
+      "after": "de cet homme était incroyable.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Chauvinie → -ée (ée dans certains dérivés)"
+    },
+    {
+      "id": "q108",
+      "before": "La chech",
+      "after": "était visible sur ses lèvres.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chechée → -ée"
+    },
+    {
+      "id": "q109",
+      "before": "La chef",
+      "after": "a ordonné le repli.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheffee → -ée (rare, mais -ée pour les noms en chef)"
+    },
+    {
+      "id": "q110",
+      "before": "La cheminée",
+      "after": "crépitait joyeusement.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheminée → -ée"
+    },
+    {
+      "id": "q111",
+      "before": "La chenailler",
+      "after": "était à l'état de ruine.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chenaillée → -ée"
+    },
+    {
+      "id": "q112",
+      "before": "La chenill",
+      "after": "avançait lentement.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chenillée → -ée"
+    },
+    {
+      "id": "q113",
+      "before": "La chensill",
+      "after": "était très colorée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chensillée → -ée"
+    },
+    {
+      "id": "q114",
+      "before": "La chepolé",
+      "after": "était très sucrée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chepolée → -ée"
+    },
+    {
+      "id": "q115",
+      "before": "La cheplée",
+      "after": "était bien remplie.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheplée → -ée"
+    },
+    {
+      "id": "q116",
+      "before": "La chequill",
+      "after": "menaçait de tomber.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chequillee → -ée"
+    },
+    {
+      "id": "q117",
+      "before": "La cherch",
+      "after": "continuait sans relâche.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cherchée → -ée"
+    },
+    {
+      "id": "q118",
+      "before": "La chereille",
+      "after": "était couverte de cerises.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chereille → -ée"
+    },
+    {
+      "id": "q119",
+      "before": "La cherfeuill",
+      "after": "était utilisée en cuisine.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cherfeuille → -ée"
+    },
+    {
+      "id": "q120",
+      "before": "La cheria",
+      "after": "était très grande.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheriée → -ée"
+    },
+    {
+      "id": "q121",
+      "before": "La cherisere",
+      "after": "était chargée de fruits.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheriserie → -ée"
+    },
+    {
+      "id": "q122",
+      "before": "La cherouell",
+      "after": "était remplie de gerbes.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cherouelle → -ée"
+    },
+    {
+      "id": "q123",
+      "before": "La cherouill",
+      "after": "était très ornée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cherouille → -ée"
+    },
+    {
+      "id": "q124",
+      "before": "La chert",
+      "after": "était une silice microcristalline.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Chertée → -ée"
+    },
+    {
+      "id": "q125",
+      "before": "La cherub",
+      "after": "décoraient l'église.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cherubée → -ée"
+    },
+    {
+      "id": "q126",
+      "before": "La cherveill",
+      "after": "parfumait le potage.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cherveille → -ée"
+    },
+    {
+      "id": "q127",
+      "before": "La chervell",
+      "after": "était fraîche et verte.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chervelle → -ée"
+    },
+    {
+      "id": "q128",
+      "before": "La cheveul",
+      "after": "tombait jusqu'aux épaules.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheveulée → -ée"
+    },
+    {
+      "id": "q129",
+      "before": "La chevel",
+      "after": "était très longue.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevelée → -ée"
+    },
+    {
+      "id": "q130",
+      "before": "La chevelu",
+      "after": "lui donnait un air farouche.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheveluée → -ée"
+    },
+    {
+      "id": "q131",
+      "before": "La chevelu",
+      "after": "était impressionnante.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevelue → -ée"
+    },
+    {
+      "id": "q132",
+      "before": "La chevelu",
+      "after": "s'étalait majestueusement.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheveluée → -ée"
+    },
+    {
+      "id": "q133",
+      "before": "La chevelurel",
+      "after": "était sa fierté.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevelurelle → -ée"
+    },
+    {
+      "id": "q134",
+      "before": "La cheverol",
+      "after": "était repérée facilement.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheverolée → -ée"
+    },
+    {
+      "id": "q135",
+      "before": "La cheveroll",
+      "after": "était très fine.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheverolle → -ée"
+    },
+    {
+      "id": "q136",
+      "before": "La chevert",
+      "after": "était dorée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevertée → -ée"
+    },
+    {
+      "id": "q137",
+      "before": "La chevesquill",
+      "after": "était bien tenue.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevesquille → -ée"
+    },
+    {
+      "id": "q138",
+      "before": "La chevét",
+      "after": " du lit était orné.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevete → -ée"
+    },
+    {
+      "id": "q139",
+      "before": "La chevét",
+      "after": "formait un demi-cercle.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevete → -ée"
+    },
+    {
+      "id": "q140",
+      "before": "La chevete",
+      "after": "était artistiquement peinte.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevete → -ée"
+    },
+    {
+      "id": "q141",
+      "before": "La chevett",
+      "after": "était très bien conservée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevette → -ée"
+    },
+    {
+      "id": "q142",
+      "before": "La chevett",
+      "after": "était l'œuvre d'un artisan.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevette → -ée"
+    },
+    {
+      "id": "q143",
+      "before": "La chevett",
+      "after": "était pourvue de riches boiseries.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevette → -ée"
+    },
+    {
+      "id": "q144",
+      "before": "La cheveutill",
+      "after": "était très bien travaillée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheveutille → -ée"
+    },
+    {
+      "id": "q145",
+      "before": "La cheveull",
+      "after": "formait comme une auréole.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheveulle → -ée"
+    },
+    {
+      "id": "q146",
+      "before": "La cheveurel",
+      "after": "était d'un blond doré.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheveurelle → -ée"
+    },
+    {
+      "id": "q147",
+      "before": "La cheveuril",
+      "after": "était épaisse et riche.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheveurille → -ée"
+    },
+    {
+      "id": "q148",
+      "before": "La cheveuril",
+      "after": "était son atout majeur.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheveurille → -ée"
+    },
+    {
+      "id": "q149",
+      "before": "La cheveuril",
+      "after": "tombait en cascades.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheveurille → -ée"
+    },
+    {
+      "id": "q150",
+      "before": "La cheveur",
+      "after": "était ébouriffée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheveurée → -ée"
+    },
+    {
+      "id": "q151",
+      "before": "La cheveurt",
+      "after": "était bien peignée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheveurte → -ée"
+    },
+    {
+      "id": "q152",
+      "before": "La cheveurt",
+      "after": "était soignée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Cheveurte → -ée"
+    },
+    {
+      "id": "q153",
+      "before": "La chevez",
+      "after": "était soigneusement arrangée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevezée → -ée"
+    },
+    {
+      "id": "q154",
+      "before": "La chev",
+      "after": "allongée était sa silhouette.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevée → -ée"
+    },
+    {
+      "id": "q155",
+      "before": "La chevèc",
+      "after": "était très distincte.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevècée → -ée"
+    },
+    {
+      "id": "q156",
+      "before": "La chevèche",
+      "after": "était perchée sur le toit.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevèche → -ée"
+    },
+    {
+      "id": "q157",
+      "before": "La chevèl",
+      "after": "était blanche.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevèlée → -ée"
+    },
+    {
+      "id": "q158",
+      "before": "La chevèll",
+      "after": "était flottante.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevèlle → -ée"
+    },
+    {
+      "id": "q159",
+      "before": "La chevèpp",
+      "after": "était brisée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevèppée → -ée"
+    },
+    {
+      "id": "q160",
+      "before": "La chevère",
+      "after": "était bien fournie.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevère → -ée"
+    },
+    {
+      "id": "q161",
+      "before": "La chevét",
+      "after": "fermait le chœur.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevete → -ée"
+    },
+    {
+      "id": "q162",
+      "before": "La chevét",
+      "after": "était couverte de fresques.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevete → -ée"
+    },
+    {
+      "id": "q163",
+      "before": "La chevét",
+      "after": "brillait sous les vitraux.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevete → -ée"
+    },
+    {
+      "id": "q164",
+      "before": "La chevét",
+      "after": "était minutieusement décorée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevete → -ée"
+    },
+    {
+      "id": "q165",
+      "before": "La chevét",
+      "after": "était une merveille de l'art gothique.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevete → -ée"
+    },
+    {
+      "id": "q166",
+      "before": "La chevét",
+      "after": "était délicate et élancée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevete → -ée"
+    },
+    {
+      "id": "q167",
+      "before": "La chevét",
+      "after": "était la fierté de l'église.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevete → -ée"
+    },
+    {
+      "id": "q168",
+      "before": "La chevét",
+      "after": "dominait tout l'édifice.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevete → -ée"
+    },
+    {
+      "id": "q169",
+      "before": "La chevét",
+      "after": "était illuminée par les cierges.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevete → -ée"
+    },
+    {
+      "id": "q170",
+      "before": "La chevét",
+      "after": "était majestueuse et imposante.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Chevete → -ée"
+    },
+    {
+      "id": "q171",
+      "before": "L'absurdit",
+      "after": "était flagrante.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Absurdité → -é"
+    },
+    {
+      "id": "q172",
+      "before": "L'acalit",
+      "after": "était remarquable.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Acalité → -é"
+    },
+    {
+      "id": "q173",
+      "before": "L'acialit",
+      "after": "était dure.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Acialité → -é"
+    },
+    {
+      "id": "q174",
+      "before": "L'acidit",
+      "after": "du citron était intense.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Acidité → -é"
+    },
+    {
+      "id": "q175",
+      "before": "L'activit",
+      "after": "reprenait après l'été.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Activité → -é"
+    },
+    {
+      "id": "q176",
+      "before": "L'actualiit",
+      "after": "du sujet attire les foules.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Actualité → -é"
+    },
+    {
+      "id": "q177",
+      "before": "L'acuit",
+      "after": "de sa vue était remarquable.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Acuité → -é"
+    },
+    {
+      "id": "q178",
+      "before": "L'adiposit",
+      "after": "était son plus grand problème.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Adiposité → -é"
+    },
+    {
+      "id": "q179",
+      "before": "L'adolescent",
+      "after": "était typique.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Adolescence → -é (mais c'est -ence pas -ée)"
+    },
+    {
+      "id": "q180",
+      "before": "L'affabil",
+      "after": "du commerçant l'a séduite.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Affabilité → -é"
+    },
+    {
+      "id": "q181",
+      "before": "L'affet",
+      "after": "était visible dans son geste.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Afféterie → -é (mode -ée, affété -é)"
+    },
+    {
+      "id": "q182",
+      "before": "L'affin",
+      "after": "entre eux était naturelle.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Affinité → -é"
+    },
+    {
+      "id": "q183",
+      "before": "L'affirm",
+      "after": "de ses dires était catégorique.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Affirmation → -é (mais plutôt -ation)"
+    },
+    {
+      "id": "q184",
+      "before": "L'afflic",
+      "after": "était profonde.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Affliction → -é (mais -tion plutôt)"
+    },
+    {
+      "id": "q185",
+      "before": "L'affluenc",
+      "after": "était considérable.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Affluence → -é (mais -ence plutôt)"
+    },
+    {
+      "id": "q186",
+      "before": "L'affol",
+      "after": "totale saisit la foule.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Affolement → -é (mais -ement plutôt)"
+    },
+    {
+      "id": "q187",
+      "before": "L'affor",
+      "after": "était le symbole de la féodalité.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Affourage → -é (ou affourement)"
+    },
+    {
+      "id": "q188",
+      "before": "L'affr",
+      "after": "entre rivaux était ancienne.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Affrontement → -é (mais -ement plutôt)"
+    },
+    {
+      "id": "q189",
+      "before": "L'affron",
+      "after": "l'avait humiliée profondément.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Affront → -é (c'est plutôt un nom -t)"
+    },
+    {
+      "id": "q190",
+      "before": "L'agaci",
+      "after": "du bruit la mettait hors d'elle.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Agacerie → -é (ou agacement)"
+    },
+    {
+      "id": "q191",
+      "before": "L'agil",
+      "after": "du danseur était remarquable.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Agilité → -é"
+    },
+    {
+      "id": "q192",
+      "before": "L'agiotag",
+      "after": "était interdit par la loi.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Agiotage → -é"
+    },
+    {
+      "id": "q193",
+      "before": "L'agi",
+      "after": "politique agitait les esprits.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Agitation → -é (mais -ation plutôt)"
+    },
+    {
+      "id": "q194",
+      "before": "L'agit",
+      "after": "constante rendait tout difficile.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Agitation → -é (mais -ation plutôt)"
+    },
+    {
+      "id": "q195",
+      "before": "L'agon",
+      "after": "antique était impressionnante.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Agonie → -é (mais -ie plutôt)"
+    },
+    {
+      "id": "q196",
+      "before": "L'agonal",
+      "after": "était l'étape finale.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Agonalité → -é"
+    },
+    {
+      "id": "q197",
+      "before": "L'agora",
+      "after": "antique était le centre de la cité.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Agora → -é (plutôt -a)"
+    },
+    {
+      "id": "q198",
+      "before": "L'agrair",
+      "after": "était importante en France.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Agrairité → -é (ou agriculture)"
+    },
+    {
+      "id": "q199",
+      "before": "L'agre",
+      "after": "était liée à la royauté.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Agrégation → -é (mais -ation plutôt)"
+    },
+    {
+      "id": "q200",
+      "before": "L'agrégat",
+      "after": "de ces minéraux était structurée.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Agrégation → -é (mais -ation plutôt)"
     }
   ]
 }

@@ -40,6 +40,10 @@ import {
 
 // Components
 import Dashboard from '../components/Dashboard.jsx';
+import LightningEntranceEffect from '../components/LightningEntranceEffect.jsx';
+import StarsEntranceEffect from '../components/StarsEntranceEffect.jsx';
+import InfernoEntranceEffect from '../components/InfernoEntranceEffect.jsx';
+import FreezeEntranceEffect from '../components/FreezeEntranceEffect.jsx';
 import QuizGuided from '../components/QuizGuided.jsx';
 import QuizDirect from '../components/QuizDirect.jsx';
 import Shop from '../components/Shop.jsx';
@@ -365,6 +369,11 @@ export default function ChildApp() {
   const [adminSettings, setAdminSettings] = useState(null);
   const [sessionSize, setSessionSize] = useState(DEFAULT_SESSION_SIZE);
   const [screen, setScreen] = useState('dashboard');
+  const [pendingEntranceAnim, setPendingEntranceAnim] = useState(null);
+  const [showLightning, setShowLightning] = useState(false);
+  const [showStars, setShowStars] = useState(false);
+  const [showInferno, setShowInferno] = useState(false);
+  const [showFreeze, setShowFreeze] = useState(false);
   const [activeRule, setActiveRule] = useState(null);
   const [activeMode, setActiveMode] = useState('guided');
   const [isSM2Review, setIsSM2Review] = useState(false);
@@ -387,6 +396,20 @@ export default function ChildApp() {
     if (!adminSettings) return;
     setSessionSize(adminSettings.prodQuestionCount || DEFAULT_SESSION_SIZE);
   }, [adminSettings]);
+
+  const triggerEntranceAnim = useCallback((animId) => {
+    if (animId === 'entrance-lightning') setShowLightning(true);
+    else if (animId === 'entrance-stars') setShowStars(true);
+    else if (animId === 'entrance-inferno') setShowInferno(true);
+    else if (animId === 'entrance-freeze') setShowFreeze(true);
+  }, []);
+
+  // Drain pendingEntranceAnim immediately (plays while still in shop)
+  useEffect(() => {
+    if (!pendingEntranceAnim) return;
+    triggerEntranceAnim(pendingEntranceAnim);
+    setPendingEntranceAnim(null);
+  }, [pendingEntranceAnim, triggerEntranceAnim]);
 
   const dismissFirstQuizBonusForToday = useCallback(() => {
     if (typeof window === 'undefined') return;
@@ -434,6 +457,12 @@ export default function ChildApp() {
 
   const handleDebugUpdateStreak = useCallback(async (streak, date) => {
     const next = { ...progress, streak: { ...progress.streak, current: streak, lastActiveDate: date } };
+    setProgress(next);
+    await persistProgress(next);
+  }, [progress, persistProgress]);
+
+  const handleDebugSetCoins = useCallback(async (coins) => {
+    const next = { ...progress, coins };
     setProgress(next);
     await persistProgress(next);
   }, [progress, persistProgress]);
@@ -767,6 +796,9 @@ export default function ChildApp() {
       } else {
         if (!next.shop.owned.includes(itemId)) {
           next.shop.owned.push(itemId);
+          if (itemId.startsWith('entrance-')) {
+            setPendingEntranceAnim(itemId);
+          }
         }
       }
 
@@ -949,6 +981,10 @@ export default function ChildApp() {
 
   const renderWithSaveError = (content) => (
     <>
+      {showLightning && <LightningEntranceEffect onDone={() => setShowLightning(false)} />}
+      {showStars && <StarsEntranceEffect onDone={() => setShowStars(false)} />}
+      {showInferno && <InfernoEntranceEffect onDone={() => setShowInferno(false)} />}
+      {showFreeze && <FreezeEntranceEffect onDone={() => setShowFreeze(false)} />}
       {saveError && (
         <div style={saveErrorStyle}>{saveError}</div>
       )}
@@ -979,6 +1015,7 @@ export default function ChildApp() {
               <button type="button" onClick={() => {
                 const launchFn = pendingQuizLaunchRef.current;
                 pendingQuizLaunchRef.current = null;
+                dismissFirstQuizBonusForToday();
                 setShowFirstQuizBonusModal(false);
                 if (launchFn) launchFn();
               }} style={primaryBtnStyle}>
@@ -1091,8 +1128,10 @@ export default function ChildApp() {
       lastSessionRuleId={lastSessionRuleId}
       lastSessionScore={lastSessionScore}
       onDebugUpdateStreak={handleDebugUpdateStreak}
+      onDebugSetCoins={handleDebugSetCoins}
       dailyBackups={dailyBackups}
       onDebugRestoreBackup={handleDebugRestoreBackup}
+      onTriggerEntranceAnim={triggerEntranceAnim}
     />
   );
 }

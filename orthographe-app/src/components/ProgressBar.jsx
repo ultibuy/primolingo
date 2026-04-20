@@ -19,7 +19,7 @@ export default function ProgressBar({ current, total, showResult, shopOwned = []
       setMood('walk');
       return undefined;
     }
-    const nextMood = lastAnswer === 'correct' ? 'cheer' : 'surprise';
+    const nextMood = lastAnswer === 'correct' ? 'victory' : 'surprise';
     setMood(resolveCharacterMood(nextMood, activeChar, shopOwned));
     const timeoutId = setTimeout(() => setMood('walk'), 1500);
     return () => clearTimeout(timeoutId);

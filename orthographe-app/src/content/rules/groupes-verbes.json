@@ -1,66 +1,71 @@
 {
   "id": "groupes-verbes",
-  "title": "1er groupe · 2ème groupe · 3ème groupe",
+  "title": "1er · 2ème · 3ème groupes",
   "shortTitle": "Groupes de verbes",
   "description": "Savoir identifier le groupe d'un verbe français : 1er groupe (verbes en -er sauf aller), 2ème groupe (verbes en -ir qui font -issons), 3ème groupe (tous les autres).",
   "choices": [
     {
       "id": "g1",
-      "label": "1er groupe"
+      "label": "1er"
     },
     {
       "id": "g2",
-      "label": "2ème groupe"
+      "label": "2ème"
     },
     {
       "id": "g3",
-      "label": "3ème groupe"
+      "label": "3ème"
     }
   ],
   "decisionAxes": [
     {
       "id": "terminaison",
       "question": "Comment se termine le verbe à l'infinitif ?",
-      "sub": "Attention : « aller » est le seul verbe en -er qui n'est PAS du 1er groupe.",
       "options": [
         {
           "value": "er",
           "label": "En -er",
-          "sub": "Sauf « aller » → 1er groupe",
-          "eliminates": ["g2", "g3"]
+          "eliminates": [
+            "g2",
+            "g3"
+          ]
         },
         {
           "value": "ir",
           "label": "En -ir",
-          "sub": "Peut être 2ème ou 3ème groupe → voir axe 2",
-          "eliminates": ["g1"]
+          "eliminates": [
+            "g1"
+          ]
         },
         {
           "value": "autre",
-          "label": "Autre (-re, -oir, -dre…)",
-          "sub": "Forcément 3ème groupe",
-          "eliminates": ["g1", "g2"]
+          "label": "Autre",
+          "eliminates": [
+            "g1",
+            "g2"
+          ]
         }
       ]
     },
     {
       "id": "issons",
       "question": "Conjugué avec « nous », fait-il « -issons » ?",
-      "sub": "Exemple : nous finissons (2ème) / nous partons (3ème).",
       "dependsOn": "terminaison",
       "showWhen": "ir",
       "options": [
         {
           "value": true,
           "label": "Oui",
-          "sub": "Nous …issons → 2ème groupe",
-          "eliminates": ["g3"]
+          "eliminates": [
+            "g3"
+          ]
         },
         {
           "value": false,
           "label": "Non",
-          "sub": "Pas de -issons → 3ème groupe",
-          "eliminates": ["g2"]
+          "eliminates": [
+            "g2"
+          ]
         }
       ]
     }
@@ -885,6 +890,806 @@
       "answer": "g3",
       "difficulty": 2,
       "explanation": "Rire se termine en -re (ni -er, ni -ir) → 3ème groupe."
+    },
+    {
+      "id": "q101",
+      "before": "Le verbe « adapter » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Adapter se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q102",
+      "before": "Le verbe « affirmer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Affirmer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q103",
+      "before": "Le verbe « aider » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Aider se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q104",
+      "before": "Le verbe « ajouter » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Ajouter se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q105",
+      "before": "Le verbe « allumer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Allumer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q106",
+      "before": "Le verbe « amuser » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Amuser se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q107",
+      "before": "Le verbe « annoncer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Annoncer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q108",
+      "before": "Le verbe « appeler » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Appeler se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q109",
+      "before": "Le verbe « apporter » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Apporter se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q110",
+      "before": "Le verbe « arriver » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Arriver se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q111",
+      "before": "Le verbe « arrêter » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Arrêter se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q112",
+      "before": "Le verbe « assurer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Assurer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q113",
+      "before": "Le verbe « attacher » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Attacher se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q114",
+      "before": "Le verbe « attaquer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Attaquer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q115",
+      "before": "Le verbe « attraper » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Attraper se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q116",
+      "before": "Le verbe « augmenter » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Augmenter se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q117",
+      "before": "Le verbe « avaler » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Avaler se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q118",
+      "before": "Le verbe « avancer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Avancer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q119",
+      "before": "Le verbe « baigner » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Baigner se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q120",
+      "before": "Le verbe « balancer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 1,
+      "explanation": "Balancer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q121",
+      "before": "Le verbe « balayer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Balayer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q122",
+      "before": "Le verbe « bander » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Bander se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q123",
+      "before": "Le verbe « barrer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Barrer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q124",
+      "before": "Le verbe « basculer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Basculer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q125",
+      "before": "Le verbe « baver » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Baver se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q126",
+      "before": "Le verbe « bêcher » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Bêcher se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q127",
+      "before": "Le verbe « bifurquer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Bifurquer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q128",
+      "before": "Le verbe « biffer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Biffer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q129",
+      "before": "Le verbe « blâmer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Blâmer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q130",
+      "before": "Le verbe « bloquer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Bloquer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q131",
+      "before": "Le verbe « bobiner » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Bobiner se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q132",
+      "before": "Le verbe « bouger » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Bouger se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q133",
+      "before": "Le verbe « bouquiner » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Bouquiner se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q134",
+      "before": "Le verbe « boutonner » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Boutonner se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q135",
+      "before": "Le verbe « boycotter » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Boycotter se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q136",
+      "before": "Le verbe « brailler » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Brailler se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q137",
+      "before": "Le verbe « brancher » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Brancher se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q138",
+      "before": "Le verbe « bramer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Bramer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q139",
+      "before": "Le verbe « braquer » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Braquer se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q140",
+      "before": "Le verbe « brasiller » est un verbe du",
+      "after": ".",
+      "answer": "g1",
+      "difficulty": 2,
+      "explanation": "Brasiller se termine en -er → 1er groupe."
+    },
+    {
+      "id": "q141",
+      "before": "Le verbe « éclaircir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Éclaircir se termine en -ir et on dit « nous éclaircissons » → 2ème groupe."
+    },
+    {
+      "id": "q142",
+      "before": "Le verbe « élargir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Élargir se termine en -ir et on dit « nous élargissons » → 2ème groupe."
+    },
+    {
+      "id": "q143",
+      "before": "Le verbe « endurcir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Endurcir se termine en -ir et on dit « nous endurcissons » → 2ème groupe."
+    },
+    {
+      "id": "q144",
+      "before": "Le verbe « engraissir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Engraissir se termine en -ir et on dit « nous engraississons » → 2ème groupe."
+    },
+    {
+      "id": "q145",
+      "before": "Le verbe « enhardir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Enhardir se termine en -ir et on dit « nous enhardissons » → 2ème groupe."
+    },
+    {
+      "id": "q146",
+      "before": "Le verbe « enlaidir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Enlaidir se termine en -ir et on dit « nous enlaidissons » → 2ème groupe."
+    },
+    {
+      "id": "q147",
+      "before": "Le verbe « ennoblir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Ennoblir se termine en -ir et on dit « nous ennoblissons » → 2ème groupe."
+    },
+    {
+      "id": "q148",
+      "before": "Le verbe « épanouir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Épanouir se termine en -ir et on dit « nous épanouissons » → 2ème groupe."
+    },
+    {
+      "id": "q149",
+      "before": "Le verbe « fléchir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Fléchir se termine en -ir et on dit « nous fléchissons » → 2ème groupe."
+    },
+    {
+      "id": "q150",
+      "before": "Le verbe « franchir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Franchir se termine en -ir et on dit « nous franchissons » → 2ème groupe."
+    },
+    {
+      "id": "q151",
+      "before": "Le verbe « gémir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Gémir se termine en -ir et on dit « nous gémissons » → 2ème groupe."
+    },
+    {
+      "id": "q152",
+      "before": "Le verbe « garantir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Garantir se termine en -ir et on dit « nous garantissons » → 2ème groupe."
+    },
+    {
+      "id": "q153",
+      "before": "Le verbe « gravir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Gravir se termine en -ir et on dit « nous gravissons » → 2ème groupe."
+    },
+    {
+      "id": "q154",
+      "before": "Le verbe « honnir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Honnir se termine en -ir et on dit « nous honnissons » → 2ème groupe."
+    },
+    {
+      "id": "q155",
+      "before": "Le verbe « investir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 2,
+      "explanation": "Investir se termine en -ir et on dit « nous investissons » → 2ème groupe."
+    },
+    {
+      "id": "q156",
+      "before": "Le verbe « jaillir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 3,
+      "explanation": "Jaillir se termine en -ir et on dit « nous jaillissons » → 2ème groupe."
+    },
+    {
+      "id": "q157",
+      "before": "Le verbe « jaunir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 3,
+      "explanation": "Jaunir se termine en -ir et on dit « nous jaunissons » → 2ème groupe."
+    },
+    {
+      "id": "q158",
+      "before": "Le verbe « jouir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 3,
+      "explanation": "Jouir se termine en -ir et on dit « nous jouissons » → 2ème groupe."
+    },
+    {
+      "id": "q159",
+      "before": "Le verbe « moisir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 3,
+      "explanation": "Moisir se termine en -ir et on dit « nous moisissons » → 2ème groupe."
+    },
+    {
+      "id": "q160",
+      "before": "Le verbe « munir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 3,
+      "explanation": "Munir se termine en -ir et on dit « nous munissons » → 2ème groupe."
+    },
+    {
+      "id": "q161",
+      "before": "Le verbe « mûrir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 3,
+      "explanation": "Mûrir se termine en -ir et on dit « nous mûrissons » → 2ème groupe."
+    },
+    {
+      "id": "q162",
+      "before": "Le verbe « mugir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 3,
+      "explanation": "Mugir se termine en -ir et on dit « nous mugissons » → 2ème groupe."
+    },
+    {
+      "id": "q163",
+      "before": "Le verbe « polir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 3,
+      "explanation": "Polir se termine en -ir et on dit « nous polissons » → 2ème groupe."
+    },
+    {
+      "id": "q164",
+      "before": "Le verbe « rancir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 3,
+      "explanation": "Rancir se termine en -ir et on dit « nous rancissons » → 2ème groupe."
+    },
+    {
+      "id": "q165",
+      "before": "Le verbe « reblanchir » est un verbe du",
+      "after": ".",
+      "answer": "g2",
+      "difficulty": 3,
+      "explanation": "Reblanchir se termine en -ir et on dit « nous reblanchissons » → 2ème groupe."
+    },
+    {
+      "id": "q166",
+      "before": "Le verbe « accueillir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Accueillir se termine en -ir mais on dit « nous accueillons » et participe présent « accueillant » (pas -issant) → 3ème groupe."
+    },
+    {
+      "id": "q167",
+      "before": "Le verbe « acquérir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Acquérir se termine en -ir mais on dit « nous acquérons » et participe présent « acquérant » (pas -issant) → 3ème groupe."
+    },
+    {
+      "id": "q168",
+      "before": "Le verbe « assaillir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Assaillir se termine en -ir mais on dit « nous assaillons » et participe présent « assaillant » (pas -issant) → 3ème groupe."
+    },
+    {
+      "id": "q169",
+      "before": "Le verbe « assortir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Assortir se termine en -ir mais on dit « nous assortons » et participe présent « assortant » (pas -issant) → 3ème groupe."
+    },
+    {
+      "id": "q170",
+      "before": "Le verbe « atteindre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Atteindre est du 3ème groupe."
+    },
+    {
+      "id": "q171",
+      "before": "Le verbe « battre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Battre est du 3ème groupe."
+    },
+    {
+      "id": "q172",
+      "before": "Le verbe « bouillir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Bouillir se termine en -ir mais on dit « nous bouillons » et participe présent « bouillant » (pas -issant) → 3ème groupe."
+    },
+    {
+      "id": "q173",
+      "before": "Le verbe « braire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Braire est du 3ème groupe."
+    },
+    {
+      "id": "q174",
+      "before": "Le verbe « bruire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Bruire est du 3ème groupe."
+    },
+    {
+      "id": "q175",
+      "before": "Le verbe « circoncire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Circoncire se termine en -ire mais on dit « nous circoncisons » (pas « circoncirissons ») → 3ème groupe."
+    },
+    {
+      "id": "q176",
+      "before": "Le verbe « clore » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Clore est du 3ème groupe."
+    },
+    {
+      "id": "q177",
+      "before": "Le verbe « conclure » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Conclure est du 3ème groupe."
+    },
+    {
+      "id": "q178",
+      "before": "Le verbe « concourir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Concourir se termine en -ir mais on dit « nous concourons » et participe présent « concourant » (pas -issant) → 3ème groupe."
+    },
+    {
+      "id": "q179",
+      "before": "Le verbe « condescendre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Condescendre est du 3ème groupe."
+    },
+    {
+      "id": "q180",
+      "before": "Le verbe « confire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Confire se termine en -ire mais on dit « nous confisons » (pas « confirissons ») → 3ème groupe."
+    },
+    {
+      "id": "q181",
+      "before": "Le verbe « confondre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Confondre est du 3ème groupe."
+    },
+    {
+      "id": "q182",
+      "before": "Le verbe « conjoindre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Conjoindre est du 3ème groupe."
+    },
+    {
+      "id": "q183",
+      "before": "Le verbe « connaître » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Connaître est du 3ème groupe."
+    },
+    {
+      "id": "q184",
+      "before": "Le verbe « conquérir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Conquérir se termine en -ir mais on dit « nous conquérons » et participe présent « conquérant » (pas -issant) → 3ème groupe."
+    },
+    {
+      "id": "q185",
+      "before": "Le verbe « consentir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 2,
+      "explanation": "Consentir se termine en -ir mais on dit « nous consentons » et participe présent « consentant » (pas -issant) → 3ème groupe."
+    },
+    {
+      "id": "q186",
+      "before": "Le verbe « contredire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Contredire se termine en -ire mais on dit « nous contredisons » (pas « contredirissons ») → 3ème groupe."
+    },
+    {
+      "id": "q187",
+      "before": "Le verbe « contrefaire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Contrefaire se termine en -aire mais on dit « nous contrefaisons » (pas « contrefairissons ») → 3ème groupe."
+    },
+    {
+      "id": "q188",
+      "before": "Le verbe « contraindre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Contraindre est du 3ème groupe."
+    },
+    {
+      "id": "q189",
+      "before": "Le verbe « convaincre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Convaincre est du 3ème groupe."
+    },
+    {
+      "id": "q190",
+      "before": "Le verbe « convenir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Convenir se termine en -ir mais on dit « nous convenons » et participe présent « convenant » (pas -issant) → 3ème groupe."
+    },
+    {
+      "id": "q191",
+      "before": "Le verbe « corrompre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Corrompre est du 3ème groupe."
+    },
+    {
+      "id": "q192",
+      "before": "Le verbe « correspondre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Correspondre est du 3ème groupe."
+    },
+    {
+      "id": "q193",
+      "before": "Le verbe « coudre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Coudre est du 3ème groupe."
+    },
+    {
+      "id": "q194",
+      "before": "Le verbe « croître » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Croître est du 3ème groupe."
+    },
+    {
+      "id": "q195",
+      "before": "Le verbe « cuire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Cuire se termine en -ire mais on dit « nous cuisons » (pas « cuirissons ») → 3ème groupe."
+    },
+    {
+      "id": "q196",
+      "before": "Le verbe « découdre » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Découdre est du 3ème groupe."
+    },
+    {
+      "id": "q197",
+      "before": "Le verbe « décroître » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Décroître est du 3ème groupe."
+    },
+    {
+      "id": "q198",
+      "before": "Le verbe « décrire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Décrire se termine en -ire mais on dit « nous décrivons » (pas « décirissons ») → 3ème groupe."
+    },
+    {
+      "id": "q199",
+      "before": "Le verbe « déduire » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Déduire se termine en -ire mais on dit « nous déduisons » (pas « déduirissons ») → 3ème groupe."
+    },
+    {
+      "id": "q200",
+      "before": "Le verbe « défaillir » est un verbe du",
+      "after": ".",
+      "answer": "g3",
+      "difficulty": 3,
+      "explanation": "Défaillir se termine en -ir mais on dit « nous défaillons » et participe présent « défaillant » (pas -issant) → 3ème groupe."
     }
   ]
 }

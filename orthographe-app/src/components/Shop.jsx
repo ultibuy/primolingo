@@ -28,7 +28,7 @@ import {
 } from '../engine/economy.js';
 
 const CATEGORIES = [
-  { key: 'cosmetique', label: 'Cosm\u00e9tique', filter: (item) => ['themes', 'flames', 'titles', 'victoryAnimations'].includes(item.category) },
+  { key: 'cosmetique', label: 'Cosm\u00e9tique', filter: (item) => ['themes', 'flames', 'titles', 'victoryAnimations', 'entranceAnimations'].includes(item.category) },
   { key: 'assurance', label: 'Assurance', filter: (item) => ['streakFreeze', 'doubleCoins'].includes(item.category) },
   { key: 'persos', label: 'Persos', filter: () => false },
   { key: 'mystere', label: 'Image mystère', filter: () => false },
@@ -39,6 +39,7 @@ const CATEGORY_ICONS = {
   flames: '\uD83D\uDD25',
   titles: '\uD83C\uDFF7\uFE0F',
   victoryAnimations: '\uD83C\uDFAC',
+  entranceAnimations: '🎬',
   streakFreeze: '\uD83D\uDEE1\uFE0F',
   doubleCoins: '\uD83D\uDCB0',
   revealHint: '\uD83D\uDCA1',
@@ -54,6 +55,19 @@ const SUBCATEGORY_LABELS = {
   flames: 'Flamme de ton streak',
   titles: 'Titre sous le streak',
   victoryAnimations: 'Animations de victoire',
+  entranceAnimations: 'Animations de niveau 🎬',
+  streakFreeze: 'Bouclier de streak',
+  doubleCoins: 'Double pièces',
+};
+
+const SUBCATEGORY_DESCRIPTIONS = {
+  themes: "Change le fond d\u2019écran de ton tableau de bord",
+  flames: "Personnalise l\u2019icône de ta flamme de streak",
+  titles: "Affiche un titre stylé sous ton compteur de jours",
+  victoryAnimations: "Joue une animation quand tu valides une bonne réponse",
+  entranceAnimations: "Déclenche un effet visuel quand tu passes un niveau",
+  streakFreeze: "Protège ton streak si tu oublies une journée",
+  doubleCoins: "Double les pièces gagnées pendant 5 sessions",
 };
 
 const EQUIP_SLOT_MAP = {
@@ -807,7 +821,7 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
               Image mystère
             </div>
             <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, margin: '0 0 1rem 0.2rem' }}>
-              Dévoile un fragment pour 60 pièces. Maximum 2 fragments par jour, sur les deux images confondues.
+              Dévoile un fragment à la fois. Maximum 2 fragments par jour, sur les deux images confondues.
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
               {Object.keys(mysteryImageDefinitions).map((imageId) => (
@@ -835,15 +849,22 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
               WebkitBackdropFilter: 'blur(16px)',
               boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
             }}>
-              {activeTab === 'cosmetique' && SUBCATEGORY_LABELS[groupKey] && (
-                <div style={{
-                  fontSize: '0.78rem', color: '#6b7280', fontWeight: 700,
-                  textTransform: 'uppercase', letterSpacing: '0.06em',
-                  marginBottom: '0.6rem', paddingLeft: '0.2rem',
-                  display: 'flex', alignItems: 'center', gap: '0.4rem',
-                }}>
-                  <span>{CATEGORY_ICONS[groupKey] || ''}</span>
-                  {SUBCATEGORY_LABELS[groupKey]}
+              {SUBCATEGORY_LABELS[groupKey] && (
+                <div style={{ marginBottom: '0.75rem', paddingLeft: '0.2rem' }}>
+                  <div style={{
+                    fontSize: '0.78rem', color: '#6b7280', fontWeight: 700,
+                    textTransform: 'uppercase', letterSpacing: '0.06em',
+                    display: 'flex', alignItems: 'center', gap: '0.4rem',
+                    marginBottom: '0.2rem',
+                  }}>
+                    <span>{CATEGORY_ICONS[groupKey] || ''}</span>
+                    {SUBCATEGORY_LABELS[groupKey]}
+                  </div>
+                  {SUBCATEGORY_DESCRIPTIONS[groupKey] && (
+                    <div style={{ fontSize: '0.8rem', color: '#9ca3af', lineHeight: 1.4 }}>
+                      {SUBCATEGORY_DESCRIPTIONS[groupKey]}
+                    </div>
+                  )}
                 </div>
               )}
 
@@ -1226,7 +1247,15 @@ function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEqu
   let buttonAction = null;
   let buttonStyle = {};
 
-  if (owned && equipped) {
+  if (item.category === 'entranceAnimations' && owned) {
+    buttonText = 'Actif';
+    buttonStyle = {
+      background: 'rgba(74,222,128,0.12)',
+      border: '1px solid rgba(74,222,128,0.3)',
+      color: '#4ade80',
+      cursor: 'default',
+    };
+  } else if (owned && equipped) {
     buttonText = 'Désinstaller';
     buttonAction = () => onEquip(item.id, item.category, true);
     buttonStyle = {

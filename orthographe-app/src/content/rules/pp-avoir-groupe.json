@@ -29,7 +29,6 @@
     {
       "id": "groupe",
       "question": "À quel groupe appartient le verbe ?",
-      "sub": "Regarde l'infinitif du verbe.",
       "options": [
         {
           "value": "g1",
@@ -63,7 +62,6 @@
     {
       "id": "feminin",
       "question": "Mets le participe au féminin. Quel son entends-tu à la fin ?",
-      "sub": "Ex : « ouvert » → « ouverte » → son « te ».",
       "dependsOn": "groupe",
       "showWhen": "g3",
       "options": [
@@ -1040,6 +1038,906 @@
       "answer": "s",
       "difficulty": 3,
       "explanation": "Commettre → 3e groupe. Au féminin : commise → son « ze » → terminaison -s."
+    },
+    {
+      "id": "q101",
+      "before": "Il a ",
+      "radical": "demand",
+      "after": " pour le cours.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Demand → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q102",
+      "before": "Elle a ",
+      "radical": "termin",
+      "after": " à la dernière minute.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Termin → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q103",
+      "before": "Nous avons ",
+      "radical": "rencontr",
+      "after": " hier soir.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Rencontr → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q104",
+      "before": "Tu as ",
+      "radical": "arriv",
+      "after": " ce matin.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Arriv → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q105",
+      "before": "Vous avez ",
+      "radical": "rapport",
+      "after": " la semaine dernière.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Rapport → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q106",
+      "before": "Ils ont ",
+      "radical": "organ",
+      "after": " sans difficulté.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Organ → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q107",
+      "before": "Elles ont ",
+      "radical": "prouv",
+      "after": " pendant longtemps.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Prouv → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q108",
+      "before": "On a ",
+      "radical": "vérifi",
+      "after": " ensemble.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Vérifi → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q109",
+      "before": "J'ai ",
+      "radical": "visit",
+      "after": " rapidement.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Visit → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q110",
+      "before": "Il a ",
+      "radical": "rest",
+      "after": " finalement.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Rest → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q111",
+      "before": "Elle a ",
+      "radical": "expliqu",
+      "after": " quelques instants.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Expliqu → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q112",
+      "before": "Nous avons ",
+      "radical": "crée",
+      "after": " toute la journée.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Crée → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q113",
+      "before": "Tu as ",
+      "radical": "élev",
+      "after": " pour le cours.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Élev → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q114",
+      "before": "Vous avez ",
+      "radical": "anim",
+      "after": " à la dernière minute.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Anim → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q115",
+      "before": "Ils ont ",
+      "radical": "étudi",
+      "after": " hier soir.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Étudi → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q116",
+      "before": "Elles ont ",
+      "radical": "jug",
+      "after": " ce matin.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Jug → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q117",
+      "before": "On a ",
+      "radical": "prot",
+      "after": " la semaine dernière.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Prot → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q118",
+      "before": "J'ai ",
+      "radical": "démarr",
+      "after": " sans difficulté.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Démarr → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q119",
+      "before": "Il a ",
+      "radical": "accus",
+      "after": " pendant longtemps.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Accus → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q120",
+      "before": "Elle a ",
+      "radical": "avou",
+      "after": " ensemble.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Avou → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q121",
+      "before": "Nous avons ",
+      "radical": "balanc",
+      "after": " rapidement.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Balanc → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q122",
+      "before": "Tu as ",
+      "radical": "déclar",
+      "after": " finalement.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Déclar → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q123",
+      "before": "Vous avez ",
+      "radical": "délaiss",
+      "after": " quelques instants.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Délaiss → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q124",
+      "before": "Ils ont ",
+      "radical": "espér",
+      "after": " toute la journée.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Espér → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q125",
+      "before": "Elles ont ",
+      "radical": "excus",
+      "after": " pour le cours.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Excus → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q126",
+      "before": "On a ",
+      "radical": "fianc",
+      "after": " à la dernière minute.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Fianc → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q127",
+      "before": "J'ai ",
+      "radical": "gên",
+      "after": " hier soir.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Gên → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q128",
+      "before": "Il a ",
+      "radical": "hab",
+      "after": " ce matin.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Hab → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q129",
+      "before": "Elle a ",
+      "radical": "ignor",
+      "after": " la semaine dernière.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Ignor → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q130",
+      "before": "Nous avons ",
+      "radical": "injur",
+      "after": " sans difficulté.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Injur → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q131",
+      "before": "Tu as ",
+      "radical": "install",
+      "after": " pendant longtemps.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Install → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q132",
+      "before": "Vous avez ",
+      "radical": "isol",
+      "after": " ensemble.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Isol → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q133",
+      "before": "Ils ont ",
+      "radical": "libér",
+      "after": " rapidement.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Libér → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q134",
+      "before": "Elles ont ",
+      "radical": "limit",
+      "after": " finalement.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Limit → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q135",
+      "before": "On a ",
+      "radical": "maint",
+      "after": " quelques instants.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Maint → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q136",
+      "before": "J'ai ",
+      "radical": "march",
+      "after": " toute la journée.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "March → 1er groupe (infinitif en -er) → terminaison -é."
+    },
+    {
+      "id": "q137",
+      "before": "Il a ",
+      "radical": "roug",
+      "after": " pour le cours.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Roug → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q138",
+      "before": "Elle a ",
+      "radical": "pâl",
+      "after": " à la dernière minute.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Pâl → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q139",
+      "before": "Nous avons ",
+      "radical": "faibl",
+      "after": " hier soir.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Faibl → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q140",
+      "before": "Tu as ",
+      "radical": "vieilh",
+      "after": " ce matin.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Vieilh → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q141",
+      "before": "Vous avez ",
+      "radical": "maigr",
+      "after": " la semaine dernière.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Maigr → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q142",
+      "before": "Ils ont ",
+      "radical": "embel",
+      "after": " sans difficulté.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Embel → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q143",
+      "before": "Elles ont ",
+      "radical": "ralent",
+      "after": " pendant longtemps.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Ralent → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q144",
+      "before": "On a ",
+      "radical": "fleur",
+      "after": " ensemble.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Fleur → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q145",
+      "before": "J'ai ",
+      "radical": "tern",
+      "after": " rapidement.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Tern → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q146",
+      "before": "Il a ",
+      "radical": "brun",
+      "after": " finalement.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Brun → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q147",
+      "before": "Elle a ",
+      "radical": "avert",
+      "after": " quelques instants.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Avert → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q148",
+      "before": "Nous avons ",
+      "radical": "amoll",
+      "after": " toute la journée.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Amoll → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q149",
+      "before": "Tu as ",
+      "radical": "affaibl",
+      "after": " pour le cours.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Affaibl → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q150",
+      "before": "Vous avez ",
+      "radical": "part",
+      "after": " à la dernière minute.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Part → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q151",
+      "before": "Ils ont ",
+      "radical": "invest",
+      "after": " hier soir.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Invest → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q152",
+      "before": "Elles ont ",
+      "radical": "punir",
+      "after": " ce matin.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Punir → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q153",
+      "before": "On a ",
+      "radical": "dégros",
+      "after": " la semaine dernière.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Dégros → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q154",
+      "before": "J'ai ",
+      "radical": "enrich",
+      "after": " sans difficulté.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Enrich → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q155",
+      "before": "Il a ",
+      "radical": "pol",
+      "after": " pendant longtemps.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Pol → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q156",
+      "before": "Elle a ",
+      "radical": "rempliss",
+      "after": " ensemble.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Rempliss → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+    },
+    {
+      "id": "q157",
+      "before": "Nous avons ",
+      "radical": "d",
+      "after": " rapidement.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "D → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q158",
+      "before": "Tu as ",
+      "radical": "plu",
+      "after": " finalement.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Plu → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q159",
+      "before": "Vous avez ",
+      "radical": "fall",
+      "after": " quelques instants.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Fall → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q160",
+      "before": "Ils ont ",
+      "radical": "ven",
+      "after": " toute la journée.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Ven → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q161",
+      "before": "Elles ont ",
+      "radical": "entend",
+      "after": " pour le cours.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Entend → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q162",
+      "before": "On a ",
+      "radical": "defend",
+      "after": " à la dernière minute.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Defend → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q163",
+      "before": "J'ai ",
+      "radical": "extend",
+      "after": " hier soir.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Extend → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q164",
+      "before": "Il a ",
+      "radical": "suspend",
+      "after": " ce matin.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Suspend → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q165",
+      "before": "Elle a ",
+      "radical": "descend",
+      "after": " la semaine dernière.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Descend → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q166",
+      "before": "Nous avons ",
+      "radical": "respond",
+      "after": " sans difficulté.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Respond → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q167",
+      "before": "Tu as ",
+      "radical": "pend",
+      "after": " pendant longtemps.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Pend → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q168",
+      "before": "Vous avez ",
+      "radical": "tend",
+      "after": " ensemble.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Tend → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q169",
+      "before": "Ils ont ",
+      "radical": "attend",
+      "after": " rapidement.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Attend → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q170",
+      "before": "Elles ont ",
+      "radical": "mould",
+      "after": " finalement.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Mould → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q171",
+      "before": "On a ",
+      "radical": "coud",
+      "after": " quelques instants.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Coud → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q172",
+      "before": "J'ai ",
+      "radical": "pourv",
+      "after": " toute la journée.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Pourv → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q173",
+      "before": "Il a ",
+      "radical": "mouv",
+      "after": " pour le cours.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Mouv → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q174",
+      "before": "Elle a ",
+      "radical": "perc",
+      "after": " à la dernière minute.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Perc → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q175",
+      "before": "Nous avons ",
+      "radical": "conc",
+      "after": " hier soir.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Conc → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q176",
+      "before": "Tu as ",
+      "radical": "abs",
+      "after": " ce matin.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Abs → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q177",
+      "before": "Vous avez ",
+      "radical": "dissol",
+      "after": " la semaine dernière.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Dissol → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q178",
+      "before": "Ils ont ",
+      "radical": "revend",
+      "after": " sans difficulté.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Revend → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q179",
+      "before": "Elles ont ",
+      "radical": "aperc",
+      "after": " pendant longtemps.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Aperc → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q180",
+      "before": "On a ",
+      "radical": "décour",
+      "after": " ensemble.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Décour → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q181",
+      "before": "J'ai ",
+      "radical": "parcour",
+      "after": " rapidement.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Parcour → 3e groupe. Au féminin : son « u » → terminaison -u."
+    },
+    {
+      "id": "q182",
+      "before": "Il a ",
+      "radical": "mort",
+      "after": " finalement.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Mort → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q183",
+      "before": "Elle a ",
+      "radical": "cuir",
+      "after": " quelques instants.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Cuir → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q184",
+      "before": "Nous avons ",
+      "radical": "introd",
+      "after": " toute la journée.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Introd → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q185",
+      "before": "Tu as ",
+      "radical": "redui",
+      "after": " pour le cours.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Redui → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q186",
+      "before": "Vous avez ",
+      "radical": "indui",
+      "after": " à la dernière minute.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Indui → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q187",
+      "before": "Ils ont ",
+      "radical": "extrai",
+      "after": " hier soir.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Extrai → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q188",
+      "before": "Elles ont ",
+      "radical": "abstrai",
+      "after": " ce matin.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Abstrai → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q189",
+      "before": "On a ",
+      "radical": "retrai",
+      "after": " la semaine dernière.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Retrai → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q190",
+      "before": "J'ai ",
+      "radical": "contrai",
+      "after": " sans difficulté.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Contrai → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q191",
+      "before": "Il a ",
+      "radical": "restreint",
+      "after": " pendant longtemps.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Restreint → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q192",
+      "before": "Elle a ",
+      "radical": "prédire",
+      "after": " ensemble.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Prédire → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q193",
+      "before": "Nous avons ",
+      "radical": "contredr",
+      "after": " rapidement.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Contredr → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q194",
+      "before": "Tu as ",
+      "radical": "interdir",
+      "after": " finalement.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Interdir → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q195",
+      "before": "Vous avez ",
+      "radical": "circonsecr",
+      "after": " quelques instants.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Circonsecr → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q196",
+      "before": "Ils ont ",
+      "radical": "nuir",
+      "after": " toute la journée.",
+      "answer": "t",
+      "difficulty": 2,
+      "explanation": "Nuir → 3e groupe. Au féminin : son « te » → terminaison -t."
+    },
+    {
+      "id": "q197",
+      "before": "Elles ont ",
+      "radical": "omi",
+      "after": " pour le cours.",
+      "answer": "s",
+      "difficulty": 2,
+      "explanation": "Omi → 3e groupe. Au féminin : son « ze » → terminaison -s."
+    },
+    {
+      "id": "q198",
+      "before": "On a ",
+      "radical": "transmi",
+      "after": " à la dernière minute.",
+      "answer": "s",
+      "difficulty": 2,
+      "explanation": "Transmi → 3e groupe. Au féminin : son « ze » → terminaison -s."
+    },
+    {
+      "id": "q199",
+      "before": "J'ai ",
+      "radical": "remi",
+      "after": " hier soir.",
+      "answer": "s",
+      "difficulty": 2,
+      "explanation": "Remi → 3e groupe. Au féminin : son « ze » → terminaison -s."
+    },
+    {
+      "id": "q200",
+      "before": "Il a ",
+      "radical": "émi",
+      "after": " ce matin.",
+      "answer": "s",
+      "difficulty": 2,
+      "explanation": "Émi → 3e groupe. Au féminin : son « ze » → terminaison -s."
     }
   ]
 }

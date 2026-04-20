@@ -288,6 +288,40 @@ export const SHOP_CATALOG = {
     type: 'permanent',
   },
 
+  // ── Cosmetic: Entrance Animations (level-up) ──
+  'entrance-lightning': {
+    id: 'entrance-lightning',
+    category: 'entranceAnimations',
+    name: '⚡ Frappe de foudre',
+    description: 'Éclair électrique à chaque montée de niveau',
+    price: 300,
+    type: 'permanent',
+  },
+  'entrance-stars': {
+    id: 'entrance-stars',
+    category: 'entranceAnimations',
+    name: '✨ Explosion d\'étoiles',
+    description: 'Pluie d\'étoiles dorées sur l\'écran',
+    price: 300,
+    type: 'permanent',
+  },
+  'entrance-inferno': {
+    id: 'entrance-inferno',
+    category: 'entranceAnimations',
+    name: '🔥 Inferno',
+    description: 'Flammes infernales envahissent l\'écran',
+    price: 300,
+    type: 'permanent',
+  },
+  'entrance-freeze': {
+    id: 'entrance-freeze',
+    category: 'entranceAnimations',
+    name: '❄️ Freeze',
+    description: 'Cristaux de glace explosent à l\'écran',
+    price: 300,
+    type: 'permanent',
+  },
+
   // ── Consumables: Insurance & Comfort ──
   'streak-freeze': {
     id: 'streak-freeze',

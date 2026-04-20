@@ -7,13 +7,13 @@ export const SHOP_CHARACTERS = [
   { id: 'stormEagle', emoji: '🦅', name: 'Aigle Tempête', tag: 'Seigneur des vents', color: '#67e8f9' },
   { id: 'ice', emoji: '🧊', name: 'Reine des Glaces', tag: 'Froid et beauté', color: '#bae6fd' },
   { id: 'robot', emoji: '🤖', name: 'Robot Gardien', tag: 'Précis et indestructible', color: '#38bdf8' },
+  { id: 'sharkNinja', emoji: '🦈', name: 'Requin Ninja', tag: 'Maître des profondeurs', color: '#00BFFF' },
 ];
 
 export const SHOP_EMOTIONS = [
   { id: 'sleep', symbol: '💤', name: 'Dodo', price: 150, desc: 'Apparaît au démarrage (0–5 min)' },
   { id: 'wave', symbol: '👋', name: 'Salut', price: 200, desc: 'Première session · Niveau Bronze atteint' },
-  { id: 'cheer', symbol: '🙌', name: 'Hourra', price: 200, desc: 'Niveau Argent / Couronne · Mode direct débloqué · Révision SM2 réussie' },
-  { id: 'victory', symbol: '🏆', name: 'Victoire', price: 200, desc: 'Niveau Diamant · Trophée diamant · Mode sniper réussi' },
+  { id: 'victory', symbol: '🏆', name: 'Victoire', price: 200, desc: 'Niveau Argent / Diamant · Couronne · Mode direct / sniper · Révision SM2 réussie · Bonne réponse' },
   { id: 'clap', symbol: '👏', name: 'Bravo', price: 200, desc: 'Session parfaite 20/20' },
   { id: 'dance', symbol: '💃', name: 'Danse', price: 200, desc: 'Palier de streak atteint' },
   { id: 'surprise', symbol: '😲', name: 'Surprise', price: 200, desc: 'Streak perdu · Révision SM2 échouée · Diamant brisé' },

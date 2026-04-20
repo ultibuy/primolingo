@@ -21,7 +21,6 @@
         {
           "value": true,
           "label": "Oui → ou",
-          "sub": "café ou thé → café ou bien thé ✓",
           "eliminates": [
             "ouu"
           ]
@@ -29,7 +28,6 @@
         {
           "value": false,
           "label": "Non → où",
-          "sub": "la ville où j'habite → la ville ou bien j'habite ✗",
           "eliminates": [
             "ou"
           ]
@@ -852,6 +850,806 @@
       "answer": "ouu",
       "difficulty": 2,
       "explanation": "Pronom relatif de temps → où. (« époque ou bien tu as appris » ✗)"
+    },
+    {
+      "id": "q101",
+      "before": "Tu veux manger à la maison ",
+      "after": " au restaurant ce soir ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "On peut dire « à la maison ou bien au restaurant » → conjonction → ou."
+    },
+    {
+      "id": "q102",
+      "before": "Café ",
+      "after": " thé le matin pour te réveiller ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« café ou bien thé »)"
+    },
+    {
+      "id": "q103",
+      "before": "Tard ",
+      "after": " tôt, tu prefères le lever ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« tard ou bien tôt »)"
+    },
+    {
+      "id": "q104",
+      "before": "Il va réussir ",
+      "after": " échouer, nous verrons bien.",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« réussir ou bien échouer »)"
+    },
+    {
+      "id": "q105",
+      "before": "Nouveau film ",
+      "after": " ancien film ce soir au cinéma ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« nouveau ou bien ancien »)"
+    },
+    {
+      "id": "q106",
+      "before": "Accepter ",
+      "after": " refuser cette proposition, c'est difficile.",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« accepter ou bien refuser »)"
+    },
+    {
+      "id": "q107",
+      "before": "L'école le matin ",
+      "after": " l'après-midi, c'est mieux pour les enfants ?",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« le matin ou bien l'après-midi »)"
+    },
+    {
+      "id": "q108",
+      "before": "Ville ",
+      "after": " campagne pour vivre, c'est un choix.",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« ville ou bien campagne »)"
+    },
+    {
+      "id": "q109",
+      "before": "Succès ",
+      "after": " échec, il faut apprendre des deux.",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« succès ou bien échec »)"
+    },
+    {
+      "id": "q110",
+      "before": "Court métrage ",
+      "after": " long métrage pour ce projet ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« court ou bien long »)"
+    },
+    {
+      "id": "q111",
+      "before": "Travail ",
+      "after": " repos ce week-end ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« travail ou bien repos »)"
+    },
+    {
+      "id": "q112",
+      "before": "Augmenter ",
+      "after": " diminuer le budget, c'est la question.",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« augmenter ou bien diminuer »)"
+    },
+    {
+      "id": "q113",
+      "before": "Rapide ",
+      "after": " lent mais sûr, c'est efficace.",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« rapide ou bien lent »)"
+    },
+    {
+      "id": "q114",
+      "before": "Viande rouge ",
+      "after": " poisson blanc au dîner ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« viande ou bien poisson »)"
+    },
+    {
+      "id": "q115",
+      "before": "Écouter ",
+      "after": " regarder un podcast ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« écouter ou bien regarder »)"
+    },
+    {
+      "id": "q116",
+      "before": "Proche ",
+      "after": " loin, la distance ne compte pas.",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« proche ou bien loin »)"
+    },
+    {
+      "id": "q117",
+      "before": "Croire ",
+      "after": " douter, c'est une question de foi.",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« croire ou bien douter »)"
+    },
+    {
+      "id": "q118",
+      "before": "Chaud ",
+      "after": " froid, quelle température préfères-tu ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« chaud ou bien froid »)"
+    },
+    {
+      "id": "q119",
+      "before": "Coucher de soleil ",
+      "after": " lever du soleil, c'est magnifique.",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« coucher ou bien lever »)"
+    },
+    {
+      "id": "q120",
+      "before": "Gagner ",
+      "after": " perdre, ce qui compte c'est de jouer.",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« gagner ou bien perdre »)"
+    },
+    {
+      "id": "q121",
+      "before": "Haut ",
+      "after": " bas, tu regardes comment la vie ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« haut ou bien bas »)"
+    },
+    {
+      "id": "q122",
+      "before": "Intérieur ",
+      "after": " extérieur pour le mariage ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« intérieur ou bien extérieur »)"
+    },
+    {
+      "id": "q123",
+      "before": "Jeune ",
+      "after": " vieux, l'âge ne définit pas.",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« jeune ou bien vieux »)"
+    },
+    {
+      "id": "q124",
+      "before": "Kindle ",
+      "after": " livre papier pour lire ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« Kindle ou bien livre »)"
+    },
+    {
+      "id": "q125",
+      "before": "Léger ",
+      "after": " lourd, quel poids tu portes ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« léger ou bien lourd »)"
+    },
+    {
+      "id": "q126",
+      "before": "Manger dehors ",
+      "after": " cuisiner à la maison ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« dehors ou bien maison »)"
+    },
+    {
+      "id": "q127",
+      "before": "Neuf ",
+      "after": " occasion pour cette voiture ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« neuf ou bien occasion »)"
+    },
+    {
+      "id": "q128",
+      "before": "Obéir ",
+      "after": " défier, c'est un dilemme moral.",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« obéir ou bien défier »)"
+    },
+    {
+      "id": "q129",
+      "before": "Public ",
+      "after": " privé, quel secteur préfères-tu ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« public ou bien privé »)"
+    },
+    {
+      "id": "q130",
+      "before": "Quantité ",
+      "after": " qualité, c'est toujours un débat.",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« quantité ou bien qualité »)"
+    },
+    {
+      "id": "q131",
+      "before": "Je cherche un endroit ",
+      "after": " je peux me détendre.",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Pronom relatif de lieu → où. (« endroit ou bien je peux » ✗)"
+    },
+    {
+      "id": "q132",
+      "before": "Peux-tu me montrer ",
+      "after": " se trouve la gare centrale ?",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q133",
+      "before": "La plage ",
+      "after": " nous avons passé nos vacances était idéale.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« plage ou bien nous avons passé » ✗)"
+    },
+    {
+      "id": "q134",
+      "before": "Je m'interroge sur la ville ",
+      "after": " je vivrai plus tard.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« ville ou bien je vivrai » ✗)"
+    },
+    {
+      "id": "q135",
+      "before": "Nous avons trouvé un café ",
+      "after": " l'ambiance était parfaite.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« café ou bien l'ambiance » ✗)"
+    },
+    {
+      "id": "q136",
+      "before": "Sais-tu ",
+      "after": " elle a rangé ses affaires ?",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q137",
+      "before": "L'hôpital ",
+      "after": " mon grand-mère a été opérée est réputé.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« hôpital ou bien grand-mère » ✗)"
+    },
+    {
+      "id": "q138",
+      "before": "Pourrais-tu m'expliquer ",
+      "after": " aller chercher les documents ?",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q139",
+      "before": "La montagne ",
+      "after": " il a grandi était très isolée.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« montagne ou bien il a grandi » ✗)"
+    },
+    {
+      "id": "q140",
+      "before": "Au moment ",
+      "after": " le soleil se couche, le ciel s'illumine.",
+      "answer": "ouu",
+      "difficulty": 3,
+      "explanation": "Pronom relatif de temps → où. (« moment ou bien le soleil » ✗)"
+    },
+    {
+      "id": "q141",
+      "before": "Je veux aller ",
+      "after": " mes rêves me portent.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« aller ou bien rêves » ✗)"
+    },
+    {
+      "id": "q142",
+      "before": "Montre-moi le chemin ",
+      "after": " tu as vu le renard.",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q143",
+      "before": "La prison ",
+      "after": " il a été emprisonné était terrible.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« prison ou bien il a été » ✗)"
+    },
+    {
+      "id": "q144",
+      "before": "L'année ",
+      "after": " j'ai terminé mes études a été un tournant.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de temps → où. (« année ou bien j'ai terminé » ✗)"
+    },
+    {
+      "id": "q145",
+      "before": "Indique-moi le coin de la rue ",
+      "after": " habite ton ami.",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q146",
+      "before": "Le marché ",
+      "after": " nous achetons le fromage est fermé aujourd'hui.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« marché ou bien nous achetons » ✗)"
+    },
+    {
+      "id": "q147",
+      "before": "Je ne sais pas encore ",
+      "after": " je vais étudier après le bac.",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q148",
+      "before": "Le studio ",
+      "after": " il enregistre ses chansons est souterrain.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« studio ou bien il enregistre » ✗)"
+    },
+    {
+      "id": "q149",
+      "before": "La période ",
+      "after": " tu travailles le plus dur doit être récompensée.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de temps → où. (« période ou bien tu travailles » ✗)"
+    },
+    {
+      "id": "q150",
+      "before": "Précise-moi ",
+      "after": " tu as découvert ce restaurant.",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q151",
+      "before": "Le port ",
+      "after": " les navires arrivent chaque jour est impressionnant.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« port ou bien les navires » ✗)"
+    },
+    {
+      "id": "q152",
+      "before": "Dis-moi franchement ",
+      "after": " tu étais la nuit dernière.",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q153",
+      "before": "L'endroit ",
+      "after": " vous avez caché le trésor est secret.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« endroit ou bien vous avez caché » ✗)"
+    },
+    {
+      "id": "q154",
+      "before": "Je me souviens du jour ",
+      "after": " il a disparu sans traces.",
+      "answer": "ouu",
+      "difficulty": 3,
+      "explanation": "Pronom relatif de temps → où. (« jour ou bien il a disparu » ✗)"
+    },
+    {
+      "id": "q155",
+      "before": "Explique-moi exactement ",
+      "after": " se trouve le musée d'art.",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q156",
+      "before": "Le restaurant ",
+      "after": " nous avons célébré votre mariage avait une belle vue.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« restaurant ou bien nous avons » ✗)"
+    },
+    {
+      "id": "q157",
+      "before": "La nuit ",
+      "after": " la lune brille intensément inspire les poètes.",
+      "answer": "ouu",
+      "difficulty": 3,
+      "explanation": "Pronom relatif de temps → où. (« nuit ou bien lune brille » ✗)"
+    },
+    {
+      "id": "q158",
+      "before": "Peux-tu me dire ",
+      "after": " se réunissent les manifestants ?",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q159",
+      "before": "Le jardin ",
+      "after": " elle cultive ses fleurs est magnifique.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« jardin ou bien elle cultive » ✗)"
+    },
+    {
+      "id": "q160",
+      "before": "Raconte-moi ",
+      "after": " tu as été kidnappé par des pirates.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q161",
+      "before": "Riche famille ",
+      "after": " pauvre, tous méritent du respect.",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« riche ou bien pauvre »)"
+    },
+    {
+      "id": "q162",
+      "before": "Voir clair ",
+      "after": " rester aveugle, c'est notre choix.",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« clair ou bien aveugle »)"
+    },
+    {
+      "id": "q163",
+      "before": "Salé ",
+      "after": " sucré, le goût parfait.",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« salé ou bien sucré »)"
+    },
+    {
+      "id": "q164",
+      "before": "Ami sincère ",
+      "after": " ennemi discret, qui choisir ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« ami ou bien ennemi »)"
+    },
+    {
+      "id": "q165",
+      "before": "Téléphone ",
+      "after": " ordinateur pour travailler ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« téléphone ou bien ordinateur »)"
+    },
+    {
+      "id": "q166",
+      "before": "Solide ",
+      "after": " liquide, l'état de la matière.",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« solide ou bien liquide »)"
+    },
+    {
+      "id": "q167",
+      "before": "Courage ",
+      "after": " peur, quelle émotion domine ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« courage ou bien peur »)"
+    },
+    {
+      "id": "q168",
+      "before": "Parole donnée ",
+      "after": " promesse rompue, quel impact ?",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« parole ou bien promesse »)"
+    },
+    {
+      "id": "q169",
+      "before": "Humide ",
+      "after": " sec, l'état du climat.",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« humide ou bien sec »)"
+    },
+    {
+      "id": "q170",
+      "before": "Rationalité ",
+      "after": " émotions, comment décider ?",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« rationalité ou bien émotions »)"
+    },
+    {
+      "id": "q171",
+      "before": "Léviathan ",
+      "after": " Godzilla dans ce film ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« Léviathan ou bien Godzilla »)"
+    },
+    {
+      "id": "q172",
+      "before": "Droit ",
+      "after": " gauche, vers où aller ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« droit ou bien gauche »)"
+    },
+    {
+      "id": "q173",
+      "before": "Éxil ",
+      "after": " retour, le choix est difficile.",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« exil ou bien retour »)"
+    },
+    {
+      "id": "q174",
+      "before": "Franc speech ",
+      "after": " politesse, que privilégier ?",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« franc ou bien politesse »)"
+    },
+    {
+      "id": "q175",
+      "before": "Général ",
+      "after": " particulier, l'approche juste.",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« général ou bien particulier »)"
+    },
+    {
+      "id": "q176",
+      "before": "Herbe verte ",
+      "after": " ciment gris, l'environnement.",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« herbe ou bien ciment »)"
+    },
+    {
+      "id": "q177",
+      "before": "Infiniment grand ",
+      "after": " infiniment petit, l'univers.",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« grand ou bien petit »)"
+    },
+    {
+      "id": "q178",
+      "before": "Jean bleu ",
+      "after": " pantalon noir pour ce gala ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« jean ou bien pantalon »)"
+    },
+    {
+      "id": "q179",
+      "before": "Ketchup ",
+      "after": " moutarde sur ta saucisse ?",
+      "answer": "ou",
+      "difficulty": 1,
+      "explanation": "Conjonction d'alternative → ou. (« ketchup ou bien moutarde »)"
+    },
+    {
+      "id": "q180",
+      "before": "Loi stricte ",
+      "after": " liberté totale, l'équilibre.",
+      "answer": "ou",
+      "difficulty": 2,
+      "explanation": "Conjonction d'alternative → ou. (« loi ou bien liberté »)"
+    },
+    {
+      "id": "q181",
+      "before": "Le bâtiment ",
+      "after": " l'histoire s'est déroulée est détruit.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« bâtiment ou bien histoire » ✗)"
+    },
+    {
+      "id": "q182",
+      "before": "Montre-moi ",
+      "after": " tu voudrais construire ta maison.",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q183",
+      "before": "La salle d'audience ",
+      "after": " le procès s'est tenu était pleine.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« salle ou bien procès » ✗)"
+    },
+    {
+      "id": "q184",
+      "before": "Je découvre le lieu ",
+      "after": " mes ancêtres sont nés.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« lieu ou bien ancêtres » ✗)"
+    },
+    {
+      "id": "q185",
+      "before": "L'époque ",
+      "after": " la Renaissance a fleuri était remarquable.",
+      "answer": "ouu",
+      "difficulty": 3,
+      "explanation": "Pronom relatif de temps → où. (« époque ou bien Renaissance » ✗)"
+    },
+    {
+      "id": "q186",
+      "before": "Dis-nous ",
+      "after": " tu cachais ce secret depuis longtemps.",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où. (Par sens figuré = en quel endroit de ton cœur)"
+    },
+    {
+      "id": "q187",
+      "before": "Le musée ",
+      "after": " nous avons admiré la Joconde était très bondé.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« musée ou bien nous avons » ✗)"
+    },
+    {
+      "id": "q188",
+      "before": "L'heure ",
+      "after": " la cloche a sonné, tout s'est arrêté.",
+      "answer": "ouu",
+      "difficulty": 3,
+      "explanation": "Pronom relatif de temps → où. (« heure ou bien cloche » ✗)"
+    },
+    {
+      "id": "q189",
+      "before": "Peux-tu m'indiquer ",
+      "after": " se trouve le musée du Louvre ?",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q190",
+      "before": "La rivière ",
+      "after": " les enfants jouaient était peu profonde.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« rivière ou bien enfants » ✗)"
+    },
+    {
+      "id": "q191",
+      "before": "Le moment ",
+      "after": " il a compris la vérité a changé sa vie.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de temps → où. (« moment ou bien il a compris » ✗)"
+    },
+    {
+      "id": "q192",
+      "before": "Raconte-moi exactement ",
+      "after": " tu as trouvé cet objet précieux.",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q193",
+      "before": "La colline ",
+      "after": " nous avons grandi offrait une belle vue.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« colline ou bien nous avons » ✗)"
+    },
+    {
+      "id": "q194",
+      "before": "La semaine ",
+      "after": " tu as disparu était terrible pour nous.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de temps → où. (« semaine ou bien tu as disparu » ✗)"
+    },
+    {
+      "id": "q195",
+      "before": "Explique-moi précisément ",
+      "after": " vous avez mis les clés.",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q196",
+      "before": "L'école ",
+      "after": " j'ai appris à lire avait des murs roses.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« école ou bien j'ai appris » ✗)"
+    },
+    {
+      "id": "q197",
+      "before": "Le jour ",
+      "after": " tu as obtenu ton diplôme était inoubliable.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de temps → où. (« jour ou bien tu as obtenu » ✗)"
+    },
+    {
+      "id": "q198",
+      "before": "Peux-tu montrer ",
+      "after": " se trouvent tes documents importants ?",
+      "answer": "ouu",
+      "difficulty": 1,
+      "explanation": "Adverbe interrogatif indirect de lieu → où."
+    },
+    {
+      "id": "q199",
+      "before": "Le parc d'attractions ",
+      "after": " nous avons eu peur ensemble était fantastique.",
+      "answer": "ouu",
+      "difficulty": 2,
+      "explanation": "Pronom relatif de lieu → où. (« parc ou bien nous avons » ✗)"
+    },
+    {
+      "id": "q200",
+      "before": "La nuit ",
+      "after": " tu as crié au secours restera dans ma mémoire.",
+      "answer": "ouu",
+      "difficulty": 3,
+      "explanation": "Pronom relatif de temps → où. (« nuit ou bien tu as crié » ✗)"
     }
   ]
 }

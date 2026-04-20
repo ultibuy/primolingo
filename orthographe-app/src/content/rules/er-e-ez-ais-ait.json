@@ -28,12 +28,11 @@
   "decisionAxes": [
     {
       "id": "conjugue",
-      "question": "Verbe conjugué ?",
+      "question": "Le verbe est  :",
       "options": [
         {
           "value": true,
-          "label": "Oui, conjugué",
-          "sub": "avec un sujet → -ez / -ais / -ait",
+          "label": "Conjugué",
           "eliminates": [
             "er",
             "e"
@@ -41,8 +40,7 @@
         },
         {
           "value": false,
-          "label": "Non, infinitif ou participe",
-          "sub": "pas de sujet propre → -er / -é",
+          "label": "à l'infinitif ou participe",
           "eliminates": [
             "ez",
             "ais",
@@ -60,7 +58,6 @@
           "value": "mordre",
           "showWhen": false,
           "label": "On dirait « mordre »",
-          "sub": "→ infinitif",
           "eliminates": [
             "e"
           ]
@@ -69,7 +66,6 @@
           "value": "mordu",
           "showWhen": false,
           "label": "On dirait « mordu »",
-          "sub": "→ participe passé",
           "eliminates": [
             "er"
           ]
@@ -138,6 +134,7 @@
     {
       "id": "q001",
       "before": "Il faut ",
+      "verb": "révis",
       "after": " avant l'examen.",
       "answer": "er",
       "difficulty": 1,
@@ -146,6 +143,7 @@
     {
       "id": "q002",
       "before": "Tu dois ",
+      "verb": "étudi",
       "after": " davantage.",
       "answer": "er",
       "difficulty": 1,
@@ -154,6 +152,7 @@
     {
       "id": "q003",
       "before": "Je vais ",
+      "verb": "march",
       "after": " en forêt.",
       "answer": "er",
       "difficulty": 1,
@@ -162,6 +161,7 @@
     {
       "id": "q004",
       "before": "On peut ",
+      "verb": "jou",
       "after": " au foot demain.",
       "answer": "er",
       "difficulty": 1,
@@ -170,6 +170,7 @@
     {
       "id": "q005",
       "before": "Il faut ",
+      "verb": "écout",
       "after": " attentivement.",
       "answer": "er",
       "difficulty": 1,
@@ -178,6 +179,7 @@
     {
       "id": "q006",
       "before": "Je viens de ",
+      "verb": "termin",
       "after": " mon travail.",
       "answer": "er",
       "difficulty": 2,
@@ -186,6 +188,7 @@
     {
       "id": "q007",
       "before": "On peut ",
+      "verb": "saut",
       "after": " à la corde.",
       "answer": "er",
       "difficulty": 1,
@@ -194,6 +197,7 @@
     {
       "id": "q008",
       "before": "On doit ",
+      "verb": "prépar",
       "after": " le repas.",
       "answer": "er",
       "difficulty": 1,
@@ -202,6 +206,7 @@
     {
       "id": "q009",
       "before": "Elle veut ",
+      "verb": "dans",
       "after": " toute la soirée.",
       "answer": "er",
       "difficulty": 1,
@@ -210,7 +215,8 @@
     {
       "id": "q010",
       "before": "Ils aimeraient ",
-      "after": " l'Italie.",
+      "verb": "voyag",
+      "after": " en Italie.",
       "answer": "er",
       "difficulty": 1,
       "explanation": "On peut dire « ils aimeraient mordre » → infinitif → -er."
@@ -218,6 +224,7 @@
     {
       "id": "q011",
       "before": "C'est important de ",
+      "verb": "respect",
       "after": " les autres.",
       "answer": "er",
       "difficulty": 1,
@@ -226,6 +233,7 @@
     {
       "id": "q012",
       "before": "Tu dois ",
+      "verb": "rang",
       "after": " tes affaires avant samedi.",
       "answer": "er",
       "difficulty": 1,
@@ -234,6 +242,7 @@
     {
       "id": "q013",
       "before": "Sans ",
+      "verb": "travaill",
       "after": ", on ne gagne rien.",
       "answer": "er",
       "difficulty": 2,
@@ -242,6 +251,7 @@
     {
       "id": "q014",
       "before": "Vous pouvez ",
+      "verb": "pass",
       "after": " plus tard si vous voulez.",
       "answer": "er",
       "difficulty": 1,
@@ -250,6 +260,7 @@
     {
       "id": "q015",
       "before": "Il commence à ",
+      "verb": "aim",
       "after": " les mathématiques.",
       "answer": "er",
       "difficulty": 1,
@@ -258,6 +269,7 @@
     {
       "id": "q016",
       "before": "Je peux ",
+      "verb": "parl",
       "after": " à ton ami.",
       "answer": "er",
       "difficulty": 1,
@@ -266,6 +278,7 @@
     {
       "id": "q017",
       "before": "Nous allons ",
+      "verb": "nag",
       "after": " pendant les vacances.",
       "answer": "er",
       "difficulty": 1,
@@ -274,6 +287,7 @@
     {
       "id": "q018",
       "before": "Tu dois ",
+      "verb": "cherch",
       "after": " une meilleure solution.",
       "answer": "er",
       "difficulty": 1,
@@ -282,6 +296,7 @@
     {
       "id": "q019",
       "before": "Il faut ",
+      "verb": "appel",
       "after": " les parents demain.",
       "answer": "er",
       "difficulty": 1,
@@ -290,6 +305,7 @@
     {
       "id": "q020",
       "before": "Pour ",
+      "verb": "réuss",
       "after": ", il faut travailler dur.",
       "answer": "er",
       "difficulty": 1,
@@ -298,6 +314,7 @@
     {
       "id": "q021",
       "before": "J'ai ",
+      "verb": "mang",
       "after": " une pomme ce matin.",
       "answer": "e",
       "difficulty": 1,
@@ -306,6 +323,7 @@
     {
       "id": "q022",
       "before": "Tu as ",
+      "verb": "termin",
       "after": " tes devoirs ?",
       "answer": "e",
       "difficulty": 1,
@@ -314,6 +332,7 @@
     {
       "id": "q023",
       "before": "Il a ",
+      "verb": "trouv",
       "after": " ses clés ce matin.",
       "answer": "e",
       "difficulty": 1,
@@ -322,6 +341,7 @@
     {
       "id": "q024",
       "before": "Nous avons ",
+      "verb": "jou",
       "after": " au tennis hier.",
       "answer": "e",
       "difficulty": 1,
@@ -330,6 +350,7 @@
     {
       "id": "q025",
       "before": "Elles ont ",
+      "verb": "pass",
       "after": " une belle journée.",
       "answer": "e",
       "difficulty": 1,
@@ -338,6 +359,7 @@
     {
       "id": "q026",
       "before": "On a ",
+      "verb": "mang",
       "after": " un bon gâteau.",
       "answer": "e",
       "difficulty": 1,
@@ -346,6 +368,7 @@
     {
       "id": "q027",
       "before": "J'ai ",
+      "verb": "écout",
       "after": " une belle musique.",
       "answer": "e",
       "difficulty": 1,
@@ -354,6 +377,7 @@
     {
       "id": "q028",
       "before": "Vous avez ",
+      "verb": "arriv",
       "after": " à l'heure ?",
       "answer": "e",
       "difficulty": 1,
@@ -362,6 +386,7 @@
     {
       "id": "q029",
       "before": "Ils ont ",
+      "verb": "parl",
       "after": " pendant deux heures.",
       "answer": "e",
       "difficulty": 1,
@@ -370,6 +395,7 @@
     {
       "id": "q030",
       "before": "Elle a ",
+      "verb": "nag",
       "after": " dans la piscine.",
       "answer": "e",
       "difficulty": 1,
@@ -378,6 +404,7 @@
     {
       "id": "q031",
       "before": "Le travail est ",
+      "verb": "organis",
       "after": ".",
       "answer": "e",
       "difficulty": 2,
@@ -386,6 +413,7 @@
     {
       "id": "q032",
       "before": "Nous avons ",
+      "verb": "nag",
       "after": " dans la piscine.",
       "answer": "e",
       "difficulty": 1,
@@ -394,6 +422,7 @@
     {
       "id": "q033",
       "before": "J'ai ",
+      "verb": "regard",
       "after": " le film à la télévision.",
       "answer": "e",
       "difficulty": 1,
@@ -402,6 +431,7 @@
     {
       "id": "q034",
       "before": "Tu as ",
+      "verb": "dessin",
       "after": " un joli paysage.",
       "answer": "e",
       "difficulty": 1,
@@ -410,6 +440,7 @@
     {
       "id": "q035",
       "before": "Il a ",
+      "verb": "port",
       "after": " une lourde valise.",
       "answer": "e",
       "difficulty": 1,
@@ -418,6 +449,7 @@
     {
       "id": "q036",
       "before": "Vous avez ",
+      "verb": "prépar",
       "after": " le dîner avec soin.",
       "answer": "e",
       "difficulty": 1,
@@ -426,6 +458,7 @@
     {
       "id": "q037",
       "before": "On a ",
+      "verb": "emmen",
       "after": " les enfants à l'école.",
       "answer": "e",
       "difficulty": 1,
@@ -434,6 +467,7 @@
     {
       "id": "q038",
       "before": "Elles ont ",
+      "verb": "travaill",
       "after": " trop dur ce jour-là.",
       "answer": "e",
       "difficulty": 1,
@@ -442,6 +476,7 @@
     {
       "id": "q039",
       "before": "J'ai ",
+      "verb": "montr",
       "after": " mes photos à mes amis.",
       "answer": "e",
       "difficulty": 1,
@@ -450,6 +485,7 @@
     {
       "id": "q040",
       "before": "Tu as ",
+      "verb": "march",
       "after": " trop vite.",
       "answer": "e",
       "difficulty": 1,
@@ -458,6 +494,7 @@
     {
       "id": "q041",
       "before": "Vous ",
+      "verb": "mang",
       "after": " à la cantine le midi.",
       "answer": "ez",
       "difficulty": 1,
@@ -466,6 +503,7 @@
     {
       "id": "q042",
       "before": "Vous ",
+      "verb": "parl",
       "after": " très bien français.",
       "answer": "ez",
       "difficulty": 1,
@@ -474,6 +512,7 @@
     {
       "id": "q043",
       "before": "Vous ",
+      "verb": "arriv",
       "after": " demain matin ?",
       "answer": "ez",
       "difficulty": 1,
@@ -482,6 +521,7 @@
     {
       "id": "q044",
       "before": "Vous ",
+      "verb": "rang",
       "after": " vos affaires, s'il vous plaît.",
       "answer": "ez",
       "difficulty": 1,
@@ -490,6 +530,7 @@
     {
       "id": "q045",
       "before": "Vous ",
+      "verb": "jou",
       "after": " au tennis chaque semaine.",
       "answer": "ez",
       "difficulty": 1,
@@ -498,6 +539,7 @@
     {
       "id": "q046",
       "before": "Vous ",
+      "verb": "chant",
       "after": " très bien.",
       "answer": "ez",
       "difficulty": 1,
@@ -506,6 +548,7 @@
     {
       "id": "q047",
       "before": "Vous ",
+      "verb": "écout",
       "after": " attentivement le professeur.",
       "answer": "ez",
       "difficulty": 1,
@@ -514,6 +557,7 @@
     {
       "id": "q048",
       "before": "Vous ",
+      "verb": "travaill",
       "after": " à l'ordinateur ?",
       "answer": "ez",
       "difficulty": 1,
@@ -522,6 +566,7 @@
     {
       "id": "q049",
       "before": "Vous ne ",
+      "verb": "trouv",
       "after": " pas la solution ?",
       "answer": "ez",
       "difficulty": 2,
@@ -530,6 +575,7 @@
     {
       "id": "q050",
       "before": "Vous ",
+      "verb": "prépar",
       "after": " le dîner ensemble.",
       "answer": "ez",
       "difficulty": 1,
@@ -538,6 +584,7 @@
     {
       "id": "q051",
       "before": "Vous ",
+      "verb": "cri",
       "after": " très haut.",
       "answer": "ez",
       "difficulty": 1,
@@ -546,6 +593,7 @@
     {
       "id": "q052",
       "before": "Vous ",
+      "verb": "habit",
       "after": " dans une belle maison.",
       "answer": "ez",
       "difficulty": 1,
@@ -554,6 +602,7 @@
     {
       "id": "q053",
       "before": "Vous ",
+      "verb": "march",
       "after": " rapidement.",
       "answer": "ez",
       "difficulty": 1,
@@ -562,6 +611,7 @@
     {
       "id": "q054",
       "before": "Vous ",
+      "verb": "dans",
       "after": " très bien.",
       "answer": "ez",
       "difficulty": 1,
@@ -570,6 +620,7 @@
     {
       "id": "q055",
       "before": "Vous ",
+      "verb": "dessin",
       "after": " magnifiquement.",
       "answer": "ez",
       "difficulty": 1,
@@ -578,6 +629,7 @@
     {
       "id": "q056",
       "before": "Vous ",
+      "verb": "regard",
       "after": " souvent la télévision.",
       "answer": "ez",
       "difficulty": 1,
@@ -586,6 +638,7 @@
     {
       "id": "q057",
       "before": "Vous ",
+      "verb": "consult",
       "after": " le médecin à quelle heure ?",
       "answer": "ez",
       "difficulty": 1,
@@ -594,6 +647,7 @@
     {
       "id": "q058",
       "before": "Vous ",
+      "verb": "cherch",
       "after": " une nouvelle maison.",
       "answer": "ez",
       "difficulty": 1,
@@ -602,6 +656,7 @@
     {
       "id": "q059",
       "before": "Vous ",
+      "verb": "emmen",
       "after": " vos enfants à la garderie.",
       "answer": "ez",
       "difficulty": 1,
@@ -610,6 +665,7 @@
     {
       "id": "q060",
       "before": "Vous ",
+      "verb": "termin",
       "after": " votre travail aujourd'hui.",
       "answer": "ez",
       "difficulty": 1,
@@ -617,7 +673,8 @@
     },
     {
       "id": "q061",
-      "before": "J'",
+      "before": "Quand j'étais petit, j'",
+      "verb": "mang",
       "after": " une pomme chaque jour.",
       "answer": "ais",
       "difficulty": 1,
@@ -625,7 +682,8 @@
     },
     {
       "id": "q062",
-      "before": "Tu ",
+      "before": "À l'époque, tu ",
+      "verb": "cri",
       "after": " toujours trop fort.",
       "answer": "ais",
       "difficulty": 1,
@@ -633,7 +691,8 @@
     },
     {
       "id": "q063",
-      "before": "Je ",
+      "before": "Avant, je ",
+      "verb": "regard",
       "after": " la télévision le soir.",
       "answer": "ais",
       "difficulty": 1,
@@ -641,7 +700,8 @@
     },
     {
       "id": "q064",
-      "before": "Tu ",
+      "before": "L'été dernier, tu ",
+      "verb": "jou",
       "after": " dans le jardin tous les jours.",
       "answer": "ais",
       "difficulty": 1,
@@ -649,7 +709,8 @@
     },
     {
       "id": "q065",
-      "before": "Je ",
+      "before": "Hier, je ",
+      "verb": "march",
       "after": " sous la pluie.",
       "answer": "ais",
       "difficulty": 1,
@@ -657,7 +718,8 @@
     },
     {
       "id": "q066",
-      "before": "Tu ",
+      "before": "À cette période, tu ",
+      "verb": "travaill",
       "after": " sans pause.",
       "answer": "ais",
       "difficulty": 1,
@@ -665,7 +727,8 @@
     },
     {
       "id": "q067",
-      "before": "Je ",
+      "before": "Quand j'étais enfant, j'",
+      "verb": "avanc",
       "after": " lentement vers l'école.",
       "answer": "ais",
       "difficulty": 1,
@@ -673,7 +736,8 @@
     },
     {
       "id": "q068",
-      "before": "Tu ne ",
+      "before": "Avant, tu n'",
+      "verb": "arriv",
       "after": " jamais à l'heure.",
       "answer": "ais",
       "difficulty": 2,
@@ -681,7 +745,8 @@
     },
     {
       "id": "q069",
-      "before": "Je ",
+      "before": "En CE2, je ",
+      "verb": "trouv",
       "after": " toujours les bonnes réponses.",
       "answer": "ais",
       "difficulty": 1,
@@ -689,7 +754,8 @@
     },
     {
       "id": "q070",
-      "before": "Tu ",
+      "before": "À l'époque, tu ",
+      "verb": "port",
       "after": " une vieille valise.",
       "answer": "ais",
       "difficulty": 1,
@@ -697,7 +763,8 @@
     },
     {
       "id": "q071",
-      "before": "Je ",
+      "before": "Au CP, je ",
+      "verb": "montr",
       "after": " mes devoirs au maître.",
       "answer": "ais",
       "difficulty": 1,
@@ -705,7 +772,8 @@
     },
     {
       "id": "q072",
-      "before": "Tu ",
+      "before": "Adolescent, tu ",
+      "verb": "écout",
       "after": " des chansons de rock.",
       "answer": "ais",
       "difficulty": 1,
@@ -713,7 +781,8 @@
     },
     {
       "id": "q073",
-      "before": "Je ",
+      "before": "L'été, je ",
+      "verb": "laiss",
       "after": " la porte ouverte.",
       "answer": "ais",
       "difficulty": 1,
@@ -721,7 +790,8 @@
     },
     {
       "id": "q074",
-      "before": "Tu ",
+      "before": "Quand tu étais jeune, tu ",
+      "verb": "aim",
       "after": " la musique classique.",
       "answer": "ais",
       "difficulty": 1,
@@ -729,7 +799,8 @@
     },
     {
       "id": "q075",
-      "before": "Je ",
+      "before": "En primaire, je ",
+      "verb": "saut",
       "after": " à la corde tous les matins.",
       "answer": "ais",
       "difficulty": 1,
@@ -737,7 +808,8 @@
     },
     {
       "id": "q076",
-      "before": "Tu ",
+      "before": "Enfant, tu ",
+      "verb": "caress",
       "after": " des animaux.",
       "answer": "ais",
       "difficulty": 1,
@@ -745,7 +817,8 @@
     },
     {
       "id": "q077",
-      "before": "Je ",
+      "before": "Hier soir, je ",
+      "verb": "prépar",
       "after": " le repas à 18 heures.",
       "answer": "ais",
       "difficulty": 1,
@@ -753,7 +826,8 @@
     },
     {
       "id": "q078",
-      "before": "Tu ",
+      "before": "Quand tu étais petit, tu ",
+      "verb": "rang",
       "after": " tes jouets chaque soir.",
       "answer": "ais",
       "difficulty": 1,
@@ -761,7 +835,8 @@
     },
     {
       "id": "q079",
-      "before": "J'",
+      "before": "Avant, j'",
+      "verb": "habit",
       "after": " à la campagne.",
       "answer": "ais",
       "difficulty": 1,
@@ -769,7 +844,8 @@
     },
     {
       "id": "q080",
-      "before": "Tu ",
+      "before": "L'année dernière, tu ",
+      "verb": "rest",
       "after": " chez toi.",
       "answer": "ais",
       "difficulty": 1,
@@ -778,6 +854,7 @@
     {
       "id": "q081",
       "before": "Il ",
+      "verb": "pleur",
       "after": " beaucoup quand il était petit.",
       "answer": "ait",
       "difficulty": 1,
@@ -785,8 +862,9 @@
     },
     {
       "id": "q082",
-      "before": "Elle ",
-      "after": " souvent au téléphone.",
+      "before": "À cette époque, elle ",
+      "verb": "téléphon",
+      "after": " souvent le soir.",
       "answer": "ait",
       "difficulty": 1,
       "explanation": "Sujet = elle + imparfait → -ait."
@@ -794,6 +872,7 @@
     {
       "id": "q083",
       "before": "On ",
+      "verb": "jou",
       "after": " au football autrefois.",
       "answer": "ait",
       "difficulty": 1,
@@ -801,7 +880,8 @@
     },
     {
       "id": "q084",
-      "before": "Il ",
+      "before": "Quand il était ado, il ",
+      "verb": "regard",
       "after": " les films sans interruption.",
       "answer": "ait",
       "difficulty": 1,
@@ -809,7 +889,8 @@
     },
     {
       "id": "q085",
-      "before": "Elle ",
+      "before": "Hier soir, elle ",
+      "verb": "dans",
       "after": " toute la soirée.",
       "answer": "ait",
       "difficulty": 1,
@@ -817,7 +898,8 @@
     },
     {
       "id": "q086",
-      "before": "On ",
+      "before": "Le dimanche, on ",
+      "verb": "march",
       "after": " pendant des heures.",
       "answer": "ait",
       "difficulty": 1,
@@ -826,6 +908,7 @@
     {
       "id": "q087",
       "before": "Il ",
+      "verb": "travaill",
       "after": " sans relâche à l'époque.",
       "answer": "ait",
       "difficulty": 1,
@@ -833,7 +916,8 @@
     },
     {
       "id": "q088",
-      "before": "Elle ne ",
+      "before": "Avant, elle n'",
+      "verb": "arriv",
       "after": " jamais à temps.",
       "answer": "ait",
       "difficulty": 2,
@@ -841,7 +925,8 @@
     },
     {
       "id": "q089",
-      "before": "On ",
+      "before": "À l'époque, on ",
+      "verb": "cherch",
       "after": " toujours le meilleur chemin.",
       "answer": "ait",
       "difficulty": 1,
@@ -849,7 +934,8 @@
     },
     {
       "id": "q090",
-      "before": "Il ",
+      "before": "Cet hiver-là, il ",
+      "verb": "port",
       "after": " une vieille veste usée.",
       "answer": "ait",
       "difficulty": 1,
@@ -857,7 +943,8 @@
     },
     {
       "id": "q091",
-      "before": "Elle ",
+      "before": "Autrefois, elle ",
+      "verb": "expos",
       "after": " ses meilleurs travaux.",
       "answer": "ait",
       "difficulty": 1,
@@ -865,7 +952,8 @@
     },
     {
       "id": "q092",
-      "before": "On ",
+      "before": "Dans sa jeunesse, on ",
+      "verb": "chant",
       "after": " des airs traditionnels.",
       "answer": "ait",
       "difficulty": 1,
@@ -873,7 +961,8 @@
     },
     {
       "id": "q093",
-      "before": "Il ",
+      "before": "L'été, il ",
+      "verb": "laiss",
       "after": " la fenêtre ouverte.",
       "answer": "ait",
       "difficulty": 1,
@@ -881,7 +970,8 @@
     },
     {
       "id": "q094",
-      "before": "Elle ",
+      "before": "À cette époque, elle ",
+      "verb": "écout",
       "after": " du jazz tous les soirs.",
       "answer": "ait",
       "difficulty": 1,
@@ -889,7 +979,8 @@
     },
     {
       "id": "q095",
-      "before": "On ",
+      "before": "Enfant, on ",
+      "verb": "saut",
       "after": " dans les flaques d'eau.",
       "answer": "ait",
       "difficulty": 1,
@@ -897,7 +988,8 @@
     },
     {
       "id": "q096",
-      "before": "Il ",
+      "before": "Quand il était jeune, il ",
+      "verb": "dessin",
       "after": " des paysages magnifiques.",
       "answer": "ait",
       "difficulty": 1,
@@ -905,7 +997,8 @@
     },
     {
       "id": "q097",
-      "before": "Elle ",
+      "before": "Autrefois, elle ",
+      "verb": "prépar",
       "after": " le petit déjeuner à 7 heures.",
       "answer": "ait",
       "difficulty": 1,
@@ -913,7 +1006,8 @@
     },
     {
       "id": "q098",
-      "before": "On ",
+      "before": "En automne, on ",
+      "verb": "ramass",
       "after": " les feuilles dans le jardin.",
       "answer": "ait",
       "difficulty": 1,
@@ -921,16 +1015,918 @@
     },
     {
       "id": "q099",
-      "before": "Il ",
-      "after": " en ville avant.",
+      "before": "Avant, il ",
+      "verb": "habit",
+      "after": " en ville.",
       "answer": "ait",
       "difficulty": 1,
       "explanation": "Sujet = il + imparfait → -ait."
     },
     {
       "id": "q100",
-      "before": "Elle ",
+      "before": "Quand elle était enfant, elle ",
+      "verb": "visit",
       "after": " sa mère tous les dimanches.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = elle + imparfait → -ait."
+    },
+    {
+      "id": "q101",
+      "before": "Il faut ",
+      "verb": "encad",
+      "after": " le projet.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "On peut dire « il faut mordre » → infinitif → -er."
+    },
+    {
+      "id": "q102",
+      "before": "Elle veut ",
+      "verb": "apprécier",
+      "after": " la musique.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "On peut dire « elle veut mordre » → infinitif → -er."
+    },
+    {
+      "id": "q103",
+      "before": "On doit ",
+      "verb": "renouv",
+      "after": " le bail.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "On peut dire « on doit mordre » → infinitif → -er."
+    },
+    {
+      "id": "q104",
+      "before": "Vous pouvez ",
+      "verb": "ignor",
+      "after": " cette remarque.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "On peut dire « vous pouvez mordre » → infinitif → -er."
+    },
+    {
+      "id": "q105",
+      "before": "Je viens de ",
+      "verb": "arriv",
+      "after": ".",
+      "answer": "er",
+      "difficulty": 2,
+      "explanation": "Après « venir de », on utilise l'infinitif → -er."
+    },
+    {
+      "id": "q106",
+      "before": "C'est facile de ",
+      "verb": "oubli",
+      "after": " les dates.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "On peut dire « de mordre » → infinitif → -er."
+    },
+    {
+      "id": "q107",
+      "before": "Sans ",
+      "verb": "douter",
+      "after": ", c'est possible.",
+      "answer": "er",
+      "difficulty": 2,
+      "explanation": "Après « sans », on utilise l'infinitif → -er."
+    },
+    {
+      "id": "q108",
+      "before": "Avant de ",
+      "verb": "sort",
+      "after": ", tu dois vérifier.",
+      "answer": "er",
+      "difficulty": 2,
+      "explanation": "Après « avant de », on utilise l'infinitif → -er."
+    },
+    {
+      "id": "q109",
+      "before": "Après ",
+      "verb": "manqu",
+      "after": " l'autobus, j'ai attendu.",
+      "answer": "er",
+      "difficulty": 2,
+      "explanation": "Après « après », on utilise l'infinitif → -er."
+    },
+    {
+      "id": "q110",
+      "before": "Plutôt que de ",
+      "verb": "pleur",
+      "after": ", il faut agir.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "On peut dire « de mordre » → infinitif → -er."
+    },
+    {
+      "id": "q111",
+      "before": "Je dois ",
+      "verb": "envoi",
+      "after": " ce colis.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "On peut dire « je dois mordre » → infinitif → -er."
+    },
+    {
+      "id": "q112",
+      "before": "Tu peux ",
+      "verb": "rest",
+      "after": " ici.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "On peut dire « tu peux mordre » → infinitif → -er."
+    },
+    {
+      "id": "q113",
+      "before": "Il va ",
+      "verb": "pleuv",
+      "after": " demain.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "Après « aller », on utilise l'infinitif → -er."
+    },
+    {
+      "id": "q114",
+      "before": "Elles veulent ",
+      "verb": "refus",
+      "after": " cette offre.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "On peut dire « elles veulent mordre » → infinitif → -er."
+    },
+    {
+      "id": "q115",
+      "before": "On commence à ",
+      "verb": "compren",
+      "after": " la leçon.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "Après « commencer à », on utilise l'infinitif → -er."
+    },
+    {
+      "id": "q116",
+      "before": "Il hésite à ",
+      "verb": "quitt",
+      "after": " son emploi.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "Après « hésiter à », on utilise l'infinitif → -er."
+    },
+    {
+      "id": "q117",
+      "before": "Pour ",
+      "verb": "gagn",
+      "after": ", il faut travailler.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "Après « pour », on utilise l'infinitif → -er."
+    },
+    {
+      "id": "q118",
+      "before": "Au lieu de ",
+      "verb": "travaill",
+      "after": ", tu joues.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "Après « au lieu de », on utilise l'infinitif → -er."
+    },
+    {
+      "id": "q119",
+      "before": "Je dois ",
+      "verb": "quitt",
+      "after": " bientôt.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "On peut dire « je dois mordre » → infinitif → -er."
+    },
+    {
+      "id": "q120",
+      "before": "Nous allons ",
+      "verb": "visit",
+      "after": " Paris.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "Après « aller », on utilise l'infinitif → -er."
+    },
+    {
+      "id": "q121",
+      "before": "Tu veux ",
+      "verb": "rest",
+      "after": " longtemps ?",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "On peut dire « tu veux mordre » → infinitif → -er."
+    },
+    {
+      "id": "q122",
+      "before": "On peut ",
+      "verb": "mang",
+      "after": " dehors.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "On peut dire « on peut mordre » → infinitif → -er."
+    },
+    {
+      "id": "q123",
+      "before": "Il faut absolument ",
+      "verb": "termin",
+      "after": " ce travail.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "On peut dire « il faut mordre » → infinitif → -er."
+    },
+    {
+      "id": "q124",
+      "before": "Je vais ",
+      "verb": "appel",
+      "after": " le médecin.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "Après « aller », on utilise l'infinitif → -er."
+    },
+    {
+      "id": "q125",
+      "before": "Elle va ",
+      "verb": "achét",
+      "after": " un nouveau téléphone.",
+      "answer": "er",
+      "difficulty": 1,
+      "explanation": "Après « aller », on utilise l'infinitif → -er."
+    },
+    {
+      "id": "q126",
+      "before": "J'ai ",
+      "verb": "arriv",
+      "after": " en retard.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « j'ai mordu » → participe passé → -é."
+    },
+    {
+      "id": "q127",
+      "before": "Tu as ",
+      "verb": "oubli",
+      "after": " ton parapluie.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « tu as mordu » → participe passé → -é."
+    },
+    {
+      "id": "q128",
+      "before": "Elles ont ",
+      "verb": "visit",
+      "after": " le musée.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « elles ont mordu » → participe passé → -é."
+    },
+    {
+      "id": "q129",
+      "before": "Nous avons ",
+      "verb": "cach",
+      "after": " nos secrets.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « nous avons mordu » → participe passé → -é."
+    },
+    {
+      "id": "q130",
+      "before": "Vous avez ",
+      "verb": "ignor",
+      "after": " cette lettre.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « vous avez mordu » → participe passé → -é."
+    },
+    {
+      "id": "q131",
+      "before": "On a ",
+      "verb": "manqu",
+      "after": " le train.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « on a mordu » → participe passé → -é."
+    },
+    {
+      "id": "q132",
+      "before": "Il a ",
+      "verb": "encad",
+      "after": " le projet.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « il a mordu » → participe passé → -é."
+    },
+    {
+      "id": "q133",
+      "before": "Elle a ",
+      "verb": "apprécier",
+      "after": " le cadeau.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « elle a mordu » → participe passé → -é."
+    },
+    {
+      "id": "q134",
+      "before": "Ils ont ",
+      "verb": "refus",
+      "after": " cette offre.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « ils ont mordu » → participe passé → -é."
+    },
+    {
+      "id": "q135",
+      "before": "J'ai ",
+      "verb": "achét",
+      "after": " une nouvelle robe.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « j'ai mordu » → participe passé → -é."
+    },
+    {
+      "id": "q136",
+      "before": "Tu as ",
+      "verb": "mang",
+      "after": " trop de gâteau.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « tu as mordu » → participe passé → -é."
+    },
+    {
+      "id": "q137",
+      "before": "Il a ",
+      "verb": "port",
+      "after": " une lourde charge.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « il a mordu » → participe passé → -é."
+    },
+    {
+      "id": "q138",
+      "before": "Elles ont ",
+      "verb": "chant",
+      "after": " à la fête.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « elles ont mordu » → participe passé → -é."
+    },
+    {
+      "id": "q139",
+      "before": "Nous avons ",
+      "verb": "danc",
+      "after": " toute la nuit.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « nous avons mordu » → participe passé → -é."
+    },
+    {
+      "id": "q140",
+      "before": "Vous avez ",
+      "verb": "jou",
+      "after": " au football.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « vous avez mordu » → participe passé → -é."
+    },
+    {
+      "id": "q141",
+      "before": "On a ",
+      "verb": "cherch",
+      "after": " partout.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « on a mordu » → participe passé → -é."
+    },
+    {
+      "id": "q142",
+      "before": "C'est un travail bien ",
+      "verb": "organis",
+      "after": ".",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Adjectif verbal issu du participe passé → -é."
+    },
+    {
+      "id": "q143",
+      "before": "J'ai ",
+      "verb": "balanc",
+      "after": " mes craintes.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « j'ai mordu » → participe passé → -é."
+    },
+    {
+      "id": "q144",
+      "before": "Tu as ",
+      "verb": "rang",
+      "after": " ta chambre.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « tu as mordu » → participe passé → -é."
+    },
+    {
+      "id": "q145",
+      "before": "Il a ",
+      "verb": "nett",
+      "after": " la maison.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « il a mordu » → participe passé → -é."
+    },
+    {
+      "id": "q146",
+      "before": "Elle a ",
+      "verb": "décor",
+      "after": " son salon.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « elle a mordu » → participe passé → -é."
+    },
+    {
+      "id": "q147",
+      "before": "Ils ont ",
+      "verb": "plant",
+      "after": " des fleurs.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « ils ont mordu » → participe passé → -é."
+    },
+    {
+      "id": "q148",
+      "before": "Elles ont ",
+      "verb": "peint",
+      "after": " le mur.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « elles ont mordu » → participe passé → -é."
+    },
+    {
+      "id": "q149",
+      "before": "Nous avons ",
+      "verb": "construit",
+      "after": " une maison.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « nous avons mordu » → participe passé → -é."
+    },
+    {
+      "id": "q150",
+      "before": "Vous avez ",
+      "verb": "répar",
+      "after": " la voiture.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "On peut dire « vous avez mordu » → participe passé → -é."
+    },
+    {
+      "id": "q151",
+      "before": "Vous ",
+      "verb": "encadr",
+      "after": " bien vos enfants.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous (2e personne du pluriel) → -ez."
+    },
+    {
+      "id": "q152",
+      "before": "Vous ",
+      "verb": "apprécier",
+      "after": " cette musique ?",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q153",
+      "before": "Vous ",
+      "verb": "renouv",
+      "after": " votre bail régulièrement.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q154",
+      "before": "Vous ne ",
+      "verb": "ignor",
+      "after": " rien.",
+      "answer": "ez",
+      "difficulty": 2,
+      "explanation": "Sujet = vous → -ez, même avec la négation."
+    },
+    {
+      "id": "q155",
+      "before": "Vous ",
+      "verb": "arriv",
+      "after": " toujours à l'heure.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q156",
+      "before": "Vous ",
+      "verb": "oubli",
+      "after": " facilement les dates.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q157",
+      "before": "Vous ",
+      "verb": "visit",
+      "after": " souvent le musée.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q158",
+      "before": "Vous ",
+      "verb": "cach",
+      "after": " bien vos sentiments.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q159",
+      "before": "Vous ",
+      "verb": "refus",
+      "after": " cette promotion ?",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q160",
+      "before": "Vous ",
+      "verb": "achét",
+      "after": " votre pain à la boulangerie.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q161",
+      "before": "Vous ",
+      "verb": "mang",
+      "after": " très bien.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q162",
+      "before": "Vous ",
+      "verb": "port",
+      "after": " cette veste avec élégance.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q163",
+      "before": "Vous ",
+      "verb": "chant",
+      "after": " merveilleusement.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q164",
+      "before": "Vous ",
+      "verb": "danc",
+      "after": " la valse très bien.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q165",
+      "before": "Vous ",
+      "verb": "jou",
+      "after": " du piano depuis longtemps.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q166",
+      "before": "Vous ",
+      "verb": "cherch",
+      "after": " la solution depuis une heure.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q167",
+      "before": "Vous ",
+      "verb": "balanc",
+      "after": " vos doutes en l'air.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q168",
+      "before": "Vous ",
+      "verb": "rang",
+      "after": " votre maison très proprement.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q169",
+      "before": "Vous ",
+      "verb": "nett",
+      "after": " votre garage ?",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q170",
+      "before": "Vous ",
+      "verb": "décor",
+      "after": " votre maison chaque Noël.",
+      "answer": "ez",
+      "difficulty": 1,
+      "explanation": "Sujet = vous → -ez."
+    },
+    {
+      "id": "q171",
+      "before": "Quand j'étais enfant, j'",
+      "verb": "anim",
+      "after": " les fêtes.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = je + imparfait (habitude) → -ais."
+    },
+    {
+      "id": "q172",
+      "before": "À l'époque, tu ",
+      "verb": "balanç",
+      "after": " tes craintes.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = tu + imparfait → -ais."
+    },
+    {
+      "id": "q173",
+      "before": "Autrefois, je ",
+      "verb": "cach",
+      "after": " mon journal intime.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = je + imparfait → -ais."
+    },
+    {
+      "id": "q174",
+      "before": "Avant, tu ",
+      "verb": "danc",
+      "after": " chaque samedi.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = tu + imparfait → -ais."
+    },
+    {
+      "id": "q175",
+      "before": "Enfant, je ",
+      "verb": "encad",
+      "after": " mes dessins.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = je + imparfait → -ais."
+    },
+    {
+      "id": "q176",
+      "before": "Jadis, tu ",
+      "verb": "ignor",
+      "after": " cette règle.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = tu + imparfait → -ais."
+    },
+    {
+      "id": "q177",
+      "before": "Quand tu étais jeune, tu ",
+      "verb": "mang",
+      "after": " de tout.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = tu + imparfait → -ais."
+    },
+    {
+      "id": "q178",
+      "before": "Naguère, je ",
+      "verb": "oubli",
+      "after": " mes clés.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = je + imparfait → -ais."
+    },
+    {
+      "id": "q179",
+      "before": "Dans ma jeunesse, je ",
+      "verb": "port",
+      "after": " un uniforme.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = je + imparfait → -ais."
+    },
+    {
+      "id": "q180",
+      "before": "À cette époque, tu ",
+      "verb": "rang",
+      "after": " tes affaires.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = tu + imparfait → -ais."
+    },
+    {
+      "id": "q181",
+      "before": "Chaque été, je ",
+      "verb": "visit",
+      "after": " mes grands-parents.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = je + imparfait → -ais."
+    },
+    {
+      "id": "q182",
+      "before": "Tous les jours, tu ",
+      "verb": "cri",
+      "after": " très fort.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = tu + imparfait → -ais."
+    },
+    {
+      "id": "q183",
+      "before": "L'année dernière, je ",
+      "verb": "rest",
+      "after": " chez moi.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = je + imparfait → -ais."
+    },
+    {
+      "id": "q184",
+      "before": "Autre fois, tu ",
+      "verb": "cherch",
+      "after": " des solutions.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = tu + imparfait → -ais."
+    },
+    {
+      "id": "q185",
+      "before": "Quand il pleuvait, je ",
+      "verb": "jou",
+      "after": " à l'intérieur.",
+      "answer": "ais",
+      "difficulty": 1,
+      "explanation": "Sujet = je + imparfait → -ais."
+    },
+    {
+      "id": "q186",
+      "before": "Quand il était petit, il ",
+      "verb": "anim",
+      "after": " les fêtes de famille.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = il + imparfait → -ait."
+    },
+    {
+      "id": "q187",
+      "before": "À cette époque, elle ",
+      "verb": "balanç",
+      "after": " ses doutes.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = elle + imparfait → -ait."
+    },
+    {
+      "id": "q188",
+      "before": "Autrefois, on ",
+      "verb": "cach",
+      "after": " ses émotions.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = on + imparfait → -ait."
+    },
+    {
+      "id": "q189",
+      "before": "Avant, il ",
+      "verb": "danc",
+      "after": " au cabaret.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = il + imparfait → -ait."
+    },
+    {
+      "id": "q190",
+      "before": "Enfant, elle ",
+      "verb": "encad",
+      "after": " ses travaux d'école.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = elle + imparfait → -ait."
+    },
+    {
+      "id": "q191",
+      "before": "Jadis, on ",
+      "verb": "ignor",
+      "after": " cette loi.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = on + imparfait → -ait."
+    },
+    {
+      "id": "q192",
+      "before": "Quand il était adolescent, il ",
+      "verb": "mang",
+      "after": " énormément.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = il + imparfait → -ait."
+    },
+    {
+      "id": "q193",
+      "before": "Naguère, elle ",
+      "verb": "oubli",
+      "after": " ses promesses.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = elle + imparfait → -ait."
+    },
+    {
+      "id": "q194",
+      "before": "Dans sa jeunesse, il ",
+      "verb": "port",
+      "after": " un costume impeccable.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = il + imparfait → -ait."
+    },
+    {
+      "id": "q195",
+      "before": "À cette époque, elle ",
+      "verb": "rang",
+      "after": " tout très soigneusement.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = elle + imparfait → -ait."
+    },
+    {
+      "id": "q196",
+      "before": "Chaque mois, il ",
+      "verb": "visit",
+      "after": " le musée d'art.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = il + imparfait → -ait."
+    },
+    {
+      "id": "q197",
+      "before": "Tous les matins, elle ",
+      "verb": "cri",
+      "after": " pour réveiller tout le monde.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = elle + imparfait → -ait."
+    },
+    {
+      "id": "q198",
+      "before": "L'hiver dernier, on ",
+      "verb": "rest",
+      "after": " à la maison.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = on + imparfait → -ait."
+    },
+    {
+      "id": "q199",
+      "before": "Chaque jour, il ",
+      "verb": "cherch",
+      "after": " le bonheur.",
+      "answer": "ait",
+      "difficulty": 1,
+      "explanation": "Sujet = il + imparfait → -ait."
+    },
+    {
+      "id": "q200",
+      "before": "Quand il pleuvait, elle ",
+      "verb": "jou",
+      "after": " avec ses poupées.",
       "answer": "ait",
       "difficulty": 1,
       "explanation": "Sujet = elle + imparfait → -ait."
