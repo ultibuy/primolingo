@@ -25,7 +25,7 @@ function buildLevelData() {
       stats: [
         { label: 'Comment obtenir', value: 'Terminer 1 session guidée', hint: "Peu importe le score. Finis la session et c'est validé." },
         { label: 'Le mode guidé', value: "Un outil t'aide", hint: "Le pavé de décision élimine les mauvaises réponses une par une. Tu comprends la logique avant de répondre." },
-        { label: 'Pièces gagnées', value: '5 à 30 par session', hint: "Plus ton score est haut, plus tu gagnes. Score parfait = 30 pièces." },
+        { label: 'Pièces gagnées', value: '0 à 30 par session', hint: "60% → 5 pièces, 80% → 20, 100% → 30. En dessous de 60%, pas de pièces." },
         { label: "Et après ?", value: 'Direction Argent', hint: `3 sessions guidées avec ${s80} ou mieux. Ça débloque le mode direct — sans aide.` },
       ],
     },

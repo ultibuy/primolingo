@@ -12,7 +12,7 @@ import { allRules } from '../content/loader.js';
 // Engine
 import { selectSessionQuestions, selectSniperQuestions } from '../engine/session.js';
 import { initRuleSM2, updateRuleSM2, calculateDiamondHealth, getToday, parseLocalDate } from '../engine/sm2.js';
-import { calculateCoins, calculatePerfectSessionBonus, checkLevelUp, updateStreak } from '../engine/scoring.js';
+import { calculateCoins, checkLevelUp, updateStreak } from '../engine/scoring.js';
 import {
   applyTheme,
   canPurchaseMysteryImagePiece,
@@ -65,11 +65,11 @@ const SECRET_CODE_BASE_LOCK_MS = 15000;
 
 const MILESTONE_COINS = {
   firstSession: 50,
-  streak7: 50,
-  streak14: 100,
-  streak30: 150,
-  streak60: 300,
-  streak100: 500,
+  streak7: 100,
+  streak14: 200,
+  streak30: 350,
+  streak60: 500,
+  streak100: 1000,
 };
 
 const STREAK_MILESTONES = {
@@ -592,14 +592,11 @@ export default function ChildApp() {
       }
 
       let sessionCoins = calculateCoins(score, total);
-      const perfectSessionBonus = calculatePerfectSessionBonus(score, total);
-      if (perfectSessionBonus > 0) {
-        sessionCoins += perfectSessionBonus;
-        events.push({ type: 'perfectSessionBonus', value: perfectSessionBonus });
-      }
+      const pct = Math.round((score / total) * 100);
+      const qualifies = pct >= 60; // minimum 60% to earn streak + daily bonus
 
       const isFirstSessionToday = next.streak?.lastActiveDate !== today;
-      if (isFirstSessionToday) {
+      if (isFirstSessionToday && qualifies) {
         sessionCoins += 10; // FIRST_SESSION_BONUS
         events.push({ type: 'firstSessionOfDay', value: 10 });
       }
@@ -672,10 +669,12 @@ export default function ChildApp() {
         }
       }
 
-      const streakResult = updateStreak(next);
-      next.streak = streakResult.streak;
-      if (streakResult.shieldUsed) {
-        events.push({ type: 'shieldUsed', value: streakResult.streak.current });
+      if (qualifies) {
+        const streakResult = updateStreak(next);
+        next.streak = streakResult.streak;
+        if (streakResult.shieldUsed) {
+          events.push({ type: 'shieldUsed', value: streakResult.streak.current });
+        }
       }
 
       if (!next.milestones) {
@@ -1000,12 +999,13 @@ export default function ChildApp() {
               right={12}
               size={38}
             />
+            <div style={{ fontSize: '2.5rem', marginBottom: '0.3rem' }}>👋</div>
             <div style={firstQuizBonusKickerStyle}>Bonus du jour</div>
             <div style={firstQuizBonusTitleStyle}>
               Bonus de 10 <span style={{ display: 'inline-flex', verticalAlign: 'middle', margin: '0 0.12em' }}><CoinIcon size={26} /></span> disponible !
             </div>
             <div style={{ fontSize: '0.9rem', lineHeight: 1.55, color: '#cbd5e1' }}>
-              Termine ton premier quiz de la journée pour remporter ce bonus.
+              Termine ton premier quiz de la journée avec au moins <strong style={{ color: '#fbbf24' }}>60% de bonnes réponses</strong> pour remporter ce bonus.
             </div>
             <div style={{ display: 'flex', gap: '0.7rem', justifyContent: 'center', flexWrap: 'wrap' }}>
               <button type="button" onClick={() => { pendingQuizLaunchRef.current = null; dismissFirstQuizBonusForToday(); setShowFirstQuizBonusModal(false); }} style={secondaryBtnStyle}>
@@ -1087,6 +1087,7 @@ export default function ChildApp() {
         isFirstSessionOfDay={isFirstSessionOfDay}
         ruleProgress={ruleProgress}
         streak={progress.streak}
+        milestones={progress.milestones}
         victoryAnimationId={victoryAnimationId}
         shopOwned={progress.shop?.owned || []}
         onClose={handleCloseQuiz}
@@ -1131,6 +1132,8 @@ export default function ChildApp() {
       dailyBackups={dailyBackups}
       onDebugRestoreBackup={handleDebugRestoreBackup}
       onTriggerEntranceAnim={triggerEntranceAnim}
+      sessionSize={sessionSize}
+      onDebugSetSessionSize={setSessionSize}
     />
   );
 }

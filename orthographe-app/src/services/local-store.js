@@ -95,19 +95,29 @@ export async function restoreDailyBackup(uid, childId, date) {
 // Children CRUD (used by pages)
 // ---------------------------------------------------------------------------
 
+const DEFAULT_CHILD = { id: 'local-child', name: 'Debug', avatar: '🦊' };
+
+function readChildren(uid) {
+  const k = key(['children', uid]);
+  const stored = read(k);
+  if (stored && stored.length > 0) return stored;
+  // First time: persist the default so all functions see it
+  const initial = [{ ...DEFAULT_CHILD }];
+  write(k, initial);
+  return initial;
+}
+
 export function listChildren(uid, callback) {
-  const children = read(key(['children', uid])) || [{ id: 'local-child', name: 'Debug', avatar: '🦊' }];
-  callback(children);
+  callback(readChildren(uid));
   return () => {};
 }
 
 export async function getChild(uid, childId) {
-  const children = read(key(['children', uid])) || [{ id: 'local-child', name: 'Debug', avatar: '🦊' }];
-  return children.find(c => c.id === childId) || { id: childId, name: 'Debug', avatar: '🦊' };
+  return readChildren(uid).find(c => c.id === childId) || null;
 }
 
 export async function createChild(uid, name, avatar) {
-  const children = read(key(['children', uid])) || [];
+  const children = readChildren(uid);
   const id = `child-${Date.now()}`;
   children.push({ id, name, avatar });
   write(key(['children', uid]), children);
@@ -115,7 +125,7 @@ export async function createChild(uid, name, avatar) {
 }
 
 export async function updateChild(uid, childId, data) {
-  const children = read(key(['children', uid])) || [];
+  const children = readChildren(uid);
   const idx = children.findIndex(c => c.id === childId);
   if (idx >= 0) Object.assign(children[idx], data);
   write(key(['children', uid]), children);

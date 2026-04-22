@@ -16,7 +16,7 @@ const N = LEVELS.length; // 4
 
 const LEVEL_KEYS = ['bronze', 'silver', 'crown', 'diamond'];
 
-export default function LevelPath({ currentLevel, progress = 0, onNodeClick, pandaMood = null, characterId = 'panda' }) {
+export default function LevelPath({ currentLevel, progress = 0, onNodeClick, onCharacterClick, pandaMood = null, characterId = 'panda' }) {
   const lvl = Math.max(0, Math.min(currentLevel, 5));
   const ariaLevel = Math.min(lvl, N);
 
@@ -85,14 +85,17 @@ export default function LevelPath({ currentLevel, progress = 0, onNodeClick, pan
 
       {/* Active character — sits on the fill endpoint, hidden at extremes */}
       {characterId && fillFraction > 0.02 && fillFraction < 0.99 && (
-        <div aria-hidden="true" style={{
-          position: 'absolute',
-          left: `${firstCenter + fillFraction * trackWidth}%`,
-          top: NODE_ACTIVE / 2 - 40,
-          transform: 'translateX(-50%)',
-          zIndex: 3,
-          pointerEvents: 'none',
-        }}>
+        <div
+          onClick={(e) => { e.stopPropagation(); onCharacterClick?.(); }}
+          style={{
+            position: 'absolute',
+            left: `${firstCenter + fillFraction * trackWidth}%`,
+            top: NODE_ACTIVE / 2 - 40,
+            transform: 'translateX(-50%)',
+            zIndex: 3,
+            cursor: onCharacterClick ? 'pointer' : 'default',
+          }}
+        >
           <CharacterSprite id={characterId} size={28} mood={pandaMood || 'walk'} glow={false} />
         </div>
       )}

@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import CoinIcon from './CoinIcon.jsx';
 import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
-import { calculateCoins, calculatePerfectSessionBonus } from '../engine/scoring.js';
+import { calculateCoins } from '../engine/scoring.js';
 
 /**
  * Shared end-of-session screen used by both QuizGuided and QuizDirect.
@@ -9,28 +9,9 @@ import { calculateCoins, calculatePerfectSessionBonus } from '../engine/scoring.
  * Props:
  *   rule, questions, answers, score, onFinish
  *   hasDoubleCoinsActive (optional, boolean) — doubles the displayed quiz gains
- *   isFirstSessionOfDay (optional, boolean) — shows +10 bonus if true
- *   A perfect 20/20 session also shows a +10 bonus
- *
- *   levelProgress (optional, object) — progression toward the next level
- *     {
- *       currentLevel: 2,
- *       nextLevel: 3,
- *       nextLevelName: 'Couronne',
- *       current: 2,          // e.g. 2 out of 3 qualifying sessions
- *       target: 3,
- *       justLeveledUp: false, // true if level was reached in this session
- *       message: "Plus qu'une session !"
- *     }
- *
- *   streakInfo (optional, object) — info about the next streak tier
- *     {
- *       current: 5,
- *       title: 'Sur la lancée',
- *       nextTierDays: 7,
- *       nextTierTitle: 'En feu',
- *       daysLeft: 2,
- *     }
+ *   isFirstSessionOfDay (optional, boolean) — shows +10 bonus if first session >= 60%
+ *   streakMilestoneJustEarned (optional, { streak, coins }) — if a streak milestone was just earned
+ *   levelProgress, streakInfo, victoryAnimationId
  */
 export default function EndScreen({
   rule,
@@ -43,61 +24,68 @@ export default function EndScreen({
   levelProgress,
   streakInfo,
   victoryAnimationId,
+  streakMilestoneJustEarned,
 }) {
   const total = questions.length;
   const pct = total > 0 ? Math.round((score / total) * 100) : 0;
   const baseCoins = calculateCoins(score, total);
-  const perfectSessionBonus = calculatePerfectSessionBonus(score, total);
-  const firstSessionBonus = isFirstSessionOfDay ? 10 : 0;
-  const coinsBeforeMultiplier = baseCoins + perfectSessionBonus + firstSessionBonus;
+  const qualifies = pct >= 60;
+  const firstSessionBonus = isFirstSessionOfDay && qualifies ? 10 : 0;
+  const streakBonus = streakMilestoneJustEarned?.coins || 0;
+  const coinsBeforeMultiplier = baseCoins + firstSessionBonus;
   const doubleCoinsBonus = hasDoubleCoinsActive ? coinsBeforeMultiplier : 0;
   const totalCoins = coinsBeforeMultiplier + doubleCoinsBonus;
-  const showCoinBreakdown = perfectSessionBonus > 0 || firstSessionBonus > 0 || doubleCoinsBonus > 0;
   const emoji = pct === 100 ? '\u{1F3C6}' : pct >= 70 ? '\u{1F44F}' : pct >= 50 ? '\u{1F4AA}' : '\u{1F4DA}';
 
-  // Score feedback message
+  // Dynamic thresholds based on question count
+  const threshold60 = Math.ceil(total * 0.6);
+  const threshold80 = Math.ceil(total * 0.8);
+  const threshold100 = total;
+
+  // Which tier is active?
+  const activeTier = pct === 100 ? 2 : pct >= 80 ? 1 : pct >= 60 ? 0 : -1;
+
+  const tiers = [
+    { range: `${threshold60}-${threshold80 - 1}`, coins: 5, active: activeTier === 0 },
+    { range: `${threshold80}-${threshold100 - 1}`, coins: 20, active: activeTier === 1 },
+    { range: `${threshold100}`, coins: 30, active: activeTier === 2 },
+  ];
+
   const feedbackMessage = getFeedbackMessage(pct);
 
-  // End screen steps: score -> coins -> progression -> recap -> button
+  // Animation states
   const [displayedScore, setDisplayedScore] = useState(() => (
     score === 0 || total <= 2 ? score : 0
   ));
   const [showFeedback, setShowFeedback] = useState(false);
   const [showCoins, setShowCoins] = useState(false);
+  const [visibleTier, setVisibleTier] = useState(-1); // -1 = none, 0/1/2 = tiers
+  const [animatingCoins, setAnimatingCoins] = useState(false);
+  const [displayedCoins, setDisplayedCoins] = useState(0);
+  const [showBonuses, setShowBonuses] = useState(false);
+  const [displayedDailyBonus, setDisplayedDailyBonus] = useState(0);
+  const [displayedStreakBonus, setDisplayedStreakBonus] = useState(0);
+  const [showTotal, setShowTotal] = useState(false);
   const [showProgression, setShowProgression] = useState(false);
+  const [progressBarAnimated, setProgressBarAnimated] = useState(false);
   const [showRecap, setShowRecap] = useState(false);
   const [showButton, setShowButton] = useState(false);
-  const [progressBarAnimated, setProgressBarAnimated] = useState(false);
-  const scoreRef = useRef(null);
 
-  // Step 1: Counting animation for score (adapts to question count)
+  // Step 1: Score count-up
   useEffect(() => {
-    if (score === 0) {
-      const t = setTimeout(() => setShowFeedback(true), 400);
-      return () => clearTimeout(t);
-    }
-
-    // For 1 question (debug mode): instant display
-    if (total <= 2) {
-      return undefined;
-    }
-
-    // For larger counts: count up in ~1 second (50ms interval)
-    const targetSteps = 20; // ~1s at 50ms per step
-    const step = Math.max(1, Math.ceil(score / targetSteps));
+    if (score === 0 || total <= 2) return;
+    const steps = 20;
+    const step = Math.max(1, Math.ceil(score / steps));
     let current = 0;
     const interval = setInterval(() => {
       current += step;
-      if (current >= score) {
-        current = score;
-        clearInterval(interval);
-      }
+      if (current >= score) { current = score; clearInterval(interval); }
       setDisplayedScore(current);
     }, 50);
     return () => clearInterval(interval);
   }, [score, total]);
 
-  // Step 2: Show feedback after score counting finishes
+  // Step 2: Feedback after score
   useEffect(() => {
     if (displayedScore === score) {
       const t = setTimeout(() => setShowFeedback(true), 200);
@@ -105,7 +93,7 @@ export default function EndScreen({
     }
   }, [displayedScore, score]);
 
-  // Step 3: Show coins after feedback
+  // Step 3: Show coins section
   useEffect(() => {
     if (showFeedback) {
       const t = setTimeout(() => setShowCoins(true), 400);
@@ -113,15 +101,96 @@ export default function EndScreen({
     }
   }, [showFeedback]);
 
-  // Step 4: Show progression section after coins
+  // Step 4: Reveal tiers one by one (300ms apart)
   useEffect(() => {
-    if (showCoins) {
-      const t = setTimeout(() => setShowProgression(true), 500);
-      return () => clearTimeout(t);
+    if (!showCoins) return;
+    const timers = [];
+    for (let i = 0; i <= 2; i++) {
+      timers.push(setTimeout(() => setVisibleTier(i), 200 + i * 300));
     }
+    // After all tiers visible, start coin animation on active tier
+    timers.push(setTimeout(() => setAnimatingCoins(true), 200 + 3 * 300));
+    return () => timers.forEach(clearTimeout);
   }, [showCoins]);
 
-  // Step 4b: Animate the progress bar after it appears
+  // Step 5: Animate coin count-up on active tier
+  useEffect(() => {
+    if (!animatingCoins || activeTier < 0) return;
+    const target = tiers[activeTier].coins;
+    const duration = 600;
+    const steps = 15;
+    const stepVal = target / steps;
+    let current = 0;
+    const interval = setInterval(() => {
+      current += stepVal;
+      if (current >= target) { current = target; clearInterval(interval); }
+      setDisplayedCoins(Math.round(current));
+    }, duration / steps);
+    return () => clearInterval(interval);
+  }, [animatingCoins]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Step 6: Show bonuses after coin animation
+  useEffect(() => {
+    if (displayedCoins === (activeTier >= 0 ? tiers[activeTier].coins : 0) && animatingCoins) {
+      const t = setTimeout(() => setShowBonuses(true), 300);
+      return () => clearTimeout(t);
+    }
+  }, [displayedCoins, animatingCoins]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Step 6b: Animate daily bonus count-up
+  useEffect(() => {
+    if (!showBonuses || firstSessionBonus === 0) return;
+    const duration = 400;
+    const steps = 10;
+    const stepVal = firstSessionBonus / steps;
+    let current = 0;
+    const interval = setInterval(() => {
+      current += stepVal;
+      if (current >= firstSessionBonus) { current = firstSessionBonus; clearInterval(interval); }
+      setDisplayedDailyBonus(Math.round(current));
+    }, duration / steps);
+    return () => clearInterval(interval);
+  }, [showBonuses, firstSessionBonus]);
+
+  // Step 6c: Animate streak bonus count-up
+  useEffect(() => {
+    if (!showBonuses || streakBonus === 0) return;
+    const delay = firstSessionBonus > 0 ? 500 : 0;
+    const t = setTimeout(() => {
+      const duration = 600;
+      const steps = 15;
+      const stepVal = streakBonus / steps;
+      let current = 0;
+      const interval = setInterval(() => {
+        current += stepVal;
+        if (current >= streakBonus) { current = streakBonus; clearInterval(interval); }
+        setDisplayedStreakBonus(Math.round(current));
+      }, duration / steps);
+    }, delay);
+    return () => clearTimeout(t);
+  }, [showBonuses, streakBonus, firstSessionBonus]);
+
+  // Step 7: Show total after bonuses are done (or after coin anim if no bonuses)
+  useEffect(() => {
+    const hasBonuses = firstSessionBonus > 0 || streakBonus > 0 || doubleCoinsBonus > 0;
+    if (hasBonuses && showBonuses) {
+      const t = setTimeout(() => setShowTotal(true), 600);
+      return () => clearTimeout(t);
+    }
+    if (!hasBonuses && animatingCoins) {
+      const t = setTimeout(() => setShowTotal(true), 800);
+      return () => clearTimeout(t);
+    }
+  }, [showBonuses, animatingCoins, firstSessionBonus, streakBonus, doubleCoinsBonus]);
+
+  // Step 7b: Show progression after total
+  useEffect(() => {
+    if (showTotal) {
+      const t = setTimeout(() => setShowProgression(true), 400);
+      return () => clearTimeout(t);
+    }
+  }, [showTotal]);
+
   useEffect(() => {
     if (showProgression) {
       const t = setTimeout(() => setProgressBarAnimated(true), 100);
@@ -129,7 +198,7 @@ export default function EndScreen({
     }
   }, [showProgression]);
 
-  // Step 5: Show recap after progression
+  // Step 8: Show recap
   useEffect(() => {
     if (showProgression) {
       const t = setTimeout(() => setShowRecap(true), 600);
@@ -137,7 +206,7 @@ export default function EndScreen({
     }
   }, [showProgression]);
 
-  // Step 6: Show button after recap
+  // Step 9: Show button
   useEffect(() => {
     if (showRecap) {
       const t = setTimeout(() => setShowButton(true), 400);
@@ -145,19 +214,23 @@ export default function EndScreen({
     }
   }, [showRecap]);
 
-  // Determine if we should show the level progress bar
   const showLevelBar = levelProgress && !levelProgress.justLeveledUp;
-  // Determine if we should show streak tier info
-  const showStreakTier = streakInfo && streakInfo.daysLeft > 0 && streakInfo.nextTierTitle;
+
+  // Next coin milestone for streak
+  const STREAK_COIN_MILESTONES = { 7: 100, 14: 200, 30: 350, 60: 500, 100: 1000 };
+  const currentStreak = streakInfo?.current || 0;
+  const nextMilestoneDays = [7, 14, 30, 60, 100].find(d => d > currentStreak) || null;
+  const nextMilestoneCoins = nextMilestoneDays ? STREAK_COIN_MILESTONES[nextMilestoneDays] : null;
+  const streakDaysLeft = nextMilestoneDays ? nextMilestoneDays - currentStreak : 0;
+  const showStreakNext = nextMilestoneDays && streakDaysLeft > 0;
 
   return (
     <div style={pageStyle}>
       <div style={cardStyle}>
-        {/* 1. Big emoji + score with counting animation */}
+        {/* 1. Big emoji + score */}
         <div style={{ textAlign: 'center', marginBottom: '0.6rem' }}>
           <div style={{
-            display: 'flex',
-            justifyContent: 'center',
+            display: 'flex', justifyContent: 'center',
             marginBottom: victoryAnimationId ? '0.55rem' : '0.4rem',
             animation: 'bounce-in 0.5s ease forwards',
           }}>
@@ -168,94 +241,131 @@ export default function EndScreen({
             )}
           </div>
           {victoryAnimationId && (
-            <div style={{
-              fontSize: '1.25rem',
-              marginBottom: '0.15rem',
-              lineHeight: 1,
-            }}>
-              {emoji}
-            </div>
+            <div style={{ fontSize: '1.25rem', marginBottom: '0.15rem', lineHeight: 1 }}>{emoji}</div>
           )}
           <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-accent)', marginBottom: '0.3rem' }}>
             Session terminée !
           </h1>
-          <p ref={scoreRef} style={{ fontSize: '1.4rem', color: '#d1d5db', margin: 0 }}>
+          <p style={{ fontSize: '1.4rem', color: '#d1d5db', margin: 0 }}>
             <strong style={{
-              color: pct >= 70 ? '#4ade80' : '#fbbf24',
-              fontSize: '2rem',
-              transition: 'all 0.2s',
+              color: pct >= 70 ? '#4ade80' : pct >= 60 ? '#fbbf24' : '#9ca3af',
+              fontSize: '2rem', transition: 'all 0.2s',
             }}>
               {displayedScore}/{total}
             </strong>
-            <span style={{ fontSize: '1rem', color: '#9ca3af', marginLeft: '0.5rem' }}>
-              ({pct}%)
-            </span>
           </p>
         </div>
 
-        {/* 2. Score feedback message */}
+        {/* 2. Feedback */}
         <div style={{
           textAlign: 'center', marginBottom: '1.2rem',
           opacity: showFeedback ? 1 : 0,
           transform: showFeedback ? 'translateY(0)' : 'translateY(6px)',
           transition: 'all 0.4s ease',
         }}>
-          <p style={{
-            fontSize: '0.92rem', fontStyle: 'italic', color: '#9ca3af',
-            margin: 0, lineHeight: 1.5,
-          }}>
+          <p style={{ fontSize: '0.92rem', fontStyle: 'italic', color: '#9ca3af', margin: 0, lineHeight: 1.5 }}>
             {feedbackMessage}
           </p>
         </div>
 
-        {/* 3. Coins earned with breakdown */}
+        {/* 3. Coin tiers — subtle, integrated */}
         <div style={{
-          display: 'flex', flexDirection: 'column', alignItems: 'center',
-          gap: '0.3rem', marginBottom: '1rem',
+          marginBottom: '1.2rem',
           opacity: showCoins ? 1 : 0,
-          transform: showCoins ? 'translateY(0) scale(1)' : 'translateY(10px) scale(0.8)',
-          transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+          transform: showCoins ? 'translateY(0)' : 'translateY(8px)',
+          transition: 'all 0.5s ease',
         }}>
-          {/* Total coins */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <CoinIcon size={28} animate={showCoins} />
-            <span style={{
-              fontSize: '1.3rem', fontWeight: 900, color: '#fbbf24',
-              textShadow: '0 0 12px rgba(251,191,36,0.3)',
-            }}>
-              +{totalCoins}
-            </span>
-            <span style={{ fontSize: '0.8rem', color: '#9ca3af' }}>pièces gagnées</span>
+          {/* Tier rows */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem' }}>
+            {tiers.map((tier, i) => {
+              const visible = visibleTier >= i;
+              const isActive = tier.active;
+              const showCount = isActive && animatingCoins;
+              return (
+                <div key={i} style={{
+                  display: 'flex', alignItems: 'center', gap: '0.5rem',
+                  padding: '0.3rem 0.6rem',
+                  borderRadius: 10,
+                  background: isActive ? 'rgba(251,191,36,0.08)' : 'transparent',
+                  opacity: visible ? 1 : 0,
+                  transform: visible ? 'translateX(0)' : 'translateX(-8px)',
+                  transition: 'all 0.35s ease',
+                }}>
+                  <span style={{
+                    width: 6, height: 6, borderRadius: '50%', flexShrink: 0,
+                    background: isActive ? '#fbbf24' : 'rgba(255,255,255,0.1)',
+                    boxShadow: isActive ? '0 0 6px rgba(251,191,36,0.4)' : 'none',
+                  }} />
+                  <span style={{
+                    flex: 1, fontSize: '0.78rem',
+                    fontWeight: isActive ? 700 : 500,
+                    color: isActive ? '#d1d5db' : '#4b5563',
+                  }}>
+                    {tier.range} réponses justes
+                  </span>
+                  <span style={{
+                    display: 'inline-flex', alignItems: 'center', gap: '0.2rem',
+                    fontSize: '0.8rem',
+                    fontWeight: isActive ? 800 : 600,
+                    color: isActive ? '#fbbf24' : '#4b5563',
+                  }}>
+                    {showCount ? displayedCoins : tier.coins}
+                    <CoinIcon size={isActive ? 14 : 12} animate={isActive && animatingCoins} variant={isActive ? 'gold' : 'silver'} />
+                  </span>
+                </div>
+              );
+            })}
           </div>
-          {/* Breakdown */}
-          {showCoinBreakdown && (
+
+          {/* Bonuses */}
+          {(firstSessionBonus > 0 || streakBonus > 0 || doubleCoinsBonus > 0) && (
             <div style={{
-              display: 'flex', flexDirection: 'column', alignItems: 'center',
-              gap: '0.15rem', marginTop: '0.2rem',
+              marginTop: '0.5rem', paddingTop: '0.4rem',
+              borderTop: '1px solid rgba(255,255,255,0.05)',
+              display: 'flex', flexDirection: 'column', gap: '0.1rem',
+              opacity: showBonuses ? 1 : 0,
+              transform: showBonuses ? 'translateY(0)' : 'translateY(4px)',
+              transition: 'all 0.4s ease',
             }}>
-              <span style={{ fontSize: '0.72rem', color: '#6b7280' }}>
-                Base : +{baseCoins}
-              </span>
-              {perfectSessionBonus > 0 && (
-                <span style={{ fontSize: '0.72rem', color: '#6b7280' }}>
-                  Bonus 100% : +{perfectSessionBonus}
-                </span>
-              )}
               {firstSessionBonus > 0 && (
-                <span style={{ fontSize: '0.72rem', color: '#6b7280' }}>
-                  Bonus début de quiz : +{firstSessionBonus}
-                </span>
+                <div style={bonusLineStyle}>
+                  <span>Bonus du jour</span>
+                  <span style={bonusValueStyle}>+{displayedDailyBonus} <CoinIcon size={12} /></span>
+                </div>
+              )}
+              {streakBonus > 0 && (
+                <div style={bonusLineStyle}>
+                  <span>Palier streak {streakMilestoneJustEarned.streak}j</span>
+                  <span style={{ ...bonusValueStyle, color: '#4ade80' }}>+{displayedStreakBonus} <CoinIcon size={12} /></span>
+                </div>
               )}
               {doubleCoinsBonus > 0 && (
-                <span style={{ fontSize: '0.72rem', color: '#6b7280' }}>
-                  Double coins x2 : +{doubleCoinsBonus}
-                </span>
+                <div style={bonusLineStyle}>
+                  <span>Double x2</span>
+                  <span style={bonusValueStyle}>+{doubleCoinsBonus} <CoinIcon size={12} /></span>
+                </div>
               )}
             </div>
           )}
+
+          {/* Total — right-aligned, compact */}
+          <div style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'flex-end',
+            gap: '0.35rem', marginTop: '0.5rem',
+            opacity: showTotal ? 1 : 0,
+            transform: showTotal ? 'translateY(0)' : 'translateY(4px)',
+            transition: 'all 0.4s ease',
+          }}>
+            <CoinIcon size={18} animate={showTotal} />
+            <span style={{
+              fontSize: '1.05rem', fontWeight: 900, color: '#fbbf24',
+            }}>
+              +{totalCoins + streakBonus}
+            </span>
+          </div>
         </div>
 
-        {/* 4. Level progress bar toward next level (C1) */}
+        {/* 4. Level progress */}
         {showLevelBar && (
           <div style={{
             marginBottom: '1rem',
@@ -264,67 +374,36 @@ export default function EndScreen({
             transition: 'all 0.5s ease',
           }}>
             <div style={{
-              background: 'rgba(255,255,255,0.05)',
-              borderRadius: 14,
-              padding: '0.9rem 1rem',
-              border: '1px solid rgba(255,255,255,0.08)',
+              background: 'rgba(255,255,255,0.05)', borderRadius: 14,
+              padding: '0.9rem 1rem', border: '1px solid rgba(255,255,255,0.08)',
             }}>
               <p style={{
-                margin: '0 0 0.5rem 0',
-                fontSize: '0.82rem',
-                color: 'var(--color-accent)',
-                fontWeight: 600,
-                textAlign: 'center',
+                margin: '0 0 0.5rem 0', fontSize: '0.82rem',
+                color: 'var(--color-accent)', fontWeight: 600, textAlign: 'center',
               }}>
                 Prochain objectif : {levelProgress.nextLevelName}
               </p>
-
-              {/* Progress bar */}
-              <div
-                role="progressbar"
-                aria-valuenow={levelProgress.current}
-                aria-valuemin={0}
-                aria-valuemax={levelProgress.target}
-                aria-label={`Progression : ${levelProgress.current} sur ${levelProgress.target}`}
-                style={{
-                  width: '100%',
-                  height: 10,
-                  background: 'rgba(255,255,255,0.1)',
-                  borderRadius: 5,
-                  overflow: 'hidden',
-                  position: 'relative',
-                }}
-              >
+              <div role="progressbar" style={{
+                width: '100%', height: 10, background: 'rgba(255,255,255,0.1)',
+                borderRadius: 5, overflow: 'hidden',
+              }}>
                 <div style={{
                   height: '100%',
                   width: progressBarAnimated
                     ? `${Math.min((levelProgress.current / levelProgress.target) * 100, 100)}%`
                     : '0%',
                   background: 'linear-gradient(90deg, var(--color-primary), var(--color-accent))',
-                  borderRadius: 5,
-                  transition: 'width 0.8s ease-out',
+                  borderRadius: 5, transition: 'width 0.8s ease-out',
                   boxShadow: '0 0 8px rgba(124,58,237,0.4)',
                 }} />
               </div>
-
-              {/* Count label */}
-              <p style={{
-                margin: '0.35rem 0 0 0',
-                fontSize: '0.72rem',
-                color: '#9ca3af',
-                textAlign: 'center',
-              }}>
+              <p style={{ margin: '0.35rem 0 0 0', fontSize: '0.72rem', color: '#9ca3af', textAlign: 'center' }}>
                 {levelProgress.current}/{levelProgress.target} sessions qualifiantes
               </p>
-
-              {/* Contextual message */}
               {levelProgress.message && (
                 <p style={{
-                  margin: '0.3rem 0 0 0',
-                  fontSize: '0.78rem',
-                  color: 'var(--color-accent)',
-                  textAlign: 'center',
-                  fontStyle: 'italic',
+                  margin: '0.3rem 0 0 0', fontSize: '0.78rem',
+                  color: 'var(--color-accent)', textAlign: 'center', fontStyle: 'italic',
                 }}>
                   {levelProgress.message}
                 </p>
@@ -333,37 +412,28 @@ export default function EndScreen({
           </div>
         )}
 
-        {/* 5. Next streak tier (C2) */}
-        {showStreakTier && (
+        {/* 5. Next streak coin milestone */}
+        {showStreakNext && (
           <div style={{
-            textAlign: 'center',
-            marginBottom: '0.8rem',
+            textAlign: 'center', marginBottom: '0.8rem',
             opacity: showProgression ? 1 : 0,
             transform: showProgression ? 'translateY(0)' : 'translateY(6px)',
             transition: 'all 0.5s ease 0.15s',
           }}>
-            <p style={{
-              margin: 0,
-              fontSize: '0.78rem',
-              color: '#6b7280',
-              lineHeight: 1.5,
-            }}>
-              Encore {streakInfo.daysLeft} jour{streakInfo.daysLeft > 1 ? 's' : ''} pour
-              {' '}&#171;&#160;{streakInfo.nextTierTitle}&#160;&#187;
+            <p style={{ margin: 0, fontSize: '0.78rem', color: '#6b7280', lineHeight: 1.5 }}>
+              {'🔥'} Encore {streakDaysLeft} jour{streakDaysLeft > 1 ? 's' : ''} de streak
+              pour gagner {nextMilestoneCoins} <span style={{ display: 'inline-flex', verticalAlign: 'middle' }}><CoinIcon size={13} /></span> au palier {nextMilestoneDays} jours
             </p>
           </div>
         )}
 
-        {/* Separator line */}
+        {/* Separator */}
         <div style={{
-          height: 1,
-          background: 'rgba(255,255,255,0.08)',
-          margin: '0 0 0.9rem 0',
-          opacity: showRecap ? 1 : 0,
-          transition: 'opacity 0.4s ease',
+          height: 1, background: 'rgba(255,255,255,0.08)', margin: '0 0 0.9rem 0',
+          opacity: showRecap ? 1 : 0, transition: 'opacity 0.4s ease',
         }} />
 
-        {/* 6. Recap (scrollable) */}
+        {/* 6. Recap */}
         <div style={{
           opacity: showRecap ? 1 : 0,
           transform: showRecap ? 'translateY(0)' : 'translateY(10px)',
@@ -373,10 +443,10 @@ export default function EndScreen({
             {questions.map((q, i) => {
               const a = answers[i];
               const ok = a?.correct;
-              const qHasVerb = q.verb !== undefined;
               const questionChoices = q._ruleChoices || rule.choices || [];
               const chosenLabel = questionChoices.find(c => c.id === a?.chosen)?.label || '';
               const answerLabel = questionChoices.find(c => c.id === q.answer)?.label || '';
+              const qHasVerb = q.verb !== undefined;
               return (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: '0.6rem',
@@ -397,7 +467,7 @@ export default function EndScreen({
                   </span>
                   {!ok && (
                     <span style={{ fontSize: '0.75rem', color: '#9ca3af', flexShrink: 0 }}>
-                      → {answerLabel}
+                      {'→'} {answerLabel}
                     </span>
                   )}
                 </div>
@@ -414,10 +484,8 @@ export default function EndScreen({
         }}>
           <button
             onClick={onFinish}
-            aria-label="Continuer vers le tableau de bord"
             style={{
-              width: '100%', padding: '0.85rem', borderRadius: 12,
-              border: 'none',
+              width: '100%', padding: '0.85rem', borderRadius: 12, border: 'none',
               background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
               color: '#fff', cursor: 'pointer', fontSize: '1rem', fontWeight: 700,
               boxShadow: '0 4px 15px rgba(124,58,237,0.3)',
@@ -431,7 +499,7 @@ export default function EndScreen({
   );
 }
 
-/* ─── HELPERS ─── */
+/* ── Helpers ── */
 
 function getFeedbackMessage(pct) {
   if (pct === 100) return 'Parfait ! Pas une seule erreur.';
@@ -441,7 +509,7 @@ function getFeedbackMessage(pct) {
   return 'Courage. La prochaine sera meilleure.';
 }
 
-/* ─── SHARED STYLES ─── */
+/* ── Styles ── */
 
 const pageStyle = {
   minHeight: '100vh',
@@ -461,4 +529,14 @@ const cardStyle = {
   backdropFilter: 'blur(12px)',
   border: '1px solid rgba(255,255,255,0.1)',
   boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
+};
+
+const bonusLineStyle = {
+  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+  padding: '0.2rem 0.6rem', fontSize: '0.74rem', color: '#6b7280',
+};
+
+const bonusValueStyle = {
+  display: 'inline-flex', alignItems: 'center', gap: '0.15rem',
+  fontWeight: 700, fontSize: '0.76rem', color: '#fbbf24',
 };

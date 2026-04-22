@@ -56,7 +56,7 @@ const SUBCATEGORY_LABELS = {
   flames: 'Flamme de ton streak',
   titles: 'Titre sous le streak',
   victoryAnimations: 'Animations de victoire',
-  entranceAnimations: 'Animations de niveau 🎬',
+  entranceAnimations: 'Animations de célébration 🎬',
   streakFreeze: 'Bouclier de streak',
   doubleCoins: 'Double pièces',
 };

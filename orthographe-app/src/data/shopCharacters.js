@@ -11,14 +11,14 @@ export const SHOP_CHARACTERS = [
 ];
 
 export const SHOP_EMOTIONS = [
-  { id: 'sleep', symbol: '💤', name: 'Dodo', price: 150, desc: 'Apparaît au démarrage (0–5 min)' },
+  { id: 'sleep', symbol: '💤', name: 'Dodo', price: 150, desc: 'Apparaît au démarrage tant que moins de 3 quiz réussis' },
   { id: 'wave', symbol: '👋', name: 'Salut', price: 200, desc: 'Première session · Niveau Bronze atteint' },
-  { id: 'victory', symbol: '🏆', name: 'Victoire', price: 200, desc: 'Niveau Argent / Diamant · Couronne · Mode direct / sniper · Révision SM2 réussie · Bonne réponse' },
+  { id: 'victory', symbol: '🏆', name: 'Victoire', price: 200, desc: 'Niveau Argent / Diamant · Couronne · Mode direct / sniper · Révision réussie · Bonne réponse' },
   { id: 'clap', symbol: '👏', name: 'Bravo', price: 200, desc: 'Session parfaite 20/20' },
-  { id: 'dance', symbol: '💃', name: 'Danse', price: 200, desc: 'Palier de streak atteint' },
-  { id: 'surprise', symbol: '😲', name: 'Surprise', price: 200, desc: 'Streak perdu · Révision SM2 échouée · Diamant brisé' },
+  { id: 'dance', symbol: '💃', name: 'Danse', price: 200, desc: 'Palier de flamme atteint' },
+  { id: 'surprise', symbol: '😲', name: 'Surprise', price: 200, desc: 'Flamme perdue · Révision échouée · Diamant brisé' },
   { id: 'kiss', symbol: '💋', name: 'Bisou', price: 200, desc: 'Bouclier activé' },
-  { id: 'think', symbol: '🤔', name: 'Hésitation', price: 200, desc: 'Révision SM2 limite' },
+  { id: 'think', symbol: '🤔', name: 'Hésitation', price: 200, desc: 'Révision limite' },
 ];
 
 export const PURCHASABLE_CHARS = SHOP_CHARACTERS.map((char) => char.id);

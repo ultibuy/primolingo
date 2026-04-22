@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext.jsx';
+import CoinIcon from '../components/CoinIcon.jsx';
 import { listChildren } from '../services/store.js';
 import {
   loadParentImages,
@@ -197,7 +198,7 @@ function ChildCard({ child, uid, parentImages }) {
           <span style={statLabelStyle}>Règles</span>
         </div>
         <div style={statItemStyle}>
-          <span style={statValueStyle}>🪙 {coins}</span>
+          <span style={{ ...statValueStyle, display: 'inline-flex', alignItems: 'center', gap: 4 }}><CoinIcon size={16} /> {coins}</span>
           <span style={statLabelStyle}>Pièces</span>
         </div>
       </div>

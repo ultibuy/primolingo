@@ -7,7 +7,7 @@ export default function ShieldIcon({ size = 28, active = true, showTooltip = fal
       flexShrink: 0, opacity,
       position: 'relative',
     }}
-      title={showTooltip ? 'Bouclier de streak — protège 1 jour raté' : undefined}
+      title={showTooltip ? 'Bouclier de flamme — protège 1 jour raté' : undefined}
     >
       <svg viewBox="0 0 40 44" width={size} height={size}>
         <defs>

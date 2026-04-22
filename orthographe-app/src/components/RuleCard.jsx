@@ -73,21 +73,23 @@ function getLevelProgress(level, rp) {
   const directBest = rp.directBestScore || 0;
   const directAbove90 = rp.directConsecutiveAbove90 || rp.directPerfectStreak || 0;
 
+  const n = sessionSize();
+  const min80 = Math.ceil(n * 80 / 100);
+  const min90 = Math.ceil(n * 90 / 100);
+
   switch (level) {
     case 0:
       return {
         fraction: `${Math.min(rp.guidedSessionsCompleted || 0, 1)}/1`,
         pct: Math.min(rp.guidedSessionsCompleted || 0, 1),
-        desc: 'Complète 1 session guidée',
+        desc: 'Termine 1 session guidée pour débloquer',
       };
     case 1: {
       const countGood = Math.min(guidedAbove80, 3);
       return {
         fraction: `${countGood}/3`,
         pct: countGood / 3,
-        desc: countGood > 0
-          ? `${countGood}/3 sessions guidées ≥ ${scoreLabel(80)}`
-          : `Score ≥ ${scoreLabel(80)} en guidé`,
+        desc: `Fais ${3 - countGood} session${3 - countGood > 1 ? 's' : ''} avec au moins ${min80} bonnes réponses`,
       };
     }
     case 2: {
@@ -95,9 +97,7 @@ function getLevelProgress(level, rp) {
       return {
         fraction: `${countDirect}/3`,
         pct: countDirect / 3,
-        desc: countDirect > 0
-          ? `${countDirect}/3 sessions directes ≥ ${scoreLabel(80)}`
-          : `Score ≥ ${scoreLabel(80)} en direct`,
+        desc: `Fais ${3 - countDirect} session${3 - countDirect > 1 ? 's' : ''} avec au moins ${min80} bonnes réponses`,
       };
     }
     case 3: {
@@ -105,7 +105,7 @@ function getLevelProgress(level, rp) {
       return {
         fraction: `${count}/3`,
         pct: count / 3,
-        desc: `${count}/3 sessions directes ≥ ${scoreLabel(90)} d'affilée`,
+        desc: `Fais 3 sessions d'affilée avec au moins ${min90} bonnes réponses`,
       };
     }
     case 4:
@@ -160,6 +160,7 @@ export default function RuleCard({
   onOpenMemo,
   pandaMood = null,
   characterId = 'panda',
+  onCharacterClick,
 }) {
   const level = getRuleLevel(ruleProgress);
   const config = LEVEL_CONFIG[level] || LEVEL_CONFIG[0];
@@ -294,6 +295,7 @@ export default function RuleCard({
           currentLevel={level}
           progress={progressPct}
           onNodeClick={onLevelHelp}
+          onCharacterClick={onCharacterClick}
           pandaMood={pandaMood}
           characterId={characterId}
         />

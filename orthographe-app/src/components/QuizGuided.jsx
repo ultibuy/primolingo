@@ -1,9 +1,8 @@
 import { useState } from 'react';
 import ProgressBar from './ProgressBar.jsx';
 import EndScreen from './EndScreen.jsx';
-import PerfectSessionBonusModal from './PerfectSessionBonusModal.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
-import { calculatePerfectSessionBonus, getEndScreenLevelProgress, getNextStreakTierInfo } from '../engine/scoring.js';
+import { getEndScreenLevelProgress, getNextStreakTierInfo, computeStreakMilestone } from '../engine/scoring.js';
 
 function getEliminated(rule, axisSelections) {
   const eliminated = new Set();
@@ -33,6 +32,7 @@ export default function QuizGuided({
   isFirstSessionOfDay,
   ruleProgress,
   streak,
+  milestones,
   victoryAnimationId,
   shopOwned = [],
 }) {
@@ -43,7 +43,6 @@ export default function QuizGuided({
   const [score, setScore] = useState(0);
   const [answers, setAnswers] = useState([]);
   const [finished, setFinished] = useState(false);
-  const [perfectBonusSeen, setPerfectBonusSeen] = useState(false);
 
   const question = questions[currentIndex];
   const choices = question?._ruleChoices || rule.choices || [];
@@ -86,17 +85,10 @@ export default function QuizGuided({
   };
 
   if (finished) {
-    const perfectSessionBonus = calculatePerfectSessionBonus(score, questions.length);
-    if (perfectSessionBonus > 0 && !perfectBonusSeen) {
-      return (
-        <PerfectSessionBonusModal
-          bonus={perfectSessionBonus}
-          onContinue={() => setPerfectBonusSeen(true)}
-        />
-      );
-    }
     const levelProgress = getEndScreenLevelProgress(ruleProgress, 'guided', score, questions.length);
     const streakInfo = getNextStreakTierInfo(streak, isFirstSessionOfDay);
+    const sessionPct = Math.round((score / questions.length) * 100);
+    const streakMilestone = computeStreakMilestone(streak, milestones, isFirstSessionOfDay, sessionPct);
     return (
       <EndScreen
         rule={rule}
@@ -107,6 +99,7 @@ export default function QuizGuided({
         isFirstSessionOfDay={isFirstSessionOfDay}
         levelProgress={levelProgress}
         streakInfo={streakInfo}
+        streakMilestoneJustEarned={streakMilestone}
         victoryAnimationId={victoryAnimationId}
         onFinish={() => onFinish(score, questions.length, answers)}
       />
@@ -123,9 +116,6 @@ export default function QuizGuided({
           <h1 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--color-accent)', letterSpacing: '-0.02em', margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
             {rule.title}
           </h1>
-          <div style={{ fontSize: '0.75rem', color: '#9ca3af', fontWeight: 600, textAlign: 'right', marginTop: '2px' }}>
-            {currentIndex + 1}/{questions.length} · {score}/{currentIndex + (showResult ? 1 : 0)}
-          </div>
         </div>
 
         <ProgressBar

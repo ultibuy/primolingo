@@ -23,20 +23,20 @@ import { resolveCharacterMood, resolveShopCharacter } from '../data/shopCharacte
 // FIX 1 & FIX 3 — Corrected milestone messages with proper French accents
 // ---------------------------------------------------------------------------
 const MILESTONE_MESSAGES = {
-  3: "3 jours de suite — tu tiens le cap.\nProchain palier : 7 jours \u2192 +50 pi\u00e8ces et un bouclier.",
-  7: "Une semaine sans faillir. +50 pi\u00e8ces et 1 bouclier gagn\u00e9 !\nProchain palier : 14 jours \u2192 +100 pi\u00e8ces.",
-  14: "14 jours. Inarr\u00eatable. +100 pi\u00e8ces !\nProchain palier : 30 jours \u2192 +150 pi\u00e8ces.",
-  30: "Un mois. Tu t'es prouv\u00e9 quelque chose. +150 pi\u00e8ces !\nProchain palier : 60 jours \u2192 +300 pi\u00e8ces.",
-  60: "60 jours. C'est devenu une partie de toi. +300 pi\u00e8ces !\nProchain palier : 100 jours \u2192 +500 pi\u00e8ces.",
-  100: "100 jours. L\u00e9gendaire. +500 pi\u00e8ces !\nTu as tout d\u00e9bloqu\u00e9.",
+  3: "3 jours de suite — tu tiens le cap.\nProchain palier : 7 jours → +100 pièces et un bouclier.",
+  7: "Une semaine sans faillir. +100 pièces et 1 bouclier gagné !\nProchain palier : 14 jours → +200 pièces.",
+  14: "14 jours. Inarrêtable. +200 pièces !\nProchain palier : 30 jours → +350 pièces.",
+  30: "Un mois. Tu t'es prouvé quelque chose. +350 pièces !\nProchain palier : 60 jours → +500 pièces.",
+  60: "60 jours. C'est devenu une partie de toi. +500 pièces !\nProchain palier : 100 jours → +1000 pièces.",
+  100: "100 jours. Légendaire. +1000 pièces !\nTu as tout débloqué.",
 };
 
 // ---------------------------------------------------------------------------
 // FIX 1 — Complete event type to message/icon mapping
 // ---------------------------------------------------------------------------
 const EVENT_CONFIG = {
-  firstSession:     { msg: "Premi\u00e8re session termin\u00e9e, ton streak passe \u00e0 1 !\nReviens demain pour le faire grimper.", icon: '🔥' },
-  firstQuiz:        { msg: "Premi\u00e8re session termin\u00e9e, ton streak passe \u00e0 1 !\nReviens demain pour le faire grimper.", icon: '🔥' },
+  firstSession:     { msg: "Premi\u00e8re session termin\u00e9e, ta flamme passe \u00e0 1 !\nReviens demain pour le faire grimper.", icon: '🔥' },
+  firstQuiz:        { msg: "Premi\u00e8re session termin\u00e9e, ta flamme passe \u00e0 1 !\nReviens demain pour le faire grimper.", icon: '🔥' },
   levelUp:          { msg: 'Niveau suivant atteint\ !', icon: '\⭐' },
   level_up_1:       { msg: 'Niveau Découverte atteint\ !', icon: '\⭐' },
   level_up_2:       { msg: 'Mode direct déverrouillé\ ! 🔓', icon: '🔓' },
@@ -64,12 +64,26 @@ const EVENT_CONFIG = {
   milestone:        { icon: '🎯' }, // dynamic — handled in buildOverlayData
 };
 
+const MOOD_DESCRIPTIONS = {
+  walk:      { emoji: '🚶', label: 'Balade', desc: 'Ton perso se promène tranquillement en attendant le prochain quiz.' },
+  sleep:     { emoji: '💤', label: 'Dodo', desc: 'Ton perso dort encore… Fais 3 quiz pour le réveiller !' },
+  wave:      { emoji: '👋', label: 'Coucou !', desc: 'Il te salue pour fêter tes débuts !' },
+  clap:      { emoji: '👏', label: 'Bravo !', desc: 'Il applaudit ta session parfaite !' },
+  cheer:     { emoji: '🙌', label: 'Hourra !', desc: 'Il lève les bras pour toi !' },
+  kiss:      { emoji: '💋', label: 'Bisou', desc: 'Un bouclier t\'a sauvé — il t\'envoie un bisou de remerciement.' },
+  dance:     { emoji: '💃', label: 'Danse !', desc: 'Palier de flamme atteint — il danse pour fêter ça !' },
+  surprise:  { emoji: '😲', label: 'Oh !', desc: 'Quelque chose d\'inattendu s\'est passé…' },
+  victory:   { emoji: '🏆', label: 'Victoire !', desc: 'Tu as accompli quelque chose de grand !' },
+  think:     { emoji: '🤔', label: 'Hmm…', desc: 'Il réfléchit… La révision était limite.' },
+  challenge: { emoji: '💪', label: 'Défi', desc: 'Il est prêt pour le défi !' },
+};
+
 const STREAK_MILESTONE_COINS = {
-  7: 50,
-  14: 100,
-  30: 150,
-  60: 300,
-  100: 500,
+  7: 100,
+  14: 200,
+  30: 350,
+  60: 500,
+  100: 1000,
 };
 
 function getGreeting() {
@@ -206,17 +220,17 @@ function buildOverlayData(evt) {
     if (evt.value === 'firstSession') {
       return null; // Already covered by firstSession/firstQuiz event type
     } else if (typeof evt.streak === 'number') {
-      msg = MILESTONE_MESSAGES[evt.streak] || `Streak de ${evt.streak} jours\ !`;
+      msg = MILESTONE_MESSAGES[evt.streak] || `Flamme de ${evt.streak} jours\ !`;
       icon = '🔥';
     } else {
-      msg = MILESTONE_MESSAGES[evt.value] || `Streak de ${evt.value} jours\ !`;
+      msg = MILESTONE_MESSAGES[evt.value] || `Flamme de ${evt.value} jours\ !`;
       icon = '🔥';
     }
   } else if (evt.type === 'streakMilestone') {
-    msg = MILESTONE_MESSAGES[evt.value] || `Streak de ${evt.value} jours\ !`;
+    msg = MILESTONE_MESSAGES[evt.value] || `Flamme de ${evt.value} jours\ !`;
     icon = '🔥';
   } else if (evt.type === 'shieldUsed') {
-    msg = `Bouclier activé — ton streak de ${evt.value} jours est sauvé.`;
+    msg = `Bouclier activé — ta flamme de ${evt.value} jours est sauvé.`;
     sub = 'Un bouclier a été consommé.';
   } else if (evt.type === 'directUnlocked') {
     sub = `«\ ${evt.value}\ » — plus d\'aide, juste toi.`;
@@ -229,14 +243,14 @@ function buildOverlayData(evt) {
     if (canBuy) {
       const missing = MAX_SHIELDS - shields;
       const affordable = Math.min(missing, Math.floor(coins / SHIELD_PRICE));
-      msg = "Pas de chance hier — ton streak est tombé.";
+      msg = "Pas de chance hier — ta flamme est tombé.";
       if (affordable >= 2) {
         sub = `Tu as ${coins} pièces, tu peux acheter ${affordable} boucliers (${SHIELD_PRICE} pièces chacun) pour te protéger les prochains jours.`;
       } else {
         sub = `Tu as ${coins} pièces, tu peux acheter 1 bouclier (${SHIELD_PRICE} pièces) pour te protéger la prochaine fois.`;
       }
     } else {
-      msg = "Pas de chance hier — ton streak est tombé.";
+      msg = "Pas de chance hier — ta flamme est tombé.";
       sub = "Ça arrive. L'important c'est de revenir aujourd'hui.";
     }
   } else if (evt.type === 'levelUp' && evt.value) {
@@ -321,6 +335,8 @@ export default function Dashboard({
   dailyBackups = [],
   onDebugRestoreBackup,
   onTriggerEntranceAnim,
+  sessionSize,
+  onDebugSetSessionSize,
 }) {
   const [overlay, setOverlay] = useState(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
@@ -336,6 +352,8 @@ export default function Dashboard({
   const [debugCoins, setDebugCoins] = useState(String(progress.coins || 0));
   const [restoringBackupDate, setRestoringBackupDate] = useState(null);
   const [debugOpen, setDebugOpen] = useState(false);
+  const [streakAlert, setStreakAlert] = useState(null); // { nextMilestone, reward }
+  const [moodTooltip, setMoodTooltip] = useState(false); // show character mood popup
   const [pandaMood, setPandaMood] = useState(null); // null = default walk
   const pandaMoodTimerRef = useRef(null);
   const shopOwnedRef = useRef([]);
@@ -355,10 +373,12 @@ export default function Dashboard({
     onTriggerEntranceAnim(pick);
   }, [onTriggerEntranceAnim]);
 
-  // Sleep for first 5 minutes — motivates the kid to "wake up" the panda
+  // Character sleeps until the child has completed at least 3 quizzes total
   useEffect(() => {
-    const t = setTimeout(() => triggerPandaMood('sleep', 5 * 60 * 1000), 500);
-    return () => clearTimeout(t);
+    const totalSessions = Object.values(progress.rules || {}).reduce(
+      (sum, rp) => sum + (rp.guidedSessionsCompleted || 0) + (rp.directSessionsCompleted || 0), 0
+    );
+    if (totalSessions < 3) triggerPandaMood('sleep', 10 * 60 * 1000);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -377,6 +397,22 @@ export default function Dashboard({
   ));
 
   useEffect(() => { requestAnimationFrame(() => setMounted(true)); }, []);
+
+  // First visit of the day: check if a streak milestone is within reach
+  useEffect(() => {
+    const current = progress.streak?.current || 0;
+    const lastActive = progress.streak?.lastActiveDate;
+    const today = getToday();
+    if (lastActive === today) return; // already played today
+    if (current === 0) return; // no streak yet
+    const nextDay = current + 1;
+    const milestone = [7, 14, 30, 60, 100].find(d => d === nextDay);
+    if (!milestone) return; // not on the eve of a milestone
+    const milestoneKey = `streak${milestone}`;
+    if (progress.milestones?.[milestoneKey]) return; // already earned
+    setStreakAlert({ nextMilestone: milestone, reward: STREAK_MILESTONE_COINS[milestone] });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
   useEffect(() => {
     if (typeof window === 'undefined') return undefined;
     const onResize = () => setIsCompactLayout(window.innerWidth <= 760);
@@ -448,7 +484,7 @@ export default function Dashboard({
     // Always fire side effects regardless of whether overlay is shown
     const mood = getMoodForEvent(evt);
     if (mood) triggerPandaMood(mood, 3500);
-    if (evt.type === 'perfectSessionBonus') {
+    if (evt.type === 'milestone' || evt.type === 'streakMilestone' || evt.type === 'diamond' || evt.type === 'level_up_4') {
       const ownedAnims = shopOwnedRef.current.filter(id => id.startsWith('entrance-'));
       triggerRandomEntranceAnim(ownedAnims);
     }
@@ -523,13 +559,13 @@ export default function Dashboard({
     ? `${streak} jour${streak > 1 ? 's' : ''} d'affilée`
     : 'Allume la première flamme';
   const streakSupportText = streak > 0
-    ? 'Ton streak te donne des pièces aux paliers 7, 14, 30, 60 et 100 jours, et peut te rapporter un bouclier tous les 7 jours.'
-    : 'Lance ta première session pour démarrer ton streak.';
+    ? 'Ta flamme te donne des pièces aux paliers 7, 14, 30, 60 et 100 jours, et un bouclier tous les 7 jours. Il faut au moins 60% de bonnes réponses pour valider un jour.'
+    : 'Lance ta première session (60% minimum) pour démarrer ta flamme.';
   const nextCoinMilestone = [7, 14, 30, 60, 100].find((day) => day > streak) || null;
   const nextCoinReward = nextCoinMilestone ? STREAK_MILESTONE_COINS[nextCoinMilestone] : null;
   const nextShieldDay = shields >= 2 ? null : Math.max(7, Math.ceil((streak + 1) / 7) * 7);
   const nextUsefulDay = Math.min(nextCoinMilestone ?? Infinity, nextShieldDay ?? Infinity);
-  const nextUsefulLabel = Number.isFinite(nextUsefulDay) ? `${nextUsefulDay} jours` : 'Streak solide';
+  const nextUsefulLabel = Number.isFinite(nextUsefulDay) ? `${nextUsefulDay} jours` : 'Flamme solide';
   const nextUsefulBenefits = [];
   if (Number.isFinite(nextUsefulDay) && nextUsefulDay === nextCoinMilestone && nextCoinReward !== null) {
     nextUsefulBenefits.push(`+${nextCoinReward} pièces`);
@@ -571,6 +607,81 @@ export default function Dashboard({
       flexDirection: isCompactLayout ? 'column' : 'row',
       alignItems: isCompactLayout ? 'stretch' : 'flex-start',
     }}>
+      {/* ---------------------------------------------------------------------------
+        Character mood tooltip
+      --------------------------------------------------------------------------- */}
+      {moodTooltip && (() => {
+        const currentMood = activeCharacterMood || 'walk';
+        const info = MOOD_DESCRIPTIONS[currentMood] || MOOD_DESCRIPTIONS.walk;
+        return (
+          <div style={{
+            position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.45)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            zIndex: 998, cursor: 'pointer',
+          }} onClick={() => setMoodTooltip(false)}>
+            <div style={{
+              textAlign: 'center', padding: '1.5rem 1.6rem',
+              background: 'rgba(var(--color-bg1-rgb),0.95)',
+              borderRadius: 18,
+              border: '1px solid rgba(255,255,255,0.1)',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+              maxWidth: 300,
+              animation: 'bounce-in 0.3s ease forwards',
+            }} onClick={(e) => e.stopPropagation()}>
+              <div style={{ fontSize: '3rem', marginBottom: '0.4rem' }}>{info.emoji}</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#e2e2e2', marginBottom: '0.3rem' }}>
+                {info.label}
+              </div>
+              <div style={{ fontSize: '0.85rem', color: '#9ca3af', lineHeight: 1.5 }}>
+                {info.desc}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+      {/* ---------------------------------------------------------------------------
+        Streak milestone alert — first visit of the day
+      --------------------------------------------------------------------------- */}
+      {streakAlert && (
+        <div style={{
+          position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)',
+          backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          zIndex: 999, cursor: 'pointer',
+        }} onClick={() => setStreakAlert(null)}>
+          <div style={{
+            textAlign: 'center', padding: '2rem 1.8rem',
+            background: 'rgba(var(--color-bg1-rgb),0.92)',
+            borderRadius: 22,
+            border: '1px solid rgba(250,204,21,0.3)',
+            boxShadow: '0 8px 40px rgba(0,0,0,0.5)',
+            maxWidth: 380,
+            animation: 'bounce-in 0.4s ease forwards',
+          }} onClick={(e) => e.stopPropagation()}>
+            <PopupCloseButton onClick={() => setStreakAlert(null)} />
+            <div style={{ fontSize: '4rem', marginBottom: '0.6rem' }}>🔥</div>
+            <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fbbf24', marginBottom: '0.5rem' }}>
+              Palier {streakAlert.nextMilestone} jours en vue !
+            </div>
+            <div style={{ fontSize: '0.92rem', color: '#e2e2e2', lineHeight: 1.5, marginBottom: '0.8rem' }}>
+              Tu es à <strong style={{ color: '#fbbf24' }}>{streakAlert.nextMilestone - 1} jours</strong> de flamme.
+              {'\n'}Finis au moins un quiz aujourd'hui pour débloquer
+              {' '}<strong style={{ color: '#4ade80' }}>+{streakAlert.reward} pièces</strong> !
+            </div>
+            <button
+              onClick={() => setStreakAlert(null)}
+              style={{
+                padding: '0.6rem 1.6rem', borderRadius: 12, border: 'none',
+                background: 'linear-gradient(135deg, #f59e0b, #fbbf24)',
+                color: '#1e1e2e', fontWeight: 800, fontSize: '0.95rem',
+                cursor: 'pointer', boxShadow: '0 2px 12px rgba(251,191,36,0.35)',
+              }}
+            >
+              C'est parti !
+            </button>
+          </div>
+        </div>
+      )}
       {/* ---------------------------------------------------------------------------
         Overlay for pending events
       --------------------------------------------------------------------------- */}
@@ -640,7 +751,7 @@ export default function Dashboard({
               onClick={() => setShowStreakHelp(true)}
               className="streak-help-trigger"
               style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}
-              aria-label="En savoir plus sur le streak"
+              aria-label="En savoir plus sur la flamme"
             >
               <CosmeticFlameIcon size={36} intensity={getFlameIntensity(streak)} flameId={equippedFlame} />
               <div>
@@ -682,7 +793,7 @@ export default function Dashboard({
               onClick={() => setShowStreakHelp(true)}
               className="streak-help-trigger"
               style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', cursor: 'pointer' }}
-              aria-label="En savoir plus sur le streak"
+              aria-label="En savoir plus sur la flamme"
             >
               <CosmeticFlameIcon size={28} intensity={0} flameId={equippedFlame} />
               <div>
@@ -711,7 +822,7 @@ export default function Dashboard({
             {/* A3 — Shields: only show if streak >= 3, as number not repeated icons */}
             {streak >= 3 && shields > 0 && (
               <div
-                title="Boucliers\ : protègent ton streak si tu rates un jour"
+                title="Boucliers\ : protègent ta flamme si tu rates un jour"
                 style={{
                   display: 'flex', alignItems: 'center', gap: '0.2rem',
                   cursor: 'default',
@@ -780,7 +891,7 @@ export default function Dashboard({
                 fontSize: '1rem',
                 flexShrink: 0,
               }}>
-                {'💰'}
+                <CoinIcon size={24} />
               </div>
               <div style={{ minWidth: 0 }}>
                 <div style={{ fontSize: '0.82rem', fontWeight: 800, color: '#fff' }}>
@@ -921,6 +1032,7 @@ export default function Dashboard({
                       onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
                       pandaMood={activeCharacterMood}
                       characterId={activeCharacterId}
+                      onCharacterClick={() => setMoodTooltip(true)}
                     />
                   </div>
                 );
@@ -952,6 +1064,7 @@ export default function Dashboard({
                       onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
                       pandaMood={activeCharacterMood}
                       characterId={activeCharacterId}
+                      onCharacterClick={() => setMoodTooltip(true)}
                     />
                   </div>
                 );
@@ -1388,6 +1501,31 @@ export default function Dashboard({
             </button>
           </div>
 
+          {/* Session size setter */}
+          {onDebugSetSessionSize && (
+            <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'flex-end', flexWrap: 'wrap', marginTop: '0.6rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+                <label style={{ fontSize: '0.65rem', color: '#9ca3af' }}>Questions par session</label>
+                <input
+                  type="number"
+                  min="1"
+                  max="50"
+                  value={sessionSize || 20}
+                  onChange={e => {
+                    const n = Math.max(1, Math.min(50, parseInt(e.target.value, 10) || 1));
+                    onDebugSetSessionSize(n);
+                  }}
+                  style={{
+                    width: isCompactLayout ? '100%' : 70, padding: '0.35rem 0.5rem', borderRadius: 6,
+                    border: '1px solid rgba(74,222,128,0.3)',
+                    background: 'rgba(0,0,0,0.3)', color: '#4ade80',
+                    fontSize: '0.85rem', fontWeight: 700,
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
           {onDebugRestoreBackup && (
             <div style={{
               marginTop: '1rem',
@@ -1553,8 +1691,8 @@ export default function Dashboard({
                   <strong className="streak-help-stat-value">{shields > 0 ? `${shields}/2 en réserve` : "Aucun"}</strong>
                   <span className="streak-help-stat-hint">
                     {shields > 0
-                      ? "Si tu rates un jour, tu peux consommer un bouclier pour sauver ton streak."
-                      : "Atteins 7 jours de streak pour en gagner un. Il peut absorber 1 jour raté."}
+                      ? "Si tu rates un jour, tu peux consommer un bouclier pour sauver ta flamme."
+                      : "Atteins 7 jours de flamme pour en gagner un. Il peut absorber 1 jour raté."}
                   </span>
                 </div>
               </div>

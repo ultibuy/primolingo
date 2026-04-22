@@ -29,8 +29,8 @@ export function calculateCoins(score, total) {
   const pct = Math.round((score / total) * 100);
   if (pct === 100) return 30;
   if (pct >= 80) return 20;
-  if (pct >= 60) return 10;
-  return 5;
+  if (pct >= 60) return 5;
+  return 0;
 }
 
 /**
@@ -42,9 +42,6 @@ export function calculateCoins(score, total) {
  * @param {number} total - Total number of questions.
  * @returns {number} Bonus coins.
  */
-export function calculatePerfectSessionBonus(score, total) {
-  return total > 0 && score === total ? 10 : 0;
-}
 
 /**
  * Check if a level-up has occurred and return the result.
@@ -220,6 +217,10 @@ export function getEndScreenLevelProgress(ruleProgress, mode, score, total) {
 
   if (currentLevel >= 4) return null;
 
+  const n = total || 20;
+  const min80 = Math.ceil(n * 80 / 100);
+  const min90 = Math.ceil(n * 90 / 100);
+
   const configByLevel = {
     0: {
       nextLevel: 1,
@@ -251,12 +252,17 @@ export function getEndScreenLevelProgress(ruleProgress, mode, score, total) {
   if (!config) return null;
 
   const remaining = Math.max(config.target - config.current, 0);
-  let message = '';
-  if (remaining === 1) {
-    message = "Plus qu'une session !";
-  } else if (remaining > 1) {
-    message = `Encore ${remaining} sessions.`;
-  }
+  const messages = {
+    0: 'Termine ta première session guidée !',
+    1: remaining === 1
+      ? `Plus qu'une session avec ${min80} bonnes réponses !`
+      : `Fais ${remaining} sessions avec au moins ${min80} bonnes réponses`,
+    2: remaining === 1
+      ? `Plus qu'une session avec ${min80} bonnes réponses !`
+      : `Fais ${remaining} sessions avec au moins ${min80} bonnes réponses`,
+    3: `Fais ${threshold} sessions d'affilée avec au moins ${min90} bonnes réponses`,
+  };
+  const message = remaining > 0 ? (messages[currentLevel] || '') : '';
 
   return {
     currentLevel,
@@ -321,4 +327,28 @@ export function updateStreak(progress) {
   const newMilestone = milestoneDays.includes(newStreak.current) ? newStreak.current : null;
 
   return { streak: newStreak, shieldUsed, streakLost, newMilestone };
+}
+
+const MILESTONE_COINS_MAP = { 7: 100, 14: 200, 30: 350, 60: 500, 100: 1000 };
+
+/**
+ * Pre-compute whether this session will earn a streak milestone.
+ * Used by EndScreen to show the streak bonus before handleQuizFinish runs.
+ */
+export function computeStreakMilestone(streak, milestones, isFirstSessionOfDay, sessionPct) {
+  if (sessionPct < 60) return null; // doesn't qualify
+  if (!isFirstSessionOfDay) return null; // streak already updated today
+  const current = streak?.current || 0;
+  const yesterday = getToday(-1);
+  const lastActive = streak?.lastActiveDate;
+  // Streak will increment only if last active was yesterday
+  if (lastActive !== yesterday && lastActive !== null && current > 0) return null;
+  const projected = current + 1;
+  const days = [7, 14, 30, 60, 100];
+  for (const d of days) {
+    if (projected >= d && !milestones?.[`streak${d}`]) {
+      return { streak: d, coins: MILESTONE_COINS_MAP[d] };
+    }
+  }
+  return null;
 }

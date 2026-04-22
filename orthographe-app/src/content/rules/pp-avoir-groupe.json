@@ -1043,28 +1043,28 @@
       "id": "q101",
       "before": "Il a ",
       "radical": "demand",
-      "after": " pour le cours.",
+      "after": " une explication à son professeur.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Demand → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Demander → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q102",
       "before": "Elle a ",
       "radical": "termin",
-      "after": " à la dernière minute.",
+      "after": " son devoir à la dernière minute.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Termin → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Terminer → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q103",
       "before": "Nous avons ",
       "radical": "rencontr",
-      "after": " hier soir.",
+      "after": " nos anciens camarades hier soir.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Rencontr → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Rencontrer → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q104",
@@ -1079,10 +1079,10 @@
       "id": "q105",
       "before": "Vous avez ",
       "radical": "rapport",
-      "after": " la semaine dernière.",
+      "after": " les conclusions de l'enquête.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Rapport → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Rapporter → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q106",
@@ -1097,28 +1097,28 @@
       "id": "q107",
       "before": "Elles ont ",
       "radical": "prouv",
-      "after": " pendant longtemps.",
+      "after": " leur bonne foi devant le jury.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Prouv → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Prouver → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q108",
       "before": "On a ",
       "radical": "vérifi",
-      "after": " ensemble.",
+      "after": " les comptes ensemble.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Vérifi → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Vérifier → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q109",
       "before": "J'ai ",
       "radical": "visit",
-      "after": " rapidement.",
+      "after": " le musée rapidement.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Visit → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Visiter → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q110",
@@ -1133,10 +1133,10 @@
       "id": "q111",
       "before": "Elle a ",
       "radical": "expliqu",
-      "after": " quelques instants.",
+      "after": " la règle en quelques instants.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Expliqu → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Expliquer → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q112",
@@ -1151,37 +1151,37 @@
       "id": "q113",
       "before": "Tu as ",
       "radical": "élev",
-      "after": " pour le cours.",
+      "after": " la voix pour se faire entendre.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Élev → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Élever → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q114",
       "before": "Vous avez ",
       "radical": "anim",
-      "after": " à la dernière minute.",
+      "after": " la soirée avec beaucoup d'entrain.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Anim → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Animer → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q115",
       "before": "Ils ont ",
       "radical": "étudi",
-      "after": " hier soir.",
+      "after": " la question hier soir.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Étudi → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Étudier → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q116",
       "before": "Elles ont ",
       "radical": "jug",
-      "after": " ce matin.",
+      "after": " l'affaire ce matin.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Jug → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Juger → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q117",
@@ -1205,82 +1205,82 @@
       "id": "q119",
       "before": "Il a ",
       "radical": "accus",
-      "after": " pendant longtemps.",
+      "after": " son voisin à tort.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Accus → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Accuser → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q120",
       "before": "Elle a ",
       "radical": "avou",
-      "after": " ensemble.",
+      "after": " sa faute sans hésiter.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Avou → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Avouer → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q121",
       "before": "Nous avons ",
       "radical": "balanc",
-      "after": " rapidement.",
+      "after": " les déchets dans la poubelle.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Balanc → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Balancer → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q122",
       "before": "Tu as ",
       "radical": "déclar",
-      "after": " finalement.",
+      "after": " ses revenus aux impôts.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Déclar → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Déclarer → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q123",
       "before": "Vous avez ",
       "radical": "délaiss",
-      "after": " quelques instants.",
+      "after": " ses vieux amis sans raison.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Délaiss → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Délaisser → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q124",
       "before": "Ils ont ",
       "radical": "espér",
-      "after": " toute la journée.",
+      "after": " une réponse positive toute la journée.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Espér → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Espérer → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q125",
-      "before": "Elles ont ",
+      "before": "Il a ",
       "radical": "excus",
-      "after": " pour le cours.",
+      "after": " son retard auprès du directeur.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Excus → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Excuser → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q126",
       "before": "On a ",
-      "radical": "fianc",
-      "after": " à la dernière minute.",
+      "radical": "planifi",
+      "after": " la réunion à la dernière minute.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Fianc → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Planifier → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q127",
       "before": "J'ai ",
       "radical": "gên",
-      "after": " hier soir.",
+      "after": " ses voisins avec sa musique hier soir.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Gên → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Gêner → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q128",
@@ -1295,55 +1295,55 @@
       "id": "q129",
       "before": "Elle a ",
       "radical": "ignor",
-      "after": " la semaine dernière.",
+      "after": " tous ses messages toute la semaine.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Ignor → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Ignorer → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q130",
-      "before": "Nous avons ",
+      "before": "Il a ",
       "radical": "injur",
-      "after": " sans difficulté.",
+      "after": " l'arbitre sans aucune raison.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Injur → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Injurier → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q131",
       "before": "Tu as ",
       "radical": "install",
-      "after": " pendant longtemps.",
+      "after": " le nouveau logiciel en plusieurs heures.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Install → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Installer → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q132",
       "before": "Vous avez ",
       "radical": "isol",
-      "after": " ensemble.",
+      "after": " la pièce pour réduire les nuisances sonores.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Isol → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Isoler → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q133",
       "before": "Ils ont ",
       "radical": "libér",
-      "after": " rapidement.",
+      "after": " les otages rapidement.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Libér → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Libérer → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q134",
       "before": "Elles ont ",
       "radical": "limit",
-      "after": " finalement.",
+      "after": " les dégâts grâce à leur réactivité.",
       "answer": "e",
       "difficulty": 1,
-      "explanation": "Limit → 1er groupe (infinitif en -er) → terminaison -é."
+      "explanation": "Limiter → 1er groupe (infinitif en -er) → terminaison -é."
     },
     {
       "id": "q135",
@@ -1367,28 +1367,28 @@
       "id": "q137",
       "before": "Il a ",
       "radical": "roug",
-      "after": " pour le cours.",
+      "after": " de honte devant toute la classe.",
       "answer": "i",
       "difficulty": 1,
-      "explanation": "Roug → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+      "explanation": "Rougir → 2e groupe (nous rougissons) → terminaison -i."
     },
     {
       "id": "q138",
       "before": "Elle a ",
       "radical": "pâl",
-      "after": " à la dernière minute.",
+      "after": " en apprenant la nouvelle.",
       "answer": "i",
       "difficulty": 1,
-      "explanation": "Pâl → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+      "explanation": "Pâlir → 2e groupe (nous pâlissons) → terminaison -i."
     },
     {
       "id": "q139",
       "before": "Nous avons ",
       "radical": "faibl",
-      "after": " hier soir.",
+      "after": " dans les dernières minutes du match.",
       "answer": "i",
       "difficulty": 1,
-      "explanation": "Faibl → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+      "explanation": "Faiblir → 2e groupe (nous faiblissons) → terminaison -i."
     },
     {
       "id": "q140",
@@ -1406,7 +1406,7 @@
       "after": " la semaine dernière.",
       "answer": "i",
       "difficulty": 1,
-      "explanation": "Maigr → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+      "explanation": "Maigrir → 2e groupe (nous maigrissons) → terminaison -i."
     },
     {
       "id": "q142",
@@ -1421,37 +1421,37 @@
       "id": "q143",
       "before": "Elles ont ",
       "radical": "ralent",
-      "after": " pendant longtemps.",
+      "after": " avant de prendre le virage.",
       "answer": "i",
       "difficulty": 1,
-      "explanation": "Ralent → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+      "explanation": "Ralentir → 2e groupe (nous ralentissons) → terminaison -i."
     },
     {
       "id": "q144",
-      "before": "On a ",
+      "before": "Les cerisiers ont ",
       "radical": "fleur",
-      "after": " ensemble.",
+      "after": " en avance cette année.",
       "answer": "i",
       "difficulty": 1,
-      "explanation": "Fleur → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+      "explanation": "Fleurir → 2e groupe (nous fleurissons) → terminaison -i."
     },
     {
       "id": "q145",
-      "before": "J'ai ",
+      "before": "Cette affaire a ",
       "radical": "tern",
-      "after": " rapidement.",
+      "after": " sa réputation définitivement.",
       "answer": "i",
       "difficulty": 1,
-      "explanation": "Tern → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+      "explanation": "Ternir → 2e groupe (nous ternissons) → terminaison -i."
     },
     {
       "id": "q146",
       "before": "Il a ",
       "radical": "brun",
-      "after": " finalement.",
+      "after": " sous le soleil de l'été.",
       "answer": "i",
       "difficulty": 1,
-      "explanation": "Brun → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+      "explanation": "Brunir → 2e groupe (nous brunissons) → terminaison -i."
     },
     {
       "id": "q147",
@@ -1464,21 +1464,21 @@
     },
     {
       "id": "q148",
-      "before": "Nous avons ",
+      "before": "La chaleur a ",
       "radical": "amoll",
-      "after": " toute la journée.",
+      "after": " la cire toute la journée.",
       "answer": "i",
       "difficulty": 1,
-      "explanation": "Amoll → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+      "explanation": "Amollir → 2e groupe (nous amollissons) → terminaison -i."
     },
     {
       "id": "q149",
-      "before": "Tu as ",
+      "before": "La maladie l'a ",
       "radical": "affaibl",
-      "after": " pour le cours.",
+      "after": " considérablement.",
       "answer": "i",
       "difficulty": 1,
-      "explanation": "Affaibl → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+      "explanation": "Affaiblir → 2e groupe (nous affaiblissons) → terminaison -i."
     },
     {
       "id": "q150",
@@ -1487,16 +1487,16 @@
       "after": " à tout le monde.",
       "answer": "i",
       "difficulty": 2,
-      "explanation": "Sourire → 3e groupe. Au féminin : sourie → son « i » → terminaison -i."
+      "explanation": "Sourire → 3e groupe. Participe passé invariable : souri → on entend le son « i » → terminaison -i."
     },
     {
       "id": "q151",
       "before": "Ils ont ",
       "radical": "invest",
-      "after": " hier soir.",
+      "after": " leurs économies dans l'immobilier.",
       "answer": "i",
       "difficulty": 1,
-      "explanation": "Invest → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+      "explanation": "Investir → 2e groupe (nous investissons) → terminaison -i."
     },
     {
       "id": "q152",
@@ -1518,12 +1518,12 @@
     },
     {
       "id": "q154",
-      "before": "J'ai ",
+      "before": "Ce voyage m'a ",
       "radical": "enrich",
-      "after": " sans difficulté.",
+      "after": " énormément.",
       "answer": "i",
       "difficulty": 1,
-      "explanation": "Enrich → 2e groupe ou 3e groupe (féminin en « i ») → terminaison -i."
+      "explanation": "Enrichir → 2e groupe (nous enrichissons) → terminaison -i."
     },
     {
       "id": "q155",
@@ -1583,10 +1583,10 @@
       "id": "q161",
       "before": "Elles ont ",
       "radical": "entend",
-      "after": " pour le cours.",
+      "after": " un bruit étrange dans le couloir.",
       "answer": "u",
       "difficulty": 2,
-      "explanation": "Entend → 3e groupe. Au féminin : son « u » → terminaison -u."
+      "explanation": "Entendre → 3e groupe. Au féminin : entendue → son « u » → terminaison -u."
     },
     {
       "id": "q162",
@@ -1610,10 +1610,10 @@
       "id": "q164",
       "before": "Il a ",
       "radical": "suspend",
-      "after": " ce matin.",
+      "after": " le tableau au mur ce matin.",
       "answer": "u",
       "difficulty": 2,
-      "explanation": "Suspend → 3e groupe. Au féminin : son « u » → terminaison -u."
+      "explanation": "Suspendre → 3e groupe. Au féminin : suspendue → son « u » → terminaison -u."
     },
     {
       "id": "q165",
@@ -1637,28 +1637,28 @@
       "id": "q167",
       "before": "Tu as ",
       "radical": "pend",
-      "after": " pendant longtemps.",
+      "after": " son manteau au porte-manteau.",
       "answer": "u",
       "difficulty": 2,
-      "explanation": "Pend → 3e groupe. Au féminin : son « u » → terminaison -u."
+      "explanation": "Pendre → 3e groupe. Au féminin : pendue → son « u » → terminaison -u."
     },
     {
       "id": "q168",
       "before": "Vous avez ",
       "radical": "tend",
-      "after": " ensemble.",
+      "after": " la main à l'inconnu.",
       "answer": "u",
       "difficulty": 2,
-      "explanation": "Tend → 3e groupe. Au féminin : son « u » → terminaison -u."
+      "explanation": "Tendre → 3e groupe. Au féminin : tendue → son « u » → terminaison -u."
     },
     {
       "id": "q169",
       "before": "Ils ont ",
       "radical": "attend",
-      "after": " rapidement.",
+      "after": " le bus sous la pluie.",
       "answer": "u",
       "difficulty": 2,
-      "explanation": "Attend → 3e groupe. Au féminin : son « u » → terminaison -u."
+      "explanation": "Attendre → 3e groupe. Au féminin : attendue → son « u » → terminaison -u."
     },
     {
       "id": "q170",
@@ -1680,12 +1680,12 @@
     },
     {
       "id": "q172",
-      "before": "J'ai ",
+      "before": "On a ",
       "radical": "pourv",
-      "after": " toute la journée.",
+      "after": " à tous leurs besoins pendant les vacances.",
       "answer": "u",
       "difficulty": 2,
-      "explanation": "Pourv → 3e groupe. Au féminin : son « u » → terminaison -u."
+      "explanation": "Pourvoir → 3e groupe. Au féminin : pourvue → son « u » → terminaison -u."
     },
     {
       "id": "q173",
@@ -1736,10 +1736,10 @@
       "id": "q178",
       "before": "Ils ont ",
       "radical": "revend",
-      "after": " sans difficulté.",
+      "after": " leurs billets sans difficulté.",
       "answer": "u",
       "difficulty": 2,
-      "explanation": "Revend → 3e groupe. Au féminin : son « u » → terminaison -u."
+      "explanation": "Revendre → 3e groupe. Au féminin : revendue → son « u » → terminaison -u."
     },
     {
       "id": "q179",
@@ -1763,10 +1763,10 @@
       "id": "q181",
       "before": "J'ai ",
       "radical": "parcour",
-      "after": " rapidement.",
+      "after": " toute la ville rapidement.",
       "answer": "u",
       "difficulty": 2,
-      "explanation": "Parcour → 3e groupe. Au féminin : son « u » → terminaison -u."
+      "explanation": "Parcourir → 3e groupe. Au féminin : parcourue → son « u » → terminaison -u."
     },
     {
       "id": "q182",
@@ -1808,37 +1808,37 @@
       "id": "q186",
       "before": "Vous avez ",
       "radical": "indui",
-      "after": " à la dernière minute.",
+      "after": " le public en erreur.",
       "answer": "t",
       "difficulty": 2,
-      "explanation": "Indui → 3e groupe. Au féminin : son « te » → terminaison -t."
+      "explanation": "Induire → 3e groupe. Au féminin : induite → son « te » → terminaison -t."
     },
     {
       "id": "q187",
       "before": "Ils ont ",
       "radical": "extrai",
-      "after": " hier soir.",
+      "after": " plusieurs tonnes de minerai.",
       "answer": "t",
       "difficulty": 2,
-      "explanation": "Extrai → 3e groupe. Au féminin : son « te » → terminaison -t."
+      "explanation": "Extraire → 3e groupe. Au féminin : extraite → son « te » → terminaison -t."
     },
     {
       "id": "q188",
       "before": "Elles ont ",
       "radical": "abstrai",
-      "after": " ce matin.",
+      "after": " les données essentielles du rapport.",
       "answer": "t",
       "difficulty": 2,
-      "explanation": "Abstrai → 3e groupe. Au féminin : son « te » → terminaison -t."
+      "explanation": "Abstraire → 3e groupe. Au féminin : abstraite → son « te » → terminaison -t."
     },
     {
       "id": "q189",
-      "before": "On a ",
-      "radical": "retrai",
-      "after": " la semaine dernière.",
+      "before": "Ce film nous a ",
+      "radical": "distrai",
+      "after": " pendant toute la durée du voyage.",
       "answer": "t",
       "difficulty": 2,
-      "explanation": "Retrai → 3e groupe. Au féminin : son « te » → terminaison -t."
+      "explanation": "Distraire → 3e groupe. Au féminin : distraite → son « te » → terminaison -t."
     },
     {
       "id": "q190",
@@ -1901,43 +1901,43 @@
       "after": " à sa réputation.",
       "answer": "i",
       "difficulty": 3,
-      "explanation": "Nuire → 3e groupe. Au féminin : nuie → son « i » → terminaison -i."
+      "explanation": "Nuire → 3e groupe. Participe passé invariable : nui → on entend le son « i » → terminaison -i."
     },
     {
       "id": "q197",
       "before": "Elles ont ",
       "radical": "omi",
-      "after": " pour le cours.",
+      "after": " de préciser la date dans son message.",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "Omi → 3e groupe. Au féminin : son « ze » → terminaison -s."
+      "explanation": "Omettre → 3e groupe. Au féminin : omise → son « ze » → terminaison -s."
     },
     {
       "id": "q198",
       "before": "On a ",
       "radical": "transmi",
-      "after": " à la dernière minute.",
+      "after": " le message à la dernière minute.",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "Transmi → 3e groupe. Au féminin : son « ze » → terminaison -s."
+      "explanation": "Transmettre → 3e groupe. Au féminin : transmise → son « ze » → terminaison -s."
     },
     {
       "id": "q199",
       "before": "J'ai ",
       "radical": "remi",
-      "after": " hier soir.",
+      "after": " le rapport à son supérieur hier soir.",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "Remi → 3e groupe. Au féminin : son « ze » → terminaison -s."
+      "explanation": "Remettre → 3e groupe. Au féminin : remise → son « ze » → terminaison -s."
     },
     {
       "id": "q200",
       "before": "Il a ",
       "radical": "émi",
-      "after": " ce matin.",
+      "after": " une hypothèse surprenante ce matin.",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "Émi → 3e groupe. Au féminin : son « ze » → terminaison -s."
+      "explanation": "Émettre → 3e groupe. Au féminin : émise → son « ze » → terminaison -s."
     }
   ]
 }

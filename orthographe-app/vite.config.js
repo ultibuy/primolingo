@@ -3,10 +3,10 @@ import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import { spawn } from 'node:child_process';
 
-function localApiPlugin() {
+function devPlugin() {
   let child;
   return {
-    name: 'local-api',
+    name: 'dev-environment',
     configureServer() {
       child = spawn('node', ['server/local-api.mjs'], {
         stdio: 'inherit',
@@ -19,6 +19,13 @@ function localApiPlugin() {
       process.on('SIGTERM', cleanup);
       process.on('SIGINT', cleanup);
     },
+    transformIndexHtml: {
+      order: 'pre',
+      handler(html, ctx) {
+        if (ctx.server) return html.replace('/favicon.svg', '/favicon-dev.svg');
+        return html;
+      },
+    },
   };
 }
 
@@ -29,7 +36,7 @@ export default defineConfig({
     },
   },
   plugins: [
-    localApiPlugin(),
+    devPlugin(),
     react(),
     VitePWA({
       registerType: 'autoUpdate',
