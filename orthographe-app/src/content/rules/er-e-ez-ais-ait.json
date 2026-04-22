@@ -1087,12 +1087,12 @@
     },
     {
       "id": "q107",
-      "before": "Sans ",
-      "verb": "dout",
-      "after": ", c'est possible.",
+      "before": "Pour avancer, il faut ",
+      "verb": "os",
+      "after": ".",
       "answer": "er",
       "difficulty": 2,
-      "explanation": "Après « sans », on utilise l'infinitif → -er."
+      "explanation": "Après « il faut », on utilise l'infinitif → -er."
     },
     {
       "id": "q108",

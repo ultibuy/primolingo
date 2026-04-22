@@ -1,8 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { collection, onSnapshot } from 'firebase/firestore';
-import { db } from '../firebase.js';
 import { useAuth } from '../contexts/AuthContext.jsx';
+import { listChildren } from '../services/store.js';
 import {
   loadParentImages,
   saveParentImages,
@@ -233,9 +232,8 @@ export default function ParentDashboard() {
 
   useEffect(() => {
     if (!user?.uid) return;
-    const ref = collection(db, 'users', user.uid, 'children');
-    const unsub = onSnapshot(ref, snap => {
-      setChildren(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    const unsub = listChildren(user.uid, (list) => {
+      setChildren(list);
       setLoading(false);
     });
     return unsub;

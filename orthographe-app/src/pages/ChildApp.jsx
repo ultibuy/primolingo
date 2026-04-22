@@ -1,11 +1,10 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { doc, getDoc } from 'firebase/firestore';
 import '../index.css';
 
 // Context
 import { useAuth } from '../contexts/AuthContext.jsx';
-import { db } from '../firebase.js';
+import { getChild } from '../services/store.js';
 
 // Content
 import { allRules } from '../content/loader.js';
@@ -33,8 +32,6 @@ import {
   createDefaultProgress,
   loadProgress,
   saveProgress,
-  hasPendingLocalSync,
-  syncLocalToCloud,
   getDailyBackups,
   restoreDailyBackup,
   loadAdminSettings,
@@ -389,8 +386,6 @@ export default function ChildApp() {
   const [lastSessionScore, setLastSessionScore] = useState(null);
   const [isSniper, setIsSniper] = useState(false);
   const [saveError, setSaveError] = useState(null);
-  const [pendingSync, setPendingSync] = useState(false);
-  const [syncing, setSyncing] = useState(false);
   const [dailyBackups, setDailyBackups] = useState([]);
   const [showFirstQuizBonusModal, setShowFirstQuizBonusModal] = useState(false);
   const pendingQuizLaunchRef = useRef(null);
@@ -465,19 +460,6 @@ export default function ChildApp() {
     await persistProgress(next);
   }, [progress, persistProgress]);
 
-  const handleSyncToCloud = useCallback(async () => {
-    setSyncing(true);
-    const result = await syncLocalToCloud(uid, childId);
-    if (result.success) {
-      const fresh = await loadProgress(uid, childId);
-      setProgress(fresh);
-      setPendingSync(false);
-    } else {
-      setSaveError(result.error);
-    }
-    setSyncing(false);
-  }, [uid, childId]);
-
   const handleDebugSetCoins = useCallback(async (coins) => {
     const next = { ...progress, coins };
     setProgress(next);
@@ -496,7 +478,6 @@ export default function ChildApp() {
   useEffect(() => {
     if (!uid || !childId) return;
 
-    if (hasPendingLocalSync(uid, childId)) setPendingSync(true);
     refreshDailyBackups();
     Promise.all([loadProgress(uid, childId), loadAdminSettings(uid, childId)]).then(async ([raw, settings]) => {
       setAdminSettings(settings);
@@ -529,10 +510,10 @@ export default function ChildApp() {
       return;
     }
 
-    getDoc(doc(db, 'users', uid, 'children', childId))
-      .then((snap) => {
-        if (!snap.exists()) return;
-        setChildName(String(snap.data().name || '').trim());
+    getChild(uid, childId)
+      .then((child) => {
+        if (!child) return;
+        setChildName(String(child.name || '').trim());
       })
       .catch((error) => {
         console.error('Failed to load child profile:', error);
@@ -1005,30 +986,6 @@ export default function ChildApp() {
       {showFreeze && <FreezeEntranceEffect onDone={() => setShowFreeze(false)} />}
       {saveError && (
         <div style={saveErrorStyle}>{saveError}</div>
-      )}
-      {pendingSync && (
-        <div style={{
-          position: 'fixed', bottom: '1.2rem', left: '50%', transform: 'translateX(-50%)',
-          zIndex: 9999, display: 'flex', alignItems: 'center', gap: '0.75rem',
-          padding: '0.75rem 1.1rem', borderRadius: '16px',
-          background: 'linear-gradient(135deg, rgba(30,30,46,0.97), rgba(45,43,85,0.97))',
-          border: '1px solid rgba(167,139,250,0.35)',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.45)',
-          fontSize: '0.85rem', color: '#e2e2e2', whiteSpace: 'nowrap',
-        }}>
-          <span>☁️ Données locales non synchronisées</span>
-          <button
-            onClick={handleSyncToCloud}
-            disabled={syncing}
-            style={{
-              padding: '0.4rem 0.9rem', borderRadius: '10px', border: 'none',
-              background: syncing ? 'rgba(167,139,250,0.2)' : 'rgba(167,139,250,0.85)',
-              color: 'white', fontWeight: 700, fontSize: '0.82rem', cursor: syncing ? 'default' : 'pointer',
-            }}
-          >
-            {syncing ? '…' : 'Synchroniser'}
-          </button>
-        </div>
       )}
       {showFirstQuizBonusModal && (
         <div style={firstQuizModalBackdropStyle}>

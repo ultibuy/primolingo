@@ -14,6 +14,7 @@ import {
   serverTimestamp,
   query,
   orderBy,
+  onSnapshot,
 } from 'firebase/firestore';
 import { db } from '../firebase.js';
 
@@ -21,7 +22,7 @@ import { db } from '../firebase.js';
 // Progress
 // ---------------------------------------------------------------------------
 
-export async function firestoreLoadProgress(uid, childId) {
+export async function loadProgress(uid, childId) {
   const ref = doc(db, 'users', uid, 'children', childId);
   const snap = await getDoc(ref);
   if (!snap.exists()) return null;
@@ -29,10 +30,9 @@ export async function firestoreLoadProgress(uid, childId) {
   return data.progress || null;
 }
 
-export async function firestoreSaveProgress(uid, childId, progress) {
+export async function saveProgress(uid, childId, progress) {
   const ref = doc(db, 'users', uid, 'children', childId);
   await updateDoc(ref, { progress });
-  // Create daily backup (once per day)
   await createDailyBackup(uid, childId, progress);
 }
 
@@ -40,14 +40,14 @@ export async function firestoreSaveProgress(uid, childId, progress) {
 // Admin settings (stored on the parent user document)
 // ---------------------------------------------------------------------------
 
-export async function firestoreLoadAdminSettings(uid) {
+export async function loadAdminSettings(uid) {
   const ref = doc(db, 'users', uid);
   const snap = await getDoc(ref);
   if (!snap.exists()) return null;
   return snap.data().settings || null;
 }
 
-export async function firestoreSaveAdminSettings(uid, settings) {
+export async function saveAdminSettings(uid, settings) {
   const ref = doc(db, 'users', uid);
   await updateDoc(ref, { settings });
 }
@@ -56,14 +56,14 @@ export async function firestoreSaveAdminSettings(uid, settings) {
 // Per-child settings (prodQuestionCount, enabledMysteryImageIds)
 // ---------------------------------------------------------------------------
 
-export async function firestoreLoadChildSettings(uid, childId) {
+export async function loadChildSettings(uid, childId) {
   const ref = doc(db, 'users', uid, 'children', childId);
   const snap = await getDoc(ref);
   if (!snap.exists()) return null;
   return snap.data().childSettings || null;
 }
 
-export async function firestoreSaveChildSettings(uid, childId, settings) {
+export async function saveChildSettings(uid, childId, settings) {
   const ref = doc(db, 'users', uid, 'children', childId);
   await updateDoc(ref, { childSettings: settings });
 }
@@ -72,14 +72,14 @@ export async function firestoreSaveChildSettings(uid, childId, settings) {
 // Parent-level mystery image library
 // ---------------------------------------------------------------------------
 
-export async function firestoreLoadParentImages(uid) {
+export async function loadParentImages(uid) {
   const ref = doc(db, 'users', uid);
   const snap = await getDoc(ref);
   if (!snap.exists()) return [];
   return snap.data().mysteryImages || [];
 }
 
-export async function firestoreSaveParentImages(uid, images) {
+export async function saveParentImages(uid, images) {
   const ref = doc(db, 'users', uid);
   await updateDoc(ref, { mysteryImages: images });
 }
@@ -88,7 +88,7 @@ export async function firestoreSaveParentImages(uid, images) {
 // Daily backups
 // ---------------------------------------------------------------------------
 
-export async function createDailyBackup(uid, childId, progress) {
+async function createDailyBackup(uid, childId, progress) {
   const today = new Date().toISOString().slice(0, 10);
   const backupRef = doc(db, 'users', uid, 'children', childId, 'backups', today);
   const backupSnap = await getDoc(backupRef);
@@ -100,28 +100,25 @@ export async function createDailyBackup(uid, childId, progress) {
     });
   }
 
-  // Prune backups older than 30 days
   await pruneOldBackups(uid, childId, 30);
 }
 
-export async function getDailyBackupsFirestore(uid, childId) {
+export async function getDailyBackups(uid, childId) {
   const ref = collection(db, 'users', uid, 'children', childId, 'backups');
   const q = query(ref, orderBy('savedAt', 'desc'));
   const snap = await getDocs(q);
   return snap.docs.map(d => ({ date: d.id, ...d.data() }));
 }
 
-export async function restoreDailyBackupFirestore(uid, childId, date) {
+export async function restoreDailyBackup(uid, childId, date) {
   const backupRef = doc(db, 'users', uid, 'children', childId, 'backups', date);
   const backupSnap = await getDoc(backupRef);
   if (!backupSnap.exists()) throw new Error('Backup not found');
   const progress = backupSnap.data().snapshot;
 
-  // Write restored progress
   const childRef = doc(db, 'users', uid, 'children', childId);
   await updateDoc(childRef, { progress });
 
-  // Create a restore-point backup
   const restoreDate = `${new Date().toISOString().slice(0, 10)}-restore`;
   await setDoc(doc(db, 'users', uid, 'children', childId, 'backups', restoreDate), {
     snapshot: progress,
@@ -146,4 +143,32 @@ async function pruneOldBackups(uid, childId, maxDays) {
   });
 
   await Promise.all(toDelete.map(d => deleteDoc(d.ref)));
+}
+
+// ---------------------------------------------------------------------------
+// Children CRUD (used by pages)
+// ---------------------------------------------------------------------------
+
+export function listChildren(uid, callback) {
+  const ref = collection(db, 'users', uid, 'children');
+  const unsub = onSnapshot(ref, snap => {
+    callback(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+  });
+  return unsub;
+}
+
+export async function getChild(uid, childId) {
+  const snap = await getDoc(doc(db, 'users', uid, 'children', childId));
+  if (!snap.exists()) return null;
+  return { id: snap.id, ...snap.data() };
+}
+
+export async function createChild(uid, name, avatar) {
+  const ref = doc(collection(db, 'users', uid, 'children'));
+  await setDoc(ref, { name, avatar, progress: null, createdAt: serverTimestamp() });
+  return ref.id;
+}
+
+export async function updateChild(uid, childId, data) {
+  await updateDoc(doc(db, 'users', uid, 'children', childId), data);
 }

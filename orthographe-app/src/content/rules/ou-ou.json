@@ -1253,11 +1253,11 @@
     },
     {
       "id": "q151",
-      "before": "Le port ",
-      "after": " les navires arrivent chaque jour est impressionnant.",
+      "before": "Le jardin ",
+      "after": " elle se promenait jadis a été détruit.",
       "answer": "ouu",
       "difficulty": 2,
-      "explanation": "Pronom relatif de lieu → où. (« port ou bien les navires » ✗)"
+      "explanation": "Pronom relatif de lieu → où. (« jardin ou bien » ✗)"
     },
     {
       "id": "q152",
@@ -1429,7 +1429,7 @@
     },
     {
       "id": "q173",
-      "before": "Éxil ",
+      "before": "Exil ",
       "after": " retour, le choix est difficile.",
       "answer": "ou",
       "difficulty": 2,
@@ -1537,7 +1537,7 @@
       "after": " tu cachais ce secret depuis longtemps.",
       "answer": "ouu",
       "difficulty": 1,
-      "explanation": "Adverbe interrogatif indirect de lieu → où. (Par sens figuré = en quel endroit de ton cœur)"
+      "explanation": "Adverbe interrogatif indirect de lieu → où. (Reformulation : « en quel endroit tu cachais ce secret » → où)"
     },
     {
       "id": "q187",

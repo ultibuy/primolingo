@@ -1,29 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { doc, getDoc, setDoc, updateDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { db } from '../firebase.js';
 import { useAuth } from '../contexts/AuthContext.jsx';
+import { getChild, createChild, updateChild } from '../services/store.js';
 
 const AVATARS = ['🦊', '🐱', '🦁', '🐸', '🐵', '🦄', '🐲', '🦅', '🐺', '🐼', '🦈', '🐙'];
-
-function createDefaultChildProgress() {
-  return {
-    createdAt: serverTimestamp(),
-    streak: { current: 0, longest: 0, lastActiveDate: null },
-    coins: 0,
-    shields: 0,
-    shop: {
-      owned: [],
-      equipped: { theme: null, flame: null, title: null, victoryAnimation: null },
-      activeBoosts: {},
-      mysteryImages: {},
-      inventory: { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 },
-    },
-    milestones: {},
-    weeklyChest: {},
-    rules: {},
-  };
-}
 
 export default function ChildSetup() {
   const { childId } = useParams();
@@ -41,10 +21,10 @@ export default function ChildSetup() {
   useEffect(() => {
     if (!isEdit || !user?.uid || !childId) return;
     setLoading(true);
-    getDoc(doc(db, 'users', user.uid, 'children', childId)).then(snap => {
-      if (snap.exists()) {
-        setName(snap.data().name || '');
-        setAvatar(snap.data().avatar || AVATARS[0]);
+    getChild(user.uid, childId).then(child => {
+      if (child) {
+        setName(child.name || '');
+        setAvatar(child.avatar || AVATARS[0]);
       }
       setLoading(false);
     });
@@ -57,19 +37,11 @@ export default function ChildSetup() {
 
     try {
       if (isEdit) {
-        await updateDoc(doc(db, 'users', user.uid, 'children', childId), {
-          name: name.trim(),
-          avatar,
-        });
+        await updateChild(user.uid, childId, { name: name.trim(), avatar });
         navigate('/parent');
       } else {
-        const ref = doc(collection(db, 'users', user.uid, 'children'));
-        await setDoc(ref, {
-          name: name.trim(),
-          avatar,
-          progress: createDefaultChildProgress(),
-        });
-        setNewChildId(ref.id);
+        const id = await createChild(user.uid, name.trim(), avatar);
+        setNewChildId(id);
         setDone(true);
       }
     } catch (err) {

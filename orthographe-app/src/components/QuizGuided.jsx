@@ -143,27 +143,25 @@ export default function QuizGuided({
             ? <><span style={{ whiteSpace: 'nowrap' }}>
                 <span style={{ color: '#e2e2e2', fontWeight: 600 }}>{question.verb}</span>
                 <span style={{
-                  display: 'inline-block',
-                  minWidth: 50,
-                  lineHeight: 1,
-                  verticalAlign: 'baseline',
-                  borderBottom: '2px dashed var(--color-accent)',
+                  textDecoration: 'underline',
+                  textDecorationStyle: 'dashed',
+                  textDecorationColor: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
+                  textUnderlineOffset: '4px',
                   color: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
                   fontWeight: 700, padding: '0 4px',
                 }}>
-                  {selected ? choices.find(c => c.id === selected)?.label.replace('-', '') : '\u200b'}
+                  {selected ? choices.find(c => c.id === selected)?.label.replace('-', '') : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
                 </span>
               </span>{question.after}</>
             : <><span style={{
-                  display: 'inline-block',
-                  minWidth: 80,
-                  lineHeight: 1,
-                  verticalAlign: 'baseline',
-                  borderBottom: '2px dashed var(--color-accent)',
+                  textDecoration: 'underline',
+                  textDecorationStyle: 'dashed',
+                  textDecorationColor: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
+                  textUnderlineOffset: '4px',
                   color: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
                   fontWeight: 700, padding: '0 4px',
                 }}>
-                  {selected ? choices.find(c => c.id === selected)?.label : '\u200b'}
+                  {selected ? choices.find(c => c.id === selected)?.label : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
                 </span>{question.after}</>}
 
         </div>

@@ -8,6 +8,7 @@ import CharacterSprite from './CharacterSprite.jsx';
 import mangaImage from '../assets/manga.png';
 import ryuImage from '../assets/ryu.png';
 import { SHOP_CHARACTERS, SHOP_EMOTIONS } from '../data/shopCharacters.js';
+import { isLocalhost } from '../debug.js';
 import {
   SHOP_CATALOG,
   canAfford,
@@ -114,7 +115,7 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
 
   const coins = progress.coins || 0;
   const shields = progress.shields || 0;
-  const isDebug = typeof window !== 'undefined' && window.__ORTHO_DEBUG__;
+  const isDebug = isLocalhost();
   const mysteryImageDefinitions = getMysteryImageDefinitions(adminSettings?.customMysteryImages);
 
   const allItems = Object.values(SHOP_CATALOG);

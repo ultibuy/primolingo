@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, signOut as firebaseSignOut } from 'firebase/auth';
 import { auth } from '../firebase';
+import { isLocalhost } from '../debug.js';
 
 const AuthContext = createContext(null);
 
@@ -9,10 +10,9 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Debug auth bypass: set localStorage 'debug_uid' to skip real auth
-    const debugUid = localStorage.getItem('ortho_debug') === '1' && localStorage.getItem('debug_uid');
-    if (debugUid) {
-      setUser({ uid: debugUid, email: 'debug@test.com', displayName: 'Debug' });
+    // On localhost: bypass Firebase auth entirely
+    if (isLocalhost()) {
+      setUser({ uid: 'localhost-dev', email: 'debug@test.com', displayName: 'Debug' });
       setLoading(false);
       return;
     }

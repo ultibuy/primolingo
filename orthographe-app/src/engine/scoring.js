@@ -11,9 +11,10 @@
  */
 
 import { getToday } from './sm2.js';
+import { isLocalhost } from '../debug.js';
 
 function isDebug() {
-  try { return typeof window !== 'undefined' && window.__ORTHO_DEBUG__; } catch { return false; }
+  return isLocalhost();
 }
 
 /**

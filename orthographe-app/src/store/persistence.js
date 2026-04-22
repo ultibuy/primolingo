@@ -1,63 +1,22 @@
 /**
- * Persistence layer — Firestore-backed.
- *
- * All data is stored in Firestore under:
- *   users/{uid}/children/{childId}/progress
- *   users/{uid}/settings
- *   users/{uid}/children/{childId}/backups/{date}
+ * Persistence layer — high-level wrappers with defaults, validation, and
+ * error handling on top of the raw store (Firestore or localStorage).
  */
 
 import { getToday } from '../engine/sm2.js';
 import { createDefaultMysteryImagesState } from '../engine/economy.js';
 import {
-  firestoreLoadProgress,
-  firestoreSaveProgress,
-  firestoreLoadAdminSettings,
-  firestoreSaveAdminSettings,
-  firestoreLoadChildSettings,
-  firestoreSaveChildSettings,
-  firestoreLoadParentImages,
-  firestoreSaveParentImages,
-  getDailyBackupsFirestore,
-  restoreDailyBackupFirestore,
-} from '../services/firestore.js';
+  loadProgress        as storeLoadProgress,
+  saveProgress        as storeSaveProgress,
+  loadChildSettings   as storeLoadChildSettings,
+  saveChildSettings   as storeSaveChildSettings,
+  loadParentImages    as storeLoadParentImages,
+  saveParentImages    as storeSaveParentImages,
+  getDailyBackups     as storeGetDailyBackups,
+  restoreDailyBackup  as storeRestoreDailyBackup,
+} from '../services/store.js';
 
 const SECRET_CODE_LENGTH = 4;
-
-function isDebugLocalPersistenceEnabled() {
-  if (typeof window === 'undefined') return false;
-  try {
-    return window.localStorage.getItem('ortho_debug') === '1';
-  } catch {
-    return false;
-  }
-}
-
-function getDebugProgressKey(uid, childId) {
-  return `debug_progress:${uid || 'unknown'}:${childId || 'unknown'}`;
-}
-
-function readDebugProgress(uid, childId) {
-  if (!isDebugLocalPersistenceEnabled()) return null;
-  try {
-    const raw = window.localStorage.getItem(getDebugProgressKey(uid, childId));
-    if (!raw) return null;
-    const parsed = JSON.parse(raw);
-    return parsed && typeof parsed === 'object' ? parsed : null;
-  } catch {
-    return null;
-  }
-}
-
-function writeDebugProgress(uid, childId, progress) {
-  if (!isDebugLocalPersistenceEnabled()) return false;
-  try {
-    window.localStorage.setItem(getDebugProgressKey(uid, childId), JSON.stringify(progress));
-    return true;
-  } catch {
-    return false;
-  }
-}
 
 // ---------------------------------------------------------------------------
 // Default structures
@@ -145,48 +104,24 @@ function normalizeCustomMysteryImages(value) {
 
 export async function loadProgress(uid, childId) {
   if (!uid || !childId) return createDefaultProgress();
-  const debugProgress = readDebugProgress(uid, childId);
-  if (debugProgress) return debugProgress;
   try {
-    const data = await firestoreLoadProgress(uid, childId);
+    const data = await storeLoadProgress(uid, childId);
     if (!data || typeof data !== 'object') return createDefaultProgress();
     return data;
   } catch (error) {
-    console.error('Failed to load progress from Firestore:', error);
+    console.error('Failed to load progress:', error);
     return createDefaultProgress();
   }
 }
 
 export async function saveProgress(progress, uid, childId) {
   if (!uid || !childId) return { success: false, error: 'uid et childId requis.' };
-  if (writeDebugProgress(uid, childId, progress)) {
-    return { success: true };
-  }
   try {
-    await firestoreSaveProgress(uid, childId, progress);
+    await storeSaveProgress(uid, childId, progress);
     return { success: true };
   } catch (error) {
-    console.error('Failed to save progress to Firestore:', error);
+    console.error('Failed to save progress:', error);
     return { success: false, error: "La progression n'a pas pu être sauvegardée." };
-  }
-}
-
-export function hasPendingLocalSync(uid, childId) {
-  if (!uid || !childId) return false;
-  return readDebugProgress(uid, childId) !== null;
-}
-
-export async function syncLocalToCloud(uid, childId) {
-  if (!uid || !childId) return { success: false, error: 'uid et childId requis.' };
-  const local = readDebugProgress(uid, childId);
-  if (!local) return { success: false, error: 'Rien à synchroniser.' };
-  try {
-    await firestoreSaveProgress(uid, childId, local);
-    window.localStorage.removeItem(getDebugProgressKey(uid, childId));
-    return { success: true };
-  } catch (error) {
-    console.error('Sync to cloud failed:', error);
-    return { success: false, error: "Synchronisation échouée. Vérifie ta connexion." };
   }
 }
 
@@ -203,8 +138,8 @@ export async function loadAdminSettings(uid, childId) {
   if (!uid || !childId) return createDefaultAdminSettings();
   try {
     const [childSettings, parentImages] = await Promise.all([
-      firestoreLoadChildSettings(uid, childId),
-      firestoreLoadParentImages(uid),
+      storeLoadChildSettings(uid, childId),
+      storeLoadParentImages(uid),
     ]);
     const settings = childSettings || {};
     const enabledIds = settings.enabledMysteryImageIds || [];
@@ -229,9 +164,9 @@ export async function saveAdminSettings(settings, uid, childId) {
   if (!uid || !childId) return { success: false, error: 'uid et childId requis.' };
   try {
     const prodQuestionCount = Math.max(1, Math.min(Number.parseInt(settings?.prodQuestionCount, 10) || 20, 50));
-    const current = await firestoreLoadChildSettings(uid, childId) || {};
+    const current = await storeLoadChildSettings(uid, childId) || {};
     const payload = { ...current, prodQuestionCount };
-    await firestoreSaveChildSettings(uid, childId, payload);
+    await storeSaveChildSettings(uid, childId, payload);
     return { success: true, settings: { ...createDefaultAdminSettings(), prodQuestionCount } };
   } catch (error) {
     console.error('Failed to save admin settings to Firestore:', error);
@@ -245,7 +180,7 @@ export async function saveAdminSettings(settings, uid, childId) {
 export async function loadParentImages(uid) {
   if (!uid) return [];
   try {
-    return normalizeCustomMysteryImages(await firestoreLoadParentImages(uid));
+    return normalizeCustomMysteryImages(await storeLoadParentImages(uid));
   } catch (error) {
     console.error('Failed to load parent images:', error);
     return [];
@@ -258,7 +193,7 @@ export async function loadParentImages(uid) {
 export async function saveParentImages(uid, images) {
   if (!uid) return { success: false, error: 'uid requis.' };
   try {
-    await firestoreSaveParentImages(uid, normalizeCustomMysteryImages(images));
+    await storeSaveParentImages(uid, normalizeCustomMysteryImages(images));
     return { success: true };
   } catch (error) {
     console.error('Failed to save parent images:', error);
@@ -272,8 +207,8 @@ export async function saveParentImages(uid, images) {
 export async function saveChildImageSettings(uid, childId, enabledMysteryImageIds) {
   if (!uid || !childId) return { success: false, error: 'uid et childId requis.' };
   try {
-    const current = await firestoreLoadChildSettings(uid, childId) || {};
-    await firestoreSaveChildSettings(uid, childId, { ...current, enabledMysteryImageIds });
+    const current = await storeLoadChildSettings(uid, childId) || {};
+    await storeSaveChildSettings(uid, childId, { ...current, enabledMysteryImageIds });
     return { success: true };
   } catch (error) {
     console.error('Failed to save child image settings:', error);
@@ -288,8 +223,8 @@ export async function saveChildQuestionCount(uid, childId, prodQuestionCount) {
   if (!uid || !childId) return { success: false, error: 'uid et childId requis.' };
   try {
     const count = Math.max(1, Math.min(Number.parseInt(prodQuestionCount, 10) || 20, 50));
-    const current = await firestoreLoadChildSettings(uid, childId) || {};
-    await firestoreSaveChildSettings(uid, childId, { ...current, prodQuestionCount: count });
+    const current = await storeLoadChildSettings(uid, childId) || {};
+    await storeSaveChildSettings(uid, childId, { ...current, prodQuestionCount: count });
     return { success: true };
   } catch (error) {
     console.error('Failed to save question count:', error);
@@ -303,7 +238,7 @@ export async function saveChildQuestionCount(uid, childId, prodQuestionCount) {
 export async function loadChildSettings(uid, childId) {
   if (!uid || !childId) return { prodQuestionCount: 20, enabledMysteryImageIds: [] };
   try {
-    const s = await firestoreLoadChildSettings(uid, childId);
+    const s = await storeLoadChildSettings(uid, childId);
     return {
       prodQuestionCount: Math.max(1, Math.min(Number.parseInt(s?.prodQuestionCount, 10) || 20, 50)),
       enabledMysteryImageIds: Array.isArray(s?.enabledMysteryImageIds) ? s.enabledMysteryImageIds : [],
@@ -321,7 +256,7 @@ export async function loadChildSettings(uid, childId) {
 export async function getDailyBackups(uid, childId) {
   if (!uid || !childId) return [];
   try {
-    return await getDailyBackupsFirestore(uid, childId);
+    return await storeGetDailyBackups(uid, childId);
   } catch (error) {
     console.error('Failed to load daily backups:', error);
     return [];
@@ -332,7 +267,7 @@ export async function restoreDailyBackup(backup, uid, childId) {
   if (!uid || !childId) return { success: false, error: 'uid et childId requis.' };
   try {
     const date = typeof backup === 'string' ? backup : backup?.date;
-    const progress = await restoreDailyBackupFirestore(uid, childId, date);
+    const progress = await storeRestoreDailyBackup(uid, childId, date);
     return { success: true, progress };
   } catch (error) {
     console.error('Failed to restore backup:', error);
@@ -345,7 +280,7 @@ export async function clearCurrentStoredProgress(uid, childId) {
   if (!uid || !childId) return { success: false, error: 'uid et childId requis.' };
   try {
     const empty = createDefaultProgress();
-    await firestoreSaveProgress(uid, childId, empty);
+    await storeSaveProgress(uid, childId, empty);
     return { success: true };
   } catch (error) {
     console.error('Failed to clear progress:', error);

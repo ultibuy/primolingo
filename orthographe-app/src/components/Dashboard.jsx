@@ -8,6 +8,7 @@ import DiamondStatus from './DiamondStatus.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
 import LevelHelpPopup from './LevelHelpPopup.jsx';
 import RuleEditor from './RuleEditor.jsx';
+import { isLocalhost } from '../debug.js';
 import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 import { clearCurrentStoredProgress } from '../store/persistence.js';
 import { getStreakInfo } from '../engine/scoring.js';
@@ -328,30 +329,7 @@ export default function Dashboard({
   const [levelHelp, setLevelHelp] = useState(null); // { level: 'bronze', ruleTitle, ruleProgress }
   const [editingRule, setEditingRule] = useState(null); // rule object being edited
   const [memoRule, setMemoRule] = useState(null);
-  // Debug mode: activate via ?debug=1 (persists in localStorage), deactivate via button
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('debug') === '1') {
-      localStorage.setItem('ortho_debug', '1');
-      const url = new URL(window.location.href);
-      url.searchParams.delete('debug');
-      window.history.replaceState({}, '', url.toString());
-    } else if (params.get('debug') === '0') {
-      localStorage.removeItem('ortho_debug');
-      const url = new URL(window.location.href);
-      url.searchParams.delete('debug');
-      window.history.replaceState({}, '', url.toString());
-    }
-  }, []);
-  const isRaphael = typeof childName === 'string' &&
-    childName.trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') === 'raphael';
-  const isDebug = isRaphael && typeof window !== 'undefined' && (
-    window.__ORTHO_DEBUG__ ||
-    localStorage.getItem('ortho_debug') === '1' ||
-    new URLSearchParams(window.location.search).get('debug') === '1' ||
-    window.location.hostname === 'localhost' ||
-    window.location.hostname === '127.0.0.1'
-  );
+  const isDebug = isLocalhost();
   const overlayTimeoutsRef = useRef([]);
   const [debugStreak, setDebugStreak] = useState(String(progress.streak?.current || 0));
   const [debugDate, setDebugDate] = useState(progress.streak?.lastActiveDate || '');
@@ -1299,25 +1277,6 @@ export default function Dashboard({
           </div>
           <div style={{ marginBottom: '0.8rem' }}>
             <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-              <button
-                onClick={() => {
-                  localStorage.removeItem('ortho_debug');
-                  window.__ORTHO_DEBUG__ = false;
-                  window.location.reload();
-                }}
-                style={{
-                  padding: '0.38rem 0.9rem',
-                  borderRadius: 6,
-                  border: '1px solid rgba(250,204,21,0.28)',
-                  background: 'rgba(250,204,21,0.12)',
-                  color: '#fde68a',
-                  cursor: 'pointer',
-                  fontSize: '0.75rem',
-                  fontWeight: 700,
-                }}
-              >
-                Passer en debug = false
-              </button>
               <a
                 href="/admin"
                 style={{

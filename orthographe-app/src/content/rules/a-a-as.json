@@ -1,6 +1,6 @@
 {
   "id": "a-a-as",
-  "title": "a · à · as",
+  "title": "a / à / as",
   "shortTitle": "a / à / as",
   "description": "Distinguer : a (verbe avoir, il/elle/on), as (verbe avoir, tu), à (préposition).",
   "choices": [
@@ -222,7 +222,7 @@
     {
       "id": "q018",
       "before": "Elle ",
-      "after": " du mal ",
+      "after": " du mal à s'en sortir.",
       "answer": "a",
       "difficulty": 2,
       "explanation": "On peut dire « elle avait du mal » → verbe avoir → a. (Et la deuxième préposition est aussi « à »)"
@@ -358,7 +358,7 @@
     {
       "id": "q035",
       "before": "Tu ",
-      "after": " montré la photo ",
+      "after": " montré la photo à tout le monde.",
       "answer": "as",
       "difficulty": 2,
       "explanation": "On peut dire « tu avais montré » → verbe avoir au passé composé → as. (Et la deuxième préposition est aussi « à »)"
@@ -526,7 +526,7 @@
     {
       "id": "q056",
       "before": "Tu ",
-      "after": " intérêt ",
+      "after": " intérêt à faire attention.",
       "answer": "as",
       "difficulty": 2,
       "explanation": "On peut dire « tu avais intérêt » → verbe avoir (expression avoir intérêt à) → as. (La deuxième préposition est aussi « à »)"
@@ -686,7 +686,7 @@
     {
       "id": "q076",
       "before": "Elle ",
-      "after": " monté l'escalier quatre ",
+      "after": " monté l'escalier quatre à quatre.",
       "answer": "a",
       "difficulty": 2,
       "explanation": "On peut dire « elle avait monté » → verbe avoir au passé composé → a. (Et la deuxième préposition est aussi « à »)"
@@ -694,7 +694,7 @@
     {
       "id": "q077",
       "before": "Tu ",
-      "after": " rendu visite ",
+      "after": " rendu visite à ta grand-mère.",
       "answer": "as",
       "difficulty": 2,
       "explanation": "On peut dire « tu avais rendu » → verbe avoir au passé composé → as. (Et la deuxième préposition est aussi « à »)"
@@ -782,7 +782,7 @@
     {
       "id": "q088",
       "before": "Il ",
-      "after": " échoué ",
+      "after": " échoué à son examen.",
       "answer": "a",
       "difficulty": 2,
       "explanation": "On peut dire « il avait échoué » → verbe avoir au passé composé → a. (Et la deuxième préposition est aussi « à »)"
@@ -1030,7 +1030,7 @@
     {
       "id": "q119",
       "before": "Une pizza ",
-      "after": " eight tranches.",
+      "after": " huit tranches.",
       "answer": "a",
       "difficulty": 2,
       "explanation": "On peut dire « une pizza avait huit tranches » → verbe avoir → a."
@@ -1646,7 +1646,7 @@
     {
       "id": "q196",
       "before": "On tient beaucoup ",
-      "after": " cette traditions.",
+      "after": " cette tradition.",
       "answer": "ap",
       "difficulty": 3,
       "explanation": "« On tient avait cette tradition » ne fonctionne pas → préposition de rapport → à."

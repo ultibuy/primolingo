@@ -1,6 +1,26 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+import { spawn } from 'node:child_process';
+
+function localApiPlugin() {
+  let child;
+  return {
+    name: 'local-api',
+    configureServer() {
+      child = spawn('node', ['server/local-api.mjs'], {
+        stdio: 'inherit',
+        env: { ...process.env, PORT: '3001' },
+      });
+      child.on('error', (err) => console.error('[local-api] failed to start:', err.message));
+      child.on('exit', () => { child = null; });
+      const cleanup = () => { if (child) { child.kill(); child = null; } };
+      process.on('exit', cleanup);
+      process.on('SIGTERM', cleanup);
+      process.on('SIGINT', cleanup);
+    },
+  };
+}
 
 export default defineConfig({
   server: {
@@ -9,6 +29,7 @@ export default defineConfig({
     },
   },
   plugins: [
+    localApiPlugin(),
     react(),
     VitePWA({
       registerType: 'autoUpdate',

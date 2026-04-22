@@ -1449,7 +1449,7 @@
       "after": ".",
       "answer": "g3",
       "difficulty": 2,
-      "explanation": "Atteindre est du 3ème groupe."
+      "explanation": "Atteindre se termine en -indre (jamais « atteirissons ») → 3ème groupe."
     },
     {
       "id": "q171",
@@ -1457,7 +1457,7 @@
       "after": ".",
       "answer": "g3",
       "difficulty": 2,
-      "explanation": "Battre est du 3ème groupe."
+      "explanation": "Battre se termine en -attre (nous battons, pas -issons) → 3ème groupe."
     },
     {
       "id": "q172",
@@ -1473,7 +1473,7 @@
       "after": ".",
       "answer": "g3",
       "difficulty": 2,
-      "explanation": "Braire est du 3ème groupe."
+      "explanation": "Braire est un verbe défectif, se termine en -aire → 3ème groupe."
     },
     {
       "id": "q174",
@@ -1481,7 +1481,7 @@
       "after": ".",
       "answer": "g3",
       "difficulty": 2,
-      "explanation": "Bruire est du 3ème groupe."
+      "explanation": "Bruire est un verbe défectif, se termine en -uire → 3ème groupe."
     },
     {
       "id": "q175",
@@ -1497,7 +1497,7 @@
       "after": ".",
       "answer": "g3",
       "difficulty": 2,
-      "explanation": "Clore est du 3ème groupe."
+      "explanation": "Clore est un verbe atypique (infinitif en -ore, nous closons) → 3ème groupe."
     },
     {
       "id": "q177",
@@ -1505,7 +1505,7 @@
       "after": ".",
       "answer": "g3",
       "difficulty": 2,
-      "explanation": "Conclure est du 3ème groupe."
+      "explanation": "Conclure se termine en -clure (nous concluons, pas -issons) → 3ème groupe."
     },
     {
       "id": "q178",
@@ -1521,7 +1521,7 @@
       "after": ".",
       "answer": "g3",
       "difficulty": 2,
-      "explanation": "Condescendre est du 3ème groupe."
+      "explanation": "Condescendre se termine en -endre (nous condescendons, pas -issons) → 3ème groupe."
     },
     {
       "id": "q180",
