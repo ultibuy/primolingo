@@ -6,11 +6,11 @@ function clampPct(value) {
   return Math.max(0, Math.min(value, 100));
 }
 
-export default function ProgressBar({ current, total, showResult, shopOwned = [], lastAnswer = null }) {
+export default function ProgressBar({ current, total, showResult, shopOwned = [], lastAnswer = null, characterId: charIdProp }) {
   const pct = ((current + (showResult ? 1 : 0)) / total) * 100;
   const valuenow = current + (showResult ? 1 : 0);
   const ownedChars = useMemo(() => getOwnedChars(shopOwned), [shopOwned]);
-  const activeChar = ownedChars[0] || null;
+  const activeChar = charIdProp || ownedChars[0] || null;
   const [mood, setMood] = useState('walk');
 
   useEffect(() => {

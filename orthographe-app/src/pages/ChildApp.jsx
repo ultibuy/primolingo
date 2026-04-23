@@ -8,6 +8,7 @@ import { getChild } from '../services/store.js';
 
 // Content
 import { allRules } from '../content/loader.js';
+import { getCharacterForRule } from '../data/shopCharacters.js';
 
 // Engine
 import { selectSessionQuestions, selectSniperQuestions } from '../engine/session.js';
@@ -1074,9 +1075,11 @@ export default function ChildApp() {
     const isFirstSessionOfDay = progress.streak?.lastActiveDate !== getToday();
     const ruleProgress = activeRule.id === '__sniper__' ? null : progress.rules?.[activeRule.id];
     const victoryAnimationId = progress.shop?.equipped?.victoryAnimation || null;
+    const quizCharacterId = getCharacterForRule(activeRule.id, allRules.map(r => r.id), progress.shop?.owned || []);
     return renderWithSaveError(
       <QuizComponent
         rule={activeRule}
+        characterId={quizCharacterId}
         questions={sessionQuestions}
         onFinish={handleQuizFinish}
         inventory={inventory}

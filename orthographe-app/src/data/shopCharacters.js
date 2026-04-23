@@ -37,6 +37,58 @@ export function resolveShopCharacter(shopOwned = []) {
   return getOwnedChars(shopOwned)[0] || null;
 }
 
+/**
+ * Get the character assigned to a rule for today.
+ * Assignment is random but stable for the day. Characters are dealt round-robin
+ * without replacement: each owned char is used once before any repeats.
+ */
+export function getCharacterForRule(ruleId, allRuleIds, shopOwned = []) {
+  const owned = getOwnedChars(shopOwned);
+  if (owned.length === 0) return null;
+  if (owned.length === 1) return owned[0];
+
+  const today = new Date().toISOString().slice(0, 10);
+  const cacheKey = `char_assign:${today}`;
+
+  try {
+    const cached = JSON.parse(localStorage.getItem(cacheKey) || 'null');
+    if (cached && typeof cached === 'object' && cached[ruleId]) {
+      // Verify the assigned char is still owned
+      if (owned.includes(cached[ruleId])) return cached[ruleId];
+    }
+
+    // Build assignment for all rules
+    const assignment = {};
+    const pool = [];
+    for (const id of allRuleIds) {
+      if (pool.length === 0) {
+        // Refill and shuffle
+        pool.push(...owned);
+        // Seeded shuffle using today's date for stability
+        for (let i = pool.length - 1; i > 0; i--) {
+          const seed = hashCode(`${today}:${id}:${i}`);
+          const j = ((seed % (i + 1)) + (i + 1)) % (i + 1);
+          [pool[i], pool[j]] = [pool[j], pool[i]];
+        }
+      }
+      assignment[id] = pool.pop();
+    }
+
+    localStorage.setItem(cacheKey, JSON.stringify(assignment));
+    return assignment[ruleId] || owned[0];
+  } catch {
+    return owned[0];
+  }
+}
+
+function hashCode(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) {
+    h = ((h << 5) - h + str.charCodeAt(i)) | 0;
+  }
+  return Math.abs(h);
+}
+
 export function resolveCharacterMood(rawMood, charId, shopOwned = [], fallbackMood = 'walk') {
   if (!rawMood || rawMood === fallbackMood) return fallbackMood;
   const owned = new Set(getOwnedEmotions(shopOwned, charId));

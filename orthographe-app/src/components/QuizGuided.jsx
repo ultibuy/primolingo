@@ -28,6 +28,7 @@ export default function QuizGuided({
   questions,
   onFinish,
   onClose,
+  characterId,
   hasDoubleCoinsActive,
   isFirstSessionOfDay,
   ruleProgress,
@@ -123,6 +124,7 @@ export default function QuizGuided({
           total={questions.length}
           showResult={showResult}
           shopOwned={shopOwned}
+          characterId={characterId}
           lastAnswer={showResult ? (isCorrect ? 'correct' : 'wrong') : null}
         />
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import RuleCard from './RuleCard.jsx';
 import CoinIcon from './CoinIcon.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
@@ -17,7 +17,7 @@ import { getDoubleCoinsBonusEarned, getDoubleCoinsRemainingSessions, getEquipped
 import { exportProgress } from '../store/persistence.js';
 import { CHARACTERS, CHARACTER_CATEGORIES } from '../data/characters.js';
 import CharacterSprite from './CharacterSprite.jsx';
-import { resolveCharacterMood, resolveShopCharacter } from '../data/shopCharacters.js';
+import { resolveCharacterMood, resolveShopCharacter, getCharacterForRule } from '../data/shopCharacters.js';
 
 // ---------------------------------------------------------------------------
 // FIX 1 & FIX 3 — Corrected milestone messages with proper French accents
@@ -542,6 +542,7 @@ export default function Dashboard({
 
   const activeCharacterId = resolveShopCharacter(shopOwned);
   const activeCharacterMood = resolveCharacterMood(pandaMood, activeCharacterId, shopOwned);
+  const allRuleIds = useMemo(() => rules.map(r => r.id), [rules]);
 
   const summary = computeGlobalLevelSummary(rules, progress);
 
@@ -640,7 +641,7 @@ export default function Dashboard({
         );
       })()}
       {/* ---------------------------------------------------------------------------
-        Streak milestone alert — first visit of the day
+        Flamme milestone alert — first visit of the day
       --------------------------------------------------------------------------- */}
       {streakAlert && (
         <div style={{
@@ -787,7 +788,7 @@ export default function Dashboard({
               </div>
             </button>
           ) : (
-            /* Streak is 0: just show a muted flame */
+            /* Flamme is 0: show muted flame */
             <button
               type="button"
               onClick={() => setShowStreakHelp(true)}
@@ -1030,8 +1031,8 @@ export default function Dashboard({
                       onOpenMemo={setMemoRule}
                       onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
                       onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
-                      pandaMood={activeCharacterMood}
-                      characterId={activeCharacterId}
+                      pandaMood={resolveCharacterMood(pandaMood, getCharacterForRule(rule.id, allRuleIds, shopOwned), shopOwned)}
+                      characterId={getCharacterForRule(rule.id, allRuleIds, shopOwned)}
                       onCharacterClick={() => setMoodTooltip(true)}
                     />
                   </div>
@@ -1062,8 +1063,8 @@ export default function Dashboard({
                       onOpenMemo={setMemoRule}
                       onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
                       onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
-                      pandaMood={activeCharacterMood}
-                      characterId={activeCharacterId}
+                      pandaMood={resolveCharacterMood(pandaMood, getCharacterForRule(rule.id, allRuleIds, shopOwned), shopOwned)}
+                      characterId={getCharacterForRule(rule.id, allRuleIds, shopOwned)}
                       onCharacterClick={() => setMoodTooltip(true)}
                     />
                   </div>
@@ -1339,7 +1340,7 @@ export default function Dashboard({
           })}
 
           <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
-            🛠 Debug — Streak
+            🛠 Debug — Flamme
           </div>
           <div style={{ marginBottom: '0.8rem' }}>
             <button
@@ -1418,7 +1419,7 @@ export default function Dashboard({
             flexDirection: isCompactLayout ? 'column' : 'row',
           }}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', minWidth: 0 }}>
-              <label style={{ fontSize: '0.65rem', color: '#9ca3af' }}>Streak (jours)</label>
+              <label style={{ fontSize: '0.65rem', color: '#9ca3af' }}>Flamme (jours)</label>
               <input
                 type="number"
                 min="0"
@@ -1605,7 +1606,7 @@ export default function Dashboard({
     </div>
 
     {/* =====================================================================
-      Streak Help Popup — explains what the flame/streak is
+      Flamme Help Popup
     ===================================================================== */}
     {showStreakHelp && (
       <div
@@ -1626,7 +1627,7 @@ export default function Dashboard({
         >
           <PopupCloseButton
             onClick={() => setShowStreakHelp(false)}
-            ariaLabel="Fermer la fenêtre streak"
+            ariaLabel="Fermer la fenêtre flamme"
           />
 
           <div
