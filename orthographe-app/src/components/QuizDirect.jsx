@@ -135,7 +135,7 @@ export default function QuizDirect({
                 }}>
                   {selected ? choices.find(c => c.id === selected)?.label : '______'}
                 </span>{question.after}</>}
-          {onFlagQuestion && <FlagBugButton onFlag={(unflag) => onFlagQuestion(question, rule, unflag)} />}
+          {onFlagQuestion && <FlagBugButton key={question.id} onFlag={(unflag) => onFlagQuestion(question, rule, unflag)} />}
         </div>
 
         {/* Answer buttons */}

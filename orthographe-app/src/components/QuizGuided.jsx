@@ -184,7 +184,7 @@ export default function QuizGuided({
                 }}>
                   {selected ? choices.find(c => c.id === selected)?.label : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
                 </span>{question.after}</>}
-          {onFlagQuestion && <FlagBugButton onFlag={(unflag) => onFlagQuestion(question, rule, unflag)} />}
+          {onFlagQuestion && <FlagBugButton key={question.id} onFlag={(unflag) => onFlagQuestion(question, rule, unflag)} />}
         </div>
 
         {/* B5 — Label above the decision panel (same style as "Ta réponse") */}
