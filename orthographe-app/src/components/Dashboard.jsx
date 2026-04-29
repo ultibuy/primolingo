@@ -68,8 +68,9 @@ const EVENT_CONFIG = {
 };
 
 const MOOD_DESCRIPTIONS = {
-  walk:      { emoji: '🚶', label: 'Balade', desc: 'Ton perso se promène tranquillement en attendant le prochain quiz.' },
-  sleep:     { emoji: '💤', label: 'Dodo', desc: 'Ton perso dort encore… Fais 3 quiz pour le réveiller !' },
+  walk:      { emoji: '🚶', label: 'Balade',   desc: 'Ton perso avance vers le prochain niveau — continue comme ça !' },
+  sit:       { emoji: '🧘', label: 'Assis',    desc: 'Ton perso s\'installe sur ton niveau actuel en attendant la prochaine aventure.' },
+  sleep:     { emoji: '💤', label: 'Dodo',     desc: 'Ton perso dort encore… Fais 3 quiz pour le réveiller !' },
   wave:      { emoji: '👋', label: 'Coucou !', desc: 'Il te salue pour fêter tes débuts !' },
   clap:      { emoji: '👏', label: 'Bravo !', desc: 'Il applaudit ta session parfaite !' },
   cheer:     { emoji: '🙌', label: 'Hourra !', desc: 'Il lève les bras pour toi !' },
