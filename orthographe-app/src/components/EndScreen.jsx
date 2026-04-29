@@ -579,8 +579,11 @@ export default function EndScreen({
           transition: 'all 0.4s ease',
         }}>
           <div style={{ maxHeight: 220, overflowY: 'auto', marginBottom: '1rem', paddingRight: '0.3rem' }}>
-            {questions.map((q, i) => {
-              const a = answers[i];
+            {[...questions.map((q, i) => ({ q, a: answers[i], i }))].sort((x, y) => {
+              const okX = x.a?.correct ? 1 : 0;
+              const okY = y.a?.correct ? 1 : 0;
+              return okX - okY; // errors first
+            }).map(({ q, a, i }) => {
               const ok = a?.correct;
               const questionChoices = q._ruleChoices || rule.choices || [];
               const chosenLabel = questionChoices.find(c => c.id === a?.chosen)?.label || '';
