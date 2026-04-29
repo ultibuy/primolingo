@@ -628,7 +628,9 @@ export default function Dashboard({
               animation: 'bounce-in 0.3s ease forwards',
             }} onClick={(e) => e.stopPropagation()}>
               <PopupCloseButton onClick={() => setMoodTooltip(false)} />
-              <div style={{ fontSize: '3rem', marginBottom: '0.4rem' }}>{info.emoji}</div>
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.6rem' }}>
+                <CharacterSprite id={activeCharacterId} mood={currentMood} size={100} glow={true} />
+              </div>
               <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#e2e2e2', marginBottom: '0.3rem' }}>
                 {info.label}
               </div>

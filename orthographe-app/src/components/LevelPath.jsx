@@ -108,7 +108,7 @@ export default function LevelPath({ currentLevel, progress = 0, onNodeClick, onC
               : fillFraction >= 0.99
                 ? 'sit'
                 : (partialSegment < 0.05 && completedSegments > 0 && completedSegments < segments ? 'sit' : 'walk')}
-            glow={fillFraction >= 0.99}
+            glow={true}
           />
         </div>
       )}
