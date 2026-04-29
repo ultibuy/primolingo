@@ -2,7 +2,7 @@
   "id": "ce-se",
   "title": "ce · se",
   "shortTitle": "ce / se",
-  "description": "Distingue 'se' (pronom réfléchi, 3ème personne) de 'ce' (pronom ou déterminant démonstratif). Test : mets la phrase au sujet 'je' — si le mot devient 'me', c'est 'se' ; sinon c'est 'ce'.",
+  "description": "Distingue 'se' (pronom réfléchi, 3ème personne) de 'ce' (pronom ou déterminant démonstratif). Test : y a-t-il un verbe juste après ? Oui → c'est 'se' ; Non → c'est 'ce'.",
   "choices": [
     {
       "id": "se",
@@ -16,13 +16,13 @@
   "decisionAxes": [
     {
       "id": "axe1",
-      "question": "Peut-on remplacer par « me » en mettant le sujet à « je » ?",
-      "sub": "Ex : « il __ lave » → « je me lave » ✓",
+      "question": "Y a-t-il un verbe juste après ?",
+      "sub": "Ex : « il __ lève » → « lève » est un verbe ✓",
       "options": [
         {
           "value": true,
           "label": "Oui",
-          "sub": "",
+          "sub": "→ c'est « se »",
           "eliminates": [
             "ce"
           ]
@@ -30,7 +30,7 @@
         {
           "value": false,
           "label": "Non",
-          "sub": "",
+          "sub": "→ c'est « ce »",
           "eliminates": [
             "se"
           ]
@@ -43,13 +43,13 @@
     "rows": [
       {
         "form": "se",
-        "test": "Je me … (remplace se par me avec le sujet je)",
-        "example": "Il se lève tôt → Je me lève tôt ✓"
+        "test": "Il y a un verbe juste après",
+        "example": "Il se lève tôt → « lève » est un verbe ✓"
       },
       {
         "form": "ce",
-        "test": "Ne peut pas devenir me",
-        "example": "Ce sera long → Je me sera long ✗"
+        "test": "Pas de verbe juste après",
+        "example": "Ce livre est lourd → « livre » n'est pas un verbe ✓"
       }
     ]
   },
