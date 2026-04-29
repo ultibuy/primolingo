@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import CoinIcon from './CoinIcon.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
@@ -7,7 +8,7 @@ import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
 import CharacterSprite from './CharacterSprite.jsx';
 import mangaImage from '../assets/manga.png';
 import ryuImage from '../assets/ryu.png';
-import { SHOP_CHARACTERS, SHOP_EMOTIONS } from '../data/shopCharacters.js';
+import { SHOP_CHARACTERS, SHOP_EMOTIONS, BASE_EMOTIONS } from '../data/shopCharacters.js';
 import { isLocalhost } from '../debug.js';
 import {
   SHOP_CATALOG,
@@ -43,9 +44,6 @@ const CATEGORY_ICONS = {
   entranceAnimations: '🎬',
   streakFreeze: '\uD83D\uDEE1\uFE0F',
   doubleCoins: '\uD83D\uDCB0',
-  revealHint: '\uD83D\uDCA1',
-  rematch: '\uD83D\uDD04',
-  modeSniper: '\uD83C\uDFAF',
   questionMystery: '\u2753',
   persos: '🧍',
   mystere: '\uD83E\uDDE9',
@@ -97,7 +95,7 @@ function formatFrenchDate(dateStr) {
   }).format(new Date(year, month - 1, day));
 }
 
-export default function Shop({ progress, adminSettings, onPurchase, onEquip, onClose }) {
+export default function Shop({ progress, adminSettings, childName = '', onPurchase, onEquip, onClose }) {
   const [activeTab, setActiveTab] = useState('cosmetique');
   const [purchaseAnim, setPurchaseAnim] = useState(null);
   const [mounted, setMounted] = useState(false);
@@ -119,7 +117,7 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
   const mysteryImageDefinitions = getMysteryImageDefinitions(adminSettings?.customMysteryImages);
 
   const allItems = Object.values(SHOP_CATALOG);
-  const charactersTotal = SHOP_CHARACTERS.length * 500
+  const charactersTotal = SHOP_CHARACTERS.reduce((sum, c) => sum + (c.price ?? 500), 0)
     + (SHOP_CHARACTERS.length * SHOP_EMOTIONS.reduce((sum, emotion) => sum + emotion.price, 0));
   const baseShopTotal = allItems.reduce((sum, item) => sum + (item.price || 0), 0) + charactersTotal;
   const mysteryImagesTotal = Object.keys(mysteryImageDefinitions).length * MYSTERY_IMAGE_PARTS * MYSTERY_IMAGE_PRICE;
@@ -160,11 +158,12 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
   const handleRequestCharacterPurchase = (char) => {
     const itemId = `char-${char.id}`;
     if ((progress.shop?.owned || []).includes(itemId)) return;
-    if (coins < 500) return;
+    const charPrice = char.price ?? 500;
+    if (coins < charPrice) return;
     setConfirmItem({
       id: itemId,
       name: char.name,
-      price: 500,
+      price: charPrice,
       kind: 'character',
     });
   };
@@ -794,6 +793,7 @@ export default function Shop({ progress, adminSettings, onPurchase, onEquip, onC
                   char={char}
                   progress={progress}
                   coins={coins}
+                  childName={childName}
                   purchaseAnim={purchaseAnim}
                   onBuyCharacter={handleRequestCharacterPurchase}
                   onBuyEmotion={handleRequestEmotionPurchase}
@@ -1094,133 +1094,304 @@ function MysteryImageCard({ imageId, mysteryImageDefinitions, progress, purchase
   );
 }
 
-function ShopCharacterCard({ char, progress, coins, purchaseAnim, onBuyCharacter, onBuyEmotion }) {
-  const ownedIds = progress.shop?.owned || [];
-  const charItemId = `char-${char.id}`;
-  const ownsCharacter = ownedIds.includes(charItemId);
-  const canBuyCharacter = coins >= 500;
-  const missingForCharacter = Math.max(0, 500 - coins);
-  const isAnimating = purchaseAnim === charItemId;
+function CharacterPreviewPopup({ char, childName, onClose }) {
+  return createPortal(
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed', inset: 0, zIndex: 9999,
+        background: 'rgba(0,0,0,0.75)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        backdropFilter: 'blur(6px)',
+        WebkitBackdropFilter: 'blur(6px)',
+        padding: '1rem',
+      }}
+    >
+      <div
+        onClick={e => e.stopPropagation()}
+        style={{
+          background: 'linear-gradient(160deg, rgba(var(--color-bg1-rgb),0.97), rgba(var(--color-bg2-rgb),0.92))',
+          border: `1px solid ${char.color}44`,
+          borderRadius: 28,
+          padding: '2.5rem 2rem 2rem',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.2rem',
+          boxShadow: `0 0 60px ${char.color}30, 0 20px 60px rgba(0,0,0,0.6)`,
+          minWidth: 220,
+          position: 'relative',
+          animation: 'bounce-in 0.3s ease forwards',
+        }}
+      >
+        <PopupCloseButton onClick={onClose} top={12} right={12} size={38} />
 
-  return (
-    <div style={{
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '0.8rem',
-      padding: '1rem',
-      borderRadius: 18,
-      background: ownsCharacter ? `${char.color}10` : 'rgba(255,255,255,0.04)',
-      border: ownsCharacter ? `1px solid ${char.color}35` : '1px solid rgba(255,255,255,0.06)',
-      animation: isAnimating ? 'bounce-in 0.5s ease' : 'none',
-    }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-        <div style={{
-          width: 46,
-          height: 46,
-          borderRadius: 14,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: ownsCharacter ? `${char.color}18` : 'rgba(255,255,255,0.04)',
-          border: `1px solid ${ownsCharacter ? `${char.color}55` : 'rgba(255,255,255,0.08)'}`,
-          flexShrink: 0,
-          fontSize: '1.4rem',
-        }}>
-          {ownsCharacter ? <CharacterSprite id={char.id} mood="walk" size={30} glow={false} /> : char.emoji}
-        </div>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <div style={{ fontSize: '0.92rem', fontWeight: 800, color: ownsCharacter ? char.color : '#fff', marginBottom: '0.12rem' }}>
+        <CharacterSprite id={char.id} mood="walk" size={120} glow={true} />
+
+        <div style={{ textAlign: 'center' }}>
+          <div style={{ fontSize: '1.4rem', fontWeight: 900, color: char.color, marginBottom: '0.25rem' }}>
+            Bonjour {childName} !
+          </div>
+          <div style={{ fontSize: '0.85rem', color: '#9ca3af' }}>
             {char.name}
           </div>
-          <div style={{ fontSize: '0.75rem', color: '#9ca3af', lineHeight: 1.4 }}>
-            {char.tag}
-          </div>
         </div>
-        {ownsCharacter ? (
-          <div style={{
-            padding: '0.55rem 0.8rem',
-            borderRadius: 10,
-            background: 'rgba(74,222,128,0.12)',
-            border: '1px solid rgba(74,222,128,0.28)',
-            color: '#4ade80',
-            fontSize: '0.78rem',
-            fontWeight: 800,
-            whiteSpace: 'nowrap',
-          }}>
-            ✓ Possédé
-          </div>
+      </div>
+    </div>,
+    document.body
+  );
+}
+
+// ── Emotion section helpers ──────────────────────────────────────────────────
+
+function SectionLabel({ kicker, title, color, count }) {
+  return (
+    <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: 10 }}>
+      <div>
+        <div style={{ fontSize: 10, color, letterSpacing: 1.2, textTransform: 'uppercase', fontWeight: 700, marginBottom: 2 }}>{kicker}</div>
+        <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#fff' }}>{title}</div>
+      </div>
+      <div style={{ padding: '3px 9px', borderRadius: 999, fontSize: 10, fontWeight: 700, background: `${color}22`, color }}>{count}</div>
+    </div>
+  );
+}
+
+function EmotionCard({ emo, isBase, charId = null, isOwned = false, animateIn = false, delay = 0, onClick }) {
+  return (
+    <div
+      onClick={onClick}
+      style={{
+        position: 'relative',
+        padding: isBase ? '10px 8px 10px' : '12px 10px 12px',
+        borderRadius: 14,
+        background: isBase
+          ? 'linear-gradient(180deg, rgba(72,187,120,0.10) 0%, rgba(40,80,60,0.08) 100%)'
+          : isOwned
+            ? 'rgba(74,222,128,0.08)'
+            : 'rgba(255,255,255,0.025)',
+        border: isBase
+          ? '1px solid rgba(72,187,120,0.32)'
+          : isOwned
+            ? '1px solid rgba(74,222,128,0.28)'
+            : '1px dashed rgba(255,255,255,0.10)',
+        opacity: (!isBase && !isOwned) ? 0.72 : 1,
+        cursor: (!isBase && onClick) ? 'pointer' : 'default',
+        animation: animateIn ? `pop 0.5s ${delay}ms cubic-bezier(0.34, 1.56, 0.64, 1) both` : 'none',
+        textAlign: 'center',
+      }}
+    >
+      {isBase && (
+        <div style={{
+          position: 'absolute', top: -9, left: 10,
+          fontSize: 9, fontWeight: 700, letterSpacing: 0.6,
+          padding: '2px 7px', borderRadius: 999,
+          background: '#48bb78', color: '#0a1410',
+          textTransform: 'uppercase',
+        }}>Inclus</div>
+      )}
+
+      {/* Visual — CharacterSprite for base, symbol emoji for paid */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 5 }}>
+        {isBase && charId ? (
+          <CharacterSprite id={charId} mood={emo.id} size={46} glow={false} />
         ) : (
-          <button
-            onClick={() => onBuyCharacter(char)}
-            disabled={!canBuyCharacter}
-            style={{
-              padding: '0.55rem 0.8rem',
-              borderRadius: 10,
-              border: 'none',
-              background: canBuyCharacter
-                ? 'linear-gradient(135deg, var(--color-primary), var(--color-accent))'
-                : 'rgba(255,255,255,0.05)',
-              color: canBuyCharacter ? '#fff' : '#4b5563',
-              cursor: canBuyCharacter ? 'pointer' : 'default',
-              fontSize: '0.78rem',
-              fontWeight: 800,
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {canBuyCharacter ? 'Acheter 500' : `Manque ${missingForCharacter}`}
-          </button>
+          <div style={{ fontSize: 22, lineHeight: 1, filter: (!isBase && !isOwned) ? 'grayscale(0.7)' : 'none' }}>
+            {emo.symbol}
+          </div>
         )}
       </div>
 
-      {ownsCharacter && (
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
-          gap: '0.55rem',
-        }}>
-          {SHOP_EMOTIONS.map((emotion) => {
-            const owned = ownedIds.includes(`char-${char.id}-${emotion.id}`);
-            const affordable = coins >= emotion.price;
-            return (
-              <button
-                key={emotion.id}
-                onClick={() => onBuyEmotion(char, emotion)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.65rem',
-                  width: '100%',
-                  padding: '0.65rem 0.75rem',
-                  borderRadius: 12,
-                  border: owned
-                    ? '1px solid rgba(74,222,128,0.28)'
-                    : '1px solid rgba(255,255,255,0.08)',
-                  background: owned
-                    ? 'rgba(74,222,128,0.08)'
-                    : 'rgba(255,255,255,0.03)',
-                  color: '#e2e2e2',
-                  cursor: 'pointer',
-                  textAlign: 'left',
-                }}
-              >
-                <span style={{ fontSize: '1rem' }}>{emotion.symbol}</span>
-                <span style={{ flex: 1, minWidth: 0 }}>
-                  <span style={{ display: 'block', fontSize: '0.76rem', fontWeight: 800, color: owned ? '#4ade80' : '#fff' }}>
-                    {emotion.name}
-                  </span>
-                  <span style={{ display: 'block', fontSize: '0.65rem', color: '#6b7280', lineHeight: 1.35 }}>
-                    {emotion.desc}
-                  </span>
-                </span>
-                <span style={{ fontSize: '0.72rem', fontWeight: 800, color: owned ? '#4ade80' : affordable ? '#fbbf24' : '#4b5563', whiteSpace: 'nowrap' }}>
-                  {owned ? '✓' : emotion.price}
-                </span>
-              </button>
-            );
-          })}
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
+          <div style={{ fontSize: '0.75rem', fontWeight: 700, color: isOwned ? '#4ade80' : '#fff' }}>{emo.name}</div>
+          {!isBase && isOwned && (
+            <div style={{ fontSize: '0.72rem', fontWeight: 800, color: '#4ade80' }}>✓</div>
+          )}
+          {!isBase && !isOwned && (
+            <div style={{ fontSize: '0.7rem', fontWeight: 800, color: '#f5b400', whiteSpace: 'nowrap' }}>
+              {emo.price} <span>●</span>
+            </div>
+          )}
         </div>
-      )}
+        <div style={{ fontSize: '0.6rem', color: '#9ca3af', lineHeight: 1.3 }}>{emo.desc}</div>
+      </div>
     </div>
+  );
+}
+
+// ── ShopCharacterCard ────────────────────────────────────────────────────────
+
+function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim, onBuyCharacter, onBuyEmotion }) {
+  const [showPreview, setShowPreview] = useState(false);
+  const [step, setStep] = useState(0); // 0=init, 2=expanded+toast, 3=+base, 4=+paid
+  const [justPurchased, setJustPurchased] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const prevOwnedRef = useRef(false);
+
+  const ownedIds = progress.shop?.owned || [];
+  const charItemId = `char-${char.id}`;
+  const ownsCharacter = ownedIds.includes(charItemId);
+  const charPrice = char.price ?? 500;
+  const canBuyCharacter = coins >= charPrice;
+  const missingForCharacter = Math.max(0, charPrice - coins);
+
+  // Cinematic trigger
+  useEffect(() => {
+    if (!prevOwnedRef.current && ownsCharacter) {
+      // Just purchased — run cinematic
+      setJustPurchased(true);
+      setShowToast(true);
+      setStep(2);
+      const t3 = setTimeout(() => setStep(3), 800);
+      const t4 = setTimeout(() => setStep(4), 2200);
+      const tToast = setTimeout(() => setShowToast(false), 5000);
+      prevOwnedRef.current = true;
+      return () => { clearTimeout(t3); clearTimeout(t4); clearTimeout(tToast); };
+    }
+    if (ownsCharacter && step === 0) {
+      // Already owned on mount — show full state, no animation
+      setStep(4);
+      prevOwnedRef.current = true;
+    }
+    if (!ownsCharacter) {
+      prevOwnedRef.current = false;
+    }
+  }, [ownsCharacter]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const isExpanded = step >= 2;
+
+  return (
+    <>
+      {showPreview && (
+        <CharacterPreviewPopup char={char} childName={childName} onClose={() => setShowPreview(false)} />
+      )}
+      <div style={{
+        borderRadius: 18,
+        padding: 16,
+        background: isExpanded
+          ? 'linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.015) 100%)'
+          : ownsCharacter ? `${char.color}10` : 'rgba(255,255,255,0.04)',
+        border: isExpanded
+          ? '1px solid rgba(255,255,255,0.10)'
+          : ownsCharacter ? `1px solid ${char.color}35` : '1px solid rgba(255,255,255,0.06)',
+        boxShadow: isExpanded ? '0 8px 32px rgba(0,0,0,0.3)' : 'none',
+        transition: 'background 0.4s ease, border 0.4s ease, box-shadow 0.4s ease',
+      }}>
+        {/* ── Header ── */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, justifyContent: 'space-between' }}>
+          <div
+            onClick={() => ownsCharacter && setShowPreview(true)}
+            style={{ display: 'flex', alignItems: 'center', gap: 14, flex: 1, minWidth: 0, cursor: ownsCharacter ? 'pointer' : 'default' }}
+          >
+            <div style={{
+              width: 56, height: 56, borderRadius: 14, flexShrink: 0,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              background: ownsCharacter ? `${char.color}18` : `linear-gradient(135deg, ${char.color}22, rgba(26,31,51,0.8))`,
+              border: `1px solid ${ownsCharacter ? `${char.color}55` : `${char.color}33`}`,
+              transform: step === 2 ? 'scale(1.08)' : 'scale(1)',
+              transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+            }}>
+              {ownsCharacter
+                ? <CharacterSprite id={char.id} mood="walk" size={38} glow={false} />
+                : <span style={{ fontSize: '1.6rem' }}>{char.emoji}</span>}
+            </div>
+            <div style={{ minWidth: 0 }}>
+              <div style={{ fontSize: '0.95rem', fontWeight: 800, color: ownsCharacter ? char.color : '#fff', marginBottom: '0.1rem' }}>
+                {char.name}
+              </div>
+              <div style={{ fontSize: '0.75rem', color: '#9ca3af', lineHeight: 1.4 }}>{char.tag}</div>
+            </div>
+          </div>
+
+          {ownsCharacter ? (
+            <div style={{
+              padding: '8px 14px', borderRadius: 999, whiteSpace: 'nowrap',
+              border: '1px solid rgba(72,187,120,0.45)',
+              color: '#48bb78', fontSize: '0.76rem', fontWeight: 800,
+              background: 'rgba(72,187,120,0.08)',
+              animation: step === 2 ? 'pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both' : 'none',
+            }}>✓ Possédé</div>
+          ) : (
+            <button
+              onClick={() => onBuyCharacter(char)}
+              disabled={!canBuyCharacter}
+              style={{
+                padding: '0.55rem 0.9rem', borderRadius: 999, border: 'none', whiteSpace: 'nowrap',
+                background: canBuyCharacter
+                  ? 'linear-gradient(180deg, #b8a3ff 0%, #9885f0 100%)'
+                  : 'rgba(255,255,255,0.05)',
+                color: canBuyCharacter ? '#fff' : '#4b5563',
+                cursor: canBuyCharacter ? 'pointer' : 'default',
+                fontSize: '0.82rem', fontWeight: 700,
+                boxShadow: canBuyCharacter ? '0 4px 14px rgba(152,133,240,0.35)' : 'none',
+              }}
+            >
+              {canBuyCharacter ? `Acheter ${charPrice}` : `Manque ${missingForCharacter}`}
+            </button>
+          )}
+        </div>
+
+        {/* ── Cinematic expanded content ── */}
+        {isExpanded && (
+          <div style={{ marginTop: 18 }}>
+            {/* Toast 🎁 — inline au-dessus des émotions, disparaît après 5s */}
+            {justPurchased && (
+              <div style={{
+                overflow: 'hidden',
+                maxHeight: showToast ? '80px' : '0px',
+                opacity: showToast ? 1 : 0,
+                marginBottom: showToast ? 16 : 0,
+                transition: showToast
+                  ? 'none'
+                  : 'max-height 0.4s ease, opacity 0.35s ease, margin-bottom 0.4s ease',
+                animation: showToast ? 'pop 0.5s 0.1s cubic-bezier(0.34, 1.56, 0.64, 1) both' : 'none',
+              }}>
+                <div style={{
+                  padding: '12px 14px',
+                  background: 'linear-gradient(90deg, rgba(72,187,120,0.16) 0%, rgba(72,187,120,0.04) 100%)',
+                  border: '1px solid rgba(72,187,120,0.32)', borderRadius: 12,
+                  display: 'flex', alignItems: 'center', gap: 12,
+                }}>
+                  <div style={{ fontSize: 20, flexShrink: 0 }}>🎁</div>
+                  <div>
+                    <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#86e2a8' }}>3 émotions de base offertes !</div>
+                    <div style={{ fontSize: '0.73rem', color: '#cbd1e0', marginTop: 2 }}>Marche, Dodo et Assis sont incluses avec ton perso.</div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Base emotions */}
+            {step >= 3 && (
+              <div style={{ marginBottom: 16 }}>
+                <SectionLabel kicker="Incluses" title="Émotions de base" color="#48bb78" count={BASE_EMOTIONS.length} />
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
+                  {BASE_EMOTIONS.map((emo, i) => (
+                    <EmotionCard key={emo.id} emo={emo} isBase={true} charId={char.id} animateIn={justPurchased && step === 3} delay={i * 90} />
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Paid emotions */}
+            {step >= 4 && (
+              <div>
+                <SectionLabel kicker="À débloquer" title="Émotions spéciales" color="#f5b400" count={SHOP_EMOTIONS.length} />
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
+                  {SHOP_EMOTIONS.map((emo, i) => {
+                    const owned = ownedIds.includes(`char-${char.id}-${emo.id}`);
+                    return (
+                      <EmotionCard
+                        key={emo.id} emo={emo} isBase={false} isOwned={owned}
+                        animateIn={justPurchased && step === 4} delay={i * 50}
+                        onClick={() => onBuyEmotion(char, emo)}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 

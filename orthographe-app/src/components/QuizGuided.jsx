@@ -2,9 +2,11 @@ import { useState } from 'react';
 import ProgressBar from './ProgressBar.jsx';
 import EndScreen from './EndScreen.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
+import { FlagBugButton } from './FlagBugButton.jsx';
+import { quizPageStyle, quizCardStyle, quizNextBtnStyle } from './quizStyles.js';
 import { getEndScreenLevelProgress, getNextStreakTierInfo, computeStreakMilestone } from '../engine/scoring.js';
 
-function getEliminated(rule, axisSelections) {
+function getEliminated(rule, axisSelections, choices) {
   const eliminated = new Set();
   for (const axis of rule.decisionAxes) {
     const sel = axisSelections[axis.id];
@@ -14,7 +16,19 @@ function getEliminated(rule, axisSelections) {
         return o.value === sel;
       });
       if (opt) {
-        opt.eliminates.forEach(id => eliminated.add(id));
+        if (opt.eliminates.length > 0) {
+          opt.eliminates.forEach(id => eliminated.add(id));
+        } else {
+          // Per-question choices with forAxis: eliminate choices that don't match
+          const hasForAxis = choices.some(c => c.forAxis && c.forAxis[axis.id]);
+          if (hasForAxis) {
+            for (const c of choices) {
+              if (c.forAxis && c.forAxis[axis.id] && c.forAxis[axis.id] !== sel) {
+                eliminated.add(c.id);
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -31,11 +45,16 @@ export default function QuizGuided({
   characterId,
   hasDoubleCoinsActive,
   isFirstSessionOfDay,
+  isFirstEverSession = false,
   ruleProgress,
   streak,
   milestones,
   victoryAnimationId,
   shopOwned = [],
+  onBuyEmotion = null,
+  coins = 0,
+  onFlagQuestion,
+  coachingLine = null,
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [axisSelections, setAxisSelections] = useState({});
@@ -53,7 +72,7 @@ export default function QuizGuided({
     decisionAxes: question?._ruleDecisionAxes || rule.decisionAxes || [],
   };
   const hasVerb = question?.verb !== undefined;
-  const eliminated = getEliminated(guidedRule, axisSelections);
+  const eliminated = getEliminated(guidedRule, axisSelections, choices);
   const remaining = choices.filter(c => !eliminated.has(c.id));
   const onlyOneLeft = remaining.length === 1;
   const isCorrect = selected === question?.answer;
@@ -102,14 +121,20 @@ export default function QuizGuided({
         streakInfo={streakInfo}
         streakMilestoneJustEarned={streakMilestone}
         victoryAnimationId={victoryAnimationId}
+        characterId={characterId}
+        shopOwned={shopOwned}
+        isFirstEverSession={isFirstEverSession}
+        onBuyEmotion={onBuyEmotion}
+        coins={coins}
+        coachingLine={coachingLine}
         onFinish={() => onFinish(score, questions.length, answers)}
       />
     );
   }
 
   return (
-    <div style={pageStyle}>
-      <div style={cardStyle}>
+    <div style={quizPageStyle}>
+      <div style={quizCardStyle}>
         <PopupCloseButton onClick={onClose} />
 
         {/* Header */}
@@ -126,10 +151,14 @@ export default function QuizGuided({
           shopOwned={shopOwned}
           characterId={characterId}
           lastAnswer={showResult ? (isCorrect ? 'correct' : 'wrong') : null}
+          score={score}
+          isFirstEverSession={isFirstEverSession}
+          onBuyEmotion={onBuyEmotion}
+          coins={coins}
         />
 
         {/* Sentence */}
-        <div style={sentenceStyle}>
+        <div style={{ ...sentenceStyle, position: 'relative' }}>
           {question.before}
           {hasVerb
             ? <><span style={{ whiteSpace: 'nowrap' }}>
@@ -155,7 +184,7 @@ export default function QuizGuided({
                 }}>
                   {selected ? choices.find(c => c.id === selected)?.label : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
                 </span>{question.after}</>}
-
+          {onFlagQuestion && <FlagBugButton onFlag={(unflag) => onFlagQuestion(question, rule, unflag)} />}
         </div>
 
         {/* B5 — Label above the decision panel (same style as "Ta réponse") */}
@@ -178,6 +207,7 @@ export default function QuizGuided({
             rule={guidedRule}
             axisSelections={axisSelections}
             setAxisSelections={setAxisSelections}
+            axisHints={question?.axisHints}
           />
         )}
 
@@ -204,7 +234,10 @@ export default function QuizGuided({
         }}>
           {choices.map(choice => {
             const isEliminated = eliminated.has(choice.id);
-            const isHighlighted = !isEliminated && eliminated.size > 0;
+            // If any choice has forAxis, only highlight the matching one; otherwise highlight all non-eliminated
+            const anyForAxis = choices.some(c => c.forAxis && Object.keys(c.forAxis).length > 0);
+            const matchesAxis = anyForAxis && choice.forAxis && Object.entries(choice.forAxis).every(([axId, val]) => axisSelections[axId] === val);
+            const isHighlighted = eliminated.size > 0 && !isEliminated && (anyForAxis ? matchesAxis : true);
             const isSelected = selected === choice.id;
             const isAnswer = choice.id === question.answer;
 
@@ -289,7 +322,7 @@ export default function QuizGuided({
         )}
 
         {showResult && (
-          <button onClick={handleNext} style={nextBtnStyle}>
+          <button onClick={handleNext} style={quizNextBtnStyle}>
             {currentIndex + 1 >= questions.length ? 'Voir le résultat final' : 'Question suivante →'}
           </button>
         )}
@@ -298,7 +331,23 @@ export default function QuizGuided({
   );
 }
 
-function DecisionPanel({ rule, axisSelections, setAxisSelections }) {
+function formatRichText(text) {
+  if (!text) return null;
+  // Split on <br> first, then handle *bold* within each segment
+  return text.split(/<br\s*\/?>/).map((line, li, lines) => {
+    const parts = line.split(/\*([^*]+)\*/g);
+    const nodes = parts.map((part, pi) =>
+      pi % 2 === 1
+        ? <strong key={pi} style={{ color: '#c4b5fd', fontStyle: 'normal' }}>{part}</strong>
+        : <span key={pi}>{part}</span>
+    );
+    return li < lines.length - 1
+      ? <span key={li}>{nodes}<br /></span>
+      : <span key={li}>{nodes}</span>;
+  });
+}
+
+function DecisionPanel({ rule, axisSelections, setAxisSelections, axisHints }) {
   const axes = rule.decisionAxes;
   if (!axes || axes.length === 0) return null;
 
@@ -313,8 +362,7 @@ function DecisionPanel({ rule, axisSelections, setAxisSelections }) {
     return true;
   });
 
-  // Always 2 columns to keep the layout stable
-  const gridCols = '1fr 1fr';
+  const gridCols = axes.length === 1 ? '1fr' : '1fr 1fr';
 
   return (
     <div style={{
@@ -335,6 +383,9 @@ function DecisionPanel({ rule, axisSelections, setAxisSelections }) {
 
         // B4 — Circled number for axis label
         const circledNum = CIRCLED_NUMBERS[axisIdx] || `${axisIdx + 1}.`;
+        const hint = axisHints?.[axis.id];
+        const axisQuestion = hint?.question || axis.question;
+        const axisSub = hint?.sub !== undefined ? hint.sub : axis.sub;
 
         return (
           <div key={axis.id}>
@@ -343,15 +394,15 @@ function DecisionPanel({ rule, axisSelections, setAxisSelections }) {
               color: '#9ca3af', marginBottom: '0.2rem', fontWeight: 600,
             }}>
               <span style={{ color: 'var(--color-accent)', fontWeight: 700 }}>{circledNum}</span>{' '}
-              {axis.question}
+              {axisQuestion}
             </div>
             {/* Show axis sub/hint if present */}
-            {axis.sub && (
+            {axisSub && (
               <div style={{
                 fontSize: '0.72rem', color: '#6b7280', fontStyle: 'italic',
                 marginBottom: '0.4rem', lineHeight: 1.4,
               }}>
-                {axis.sub}
+                {formatRichText(axisSub)}
               </div>
             )}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
@@ -394,7 +445,7 @@ function DecisionPanel({ rule, axisSelections, setAxisSelections }) {
                     {label}
                     {opt.sub && (
                       <span style={{ display: 'block', fontSize: '0.66rem', fontWeight: 400, color: '#6b7280', marginTop: 2 }}>
-                        {opt.sub}
+                        {formatRichText(opt.sub)}
                       </span>
                     )}
                   </button>
@@ -408,38 +459,11 @@ function DecisionPanel({ rule, axisSelections, setAxisSelections }) {
   );
 }
 
-/* ─── SHARED STYLES ─── */
-
-const pageStyle = {
-  minHeight: '100vh',
-  backgroundColor: 'var(--color-bg1)',
-  backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
-  backgroundSize: 'cover, cover',
-  backgroundPosition: 'center, center',
-  display: 'flex', alignItems: 'center', justifyContent: 'center',
-  fontFamily: 'var(--font-body)',
-  padding: '1.5rem', color: '#e2e2e2',
-};
-
-const cardStyle = {
-  maxWidth: 620, width: '100%',
-  background: 'rgba(255,255,255,0.06)',
-  borderRadius: 20, padding: '2rem 2.2rem',
-  position: 'relative',
-  backdropFilter: 'blur(12px)',
-  border: '1px solid rgba(255,255,255,0.1)',
-  boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
-};
+/* ─── LOCAL STYLES ─── */
 
 const sentenceStyle = {
   background: 'rgba(0,0,0,0.3)', borderRadius: 12,
   padding: '1.2rem 1.5rem', fontSize: '1.15rem',
   textAlign: 'center', marginBottom: '1.5rem',
   lineHeight: 1.7, border: '1px solid rgba(255,255,255,0.05)',
-};
-
-const nextBtnStyle = {
-  width: '100%', padding: '0.8rem', borderRadius: 10,
-  border: '2px solid var(--color-primary)', background: 'rgba(var(--color-primary-rgb),0.15)',
-  color: 'var(--color-accent)', cursor: 'pointer', fontSize: '0.95rem', fontWeight: 700,
 };

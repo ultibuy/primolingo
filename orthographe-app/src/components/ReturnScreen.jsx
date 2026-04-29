@@ -34,6 +34,7 @@ export default function ReturnScreen({
   const [mounted, setMounted] = useState(false);
   const [stepVisible, setStepVisible] = useState(false);
   const [showSecretCodeStep, setShowSecretCodeStep] = useState(false);
+  const [secretCodeError, setSecretCodeError] = useState(null);
 
   // Streak animation state
   const [streakCountdown, setStreakCountdown] = useState(previousStreak || 0);
@@ -165,7 +166,7 @@ export default function ReturnScreen({
               Retour après une pause
             </h2>
             <p style={{ fontSize: '0.98rem', color: '#cbd5e1', lineHeight: 1.6, maxWidth: 360, margin: '0 auto 1.4rem' }}>
-              {daysMissed} jour{daysMissed > 1 ? 's' : ''} de streak raté{daysMissed > 1 ? 's' : ''}, si tu avais une bonne raison choisis « demander à Papa ».
+              {daysMissed} jour{daysMissed > 1 ? 's' : ''} de flamme raté{daysMissed > 1 ? 's' : ''}, si tu avais une bonne raison choisis « demander à Papa ».
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: 320, margin: '0 auto' }}>
               <button
@@ -211,7 +212,7 @@ export default function ReturnScreen({
       const detail = lines.join(' + ');
 
       const btnLabel = costToBuy > 0
-        ? `🛡️ Sauver le streak — ${costToBuy} pièces`
+        ? `🛡️ Sauver la flamme — ${costToBuy} pièces`
         : '🛡️ Utiliser mes boucliers';
 
       return (
@@ -225,10 +226,10 @@ export default function ReturnScreen({
             <ShieldIcon size={64} active={false} />
           </div>
           <h2 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fbbf24', marginBottom: '0.5rem' }}>
-            Streak en danger
+            Flamme en danger
           </h2>
           <p style={{ fontSize: '1rem', color: '#9ca3af', lineHeight: 1.6, maxWidth: 340, margin: '0 auto 0.5rem' }}>
-            Ton streak de <strong style={{ color: '#fbbf24' }}>{previousStreak} jours</strong> n&apos;est pas encore perdu.
+            Ta flamme de <strong style={{ color: '#fbbf24' }}>{previousStreak} jours</strong> n&apos;est pas encore perdue.
           </p>
           <p style={{ fontSize: '0.85rem', color: '#6b7280', maxWidth: 320, margin: '0 auto 1.5rem' }}>
             {detail}
@@ -254,7 +255,7 @@ export default function ReturnScreen({
                 cursor: 'pointer', fontSize: '0.85rem',
               }}
             >
-              Laisser tomber le streak
+              Laisser tomber la flamme
             </button>
           </div>
         </div>
@@ -332,13 +333,13 @@ export default function ReturnScreen({
           fontSize: '1.2rem', fontWeight: 800, color: '#e2e2e2',
           marginBottom: '0.5rem',
         }}>
-          Streak terminé
+          Flamme terminée
         </h2>
         <p style={{
           fontSize: '0.9rem', color: '#9ca3af', lineHeight: 1.6,
           maxWidth: 340, margin: '0 auto',
         }}>
-          Ton streak de <strong style={{ color: '#fbbf24' }}>{previousStreak} jours</strong> est revenu à zéro.
+          Ta flamme de <strong style={{ color: '#fbbf24' }}>{previousStreak} jours</strong> est revenue à zéro.
           <br />Ça arrive. L&apos;important c&apos;est de reprendre.
         </p>
       </div>
@@ -545,8 +546,8 @@ export default function ReturnScreen({
           </div>
         </div>
 
-        {/* Navigation — only show before action step */}
-        {step < actionStep && !showSecretCodeStep && (
+        {/* Navigation — only show before action step, hide on steps that have their own buttons */}
+        {step < actionStep && step !== introStep && !(step === streakStep && streakSaveable) && !showSecretCodeStep && (
           <div style={{
             textAlign: 'center', marginTop: '2rem',
             opacity: stepVisible ? 1 : 0,

@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import MotivationBanner from './MotivationBanner.jsx';
+import { pickCoachingMessage, markCoachingShown, createDefaultCoaching } from '../engine/coaching.js';
 import RuleCard from './RuleCard.jsx';
 import CoinIcon from './CoinIcon.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
@@ -17,7 +19,9 @@ import { getDoubleCoinsBonusEarned, getDoubleCoinsRemainingSessions, getEquipped
 import { exportProgress } from '../store/persistence.js';
 import { CHARACTERS, CHARACTER_CATEGORIES } from '../data/characters.js';
 import CharacterSprite from './CharacterSprite.jsx';
-import { resolveCharacterMood, resolveShopCharacter, getCharacterForRule } from '../data/shopCharacters.js';
+import { resolveCharacterMood, resolveShopCharacter, getCharacterForRule, SHOP_CHARACTERS } from '../data/shopCharacters.js';
+import { allDictees, getDicteeWordsForLevel } from '../content/dicteesLoader.js';
+import DicteeCard from './DicteeCard.jsx';
 
 // ---------------------------------------------------------------------------
 // FIX 1 & FIX 3 — Corrected milestone messages with proper French accents
@@ -35,7 +39,6 @@ const MILESTONE_MESSAGES = {
 // FIX 1 — Complete event type to message/icon mapping
 // ---------------------------------------------------------------------------
 const EVENT_CONFIG = {
-  firstSession:     { msg: "Premi\u00e8re session termin\u00e9e, ta flamme passe \u00e0 1 !\nReviens demain pour le faire grimper.", icon: '🔥' },
   firstQuiz:        { msg: "Premi\u00e8re session termin\u00e9e, ta flamme passe \u00e0 1 !\nReviens demain pour le faire grimper.", icon: '🔥' },
   levelUp:          { msg: 'Niveau suivant atteint\ !', icon: '\⭐' },
   level_up_1:       { msg: 'Niveau Découverte atteint\ !', icon: '\⭐' },
@@ -174,6 +177,7 @@ function AnimatedNumber({ value, duration = 800 }) {
 
 function computeGlobalLevelSummary(rules, progress) {
   const summary = { diamondVivant: 0, diamant: 0, couronne: 0, enCours: 0, nouveau: 0 };
+  // Grammar rules
   for (const rule of rules) {
     const rp = progress.rules?.[rule.id];
     const level = getRuleLevel(rp);
@@ -182,6 +186,20 @@ function computeGlobalLevelSummary(rules, progress) {
     else if (level === 3) summary.couronne++;
     else if (level >= 1) summary.enCours++;
     else summary.nouveau++;
+  }
+  // Dictée rules (stored as "dicteeId-levelKey" in progress.rules)
+  const dicteeKeys = ['level1', 'level2', 'level3'];
+  for (const dictee of allDictees) {
+    for (const lk of dicteeKeys) {
+      const rp = progress.rules?.[`${dictee.id}-${lk}`];
+      if (!rp) continue;
+      const level = getRuleLevel(rp);
+      if (level === 5) summary.diamondVivant++;
+      else if (level === 4) summary.diamant++;
+      else if (level === 3) summary.couronne++;
+      else if (level >= 1) summary.enCours++;
+      // Don't count nouveau for dictées — only count started ones
+    }
   }
   return summary;
 }
@@ -217,9 +235,7 @@ function buildOverlayData(evt) {
 
   // Special handling for events with dynamic messages
   if (evt.type === 'milestone') {
-    if (evt.value === 'firstSession') {
-      return null; // Already covered by firstSession/firstQuiz event type
-    } else if (typeof evt.streak === 'number') {
+    if (typeof evt.streak === 'number') {
       msg = MILESTONE_MESSAGES[evt.streak] || `Flamme de ${evt.streak} jours\ !`;
       icon = '🔥';
     } else {
@@ -230,8 +246,8 @@ function buildOverlayData(evt) {
     msg = MILESTONE_MESSAGES[evt.value] || `Flamme de ${evt.value} jours\ !`;
     icon = '🔥';
   } else if (evt.type === 'shieldUsed') {
-    msg = `Bouclier activé — ta flamme de ${evt.value} jours est sauvé.`;
-    sub = 'Un bouclier a été consommé.';
+    msg = 'Bouclier 🛡️ consommé, ta flamme tient. Pense à en racheter un avant la prochaine fois.';
+    sub = evt.value ? `Ta flamme de ${evt.value} jours est protégée.` : '';
   } else if (evt.type === 'directUnlocked') {
     sub = `«\ ${evt.value}\ » — plus d\'aide, juste toi.`;
   } else if (evt.type === 'streakLost') {
@@ -260,21 +276,22 @@ function buildOverlayData(evt) {
     const s80 = `${Math.ceil(n * 0.8)}/${n}`;
     const s90 = `${Math.ceil(n * 0.9)}/${n}`;
 
+    const coinStr = evt.coins > 0 ? ` · +${evt.coins} 🪙` : '';
     if (lvl === 1) {
       msg = `Bronze sur ${ruleName}`;
-      sub = `Prochain niveau : Argent. Fais 3 sessions guid\u00e9es avec ${s80} ou mieux.`;
+      sub = `Prochain niveau : Argent. Fais 3 sessions guid\u00e9es avec ${s80} ou mieux.${coinStr}`;
       icon = '\u2B50';
     } else if (lvl === 2) {
       msg = `Argent sur ${ruleName}`;
-      sub = `Mode direct d\u00e9bloqu\u00e9 ! Prochain : Couronne. Fais 3 sessions directes avec ${s80} ou mieux.`;
+      sub = `Mode direct d\u00e9bloqu\u00e9 ! Prochain : Couronne. Fais 3 sessions directes avec ${s80} ou mieux.${coinStr}`;
       icon = '\u2B50\u2B50';
     } else if (lvl === 3) {
       msg = `Couronne sur ${ruleName}`;
-      sub = `Prochain : Diamant. Fais 3 sessions directes cons\u00e9cutives avec ${s90} ou mieux.`;
+      sub = `Prochain : Diamant. Fais 3 sessions directes cons\u00e9cutives avec ${s90} ou mieux.${coinStr}`;
       icon = '\uD83D\uDC51';
     } else if (lvl === 4) {
       msg = `Diamant sur ${ruleName}`;
-      sub = "Le diamant est vivant. Maintiens-le avec des r\u00e9visions r\u00e9guli\u00e8res.";
+      sub = `Le diamant est vivant. Maintiens-le avec des r\u00e9visions r\u00e9guli\u00e8res.${coinStr}`;
       icon = '\uD83D\uDC8E';
     } else {
       const levelCfg = EVENT_CONFIG[`level_up_${lvl}`];
@@ -325,11 +342,6 @@ export default function Dashboard({
   onOpenShop,
   pendingEvents,
   onEventsSeen,
-  onSniper,
-  onRematch,
-  canRematch,
-  lastSessionRuleId,
-  lastSessionScore,
   onDebugUpdateStreak,
   onDebugSetCoins,
   dailyBackups = [],
@@ -337,14 +349,24 @@ export default function Dashboard({
   onTriggerEntranceAnim,
   sessionSize,
   onDebugSetSessionSize,
+  onOpenDictees,
+  onPlayDictee,
+  initialTab = 'grammaire',
+  onTabChange,
+  onProgressChange,
 }) {
   const [overlay, setOverlay] = useState(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [activeTab, setActiveTab] = useState(initialTab);
+  const handleTabChange = (tab) => { setActiveTab(tab); onTabChange?.(tab); };
   const [showStreakHelp, setShowStreakHelp] = useState(false);
   const [levelHelp, setLevelHelp] = useState(null); // { level: 'bronze', ruleTitle, ruleProgress }
   const [editingRule, setEditingRule] = useState(null); // rule object being edited
   const [memoRule, setMemoRule] = useState(null);
+  const [bugTarget, setBugTarget] = useState(null); // { type, title, id, level? }
+  const [bugDesc, setBugDesc] = useState('');
+  const [bugCopied, setBugCopied] = useState(false);
   const isDebug = isLocalhost();
   const overlayTimeoutsRef = useRef([]);
   const [debugStreak, setDebugStreak] = useState(String(progress.streak?.current || 0));
@@ -356,7 +378,7 @@ export default function Dashboard({
   const [moodTooltip, setMoodTooltip] = useState(false); // show character mood popup
   const [pandaMood, setPandaMood] = useState(null); // null = default walk
   const pandaMoodTimerRef = useRef(null);
-  const shopOwnedRef = useRef([]);
+  const shopOwnedRef = useRef(progress.shop?.owned || []);
 
   const triggerPandaMood = useCallback((mood, duration = 4000) => {
     if (pandaMoodTimerRef.current) clearTimeout(pandaMoodTimerRef.current);
@@ -373,13 +395,12 @@ export default function Dashboard({
     onTriggerEntranceAnim(pick);
   }, [onTriggerEntranceAnim]);
 
-  // Character sleeps until the child has completed at least 3 quizzes total
-  useEffect(() => {
-    const totalSessions = Object.values(progress.rules || {}).reduce(
-      (sum, rp) => sum + (rp.guidedSessionsCompleted || 0) + (rp.directSessionsCompleted || 0), 0
-    );
-    if (totalSessions < 3) triggerPandaMood('sleep', 10 * 60 * 1000);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  // Compute total sessions for "never played" detection
+  const totalSessionsCompleted = Object.values(progress.rules || {}).reduce(
+    (sum, rp) => sum + (rp.guidedSessionsCompleted || 0) + (rp.directSessionsCompleted || 0), 0
+  );
+  // Dashboard card mood: sleep if 0 sessions done, else LevelPath handles walk/sit automatically
+  const dashboardCharMood = totalSessionsCompleted === 0 ? 'sleep' : null;
 
   useEffect(() => {
     if (!isDebug) return;
@@ -437,43 +458,6 @@ export default function Dashboard({
   // ---------------------------------------------------------------------------
   // FIX 1 — Process pending events: deduplicate, show overlays, then clear
   // ---------------------------------------------------------------------------
-  const getMoodForEvent = useCallback((evt) => {
-    switch (evt.type) {
-      case 'perfectSessionBonus':  // score parfait 20/20
-        return 'clap';
-      case 'sniperBonus':          // mode sniper réussi
-        return 'victory';
-      case 'firstSession':
-      case 'firstQuiz':
-        return 'wave';
-      case 'levelUp':
-        if (evt.value >= 4) return 'victory';  // Diamant
-        if (evt.value >= 2) return 'victory';  // Argent / Couronne
-        return 'wave';                          // Bronze
-      case 'diamond':              // trophée diamant
-        return 'victory';
-      case 'crown':                // trophée couronne
-      case 'directUnlocked':       // mode direct débloqué
-        return 'victory';
-      case 'streakMilestone':
-      case 'milestone':
-        return 'dance';
-      case 'shieldUsed':
-        return 'kiss';
-      case 'streakLost':
-        return 'surprise';
-      case 'sm2ReviewPassed':
-        return 'victory';
-      case 'sm2ReviewFragile':
-        return 'think';
-      case 'sm2ReviewFailed':
-      case 'diamondBroken':
-        return 'surprise';
-      default:
-        return null;
-    }
-  }, []);
-
   const showNextEvent = useCallback((events, idx) => {
     if (idx >= events.length) {
       // All events shown — notify parent to clear
@@ -481,10 +465,8 @@ export default function Dashboard({
       return;
     }
     const evt = events[idx];
-    // Always fire side effects regardless of whether overlay is shown
-    const mood = getMoodForEvent(evt);
-    if (mood) triggerPandaMood(mood, 3500);
-    if (evt.type === 'milestone' || evt.type === 'streakMilestone' || evt.type === 'diamond' || evt.type === 'level_up_4') {
+    // Entrance animations still fire on significant events
+    if (evt.type === 'levelUp' || evt.type === 'milestone' || evt.type === 'streakMilestone' || evt.type === 'diamond' || evt.type === 'directUnlocked' || evt.type === 'crown') {
       const ownedAnims = shopOwnedRef.current.filter(id => id.startsWith('entrance-'));
       triggerRandomEntranceAnim(ownedAnims);
     }
@@ -505,7 +487,7 @@ export default function Dashboard({
       overlayTimeoutsRef.current.push(nextTimeout);
     }, 3500);
     overlayTimeoutsRef.current.push(hideTimeout);
-  }, [onEventsSeen, getMoodForEvent, triggerPandaMood, triggerRandomEntranceAnim]);
+  }, [onEventsSeen, triggerRandomEntranceAnim]);
 
   useEffect(() => {
     if (pendingEvents && pendingEvents.length > 0) {
@@ -544,15 +526,42 @@ export default function Dashboard({
   const activeCharacterMood = resolveCharacterMood(pandaMood, activeCharacterId, shopOwned);
   const allRuleIds = useMemo(() => rules.map(r => r.id), [rules]);
 
+  // ---------------------------------------------------------------------------
+  // Coaching banner
+  // Computed once on mount — frozen so markCoachingShown doesn't cause it to
+  // disappear by re-evaluating against already-marked coaching state.
+  // ---------------------------------------------------------------------------
+  const todayStr = getToday();
+  const coachingMsgRef = useRef(undefined);
+  if (coachingMsgRef.current === undefined) {
+    coachingMsgRef.current = pickCoachingMessage({
+      trigger: 'dashboard',
+      progress,
+      rules,
+      todayStr,
+      hour: new Date().getHours(),
+    });
+  }
+  const coachingMsg = coachingMsgRef.current;
+
+  useEffect(() => {
+    if (!coachingMsg || !onProgressChange) return;
+    const next = markCoachingShown(progress, coachingMsg, todayStr);
+    onProgressChange(next);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleCtaAction = useCallback((action) => {
+    if (action === 'openShop' || action === 'openShopChars') {
+      onOpenShop?.();
+    }
+  }, [onOpenShop]);
+
   const summary = computeGlobalLevelSummary(rules, progress);
 
   // A6 — Split rules into sections
   const { revisions, inProgress, toDiscover } = splitRulesIntoSections(rules, progress);
 
-  const sniperCharges = progress.shop?.inventory?.modeSniper || 0;
-  const lastRuleTitle = rules.find(rule => rule.id === lastSessionRuleId)?.shortTitle
-    || rules.find(rule => rule.id === lastSessionRuleId)?.title
-    || null;
 
   // A4 — Only show level summary if there's at least one crown or diamond
   const showLevelSummary = summary.couronne > 0 || summary.diamant > 0 || summary.diamondVivant > 0;
@@ -560,27 +569,16 @@ export default function Dashboard({
     ? `${streak} jour${streak > 1 ? 's' : ''} d'affilée`
     : 'Allume la première flamme';
   const streakSupportText = streak > 0
-    ? 'Ta flamme te donne des pièces aux paliers 7, 14, 30, 60 et 100 jours, et un bouclier tous les 7 jours. Il faut au moins 60% de bonnes réponses pour valider un jour.'
+    ? 'Ta flamme te donne des pièces aux paliers 7, 14, 30, 60 et 100 jours. Il faut au moins 60% de bonnes réponses pour valider un jour.'
     : 'Lance ta première session (60% minimum) pour démarrer ta flamme.';
   const nextCoinMilestone = [7, 14, 30, 60, 100].find((day) => day > streak) || null;
   const nextCoinReward = nextCoinMilestone ? STREAK_MILESTONE_COINS[nextCoinMilestone] : null;
-  const nextShieldDay = shields >= 2 ? null : Math.max(7, Math.ceil((streak + 1) / 7) * 7);
-  const nextUsefulDay = Math.min(nextCoinMilestone ?? Infinity, nextShieldDay ?? Infinity);
-  const nextUsefulLabel = Number.isFinite(nextUsefulDay) ? `${nextUsefulDay} jours` : 'Flamme solide';
-  const nextUsefulBenefits = [];
-  if (Number.isFinite(nextUsefulDay) && nextUsefulDay === nextCoinMilestone && nextCoinReward !== null) {
-    nextUsefulBenefits.push(`+${nextCoinReward} pièces`);
-  }
-  if (Number.isFinite(nextUsefulDay) && nextUsefulDay === nextShieldDay) {
-    nextUsefulBenefits.push('+1 bouclier');
-  }
-  const nextUsefulText = Number.isFinite(nextUsefulDay)
-    ? nextUsefulBenefits.join(' et ')
+  const nextUsefulLabel = nextCoinMilestone ? `${nextCoinMilestone} jours` : 'Flamme solide';
+  const nextUsefulText = nextCoinReward
+    ? `+${nextCoinReward} pièces`
     : 'Tous les gros paliers de pièces sont déjà passés.';
-  const riskValue = shields > 0 ? 'Un jour raté = 1 bouclier consommé' : 'Un jour raté = retour à 1';
-  const riskText = shields > 0
-    ? 'Sans bouclier derrière, le prochain jour manqué casse la série et repousse les gains.'
-    : "La série retombe et les prochaines pièces s'éloignent.";
+  const riskValue = 'Un jour raté = retour à 1';
+  const riskText = "La série retombe et les prochaines pièces s'éloignent.";
 
   // Counter for staggered animation
   let animIdx = 0;
@@ -629,6 +627,7 @@ export default function Dashboard({
               maxWidth: 300,
               animation: 'bounce-in 0.3s ease forwards',
             }} onClick={(e) => e.stopPropagation()}>
+              <PopupCloseButton onClick={() => setMoodTooltip(false)} />
               <div style={{ fontSize: '3rem', marginBottom: '0.4rem' }}>{info.emoji}</div>
               <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#e2e2e2', marginBottom: '0.3rem' }}>
                 {info.label}
@@ -958,238 +957,280 @@ export default function Dashboard({
           </div>
         )}
 
-        {(sniperCharges > 0 || canRematch) && (
-          <div style={{ marginTop: '1.2rem' }}>
-            <SectionLabel>COUPS SPÉCIAUX</SectionLabel>
-            <div style={{ display: 'grid', gap: '0.6rem' }}>
-              {sniperCharges > 0 && (
-                <button
-                  onClick={onSniper}
-                  style={specialActionButtonStyle}
-                >
-                  <span style={{ fontSize: '1.2rem' }}>{'🎯'}</span>
-                  <div style={{ flex: 1, textAlign: 'left' }}>
-                    <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--color-accent)' }}>
-                      Mode Sniper
-                    </div>
-                    <div style={{ fontSize: '0.72rem', color: '#9ca3af' }}>
-                      5 questions difficiles, toutes règles confondues.
-                    </div>
-                  </div>
-                  <span style={badgeStyle}>
-                    {sniperCharges}
-                  </span>
-                </button>
-              )}
-
-              {canRematch && (
-                <button
-                  onClick={onRematch}
-                  style={specialActionButtonStyle}
-                >
-                  <span style={{ fontSize: '1.2rem' }}>{'↺'}</span>
-                  <div style={{ flex: 1, textAlign: 'left' }}>
-                    <div style={{ fontSize: '0.88rem', fontWeight: 700, color: 'var(--color-accent)' }}>
-                      Revanche
-                    </div>
-                    <div style={{ fontSize: '0.72rem', color: '#9ca3af' }}>
-                      {lastRuleTitle
-                        ? `${lastRuleTitle} — ${lastSessionScore}%`
-                        : 'Refais immédiatement ta dernière session.'}
-                    </div>
-                  </div>
-                </button>
-              )}
-            </div>
-          </div>
+        {/* =====================================================================
+          Coaching banner
+        ===================================================================== */}
+        {coachingMsg && (
+          <MotivationBanner
+            variant={coachingMsg.variant}
+            emoji={coachingMsg.emoji}
+            message={coachingMsg.copy}
+            emphasis={coachingMsg.emphasis}
+            floatEmoji={['panda', 'flamme', 'pieces'].includes(coachingMsg.variant)}
+            cta={coachingMsg.cta ? {
+              label: coachingMsg.cta.label,
+              onClick: () => handleCtaAction(coachingMsg.cta.action),
+            } : null}
+            style={{ marginBottom: '0.75rem' }}
+          />
         )}
 
         {/* =====================================================================
-          A6 — Separated rule sections
+          Grammaire / Dictée switcher
         ===================================================================== */}
+        <div style={{
+          display: 'flex',
+          background: 'rgba(0,0,0,0.32)',
+          border: '1px solid rgba(255,255,255,0.06)',
+          borderRadius: 13,
+          padding: 3,
+          marginTop: '1.25rem',
+          gap: 2,
+        }}>
+          {[
+            { key: 'grammaire', label: 'Grammaire', icon: (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 20h9" />
+                <path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4z" />
+              </svg>
+            )},
+            { key: 'dictee', label: 'Vocabulaire', icon: (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+              </svg>
+            )},
+          ].map(tab => (
+            <button
+              key={tab.key}
+              type="button"
+              onClick={() => handleTabChange(tab.key)}
+              style={{
+                flex: 1,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 6,
+                padding: '10px 6px',
+                borderRadius: 10,
+                border: 'none',
+                cursor: 'pointer',
+                background: activeTab === tab.key ? 'rgba(255,255,255,0.08)' : 'transparent',
+                color: activeTab === tab.key ? '#fff' : 'rgba(255,255,255,0.55)',
+                fontSize: '0.78rem',
+                fontWeight: 700,
+                transition: 'background 0.18s ease, color 0.18s ease',
+              }}
+            >
+              <span style={{ width: 14, height: 14, display: 'inline-flex', flexShrink: 0 }}>
+                {tab.icon}
+              </span>
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
-        {/* ---- Section 1: Révisions du jour ---- */}
-        {revisions.length > 0 && (
-          <div style={{ marginTop: '1.5rem' }}>
-            <SectionLabel>
-              {`RÉVISIONS DU JOUR — ${revisions.length} règle${revisions.length > 1 ? 's' : ''} à réviser`}
-            </SectionLabel>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              {revisions.map((rule) => {
-                const rp = progress.rules?.[rule.id];
-                const idx = animIdx++;
-                return (
-                  <div key={rule.id} style={{
-                    opacity: mounted ? 1 : 0,
-                    transform: mounted ? 'translateY(0)' : 'translateY(15px)',
-                    transition: `all 0.5s ease ${0.15 + idx * 0.08}s`,
-                  }}>
-                    <RuleCard
-                      rule={rule}
-                      ruleProgress={rp}
-                      onPlay={onPlay}
-                      onOpenMemo={setMemoRule}
-                      onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
-                      onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
-                      pandaMood={resolveCharacterMood(pandaMood, getCharacterForRule(rule.id, allRuleIds, shopOwned), shopOwned)}
-                      characterId={getCharacterForRule(rule.id, allRuleIds, shopOwned)}
-                      onCharacterClick={() => setMoodTooltip(true)}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
+        {/* =====================================================================
+          Grammaire tab — RÉVISIONS DU JOUR + groupes AVENTURIER/HÉROS/LÉGENDE
+        ===================================================================== */}
+        {activeTab === 'grammaire' && (() => {
+          const GRAMMAR_GROUPS = [
+            { key: 'aventurier', label: 'AVENTURIER', color: '#FFC107' },
+            { key: 'heros',      label: 'HÉROS',      color: '#4CAF50' },
+            { key: 'legende',    label: 'LÉGENDE',    color: '#9C27B0' },
+          ];
+          // First not-started rule across all groups (for "recommended" badge)
+          const firstNotStartedId = (() => {
+            for (const g of GRAMMAR_GROUPS) {
+              const r = rules.find(rule => rule.group === g.key && !(progress.rules?.[rule.id]?.level >= 1));
+              if (r) return r.id;
+            }
+            return null;
+          })();
 
-        {/* ---- Section 2: Continue ta progression ---- */}
-        {inProgress.length > 0 && (
-          <div style={{ marginTop: '1.5rem' }}>
-            <SectionLabel>CONTINUE TA PROGRESSION</SectionLabel>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              {inProgress.map((rule) => {
-                const rp = progress.rules?.[rule.id];
-                const idx = animIdx++;
-                return (
-                  <div key={rule.id} style={{
-                    opacity: mounted ? 1 : 0,
-                    transform: mounted ? 'translateY(0)' : 'translateY(15px)',
-                    transition: `all 0.5s ease ${0.15 + idx * 0.08}s`,
-                  }}>
-                    <RuleCard
-                      rule={rule}
-                      ruleProgress={rp}
-                      onPlay={onPlay}
-                      onOpenMemo={setMemoRule}
-                      onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
-                      onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
-                      pandaMood={resolveCharacterMood(pandaMood, getCharacterForRule(rule.id, allRuleIds, shopOwned), shopOwned)}
-                      characterId={getCharacterForRule(rule.id, allRuleIds, shopOwned)}
-                      onCharacterClick={() => setMoodTooltip(true)}
-                    />
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-
-        {/* ---- Section 3: À découvrir ---- */}
-        {toDiscover.length > 0 && (
-          <div style={{ marginTop: '1.5rem' }}>
-            <SectionLabel>{'À DÉCOUVRIR'}</SectionLabel>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-              {toDiscover.map((rule, i) => {
-                const idx = animIdx++;
-                const isRecommended = i === 0; // First undiscovered rule is the recommended one
-                return (
-                  <div key={rule.id} style={{
-                    opacity: mounted ? 1 : 0,
-                    transform: mounted ? 'translateY(0)' : 'translateY(15px)',
-                    transition: `all 0.5s ease ${0.15 + idx * 0.08}s`,
-                  }}>
-                    <div style={{
-                      display: 'flex', alignItems: 'center',
-                      background: isRecommended
-                        ? 'rgba(var(--color-primary-rgb),0.08)'
-                        : 'rgba(255,255,255,0.04)',
-                      border: isRecommended
-                        ? '1px solid rgba(var(--color-primary-rgb),0.3)'
-                        : '1px solid rgba(255,255,255,0.08)',
-                      borderRadius: 14, padding: '0.7rem 1rem',
-                      gap: '0.7rem',
-                      flexWrap: 'wrap',
-                      position: 'relative',
-                    }}>
-                      <span style={{ fontSize: '1rem', opacity: 0.4 }}>{'🔒'}</span>
-                      <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.7rem', flexWrap: 'nowrap' }}>
-                          <button
-                            type="button"
-                            onClick={() => setMemoRule(rule)}
-                            style={{
-                              padding: 0,
-                              border: 'none',
-                              background: 'transparent',
-                              color: 'var(--color-accent)',
-                              cursor: 'pointer',
-                              fontSize: '0.88rem',
-                              fontWeight: 700,
-                              textAlign: 'left',
-                              flex: 1,
-                              minWidth: 0,
-                            }}
-                            title="Ouvrir la fiche mémo"
-                          >
-                            {rule.title}
-                          </button>
-                          <button
-                            onClick={() => onPlay(rule.id, 'guided')}
-                            style={{
-                              padding: '0.45rem 0.9rem',
-                              borderRadius: 10,
-                              border: 'none',
-                              background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
-                              color: '#fff',
-                              cursor: 'pointer',
-                              fontSize: '0.78rem',
-                              fontWeight: 700,
-                              flexShrink: 0,
-                              boxShadow: isRecommended
-                                ? '0 2px 12px rgba(124,58,237,0.35)'
-                                : '0 2px 8px rgba(124,58,237,0.25)',
-                            }}
-                          >
-                            Découvrir
-                          </button>
+          return (
+            <>
+              {/* Révisions du jour (cross-group) */}
+              {revisions.length > 0 && (
+                <div style={{ marginTop: '1.5rem' }}>
+                  <SectionLabel>
+                    {`RÉVISIONS DU JOUR — ${revisions.length} règle${revisions.length > 1 ? 's' : ''} à réviser`}
+                  </SectionLabel>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                    {revisions.map((rule) => {
+                      const rp = progress.rules?.[rule.id];
+                      const idx = animIdx++;
+                      return (
+                        <div key={rule.id} style={{ opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(15px)', transition: `all 0.5s ease ${0.15 + idx * 0.08}s` }}>
+                          <RuleCard rule={rule} ruleProgress={rp} onPlay={onPlay} onOpenMemo={setMemoRule}
+                            onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
+                            onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
+                            pandaMood={dashboardCharMood}
+                            characterId={getCharacterForRule(rule.id, allRuleIds, shopOwned)}
+                            onCharacterClick={() => setMoodTooltip(true)}
+                          />
                         </div>
-                        {isRecommended ? (
-                          <span style={{
-                            display: 'inline-flex',
-                            alignSelf: 'flex-start',
-                            whiteSpace: 'nowrap',
-                            fontSize: '0.6rem',
-                            background: 'rgba(var(--color-primary-rgb),0.2)',
-                            color: 'var(--color-accent)',
-                            padding: '0.1rem 0.45rem',
-                            borderRadius: 4,
-                            fontWeight: 700,
-                            letterSpacing: '0.02em',
-                          }}>
-                            Prochaine règle recommandée
-                          </span>
-                        ) : (
-                          <span style={{
-                            display: 'inline-flex',
-                            alignSelf: 'flex-start',
-                            whiteSpace: 'nowrap',
-                            fontSize: '0.62rem',
-                            background: 'rgba(107,114,128,0.15)',
-                            color: '#6b7280',
-                            padding: '0.1rem 0.4rem',
-                            borderRadius: 4,
-                            fontWeight: 700,
-                          }}>
-                            Nouvelle
-                          </span>
-                        )}
-                      </div>
-                      {isDebug && (
-                        <button
-                          onClick={(e) => { e.stopPropagation(); setEditingRule(rules.find(x => x.id === rule.id)); }}
-                          style={{
-                            background: 'rgba(248,113,113,0.15)', border: '1px solid rgba(248,113,113,0.3)',
-                            borderRadius: 6, padding: '0.15rem 0.35rem', cursor: 'pointer',
-                            fontSize: '0.6rem', color: '#f87171', fontWeight: 700, flexShrink: 0,
-                          }}
-                          title="Debug: éditer la règle"
-                        >✏️</button>
-                      )}
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+
+              {/* Groupes AVENTURIER / HÉROS / LÉGENDE */}
+              {GRAMMAR_GROUPS.map((grp) => {
+                const groupRules = rules.filter(r => r.group === grp.key);
+                if (groupRules.length === 0) return null;
+                const started = groupRules.filter(r => (progress.rules?.[r.id]?.level || 0) >= 1 && !revisions.find(rv => rv.id === r.id));
+                const notStarted = groupRules.filter(r => !(progress.rules?.[r.id]?.level >= 1));
+                return (
+                  <div key={grp.key} style={{ marginTop: '1.5rem' }}>
+                    <div style={{
+                      display: 'flex', alignItems: 'center', gap: '0.4rem',
+                      marginBottom: '0.75rem', paddingBottom: '0.4rem',
+                      borderBottom: `1px solid ${grp.color}28`,
+                    }}>
+                      <span style={{ fontSize: '0.72rem', fontWeight: 800, color: grp.color, letterSpacing: '0.08em' }}>
+                        {grp.label}
+                      </span>
+                    </div>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+                      {/* In-progress rules: full RuleCard */}
+                      {started.map((rule) => {
+                        const rp = progress.rules?.[rule.id];
+                        const idx = animIdx++;
+                        return (
+                          <div key={rule.id} style={{ opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(15px)', transition: `all 0.5s ease ${0.15 + idx * 0.08}s` }}>
+                            <RuleCard rule={rule} ruleProgress={rp} onPlay={onPlay} onOpenMemo={setMemoRule}
+                              onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: rule.shortTitle || rule.title, ruleProgress: rp })}
+                              onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
+                              pandaMood={dashboardCharMood}
+                              characterId={getCharacterForRule(rule.id, allRuleIds, shopOwned)}
+                              onCharacterClick={() => setMoodTooltip(true)}
+                            />
+                          </div>
+                        );
+                      })}
+
+                      {/* Not-started rules: compact row */}
+                      {notStarted.map((rule) => {
+                        const isRecommended = rule.id === firstNotStartedId;
+                        const idx = animIdx++;
+                        return (
+                          <div key={rule.id} style={{ opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(15px)', transition: `all 0.5s ease ${0.15 + idx * 0.08}s` }}>
+                            <div style={{
+                              display: 'flex', alignItems: 'center',
+                              background: isRecommended ? 'rgba(var(--color-primary-rgb),0.08)' : 'rgba(255,255,255,0.04)',
+                              border: isRecommended ? '1px solid rgba(var(--color-primary-rgb),0.3)' : '1px solid rgba(255,255,255,0.08)',
+                              borderRadius: 14, padding: '0.7rem 1rem', gap: '0.7rem', flexWrap: 'wrap',
+                            }}>
+                              <span style={{ fontSize: '1rem', opacity: 0.4 }}>🔒</span>
+                              <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.7rem', flexWrap: 'nowrap' }}>
+                                  <button type="button" onClick={() => setMemoRule(rule)} style={{ padding: 0, border: 'none', background: 'transparent', color: 'var(--color-accent)', cursor: 'pointer', fontSize: '0.88rem', fontWeight: 700, textAlign: 'left', flex: 1, minWidth: 0 }} title="Ouvrir la fiche mémo">
+                                    {rule.title}
+                                  </button>
+                                  <button onClick={() => onPlay(rule.id, 'guided')} style={{ padding: '0.45rem 0.9rem', borderRadius: 10, border: 'none', background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))', color: '#fff', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 700, flexShrink: 0, boxShadow: isRecommended ? '0 2px 12px rgba(124,58,237,0.35)' : '0 2px 8px rgba(124,58,237,0.25)' }}>
+                                    Découvrir
+                                  </button>
+                                </div>
+                                {isRecommended ? (
+                                  <span style={{ display: 'inline-flex', alignSelf: 'flex-start', whiteSpace: 'nowrap', fontSize: '0.6rem', background: 'rgba(var(--color-primary-rgb),0.2)', color: 'var(--color-accent)', padding: '0.1rem 0.45rem', borderRadius: 4, fontWeight: 700, letterSpacing: '0.02em' }}>
+                                    Prochaine règle recommandée
+                                  </span>
+                                ) : (
+                                  <span style={{ display: 'inline-flex', alignSelf: 'flex-start', whiteSpace: 'nowrap', fontSize: '0.62rem', background: 'rgba(107,114,128,0.15)', color: '#6b7280', padding: '0.1rem 0.4rem', borderRadius: 4, fontWeight: 700 }}>
+                                    Nouvelle
+                                  </span>
+                                )}
+                              </div>
+                              {isDebug && (
+                                <button onClick={(e) => { e.stopPropagation(); setEditingRule(rules.find(x => x.id === rule.id)); }} style={{ background: 'rgba(248,113,113,0.15)', border: '1px solid rgba(248,113,113,0.3)', borderRadius: 6, padding: '0.15rem 0.35rem', cursor: 'pointer', fontSize: '0.6rem', color: '#f87171', fontWeight: 700, flexShrink: 0 }} title="Debug: éditer la règle">✏️</button>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                 );
               })}
-            </div>
+            </>
+          );
+        })()}
+
+        {/* =====================================================================
+          Dictée tab content
+        ===================================================================== */}
+        {activeTab === 'dictee' && (
+          <div style={{ marginTop: '1rem' }}>
+            {[
+              { key: 'level1', label: 'AVENTURIER', color: '#FFC107' },
+              { key: 'level2', label: 'HÉROS', color: '#4CAF50' },
+              { key: 'level3', label: 'LÉGENDE', color: '#9C27B0' },
+            ].map((levelDef) => {
+              const rulesProgress = progress?.rules || {};
+              const unlocked = levelDef.key === 'level1'
+                ? true
+                : allDictees.map(d => `${d.id}-${levelDef.key === 'level2' ? 'level1' : 'level2'}`).every(id => (rulesProgress[id]?.level || 0) >= 3);
+              return (
+                <div key={levelDef.key} style={{ marginBottom: '1.5rem' }}>
+                  <div style={{
+                    display: 'flex', alignItems: 'center', gap: '0.4rem',
+                    marginBottom: '0.75rem',
+                    paddingBottom: '0.4rem',
+                    borderBottom: `1px solid ${levelDef.color}28`,
+                  }}>
+                    <span style={{
+                      fontSize: '0.72rem', fontWeight: 800,
+                      color: levelDef.color, letterSpacing: '0.08em',
+                    }}>
+                      {levelDef.label}
+                    </span>
+                    {!unlocked && (
+                      <span style={{ fontSize: '0.68rem', color: '#6b7280', fontWeight: 600 }}>
+                        {'🔒 '}
+                        {levelDef.key === 'level2'
+                          ? 'Tous Aventurier en couronne'
+                          : 'Tous Héros en couronne'}
+                      </span>
+                    )}
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    {(() => {
+                      const allDicteeIds = allDictees.map(d => d.id);
+                      let firstNotStartedSeen = false;
+                      return allDictees.map((dictee) => {
+                        const quizId = `${dictee.id}-${levelDef.key}`;
+                        const dicteeProgress = rulesProgress[quizId];
+                        const words = getDicteeWordsForLevel(dictee, levelDef.key);
+                        const notStarted = (dicteeProgress?.level || 0) === 0;
+                        const isFirst = unlocked && notStarted && !firstNotStartedSeen;
+                        if (isFirst) firstNotStartedSeen = true;
+                        const aidx = animIdx++;
+                        return (
+                          <div key={quizId} style={{ opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(15px)', transition: `all 0.5s ease ${0.15 + aidx * 0.08}s` }}>
+                            <DicteeCard
+                              dictee={dictee}
+                              level={levelDef.key}
+                              progress={dicteeProgress}
+                              locked={!unlocked}
+                              onPlay={(d, lvl) => onPlayDictee?.(d, lvl)}
+                              onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: dictee.title, ruleProgress: dicteeProgress })}
+                              wordCount={words?.length || 0}
+                              isFirst={isFirst}
+                              pandaMood={dashboardCharMood}
+                              characterId={getCharacterForRule(dictee.id, allDicteeIds, shopOwned)}
+                              onCharacterClick={() => setMoodTooltip(true)}
+                            />
+                          </div>
+                        );
+                      });
+                    })()}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         )}
 
@@ -1278,7 +1319,7 @@ export default function Dashboard({
               { mood: 'surprise',  label: '😲 Surprise',        color: '#fbbf24' },
               { mood: 'victory',   label: '🏆 Victoire',        color: '#fbbf24' },
               { mood: 'think',     label: '🤔 Réflexion',       color: '#60a5fa' },
-              { mood: 'challenge', label: '⚔️ Défi',            color: '#f87171' },
+              { mood: 'sit',       label: '🪑 Assis',           color: '#67e8f9' },
             ].map(({ mood, label, color }) => (
               <button key={label} onClick={() => setPandaMood(mood)} style={{
                 padding: '0.38rem 0.8rem', borderRadius: 6,
@@ -1296,6 +1337,41 @@ export default function Dashboard({
           <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
             🐾 Ménagerie — {CHARACTERS.length} personnages
           </div>
+          {/* ── Boutique ──────────────────────────────────────────── */}
+          <div style={{ marginBottom: '0.9rem' }}>
+            <div style={{ fontSize: '0.6rem', color: '#a78bfa', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.4rem', opacity: 0.85 }}>
+              Boutique ({SHOP_CHARACTERS.length})
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(90px, 1fr))', gap: '0.35rem' }}>
+              {SHOP_CHARACTERS.map(ch => (
+                <div key={ch.id} style={{
+                  display: 'flex', flexDirection: 'column', alignItems: 'center',
+                  background: `${ch.color}12`,
+                  border: `1px solid ${ch.color}35`,
+                  borderRadius: 10, padding: '0.45rem 0.3rem 0.5rem',
+                  gap: '0.1rem',
+                }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', marginBottom: '0.1rem' }}>
+                    <div style={{ fontSize: '1.8rem', lineHeight: 1, filter: `drop-shadow(0 0 4px ${ch.color}80)` }}>
+                      {ch.emoji}
+                    </div>
+                    <div style={{ width: '80%', height: '1px', background: 'rgba(255,255,255,0.1)' }} />
+                    <div style={{
+                      width: 64, height: 58,
+                      display: 'flex', alignItems: 'center', justifyContent: 'center',
+                      background: `radial-gradient(circle at 50% 60%, ${ch.color}18 0%, transparent 70%)`,
+                      borderRadius: 6,
+                    }}>
+                      <CharacterSprite id={ch.id} mood={pandaMood || 'walk'} size={40} glow={true} />
+                    </div>
+                  </div>
+                  <span style={{ fontSize: '0.58rem', fontWeight: 700, color: ch.color, textAlign: 'center', lineHeight: 1.2 }}>{ch.name}</span>
+                  <span style={{ fontSize: '0.5rem', color: '#9ca3af', textAlign: 'center', lineHeight: 1.2 }}>{ch.price ?? 500} 🪙</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {Object.entries(CHARACTER_CATEGORIES).map(([catKey, cat]) => {
             const chars = CHARACTERS.filter(c => c.cat === catKey);
             return (
@@ -1327,7 +1403,7 @@ export default function Dashboard({
                           background: `radial-gradient(circle at 50% 60%, ${ch.color}18 0%, transparent 70%)`,
                           borderRadius: 6,
                         }}>
-                          <CharacterSprite id={ch.id} mood="walk" size={40} glow={true} />
+                          <CharacterSprite id={ch.id} mood={pandaMood || 'walk'} size={40} glow={true} />
                         </div>
                       </div>
                       <span style={{ fontSize: '0.58rem', fontWeight: 700, color: ch.color, textAlign: 'center', lineHeight: 1.2 }}>{ch.name}</span>
@@ -1466,6 +1542,33 @@ export default function Dashboard({
             >
               Appliquer
             </button>
+          </div>
+
+          {/* Coaching debug */}
+          <div style={{ marginTop: '0.8rem', paddingTop: '0.7rem', borderTop: '1px dashed rgba(96,205,255,0.15)' }}>
+            <div style={{ fontSize: '0.65rem', color: '#60cdff', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.5rem' }}>
+              🧠 Coaching
+            </div>
+            <button
+              onClick={() => {
+                onProgressChange?.({ ...progress, coaching: createDefaultCoaching() });
+                setTimeout(() => window.location.reload(), 150);
+              }}
+              style={{
+                padding: '0.38rem 0.9rem', borderRadius: 6,
+                border: '1px solid rgba(96,205,255,0.3)',
+                background: 'rgba(96,205,255,0.1)',
+                color: '#60cdff', cursor: 'pointer',
+                fontSize: '0.72rem', fontWeight: 700,
+              }}
+            >
+              Reset coaching flags
+            </button>
+            <div style={{ marginTop: '0.4rem', fontSize: '0.6rem', color: '#6b7280', lineHeight: 1.6, maxHeight: 80, overflowY: 'auto' }}>
+              {Object.entries(progress.coaching?.shown || {}).map(([arcId, date]) => (
+                <div key={arcId}>{arcId}: {date}</div>
+              ))}
+            </div>
           </div>
 
           {/* Coins setter */}
@@ -1687,15 +1790,6 @@ export default function Dashboard({
                   <strong className="streak-help-stat-value">{riskValue}</strong>
                   <span className="streak-help-stat-hint">{riskText}</span>
                 </div>
-                <div className="streak-help-stat-card">
-                  <span className="streak-help-stat-label">Bouclier 🛡️</span>
-                  <strong className="streak-help-stat-value">{shields > 0 ? `${shields}/2 en réserve` : "Aucun"}</strong>
-                  <span className="streak-help-stat-hint">
-                    {shields > 0
-                      ? "Si tu rates un jour, tu peux consommer un bouclier pour sauver ta flamme."
-                      : "Atteins 7 jours de flamme pour en gagner un. Il peut absorber 1 jour raté."}
-                  </span>
-                </div>
               </div>
 
               </div>
@@ -1713,6 +1807,78 @@ export default function Dashboard({
         ruleProgress={levelHelp.ruleProgress}
         onClose={() => setLevelHelp(null)}
       />
+    )}
+
+    {/* ── Bug report modal (partagé grammaire + dictée) ── */}
+    {bugTarget && (
+      <div
+        onClick={() => { setBugTarget(null); setBugDesc(''); setBugCopied(false); }}
+        style={{
+          position: 'fixed', inset: 0, zIndex: 1000,
+          background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(6px)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: '1rem',
+        }}
+      >
+        <div
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            background: '#1e1e2e', borderRadius: 20,
+            border: '1px solid rgba(255,255,255,0.1)',
+            padding: '1.4rem 1.5rem', width: 'min(420px, 100%)',
+            display: 'grid', gap: '0.9rem',
+          }}
+        >
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span style={{ fontWeight: 800, fontSize: '1rem', color: '#e2e2e2' }}>
+              🐛 Signaler un problème
+            </span>
+            <button
+              onClick={() => { setBugTarget(null); setBugDesc(''); setBugCopied(false); }}
+              style={{ background: 'none', border: 'none', color: '#6b7280', fontSize: '1.2rem', cursor: 'pointer', lineHeight: 1 }}
+            >✕</button>
+          </div>
+          <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5 }}>
+            <strong style={{ color: 'var(--color-accent)' }}>{bugTarget.title}</strong>
+            {bugTarget.type === 'dictee' && bugTarget.level && (
+              <span> — {bugTarget.level === 'level1' ? 'Aventurier' : bugTarget.level === 'level2' ? 'Héros' : 'Légende'}</span>
+            )}
+          </div>
+          <textarea
+            value={bugDesc}
+            onChange={(e) => setBugDesc(e.target.value)}
+            placeholder="Décris le problème rencontré..."
+            rows={3}
+            style={{
+              background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: 10, padding: '0.7rem', color: '#e2e2e2',
+              fontSize: '0.85rem', resize: 'vertical', outline: 'none',
+            }}
+          />
+          <button
+            onClick={() => {
+              const text = [
+                `${bugTarget.type === 'rule' ? 'Règle' : 'Dictée'} : ${bugTarget.title} (${bugTarget.id})`,
+                bugTarget.level ? `Groupe : ${bugTarget.level}` : '',
+                `Problème : ${bugDesc || '(non renseigné)'}`,
+              ].filter(Boolean).join('\n');
+              navigator.clipboard?.writeText(text).then(() => {
+                setBugCopied(true);
+                setTimeout(() => setBugCopied(false), 2500);
+              });
+            }}
+            style={{
+              padding: '0.7rem', borderRadius: 10, border: 'none',
+              background: bugCopied
+                ? 'linear-gradient(135deg, #059669, #34d399)'
+                : 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
+              color: '#fff', cursor: 'pointer', fontSize: '0.85rem', fontWeight: 700,
+            }}
+          >
+            {bugCopied ? '✓ Copié !' : 'Copier le rapport'}
+          </button>
+        </div>
+      </div>
     )}
 
     {memoRule && (

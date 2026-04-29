@@ -102,7 +102,7 @@ export function getMysteryImageDefinitions(customMysteryImages = []) {
 /**
  * Complete shop catalog.
  * Categories: themes, flames, titles, victoryAnimations, streakFreeze,
- *             doubleCoins, revealHint, rematch, modeSniper, questionMystery
+ *             doubleCoins, questionMystery
  */
 export const SHOP_CATALOG = {
   // ── Cosmetic: Themes ──
@@ -340,31 +340,6 @@ export const SHOP_CATALOG = {
     type: 'consumable',
   },
 
-  // ── Consumables: Quiz Lifelines ──
-  'reveal-hint': {
-    id: 'reveal-hint',
-    category: 'revealHint',
-    name: 'Indice',
-    description: 'Voir les axes de décision pour 1 question en mode direct.',
-    price: 50,
-    type: 'consumable',
-  },
-  'rematch': {
-    id: 'rematch',
-    category: 'rematch',
-    name: 'Revanche',
-    description: 'Rejouer une session ratée avec les mêmes questions.',
-    price: 60,
-    type: 'consumable',
-  },
-  'mode-sniper': {
-    id: 'mode-sniper',
-    category: 'modeSniper',
-    name: 'Mode Sniper',
-    description: 'Session courte de 5 questions difficulté max.',
-    price: 100,
-    type: 'consumable',
-  },
   'question-mystery': {
     id: 'question-mystery',
     category: 'questionMystery',
@@ -672,7 +647,7 @@ export function purchaseItem(progress, itemId) {
 
     // Ensure inventory exists
     if (!progress.shop.inventory) {
-      progress.shop.inventory = { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 };
+      progress.shop.inventory = { questionMystery: 0 };
     }
 
     switch (itemId) {
@@ -684,15 +659,6 @@ export function purchaseItem(progress, itemId) {
         progress.shop.activeBoosts.doubleCoins = true;
         progress.shop.activeBoosts.doubleCoinsRemainingSessions = getDoubleCoinsRemainingSessions(progress) + DOUBLE_COINS_SESSION_COUNT;
         progress.shop.activeBoosts.doubleCoinsLastPurchasedWeek = getCurrentShopWeek();
-        break;
-      case 'reveal-hint':
-        progress.shop.inventory.revealHint = (progress.shop.inventory.revealHint || 0) + 1;
-        break;
-      case 'rematch':
-        progress.shop.inventory.rematch = (progress.shop.inventory.rematch || 0) + 1;
-        break;
-      case 'mode-sniper':
-        progress.shop.inventory.modeSniper = (progress.shop.inventory.modeSniper || 0) + 1;
         break;
       case 'question-mystery':
         progress.shop.inventory.questionMystery = (progress.shop.inventory.questionMystery || 0) + 1;
@@ -789,11 +755,6 @@ function createDefaultShop() {
       doubleCoinsLastPurchasedWeek: null,
     },
     mysteryImages: createDefaultMysteryImagesState(),
-    inventory: {
-      revealHint: 0,
-      rematch: 0,
-      modeSniper: 0,
-      questionMystery: 0,
-    },
+    inventory: { questionMystery: 0 },
   };
 }

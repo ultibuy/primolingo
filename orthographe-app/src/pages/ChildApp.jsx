@@ -8,12 +8,14 @@ import { getChild } from '../services/store.js';
 
 // Content
 import { allRules } from '../content/loader.js';
+import { allDictees, getDicteeWordsForLevel } from '../content/dicteesLoader.js';
 import { getCharacterForRule } from '../data/shopCharacters.js';
 
 // Engine
-import { selectSessionQuestions, selectSniperQuestions } from '../engine/session.js';
-import { initRuleSM2, updateRuleSM2, calculateDiamondHealth, getToday, parseLocalDate } from '../engine/sm2.js';
-import { calculateCoins, checkLevelUp, updateStreak } from '../engine/scoring.js';
+import { selectSessionQuestions } from '../engine/session.js';
+import { calculateDiamondHealth, getToday, parseLocalDate } from '../engine/sm2.js';
+import { createDefaultCoaching, pickCoachingMessage } from '../engine/coaching.js';
+import { calculateCoins, checkLevelUp, updateStreak, processSessionResult } from '../engine/scoring.js';
 import {
   applyTheme,
   canPurchaseMysteryImagePiece,
@@ -48,6 +50,9 @@ import QuizGuided from '../components/QuizGuided.jsx';
 import QuizDirect from '../components/QuizDirect.jsx';
 import Shop from '../components/Shop.jsx';
 import ReturnScreen from '../components/ReturnScreen.jsx';
+import DicteesPage from '../pages/DicteesPage.jsx';
+import DicteeQuizGuided from '../components/DicteeQuizGuided.jsx';
+import DicteeQuizReconstruct from '../components/DicteeQuizReconstruct.jsx';
 import CoinIcon from '../components/CoinIcon.jsx';
 import PopupCloseButton from '../components/PopupCloseButton.jsx';
 
@@ -55,31 +60,10 @@ import PopupCloseButton from '../components/PopupCloseButton.jsx';
 // Constants
 // ---------------------------------------------------------------------------
 const DEFAULT_SESSION_SIZE = 20;
-const FIRST_SESSION_BONUS = 10;
-const DIAMOND_PASS_THRESHOLD = 90;
 const INACTIVITY_DAYS = 2;
-const SNIPER_SESSION_SIZE = 5;
-const SNIPER_COIN_MULTIPLIER = 1.5;
 const SECRET_CODE_LENGTH = 4;
 const SECRET_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const SECRET_CODE_BASE_LOCK_MS = 15000;
-
-const MILESTONE_COINS = {
-  firstSession: 50,
-  streak7: 100,
-  streak14: 200,
-  streak30: 350,
-  streak60: 500,
-  streak100: 1000,
-};
-
-const STREAK_MILESTONES = {
-  7: 'streak7',
-  14: 'streak14',
-  30: 'streak30',
-  60: 'streak60',
-  100: 'streak100',
-};
 
 function getFirstQuizBonusDismissKey(childId) {
   return `ortho_first_quiz_bonus_dismissed:${childId || 'unknown'}`;
@@ -190,7 +174,7 @@ function migrateProgress(p, mysteryImageDefinitions) {
       equipped: { theme: null, flame: null, title: null, victoryAnimation: null },
       activeBoosts: { doubleCoins: false, doubleCoinsRemainingSessions: 0, doubleCoinsLastPurchasedWeek: null },
       mysteryImages: createDefaultMysteryImagesState(),
-      inventory: { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 },
+      inventory: { questionMystery: 0 },
     };
   }
   if (!next.shop.activeBoosts || typeof next.shop.activeBoosts !== 'object') {
@@ -216,7 +200,7 @@ function migrateProgress(p, mysteryImageDefinitions) {
     : { theme: null, flame: null, title: null, victoryAnimation: null };
   next.shop.mysteryImages = normalizeMysteryImagesState(next.shop.mysteryImages, mysteryImageDefinitions);
   if (!next.shop.inventory) {
-    next.shop.inventory = { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 };
+    next.shop.inventory = { questionMystery: 0 };
   }
   if (next.shields === undefined) next.shields = 0;
   if (next.coins === undefined) next.coins = 0;
@@ -235,6 +219,11 @@ function migrateProgress(p, mysteryImageDefinitions) {
   delete next.firstQuizDone;
   delete next.crowns;
   delete next.diamonds;
+
+  if (!next.coaching) {
+    next.coaching = createDefaultCoaching();
+    migrated = true;
+  }
 
   return { progress: next, migrated };
 }
@@ -332,11 +321,6 @@ function determineQuizMode(ruleProgress) {
   return 'guided';
 }
 
-function awardMilestone(milestones, key) {
-  if (milestones[key]) return 0;
-  milestones[key] = true;
-  return MILESTONE_COINS[key] || 0;
-}
 
 function createDefaultRuleProgress() {
   return {
@@ -369,6 +353,7 @@ export default function ChildApp() {
   const [adminSettings, setAdminSettings] = useState(null);
   const [sessionSize, setSessionSize] = useState(DEFAULT_SESSION_SIZE);
   const [screen, setScreen] = useState('dashboard');
+  const [dashboardTab, setDashboardTab] = useState('grammaire');
   const [pendingEntranceAnim, setPendingEntranceAnim] = useState(null);
   const [showLightning, setShowLightning] = useState(false);
   const [showStars, setShowStars] = useState(false);
@@ -377,16 +362,18 @@ export default function ChildApp() {
   const [activeRule, setActiveRule] = useState(null);
   const [activeMode, setActiveMode] = useState('guided');
   const [isSM2Review, setIsSM2Review] = useState(false);
+  const [isDicteeReview, setIsDicteeReview] = useState(false);
   const [sessionQuestions, setSessionQuestions] = useState([]);
   const [pendingEvents, setPendingEvents] = useState([]);
   const [returnData, setReturnData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [lastSessionQuestions, setLastSessionQuestions] = useState(null);
-  const [lastSessionRuleId, setLastSessionRuleId] = useState(null);
-  const [lastSessionMode, setLastSessionMode] = useState(null);
-  const [lastSessionScore, setLastSessionScore] = useState(null);
-  const [isSniper, setIsSniper] = useState(false);
+  const [activeDictee, setActiveDictee] = useState(null);
+  const [activeDicteeLevel, setActiveDicteeLevel] = useState(null);
+  const [dicteeWords, setDicteeWords] = useState([]);
   const [saveError, setSaveError] = useState(null);
+  const [loadError, setLoadError] = useState(null);
+  const [loadRetryCount, setLoadRetryCount] = useState(0);
+  const loadSucceededRef = useRef(false);
   const [dailyBackups, setDailyBackups] = useState([]);
   const [showFirstQuizBonusModal, setShowFirstQuizBonusModal] = useState(false);
   const pendingQuizLaunchRef = useRef(null);
@@ -446,6 +433,10 @@ export default function ChildApp() {
   }, [uid, childId]);
 
   const persistProgress = useCallback(async (nextProgress) => {
+    if (!loadSucceededRef.current) {
+      console.warn('persistProgress blocked — initial load has not succeeded yet');
+      return { success: false, error: 'Chargement initial incomplet.' };
+    }
     const result = await saveProgress(nextProgress, uid, childId);
     if (!result?.success) {
       setSaveError(result?.error || "La progression n'a pas pu être sauvegardée.");
@@ -467,6 +458,33 @@ export default function ChildApp() {
     await persistProgress(next);
   }, [progress, persistProgress]);
 
+  const handleFlagQuestion = useCallback((question, rule, unflag) => {
+    setProgress(prev => {
+      const flags = prev.flaggedQuestions || [];
+      const ruleId = question._ruleId || rule.id;
+      if (unflag) {
+        const next = { ...prev, flaggedQuestions: flags.filter(f => !(f.questionId === question.id && f.ruleId === ruleId)) };
+        persistProgress(next);
+        return next;
+      }
+      const alreadyFlagged = flags.some(f => f.questionId === question.id && f.ruleId === ruleId);
+      if (alreadyFlagged) return prev;
+      const next = {
+        ...prev,
+        flaggedQuestions: [...flags, {
+          questionId: question.id,
+          ruleId,
+          ruleTitle: rule.title || rule.id,
+          sentence: question.example || `${question.before || ''}___${question.after || ''}`,
+          answer: question.answer || question.word || '',
+          flaggedAt: new Date().toISOString(),
+        }],
+      };
+      persistProgress(next);
+      return next;
+    });
+  }, [persistProgress]);
+
   const handleDebugRestoreBackup = useCallback(async (backup) => {
     const result = await restoreDailyBackup(backup, uid, childId);
     if (result?.success) {
@@ -479,8 +497,13 @@ export default function ChildApp() {
   useEffect(() => {
     if (!uid || !childId) return;
 
+    let cancelled = false;
+    setLoadError(null);
+    loadSucceededRef.current = false;
+
     refreshDailyBackups();
     Promise.all([loadProgress(uid, childId), loadAdminSettings(uid, childId)]).then(async ([raw, settings]) => {
+      if (cancelled) return;
       setAdminSettings(settings);
       const definitions = getMysteryImageDefinitions(settings?.customMysteryImages);
       const { progress: migratedProgress } = migrateProgress(raw, definitions);
@@ -493,14 +516,29 @@ export default function ChildApp() {
         setScreen('return');
       }
 
-      await persistProgress(p);
+      // Mark load as successful BEFORE persisting, so persistProgress is unlocked.
+      loadSucceededRef.current = true;
+
+      // Only persist on load if the document existed in Firestore (raw !== null).
+      // If raw is null the store returned nothing — persisting would write a blank
+      // profile and permanently erase any data that was there.
+      if (raw !== null) {
+        await persistProgress(p);
+      }
       setProgress(p);
       setLoading(false);
 
       const equippedTheme = p.shop?.equipped?.theme;
       if (equippedTheme) applyTheme(equippedTheme);
+    }).catch((error) => {
+      if (cancelled) return;
+      console.error('Failed to load progress:', error);
+      setLoadError(error?.message || 'Impossible de charger la progression.');
+      setLoading(false);
     });
-  }, [uid, childId, persistProgress]);
+
+    return () => { cancelled = true; };
+  }, [uid, childId, persistProgress, loadRetryCount]);
 
   useEffect(() => {
     if (!uid || !childId) return;
@@ -543,169 +581,8 @@ export default function ChildApp() {
     });
   }, [launchQuizWithFirstSessionModal, progress, sessionSize]);
 
-  const handleQuizFinish = useCallback((score, total, answers) => {
-    const pct = Math.round((score / total) * 100);
-    const ruleId = activeRule.id;
-    const mode = activeMode;
-    const wasSmR2Review = isSM2Review;
-    const events = [];
-
-    setProgress(prev => {
-      const next = JSON.parse(JSON.stringify(prev));
-      const today = getToday();
-      const isSniperSession = ruleId === '__sniper__';
-
-      if (!isSniperSession) {
-        if (!next.rules[ruleId]) {
-          next.rules[ruleId] = createDefaultRuleProgress();
-        }
-      }
-      const rp = isSniperSession ? null : next.rules[ruleId];
-
-      if (isSniperSession) {
-        for (const ans of answers) {
-          const qRuleId = ans._ruleId || ruleId;
-          if (!next.rules[qRuleId]) next.rules[qRuleId] = createDefaultRuleProgress();
-          const qrp = next.rules[qRuleId];
-          if (!qrp.questionStats) qrp.questionStats = {};
-          const qs = qrp.questionStats[ans.questionId] || { timesShown: 0, timesCorrect: 0 };
-          qs.timesShown += 1;
-          if (ans.correct) qs.timesCorrect += 1;
-          qrp.questionStats[ans.questionId] = qs;
-        }
-      } else {
-        for (const ans of answers) {
-          if (!rp.questionStats) rp.questionStats = {};
-          const qs = rp.questionStats[ans.questionId] || { timesShown: 0, timesCorrect: 0 };
-          qs.timesShown += 1;
-          if (ans.correct) qs.timesCorrect += 1;
-          rp.questionStats[ans.questionId] = qs;
-        }
-      }
-
-      if (!isSniperSession && rp) {
-        const currentShown = sessionQuestions.map(q => q.id);
-        const previousShown = Array.isArray(rp.recentlyShown) ? rp.recentlyShown : [];
-        rp.recentlyShown = [
-          ...currentShown,
-          ...previousShown.filter(id => !currentShown.includes(id)),
-        ].slice(0, sessionSize * 2);
-      }
-
-      let sessionCoins = calculateCoins(score, total);
-      const pct = Math.round((score / total) * 100);
-      const qualifies = pct >= 60; // minimum 60% to earn streak + daily bonus
-
-      const isFirstSessionToday = next.streak?.lastActiveDate !== today;
-      if (isFirstSessionToday && qualifies) {
-        sessionCoins += 10; // FIRST_SESSION_BONUS
-        events.push({ type: 'firstSessionOfDay', value: 10 });
-      }
-
-      if (isSniper) {
-        sessionCoins = Math.round(sessionCoins * SNIPER_COIN_MULTIPLIER);
-        events.push({ type: 'sniperBonus' });
-      }
-
-      if (hasDoubleCoinsActive(next)) {
-        const baseSessionCoins = sessionCoins;
-        sessionCoins *= 2;
-        next.shop.activeBoosts.doubleCoinsBonusEarned = (next.shop.activeBoosts.doubleCoinsBonusEarned || 0) + baseSessionCoins;
-        next.shop.activeBoosts.doubleCoinsRemainingSessions = Math.max((next.shop.activeBoosts.doubleCoinsRemainingSessions || 0) - 1, 0);
-        next.shop.activeBoosts.doubleCoins = next.shop.activeBoosts.doubleCoinsRemainingSessions > 0;
-        events.push({ type: 'doubleCoins' });
-      }
-
-      next.coins = (next.coins || 0) + sessionCoins;
-      events.push({ type: 'coinsEarned', value: sessionCoins });
-
-      if (!isSniperSession && wasSmR2Review && rp && rp.sm2) {
-        const updatedSM2 = updateRuleSM2(rp.sm2, score, total);
-        rp.sm2 = updatedSM2;
-
-        if (pct >= DIAMOND_PASS_THRESHOLD) {
-          events.push({ type: 'sm2ReviewPassed', value: activeRule.shortTitle || activeRule.title });
-        } else if (pct >= 80) {
-          events.push({ type: 'sm2ReviewFragile', value: activeRule.shortTitle || activeRule.title });
-        } else {
-          events.push({ type: 'sm2ReviewFailed', value: activeRule.shortTitle || activeRule.title });
-        }
-
-        if (rp.sm2.diamondHealth <= 0) {
-          rp.level = 3;
-          rp.sm2 = null;
-          rp.directConsecutiveAbove90 = 0;
-          events.push({ type: 'diamondBroken', value: activeRule.shortTitle || activeRule.title });
-        }
-      }
-
-      if (!isSniperSession && !wasSmR2Review && rp) {
-        const oldLevel = rp.level || 0;
-        const levelResult = checkLevelUp(rp, mode, score, total);
-        Object.assign(rp, levelResult.updatedProgress);
-
-        if (levelResult.newLevel !== null && levelResult.newLevel > oldLevel) {
-          rp.level = levelResult.newLevel;
-          events.push({ type: 'levelUp', value: levelResult.newLevel, ruleTitle: activeRule.shortTitle || activeRule.title });
-
-          if (levelResult.coinsEarned > 0) {
-            next.coins += levelResult.coinsEarned;
-            events.push({ type: 'levelMilestoneCoins', value: levelResult.coinsEarned, level: levelResult.newLevel });
-          }
-
-          if (levelResult.newLevel === 2 && oldLevel < 2) {
-            events.push({ type: 'directUnlocked', value: activeRule.shortTitle || activeRule.title });
-          }
-
-          if (levelResult.newLevel === 3 && oldLevel < 3) {
-            rp.recentTrophy = 'crown';
-            events.push({ type: 'crown', value: activeRule.shortTitle || activeRule.title });
-          }
-
-          if (levelResult.newLevel === 4 && oldLevel < 4) {
-            rp.sm2 = initRuleSM2();
-            rp.recentTrophy = 'diamond';
-            events.push({ type: 'diamond', value: activeRule.shortTitle || activeRule.title });
-          }
-        }
-      }
-
-      if (qualifies) {
-        const streakResult = updateStreak(next);
-        next.streak = streakResult.streak;
-        if (streakResult.shieldUsed) {
-          events.push({ type: 'shieldUsed', value: streakResult.streak.current });
-        }
-      }
-
-      if (!next.milestones) {
-        next.milestones = {
-          firstSession: false, streak7: false, streak14: false,
-          streak30: false, streak60: false, streak100: false,
-        };
-      }
-
-      const firstSessionCoins = awardMilestone(next.milestones, 'firstSession');
-      if (firstSessionCoins > 0) {
-        next.coins += firstSessionCoins;
-        events.push({ type: 'milestone', value: 'firstSession', coins: firstSessionCoins });
-      }
-
-      const currentStreak = next.streak.current;
-      for (const [threshold, key] of Object.entries(STREAK_MILESTONES)) {
-        if (currentStreak >= Number(threshold)) {
-          const coins = awardMilestone(next.milestones, key);
-          if (coins > 0) {
-            next.coins += coins;
-            events.push({ type: 'milestone', value: key, coins, streak: Number(threshold) });
-          }
-        }
-      }
-
-      persistProgress(next);
-      return next;
-    });
-
+  // Shared helper: clear all recentTrophy flags after 5 seconds (crown/diamond glow)
+  const clearRecentTrophies = useCallback(() => {
     setTimeout(() => {
       setProgress(prev => {
         if (!prev) return prev;
@@ -717,18 +594,53 @@ export default function ChildApp() {
         return next;
       });
     }, 5000);
+  }, [persistProgress]);
 
-    if (!isSniper) {
-      setLastSessionQuestions([...sessionQuestions]);
-      setLastSessionRuleId(ruleId);
-      setLastSessionMode(mode);
-      setLastSessionScore(pct);
-    } else {
-      setLastSessionQuestions(null);
-      setLastSessionRuleId(null);
-      setLastSessionMode(null);
-      setLastSessionScore(null);
-    }
+  const handleQuizFinish = useCallback((score, total, answers) => {
+    const ruleId = activeRule.id;
+    const mode = activeMode;
+    const wasSmR2Review = isSM2Review;
+    const events = [];
+    let needsTrophyClear = false;
+
+    setProgress(prev => {
+      const next = JSON.parse(JSON.stringify(prev));
+
+      if (!next.rules[ruleId]) next.rules[ruleId] = createDefaultRuleProgress();
+      const rp = next.rules[ruleId];
+
+      for (const ans of answers) {
+        if (!rp.questionStats) rp.questionStats = {};
+        const qs = rp.questionStats[ans.questionId] || { timesShown: 0, timesCorrect: 0 };
+        qs.timesShown += 1;
+        if (ans.correct) qs.timesCorrect += 1;
+        rp.questionStats[ans.questionId] = qs;
+      }
+
+      // Keep recently-shown ring buffer for session variety
+      const currentShown = sessionQuestions.map(q => q.id);
+      const previousShown = Array.isArray(rp.recentlyShown) ? rp.recentlyShown : [];
+      rp.recentlyShown = [
+        ...currentShown,
+        ...previousShown.filter(id => !currentShown.includes(id)),
+      ].slice(0, sessionSize * 2);
+
+      const result = processSessionResult(next, rp, {
+        mode,
+        score,
+        total,
+        wasReview: wasSmR2Review,
+        title: activeRule.shortTitle || activeRule.title,
+      });
+
+      events.push(...result.events);
+      if (result.hasNewTrophy) needsTrophyClear = true;
+
+      persistProgress(next);
+      return next;
+    });
+
+    if (needsTrophyClear) clearRecentTrophies();
 
     setPendingEvents(events);
     setScreen('dashboard');
@@ -736,8 +648,69 @@ export default function ChildApp() {
     setActiveMode('guided');
     setIsSM2Review(false);
     setSessionQuestions([]);
-    setIsSniper(false);
-  }, [activeRule, activeMode, isSM2Review, isSniper, persistProgress, sessionQuestions, sessionSize]);
+  }, [activeRule, activeMode, isSM2Review, persistProgress, sessionQuestions, sessionSize, clearRecentTrophies]);
+
+  // ─── Dictée handlers ─────────────────────────────────────────
+  const handleDicteePlay = useCallback((dictee, level) => {
+    const allWords = getDicteeWordsForLevel(dictee, level);
+    if (allWords.length === 0) return;
+    const quizId = `${dictee.id}-${level}`;
+    const ruleProgress = progress.rules?.[quizId];
+    const internalLevel = ruleProgress?.level || 0;
+    const isReconstruct = internalLevel >= 2;
+    const DICTEE_SESSION_SIZE = isReconstruct ? 10 : 40;
+    const shuffled = [...allWords].sort(() => Math.random() - 0.5);
+    const words = shuffled.slice(0, DICTEE_SESSION_SIZE);
+    // SM-2 review: level 4+ with overdue review date → reconstruct mode
+    const isReview = internalLevel >= 4 && ruleProgress?.sm2 &&
+      ruleProgress.sm2.nextReviewDate <= getToday();
+    setActiveDictee(dictee);
+    setActiveDicteeLevel(level);
+    setDicteeWords(words);
+    setIsDicteeReview(isReview);
+    setActiveMode(internalLevel >= 2 ? 'reconstruct' : 'guided');
+    setScreen('dictee-quiz');
+  }, [progress]);
+
+  const handleDicteeFinish = useCallback((score, total, answers) => {
+    const quizId = `${activeDictee.id}-${activeDicteeLevel}`;
+    const wasDicteeReview = isDicteeReview;
+    const events = [];
+    let needsTrophyClear = false;
+
+    setProgress(prev => {
+      const next = JSON.parse(JSON.stringify(prev));
+
+      if (!next.rules[quizId]) next.rules[quizId] = createDefaultRuleProgress();
+      const rp = next.rules[quizId];
+      const mode = activeMode === 'reconstruct' ? 'direct' : 'guided';
+
+      // Shared: SM-2, level-up, coins, streak, milestones
+      const result = processSessionResult(next, rp, {
+        mode,
+        score,
+        total,
+        wasReview: wasDicteeReview,
+        title: activeDictee.title,
+      });
+
+      events.push(...result.events);
+      if (result.hasNewTrophy) needsTrophyClear = true;
+
+      persistProgress(next);
+      return next;
+    });
+
+    if (needsTrophyClear) clearRecentTrophies();
+    if (events.length > 0) setPendingEvents(events);
+
+    setScreen('dashboard');
+    setDashboardTab('dictee');
+    setActiveDictee(null);
+    setActiveDicteeLevel(null);
+    setDicteeWords([]);
+    setIsDicteeReview(false);
+  }, [activeDictee, activeDicteeLevel, activeMode, isDicteeReview, persistProgress, clearRecentTrophies]);
 
   const handleEventsSeen = useCallback(() => {
     setPendingEvents([]);
@@ -754,7 +727,7 @@ export default function ChildApp() {
           equipped: { theme: null, flame: null, title: null, victoryAnimation: null },
           activeBoosts: { doubleCoins: false, doubleCoinsRemainingSessions: 0, doubleCoinsBonusEarned: 0, doubleCoinsLastPurchasedWeek: null },
           mysteryImages: createDefaultMysteryImagesState(),
-          inventory: { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 },
+          inventory: { questionMystery: 0 },
         };
       }
       if (!next.shop.activeBoosts) {
@@ -762,7 +735,7 @@ export default function ChildApp() {
       }
       next.shop.mysteryImages = normalizeMysteryImagesState(next.shop.mysteryImages, mysteryImageDefinitions);
       if (!next.shop.inventory) {
-        next.shop.inventory = { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 };
+        next.shop.inventory = { questionMystery: 0 };
       }
 
       if (isMysteryPurchaseId(itemId)) {
@@ -784,12 +757,6 @@ export default function ChildApp() {
         next.shop.activeBoosts.doubleCoinsBonusEarned = 0;
         next.shop.activeBoosts.doubleCoinsLastPurchasedWeek = currentWeek;
         next.shop.activeBoosts.doubleCoins = true;
-      } else if (itemId === 'reveal-hint') {
-        next.shop.inventory.revealHint = (next.shop.inventory.revealHint || 0) + 1;
-      } else if (itemId === 'rematch') {
-        next.shop.inventory.rematch = (next.shop.inventory.rematch || 0) + 1;
-      } else if (itemId === 'mode-sniper') {
-        next.shop.inventory.modeSniper = (next.shop.inventory.modeSniper || 0) + 1;
       } else if (itemId === 'question-mystery') {
         next.shop.inventory.questionMystery = (next.shop.inventory.questionMystery || 0) + 1;
       } else {
@@ -798,6 +765,14 @@ export default function ChildApp() {
           if (itemId.startsWith('entrance-')) {
             setPendingEntranceAnim(itemId);
           }
+          // Buying a character auto-includes the 3 base emotions
+          if (itemId.startsWith('char-') && !itemId.includes('-', 5)) {
+            const charId = itemId.slice(5);
+            for (const emoId of ['walk', 'sleep', 'sit']) {
+              const emoItemId = `char-${charId}-${emoId}`;
+              if (!next.shop.owned.includes(emoItemId)) next.shop.owned.push(emoItemId);
+            }
+          }
         }
       }
 
@@ -805,6 +780,10 @@ export default function ChildApp() {
       return next;
     });
   }, [mysteryImageDefinitions, persistProgress]);
+
+  const handleBuyEmotion = useCallback((charId, emotionId) => {
+    handlePurchase(`char-${charId}-${emotionId}`, 200);
+  }, [handlePurchase]);
 
   const handleEquip = useCallback((category, itemId) => {
     setProgress(prev => {
@@ -821,79 +800,7 @@ export default function ChildApp() {
   }, [persistProgress]);
 
 
-  const handleSniper = useCallback(() => {
-    if (!progress) return;
-    const inventory = progress.shop?.inventory;
-    if (!inventory || inventory.modeSniper <= 0) return;
 
-    setProgress(prev => {
-      const next = JSON.parse(JSON.stringify(prev));
-      if (!next.shop?.inventory || next.shop.inventory.modeSniper <= 0) return prev;
-      next.shop.inventory.modeSniper -= 1;
-      persistProgress(next);
-      return next;
-    });
-
-    const questions = selectSniperQuestions(allRules, progress, SNIPER_SESSION_SIZE);
-    if (questions.length === 0) return;
-
-    const sniperRule = {
-      id: '__sniper__',
-      title: 'Mode Sniper',
-      shortTitle: 'Sniper',
-      choices: [],
-      decisionAxes: [],
-      questions: questions,
-    };
-
-    launchQuizWithFirstSessionModal(() => {
-      setActiveRule(sniperRule);
-      setActiveMode('direct');
-      setIsSM2Review(false);
-      setIsSniper(true);
-      setSessionQuestions(questions);
-      setPendingEvents([]);
-      setScreen('quiz');
-    });
-  }, [launchQuizWithFirstSessionModal, persistProgress, progress]);
-
-  const handleRematch = useCallback(() => {
-    if (!progress || !lastSessionQuestions || !lastSessionRuleId) return;
-    const inventory = progress.shop?.inventory;
-    if (!inventory || inventory.rematch <= 0) return;
-
-    setProgress(prev => {
-      const next = JSON.parse(JSON.stringify(prev));
-      if (!next.shop?.inventory || next.shop.inventory.rematch <= 0) return prev;
-      next.shop.inventory.rematch -= 1;
-      persistProgress(next);
-      return next;
-    });
-
-    const rule = allRules.find(r => r.id === lastSessionRuleId);
-    if (!rule) return;
-
-    launchQuizWithFirstSessionModal(() => {
-      setActiveRule(rule);
-      setActiveMode(lastSessionMode || 'direct');
-      setIsSM2Review(false);
-      setIsSniper(false);
-      setSessionQuestions([...lastSessionQuestions]);
-      setPendingEvents([]);
-      setScreen('quiz');
-    });
-  }, [lastSessionMode, lastSessionQuestions, lastSessionRuleId, launchQuizWithFirstSessionModal, persistProgress, progress]);
-
-  const handleUseItem = useCallback((itemKey) => {
-    setProgress(prev => {
-      const next = JSON.parse(JSON.stringify(prev));
-      if (!next.shop?.inventory) return prev;
-      if ((next.shop.inventory[itemKey] || 0) <= 0) return prev;
-      next.shop.inventory[itemKey] -= 1;
-      persistProgress(next);
-      return next;
-    });
-  }, [persistProgress]);
 
   const handleReturnContinue = useCallback(() => {
     if (returnData?.streakLost || returnData?.streakSaveable) {
@@ -987,47 +894,95 @@ export default function ChildApp() {
       {saveError && (
         <div style={saveErrorStyle}>{saveError}</div>
       )}
-      {showFirstQuizBonusModal && (
-        <div style={firstQuizModalBackdropStyle}>
-          <div style={firstQuizModalCardStyle}>
-            <PopupCloseButton
-              onClick={() => {
-                pendingQuizLaunchRef.current = null;
-                dismissFirstQuizBonusForToday();
-                setShowFirstQuizBonusModal(false);
-              }}
-              top={12}
-              right={12}
-              size={38}
-            />
-            <div style={{ fontSize: '2.5rem', marginBottom: '0.3rem' }}>👋</div>
-            <div style={firstQuizBonusKickerStyle}>Bonus du jour</div>
-            <div style={firstQuizBonusTitleStyle}>
-              Bonus de 10 <span style={{ display: 'inline-flex', verticalAlign: 'middle', margin: '0 0.12em' }}><CoinIcon size={26} /></span> disponible !
-            </div>
-            <div style={{ fontSize: '0.9rem', lineHeight: 1.55, color: '#cbd5e1' }}>
-              Termine ton premier quiz de la journée avec au moins <strong style={{ color: '#fbbf24' }}>60% de bonnes réponses</strong> pour remporter ce bonus.
-            </div>
-            <div style={{ display: 'flex', gap: '0.7rem', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <button type="button" onClick={() => { pendingQuizLaunchRef.current = null; dismissFirstQuizBonusForToday(); setShowFirstQuizBonusModal(false); }} style={secondaryBtnStyle}>
-                Plus tard
-              </button>
-              <button type="button" onClick={() => {
-                const launchFn = pendingQuizLaunchRef.current;
-                pendingQuizLaunchRef.current = null;
-                dismissFirstQuizBonusForToday();
-                setShowFirstQuizBonusModal(false);
-                if (launchFn) launchFn();
-              }} style={primaryBtnStyle}>
-                Commencer
-              </button>
+      {showFirstQuizBonusModal && (() => {
+        const isWelcome = !progress?.milestones?.firstSession;
+        const bonusAmount = isWelcome ? 200 : 10;
+        return (
+          <div style={firstQuizModalBackdropStyle}>
+            <div style={firstQuizModalCardStyle}>
+              <PopupCloseButton
+                onClick={() => {
+                  pendingQuizLaunchRef.current = null;
+                  dismissFirstQuizBonusForToday();
+                  setShowFirstQuizBonusModal(false);
+                }}
+                top={12}
+                right={12}
+                size={38}
+              />
+              <div style={{ fontSize: '2.5rem', marginBottom: '0.3rem' }}>{isWelcome ? '🎉' : '👋'}</div>
+              <div style={firstQuizBonusKickerStyle}>{isWelcome ? 'Bienvenue !' : 'Bonus du jour'}</div>
+              <div style={firstQuizBonusTitleStyle}>
+                {isWelcome ? 'Bonus de bienvenue : ' : 'Bonus de '}{bonusAmount} <span style={{ display: 'inline-flex', verticalAlign: 'middle', margin: '0 0.12em' }}><CoinIcon size={26} /></span> disponible !
+              </div>
+              <div style={{ fontSize: '0.9rem', lineHeight: 1.55, color: '#cbd5e1' }}>
+                {isWelcome
+                  ? <>Pour démarrer ton aventure, termine ton premier quiz avec au moins <strong style={{ color: '#fbbf24' }}>{Math.ceil(sessionSize * 0.6)} bonnes réponses sur {sessionSize}</strong> et remporte ce bonus.</>
+                  : <>Termine ton premier quiz de la journée avec au moins <strong style={{ color: '#fbbf24' }}>{Math.ceil(sessionSize * 0.6)} bonnes réponses sur {sessionSize}</strong> pour remporter ce bonus.</>
+                }
+              </div>
+              <div style={{ display: 'flex', gap: '0.7rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+                <button type="button" onClick={() => { pendingQuizLaunchRef.current = null; dismissFirstQuizBonusForToday(); setShowFirstQuizBonusModal(false); }} style={secondaryBtnStyle}>
+                  Plus tard
+                </button>
+                <button type="button" onClick={() => {
+                  const launchFn = pendingQuizLaunchRef.current;
+                  pendingQuizLaunchRef.current = null;
+                  dismissFirstQuizBonusForToday();
+                  setShowFirstQuizBonusModal(false);
+                  if (launchFn) launchFn();
+                }} style={primaryBtnStyle}>
+                  Commencer
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        );
+      })()}
       {content}
     </>
   );
+
+  // Load error — show retry screen, do NOT render the app with default progress
+  if (loadError) {
+    return (
+      <div style={{
+        minHeight: '100vh',
+        backgroundColor: 'var(--color-bg1)',
+        backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
+        backgroundSize: 'cover, cover',
+        backgroundPosition: 'center, center',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontFamily: 'var(--font-body)',
+      }}>
+        <div style={{
+          background: 'rgba(255,255,255,0.06)', borderRadius: 20,
+          padding: '2rem 2.2rem', maxWidth: 400, textAlign: 'center',
+          border: '1px solid rgba(248,113,113,0.3)',
+          backdropFilter: 'blur(12px)',
+        }}>
+          <div style={{ fontSize: '2rem', marginBottom: '1rem' }}>⚠️</div>
+          <h2 style={{ color: '#f87171', fontSize: '1.1rem', margin: '0 0 0.8rem' }}>
+            Erreur de chargement
+          </h2>
+          <p style={{ color: '#d1d5db', fontSize: '0.85rem', lineHeight: 1.5, margin: '0 0 1.2rem' }}>
+            Impossible de charger ta progression. Vérifie ta connexion internet et réessaye.
+          </p>
+          <button
+            type="button"
+            onClick={() => { setLoading(true); setLoadError(null); setLoadRetryCount(c => c + 1); }}
+            style={{
+              padding: '0.7rem 1.5rem', borderRadius: 10, border: 'none',
+              background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
+              color: '#fff', fontSize: '0.95rem', fontWeight: 700, cursor: 'pointer',
+            }}
+          >
+            Réessayer
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   // Loading
   if (loading || !progress || !adminSettings) {
@@ -1070,12 +1025,23 @@ export default function ChildApp() {
   // Quiz screen
   if (screen === 'quiz' && activeRule) {
     const QuizComponent = activeMode === 'direct' ? QuizDirect : QuizGuided;
-    const inventory = progress.shop?.inventory || { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 };
+    const inventory = progress.shop?.inventory || { questionMystery: 0 };
     const hasDoubleCoinsActiveNow = hasDoubleCoinsActive(progress);
     const isFirstSessionOfDay = progress.streak?.lastActiveDate !== getToday();
-    const ruleProgress = activeRule.id === '__sniper__' ? null : progress.rules?.[activeRule.id];
+    const ruleProgress = progress.rules?.[activeRule.id];
     const victoryAnimationId = progress.shop?.equipped?.victoryAnimation || null;
     const quizCharacterId = getCharacterForRule(activeRule.id, allRules.map(r => r.id), progress.shop?.owned || []);
+    const totalSessionsCompleted = Object.values(progress.rules || {}).reduce(
+      (sum, rp) => sum + (rp.guidedSessionsCompleted || 0) + (rp.directSessionsCompleted || 0), 0
+    );
+    const isFirstEverSession = totalSessionsCompleted === 0;
+    const endScreenCoachingMsg = pickCoachingMessage({
+      trigger: 'endScreen',
+      progress,
+      rules: allRules,
+      todayStr: getToday(),
+      hour: new Date().getHours(),
+    });
     return renderWithSaveError(
       <QuizComponent
         rule={activeRule}
@@ -1083,17 +1049,62 @@ export default function ChildApp() {
         questions={sessionQuestions}
         onFinish={handleQuizFinish}
         inventory={inventory}
-        onUseItem={handleUseItem}
-        isSniper={isSniper}
         hasDoubleCoinsActive={hasDoubleCoinsActiveNow}
         allRules={allRules}
         isFirstSessionOfDay={isFirstSessionOfDay}
+        isFirstEverSession={isFirstEverSession}
         ruleProgress={ruleProgress}
         streak={progress.streak}
         milestones={progress.milestones}
         victoryAnimationId={victoryAnimationId}
         shopOwned={progress.shop?.owned || []}
+        onBuyEmotion={handleBuyEmotion}
+        coins={progress.coins || 0}
         onClose={handleCloseQuiz}
+        onFlagQuestion={handleFlagQuestion}
+        coachingLine={endScreenCoachingMsg?.copy || null}
+      />
+    );
+  }
+
+  // Dictées list screen
+  if (screen === 'dictees') {
+    return renderWithSaveError(
+      <DicteesPage
+        progress={progress}
+        onPlay={handleDicteePlay}
+        onBack={() => setScreen('dashboard')}
+      />
+    );
+  }
+
+  // Dictée quiz screen
+  if (screen === 'dictee-quiz' && activeDictee) {
+    const quizId = `${activeDictee.id}-${activeDicteeLevel}`;
+    const ruleProgress = progress.rules?.[quizId];
+    const DicteeQuizComponent = activeMode === 'reconstruct' ? DicteeQuizReconstruct : DicteeQuizGuided;
+    const dicteeCharacterId = getCharacterForRule(activeDictee.id, allDictees.map(d => d.id), progress.shop?.owned || []);
+    const dicteeSessionsTotal = Object.values(progress.rules || {}).reduce(
+      (sum, rp) => sum + (rp.guidedSessionsCompleted || 0) + (rp.directSessionsCompleted || 0), 0
+    );
+    return renderWithSaveError(
+      <DicteeQuizComponent
+        dictee={activeDictee}
+        words={dicteeWords}
+        onFinish={handleDicteeFinish}
+        onClose={() => { setScreen('dashboard'); setDashboardTab('dictee'); setActiveDictee(null); }}
+        characterId={dicteeCharacterId}
+        hasDoubleCoinsActive={hasDoubleCoinsActive(progress)}
+        isFirstSessionOfDay={progress.streak?.lastActiveDate !== getToday()}
+        isFirstEverSession={dicteeSessionsTotal === 0}
+        ruleProgress={ruleProgress}
+        streak={progress.streak}
+        milestones={progress.milestones}
+        victoryAnimationId={progress.shop?.equipped?.victoryAnimation || null}
+        shopOwned={progress.shop?.owned || []}
+        onBuyEmotion={handleBuyEmotion}
+        coins={progress.coins || 0}
+        onFlagQuestion={handleFlagQuestion}
       />
     );
   }
@@ -1104,6 +1115,7 @@ export default function ChildApp() {
       <Shop
         progress={progress}
         adminSettings={adminSettings}
+        childName={childName}
         onPurchase={handlePurchase}
         onEquip={handleEquip}
         onClose={() => setScreen('dashboard')}
@@ -1113,8 +1125,6 @@ export default function ChildApp() {
 
   // Dashboard
   const sortedRules = sortRulesByPriority(allRules, progress.rules || {});
-  const canRematch = !!(lastSessionQuestions && lastSessionScore !== null && lastSessionScore < 80
-    && (progress.shop?.inventory?.rematch || 0) > 0);
 
   return renderWithSaveError(
     <Dashboard
@@ -1123,13 +1133,9 @@ export default function ChildApp() {
       childName={childName}
       onPlay={handlePlay}
       onOpenShop={() => setScreen('shop')}
+      onOpenDictees={() => setScreen('dictees')}
       pendingEvents={pendingEvents}
       onEventsSeen={handleEventsSeen}
-      onSniper={handleSniper}
-      onRematch={handleRematch}
-      canRematch={canRematch}
-      lastSessionRuleId={lastSessionRuleId}
-      lastSessionScore={lastSessionScore}
       onDebugUpdateStreak={handleDebugUpdateStreak}
       onDebugSetCoins={handleDebugSetCoins}
       dailyBackups={dailyBackups}
@@ -1137,6 +1143,13 @@ export default function ChildApp() {
       onTriggerEntranceAnim={triggerEntranceAnim}
       sessionSize={sessionSize}
       onDebugSetSessionSize={setSessionSize}
+      onPlayDictee={handleDicteePlay}
+      initialTab={dashboardTab}
+      onTabChange={setDashboardTab}
+      onProgressChange={(next) => {
+        setProgress(next);
+        persistProgress(next);
+      }}
     />
   );
 }

@@ -1,7 +1,22 @@
 import { useState, useEffect, useRef } from 'react';
 import CoinIcon from './CoinIcon.jsx';
 import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
+import CharacterSprite from './CharacterSprite.jsx';
+import EmotionPurchasePopup from './EmotionPurchasePopup.jsx';
+import { resolveCharacterMood } from '../data/shopCharacters.js';
 import { calculateCoins } from '../engine/scoring.js';
+
+// Word displayed in the speech bubble when an emotion is locked
+const MOOD_BUBBLE_WORDS = {
+  sleep:   'dodo',
+  wave:    'salut',
+  kiss:    'salut',
+  clap:    'bravo',
+  think:   'zut',
+  surprise:'zut',
+  dance:   'super',
+  victory: 'super',
+};
 
 /**
  * Shared end-of-session screen used by both QuizGuided and QuizDirect.
@@ -12,6 +27,8 @@ import { calculateCoins } from '../engine/scoring.js';
  *   isFirstSessionOfDay (optional, boolean) — shows +10 bonus if first session >= 60%
  *   streakMilestoneJustEarned (optional, { streak, coins }) — if a streak milestone was just earned
  *   levelProgress, streakInfo, victoryAnimationId
+ *   characterId (optional) — if provided, shows the character sprite in the header
+ *   shopOwned (optional) — needed to resolve character emotions
  */
 export default function EndScreen({
   rule,
@@ -25,6 +42,12 @@ export default function EndScreen({
   streakInfo,
   victoryAnimationId,
   streakMilestoneJustEarned,
+  characterId = null,
+  shopOwned = [],
+  isFirstEverSession = false,
+  onBuyEmotion = null,
+  coins = 0,
+  coachingLine = null,
 }) {
   const total = questions.length;
   const pct = total > 0 ? Math.round((score / total) * 100) : 0;
@@ -224,41 +247,154 @@ export default function EndScreen({
   const streakDaysLeft = nextMilestoneDays ? nextMilestoneDays - currentStreak : 0;
   const showStreakNext = nextMilestoneDays && streakDaysLeft > 0;
 
+  // Emotion rules for the end screen character (stabilised with useRef so
+  // re-renders after emotion purchase don't re-randomise the pick):
+  //   isFirstEverSession → sleep
+  //   pct ≥ 90 (≥ 18/20) → dance | victory  (random, stable)
+  //   pct ≥ 80 (16-17/20) → clap (bravo)
+  //   pct ≥ 70 (14-15/20) → walk (neutral)
+  //   pct < 70 (< 14/20)  → think | surprise  (random, stable)
+  const rawMoodRef = useRef(null);
+  if (rawMoodRef.current === null) {
+    rawMoodRef.current = (() => {
+      if (isFirstEverSession) return 'sleep';
+      if (pct >= 90) return Math.random() < 0.5 ? 'dance' : 'victory';
+      if (pct >= 80) return 'clap';
+      if (pct >= 70) return 'walk';
+      return Math.random() < 0.5 ? 'think' : 'surprise';
+    })();
+  }
+  const rawCharMood = rawMoodRef.current;
+  // Derive actual mood from ownership — auto-updates when shopOwned changes
+  const charMood = characterId ? resolveCharacterMood(rawCharMood, characterId, shopOwned) : 'walk';
+  // Is the intended emotion locked?
+  const isCharLocked = !!(characterId && rawCharMood !== 'walk' && charMood === 'walk');
+  const [showEmotionPopup, setShowEmotionPopup] = useState(false);
+
+  const handleEndScreenBuy = () => {
+    if (onBuyEmotion && characterId) onBuyEmotion(characterId, rawCharMood);
+    setShowEmotionPopup(false);
+  };
+
   return (
     <div style={pageStyle}>
       <div style={cardStyle}>
-        {/* 1. Big emoji + score */}
-        <div style={{ textAlign: 'center', marginBottom: '0.6rem' }}>
-          <div style={{
-            display: 'flex', justifyContent: 'center',
-            marginBottom: victoryAnimationId ? '0.55rem' : '0.4rem',
-            animation: 'bounce-in 0.5s ease forwards',
-          }}>
-            {victoryAnimationId ? (
-              <VictoryAnimationPreview animationId={victoryAnimationId} size={126} showLabel={false} />
-            ) : (
-              <div style={{ fontSize: '3.5rem' }}>{emoji}</div>
-            )}
-          </div>
-          {victoryAnimationId && (
-            <div style={{ fontSize: '1.25rem', marginBottom: '0.15rem', lineHeight: 1 }}>{emoji}</div>
-          )}
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-accent)', marginBottom: '0.3rem' }}>
-            Session terminée !
-          </h1>
-          <p style={{ fontSize: '1.4rem', color: '#d1d5db', margin: 0 }}>
-            <strong style={{
-              color: pct >= 70 ? '#4ade80' : pct >= 60 ? '#fbbf24' : '#9ca3af',
-              fontSize: '2rem', transition: 'all 0.2s',
+        {/* 1. Header — horizontal with character, or centered without */}
+        {characterId ? (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '0.6rem' }}>
+            {/* Character sprite — locked or normal */}
+            <div style={{
+              flexShrink: 0,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              animation: 'bounce-in 0.5s ease forwards',
+              position: 'relative',
             }}>
-              {displayedScore}/{total}
-            </strong>
-          </p>
-        </div>
+              {isCharLocked ? (
+                /* Locked emotion indicator (end screen — larger size) */
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                  {/* Speech bubble — clickable to open purchase popup */}
+                  <button
+                    type="button"
+                    onClick={() => setShowEmotionPopup(true)}
+                    title="Débloquer cette émotion"
+                    style={{
+                      background: 'rgba(255,255,255,0.96)',
+                      color: '#1a1a2e',
+                      borderRadius: 9,
+                      padding: '3px 10px',
+                      fontSize: '0.85rem',
+                      fontWeight: 800,
+                      whiteSpace: 'nowrap',
+                      lineHeight: 1.5,
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.25)',
+                      letterSpacing: '0.02em',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontFamily: 'inherit',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                    }}
+                  >
+                    🔒 {MOOD_BUBBLE_WORDS[rawCharMood] || ''}
+                  </button>
+                  {/* Tail */}
+                  <div style={{
+                    width: 0, height: 0,
+                    borderLeft: '5px solid transparent',
+                    borderRight: '5px solid transparent',
+                    borderTop: '6px solid rgba(255,255,255,0.96)',
+                    marginTop: -1,
+                  }} />
+                  {/* Character — also clickable */}
+                  <button
+                    type="button"
+                    onClick={() => setShowEmotionPopup(true)}
+                    style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', lineHeight: 0 }}
+                  >
+                    <CharacterSprite id={characterId} mood="walk" size={88} glow={false} />
+                  </button>
+                </div>
+              ) : (
+                <CharacterSprite id={characterId} mood={charMood} size={88} glow={false} />
+              )}
+            </div>
+            {/* Score + title block */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              {victoryAnimationId && (
+                <div style={{ marginBottom: '0.4rem' }}>
+                  <VictoryAnimationPreview animationId={victoryAnimationId} size={80} showLabel={false} />
+                </div>
+              )}
+              {!victoryAnimationId && (
+                <div style={{ fontSize: '2rem', marginBottom: '0.2rem', lineHeight: 1 }}>{emoji}</div>
+              )}
+              <h1 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--color-accent)', marginBottom: '0.2rem', margin: '0 0 0.2rem 0' }}>
+                Session terminée !
+              </h1>
+              <p style={{ fontSize: '1.2rem', color: '#d1d5db', margin: 0 }}>
+                <strong style={{
+                  color: pct >= 70 ? '#4ade80' : pct >= 60 ? '#fbbf24' : '#9ca3af',
+                  fontSize: '1.7rem', transition: 'all 0.2s',
+                }}>
+                  {displayedScore}/{total}
+                </strong>
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div style={{ textAlign: 'center', marginBottom: '0.6rem' }}>
+            <div style={{
+              display: 'flex', justifyContent: 'center',
+              marginBottom: victoryAnimationId ? '0.55rem' : '0.4rem',
+              animation: 'bounce-in 0.5s ease forwards',
+            }}>
+              {victoryAnimationId ? (
+                <VictoryAnimationPreview animationId={victoryAnimationId} size={126} showLabel={false} />
+              ) : (
+                <div style={{ fontSize: '3.5rem' }}>{emoji}</div>
+              )}
+            </div>
+            {victoryAnimationId && (
+              <div style={{ fontSize: '1.25rem', marginBottom: '0.15rem', lineHeight: 1 }}>{emoji}</div>
+            )}
+            <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-accent)', marginBottom: '0.3rem' }}>
+              Session terminée !
+            </h1>
+            <p style={{ fontSize: '1.4rem', color: '#d1d5db', margin: 0 }}>
+              <strong style={{
+                color: pct >= 70 ? '#4ade80' : pct >= 60 ? '#fbbf24' : '#9ca3af',
+                fontSize: '2rem', transition: 'all 0.2s',
+              }}>
+                {displayedScore}/{total}
+              </strong>
+            </p>
+          </div>
+        )}
 
         {/* 2. Feedback */}
         <div style={{
-          textAlign: 'center', marginBottom: '1.2rem',
+          textAlign: characterId ? 'left' : 'center', marginBottom: '1.2rem',
           opacity: showFeedback ? 1 : 0,
           transform: showFeedback ? 'translateY(0)' : 'translateY(6px)',
           transition: 'all 0.4s ease',
@@ -287,6 +423,7 @@ export default function EndScreen({
                   padding: '0.3rem 0.6rem',
                   borderRadius: 10,
                   background: isActive ? 'rgba(251,191,36,0.08)' : 'transparent',
+                  border: isActive ? '1px solid rgba(251,191,36,0.30)' : '1px solid transparent',
                   opacity: visible ? 1 : 0,
                   transform: visible ? 'translateX(0)' : 'translateX(-8px)',
                   transition: 'all 0.35s ease',
@@ -348,7 +485,8 @@ export default function EndScreen({
             </div>
           )}
 
-          {/* Total — right-aligned, compact */}
+          {/* Total — only if there are bonus lines beyond base coins */}
+          {(firstSessionBonus > 0 || streakBonus > 0 || doubleCoinsBonus > 0) && (
           <div style={{
             display: 'flex', alignItems: 'center', justifyContent: 'flex-end',
             gap: '0.35rem', marginTop: '0.5rem',
@@ -356,13 +494,14 @@ export default function EndScreen({
             transform: showTotal ? 'translateY(0)' : 'translateY(4px)',
             transition: 'all 0.4s ease',
           }}>
-            <CoinIcon size={18} animate={showTotal} />
             <span style={{
               fontSize: '1.05rem', fontWeight: 900, color: '#fbbf24',
             }}>
-              +{totalCoins + streakBonus}
+              {totalCoins + streakBonus}
             </span>
+            <CoinIcon size={18} animate={showTotal} />
           </div>
+          )}
         </div>
 
         {/* 4. Level progress */}
@@ -476,6 +615,18 @@ export default function EndScreen({
           </div>
         </div>
 
+        {/* Coaching line */}
+        {coachingLine && (
+          <div style={{
+            fontSize: '0.82rem', color: '#94a3b8', textAlign: 'center',
+            padding: '0 1rem', marginTop: '0.25rem', lineHeight: 1.5,
+            opacity: showButton ? 1 : 0,
+            transition: 'opacity 0.4s ease',
+          }}>
+            {coachingLine}
+          </div>
+        )}
+
         {/* 7. Continue button */}
         <div style={{
           opacity: showButton ? 1 : 0,
@@ -495,6 +646,17 @@ export default function EndScreen({
           </button>
         </div>
       </div>
+
+      {/* Locked emotion purchase popup */}
+      {showEmotionPopup && characterId && (
+        <EmotionPurchasePopup
+          charId={characterId}
+          emotionId={rawCharMood}
+          coins={coins}
+          onBuy={handleEndScreenBuy}
+          onClose={() => setShowEmotionPopup(false)}
+        />
+      )}
     </div>
   );
 }

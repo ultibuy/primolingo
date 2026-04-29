@@ -1,7 +1,7 @@
 {
-  "id": "pluriel-noms-adjectifs",
+  "id": "pluriel-noms-adjectifs-2",
   "title": "Pluriel des noms · s · z · x",
-  "shortTitle": "Pluriel noms",
+  "shortTitle": "Pluriel noms (2)",
   "description": "La plupart des noms communs prennent un -s au pluriel. Ceux qui finissent par -eau, -au ou -eu prennent un -x. Ceux qui finissent déjà par s, z ou x restent identiques au singulier.",
   "choices": [
     {
@@ -84,820 +84,821 @@
       {
         "form": "-x",
         "test": "finit par -eau, -au ou -eu",
-        "example": "un chapeau → des chapeaux"
+        "example": "un bureau → des bureaux"
       },
       {
         "form": "même lettre (s / z / x)",
         "test": "finit déjà par s, z ou x",
-        "example": "un bras → des bras · un nez → des nez"
+        "example": "un avis → des avis · un prix → des prix"
       },
       {
         "form": "-s",
         "test": "tous les autres cas",
-        "example": "un ballon → des ballons"
+        "example": "un fruit → des fruits"
       }
     ]
   },
   "questions": [
     {
       "id": "q001",
-      "before": "Le pluriel du nom « chapeau » se termine par",
+      "before": "Le pluriel du nom « ami » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 1,
-      "explanation": "« chapeau » finit par -eau → pluriel en -x : « chapeaux »."
+      "explanation": "« ami » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « amis »."
     },
     {
       "id": "q002",
-      "before": "Le pluriel du nom « enfant » se termine par",
+      "before": "Le pluriel du nom « drapeau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 1,
-      "explanation": "« enfant » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « enfants »."
+      "explanation": "« drapeau » finit par -eau → pluriel en -x : « drapeaux »."
     },
     {
       "id": "q003",
-      "before": "Le pluriel du nom « fleur » se termine par",
+      "before": "Le pluriel du nom « fruit » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 1,
-      "explanation": "« fleur » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « fleurs »."
+      "explanation": "« fruit » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « fruits »."
     },
     {
       "id": "q004",
-      "before": "Le pluriel du nom « cadeau » se termine par",
+      "before": "Le pluriel du nom « heure » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 1,
-      "explanation": "« cadeau » finit par -eau → pluriel en -x : « cadeaux »."
+      "explanation": "« heure » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « heures »."
     },
     {
       "id": "q005",
-      "before": "Le pluriel du nom « bateau » se termine par",
+      "before": "Le pluriel du nom « ville » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 1,
-      "explanation": "« bateau » finit par -eau → pluriel en -x : « bateaux »."
+      "explanation": "« ville » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « villes »."
     },
     {
       "id": "q006",
-      "before": "Le pluriel du nom « voiture » se termine par",
+      "before": "Le pluriel du nom « seau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 1,
-      "explanation": "« voiture » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « voitures »."
+      "explanation": "« seau » finit par -eau → pluriel en -x : « seaux »."
     },
     {
       "id": "q007",
-      "before": "Le pluriel du nom « livre » se termine par",
+      "before": "Le pluriel du nom « sport » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 1,
-      "explanation": "« livre » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « livres »."
+      "explanation": "« sport » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « sports »."
     },
     {
       "id": "q008",
-      "before": "Le pluriel du nom « cahier » se termine par",
+      "before": "Le pluriel du nom « billet » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 1,
-      "explanation": "« cahier » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « cahiers »."
+      "explanation": "« billet » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « billets »."
     },
     {
       "id": "q009",
-      "before": "Le pluriel du nom « gâteau » se termine par",
+      "before": "Le pluriel du nom « panneau » se termine par",
       "after": ".",
       "answer": "x",
       "difficulty": 1,
-      "explanation": "« gâteau » finit par -eau → pluriel en -x : « gâteaux »."
+      "explanation": "« panneau » finit par -eau → pluriel en -x : « panneaux »."
     },
     {
       "id": "q010",
-      "before": "Le pluriel du nom « veau » se termine par",
+      "before": "Le pluriel du nom « famille » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 1,
-      "explanation": "« veau » finit par -eau → pluriel en -x : « veaux »."
+      "explanation": "« famille » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « familles »."
     },
     {
       "id": "q011",
-      "before": "Le pluriel du nom « crayon » se termine par",
+      "before": "Le pluriel du nom « marteau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 1,
-      "explanation": "« crayon » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « crayons »."
+      "explanation": "« marteau » finit par -eau → pluriel en -x : « marteaux »."
     },
     {
       "id": "q012",
-      "before": "Le pluriel du nom « tableau » se termine par",
+      "before": "Le pluriel du nom « rêve » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 1,
-      "explanation": "« tableau » finit par -eau → pluriel en -x : « tableaux »."
+      "explanation": "« rêve » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « rêves »."
     },
     {
       "id": "q013",
-      "before": "Le pluriel du nom « maison » se termine par",
+      "before": "Le pluriel du nom « pays » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 1,
-      "explanation": "« maison » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « maisons »."
+      "explanation": "« pays » finit déjà par s → pluriel identique au singulier : « pays » (se termine par s)."
     },
     {
       "id": "q014",
-      "before": "Le pluriel du nom « porte » se termine par",
+      "before": "Le pluriel du nom « choix » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 1,
-      "explanation": "« porte » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « portes »."
+      "explanation": "« choix » finit déjà par x → pluriel identique au singulier : « choix » (se termine par x)."
     },
     {
       "id": "q015",
-      "before": "Le pluriel du nom « oiseau » se termine par",
+      "before": "Le pluriel du nom « rouleau » se termine par",
       "after": ".",
       "answer": "x",
       "difficulty": 1,
-      "explanation": "« oiseau » finit par -eau → pluriel en -x : « oiseaux »."
+      "explanation": "« rouleau » finit par -eau → pluriel en -x : « rouleaux »."
     },
     {
       "id": "q016",
-      "before": "Le pluriel du nom « train » se termine par",
+      "before": "Le pluriel du nom « cœur » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 1,
-      "explanation": "« train » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « trains »."
+      "explanation": "« cœur » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « cœurs »."
     },
     {
       "id": "q017",
-      "before": "Le pluriel du nom « arbre » se termine par",
+      "before": "Le pluriel du nom « toit » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 1,
-      "explanation": "« arbre » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « arbres »."
+      "explanation": "« toit » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « toits »."
     },
     {
       "id": "q018",
-      "before": "Le pluriel du nom « jeu » se termine par",
+      "before": "Le pluriel du nom « vent » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 1,
-      "explanation": "« jeu » finit par -eu → pluriel en -x : « jeux »."
+      "explanation": "« vent » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « vents »."
     },
     {
       "id": "q019",
-      "before": "Le pluriel du nom « chien » se termine par",
+      "before": "Le pluriel du nom « bureau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 1,
-      "explanation": "« chien » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « chiens »."
+      "explanation": "« bureau » finit par -eau → pluriel en -x : « bureaux »."
     },
     {
       "id": "q020",
-      "before": "Le pluriel du nom « feu » se termine par",
+      "before": "Le pluriel du nom « amour » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 1,
-      "explanation": "« feu » finit par -eu → pluriel en -x : « feux »."
+      "explanation": "« amour » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « amours »."
     },
     {
       "id": "q021",
-      "before": "Le pluriel du nom « école » se termine par",
+      "before": "Le pluriel du nom « effort » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 1,
-      "explanation": "« école » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « écoles »."
+      "explanation": "« effort » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « efforts »."
     },
     {
       "id": "q022",
-      "before": "Le pluriel du nom « jardin » se termine par",
+      "before": "Le pluriel du nom « vœu » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 1,
-      "explanation": "« jardin » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « jardins »."
+      "explanation": "« vœu » finit par -eu → pluriel en -x : « vœux »."
     },
     {
       "id": "q023",
-      "before": "Le pluriel du nom « ballon » se termine par",
+      "before": "Le pluriel du nom « état » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 1,
-      "explanation": "« ballon » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « ballons »."
+      "explanation": "« état » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « états »."
     },
     {
       "id": "q024",
-      "before": "Le pluriel du nom « table » se termine par",
+      "before": "Le pluriel du nom « objet » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 1,
-      "explanation": "« table » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « tables »."
+      "explanation": "« objet » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « objets »."
     },
     {
       "id": "q025",
-      "before": "Le pluriel du nom « couteau » se termine par",
+      "before": "Le pluriel du nom « taureau » se termine par",
       "after": ".",
       "answer": "x",
       "difficulty": 1,
-      "explanation": "« couteau » finit par -eau → pluriel en -x : « couteaux »."
+      "explanation": "« taureau » finit par -eau → pluriel en -x : « taureaux »."
     },
     {
       "id": "q026",
-      "before": "Le pluriel du nom « voix » se termine par",
+      "before": "Le pluriel du nom « prix » se termine par",
       "after": ".",
       "answer": "x",
       "difficulty": 2,
-      "explanation": "« voix » finit déjà par x → pluriel identique au singulier : « voix » (se termine par x)."
+      "explanation": "« prix » finit déjà par x → pluriel identique au singulier : « prix » (se termine par x)."
     },
     {
       "id": "q027",
-      "before": "Le pluriel du nom « noix » se termine par",
+      "before": "Le pluriel du nom « carnet » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 2,
-      "explanation": "« noix » finit déjà par x → pluriel identique au singulier : « noix » (se termine par x)."
+      "explanation": "« carnet » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « carnets »."
     },
     {
       "id": "q028",
-      "before": "Le pluriel du nom « médecin » se termine par",
+      "before": "Le pluriel du nom « règle » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« médecin » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « médecins »."
+      "explanation": "« règle » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « règles »."
     },
     {
       "id": "q029",
-      "before": "Le pluriel du nom « couleur » se termine par",
+      "before": "Le pluriel du nom « réseau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 2,
-      "explanation": "« couleur » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « couleurs »."
+      "explanation": "« réseau » finit par -eau → pluriel en -x : « réseaux »."
     },
     {
       "id": "q030",
-      "before": "Le pluriel du nom « mer » se termine par",
+      "before": "Le pluriel du nom « instrument » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« mer » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « mers »."
+      "explanation": "« instrument » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « instruments »."
     },
     {
       "id": "q031",
-      "before": "Le pluriel du nom « château » se termine par",
+      "before": "Le pluriel du nom « lieu » se termine par",
       "after": ".",
       "answer": "x",
       "difficulty": 2,
-      "explanation": "« château » finit par -eau → pluriel en -x : « châteaux »."
+      "explanation": "« lieu » finit par -eu → pluriel en -x : « lieux »."
     },
     {
       "id": "q032",
-      "before": "Le pluriel du nom « peau » se termine par",
+      "before": "Le pluriel du nom « avis » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 2,
-      "explanation": "« peau » finit par -eau → pluriel en -x : « peaux »."
+      "explanation": "« avis » finit déjà par s → pluriel identique au singulier : « avis » (se termine par s)."
     },
     {
       "id": "q033",
-      "before": "Le pluriel du nom « avion » se termine par",
+      "before": "Le pluriel du nom « tombeau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 2,
-      "explanation": "« avion » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « avions »."
+      "explanation": "« tombeau » finit par -eau → pluriel en -x : « tombeaux »."
     },
     {
       "id": "q034",
-      "before": "Le pluriel du nom « aveu » se termine par",
+      "before": "Le pluriel du nom « outil » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 2,
-      "explanation": "« aveu » finit par -eu → pluriel en -x : « aveux »."
+      "explanation": "« outil » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « outils »."
     },
     {
       "id": "q035",
-      "before": "Le pluriel du nom « forêt » se termine par",
+      "before": "Le pluriel du nom « devoir » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« forêt » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « forêts »."
+      "explanation": "« devoir » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « devoirs »."
     },
     {
       "id": "q036",
-      "before": "Le pluriel du nom « village » se termine par",
+      "before": "Le pluriel du nom « matelas » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« village » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « villages »."
+      "explanation": "« matelas » finit déjà par s → pluriel identique au singulier : « matelas » (se termine par s)."
     },
     {
       "id": "q037",
-      "before": "Le pluriel du nom « paix » se termine par",
+      "before": "Le pluriel du nom « palais » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 2,
-      "explanation": "« paix » finit déjà par x → pluriel identique au singulier : « paix » (se termine par x)."
+      "explanation": "« palais » finit déjà par s → pluriel identique au singulier : « palais » (se termine par s)."
     },
     {
       "id": "q038",
-      "before": "Le pluriel du nom « bras » se termine par",
+      "before": "Le pluriel du nom « corbeau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 2,
-      "explanation": "« bras » finit déjà par s → pluriel identique au singulier : « bras » (se termine par s)."
+      "explanation": "« corbeau » finit par -eau → pluriel en -x : « corbeaux »."
     },
     {
       "id": "q039",
-      "before": "Le pluriel du nom « rideau » se termine par",
+      "before": "Le pluriel du nom « roman » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 2,
-      "explanation": "« rideau » finit par -eau → pluriel en -x : « rideaux »."
+      "explanation": "« roman » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « romans »."
     },
     {
       "id": "q040",
-      "before": "Le pluriel du nom « pas » se termine par",
+      "before": "Le pluriel du nom « sel » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« pas » finit déjà par s → pluriel identique au singulier : « pas » (se termine par s)."
+      "explanation": "« sel » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « sels »."
     },
     {
       "id": "q041",
-      "before": "Le pluriel du nom « moment » se termine par",
+      "before": "Le pluriel du nom « liberté » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« moment » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « moments »."
+      "explanation": "« liberté » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « libertés »."
     },
     {
       "id": "q042",
-      "before": "Le pluriel du nom « nuit » se termine par",
+      "before": "Le pluriel du nom « gorge » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« nuit » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « nuits »."
+      "explanation": "« gorge » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « gorges »."
     },
     {
       "id": "q043",
-      "before": "Le pluriel du nom « escalier » se termine par",
+      "before": "Le pluriel du nom « toux » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 2,
-      "explanation": "« escalier » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « escaliers »."
+      "explanation": "« toux » finit déjà par x → pluriel identique au singulier : « toux » (se termine par x)."
     },
     {
       "id": "q044",
-      "before": "Le pluriel du nom « nuage » se termine par",
+      "before": "Le pluriel du nom « signe » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« nuage » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « nuages »."
+      "explanation": "« signe » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « signes »."
     },
     {
       "id": "q045",
-      "before": "Le pluriel du nom « nez » se termine par",
+      "before": "Le pluriel du nom « ruisseau » se termine par",
       "after": ".",
-      "answer": "z",
+      "answer": "x",
       "difficulty": 2,
-      "explanation": "« nez » finit déjà par z → pluriel identique au singulier : « nez » (se termine par z)."
+      "explanation": "« ruisseau » finit par -eau → pluriel en -x : « ruisseaux »."
     },
     {
       "id": "q046",
-      "before": "Le pluriel du nom « morceau » se termine par",
+      "before": "Le pluriel du nom « titre » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 2,
-      "explanation": "« morceau » finit par -eau → pluriel en -x : « morceaux »."
+      "explanation": "« titre » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « titres »."
     },
     {
       "id": "q047",
-      "before": "Le pluriel du nom « plage » se termine par",
+      "before": "Le pluriel du nom « plateau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 2,
-      "explanation": "« plage » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « plages »."
+      "explanation": "« plateau » finit par -eau → pluriel en -x : « plateaux »."
     },
     {
       "id": "q048",
-      "before": "Le pluriel du nom « semaine » se termine par",
+      "before": "Le pluriel du nom « continent » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« semaine » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « semaines »."
+      "explanation": "« continent » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « continents »."
     },
     {
       "id": "q049",
-      "before": "Le pluriel du nom « pierre » se termine par",
+      "before": "Le pluriel du nom « camp » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« pierre » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « pierres »."
+      "explanation": "« camp » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « camps »."
     },
     {
       "id": "q050",
-      "before": "Le pluriel du nom « bouton » se termine par",
+      "before": "Le pluriel du nom « erreur » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« bouton » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « boutons »."
+      "explanation": "« erreur » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « erreurs »."
     },
     {
       "id": "q051",
-      "before": "Le pluriel du nom « dos » se termine par",
+      "before": "Le pluriel du nom « instant » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« dos » finit déjà par s → pluriel identique au singulier : « dos » (se termine par s)."
+      "explanation": "« instant » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « instants »."
     },
     {
       "id": "q052",
-      "before": "Le pluriel du nom « manteau » se termine par",
+      "before": "Le pluriel du nom « fardeau » se termine par",
       "after": ".",
       "answer": "x",
       "difficulty": 2,
-      "explanation": "« manteau » finit par -eau → pluriel en -x : « manteaux »."
+      "explanation": "« fardeau » finit par -eau → pluriel en -x : « fardeaux »."
     },
     {
       "id": "q053",
-      "before": "Le pluriel du nom « agneau » se termine par",
+      "before": "Le pluriel du nom « puits » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 2,
-      "explanation": "« agneau » finit par -eau → pluriel en -x : « agneaux »."
+      "explanation": "« puits » finit déjà par s → pluriel identique au singulier : « puits » (se termine par s)."
     },
     {
       "id": "q054",
-      "before": "Le pluriel du nom « journée » se termine par",
+      "before": "Le pluriel du nom « papier » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« journée » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « journées »."
+      "explanation": "« papier » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « papiers »."
     },
     {
       "id": "q055",
-      "before": "Le pluriel du nom « rivière » se termine par",
+      "before": "Le pluriel du nom « thème » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« rivière » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « rivières »."
+      "explanation": "« thème » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « thèmes »."
     },
     {
       "id": "q056",
-      "before": "Le pluriel du nom « repas » se termine par",
+      "before": "Le pluriel du nom « gain » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« repas » finit déjà par s → pluriel identique au singulier : « repas » (se termine par s)."
+      "explanation": "« gain » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « gains »."
     },
     {
       "id": "q057",
-      "before": "Le pluriel du nom « automne » se termine par",
+      "before": "Le pluriel du nom « bandeau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 2,
-      "explanation": "« automne » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « automnes »."
+      "explanation": "« bandeau » finit par -eau → pluriel en -x : « bandeaux »."
     },
     {
       "id": "q058",
-      "before": "Le pluriel du nom « montagne » se termine par",
+      "before": "Le pluriel du nom « bonheur » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« montagne » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « montagnes »."
+      "explanation": "« bonheur » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « bonheurs »."
     },
     {
       "id": "q059",
-      "before": "Le pluriel du nom « route » se termine par",
+      "before": "Le pluriel du nom « valeur » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« route » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « routes »."
+      "explanation": "« valeur » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « valeurs »."
     },
     {
       "id": "q060",
-      "before": "Le pluriel du nom « niveau » se termine par",
+      "before": "Le pluriel du nom « tonneau » se termine par",
       "after": ".",
       "answer": "x",
       "difficulty": 2,
-      "explanation": "« niveau » finit par -eau → pluriel en -x : « niveaux »."
+      "explanation": "« tonneau » finit par -eau → pluriel en -x : « tonneaux »."
     },
     {
       "id": "q061",
-      "before": "Le pluriel du nom « hiver » se termine par",
+      "before": "Le pluriel du nom « sujet » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« hiver » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « hivers »."
+      "explanation": "« sujet » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « sujets »."
     },
     {
       "id": "q062",
-      "before": "Le pluriel du nom « neveu » se termine par",
+      "before": "Le pluriel du nom « matière » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 2,
-      "explanation": "« neveu » finit par -eu → pluriel en -x : « neveux »."
+      "explanation": "« matière » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « matières »."
     },
     {
       "id": "q063",
-      "before": "Le pluriel du nom « chef » se termine par",
+      "before": "Le pluriel du nom « coup » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« chef » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « chefs »."
+      "explanation": "« coup » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « coups »."
     },
     {
       "id": "q064",
-      "before": "Le pluriel du nom « chemin » se termine par",
+      "before": "Le pluriel du nom « facteur » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« chemin » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « chemins »."
+      "explanation": "« facteur » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « facteurs »."
     },
     {
       "id": "q065",
-      "before": "Le pluriel du nom « fenêtre » se termine par",
+      "before": "Le pluriel du nom « rameau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 2,
-      "explanation": "« fenêtre » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « fenêtres »."
+      "explanation": "« rameau » finit par -eau → pluriel en -x : « rameaux »."
     },
     {
       "id": "q066",
-      "before": "Le pluriel du nom « riz » se termine par",
+      "before": "Le pluriel du nom « prénom » se termine par",
       "after": ".",
-      "answer": "z",
+      "answer": "s",
       "difficulty": 2,
-      "explanation": "« riz » finit déjà par z → pluriel identique au singulier : « riz » (se termine par z)."
+      "explanation": "« prénom » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « prénoms »."
     },
     {
       "id": "q067",
-      "before": "Le pluriel du nom « voisin » se termine par",
+      "before": "Le pluriel du nom « numéro » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« voisin » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « voisins »."
+      "explanation": "« numéro » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « numéros »."
     },
     {
       "id": "q068",
-      "before": "Le pluriel du nom « odeur » se termine par",
+      "before": "Le pluriel du nom « roseau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 2,
-      "explanation": "« odeur » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « odeurs »."
+      "explanation": "« roseau » finit par -eau → pluriel en -x : « roseaux »."
     },
     {
       "id": "q069",
-      "before": "Le pluriel du nom « croix » se termine par",
+      "before": "Le pluriel du nom « peuple » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 2,
-      "explanation": "« croix » finit déjà par x → pluriel identique au singulier : « croix » (se termine par x)."
+      "explanation": "« peuple » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « peuples »."
     },
     {
       "id": "q070",
-      "before": "Le pluriel du nom « soir » se termine par",
+      "before": "Le pluriel du nom « fond » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« soir » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « soirs »."
+      "explanation": "« fond » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « fonds »."
     },
     {
       "id": "q071",
-      "before": "Le pluriel du nom « lac » se termine par",
+      "before": "Le pluriel du nom « garde » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« lac » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « lacs »."
+      "explanation": "« garde » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « gardes »."
     },
     {
       "id": "q072",
-      "before": "Le pluriel du nom « temps » se termine par",
+      "before": "Le pluriel du nom « habit » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« temps » finit déjà par s → pluriel identique au singulier : « temps » (se termine par s)."
+      "explanation": "« habit » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « habits »."
     },
     {
       "id": "q073",
-      "before": "Le pluriel du nom « saison » se termine par",
+      "before": "Le pluriel du nom « lumière » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« saison » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « saisons »."
+      "explanation": "« lumière » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « lumières »."
     },
     {
       "id": "q074",
-      "before": "Le pluriel du nom « soleil » se termine par",
+      "before": "Le pluriel du nom « noyau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 2,
-      "explanation": "« soleil » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « soleils »."
+      "explanation": "« noyau » finit par -au → pluriel en -x : « noyaux »."
     },
     {
       "id": "q075",
-      "before": "Le pluriel du nom « pont » se termine par",
+      "before": "Le pluriel du nom « adulte » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 2,
-      "explanation": "« pont » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « ponts »."
+      "explanation": "« adulte » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « adultes »."
     },
     {
       "id": "q076",
-      "before": "Le pluriel du nom « pinceau » se termine par",
+      "before": "Le pluriel du nom « arceau » se termine par",
       "after": ".",
       "answer": "x",
-      "difficulty": 2,
-      "explanation": "« pinceau » finit par -eau → pluriel en -x : « pinceaux »."
+      "difficulty": 3,
+      "explanation": "« arceau » finit par -eau → pluriel en -x : « arceaux »."
     },
     {
       "id": "q077",
-      "before": "Le pluriel du nom « terrier » se termine par",
+      "before": "Le pluriel du nom « souris » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 3,
-      "explanation": "« terrier » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « terriers »."
+      "explanation": "« souris » finit déjà par s → pluriel identique au singulier : « souris » (se termine par s)."
     },
     {
       "id": "q078",
-      "before": "Le pluriel du nom « torrent » se termine par",
+      "before": "Le pluriel du nom « barreau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 3,
-      "explanation": "« torrent » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « torrents »."
+      "explanation": "« barreau » finit par -eau → pluriel en -x : « barreaux »."
     },
     {
       "id": "q079",
-      "before": "Le pluriel du nom « grenier » se termine par",
+      "before": "Le pluriel du nom « maïs » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 3,
-      "explanation": "« grenier » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « greniers »."
+      "explanation": "« maïs » finit déjà par s → pluriel identique au singulier : « maïs » (se termine par s)."
     },
     {
       "id": "q080",
-      "before": "Le pluriel du nom « silex » se termine par",
+      "before": "Le pluriel du nom « boyau » se termine par",
       "after": ".",
       "answer": "x",
       "difficulty": 3,
-      "explanation": "« silex » finit déjà par x → pluriel identique au singulier : « silex » (se termine par x)."
+      "explanation": "« boyau » finit par -au → pluriel en -x : « boyaux »."
     },
     {
       "id": "q081",
-      "before": "Le pluriel du nom « couloir » se termine par",
+      "before": "Le pluriel du nom « sable » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 3,
-      "explanation": "« couloir » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « couloirs »."
+      "explanation": "« sable » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « sables »."
     },
     {
       "id": "q082",
-      "before": "Le pluriel du nom « bois » se termine par",
+      "before": "Le pluriel du nom « époux » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 3,
-      "explanation": "« bois » finit déjà par s → pluriel identique au singulier : « bois » (se termine par s)."
+      "explanation": "« époux » finit déjà par x → pluriel identique au singulier : « époux » (se termine par x)."
     },
     {
       "id": "q083",
-      "before": "Le pluriel du nom « verger » se termine par",
+      "before": "Le pluriel du nom « univers » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 3,
-      "explanation": "« verger » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « vergers »."
+      "explanation": "« univers » finit déjà par s → pluriel identique au singulier : « univers » (se termine par s)."
     },
     {
       "id": "q084",
-      "before": "Le pluriel du nom « créneau » se termine par",
+      "before": "Le pluriel du nom « projet » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 3,
-      "explanation": "« créneau » finit par -eau → pluriel en -x : « créneaux »."
+      "explanation": "« projet » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « projets »."
     },
     {
       "id": "q085",
-      "before": "Le pluriel du nom « sentier » se termine par",
+      "before": "Le pluriel du nom « museau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 3,
-      "explanation": "« sentier » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « sentiers »."
+      "explanation": "« museau » finit par -eau → pluriel en -x : « museaux »."
     },
     {
       "id": "q086",
-      "before": "Le pluriel du nom « mois » se termine par",
+      "before": "Le pluriel du nom « talent » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 3,
-      "explanation": "« mois » finit déjà par s → pluriel identique au singulier : « mois » (se termine par s)."
+      "explanation": "« talent » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « talents »."
     },
     {
       "id": "q087",
-      "before": "Le pluriel du nom « versant » se termine par",
+      "before": "Le pluriel du nom « radeau » se termine par",
       "after": ".",
-      "answer": "s",
+      "answer": "x",
       "difficulty": 3,
-      "explanation": "« versant » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « versants »."
+      "explanation": "« radeau » finit par -eau → pluriel en -x : « radeaux »."
     },
     {
       "id": "q088",
-      "before": "Le pluriel du nom « corps » se termine par",
+      "before": "Le pluriel du nom « verre » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 3,
-      "explanation": "« corps » finit déjà par s → pluriel identique au singulier : « corps » (se termine par s)."
+      "explanation": "« verre » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « verres »."
     },
     {
       "id": "q089",
-      "before": "Le pluriel du nom « hameau » se termine par",
+      "before": "Le pluriel du nom « pilier » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 3,
-      "explanation": "« hameau » finit par -eau → pluriel en -x : « hameaux »."
+      "explanation": "« pilier » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « piliers »."
     },
     {
       "id": "q090",
-      "before": "Le pluriel du nom « flambeau » se termine par",
+      "before": "Le pluriel du nom « pluie » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 3,
-      "explanation": "« flambeau » finit par -eau → pluriel en -x : « flambeaux »."
+      "explanation": "« pluie » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « pluies »."
     },
     {
       "id": "q091",
-      "before": "Le pluriel du nom « flux » se termine par",
+      "before": "Le pluriel du nom « geste » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 3,
-      "explanation": "« flux » finit déjà par x → pluriel identique au singulier : « flux » (se termine par x)."
+      "explanation": "« geste » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « gestes »."
     },
     {
       "id": "q092",
-      "before": "Le pluriel du nom « fossé » se termine par",
+      "before": "Le pluriel du nom « étudiant » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 3,
-      "explanation": "« fossé » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « fossés »."
+      "explanation": "« étudiant » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « étudiants »."
     },
     {
       "id": "q093",
-      "before": "Le pluriel du nom « carreau » se termine par",
+      "before": "Le pluriel du nom « quartier » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 3,
-      "explanation": "« carreau » finit par -eau → pluriel en -x : « carreaux »."
+      "explanation": "« quartier » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « quartiers »."
     },
     {
       "id": "q094",
-      "before": "Le pluriel du nom « tuyau » se termine par",
+      "before": "Le pluriel du nom « image » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 3,
-      "explanation": "« tuyau » finit par -au → pluriel en -x : « tuyaux »."
+      "explanation": "« image » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « images »."
     },
     {
       "id": "q095",
-      "before": "Le pluriel du nom « perdrix » se termine par",
+      "before": "Le pluriel du nom « goutte » se termine par",
       "after": ".",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 3,
-      "explanation": "« perdrix » finit déjà par x → pluriel identique au singulier : « perdrix » (se termine par x)."
+      "explanation": "« goutte » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « gouttes »."
     },
     {
       "id": "q096",
-      "before": "Le pluriel du nom « bruyère » se termine par",
-      "after": ".",
-      "answer": "s",
-      "difficulty": 3,
-      "explanation": "« bruyère » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « bruyères »."
-    },
-    {
-      "id": "q097",
-      "before": "Le pluriel du nom « poids » se termine par",
-      "after": ".",
-      "answer": "s",
-      "difficulty": 3,
-      "explanation": "« poids » finit déjà par s → pluriel identique au singulier : « poids » (se termine par s)."
-    },
-    {
-      "id": "q098",
-      "before": "Le pluriel du nom « bosquet » se termine par",
-      "after": ".",
-      "answer": "s",
-      "difficulty": 3,
-      "explanation": "« bosquet » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « bosquets »."
-    },
-    {
-      "id": "q099",
-      "before": "Le pluriel du nom « gaz » se termine par",
+      "before": "Le pluriel du nom « quiz » se termine par",
       "after": ".",
       "answer": "z",
       "difficulty": 3,
-      "explanation": "« gaz » finit déjà par z → pluriel identique au singulier : « gaz » (se termine par z)."
+      "explanation": "« quiz » finit déjà par z → pluriel identique au singulier : « quiz » (se termine par z)."
     },
     {
-      "id": "q100",
-      "before": "Le pluriel du nom « tapis » se termine par",
+      "id": "q097",
+      "before": "Le pluriel du nom « fez » se termine par",
+      "after": ".",
+      "answer": "z",
+      "difficulty": 3,
+      "explanation": "« fez » finit déjà par z → pluriel identique au singulier : « fez » (se termine par z)."
+    },
+    {
+      "id": "q098",
+      "before": "Le pluriel du nom « sceau » se termine par",
+      "after": ".",
+      "answer": "x",
+      "difficulty": 3,
+      "explanation": "« sceau » finit par -eau → pluriel en -x : « sceaux »."
+    },
+    {
+      "id": "q099",
+      "before": "Le pluriel du nom « rang » se termine par",
       "after": ".",
       "answer": "s",
       "difficulty": 3,
-      "explanation": "« tapis » finit déjà par s → pluriel identique au singulier : « tapis » (se termine par s)."
+      "explanation": "« rang » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « rangs »."
+    },
+    {
+      "id": "q100",
+      "before": "Le pluriel du nom « milieu » se termine par",
+      "after": ".",
+      "answer": "x",
+      "difficulty": 3,
+      "explanation": "« milieu » finit par -eu → pluriel en -x : « milieux »."
     }
-  ]
+  ],
+  "group": "aventurier"
 }

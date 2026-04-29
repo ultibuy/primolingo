@@ -10,8 +10,9 @@
  *   Level 5: Diamond alive (maintained via SM-2 reviews)
  */
 
-import { getToday } from './sm2.js';
+import { getToday, initRuleSM2, updateRuleSM2 } from './sm2.js';
 import { isLocalhost } from '../debug.js';
+import { hasDoubleCoinsActive } from './economy.js';
 
 function isDebug() {
   return isLocalhost();
@@ -317,11 +318,6 @@ export function updateStreak(progress) {
     newStreak.longest = newStreak.current;
   }
 
-  // Award shield at streak 7, 14, etc. (every 7 days, max 2 in stock)
-  if (newStreak.current >= 7 && newStreak.current % 7 === 0 && (progress.shields || 0) < 2) {
-    progress.shields = (progress.shields || 0) + 1;
-  }
-
   // Check milestone events
   const milestoneDays = [7, 14, 30, 60, 100];
   const newMilestone = milestoneDays.includes(newStreak.current) ? newStreak.current : null;
@@ -351,4 +347,171 @@ export function computeStreakMilestone(streak, milestones, isFirstSessionOfDay, 
     }
   }
   return null;
+}
+
+// ── Shared post-session logic (used by both grammar and dictée handlers) ────
+
+const DIAMOND_PASS_THRESHOLD = 90;
+const FIRST_SESSION_BONUS = 10;
+const WELCOME_BONUS = 200;
+
+export const MILESTONE_COINS = {
+  streak7: 100,
+  streak14: 200,
+  streak30: 350,
+  streak60: 500,
+  streak100: 1000,
+};
+
+export const STREAK_MILESTONES = {
+  7: 'streak7',
+  14: 'streak14',
+  30: 'streak30',
+  60: 'streak60',
+  100: 'streak100',
+};
+
+function awardMilestone(milestones, key, coins) {
+  if (milestones[key]) return 0;
+  milestones[key] = true;
+  return coins || MILESTONE_COINS[key] || 0;
+}
+
+/**
+ * Process a completed session — shared between grammar and dictée.
+ *
+ * Mutates `next` (full progress) and `rp` (rule progress for this rule/dictée).
+ * Returns events array + metadata for the caller.
+ *
+ * @param {object} next - Full progress object (deep clone, safe to mutate).
+ * @param {object|null} rp - Rule progress for this rule/dictée. null for sniper.
+ * @param {object} opts
+ * @param {string} opts.mode - 'guided' | 'direct'
+ * @param {number} opts.score
+ * @param {number} opts.total
+ * @param {boolean} opts.wasReview - Was this an SM-2 review session?
+ * @param {string} opts.title - Rule/dictée title for event messages.
+ * @returns {{ events: object[], sessionCoins: number, hasNewTrophy: boolean }}
+ */
+export function processSessionResult(next, rp, {
+  mode,
+  score,
+  total,
+  wasReview = false,
+  title = '',
+}) {
+  const pct = Math.round((score / total) * 100);
+  const qualifies = pct >= 60;
+  const events = [];
+  let hasNewTrophy = false;
+
+  // ── 1. SM-2 review path ─────────────────────────────────────────────────
+  if (wasReview && rp?.sm2) {
+    const updatedSM2 = updateRuleSM2(rp.sm2, score, total);
+    rp.sm2 = updatedSM2;
+
+    if (pct >= DIAMOND_PASS_THRESHOLD) {
+      events.push({ type: 'sm2ReviewPassed', value: title });
+    } else if (pct >= 80) {
+      events.push({ type: 'sm2ReviewFragile', value: title });
+    } else {
+      events.push({ type: 'sm2ReviewFailed', value: title });
+    }
+
+    if (rp.sm2.diamondHealth <= 0) {
+      rp.level = 3;
+      rp.sm2 = null;
+      rp.directConsecutiveAbove90 = 0;
+      events.push({ type: 'diamondBroken', value: title });
+    }
+
+  // ── 2. Level-up path ────────────────────────────────────────────────────
+  } else if (rp) {
+    const oldLevel = rp.level || 0;
+    const levelResult = checkLevelUp(rp, mode, score, total);
+    Object.assign(rp, levelResult.updatedProgress);
+
+    if (levelResult.newLevel !== null && levelResult.newLevel > oldLevel) {
+      rp.level = levelResult.newLevel;
+      events.push({ type: 'levelUp', value: levelResult.newLevel, ruleTitle: title, coins: levelResult.coinsEarned || 0 });
+
+      if (levelResult.coinsEarned > 0) {
+        next.coins = (next.coins || 0) + levelResult.coinsEarned;
+        events.push({ type: 'levelMilestoneCoins', value: levelResult.coinsEarned, level: levelResult.newLevel });
+      }
+
+      if (levelResult.newLevel === 2 && oldLevel < 2) {
+        events.push({ type: 'directUnlocked', value: title });
+      }
+
+      if (levelResult.newLevel === 3 && oldLevel < 3) {
+        rp.recentTrophy = 'crown';
+        hasNewTrophy = true;
+        events.push({ type: 'crown', value: title });
+      }
+
+      if (levelResult.newLevel === 4 && oldLevel < 4) {
+        rp.sm2 = initRuleSM2();
+        rp.recentTrophy = 'diamond';
+        hasNewTrophy = true;
+        events.push({ type: 'diamond', value: title });
+      }
+    }
+  }
+
+  // ── 3. Coins ────────────────────────────────────────────────────────────
+  const today = getToday();
+  const isFirstSessionToday = next.streak?.lastActiveDate !== today;
+  const isFirstSessionEver = !next.milestones?.firstSession;
+  let sessionCoins = calculateCoins(score, total);
+
+  if (isFirstSessionToday && qualifies) {
+    const dayBonus = isFirstSessionEver ? WELCOME_BONUS : FIRST_SESSION_BONUS;
+    sessionCoins += dayBonus;
+    events.push({ type: 'firstSessionOfDay', value: dayBonus, isWelcome: isFirstSessionEver });
+    if (isFirstSessionEver) next.milestones.firstSession = true;
+  }
+
+  if (hasDoubleCoinsActive(next)) {
+    const base = sessionCoins;
+    sessionCoins *= 2;
+    next.shop.activeBoosts.doubleCoinsBonusEarned = (next.shop.activeBoosts.doubleCoinsBonusEarned || 0) + base;
+    next.shop.activeBoosts.doubleCoinsRemainingSessions = Math.max((next.shop.activeBoosts.doubleCoinsRemainingSessions || 0) - 1, 0);
+    next.shop.activeBoosts.doubleCoins = next.shop.activeBoosts.doubleCoinsRemainingSessions > 0;
+    events.push({ type: 'doubleCoins' });
+  }
+
+  next.coins = (next.coins || 0) + sessionCoins;
+  events.push({ type: 'coinsEarned', value: sessionCoins });
+
+  // ── 4. Streak ───────────────────────────────────────────────────────────
+  if (qualifies) {
+    const streakResult = updateStreak(next);
+    next.streak = streakResult.streak;
+    if (streakResult.shieldUsed) {
+      events.push({ type: 'shieldUsed', value: streakResult.streak.current });
+    }
+  }
+
+  // ── 5. Milestones ───────────────────────────────────────────────────────
+  if (!next.milestones) {
+    next.milestones = {
+      firstSession: false,
+      streak7: false, streak14: false,
+      streak30: false, streak60: false, streak100: false,
+    };
+  }
+
+  const currentStreak = next.streak?.current || 0;
+  for (const [threshold, key] of Object.entries(STREAK_MILESTONES)) {
+    if (currentStreak >= Number(threshold)) {
+      const coins = awardMilestone(next.milestones, key);
+      if (coins > 0) {
+        next.coins += coins;
+        events.push({ type: 'milestone', value: key, coins, streak: Number(threshold) });
+      }
+    }
+  }
+
+  return { events, sessionCoins, hasNewTrophy };
 }

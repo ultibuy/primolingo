@@ -128,6 +128,11 @@ input, textarea, select {
   100% { transform: scale(1); }
 }
 
+@keyframes pop {
+  0% { transform: translateY(14px) scale(0.92); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -201,6 +206,11 @@ input, textarea, select {
 @keyframes review-pulse {
   0%, 100% { box-shadow: 0 0 0 rgba(251,146,0,0); border-color: rgba(251,146,0,0.3); }
   50% { box-shadow: 0 0 18px rgba(251,146,0,0.12); border-color: rgba(251,146,0,0.6); }
+}
+
+@keyframes inline-audio-pulse {
+  0%   { transform: scale(0.95); opacity: 0.65; }
+  100% { transform: scale(1.45); opacity: 0; }
 }
 
 @keyframes diamond-break {
@@ -416,4 +426,13 @@ input, textarea, select {
   .streak-help-stats {
     grid-template-columns: 1fr;
   }
+}
+
+@keyframes banner-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-3px); }
+}
+.banner-emoji {
+  animation: banner-float 1.6s ease-in-out infinite;
+  display: inline-block;
 }

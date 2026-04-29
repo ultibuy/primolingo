@@ -106,68 +106,13 @@ export function selectSessionQuestions(rule, ruleProgress, maxQuestions = 20) {
   }
 
   // If STILL not enough (pool smaller than maxQuestions), that's fine — return what we have
-  return shuffleArray(selected);
-}
-
-/**
- * Select questions for Sniper mode: 5 hardest questions across all rules.
- *
- * Strategy:
- *   1. Prefer rules at higher progress levels (more advanced = harder).
- *   2. Within each rule, pick the highest-difficulty questions.
- *   3. Prioritize questions the player has gotten wrong before (lower accuracy).
- *   4. Return exactly `count` questions (default 5), shuffled.
- *
- * @param {Array} allRules - All rule objects (each has .questions array).
- * @param {object} progress - Full progress object (progress.rules has per-rule data).
- * @param {number} count - Number of questions to select (default 5).
- * @returns {Array} Selected questions with an added `_ruleId` and `_ruleTitle` field.
- */
-export function selectSniperQuestions(allRules, progress, count = 5) {
-  const ruleProgress = progress.rules || {};
-
-  // Build a pool of all questions annotated with rule info and scoring metadata
-  const pool = [];
-
-  for (const rule of allRules) {
-    const rp = ruleProgress[rule.id];
-    const ruleLevel = rp?.level || 0;
-    const questionStats = rp?.questionStats || {};
-
-    for (const q of (rule.questions || [])) {
-      const stats = questionStats[q.id];
-      const timesShown = stats?.timesShown || 0;
-      const timesCorrect = stats?.timesCorrect || 0;
-      // Accuracy: lower is harder for the player. Unseen questions get 0.5 (neutral).
-      const accuracy = timesShown > 0 ? timesCorrect / timesShown : 0.5;
-
-      // Priority score: higher = more likely to be picked
-      // - High difficulty questions score higher
-      // - Questions from higher-level rules score higher
-      // - Questions with lower accuracy (harder for the player) score higher
-      const difficulty = q.difficulty || 1;
-      const priorityScore = (difficulty * 3) + (ruleLevel * 2) + ((1 - accuracy) * 4);
-
-      pool.push({
-        ...q,
-        _ruleId: rule.id,
-        _ruleTitle: rule.shortTitle || rule.title,
-        _ruleChoices: rule.choices,
-        _ruleDecisionAxes: rule.decisionAxes,
-        _priorityScore: priorityScore,
-      });
-    }
-  }
-
-  // Sort by priority score descending (hardest first)
-  pool.sort((a, b) => b._priorityScore - a._priorityScore);
-
-  // Take top candidates, then shuffle for variety
-  // Take a bit more than needed to add randomness, then pick from top
-  const topCandidates = pool.slice(0, Math.min(count * 3, pool.length));
-  const selected = shuffleArray(topCandidates).slice(0, count);
-
-  return selected;
+  return shuffleArray(selected).map(q => ({
+    ...q,
+    _ruleChoices: (q.choices && q.choices.length) ? q.choices : rule.choices,
+    _ruleDecisionAxes: rule.decisionAxes,
+    _ruleId: q._ruleId || rule.id,
+    _ruleTitle: q._ruleTitle || rule.shortTitle || rule.title,
+  }));
 }
 
 /**
@@ -189,7 +134,7 @@ export function selectMysteryQuestion(allRules, excludeRuleId) {
     ...randomQuestion,
     _ruleId: randomRule.id,
     _ruleTitle: randomRule.shortTitle || randomRule.title,
-    _ruleChoices: randomRule.choices,
+    _ruleChoices: (randomQuestion.choices && randomQuestion.choices.length) ? randomQuestion.choices : randomRule.choices,
     _ruleDecisionAxes: randomRule.decisionAxes,
     _isMystery: true,
   };

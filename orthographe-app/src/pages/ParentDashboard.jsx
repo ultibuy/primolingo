@@ -9,6 +9,10 @@ import {
   loadChildSettings,
   saveChildQuestionCount,
   saveChildImageSettings,
+  loadProgress,
+  saveProgress,
+  getDailyBackups,
+  restoreDailyBackup,
 } from '../store/persistence.js';
 
 // ─── Helpers ───────────────────────────────────────────────────────────────────
@@ -156,7 +160,162 @@ function ChildSettings({ uid, childId, parentImages }) {
   );
 }
 
+// ─── BackupRestorePanel ───────────────────────────────────────────────────────
+
+function BackupRestorePanel({ uid, childId }) {
+  const [backups, setBackups] = useState(null); // null = not loaded yet
+  const [restoring, setRestoring] = useState(null);
+  const [msg, setMsg] = useState('');
+
+  async function handleLoad() {
+    setMsg('');
+    const list = await getDailyBackups(uid, childId);
+    setBackups(list);
+  }
+
+  async function handleRestore(backup) {
+    if (!confirm(`Restaurer la sauvegarde du ${backup.date} ?\nLa progression actuelle sera remplacée.`)) return;
+    setRestoring(backup.date);
+    setMsg('');
+    const result = await restoreDailyBackup(backup, uid, childId);
+    setRestoring(null);
+    if (result.success) {
+      setMsg(`Restauré depuis ${backup.date}. Rechargez la page de jeu.`);
+    } else {
+      setMsg(result.error || 'Erreur lors de la restauration.');
+    }
+  }
+
+  return (
+    <div style={{ marginTop: '0.8rem' }}>
+      <div style={{ fontSize: '0.78rem', fontWeight: 700, color: '#f87171', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+        Sauvegardes quotidiennes
+      </div>
+
+      {backups === null ? (
+        <button type="button" onClick={handleLoad} style={{
+          padding: '0.35rem 0.9rem', borderRadius: 8,
+          border: '1px solid rgba(248,113,113,0.25)', background: 'rgba(248,113,113,0.08)',
+          color: '#f87171', fontSize: '0.75rem', fontWeight: 700, cursor: 'pointer',
+        }}>
+          Afficher les sauvegardes
+        </button>
+      ) : backups.length === 0 ? (
+        <div style={{ fontSize: '0.78rem', color: '#9ca3af' }}>Aucune sauvegarde disponible.</div>
+      ) : (
+        <div style={{ display: 'grid', gap: '0.4rem' }}>
+          {backups.slice(0, 10).map(backup => (
+            <div key={backup.date} style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+              gap: '0.5rem', padding: '0.45rem 0.6rem',
+              borderRadius: 8, background: 'rgba(255,255,255,0.03)',
+              border: '1px solid rgba(255,255,255,0.06)',
+            }}>
+              <div>
+                <span style={{ fontSize: '0.8rem', color: '#fff', fontWeight: 700 }}>{backup.date}</span>
+                {backup.snapshot && (
+                  <span style={{ fontSize: '0.72rem', color: '#9ca3af', marginLeft: '0.5rem' }}>
+                    {backup.snapshot.coins ?? '?'} pièces · {backup.snapshot.streak?.current ?? '?'} jours
+                  </span>
+                )}
+              </div>
+              <button
+                type="button"
+                onClick={() => handleRestore(backup)}
+                disabled={restoring === backup.date}
+                style={{
+                  padding: '0.3rem 0.7rem', borderRadius: 6,
+                  border: '1px solid rgba(167,139,250,0.3)', background: 'rgba(167,139,250,0.1)',
+                  color: '#a78bfa', fontSize: '0.72rem', fontWeight: 700, cursor: 'pointer',
+                  opacity: restoring === backup.date ? 0.5 : 1,
+                }}
+              >
+                {restoring === backup.date ? '…' : 'Restaurer'}
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {msg && (
+        <div style={{ marginTop: '0.5rem', fontSize: '0.78rem', fontWeight: 600, color: msg.startsWith('Restauré') ? '#a7f3d0' : '#f87171' }}>
+          {msg}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ─── ChildCard ────────────────────────────────────────────────────────────────
+
+function FlaggedQuestionsPanel({ uid, childId, flaggedQuestions }) {
+  const [clearing, setClearing] = useState(false);
+  const [cleared, setCleared] = useState(false);
+
+  const count = flaggedQuestions.length;
+
+  function handleDownload() {
+    const lines = flaggedQuestions.map(f =>
+      `[${f.ruleTitle}] ${f.sentence} (réponse: ${f.answer}) — ${new Date(f.flaggedAt).toLocaleDateString('fr-FR')}\n  -> fichier: src/content/rules/${f.ruleId}.json | questionId: ${f.questionId}`
+    );
+    const text = `Questions signalées (${count})\n${'='.repeat(40)}\n\n${lines.join('\n\n')}`;
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `questions-signalees-${new Date().toISOString().slice(0, 10)}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  async function handleReset() {
+    if (!confirm(`Vider la liste des ${count} question${count > 1 ? 's' : ''} signalée${count > 1 ? 's' : ''} ?`)) return;
+    setClearing(true);
+    try {
+      const progress = await loadProgress(uid, childId);
+      if (!progress) { setClearing(false); return; }
+      const next = { ...progress, flaggedQuestions: [] };
+      await saveProgress(next, uid, childId);
+      setCleared(true);
+    } catch (e) {
+      console.error('Failed to clear flagged questions:', e);
+    }
+    setClearing(false);
+  }
+
+  if (cleared) return null;
+
+  return (
+    <div style={{
+      background: 'rgba(251,191,36,0.06)',
+      border: '1px solid rgba(251,191,36,0.18)',
+      borderRadius: 12, padding: '0.75rem 0.9rem',
+      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      gap: '0.6rem', flexWrap: 'wrap',
+    }}>
+      <div style={{ fontSize: '0.82rem', color: '#fbbf24', fontWeight: 700 }}>
+        {count} question{count > 1 ? 's' : ''} signalée{count > 1 ? 's' : ''}
+      </div>
+      <div style={{ display: 'flex', gap: '0.4rem' }}>
+        <button type="button" onClick={handleDownload} style={{
+          padding: '0.35rem 0.7rem', borderRadius: 8,
+          border: '1px solid rgba(251,191,36,0.25)', background: 'rgba(251,191,36,0.1)',
+          color: '#fbbf24', fontSize: '0.75rem', fontWeight: 700, cursor: 'pointer',
+        }}>
+          Télécharger
+        </button>
+        <button type="button" onClick={handleReset} disabled={clearing} style={{
+          padding: '0.35rem 0.7rem', borderRadius: 8,
+          border: '1px solid rgba(248,113,113,0.25)', background: 'rgba(248,113,113,0.08)',
+          color: '#fca5a5', fontSize: '0.75rem', fontWeight: 700, cursor: 'pointer',
+          opacity: clearing ? 0.5 : 1,
+        }}>
+          {clearing ? '…' : 'Vider'}
+        </button>
+      </div>
+    </div>
+  );
+}
 
 function ChildCard({ child, uid, parentImages }) {
   const navigate = useNavigate();
@@ -165,6 +324,7 @@ function ChildCard({ child, uid, parentImages }) {
   const coins = progress.coins || 0;
   const rulesDone = Object.values(progress.rules || {}).filter(r => r.level >= 3).length;
   const lastActive = progress.streak?.lastActiveDate || null;
+  const flaggedQuestions = progress.flaggedQuestions || [];
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   return (
@@ -203,6 +363,11 @@ function ChildCard({ child, uid, parentImages }) {
         </div>
       </div>
 
+      {/* Flagged questions */}
+      {flaggedQuestions.length > 0 && (
+        <FlaggedQuestionsPanel uid={uid} childId={child.id} flaggedQuestions={flaggedQuestions} />
+      )}
+
       {/* Settings panel */}
       {settingsOpen && (
         <div style={settingsPanelStyle}>
@@ -210,6 +375,7 @@ function ChildCard({ child, uid, parentImages }) {
             Paramètres de {child.name}
           </div>
           <ChildSettings uid={uid} childId={child.id} parentImages={parentImages} />
+          <BackupRestorePanel uid={uid} childId={child.id} />
         </div>
       )}
 

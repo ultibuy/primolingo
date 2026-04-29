@@ -5,6 +5,7 @@
 
 import { getToday } from '../engine/sm2.js';
 import { createDefaultMysteryImagesState } from '../engine/economy.js';
+import { createDefaultCoaching } from '../engine/coaching.js';
 import {
   loadProgress        as storeLoadProgress,
   saveProgress        as storeSaveProgress,
@@ -34,7 +35,7 @@ export function createDefaultProgress() {
       equipped: { theme: null, flame: null, title: null, victoryAnimation: null },
       activeBoosts: { doubleCoins: false, doubleCoinsRemainingSessions: 0, doubleCoinsLastPurchasedWeek: null },
       mysteryImages: createDefaultMysteryImagesState(),
-      inventory: { revealHint: 0, rematch: 0, modeSniper: 0, questionMystery: 0 },
+      inventory: { questionMystery: 0 },
     },
     milestones: {
       firstSession: false,
@@ -48,6 +49,7 @@ export function createDefaultProgress() {
     firstQuizDone: false,
     parentalCode: null,
     rules: {},
+    coaching: createDefaultCoaching(),
   };
 }
 
@@ -103,15 +105,14 @@ function normalizeCustomMysteryImages(value) {
 // ---------------------------------------------------------------------------
 
 export async function loadProgress(uid, childId) {
-  if (!uid || !childId) return createDefaultProgress();
-  try {
-    const data = await storeLoadProgress(uid, childId);
-    if (!data || typeof data !== 'object') return createDefaultProgress();
-    return data;
-  } catch (error) {
-    console.error('Failed to load progress:', error);
-    return createDefaultProgress();
-  }
+  if (!uid || !childId) return null;
+  // Let errors propagate — the caller MUST distinguish between "no data"
+  // (returns null) and "failed to read" (throws). Swallowing errors here
+  // caused the app to fall back to default progress, and the next save
+  // would permanently destroy the user's real data.
+  const data = await storeLoadProgress(uid, childId);
+  if (!data || typeof data !== 'object') return null;
+  return data;
 }
 
 export async function saveProgress(progress, uid, childId) {

@@ -2,6 +2,8 @@ import { useState } from 'react';
 import ProgressBar from './ProgressBar.jsx';
 import EndScreen from './EndScreen.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
+import { FlagBugButton } from './FlagBugButton.jsx';
+import { quizPageStyle, quizCardStyle, quizNextBtnStyle } from './quizStyles.js';
 import { getEndScreenLevelProgress, getNextStreakTierInfo, computeStreakMilestone } from '../engine/scoring.js';
 
 export default function QuizDirect({
@@ -12,11 +14,16 @@ export default function QuizDirect({
   characterId,
   hasDoubleCoinsActive,
   isFirstSessionOfDay,
+  isFirstEverSession = false,
   ruleProgress,
   streak,
   milestones,
   victoryAnimationId,
   shopOwned = [],
+  onBuyEmotion = null,
+  coins = 0,
+  onFlagQuestion,
+  coachingLine = null,
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -69,14 +76,20 @@ export default function QuizDirect({
         streakInfo={streakInfo}
         streakMilestoneJustEarned={streakMilestone}
         victoryAnimationId={victoryAnimationId}
+        characterId={characterId}
+        shopOwned={shopOwned}
+        isFirstEverSession={isFirstEverSession}
+        onBuyEmotion={onBuyEmotion}
+        coins={coins}
+        coachingLine={coachingLine}
         onFinish={() => onFinish(score, questions.length, answers)}
       />
     );
   }
 
   return (
-    <div style={pageStyle}>
-      <div style={cardStyle}>
+    <div style={quizPageStyle}>
+      <div style={quizCardStyle}>
         <PopupCloseButton onClick={onClose} />
 
         {/* Header */}
@@ -93,10 +106,14 @@ export default function QuizDirect({
           shopOwned={shopOwned}
           characterId={characterId}
           lastAnswer={showResult ? (isCorrect ? 'correct' : 'wrong') : null}
+          score={score}
+          isFirstEverSession={isFirstEverSession}
+          onBuyEmotion={onBuyEmotion}
+          coins={coins}
         />
 
         {/* Sentence */}
-        <div style={sentenceStyle}>
+        <div style={{ ...sentenceStyle, position: 'relative' }}>
           {question.before}
           {hasVerb
             ? <><span style={{ whiteSpace: 'nowrap' }}>
@@ -118,6 +135,7 @@ export default function QuizDirect({
                 }}>
                   {selected ? choices.find(c => c.id === selected)?.label : '______'}
                 </span>{question.after}</>}
+          {onFlagQuestion && <FlagBugButton onFlag={(unflag) => onFlagQuestion(question, rule, unflag)} />}
         </div>
 
         {/* Answer buttons */}
@@ -189,7 +207,7 @@ export default function QuizDirect({
         )}
 
         {showResult && (
-          <button onClick={handleNext} style={nextBtnStyle}>
+          <button onClick={handleNext} style={quizNextBtnStyle}>
             {currentIndex + 1 >= questions.length ? 'Voir le résultat final' : 'Question suivante →'}
           </button>
         )}
@@ -198,38 +216,11 @@ export default function QuizDirect({
   );
 }
 
-/* ─── SHARED STYLES ─── */
-
-const pageStyle = {
-  minHeight: '100vh',
-  backgroundColor: 'var(--color-bg1)',
-  backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
-  backgroundSize: 'cover, cover',
-  backgroundPosition: 'center, center',
-  display: 'flex', alignItems: 'center', justifyContent: 'center',
-  fontFamily: 'var(--font-body)',
-  padding: '1.5rem', color: '#e2e2e2',
-};
-
-const cardStyle = {
-  maxWidth: 620, width: '100%',
-  background: 'rgba(255,255,255,0.06)',
-  borderRadius: 20, padding: '2rem 2.2rem',
-  position: 'relative',
-  backdropFilter: 'blur(12px)',
-  border: '1px solid rgba(255,255,255,0.1)',
-  boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
-};
+/* ─── LOCAL STYLES ─── */
 
 const sentenceStyle = {
   background: 'rgba(0,0,0,0.3)', borderRadius: 12,
   padding: '1.3rem 1.5rem', fontSize: '1.2rem',
   textAlign: 'center', marginBottom: '2rem',
   lineHeight: 1.7, border: '1px solid rgba(255,255,255,0.05)',
-};
-
-const nextBtnStyle = {
-  width: '100%', padding: '0.8rem', borderRadius: 10,
-  border: '2px solid var(--color-primary)', background: 'rgba(var(--color-primary-rgb),0.15)',
-  color: 'var(--color-accent)', cursor: 'pointer', fontSize: '0.95rem', fontWeight: 700,
 };
