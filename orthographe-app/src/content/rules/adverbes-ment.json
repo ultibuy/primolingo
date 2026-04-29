@@ -1,0 +1,2731 @@
+{
+  "id": "adverbes-ment",
+  "title": "-ement · -emment · -amment",
+  "shortTitle": "-ement / -emment / -amment",
+  "description": "Choisir la bonne terminaison des adverbes en -ment : écouter le son final, puis identifier l'adjectif de base (-ant → -amment, -ent → -emment, autre → -ement).",
+  "choices": [
+    {
+      "id": "ement",
+      "label": "-ement"
+    },
+    {
+      "id": "emment",
+      "label": "-emment"
+    },
+    {
+      "id": "amment",
+      "label": "-amment"
+    }
+  ],
+  "decisionAxes": [
+    {
+      "id": "son",
+      "question": "Quel son entends-tu à la fin de l'adverbe ?",
+      "sub": "Prononce l'adverbe à voix haute",
+      "options": [
+        {
+          "value": "ement",
+          "label": "« -ement » (son euh-man)",
+          "sub": "",
+          "eliminates": [
+            "emment",
+            "amment"
+          ]
+        },
+        {
+          "value": "ament",
+          "label": "« -ament » (son a-man)",
+          "sub": "",
+          "eliminates": [
+            "ement"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "adjectifBase",
+      "question": "L'adjectif de base se termine par…",
+      "sub": "Trouve l'adjectif dont vient cet adverbe",
+      "dependsOn": "son",
+      "showWhen": "ament",
+      "options": [
+        {
+          "value": "ant",
+          "label": "-ant ",
+          "eliminates": [
+            "emment"
+          ]
+        },
+        {
+          "value": "ent",
+          "label": "-ent",
+          "eliminates": [
+            "amment"
+          ]
+        }
+      ]
+    }
+  ],
+  "memoCard": {
+    "title": "La règle en un coup d'œil",
+    "rows": [
+      {
+        "form": "-ement",
+        "test": "On entend « -ement » (euh-man)",
+        "example": "lent → lentement, doux → doucement"
+      },
+      {
+        "form": "-emment",
+        "test": "Son « -ament » + adjectif en -ent",
+        "example": "prudent → prudemment, évident → évidemment"
+      },
+      {
+        "form": "-amment",
+        "test": "Son « -ament » + adjectif en -ant",
+        "example": "brillant → brillamment, suffisant → suffisamment"
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "before": "Elle marche lent",
+      "after": " mais sûrement vers la sortie.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : lent → lentement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « lent » ?"
+        }
+      }
+    },
+    {
+      "id": "q002",
+      "before": "Il a agi prud",
+      "after": " dans cette situation délicate.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « prudent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (prudent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q003",
+      "before": "Elle a répondu suffis",
+      "after": " à toutes les questions du jury.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « suffisant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (suffisant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q004",
+      "before": "Elle parle ",
+      "after": " en classe.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : doux → douc + ement = doucement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « doux » ?"
+        }
+      }
+    },
+    {
+      "id": "q005",
+      "before": "Les voitures roulent ",
+      "after": " sur l'autoroute.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : rapide → rapid + ement = rapidement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « rapide » ?"
+        }
+      }
+    },
+    {
+      "id": "q006",
+      "before": "Il comprend ",
+      "after": " les instructions.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : facile → facil + ement = facilement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « facile » ?"
+        }
+      }
+    },
+    {
+      "id": "q007",
+      "before": "L'orateur s'exprime ",
+      "after": " au micro.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : clair → clair + ement = clairement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « clair » ?"
+        }
+      }
+    },
+    {
+      "id": "q008",
+      "before": "Les enfants réagissent ",
+      "after": " à la nouvelle.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : vif → viv + ement = vivement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « vif » ?"
+        }
+      }
+    },
+    {
+      "id": "q009",
+      "before": "Elle répond ",
+      "after": " à cette question délicate.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : franc → franch + ement = franchement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « franc » ?"
+        }
+      }
+    },
+    {
+      "id": "q010",
+      "before": "Le projet s'est ",
+      "after": " amélioré cette année.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : large → larg + ement = largement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « large » ?"
+        }
+      }
+    },
+    {
+      "id": "q011",
+      "before": "Je désapprouve ",
+      "after": " ce comportement.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : fort → fort + ement = fortement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « fort » ?"
+        }
+      }
+    },
+    {
+      "id": "q012",
+      "before": "C'est ",
+      "after": " ce que nous observons.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « évident » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (évident) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q013",
+      "before": "Les trains arrivent ",
+      "after": " à la gare.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « fréquent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (fréquent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q014",
+      "before": "Elle a ",
+      "after": " terminé ses études.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « récent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (récent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q015",
+      "before": "La tempête a soufflé ",
+      "after": " la nuit dernière.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « violent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (violent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q016",
+      "before": "Il attend ",
+      "after": " le résultat du concours.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « patient » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (patient) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q017",
+      "before": "Ce n'est ",
+      "after": " la solution idéale.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « apparent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (apparent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q018",
+      "before": "Elle a réussi son examen ",
+      "after": ".",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « brillant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (brillant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q019",
+      "before": "Il a agi ",
+      "after": " envers son rival.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « méchant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (méchant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q020",
+      "before": "Elle revient ",
+      "after": " à son domicile.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « constant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (constant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q021",
+      "before": "Elle s'habille ",
+      "after": " pour la soirée.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « élégant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (élégant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q022",
+      "before": "Il parle ",
+      "after": " plusieurs langues étrangères.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « savant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (savant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q023",
+      "before": "Le chevalier se comporte ",
+      "after": " envers la dame.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « galant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (galant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q024",
+      "before": "Elle répondit froids",
+      "after": " à toutes ses questions sans lever les yeux.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : froid → froidement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « froid » ?"
+        }
+      }
+    },
+    {
+      "id": "q025",
+      "before": "Le soleil brillait chauds",
+      "after": " sur les toits de la ville en juillet.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : chaud → chaudement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « chaud » ?"
+        }
+      }
+    },
+    {
+      "id": "q026",
+      "before": "Ce résultat nous a grands",
+      "after": " surpris et nous a forcés à revoir notre stratégie.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : grand → grandement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « grand » ?"
+        }
+      }
+    },
+    {
+      "id": "q027",
+      "before": "Le technicien a exacte",
+      "after": " reproduit les conditions du test original.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : exact → exactement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « exact » ?"
+        }
+      }
+    },
+    {
+      "id": "q028",
+      "before": "Il l'a brusque",
+      "after": " interrompue alors qu'elle finissait sa phrase.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : brusque → brusquement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « brusque » ?"
+        }
+      }
+    },
+    {
+      "id": "q029",
+      "before": "Explique-moi simple",
+      "after": " comment fonctionne ce nouveau logiciel.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : simple → simplement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « simple » ?"
+        }
+      }
+    },
+    {
+      "id": "q030",
+      "before": "Elle lui a répondu sèche",
+      "after": " qu'elle n'avait pas de temps à perdre.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : sec → sèchement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « sec » ?"
+        }
+      }
+    },
+    {
+      "id": "q031",
+      "before": "Il réfléchit longue",
+      "after": " avant de donner sa réponse définitive.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : long → longuement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « long » ?"
+        }
+      }
+    },
+    {
+      "id": "q032",
+      "before": "Elle défend ard",
+      "after": " les droits des plus démunis depuis des années.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « ardent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (ardent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q033",
+      "before": "Il s'est comporté déc",
+      "after": " tout au long de la cérémonie officielle.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « décent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (décent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q034",
+      "before": "Chaque élève apprend différ",
+      "after": " selon son profil et ses expériences passées.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « différent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (différent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q035",
+      "before": "Le président a éloqu",
+      "after": " défendu sa position devant l'assemblée réunie.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « éloquent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (éloquent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q036",
+      "before": "Il a agi imprud",
+      "after": " en traversant la rue sans regarder des deux côtés.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « imprudent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (imprudent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q037",
+      "before": "Elle a néglig",
+      "after": " rangé ses affaires au fond de son sac.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « négligent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (négligent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q038",
+      "before": "Ce soldat s'est vaill",
+      "after": " battu pour défendre sa patrie lors du conflit.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « vaillant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (vaillant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q039",
+      "before": "Elle parle espagnol cour",
+      "after": " après seulement deux ans passés à Madrid.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « courant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (courant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q040",
+      "before": "Ces valises pèsent pes",
+      "after": " et il faut deux personnes pour les porter.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « pesant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (pesant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q041",
+      "before": "Les arbres fruitiers produisaient abond",
+      "after": " cette année grâce aux pluies du printemps.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « abondant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (abondant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q042",
+      "before": "Les notifications sonores retentissent incess",
+      "after": " sur son téléphone depuis ce matin.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « incessant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (incessant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q043",
+      "before": "Les enfants jouaient bruy",
+      "after": " dans la cour de récréation sous le soleil.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « bruyant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (bruyant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q044",
+      "before": "Elle a naïv",
+      "after": " cru tout ce qu'il lui racontait sans vérifier.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : naïf → naïvement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « naïf » ?"
+        }
+      }
+    },
+    {
+      "id": "q045",
+      "before": "Il lui a parlé sincèr",
+      "after": " de ses doutes sans rien lui cacher.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : sincère → sincèrement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « sincère » ?"
+        }
+      }
+    },
+    {
+      "id": "q046",
+      "before": "Elle a légèr",
+      "after": " modifié sa recette pour la rendre moins sucrée.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : léger → légèrement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « léger » ?"
+        }
+      }
+    },
+    {
+      "id": "q047",
+      "before": "Le vieux chien s'est levé sourd",
+      "after": " et a trotté vers son bol d'eau.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : sourd → sourdement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « sourd » ?"
+        }
+      }
+    },
+    {
+      "id": "q048",
+      "before": "Elle a tendr",
+      "after": " embrassé son enfant avant de le coucher.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : tendre → tendrement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « tendre » ?"
+        }
+      }
+    },
+    {
+      "id": "q049",
+      "before": "Il a trist",
+      "after": " annoncé la fermeture définitive de l'entreprise.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : triste → tristement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « triste » ?"
+        }
+      }
+    },
+    {
+      "id": "q050",
+      "before": "La situation a bizarr",
+      "after": " évolué depuis notre dernière réunion.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : bizarre → bizarrement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « bizarre » ?"
+        }
+      }
+    },
+    {
+      "id": "q051",
+      "before": "Il a honnêt",
+      "after": " reconnu ses erreurs devant toute l'équipe.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : honnête → honnêtement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « honnête » ?"
+        }
+      }
+    },
+    {
+      "id": "q052",
+      "before": "Elle a intellig",
+      "after": " résolu ce problème complexe en quelques minutes.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « intelligent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (intelligent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q053",
+      "before": "Il a consci",
+      "after": " pris ce risque en connaissant toutes les conséquences.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « conscient » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (conscient) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q054",
+      "before": "Elle a inconsci",
+      "after": " reproduit le même schéma que dans ses relations précédentes.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « inconscient » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (inconscient) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q055",
+      "before": "Le juge a indulg",
+      "after": " accordé une réduction de peine au premier délinquant.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « indulgent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (indulgent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q056",
+      "before": "Elle a compét",
+      "after": " géré cette crise sans perdre son calme.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « compétent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (compétent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q057",
+      "before": "Les enfants attendaient impati",
+      "after": " l'arrivée du père Noël le soir de Noël.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « impatient » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (impatient) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q058",
+      "before": "Il marchait nonchal",
+      "after": " les mains dans les poches sous la pluie.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « nonchalant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (nonchalant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q059",
+      "before": "Le guide racontait plais",
+      "after": " les anecdotes de l'histoire du château.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « plaisant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (plaisant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q060",
+      "before": "La tempête a puiss",
+      "after": " frappé les côtes pendant toute la nuit.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « puissant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (puissant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q061",
+      "before": "L'équipe a triomph",
+      "after": " remporté la finale après un match épique.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « triomphant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (triomphant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q062",
+      "before": "Il a complais",
+      "after": " acquiescé à toutes les demandes de son patron.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « complaisant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (complaisant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q063",
+      "before": "Il a ignor",
+      "after": " répété la même erreur malgré tous les avertissements.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « ignorant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (ignorant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q064",
+      "before": "Il a parlé ",
+      "after": " de la situation.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : rude → rudement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « rude » ?"
+        }
+      }
+    },
+    {
+      "id": "q065",
+      "before": "Elle agit ",
+      "after": " selon ses convictions.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : libre → librement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « libre » ?"
+        }
+      }
+    },
+    {
+      "id": "q066",
+      "before": "C'est une erreur ",
+      "after": " commise.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : grave → gravement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « grave » ?"
+        }
+      }
+    },
+    {
+      "id": "q067",
+      "before": "Il a choisi ",
+      "after": " sa réponse.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : sage → sagement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « sage » ?"
+        }
+      }
+    },
+    {
+      "id": "q068",
+      "before": "Elle a accusé ",
+      "after": " son adversaire.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : faux → faussement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « faux » ?"
+        }
+      }
+    },
+    {
+      "id": "q069",
+      "before": "Il refusa ",
+      "after": " la proposition.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : ferme → fermement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « ferme » ?"
+        }
+      }
+    },
+    {
+      "id": "q070",
+      "before": "Cela dépend ",
+      "after": " de vous.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : entier → entièrement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « entier » ?"
+        }
+      }
+    },
+    {
+      "id": "q071",
+      "before": "Je suis ",
+      "after": " d'accord avec vous.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : complet → complètement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « complet » ?"
+        }
+      }
+    },
+    {
+      "id": "q072",
+      "before": "Il faut ",
+      "after": " partir tout de suite.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « urgent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (urgent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q073",
+      "before": "Il vit ",
+      "after": " entouré de luxe.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « opulent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (opulent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q074",
+      "before": "C'est ",
+      "after": " un point mineur.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « incident » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (incident) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q075",
+      "before": "Il a répondu ",
+      "after": " à toutes les questions.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « pertinent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (pertinent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q076",
+      "before": "Son raisonnement était ",
+      "after": " avec ses convictions.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « incohérent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (incohérent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q077",
+      "before": "Il regardait ",
+      "after": " ce qui se passait.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « indifférent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (indifférent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q078",
+      "before": "Il lui demanda ",
+      "after": " de revenir.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « instant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (instant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q079",
+      "before": "Elle refusa ",
+      "after": " cette remarque.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « arrogant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (arrogant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q080",
+      "before": "C'est une violation ",
+      "after": " du règlement.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « flagrant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (flagrant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q081",
+      "before": "Elle parla ",
+      "after": " des défauts de son rival.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « mordant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (mordant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q082",
+      "before": "Nous vous demandons ",
+      "after": " de nous aider.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « pressant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (pressant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q083",
+      "before": "Il a agi ",
+      "after": " envers les opinions différentes.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « tolérant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (tolérant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q084",
+      "before": "discrèt",
+      "after": "ement",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : discret → discrètement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « discret » ?"
+        }
+      }
+    },
+    {
+      "id": "q085",
+      "before": "secrèt",
+      "after": "ement",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : secret → secrètement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « secret » ?"
+        }
+      }
+    },
+    {
+      "id": "q086",
+      "before": "concrèt",
+      "after": "ement",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : concret → concrètement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « concret » ?"
+        }
+      }
+    },
+    {
+      "id": "q087",
+      "before": "sûr",
+      "after": "ement",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : sûr → sûrement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « sûr » ?"
+        }
+      }
+    },
+    {
+      "id": "q088",
+      "before": "moll",
+      "after": "ement",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : mou → mollement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « mou » ?"
+        }
+      }
+    },
+    {
+      "id": "q089",
+      "before": "lourd",
+      "after": "ement",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : lourd → lourdement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « lourd » ?"
+        }
+      }
+    },
+    {
+      "id": "q090",
+      "before": "soigneus",
+      "after": "ement",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : soigneux → soigneusement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « soigneux » ?"
+        }
+      }
+    },
+    {
+      "id": "q091",
+      "before": "heureus",
+      "after": "ement",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : heureux → heureusement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « heureux » ?"
+        }
+      }
+    },
+    {
+      "id": "q092",
+      "before": "concurr",
+      "after": "emment",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « concurrent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (concurrent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q093",
+      "before": "conséqu",
+      "after": "emment",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « conséquent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (conséquent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q094",
+      "before": "innoc",
+      "after": "emment",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « innocent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (innocent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q095",
+      "before": "prud",
+      "after": "emment",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « prudent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (prudent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q096",
+      "before": "émin",
+      "after": "emment",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « éminent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (éminent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q097",
+      "before": "récurr",
+      "after": "emment",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « récurrent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (récurrent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q098",
+      "before": "poign",
+      "after": "amment",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « poignant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (poignant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q099",
+      "before": "précipit",
+      "after": "amment",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « précipitant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (précipitant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q100",
+      "before": "surabond",
+      "after": "amment",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « surabondant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (surabondant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q101",
+      "before": "vaill",
+      "after": "amment",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « vaillant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (vaillant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q102",
+      "before": "puiss",
+      "after": "amment",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « puissant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (puissant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q103",
+      "before": "abond",
+      "after": "amment",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « abondant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (abondant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q104",
+      "before": "Il regarde ",
+      "after": " par la fenêtre.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : curieux → curieusement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « curieux » ?"
+        }
+      }
+    },
+    {
+      "id": "q105",
+      "before": "C'est ",
+      "after": " qu'il soit absent.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : malheureux → malheureusement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « malheureux » ?"
+        }
+      }
+    },
+    {
+      "id": "q106",
+      "before": "Il a agi ",
+      "after": " en traversant la route.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : dangereux → dangereusement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « dangereux » ?"
+        }
+      }
+    },
+    {
+      "id": "q107",
+      "before": "Cela se passe ",
+      "after": " dans ce pays.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : naturel → naturellement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « naturel » ?"
+        }
+      }
+    },
+    {
+      "id": "q108",
+      "before": "Elle vient ",
+      "after": " le dimanche.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : habituel → habituellement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « habituel » ?"
+        }
+      }
+    },
+    {
+      "id": "q109",
+      "before": "Le communiqué a été publié ",
+      "after": ".",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : officiel → officiellement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « officiel » ?"
+        }
+      }
+    },
+    {
+      "id": "q110",
+      "before": "Je pense ",
+      "after": " que c'est une bonne idée.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : personnel → personnellement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « personnel » ?"
+        }
+      }
+    },
+    {
+      "id": "q111",
+      "before": "Les enfants aiment ",
+      "after": " les sucreries.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : général → généralement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « général » ?"
+        }
+      }
+    },
+    {
+      "id": "q112",
+      "before": "Il a parlé ",
+      "after": " au professeur.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « insolent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (insolent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q113",
+      "before": "Il a agi ",
+      "after": " envers ses collègues.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « impudent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (impudent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q114",
+      "before": "C'est ",
+      "after": " une erreur de ma part.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « évident » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (évident) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q115",
+      "before": "Il a réagi ",
+      "after": " à cette provocation.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « violent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (violent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q116",
+      "before": "Il a ",
+      "after": " son travail.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « négligent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (négligent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q117",
+      "before": "Il a ",
+      "after": " réagi au problème.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « intelligent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (intelligent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q118",
+      "before": "Elle a joué ",
+      "after": " dans ce film.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « brillant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (brillant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q119",
+      "before": "Il parle plusieurs langues ",
+      "after": ".",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « courant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (courant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q120",
+      "before": "Je pense ",
+      "after": " à cette question.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « constant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (constant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q121",
+      "before": "Il a agi ",
+      "after": " envers la dame.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « galant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (galant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q122",
+      "before": "Elle lui a répondu ",
+      "after": ".",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « méchant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (méchant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q123",
+      "before": "Les enfants jouaient ",
+      "after": " dans le parc.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « bruyant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (bruyant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q124",
+      "before": "Il a été traité ",
+      "after": " par rapport aux autres candidats.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : spécial → spécialement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « spécial » ?"
+        }
+      }
+    },
+    {
+      "id": "q125",
+      "before": "Ce point est ",
+      "after": " important dans ce contexte.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : particulier → particulièrement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « particulier » ?"
+        }
+      }
+    },
+    {
+      "id": "q126",
+      "before": "Il sort ",
+      "after": " le matin pour faire son jogging.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : régulier → régulièrement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « régulier » ?"
+        }
+      }
+    },
+    {
+      "id": "q127",
+      "before": "Elle a ",
+      "after": " refusé cette offre.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : direct → directement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « direct » ?"
+        }
+      }
+    },
+    {
+      "id": "q128",
+      "before": "C'est ",
+      "after": " faux ce que tu dis.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : total → totalement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « total » ?"
+        }
+      }
+    },
+    {
+      "id": "q129",
+      "before": "Ils ont décidé ",
+      "after": " de poursuivre le projet.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : collectif → collectivement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « collectif » ?"
+        }
+      }
+    },
+    {
+      "id": "q130",
+      "before": "Elle participe ",
+      "after": " aux réunions.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : actif → activement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « actif » ?"
+        }
+      }
+    },
+    {
+      "id": "q131",
+      "before": "Il a réagi très ",
+      "after": " à cette critique.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : positif → positivement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « positif » ?"
+        }
+      }
+    },
+    {
+      "id": "q132",
+      "before": "Tes deux réponses sont ",
+      "after": " opposées.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « différent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (différent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q133",
+      "before": "Il la regardait ",
+      "after": " en silence.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « ardent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (ardent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q134",
+      "before": "Il a agi très ",
+      "after": " en refusant cette aide.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « imprudent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (imprudent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q135",
+      "before": "Il s'est conduit très ",
+      "after": " lors de cette réception.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « décent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (décent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q136",
+      "before": "Il a parlé ",
+      "after": " lors du débat.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « éloquent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (éloquent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q137",
+      "before": "C'est ",
+      "after": " une coïncidence que tu les aies croisés.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « apparent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (apparent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q138",
+      "before": "Elle a réagi ",
+      "after": " face à cette proposition.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « nonchalant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (nonchalant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q139",
+      "before": "Il l'appelle ",
+      "after": " au téléphone.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « incessant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (incessant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q140",
+      "before": "Elle sourit ",
+      "after": " en répondant à ses critiques.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « complaisant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (complaisant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q141",
+      "before": "Elle marche ",
+      "after": " vers la porte.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « pesant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (pesant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q142",
+      "before": "Il a ",
+      "after": " défendu sa cause.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « vaillant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (vaillant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q143",
+      "before": "Il a ",
+      "after": " utilisé les ressources disponibles.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « savant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (savant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q144",
+      "before": "Il a agi ",
+      "after": " en respectant les traditions.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "Radical « solennell » (solennel) + -ement = solennellement. On entend le son « -ement ».",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « solennel » ?"
+        }
+      }
+    },
+    {
+      "id": "q145",
+      "before": "C'est ",
+      "after": " la meilleure option pour réussir.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "Radical « certain » (certain) + -ement = certainement. On entend le son « -ement ».",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « certain » ?"
+        }
+      }
+    },
+    {
+      "id": "q146",
+      "before": "Elle a ",
+      "after": " fermé la porte derrière elle.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "Radical « ferm » (ferme) + -ement = fermement. On entend le son « -ement ».",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « ferme » ?"
+        }
+      }
+    },
+    {
+      "id": "q147",
+      "before": "Il a répondu ",
+      "after": " à notre question.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "Radical « honnêt » (honnête) + -ement = honnêtement. On entend le son « -ement ».",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « honnête » ?"
+        }
+      }
+    },
+    {
+      "id": "q148",
+      "before": "La situation est ",
+      "after": " préoccupante.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "Radical « grav » (grave) + -ement = gravement. On entend le son « -ement ».",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « grave » ?"
+        }
+      }
+    },
+    {
+      "id": "q149",
+      "before": "Chacun peut s'exprimer ",
+      "after": " dans cette démocratie.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "Radical « libr » (libre) + -ement = librement. On entend le son « -ement ».",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « libre » ?"
+        }
+      }
+    },
+    {
+      "id": "q150",
+      "before": "Elle a ",
+      "after": " affirmé son innocence.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "Radical « fauss » (faux) + -ement = faussement. On entend le son « -ement ».",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « faux » ?"
+        }
+      }
+    },
+    {
+      "id": "q151",
+      "before": "Il a réagi ",
+      "after": " à la proposition.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "Radical « négativ » (négatif → négative) + -ement = négativement. On entend le son « -ement ».",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « négatif » ?"
+        }
+      }
+    },
+    {
+      "id": "q152",
+      "before": "Je l'ai ",
+      "after": " rencontré hier soir.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -aman ». L'adjectif de base est « récent » (terminaison -ent) → on écrit -emment = récemment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (récent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q153",
+      "before": "Il agit ",
+      "after": " à ses principes moraux.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -aman ». L'adjectif de base est « conscient » (terminaison -ent) → on écrit -emment = consciemment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (conscient) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q154",
+      "before": "Le professeur traite ses élèves ",
+      "after": ".",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -aman ». L'adjectif de base est « indulgent » (terminaison -ent) → on écrit -emment = indulgemment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (indulgent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q155",
+      "before": "Elle a résolu le problème ",
+      "after": " et efficacement.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -aman ». L'adjectif de base est « compétent » (terminaison -ent) → on écrit -emment = compétemment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (compétent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q156",
+      "before": "Il attendait ",
+      "after": " le résultat des examens.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -aman ». L'adjectif de base est « impatient » (terminaison -ent) → on écrit -emment = impatiemment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (impatient) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q157",
+      "before": "Ces deux événements se produisent ",
+      "after": ".",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -aman ». L'adjectif de base est « fréquent » (terminaison -ent) → on écrit -emment = fréquemment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (fréquent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q158",
+      "before": "Elle s'habille ",
+      "after": " et avec raffinement.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -aman ». L'adjectif de base est « élégant » (terminaison -ant) → on écrit -amment = élégamment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (élégant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q159",
+      "before": "Il le supplia ",
+      "after": " de l'aider.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -aman ». L'adjectif de base est « instant » (terminaison -ant) → on écrit -amment = instamment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (instant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q160",
+      "before": "Il affiche ",
+      "after": " son mépris envers les autres.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -aman ». L'adjectif de base est « arrogant » (terminaison -ant) → on écrit -amment = arrogamment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (arrogant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q161",
+      "before": "C'est une violation ",
+      "after": " des règles établies.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -aman ». L'adjectif de base est « flagrant » (terminaison -ant) → on écrit -amment = flagramment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (flagrant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q162",
+      "before": "La loi exige qu'on traite ",
+      "after": " les différences culturelles.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -aman ». L'adjectif de base est « tolérant » (terminaison -ant) → on écrit -amment = toléramment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (tolérant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q163",
+      "before": "Il la critique ",
+      "after": " dans ses commentaires.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -aman ». L'adjectif de base est « mordant » (terminaison -ant) → on écrit -amment = mordamment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (mordant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q164",
+      "before": "Elle a expliqué ses raisons ",
+      "after": "",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : brève → brièvement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « brève » ?"
+        }
+      }
+    },
+    {
+      "id": "q165",
+      "before": "Il a réagi ",
+      "after": " à cette critique.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : naïf → naïvement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « naïf » ?"
+        }
+      }
+    },
+    {
+      "id": "q166",
+      "before": "Elle le regarde ",
+      "after": ".",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : tendre → tendrement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « tendre » ?"
+        }
+      }
+    },
+    {
+      "id": "q167",
+      "before": "Il soupire ",
+      "after": " en regardant dehors.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : triste → tristement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « triste » ?"
+        }
+      }
+    },
+    {
+      "id": "q168",
+      "before": "Le poids a diminué ",
+      "after": ".",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : léger → légèrement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « léger » ?"
+        }
+      }
+    },
+    {
+      "id": "q169",
+      "before": "Elle dit ",
+      "after": " qu'elle ne peut pas venir.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : sincère → sincèrement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « sincère » ?"
+        }
+      }
+    },
+    {
+      "id": "q170",
+      "before": "C'est ",
+      "after": " ce qu'il a demandé.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : bizarre → bizarrement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « bizarre » ?"
+        }
+      }
+    },
+    {
+      "id": "q171",
+      "before": "Il a ",
+      "after": " examiné le document.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : soigneux → soigneusement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « soigneux » ?"
+        }
+      }
+    },
+    {
+      "id": "q172",
+      "before": "Il faut agir ",
+      "after": " dans cette situation.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « urgent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (urgent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q173",
+      "before": "Il a ",
+      "after": " soulevé une excellente question.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « pertinent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (pertinent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q174",
+      "before": "C'est arrivé ",
+      "after": " au cours de la réunion.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « incident » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (incident) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q175",
+      "before": "Il vit ",
+      "after": " malgré ses origines modestes.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « opulent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (opulent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q176",
+      "before": "Il agit ",
+      "after": ", sans logique cohérente.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « incohérent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (incohérent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q177",
+      "before": "Elle a ",
+      "after": " ignoré toutes les remarques.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « indifférent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (indifférent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q178",
+      "before": "Il cria ",
+      "after": " sa victoire.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « triomphant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (triomphant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q179",
+      "before": "Elle s'est jeté ",
+      "after": " dans le vide.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « précipitant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (précipitant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q180",
+      "before": "Elle le supplie ",
+      "after": " de revenir.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « poignant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (poignant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q181",
+      "before": "Il demande ",
+      "after": " qu'on lui réponde.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « pressant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (pressant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q182",
+      "before": "Il agit ",
+      "after": " sans connaître les conséquences.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « ignorant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (ignorant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q183",
+      "before": "Il parla ",
+      "after": " de ses aventures.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « plaisant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (plaisant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q184",
+      "before": "Il a agi très ",
+      "after": " dans cette situation.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : complet → complètement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « complet » ?"
+        }
+      }
+    },
+    {
+      "id": "q185",
+      "before": "Il l'a traitée ",
+      "after": " sans égards.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : rude → rudement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « rude » ?"
+        }
+      }
+    },
+    {
+      "id": "q186",
+      "before": "Il reviendra ",
+      "after": " demain.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : sûr → sûrement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « sûr » ?"
+        }
+      }
+    },
+    {
+      "id": "q187",
+      "before": "Elle est tombée ",
+      "after": " sur le sol.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : lourd → lourdement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « lourd » ?"
+        }
+      }
+    },
+    {
+      "id": "q188",
+      "before": "Il s'est comporté ",
+      "after": " dans cette réunion.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : discret → discrètement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « discret » ?"
+        }
+      }
+    },
+    {
+      "id": "q189",
+      "before": "Elle a agit ",
+      "after": " pour ne pas se faire remarquer.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : secret → secrètement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « secret » ?"
+        }
+      }
+    },
+    {
+      "id": "q190",
+      "before": "Il a expliqué ",
+      "after": " les raisons de sa décision.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : concret → concrètement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « concret » ?"
+        }
+      }
+    },
+    {
+      "id": "q191",
+      "before": "",
+      "after": ", nous avons réussi le projet.",
+      "answer": "ement",
+      "difficulty": 1,
+      "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : heureux → heureusement)",
+      "axisHints": {
+        "son": {
+          "question": "Comment prononces-tu la fin de l'adverbe de « heureux » ?"
+        }
+      }
+    },
+    {
+      "id": "q192",
+      "before": "C'est une personnalité ",
+      "after": " reconnue dans le domaine.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « éminent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (éminent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q193",
+      "before": "Ces deux processus fonctionnent ",
+      "after": " sans interférence.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « concurrent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (concurrent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q194",
+      "before": "Il a agi ",
+      "after": " avec sa philosophie.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « conséquent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (conséquent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q195",
+      "before": "Il s'est ",
+      "after": " présenté aux accusations.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « innocent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (innocent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q196",
+      "before": "Le système s'améliore ",
+      "after": ", année après année.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « récurrent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (récurrent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q197",
+      "before": "Elle a présenté ses idées ",
+      "after": " avec le cadre théorique.",
+      "answer": "emment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « cohérent » (terminaison -ent) → on écrit -emment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (cohérent) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q198",
+      "before": "La région a été ",
+      "after": " dotée de ressources naturelles.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « surabondant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (surabondant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q199",
+      "before": "Il a frappé ",
+      "after": " à la porte.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « puissant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (puissant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q200",
+      "before": "Le chevalier a défendu l'honneur ",
+      "after": ".",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « galant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (galant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q201",
+      "before": "Elle affirme ",
+      "after": " sa position dans le débat.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « constant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (constant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q202",
+      "before": "Il a présenté son travail ",
+      "after": " devant l'assemblée.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « brillant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (brillant) se termine par…"
+        }
+      }
+    },
+    {
+      "id": "q203",
+      "before": "Il a débattu ",
+      "after": " de politique dans cet ouvrage.",
+      "answer": "amment",
+      "difficulty": 2,
+      "explanation": "On entend « -ament ». L'adjectif de base est « savant » (terminaison -ant) → on écrit -amment.",
+      "axisHints": {
+        "adjectifBase": {
+          "question": "L'adjectif de base (savant) se termine par…"
+        }
+      }
+    }
+  ],
+  "group": "legende"
+}

@@ -1,0 +1,1717 @@
+{
+  "id": "g-gu-ge",
+  "title": "g · gu · ge",
+  "shortTitle": "g / gu / ge",
+  "description": "Choisir entre g, gu et ge selon le son entendu (g dur 'gueu' ou g doux 'je') et la voyelle qui suit (a/o/u ou e/i/y).",
+  "choices": [
+    {
+      "id": "g",
+      "label": "g"
+    },
+    {
+      "id": "gu",
+      "label": "gu"
+    },
+    {
+      "id": "ge",
+      "label": "ge"
+    }
+  ],
+  "decisionAxes": [
+    {
+      "id": "son",
+      "question": "Quel son entends-tu juste avant la voyelle ?",
+      "sub": "Écoute bien : son 'gueu' (dur) ou son 'je' (doux) ?",
+      "options": [
+        {
+          "value": true,
+          "label": "[g] dur — comme dans 'gare', 'gomme', 'guirlande'",
+          "eliminates": [
+            "ge"
+          ]
+        },
+        {
+          "value": false,
+          "label": "[ʒ] doux — comme dans 'jardin', 'girafe', 'mangeons'",
+          "eliminates": [
+            "gu"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voyelleDur",
+      "question": "Quelle voyelle vois-tu juste après le trou ?",
+      "sub": "Regarde la première lettre qui suit le blanc.",
+      "dependsOn": "son",
+      "showWhen": true,
+      "options": [
+        {
+          "value": "ouverte",
+          "label": "a, o, u ou consonne ",
+          "eliminates": [
+            "gu"
+          ]
+        },
+        {
+          "value": "fermee",
+          "label": "e, i, y, é, è, ê ",
+          "eliminates": [
+            "g"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "voyelleDoux",
+      "question": "Quelle voyelle vois-tu juste après le trou ?",
+      "sub": "Regarde la première lettre qui suit le blanc.",
+      "dependsOn": "son",
+      "showWhen": false,
+      "options": [
+        {
+          "value": "ouverte",
+          "label": "a, o, u ",
+          "eliminates": [
+            "g"
+          ]
+        },
+        {
+          "value": "fermee",
+          "label": "e, i, y, é → g (girafe, genou)",
+          "eliminates": [
+            "ge"
+          ]
+        }
+      ]
+    }
+  ],
+  "memoCard": {
+    "title": "Le son g en un coup d'œil",
+    "rows": [
+      {
+        "form": "g (dur)",
+        "test": "[g] + a, o, u ou consonne",
+        "example": "gare, gomme, gros"
+      },
+      {
+        "form": "gu (dur)",
+        "test": "[g] + e, i, y (le u durcit le g)",
+        "example": "guirlande, guitare, guêpe"
+      },
+      {
+        "form": "ge (doux)",
+        "test": "[ʒ] + a, o, u (le e adoucit le g)",
+        "example": "bourgeois, pigeon, mangeons"
+      },
+      {
+        "form": "g (doux)",
+        "test": "[ʒ] + e, i, y, é, è",
+        "example": "girafe, genou, gilet, géant"
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "before": "Le train arrive à la ",
+      "after": "are à 18 heures.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "On entend le son [g] dur (gueu) suivi d'un 'a' → on écrit simplement 'g' (gare)."
+    },
+    {
+      "id": "q002",
+      "before": "J'ai oublié ma ",
+      "after": "omme dans la trousse.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'o' → 'g' tout seul (gomme). Pas besoin de 'u' devant a/o/u."
+    },
+    {
+      "id": "q003",
+      "before": "Mon petit frère est très ",
+      "after": "ourmand devant les bonbons.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'ou' → 'g' simple (gourmand)."
+    },
+    {
+      "id": "q004",
+      "before": "Maman a fait une ",
+      "after": "alette des Rois ce week-end.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'a' → 'g' simple (galette)."
+    },
+    {
+      "id": "q005",
+      "before": "Mon oncle joue au ",
+      "after": "olf le dimanche matin.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'o' → 'g' simple (golf)."
+    },
+    {
+      "id": "q006",
+      "before": "La ",
+      "after": "irlande brille sur le sapin de Noël.",
+      "answer": "gu",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'i' → on écrit 'gu' : le 'u' sert à durcir le 'g' (sinon 'girlande' se lirait avec un g doux)."
+    },
+    {
+      "id": "q007",
+      "before": "Mon frère apprend à jouer de la ",
+      "after": "itare.",
+      "answer": "gu",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'i' → 'gu' (guitare). Le 'u' durcit le 'g'."
+    },
+    {
+      "id": "q008",
+      "before": "Une ",
+      "after": "êpe a piqué Léa dans le jardin.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'ê' → 'gu' (guêpe). Le 'u' durcit le 'g' devant ê comme devant e/i."
+    },
+    {
+      "id": "q009",
+      "before": "Tiens bien le ",
+      "after": "idon de ton vélo.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'i' → 'gu' (guidon)."
+    },
+    {
+      "id": "q010",
+      "before": "Le boulanger sort une ba",
+      "after": "ette toute chaude du four.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Au milieu du mot, son [g] dur + 'e' → 'gu' (baguette). Le 'u' durcit le 'g' devant e."
+    },
+    {
+      "id": "q011",
+      "before": "Le quartier bour",
+      "after": "ois est très calme le dimanche.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'o' → on écrit 'ge' : le 'e' sert à adoucir le 'g' (sinon 'bourgois' se lirait avec un g dur)."
+    },
+    {
+      "id": "q012",
+      "before": "Un pi",
+      "after": "on s'est posé sur le balcon.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'o' → 'ge' (pigeon). Le 'e' adoucit le 'g'."
+    },
+    {
+      "id": "q013",
+      "before": "Le sportif a fait un beau plon",
+      "after": "on dans la piscine.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'o' → 'ge' (plongeon). Sans le 'e', on lirait 'plongon' avec un g dur."
+    },
+    {
+      "id": "q014",
+      "before": "Nous man",
+      "after": "ons une pizza ce soir.",
+      "answer": "ge",
+      "difficulty": 3,
+      "explanation": "Verbe 'manger' à la 1re personne du pluriel : on garde le 'e' (mangeons) pour conserver le son [ʒ] devant 'ons'."
+    },
+    {
+      "id": "q015",
+      "before": "Nous na",
+      "after": "ons à la piscine le mercredi.",
+      "answer": "ge",
+      "difficulty": 3,
+      "explanation": "Verbe 'nager' : son [ʒ] + 'ons' → 'ge' (nageons), comme pour mangeons."
+    },
+    {
+      "id": "q016",
+      "before": "La ",
+      "after": "irafe a un très long cou.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'i' → 'g' tout seul (girafe). Devant i, le 'g' se prononce naturellement [ʒ]."
+    },
+    {
+      "id": "q017",
+      "before": "Léo s'est cogné le ",
+      "after": "enou contre la table.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'e' → 'g' simple (genou). Devant e, le 'g' se prononce [ʒ]."
+    },
+    {
+      "id": "q018",
+      "before": "Mets ton ",
+      "after": "ilet, il fait froid dehors.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'i' → 'g' simple (gilet)."
+    },
+    {
+      "id": "q019",
+      "before": "Le cours d'EPS a lieu au ",
+      "after": "ymnase.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'y' → 'g' simple (gymnase). Devant y, le 'g' se prononce [ʒ] comme devant i."
+    },
+    {
+      "id": "q020",
+      "before": "Le ",
+      "after": "éant de l'histoire fait peur aux enfants.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'é' → 'g' simple (géant)."
+    },
+    {
+      "id": "q021",
+      "before": "Le ",
+      "after": "arçon a marqué un superbe but.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'a' → g simple (garçon)."
+    },
+    {
+      "id": "q022",
+      "before": "Ma mère a cuisiné une ",
+      "after": "alette des Rois pour toute la famille.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'a' → g simple (galette)."
+    },
+    {
+      "id": "q023",
+      "before": "Papa a garé la voiture dans le ",
+      "after": "arage de l'immeuble.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'a' → g simple (garage)."
+    },
+    {
+      "id": "q024",
+      "before": "Le jardinier tond le ",
+      "after": "azon chaque samedi matin.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'a' → g simple (gazon)."
+    },
+    {
+      "id": "q025",
+      "before": "Pour Noël, j'ai reçu une paire de ",
+      "after": "ants en laine.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'a' → g simple (gants)."
+    },
+    {
+      "id": "q026",
+      "before": "Mamie a préparé un délicieux ",
+      "after": "âteau au chocolat.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'â' → g simple (gâteau)."
+    },
+    {
+      "id": "q027",
+      "before": "Le ",
+      "after": "ardien de but a arrêté le tir au dernier moment.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'a' → g simple (gardien)."
+    },
+    {
+      "id": "q028",
+      "before": "La ",
+      "after": "alerie marchande est fermée le dimanche.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'a' → g simple (galerie)."
+    },
+    {
+      "id": "q029",
+      "before": "Mon frère a mordu dans une ",
+      "after": "aufre croustillante.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'au' → g simple (gaufre)."
+    },
+    {
+      "id": "q030",
+      "before": "La ",
+      "after": "are de Lyon est un hub ferroviaire majeur.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'a' → g simple (gare)."
+    },
+    {
+      "id": "q031",
+      "before": "Papa joue au ",
+      "after": "olf tous les samedis matin.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'o' → g simple (golf)."
+    },
+    {
+      "id": "q032",
+      "before": "Au zoo, le ",
+      "after": "orille mange des bananes avec ses mains.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'o' → g simple (gorille)."
+    },
+    {
+      "id": "q033",
+      "before": "J'ai oublié ma ",
+      "after": "omme dans ma trousse ce matin.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'o' → g simple (gomme)."
+    },
+    {
+      "id": "q034",
+      "before": "La randonnée longe la ",
+      "after": "orge du Verdon sur dix kilomètres.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'o' → g simple (gorge). Le mot commence par [g] dur + 'o'."
+    },
+    {
+      "id": "q035",
+      "before": "La voiture a glissé sur la ",
+      "after": "lace du parking ce matin.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'l' (consonne) → g simple (glace : g+lace)."
+    },
+    {
+      "id": "q036",
+      "before": "Nous avons traversé un immense ",
+      "after": "lacier dans les Alpes.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'l' (consonne) → g simple (glacier : g+lacier)."
+    },
+    {
+      "id": "q037",
+      "before": "La ",
+      "after": "renouille a plongé dans l'étang avec un plouf.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grenouille)."
+    },
+    {
+      "id": "q038",
+      "before": "Le ",
+      "after": "rillon chante toute la nuit dans les herbes.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grillon)."
+    },
+    {
+      "id": "q039",
+      "before": "Il a fait une ",
+      "after": "rosse erreur dans son calcul.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grosse)."
+    },
+    {
+      "id": "q040",
+      "before": "Il portait un très ",
+      "after": "rand sac à dos orange.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grand)."
+    },
+    {
+      "id": "q041",
+      "before": "La ",
+      "after": "lycine fleurit en mauve chaque printemps.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'l' (consonne) → g simple (glycine)."
+    },
+    {
+      "id": "q042",
+      "before": "Le ",
+      "after": "lobe terrestre représente tous les continents.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'l' (consonne) → g simple (globe)."
+    },
+    {
+      "id": "q043",
+      "before": "Nous révisons la ",
+      "after": "rammaire avant le contrôle.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grammaire)."
+    },
+    {
+      "id": "q044",
+      "before": "Le professeur a dessiné un ",
+      "after": "raphique au tableau.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (graphique)."
+    },
+    {
+      "id": "q045",
+      "before": "Tous les élèves travaillent en ",
+      "after": "roupe.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (groupe)."
+    },
+    {
+      "id": "q046",
+      "before": "Le chat s'est réfugié dans la ",
+      "after": "rotte au fond du jardin.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grotte)."
+    },
+    {
+      "id": "q047",
+      "before": "Ce repas était un vrai ré",
+      "after": "al pour les invités.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'a' → g simple (régal : ré+g+al). Même règle en milieu de mot."
+    },
+    {
+      "id": "q048",
+      "before": "Léa a jeté un re",
+      "after": "ard attendri vers son chaton.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'a' → g simple (regard : re+g+ard)."
+    },
+    {
+      "id": "q049",
+      "before": "Les pompiers ont réussi à dé",
+      "after": "ager les victimes de la voiture.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'a' → g simple (dégager : dé+g+ager)."
+    },
+    {
+      "id": "q050",
+      "before": "Les alpinistes ont dé",
+      "after": "agé la piste de glace.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'a' → g simple (dégagé : dé+g+agé)."
+    },
+    {
+      "id": "q051",
+      "before": "Mon frère apprend à jouer de la ",
+      "after": "itare depuis trois mois.",
+      "answer": "gu",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'i' → gu (guitare). Le 'u' empêche le 'g' de sonner [ʒ] devant 'i'."
+    },
+    {
+      "id": "q052",
+      "before": "La ",
+      "after": "irlande lumineuse décore le sapin de Noël.",
+      "answer": "gu",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'i' → gu (guirlande)."
+    },
+    {
+      "id": "q053",
+      "before": "Tiens bien le ",
+      "after": "idon de ton vélo dans les descentes.",
+      "answer": "gu",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'i' → gu (guidon)."
+    },
+    {
+      "id": "q054",
+      "before": "Notre ",
+      "after": "ide nous a emmenés jusqu'au sommet de la montagne.",
+      "answer": "gu",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'i' → gu (guide)."
+    },
+    {
+      "id": "q055",
+      "before": "Les enfants ont adoré le spectacle de ",
+      "after": "ignol au parc.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'i' → gu (guignol)."
+    },
+    {
+      "id": "q056",
+      "before": "Le professeur allait ",
+      "after": "ider les élèves dans l'exercice.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'i' → gu (guider : gu+ider)."
+    },
+    {
+      "id": "q057",
+      "before": "La ",
+      "after": "erre de 1914 a duré quatre longues années.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'e' → gu (guerre). Sans 'u', 'ge' se lirait [ʒ]."
+    },
+    {
+      "id": "q058",
+      "before": "Le médecin a mis six semaines pour le ",
+      "after": "érir complètement.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'é' → gu (guérir). Devant 'é', le 'u' maintient le son dur."
+    },
+    {
+      "id": "q059",
+      "before": "Une ",
+      "after": "êpe a piqué la main de Tom dans le jardin.",
+      "answer": "gu",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'ê' → gu (guêpe)."
+    },
+    {
+      "id": "q060",
+      "before": "Un vieux ",
+      "after": "éridon trônait au milieu du salon.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'é' → gu (guéridon). Mot rare, la règle s'applique toujours."
+    },
+    {
+      "id": "q061",
+      "before": "La ",
+      "after": "inguette animait tout le village le dimanche.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'i' → gu (guinguette)."
+    },
+    {
+      "id": "q062",
+      "before": "Le boulanger sort une ba",
+      "after": "ette bien dorée du four.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'e' → gu (baguette : ba+gu+ette). Le 'u' durcit le 'g' devant 'e'."
+    },
+    {
+      "id": "q063",
+      "before": "Je commence à ressentir de la fati",
+      "after": "e en fin de journée.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'e' → gu (fatigue : fati+gu+e)."
+    },
+    {
+      "id": "q064",
+      "before": "Le musée possède un remarquable catalo",
+      "after": "e de sculptures antiques.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'e' → gu (catalogue : catalo+gu+e)."
+    },
+    {
+      "id": "q065",
+      "before": "Les personnages ont eu un long dialo",
+      "after": "e sur la scène.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'e' → gu (dialogue : dialo+gu+e)."
+    },
+    {
+      "id": "q066",
+      "before": "Il parle trois lan",
+      "after": "es différentes couramment.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'e' → gu (langues : lan+gu+es)."
+    },
+    {
+      "id": "q067",
+      "before": "Maman porte une jolie ba",
+      "after": "e en argent à l'annulaire.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'e' → gu (bague : ba+gu+e)."
+    },
+    {
+      "id": "q068",
+      "before": "La di",
+      "after": "e protège le village des crues de la rivière.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'e' → gu (digue : di+gu+e)."
+    },
+    {
+      "id": "q069",
+      "before": "Une fi",
+      "after": "e mûre cueillie directement à l'arbre, c'est délicieux.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'e' → gu (figue : fi+gu+e)."
+    },
+    {
+      "id": "q070",
+      "before": "Une énorme va",
+      "after": "e a déferlé sur la plage.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'e' → gu (vague : va+gu+e)."
+    },
+    {
+      "id": "q071",
+      "before": "La li",
+      "after": "e des nations réunit plusieurs pays.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'e' → gu (ligue : li+gu+e)."
+    },
+    {
+      "id": "q072",
+      "before": "L'épilo",
+      "after": "e du roman nous a beaucoup surpris.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'e' → gu (épilogue : épilo+gu+e)."
+    },
+    {
+      "id": "q073",
+      "before": "Ce monolo",
+      "after": "e a duré plus de dix minutes.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'e' → gu (monologue : monolo+gu+e)."
+    },
+    {
+      "id": "q074",
+      "before": "Apprenez votre lon",
+      "after": "eur avant le cours de géométrie.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'eu' → gu (longueur : lon+gu+eur). Le 'u' maintient le son dur."
+    },
+    {
+      "id": "q075",
+      "before": "La lar",
+      "after": "eur de cette rue est insuffisante pour deux voitures.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (largeur : lar+g+eur). Même 'g' que dans 'large'."
+    },
+    {
+      "id": "q076",
+      "before": "Nous man",
+      "after": "ons une bonne raclette ce soir.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Verbe manger → nous mangeons : son [ʒ] doux + 'o' → ge. Le 'e' conserve le son doux devant 'o'."
+    },
+    {
+      "id": "q077",
+      "before": "Nous na",
+      "after": "ons dans la piscine chaque mercredi.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Verbe nager → nous nageons : son [ʒ] doux + 'o' → ge."
+    },
+    {
+      "id": "q078",
+      "before": "Nous chan",
+      "after": "ons de train à Lyon.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Verbe changer → nous changeons : son [ʒ] doux + 'o' → ge."
+    },
+    {
+      "id": "q079",
+      "before": "Nous plon",
+      "after": "ons du grand plongeoir en été.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Verbe plonger → nous plongeons : son [ʒ] doux + 'o' → ge."
+    },
+    {
+      "id": "q080",
+      "before": "Nous voya",
+      "after": "ons en train tous les étés.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Verbe voyager → nous voyageons : son [ʒ] doux + 'o' → ge."
+    },
+    {
+      "id": "q081",
+      "before": "Nous parta",
+      "after": "ons la pizza en parts égales.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Verbe partager → nous partageons : son [ʒ] doux + 'o' → ge."
+    },
+    {
+      "id": "q082",
+      "before": "Nous bou",
+      "after": "ons chaque soir pour rester en forme.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Verbe bouger → nous bougeons : son [ʒ] doux + 'o' → ge."
+    },
+    {
+      "id": "q083",
+      "before": "Nous lo",
+      "after": "ons dans un appartement au troisième étage.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Verbe loger → nous logeons : son [ʒ] doux + 'o' → ge."
+    },
+    {
+      "id": "q084",
+      "before": "Nous ran",
+      "after": "ons nos affaires avant de partir.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Verbe ranger → nous rangeons : son [ʒ] doux + 'o' → ge."
+    },
+    {
+      "id": "q085",
+      "before": "Nous déména",
+      "after": "ons dans notre nouvelle maison samedi.",
+      "answer": "ge",
+      "difficulty": 3,
+      "explanation": "Verbe déménager → nous déménageons : son [ʒ] doux + 'o' → ge."
+    },
+    {
+      "id": "q086",
+      "before": "Nous héber",
+      "after": "ons nos cousins pendant les vacances.",
+      "answer": "ge",
+      "difficulty": 3,
+      "explanation": "Verbe héberger → nous hébergeons : son [ʒ] doux + 'o' → ge."
+    },
+    {
+      "id": "q087",
+      "before": "Nous exi",
+      "after": "ons la ponctualité de tous les élèves.",
+      "answer": "ge",
+      "difficulty": 3,
+      "explanation": "Verbe exiger → nous exigeons : son [ʒ] doux + 'o' → ge."
+    },
+    {
+      "id": "q088",
+      "before": "Nous corri",
+      "after": "ons les copies avant demain.",
+      "answer": "ge",
+      "difficulty": 3,
+      "explanation": "Verbe corriger → nous corrigeons : son [ʒ] doux + 'o' → ge (corri+ge+ons)."
+    },
+    {
+      "id": "q089",
+      "before": "Nous ména",
+      "after": "ons nos forces pour la fin de course.",
+      "answer": "ge",
+      "difficulty": 3,
+      "explanation": "Verbe ménager → nous ménageons : son [ʒ] doux + 'o' → ge."
+    },
+    {
+      "id": "q090",
+      "before": "Nous diri",
+      "after": "ons le projet depuis le début.",
+      "answer": "ge",
+      "difficulty": 3,
+      "explanation": "Verbe diriger → nous dirigeons : son [ʒ] doux + 'o' → ge (diri+ge+ons)."
+    },
+    {
+      "id": "q091",
+      "before": "Un pi",
+      "after": "on blanc s'est posé sur le rebord de la fenêtre.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'o' → ge (pigeon : pi+ge+on)."
+    },
+    {
+      "id": "q092",
+      "before": "Le sportif a réalisé un plon",
+      "after": "on parfait, sans éclaboussures.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'o' → ge (plongeon : plon+ge+on)."
+    },
+    {
+      "id": "q093",
+      "before": "Au printemps, le bour",
+      "after": "on des cerisiers commence à s'ouvrir.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'o' → ge (bourgeon : bour+ge+on)."
+    },
+    {
+      "id": "q094",
+      "before": "Le quartier bour",
+      "after": "eois de la ville est très calme le week-end.",
+      "answer": "g",
+      "difficulty": 3,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (bourgeois : bour+g+eois)."
+    },
+    {
+      "id": "q095",
+      "before": "Une oran",
+      "after": "ade bien fraîche désaltère après le sport.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'a' → ge (orangeade : oran+ge+ade)."
+    },
+    {
+      "id": "q096",
+      "before": "La ven",
+      "after": "ance est un sentiment qui ronge.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'a' → ge (vengeance : ven+ge+ance)."
+    },
+    {
+      "id": "q097",
+      "before": "Le na",
+      "after": "ur a terminé la course en deuxième position.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'u' → ge (nageur : na+ge+ur). Le son doux + 'u' → ge."
+    },
+    {
+      "id": "q098",
+      "before": "Le plon",
+      "after": "ur a battu le record de profondeur.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'u' → ge (plongeur : plon+ge+ur)."
+    },
+    {
+      "id": "q099",
+      "before": "Les na",
+      "after": "oires de la raie servent de propulseurs.",
+      "answer": "ge",
+      "difficulty": 3,
+      "explanation": "Son [ʒ] doux + 'oi' → ge (nageoires : na+ge+oires)."
+    },
+    {
+      "id": "q100",
+      "before": "Un menson",
+      "after": "e ne profite jamais longtemps.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (mensonge : menson+g+e)."
+    },
+    {
+      "id": "q101",
+      "before": "Léo s'est cogné le ",
+      "after": "enou contre le bord de la table.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (genou). Devant 'e', le 'g' sonne [ʒ] naturellement."
+    },
+    {
+      "id": "q102",
+      "before": "Un ",
+      "after": "el transparent maintient la coiffure en place.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (gel)."
+    },
+    {
+      "id": "q103",
+      "before": "La ",
+      "after": "elée blanche a brûlé les fleurs ce matin.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (gelée)."
+    },
+    {
+      "id": "q104",
+      "before": "Le ",
+      "after": "este du chef d'orchestre guidait les musiciens.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (geste)."
+    },
+    {
+      "id": "q105",
+      "before": "La ",
+      "after": "estion du temps est une compétence essentielle.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (gestion)."
+    },
+    {
+      "id": "q106",
+      "before": "Le roman policier est un ",
+      "after": "enre littéraire très populaire.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (genre)."
+    },
+    {
+      "id": "q107",
+      "before": "Le ",
+      "after": "eai des chênes est un oiseau aux couleurs vives.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (geai). Ne pas confondre avec 'j'."
+    },
+    {
+      "id": "q108",
+      "before": "La ",
+      "after": "irafe peut mesurer jusqu'à six mètres de hauteur.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'i' → g simple (girafe). Devant 'i', le 'g' sonne [ʒ] naturellement."
+    },
+    {
+      "id": "q109",
+      "before": "Mets ton ",
+      "after": "ilet, il fait vraiment froid ce matin.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'i' → g simple (gilet)."
+    },
+    {
+      "id": "q110",
+      "before": "En hiver, le ",
+      "after": "ivre recouvre les vitres des voitures.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'i' → g simple (givre)."
+    },
+    {
+      "id": "q111",
+      "before": "La ",
+      "after": "irouette sur le clocher indique la direction du vent.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'i' → g simple (girouette)."
+    },
+    {
+      "id": "q112",
+      "before": "L'agneau rôti au ",
+      "after": "igot est un plat traditionnel de fête.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'i' → g simple (gigot)."
+    },
+    {
+      "id": "q113",
+      "before": "Le bébé ",
+      "after": "igotait dans son berceau.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'i' → g simple (gigotait)."
+    },
+    {
+      "id": "q114",
+      "before": "Les cours d'EPS se déroulent au ",
+      "after": "ymnase.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'y' → g simple (gymnase). Devant 'y', le 'g' sonne comme devant 'i'."
+    },
+    {
+      "id": "q115",
+      "before": "La jeune ",
+      "after": "ymnaste a réalisé une figure parfaite.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'y' → g simple (gymnaste)."
+    },
+    {
+      "id": "q116",
+      "before": "Le ",
+      "after": "éant de la forêt abattit un chêne d'un seul coup.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (géant)."
+    },
+    {
+      "id": "q117",
+      "before": "La ",
+      "after": "éographie est ma matière préférée cette année.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (géographie)."
+    },
+    {
+      "id": "q118",
+      "before": "Nous étudions la ",
+      "after": "éologie des volcans en SVT.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (géologie)."
+    },
+    {
+      "id": "q119",
+      "before": "La ",
+      "after": "éométrie permet de calculer des angles et des surfaces.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (géométrie)."
+    },
+    {
+      "id": "q120",
+      "before": "Cet élève est un vrai ",
+      "after": "énie en mathématiques.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (génie)."
+    },
+    {
+      "id": "q121",
+      "before": "La nouvelle ",
+      "after": "énération est très à l'aise avec le numérique.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (génération)."
+    },
+    {
+      "id": "q122",
+      "before": "Il faut apprendre à ",
+      "after": "érer son stress avant les examens.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (gérer)."
+    },
+    {
+      "id": "q123",
+      "before": "Le ",
+      "after": "érant de la résidence nous a accueillis chaleureusement.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (gérant)."
+    },
+    {
+      "id": "q124",
+      "before": "Nous jouons sur la pla",
+      "after": "e de sable fin en été.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (plage : pla+g+e)."
+    },
+    {
+      "id": "q125",
+      "before": "La nei",
+      "after": "e recouvre les toits depuis cette nuit.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (neige : nei+g+e)."
+    },
+    {
+      "id": "q126",
+      "before": "L'oiseau chante dans sa ca",
+      "after": "e dorée.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (cage : ca+g+e)."
+    },
+    {
+      "id": "q127",
+      "before": "Cet enfant est très sa",
+      "after": "e à l'école.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (sage : sa+g+e)."
+    },
+    {
+      "id": "q128",
+      "before": "Les enfants adorent le mané",
+      "after": "e du parc d'attractions.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (manège : mané+g+e)."
+    },
+    {
+      "id": "q129",
+      "before": "Cette ima",
+      "after": "e en couleur est très réussie.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (image : ima+g+e)."
+    },
+    {
+      "id": "q130",
+      "before": "Les élèves du collè",
+      "after": "e passent le brevet cette année.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'è' → g simple (collège : collè+g+e)."
+    },
+    {
+      "id": "q131",
+      "before": "Un pié",
+      "after": "e l'attendait derrière la porte.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'è' → g simple (piège : pié+g+e)."
+    },
+    {
+      "id": "q132",
+      "before": "Il a trouvé un sié",
+      "after": "e libre dans le TGV.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'è' → g simple (siège : sié+g+e)."
+    },
+    {
+      "id": "q133",
+      "before": "Maman fait le ména",
+      "after": "e chaque matin avant de partir.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (ménage : ména+g+e)."
+    },
+    {
+      "id": "q134",
+      "before": "La ti",
+      "after": "e de la rose est très épineuse.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (tige : ti+g+e)."
+    },
+    {
+      "id": "q135",
+      "before": "Nous avons fait le voya",
+      "after": "e en train jusqu'à Marseille.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (voyage : voya+g+e)."
+    },
+    {
+      "id": "q136",
+      "before": "Il a préparé un froma",
+      "after": "e de chèvre pour l'apéritif.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (fromage : froma+g+e)."
+    },
+    {
+      "id": "q137",
+      "before": "Ils habitent au troisième éta",
+      "after": "e de l'immeuble.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (étage : éta+g+e)."
+    },
+    {
+      "id": "q138",
+      "before": "Le pota",
+      "after": "e de légumes chauffe doucement sur le feu.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (potage : pota+g+e)."
+    },
+    {
+      "id": "q139",
+      "before": "Ce comédien interprète un vrai personna",
+      "after": "e attachant dans ce film.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (personnage : personna+g+e)."
+    },
+    {
+      "id": "q140",
+      "before": "Le paysage de montagne offre un ma",
+      "after": "nifique panorama.",
+      "answer": "g",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'n' (consonne) → g simple (magnifique : ma+g+nifique)."
+    },
+    {
+      "id": "q141",
+      "before": "Les cours de ",
+      "after": "ymnastique ont lieu le jeudi.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'y' → g simple (gymnastique)."
+    },
+    {
+      "id": "q142",
+      "before": "Le ",
+      "after": "olfeur a réussi un excellent coup de départ.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'o' → g simple (golfeur)."
+    },
+    {
+      "id": "q143",
+      "before": "L'équipe s'est entraînée avec ",
+      "after": "rand sérieux.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grand)."
+    },
+    {
+      "id": "q144",
+      "before": "La ",
+      "after": "alerie de tir était très fréquentée ce matin.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'a' → g simple (galerie)."
+    },
+    {
+      "id": "q145",
+      "before": "La ",
+      "after": "azelle bondit avec grâce à travers la savane.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'a' → g simple (gazelle). Le 'g' est dur devant 'a'."
+    },
+    {
+      "id": "q146",
+      "before": "En Islande, le ",
+      "after": "eyser jaillit toutes les cinq minutes.",
+      "answer": "g",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'e' → attention ! 'geyser' est un mot d'emprunt islandais, il s'écrit 'g' même devant 'e' : [g] dur + 'ey'. Cas exceptionnel à retenir."
+    },
+    {
+      "id": "q147",
+      "before": "En janvier, le ",
+      "after": "ivre couvre les vitres la nuit.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'i' → g simple (givre)."
+    },
+    {
+      "id": "q148",
+      "before": "Les ",
+      "after": "laçons pendent du toit après le gel.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'l' (consonne) → g simple (glaçons : g+laçons)."
+    },
+    {
+      "id": "q149",
+      "before": "Il a corri",
+      "after": "é toutes ses fautes d'orthographe.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (corrigé : corri+g+é)."
+    },
+    {
+      "id": "q150",
+      "before": "Le pro",
+      "after": "rès de la classe est remarquable.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (progrès : pro+g+rès)."
+    },
+    {
+      "id": "q151",
+      "before": "Nous avons étudié la ",
+      "after": "éographie de l'Afrique ce trimestre.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (géographie)."
+    },
+    {
+      "id": "q152",
+      "before": "L'exercice de ",
+      "after": "éométrie était difficile.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (géométrie)."
+    },
+    {
+      "id": "q153",
+      "before": "Le pro",
+      "after": "ramme de la semaine est très chargé.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (programme : pro+g+ramme)."
+    },
+    {
+      "id": "q154",
+      "before": "La ",
+      "after": "lacière garde les boissons au frais pendant le pique-nique.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'l' (consonne) → g simple (glacière : g+lacière)."
+    },
+    {
+      "id": "q155",
+      "before": "La vieille horloge est posée sur le ",
+      "after": "éridon du couloir.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'é' → gu (guéridon : gu+éridon). Le 'u' maintient le son dur devant 'é'."
+    },
+    {
+      "id": "q156",
+      "before": "Le soir, ils re",
+      "after": "ardent les étoiles depuis le balcon.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'a' → g simple (regardent : re+g+ardent)."
+    },
+    {
+      "id": "q157",
+      "before": "La lar",
+      "after": "eur de cette rivière dépasse deux cents mètres.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (largeur : lar+g+eur). Même 'g' que dans 'large' [laʁʒ]."
+    },
+    {
+      "id": "q158",
+      "before": "Notre ",
+      "after": "ide touristique nous a expliqué l'histoire du monument.",
+      "answer": "gu",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'i' → gu (guide : gu+ide)."
+    },
+    {
+      "id": "q159",
+      "before": "Les ba",
+      "after": "ages sont passés au scanner de sécurité.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'a' → g simple (bagages : ba+g+ages)."
+    },
+    {
+      "id": "q160",
+      "before": "Nous avons lo",
+      "after": "é dans un petit hôtel au bord de la mer.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (logé : lo+g+é)."
+    },
+    {
+      "id": "q161",
+      "before": "La falaise lon",
+      "after": "ait la côte sur des kilomètres.",
+      "answer": "ge",
+      "difficulty": 3,
+      "explanation": "Verbe longer → il longeait : son [ʒ] doux + 'ai' → ge (lon+ge+ait)."
+    },
+    {
+      "id": "q162",
+      "before": "Ils ont héber",
+      "after": "é des randonneurs dans leur ferme.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (hébergé : héber+g+é)."
+    },
+    {
+      "id": "q163",
+      "before": "L'épilo",
+      "after": "e du roman nous a vraiment surpris.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'e' → gu (épilogue : épilo+gu+e). Le 'u' est obligatoire devant 'e'."
+    },
+    {
+      "id": "q164",
+      "before": "Ce monolo",
+      "after": "e théâtral a duré vingt minutes.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'e' → gu (monologue : monolo+gu+e)."
+    },
+    {
+      "id": "q165",
+      "before": "Le dialo",
+      "after": "e entre les deux ministres a été tendu.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'e' → gu (dialogue : dialo+gu+e)."
+    },
+    {
+      "id": "q166",
+      "before": "Ce catalo",
+      "after": "e présente toutes les nouveautés de l'année.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'e' → gu (catalogue : catalo+gu+e)."
+    },
+    {
+      "id": "q167",
+      "before": "L'équipe militaire a mené une action de ",
+      "after": "érilla dans la jungle.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'é' → gu (guérilla : gu+érilla)."
+    },
+    {
+      "id": "q168",
+      "before": "Ils diri",
+      "after": "èrent l'expédition avec courage.",
+      "answer": "g",
+      "difficulty": 3,
+      "explanation": "Son [ʒ] doux + 'è' → g simple (dirigèrent : diri+g+èrent)."
+    },
+    {
+      "id": "q169",
+      "before": "Le for",
+      "after": "eron martelait le métal rougeoyant.",
+      "answer": "g",
+      "difficulty": 3,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (forgeron : for+g+eron)."
+    },
+    {
+      "id": "q170",
+      "before": "Le ",
+      "after": "épard est le félin le plus rapide du monde.",
+      "answer": "gu",
+      "difficulty": 3,
+      "explanation": "Son [g] dur + 'é' → gu (guépard : gu+épard). Le 'u' maintient le son dur devant 'é'."
+    },
+    {
+      "id": "q171",
+      "before": "Le ",
+      "after": "rand prix du roman est décerné chaque automne.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grand prix)."
+    },
+    {
+      "id": "q172",
+      "before": "Le ",
+      "after": "lacier fond à cause du réchauffement climatique.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'l' (consonne) → g simple (glacier)."
+    },
+    {
+      "id": "q173",
+      "before": "La ",
+      "after": "rande avenue était couverte de neige.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grande)."
+    },
+    {
+      "id": "q174",
+      "before": "Une ima",
+      "after": "e de synthèse illustre parfaitement l'article.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (image : ima+g+e)."
+    },
+    {
+      "id": "q175",
+      "before": "Le ran",
+      "after": "er de montagne a guidé les alpinistes.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (ranger : ran+g+er)."
+    },
+    {
+      "id": "q176",
+      "before": "Il mange un ",
+      "after": "ros pain grillé chaque matin.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (gros)."
+    },
+    {
+      "id": "q177",
+      "before": "Les enfants ont construit un ima",
+      "after": "inaire palais de sable.",
+      "answer": "g",
+      "difficulty": 3,
+      "explanation": "Son [ʒ] doux + 'i' → g simple (imaginaire : ima+g+inaire)."
+    },
+    {
+      "id": "q178",
+      "before": "Un ",
+      "after": "este d'amitié peut changer une journée difficile.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (geste)."
+    },
+    {
+      "id": "q179",
+      "before": "Le ",
+      "after": "énie a besoin d'être cultivé dès l'enfance.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (génie)."
+    },
+    {
+      "id": "q180",
+      "before": "La ",
+      "after": "énérosité de cet homme était connue dans tout le village.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'é' → g simple (générosité)."
+    },
+    {
+      "id": "q181",
+      "before": "Nous proté",
+      "after": "ons la biodiversité de nos forêts.",
+      "answer": "ge",
+      "difficulty": 3,
+      "explanation": "Verbe protéger → nous protégeons : son [ʒ] doux + 'o' → ge (proté+ge+ons)."
+    },
+    {
+      "id": "q182",
+      "before": "Nous voya",
+      "after": "ons à travers toute la région.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Verbe voyager → nous voyageons : son [ʒ] doux + 'o' → ge (voya+ge+ons)."
+    },
+    {
+      "id": "q183",
+      "before": "Nous lon",
+      "after": "ons la rivière pendant deux heures.",
+      "answer": "ge",
+      "difficulty": 3,
+      "explanation": "Verbe longer → nous longeons : son [ʒ] doux + 'o' → ge (lon+ge+ons)."
+    },
+    {
+      "id": "q184",
+      "before": "La ",
+      "after": "itane portait une robe aux couleurs vives.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'i' → g simple (gitane)."
+    },
+    {
+      "id": "q185",
+      "before": "Le ",
+      "after": "enou enflé lui faisait souffrir depuis une semaine.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (genou)."
+    },
+    {
+      "id": "q186",
+      "before": "Une ",
+      "after": "irouette colorée tourne sur le toit de la ferme.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'i' → g simple (girouette)."
+    },
+    {
+      "id": "q187",
+      "before": "Le ",
+      "after": "el coiffant est épuisé, il faudra en racheter.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (gel)."
+    },
+    {
+      "id": "q188",
+      "before": "Le ",
+      "after": "olfeur a réussi un birdie au troisième trou.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'o' → g simple (golfeur)."
+    },
+    {
+      "id": "q189",
+      "before": "La ",
+      "after": "lace fond rapidement sous le soleil d'été.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'l' (consonne) → g simple (glace)."
+    },
+    {
+      "id": "q190",
+      "before": "Ma voisine a planté de la ",
+      "after": "lycine sur son mur.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [g] dur + 'l' (consonne) → g simple (glycine)."
+    },
+    {
+      "id": "q191",
+      "before": "Le ",
+      "after": "orille a été observé dans son habitat naturel.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'o' → g simple (gorille)."
+    },
+    {
+      "id": "q192",
+      "before": "Nous avons fait un beau voya",
+      "after": "e en Bretagne cet été.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' muet → g simple (voyage : voya+g+e)."
+    },
+    {
+      "id": "q193",
+      "before": "Le ",
+      "after": "rand ménage de printemps a duré la journée entière.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grand)."
+    },
+    {
+      "id": "q194",
+      "before": "Le ran",
+      "after": "ement des jouets lui prit une heure.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (rangement : ran+g+ement)."
+    },
+    {
+      "id": "q195",
+      "before": "La ",
+      "after": "estion de ce projet est confiée à Marie.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'e' → g simple (gestion)."
+    },
+    {
+      "id": "q196",
+      "before": "Nous chan",
+      "after": "ons d'avis après avoir bien réfléchi.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Verbe changer → nous changeons : son [ʒ] doux + 'o' → ge (chan+ge+ons)."
+    },
+    {
+      "id": "q197",
+      "before": "Nous parta",
+      "after": "ons tous nos repas en famille.",
+      "answer": "ge",
+      "difficulty": 2,
+      "explanation": "Verbe partager → nous partageons : son [ʒ] doux + 'o' → ge (parta+ge+ons)."
+    },
+    {
+      "id": "q198",
+      "before": "Le petit ",
+      "after": "arçon s'est endormi dans le canapé.",
+      "answer": "g",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'a' → g simple (garçon)."
+    },
+    {
+      "id": "q199",
+      "before": "La ",
+      "after": "irouette du clocher tourne par grand vent.",
+      "answer": "g",
+      "difficulty": 2,
+      "explanation": "Son [ʒ] doux + 'i' → g simple (girouette)."
+    },
+    {
+      "id": "q200",
+      "before": "La ",
+      "after": "irlande de fleurs ornait l'entrée du mariage.",
+      "answer": "gu",
+      "difficulty": 1,
+      "explanation": "Son [g] dur + 'i' → gu (guirlande : gu+irlande)."
+    }
+  ],
+  "group": "aventurier"
+}

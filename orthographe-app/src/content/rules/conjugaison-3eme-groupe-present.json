@@ -1,0 +1,4460 @@
+{
+  "id": "conjugaison-3eme-groupe-present",
+  "title": "3ème groupe au présent",
+  "shortTitle": "3ème groupe",
+  "description": "Écris la bonne forme du verbe : distingue les homophones de conjugaison (voit/vois, peut/peux, prend/prends…) en identifiant la personne grammaticale du sujet.",
+  "choices": [],
+  "decisionAxes": [
+    {
+      "id": "personne",
+      "question": "Quelle est la personne grammaticale du sujet ?",
+      "sub": "Identifie le sujet dans la phrase, puis applique la règle",
+      "options": [
+        {
+          "value": "1-2-sg",
+          "label": "Je / Tu",
+          "sub": "1ère ou 2ème personne du singulier",
+          "eliminates": [],
+          "result": "Forme avec -s ou -x final (je vois, tu peux, je prends, tu veux…)"
+        },
+        {
+          "value": "3-sg",
+          "label": "Il / Elle / On",
+          "sub": "3ème personne du singulier",
+          "eliminates": [],
+          "result": "Forme sans -s ni -x (il voit, il peut, il prend, il veut, il va…)"
+        },
+        {
+          "value": "3-pl",
+          "label": "Ils / Elles",
+          "sub": "3ème personne du pluriel",
+          "eliminates": [],
+          "result": "Forme en -ent (ils voient, ils peuvent, ils prennent…)"
+        }
+      ]
+    }
+  ],
+  "memoCard": {
+    "title": "Homophones du présent — 3ème groupe",
+    "rows": [
+      {
+        "form": "je / tu",
+        "test": "→ -s ou -x",
+        "example": "je vois, tu peux, je prends, tu veux"
+      },
+      {
+        "form": "il / elle / on",
+        "test": "→ -t ou rien (va, prend)",
+        "example": "il voit, elle peut, il prend, il va"
+      },
+      {
+        "form": "ils / elles",
+        "test": "→ -ent",
+        "example": "ils voient, elles peuvent, ils prennent"
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "before": "Elle",
+      "after": " son reflet dans le miroir.",
+      "answer": "voit",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'voit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "voit",
+          "label": "voit"
+        },
+        {
+          "id": "vois",
+          "label": "vois"
+        },
+        {
+          "id": "voix",
+          "label": "voix"
+        }
+      ]
+    },
+    {
+      "id": "q002",
+      "before": "Je",
+      "after": " clairement ce que tu veux dire.",
+      "answer": "vois",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'vois' (pas de -t final).",
+      "choices": [
+        {
+          "id": "voit",
+          "label": "voit"
+        },
+        {
+          "id": "vois",
+          "label": "vois"
+        },
+        {
+          "id": "voie",
+          "label": "voie"
+        }
+      ]
+    },
+    {
+      "id": "q003",
+      "before": "Tu",
+      "after": " les étoiles cette nuit?",
+      "answer": "vois",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'vois' (pas de -t final).",
+      "choices": [
+        {
+          "id": "voit",
+          "label": "voit"
+        },
+        {
+          "id": "vois",
+          "label": "vois"
+        },
+        {
+          "id": "voie",
+          "label": "voie"
+        }
+      ]
+    },
+    {
+      "id": "q004",
+      "before": "Mon frère",
+      "after": " très bien sans ses lunettes.",
+      "answer": "voit",
+      "difficulty": 2,
+      "explanation": "'Mon frère' (3ème pers. sing.) → 'voit' avec -t final.",
+      "choices": [
+        {
+          "id": "voit",
+          "label": "voit"
+        },
+        {
+          "id": "vois",
+          "label": "vois"
+        },
+        {
+          "id": "voix",
+          "label": "voix"
+        }
+      ]
+    },
+    {
+      "id": "q005",
+      "before": "Le médecin",
+      "after": " tous ses patients le matin.",
+      "answer": "voit",
+      "difficulty": 2,
+      "explanation": "'Le médecin' (3ème pers. sing.) → 'voit' avec -t final.",
+      "choices": [
+        {
+          "id": "voit",
+          "label": "voit"
+        },
+        {
+          "id": "vois",
+          "label": "vois"
+        },
+        {
+          "id": "voix",
+          "label": "voix"
+        }
+      ]
+    },
+    {
+      "id": "q006",
+      "before": "Il",
+      "after": " venir demain.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'peut' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        },
+        {
+          "id": "peu",
+          "label": "peu"
+        }
+      ]
+    },
+    {
+      "id": "q007",
+      "before": "Je",
+      "after": " t'aider avec tes devoirs.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'peux' (pas de -t final).",
+      "choices": [
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        },
+        {
+          "id": "peu",
+          "label": "peu"
+        }
+      ]
+    },
+    {
+      "id": "q008",
+      "before": "Tu",
+      "after": " réussir si tu travailles dur.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'peux' (pas de -t final).",
+      "choices": [
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        },
+        {
+          "id": "peu",
+          "label": "peu"
+        }
+      ]
+    },
+    {
+      "id": "q009",
+      "before": "Ma sœur",
+      "after": " parler trois langues.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "'Ma sœur' (3ème pers. sing.) → 'peut' avec -t final.",
+      "choices": [
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        },
+        {
+          "id": "peu",
+          "label": "peu"
+        }
+      ]
+    },
+    {
+      "id": "q010",
+      "before": "Le professeur",
+      "after": " vous expliquer cela plus tard.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "'Le professeur' (3ème pers. sing.) → 'peut' avec -t final.",
+      "choices": [
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        },
+        {
+          "id": "peu",
+          "label": "peu"
+        }
+      ]
+    },
+    {
+      "id": "q011",
+      "before": "Ma mère",
+      "after": " absolument changer les rideaux.",
+      "answer": "veut",
+      "difficulty": 1,
+      "explanation": "'Ma mère' (3ème pers. sing.) → 'veut' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "veut",
+          "label": "veut"
+        },
+        {
+          "id": "veux",
+          "label": "veux"
+        },
+        {
+          "id": "voeu",
+          "label": "vœu"
+        }
+      ]
+    },
+    {
+      "id": "q012",
+      "before": "Tu",
+      "after": " vraiment partir en vacances cette année ?",
+      "answer": "veux",
+      "difficulty": 1,
+      "explanation": "'Tu' (2ème pers. sing.) → 'veux' avec -x final.",
+      "choices": [
+        {
+          "id": "veux",
+          "label": "veux"
+        },
+        {
+          "id": "veut",
+          "label": "veut"
+        },
+        {
+          "id": "veu",
+          "label": "veu"
+        }
+      ]
+    },
+    {
+      "id": "q013",
+      "before": "Je",
+      "after": " bien comprendre cette leçon.",
+      "answer": "veux",
+      "difficulty": 1,
+      "explanation": "'Je' (1ère pers. sing.) → 'veux' avec -x final.",
+      "choices": [
+        {
+          "id": "veux",
+          "label": "veux"
+        },
+        {
+          "id": "veut",
+          "label": "veut"
+        },
+        {
+          "id": "veu",
+          "label": "veu"
+        }
+      ]
+    },
+    {
+      "id": "q014",
+      "before": "Le professeur",
+      "after": " que tous ses élèves réussissent l'examen.",
+      "answer": "veut",
+      "difficulty": 2,
+      "explanation": "Sujet nominal au sing. (3ème pers. sing.) → 'veut'.",
+      "choices": [
+        {
+          "id": "veut",
+          "label": "veut"
+        },
+        {
+          "id": "veux",
+          "label": "veux"
+        },
+        {
+          "id": "voeu",
+          "label": "vœu"
+        }
+      ]
+    },
+    {
+      "id": "q015",
+      "before": "Chacun",
+      "after": " faire ses propres choix dans la vie.",
+      "answer": "veut",
+      "difficulty": 2,
+      "explanation": "'Chacun' (3ème pers. sing., bien que pluriel conceptuel) → 'veut'.",
+      "choices": [
+        {
+          "id": "veut",
+          "label": "veut"
+        },
+        {
+          "id": "veux",
+          "label": "veux"
+        },
+        {
+          "id": "voeu",
+          "label": "vœu"
+        }
+      ]
+    },
+    {
+      "id": "q016",
+      "before": "Je",
+      "after": " te voir demain matin.",
+      "answer": "viens",
+      "difficulty": 1,
+      "explanation": "'Je' (1ère pers. sing.) → 'viens' avec -s final.",
+      "choices": [
+        {
+          "id": "viens",
+          "label": "viens"
+        },
+        {
+          "id": "vient",
+          "label": "vient"
+        },
+        {
+          "id": "vien",
+          "label": "vien"
+        }
+      ]
+    },
+    {
+      "id": "q017",
+      "before": "Tu",
+      "after": " d'Espagne pour les vacances ?",
+      "answer": "viens",
+      "difficulty": 1,
+      "explanation": "'Tu' (2ème pers. sing.) → 'viens' avec -s final.",
+      "choices": [
+        {
+          "id": "viens",
+          "label": "viens"
+        },
+        {
+          "id": "vient",
+          "label": "vient"
+        },
+        {
+          "id": "viend",
+          "label": "viend"
+        }
+      ]
+    },
+    {
+      "id": "q018",
+      "before": "Je",
+      "after": " de finir mes devoirs.",
+      "answer": "viens",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'viens' (radical vien- + -s).",
+      "choices": [
+        {
+          "id": "viens",
+          "label": "viens"
+        },
+        {
+          "id": "vient",
+          "label": "vient"
+        },
+        {
+          "id": "viend",
+          "label": "viend"
+        }
+      ]
+    },
+    {
+      "id": "q019",
+      "before": "Je",
+      "after": " de loin.",
+      "answer": "viens",
+      "difficulty": 2,
+      "explanation": "'Je' → 1ère pers. sing. → 'viens' avec -s final.",
+      "choices": [
+        {
+          "id": "viens",
+          "label": "viens"
+        },
+        {
+          "id": "vient",
+          "label": "vient"
+        },
+        {
+          "id": "viend",
+          "label": "viend"
+        }
+      ]
+    },
+    {
+      "id": "q020",
+      "before": "Tu",
+      "after": " avec moi?",
+      "answer": "viens",
+      "difficulty": 2,
+      "explanation": "'Tu' → 2ème pers. sing. → 'viens' avec -s final.",
+      "choices": [
+        {
+          "id": "viens",
+          "label": "viens"
+        },
+        {
+          "id": "vient",
+          "label": "vient"
+        },
+        {
+          "id": "vien",
+          "label": "vien"
+        }
+      ]
+    },
+    {
+      "id": "q021",
+      "before": "Elle",
+      "after": " parfaitement jouer du piano.",
+      "answer": "sait",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'sait' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "sait",
+          "label": "sait"
+        },
+        {
+          "id": "sais",
+          "label": "sais"
+        },
+        {
+          "id": "saie",
+          "label": "saie"
+        }
+      ]
+    },
+    {
+      "id": "q022",
+      "before": "Je ne",
+      "after": " pas où tu habites.",
+      "answer": "sais",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'sais' avec -s.",
+      "choices": [
+        {
+          "id": "sais",
+          "label": "sais"
+        },
+        {
+          "id": "sait",
+          "label": "sait"
+        },
+        {
+          "id": "sé",
+          "label": "sé"
+        }
+      ]
+    },
+    {
+      "id": "q023",
+      "before": "Tu",
+      "after": " bien que c'est difficile.",
+      "answer": "sais",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'sais' avec -s.",
+      "choices": [
+        {
+          "id": "sais",
+          "label": "sais"
+        },
+        {
+          "id": "sait",
+          "label": "sait"
+        },
+        {
+          "id": "saie",
+          "label": "saie"
+        }
+      ]
+    },
+    {
+      "id": "q024",
+      "before": "Mon professeur",
+      "after": " tous les détails de cette histoire.",
+      "answer": "sait",
+      "difficulty": 2,
+      "explanation": "'Professeur' (sing.) → 3ème pers. sing. → 'sait'.",
+      "choices": [
+        {
+          "id": "sait",
+          "label": "sait"
+        },
+        {
+          "id": "sais",
+          "label": "sais"
+        },
+        {
+          "id": "saie",
+          "label": "saie"
+        }
+      ]
+    },
+    {
+      "id": "q025",
+      "before": "L'enfant",
+      "after": " compter jusqu'à dix.",
+      "answer": "sait",
+      "difficulty": 2,
+      "explanation": "'Enfant' (sing.) → 3ème pers. sing. → 'sait'.",
+      "choices": [
+        {
+          "id": "sait",
+          "label": "sait"
+        },
+        {
+          "id": "sais",
+          "label": "sais"
+        },
+        {
+          "id": "saie",
+          "label": "saie"
+        }
+      ]
+    },
+    {
+      "id": "q026",
+      "before": "Il",
+      "after": " l'autobus chaque matin.",
+      "answer": "prend",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'prend' sans -s.",
+      "choices": [
+        {
+          "id": "prend",
+          "label": "prend"
+        },
+        {
+          "id": "prends",
+          "label": "prends"
+        },
+        {
+          "id": "prens",
+          "label": "prens"
+        }
+      ]
+    },
+    {
+      "id": "q027",
+      "before": "Je",
+      "after": " ma décision après réflexion.",
+      "answer": "prends",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'prends' avec -s.",
+      "choices": [
+        {
+          "id": "prends",
+          "label": "prends"
+        },
+        {
+          "id": "prend",
+          "label": "prend"
+        },
+        {
+          "id": "prens",
+          "label": "prens"
+        }
+      ]
+    },
+    {
+      "id": "q028",
+      "before": "Tu",
+      "after": " tes clés avant de partir ?",
+      "answer": "prends",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'prends' avec -s.",
+      "choices": [
+        {
+          "id": "prends",
+          "label": "prends"
+        },
+        {
+          "id": "prend",
+          "label": "prend"
+        },
+        {
+          "id": "prens",
+          "label": "prens"
+        }
+      ]
+    },
+    {
+      "id": "q029",
+      "before": "Mon ami",
+      "after": " toujours le temps de m'aider.",
+      "answer": "prend",
+      "difficulty": 2,
+      "explanation": "'Ami' (sing.) → 3ème pers. sing. → 'prend'.",
+      "choices": [
+        {
+          "id": "prend",
+          "label": "prend"
+        },
+        {
+          "id": "prends",
+          "label": "prends"
+        },
+        {
+          "id": "prens",
+          "label": "prens"
+        }
+      ]
+    },
+    {
+      "id": "q030",
+      "before": "Mon trajet",
+      "after": " une heure chaque matin.",
+      "answer": "prend",
+      "difficulty": 2,
+      "explanation": "'Mon trajet' → 3ème pers. sing. → 'prend' sans -s.",
+      "choices": [
+        {
+          "id": "prend",
+          "label": "prend"
+        },
+        {
+          "id": "prends",
+          "label": "prends"
+        },
+        {
+          "id": "prens",
+          "label": "prens"
+        }
+      ]
+    },
+    {
+      "id": "q031",
+      "before": "Il",
+      "after": " du vélo chaque matin.",
+      "answer": "fait",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'fait' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "fait",
+          "label": "fait"
+        },
+        {
+          "id": "fais",
+          "label": "fais"
+        },
+        {
+          "id": "faie",
+          "label": "faie"
+        }
+      ]
+    },
+    {
+      "id": "q032",
+      "before": "Tu",
+      "after": " tes devoirs avant de sortir.",
+      "answer": "fais",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'fais' sans -t final.",
+      "choices": [
+        {
+          "id": "fais",
+          "label": "fais"
+        },
+        {
+          "id": "fait",
+          "label": "fait"
+        },
+        {
+          "id": "fai",
+          "label": "fai"
+        }
+      ]
+    },
+    {
+      "id": "q033",
+      "before": "Elle",
+      "after": " un gâteau pour l'anniversaire.",
+      "answer": "fait",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'fait'.",
+      "choices": [
+        {
+          "id": "fait",
+          "label": "fait"
+        },
+        {
+          "id": "fais",
+          "label": "fais"
+        },
+        {
+          "id": "faie",
+          "label": "faie"
+        }
+      ]
+    },
+    {
+      "id": "q034",
+      "before": "Mon ami",
+      "after": " toujours attention en classe.",
+      "answer": "fait",
+      "difficulty": 2,
+      "explanation": "'Mon ami' → 3ème pers. sing. → 'fait'.",
+      "choices": [
+        {
+          "id": "fait",
+          "label": "fait"
+        },
+        {
+          "id": "fais",
+          "label": "fais"
+        },
+        {
+          "id": "faie",
+          "label": "faie"
+        }
+      ]
+    },
+    {
+      "id": "q035",
+      "before": "Tu",
+      "after": " du bruit en rentrant tard.",
+      "answer": "fais",
+      "difficulty": 2,
+      "explanation": "'Tu' → 2ème pers. sing. → 'fais'.",
+      "choices": [
+        {
+          "id": "fais",
+          "label": "fais"
+        },
+        {
+          "id": "fait",
+          "label": "fait"
+        },
+        {
+          "id": "faie",
+          "label": "faie"
+        }
+      ]
+    },
+    {
+      "id": "q036",
+      "before": "Il",
+      "after": " à l'école tous les jours.",
+      "answer": "va",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'va' (sans -s, sans -t).",
+      "choices": [
+        {
+          "id": "va",
+          "label": "va"
+        },
+        {
+          "id": "vas",
+          "label": "vas"
+        },
+        {
+          "id": "vat",
+          "label": "vat"
+        }
+      ]
+    },
+    {
+      "id": "q037",
+      "before": "Tu",
+      "after": " au cinéma vendredi soir.",
+      "answer": "vas",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'vas' (avec -s).",
+      "choices": [
+        {
+          "id": "vas",
+          "label": "vas"
+        },
+        {
+          "id": "va",
+          "label": "va"
+        },
+        {
+          "id": "vad",
+          "label": "vad"
+        }
+      ]
+    },
+    {
+      "id": "q038",
+      "before": "Elle",
+      "after": " chercher son frère à la gare.",
+      "answer": "va",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'va'.",
+      "choices": [
+        {
+          "id": "va",
+          "label": "va"
+        },
+        {
+          "id": "vas",
+          "label": "vas"
+        },
+        {
+          "id": "vat",
+          "label": "vat"
+        }
+      ]
+    },
+    {
+      "id": "q039",
+      "before": "Tu",
+      "after": " bien malgré tout.",
+      "answer": "vas",
+      "difficulty": 2,
+      "explanation": "'Tu' → 2ème pers. sing. → 'vas'.",
+      "choices": [
+        {
+          "id": "vas",
+          "label": "vas"
+        },
+        {
+          "id": "va",
+          "label": "va"
+        },
+        {
+          "id": "vad",
+          "label": "vad"
+        }
+      ]
+    },
+    {
+      "id": "q040",
+      "before": "Tu",
+      "after": " trop vite, ralentis !",
+      "answer": "vas",
+      "difficulty": 2,
+      "explanation": "'Tu' → 2ème pers. sing. → 'vas'.",
+      "choices": [
+        {
+          "id": "vas",
+          "label": "vas"
+        },
+        {
+          "id": "va",
+          "label": "va"
+        },
+        {
+          "id": "vad",
+          "label": "vad"
+        }
+      ]
+    },
+    {
+      "id": "q041",
+      "before": "Elle",
+      "after": " la table pour le dîner.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'met' (le verbe mettre).",
+      "choices": [
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        },
+        {
+          "id": "mais",
+          "label": "mais"
+        }
+      ]
+    },
+    {
+      "id": "q042",
+      "before": "On",
+      "after": " toujours nos chaussures à l'entrée.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "'On' → 3ème pers. sing. → 'met' (comme 'il/elle').",
+      "choices": [
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        },
+        {
+          "id": "mais",
+          "label": "mais"
+        }
+      ]
+    },
+    {
+      "id": "q043",
+      "before": "Elle",
+      "after": " sa robe rouge pour la fête.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "Elle met (3rd person singular) - no -s ending for 3rd person singular",
+      "choices": [
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        },
+        {
+          "id": "mais",
+          "label": "mais"
+        }
+      ]
+    },
+    {
+      "id": "q044",
+      "before": "Il",
+      "after": " ses clés sur la table.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "'Il' → 3ème pers. sing. → 'met' sans -s. Ne pas confondre avec 'mais'.",
+      "choices": [
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        },
+        {
+          "id": "mais",
+          "label": "mais"
+        }
+      ]
+    },
+    {
+      "id": "q045",
+      "before": "Je",
+      "after": " mon manteau avant de sortir.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "'Je' → 1ère pers. sing. → 'mets' avec -s. Ne pas confondre avec 'mais'.",
+      "choices": [
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        },
+        {
+          "id": "mais",
+          "label": "mais"
+        }
+      ]
+    },
+    {
+      "id": "q046",
+      "before": "Tu",
+      "after": " la porte ouverte, s'il te plaît.",
+      "answer": "tiens",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'tiens'.",
+      "choices": [
+        {
+          "id": "tient",
+          "label": "tient"
+        },
+        {
+          "id": "tiens",
+          "label": "tiens"
+        },
+        {
+          "id": "tiend",
+          "label": "tiend"
+        }
+      ]
+    },
+    {
+      "id": "q047",
+      "before": "Je",
+      "after": " à respecter mes promesses.",
+      "answer": "tiens",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'tiens' (radical tien- + -s).",
+      "choices": [
+        {
+          "id": "tiens",
+          "label": "tiens"
+        },
+        {
+          "id": "tient",
+          "label": "tient"
+        },
+        {
+          "id": "tiend",
+          "label": "tiend"
+        }
+      ]
+    },
+    {
+      "id": "q048",
+      "before": "Tu",
+      "after": " vraiment à lui ?",
+      "answer": "tiens",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2e pers. sing. → 'tiens' (radical tien- + -s).",
+      "choices": [
+        {
+          "id": "tiens",
+          "label": "tiens"
+        },
+        {
+          "id": "tient",
+          "label": "tient"
+        },
+        {
+          "id": "tien",
+          "label": "tien"
+        }
+      ]
+    },
+    {
+      "id": "q049",
+      "before": "Je",
+      "after": " mon sac à la main.",
+      "answer": "tiens",
+      "difficulty": 2,
+      "explanation": "'Je' → 1ère pers. sing. → 'tiens' du verbe tenir.",
+      "choices": [
+        {
+          "id": "tient",
+          "label": "tient"
+        },
+        {
+          "id": "tiens",
+          "label": "tiens"
+        },
+        {
+          "id": "tien",
+          "label": "tien"
+        }
+      ]
+    },
+    {
+      "id": "q050",
+      "before": "Je",
+      "after": " beaucoup à tes conseils.",
+      "answer": "tiens",
+      "difficulty": 2,
+      "explanation": "'Je' → 1ère pers. sing. → 'tiens' du verbe tenir.",
+      "choices": [
+        {
+          "id": "tient",
+          "label": "tient"
+        },
+        {
+          "id": "tiens",
+          "label": "tiens"
+        },
+        {
+          "id": "tiend",
+          "label": "tiend"
+        }
+      ]
+    },
+    {
+      "id": "q051",
+      "before": "Le train",
+      "after": " dans dix minutes.",
+      "answer": "part",
+      "difficulty": 1,
+      "explanation": "'Le train' → 3ème pers. sing. → 'part' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "part",
+          "label": "part"
+        },
+        {
+          "id": "pars",
+          "label": "pars"
+        },
+        {
+          "id": "pare",
+          "label": "pare"
+        }
+      ]
+    },
+    {
+      "id": "q052",
+      "before": "Je",
+      "after": " demain matin.",
+      "answer": "pars",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'pars' (homophones: part, pare).",
+      "choices": [
+        {
+          "id": "pars",
+          "label": "pars"
+        },
+        {
+          "id": "part",
+          "label": "part"
+        },
+        {
+          "id": "par",
+          "label": "par"
+        }
+      ]
+    },
+    {
+      "id": "q053",
+      "before": "Ma mère",
+      "after": " en vacances la semaine prochaine.",
+      "answer": "part",
+      "difficulty": 1,
+      "explanation": "'Ma mère' → 3ème pers. sing. → 'part'.",
+      "choices": [
+        {
+          "id": "part",
+          "label": "part"
+        },
+        {
+          "id": "pars",
+          "label": "pars"
+        },
+        {
+          "id": "pare",
+          "label": "pare"
+        }
+      ]
+    },
+    {
+      "id": "q054",
+      "before": "Le bus",
+      "after": " à 14h pile.",
+      "answer": "part",
+      "difficulty": 2,
+      "explanation": "'Le bus' → 3ème pers. sing. → 'part' (variation avec sujet transport).",
+      "choices": [
+        {
+          "id": "part",
+          "label": "part"
+        },
+        {
+          "id": "pars",
+          "label": "pars"
+        },
+        {
+          "id": "pare",
+          "label": "pare"
+        }
+      ]
+    },
+    {
+      "id": "q055",
+      "before": "On",
+      "after": " maintenant ou plus tard ?",
+      "answer": "part",
+      "difficulty": 2,
+      "explanation": "'On' (indéfini) → 3ème pers. sing. → 'part'.",
+      "choices": [
+        {
+          "id": "part",
+          "label": "part"
+        },
+        {
+          "id": "pars",
+          "label": "pars"
+        },
+        {
+          "id": "par",
+          "label": "par"
+        }
+      ]
+    },
+    {
+      "id": "q056",
+      "before": "Elle",
+      "after": " de la maison vers midi.",
+      "answer": "sort",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'sort' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "sort",
+          "label": "sort"
+        },
+        {
+          "id": "sors",
+          "label": "sors"
+        },
+        {
+          "id": "sore",
+          "label": "sore"
+        }
+      ]
+    },
+    {
+      "id": "q057",
+      "before": "Je",
+      "after": " le chien chaque matin.",
+      "answer": "sors",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'sors'.",
+      "choices": [
+        {
+          "id": "sors",
+          "label": "sors"
+        },
+        {
+          "id": "sort",
+          "label": "sort"
+        },
+        {
+          "id": "sor",
+          "label": "sor"
+        }
+      ]
+    },
+    {
+      "id": "q058",
+      "before": "Mon père",
+      "after": " du bureau à 18h.",
+      "answer": "sort",
+      "difficulty": 1,
+      "explanation": "'Mon père' → 3ème pers. sing. → 'sort'.",
+      "choices": [
+        {
+          "id": "sort",
+          "label": "sort"
+        },
+        {
+          "id": "sors",
+          "label": "sors"
+        },
+        {
+          "id": "sore",
+          "label": "sore"
+        }
+      ]
+    },
+    {
+      "id": "q059",
+      "before": "La fumée",
+      "after": " par la fenêtre ouverte.",
+      "answer": "sort",
+      "difficulty": 2,
+      "explanation": "'La fumée' → 3ème pers. sing. → 'sort' (sujet non-animé).",
+      "choices": [
+        {
+          "id": "sort",
+          "label": "sort"
+        },
+        {
+          "id": "sors",
+          "label": "sors"
+        },
+        {
+          "id": "sor",
+          "label": "sor"
+        }
+      ]
+    },
+    {
+      "id": "q060",
+      "before": "On",
+      "after": " parfois le soir en été.",
+      "answer": "sort",
+      "difficulty": 2,
+      "explanation": "'On' (indéfini) → 3ème pers. sing. → 'sort'.",
+      "choices": [
+        {
+          "id": "sort",
+          "label": "sort"
+        },
+        {
+          "id": "sors",
+          "label": "sors"
+        },
+        {
+          "id": "sord",
+          "label": "sord"
+        }
+      ]
+    },
+    {
+      "id": "q061",
+      "before": "Le bébé",
+      "after": " enfin jusqu'à 7 heures.",
+      "answer": "dort",
+      "difficulty": 1,
+      "explanation": "'Le bébé' → 3ème pers. sing. → 'dort' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "dort",
+          "label": "dort"
+        },
+        {
+          "id": "dors",
+          "label": "dors"
+        },
+        {
+          "id": "dord",
+          "label": "dord"
+        }
+      ]
+    },
+    {
+      "id": "q062",
+      "before": "Tu",
+      "after": " sur le canapé en ce moment.",
+      "answer": "dors",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'dors' sans -t final.",
+      "choices": [
+        {
+          "id": "dors",
+          "label": "dors"
+        },
+        {
+          "id": "dort",
+          "label": "dort"
+        },
+        {
+          "id": "dore",
+          "label": "dore"
+        }
+      ]
+    },
+    {
+      "id": "q063",
+      "before": "Elle",
+      "after": " profondément pendant la nuit.",
+      "answer": "dort",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'dort' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "dort",
+          "label": "dort"
+        },
+        {
+          "id": "dors",
+          "label": "dors"
+        },
+        {
+          "id": "dor",
+          "label": "dor"
+        }
+      ]
+    },
+    {
+      "id": "q064",
+      "before": "Le chat",
+      "after": " sur mon lit toute la journée.",
+      "answer": "dort",
+      "difficulty": 2,
+      "explanation": "'Le chat' → 3ème pers. sing. → 'dort' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "dort",
+          "label": "dort"
+        },
+        {
+          "id": "dors",
+          "label": "dors"
+        },
+        {
+          "id": "dore",
+          "label": "dore"
+        }
+      ]
+    },
+    {
+      "id": "q065",
+      "before": "Ma fille",
+      "after": " rarement avant minuit.",
+      "answer": "dort",
+      "difficulty": 2,
+      "explanation": "'Ma fille' → 3ème pers. sing. → 'dort' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "dort",
+          "label": "dort"
+        },
+        {
+          "id": "dors",
+          "label": "dors"
+        },
+        {
+          "id": "dor",
+          "label": "dor"
+        }
+      ]
+    },
+    {
+      "id": "q066",
+      "before": "Elle",
+      "after": " un roman chaque semaine.",
+      "answer": "lit",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'lit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "lit",
+          "label": "lit"
+        },
+        {
+          "id": "lis",
+          "label": "lis"
+        },
+        {
+          "id": "lie",
+          "label": "lie"
+        }
+      ]
+    },
+    {
+      "id": "q067",
+      "before": "Je",
+      "after": " le journal tous les matins.",
+      "answer": "lis",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'lis' sans -t final.",
+      "choices": [
+        {
+          "id": "lis",
+          "label": "lis"
+        },
+        {
+          "id": "lit",
+          "label": "lit"
+        },
+        {
+          "id": "lie",
+          "label": "lie"
+        }
+      ]
+    },
+    {
+      "id": "q068",
+      "before": "Tu",
+      "after": " trop vite, ralentis un peu.",
+      "answer": "lis",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'lis' sans -t final.",
+      "choices": [
+        {
+          "id": "lis",
+          "label": "lis"
+        },
+        {
+          "id": "lit",
+          "label": "lit"
+        },
+        {
+          "id": "lie",
+          "label": "lie"
+        }
+      ]
+    },
+    {
+      "id": "q069",
+      "before": "Le jury",
+      "after": " tous les rapports avant la décision.",
+      "answer": "lit",
+      "difficulty": 2,
+      "explanation": "'Le jury' → 3ème pers. sing. → 'lit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "lit",
+          "label": "lit"
+        },
+        {
+          "id": "lis",
+          "label": "lis"
+        },
+        {
+          "id": "lî",
+          "label": "lî"
+        }
+      ]
+    },
+    {
+      "id": "q070",
+      "before": "Ma mère",
+      "after": " des histoires aux enfants avant de dormir.",
+      "answer": "lit",
+      "difficulty": 2,
+      "explanation": "'Ma mère' → 3ème pers. sing. → 'lit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "lit",
+          "label": "lit"
+        },
+        {
+          "id": "lis",
+          "label": "lis"
+        },
+        {
+          "id": "lî",
+          "label": "lî"
+        }
+      ]
+    },
+    {
+      "id": "q071",
+      "before": "Elle",
+      "after": " une lettre à son correspondant.",
+      "answer": "écrit",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'écrit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "écrit",
+          "label": "écrit"
+        },
+        {
+          "id": "écris",
+          "label": "écris"
+        },
+        {
+          "id": "écrie",
+          "label": "écrie"
+        }
+      ]
+    },
+    {
+      "id": "q072",
+      "before": "Je",
+      "after": " un poème pour mon ami.",
+      "answer": "écris",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'écris' sans -t final.",
+      "choices": [
+        {
+          "id": "écris",
+          "label": "écris"
+        },
+        {
+          "id": "écrit",
+          "label": "écrit"
+        },
+        {
+          "id": "écry",
+          "label": "écry"
+        }
+      ]
+    },
+    {
+      "id": "q073",
+      "before": "Le journaliste",
+      "after": " des articles tous les jours.",
+      "answer": "écrit",
+      "difficulty": 1,
+      "explanation": "'Le journaliste' → 3ème pers. sing. → 'écrit'.",
+      "choices": [
+        {
+          "id": "écrit",
+          "label": "écrit"
+        },
+        {
+          "id": "écris",
+          "label": "écris"
+        },
+        {
+          "id": "écri",
+          "label": "écri"
+        }
+      ]
+    },
+    {
+      "id": "q074",
+      "before": "On",
+      "after": " toujours plus vite qu'avant.",
+      "answer": "écrit",
+      "difficulty": 2,
+      "explanation": "'On' → 3ème pers. sing. → 'écrit'.",
+      "choices": [
+        {
+          "id": "écrit",
+          "label": "écrit"
+        },
+        {
+          "id": "écris",
+          "label": "écris"
+        },
+        {
+          "id": "écri",
+          "label": "écri"
+        }
+      ]
+    },
+    {
+      "id": "q075",
+      "before": "Il",
+      "after": " son nom sur le formulaire.",
+      "answer": "écrit",
+      "difficulty": 2,
+      "explanation": "'Il' → forme au présent.",
+      "choices": [
+        {
+          "id": "écrit",
+          "label": "écrit"
+        },
+        {
+          "id": "écris",
+          "label": "écris"
+        },
+        {
+          "id": "écrie",
+          "label": "écrie"
+        }
+      ]
+    },
+    {
+      "id": "q076",
+      "before": "Il",
+      "after": " la vérité en toute circonstance.",
+      "answer": "dit",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'dit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "dit",
+          "label": "dit"
+        },
+        {
+          "id": "dis",
+          "label": "dis"
+        },
+        {
+          "id": "die",
+          "label": "die"
+        }
+      ]
+    },
+    {
+      "id": "q077",
+      "before": "Je",
+      "after": " bonjour à mon professeur.",
+      "answer": "dis",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'dis' sans -t final.",
+      "choices": [
+        {
+          "id": "dis",
+          "label": "dis"
+        },
+        {
+          "id": "dit",
+          "label": "dit"
+        },
+        {
+          "id": "dî",
+          "label": "dî"
+        }
+      ]
+    },
+    {
+      "id": "q078",
+      "before": "La météo",
+      "after": " qu'il fera beau demain.",
+      "answer": "dit",
+      "difficulty": 1,
+      "explanation": "'La météo' → 3ème pers. sing. → 'dit'.",
+      "choices": [
+        {
+          "id": "dit",
+          "label": "dit"
+        },
+        {
+          "id": "dis",
+          "label": "dis"
+        },
+        {
+          "id": "die",
+          "label": "die"
+        }
+      ]
+    },
+    {
+      "id": "q079",
+      "before": "On",
+      "after": " que c'est impossible.",
+      "answer": "dit",
+      "difficulty": 2,
+      "explanation": "'On' → 3ème pers. sing. → 'dit'.",
+      "choices": [
+        {
+          "id": "dit",
+          "label": "dit"
+        },
+        {
+          "id": "dis",
+          "label": "dis"
+        },
+        {
+          "id": "dî",
+          "label": "dî"
+        }
+      ]
+    },
+    {
+      "id": "q080",
+      "before": "Elle",
+      "after": " qu'elle est malade.",
+      "answer": "dit",
+      "difficulty": 2,
+      "explanation": "'Elle' → forme au présent.",
+      "choices": [
+        {
+          "id": "dit",
+          "label": "dit"
+        },
+        {
+          "id": "dis",
+          "label": "dis"
+        },
+        {
+          "id": "die",
+          "label": "die"
+        }
+      ]
+    },
+    {
+      "id": "q081",
+      "before": "Je",
+      "after": " depuis longtemps dans cette région.",
+      "answer": "vis",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'vis' (pas de -t final).",
+      "choices": [
+        {
+          "id": "vis",
+          "label": "vis"
+        },
+        {
+          "id": "vit",
+          "label": "vit"
+        },
+        {
+          "id": "vî",
+          "label": "vî"
+        }
+      ]
+    },
+    {
+      "id": "q082",
+      "before": "Tu",
+      "after": " une belle aventure cette année.",
+      "answer": "vis",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'vis'.",
+      "choices": [
+        {
+          "id": "vis",
+          "label": "vis"
+        },
+        {
+          "id": "vit",
+          "label": "vit"
+        },
+        {
+          "id": "vie",
+          "label": "vie"
+        }
+      ]
+    },
+    {
+      "id": "q083",
+      "before": "On",
+      "after": " chaque moment avec intensité.",
+      "answer": "vit",
+      "difficulty": 1,
+      "explanation": "'On' → 3ème pers. sing. → 'vit'.",
+      "choices": [
+        {
+          "id": "vit",
+          "label": "vit"
+        },
+        {
+          "id": "vis",
+          "label": "vis"
+        },
+        {
+          "id": "vie",
+          "label": "vie"
+        }
+      ]
+    },
+    {
+      "id": "q084",
+      "before": "Il",
+      "after": " de sa passion pour la montagne.",
+      "answer": "vit",
+      "difficulty": 2,
+      "explanation": "'Il' → 3ème pers. sing. → 'vit' (différent de 'vie', le nom).",
+      "choices": [
+        {
+          "id": "vit",
+          "label": "vit"
+        },
+        {
+          "id": "vis",
+          "label": "vis"
+        },
+        {
+          "id": "vie",
+          "label": "vie"
+        }
+      ]
+    },
+    {
+      "id": "q085",
+      "before": "Elle",
+      "after": " en harmonie avec la nature.",
+      "answer": "vit",
+      "difficulty": 2,
+      "explanation": "'Elle' → 3ème pers. sing. → 'vit' (distinguer 'vie' = la vie).",
+      "choices": [
+        {
+          "id": "vit",
+          "label": "vit"
+        },
+        {
+          "id": "vis",
+          "label": "vis"
+        },
+        {
+          "id": "vie",
+          "label": "vie"
+        }
+      ]
+    },
+    {
+      "id": "q086",
+      "before": "Je",
+      "after": " en l'amitié sincère.",
+      "answer": "crois",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'crois' (pas de -t).",
+      "choices": [
+        {
+          "id": "crois",
+          "label": "crois"
+        },
+        {
+          "id": "croit",
+          "label": "croit"
+        },
+        {
+          "id": "croi",
+          "label": "croi"
+        }
+      ]
+    },
+    {
+      "id": "q087",
+      "before": "Tu",
+      "after": " à la magie de Noël.",
+      "answer": "crois",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'crois'.",
+      "choices": [
+        {
+          "id": "crois",
+          "label": "crois"
+        },
+        {
+          "id": "croit",
+          "label": "croit"
+        },
+        {
+          "id": "croie",
+          "label": "croie"
+        }
+      ]
+    },
+    {
+      "id": "q088",
+      "before": "On",
+      "after": " aux légendes du village.",
+      "answer": "croit",
+      "difficulty": 1,
+      "explanation": "'On' → 3ème pers. sing. → 'croit'.",
+      "choices": [
+        {
+          "id": "croit",
+          "label": "croit"
+        },
+        {
+          "id": "crois",
+          "label": "crois"
+        },
+        {
+          "id": "croie",
+          "label": "croie"
+        }
+      ]
+    },
+    {
+      "id": "q089",
+      "before": "Il",
+      "after": " que tout est possible.",
+      "answer": "croit",
+      "difficulty": 2,
+      "explanation": "'Il' → 3ème pers. sing. → 'croit' avec -t final.",
+      "choices": [
+        {
+          "id": "croit",
+          "label": "croit"
+        },
+        {
+          "id": "crois",
+          "label": "crois"
+        },
+        {
+          "id": "croie",
+          "label": "croie"
+        }
+      ]
+    },
+    {
+      "id": "q090",
+      "before": "Elle",
+      "after": " fermement à la justice.",
+      "answer": "croit",
+      "difficulty": 2,
+      "explanation": "'Elle' → 3ème pers. sing. → 'croit' (distinguer 'crois' = 1ère/2ème pers.).",
+      "choices": [
+        {
+          "id": "croit",
+          "label": "croit"
+        },
+        {
+          "id": "crois",
+          "label": "crois"
+        },
+        {
+          "id": "croie",
+          "label": "croie"
+        }
+      ]
+    },
+    {
+      "id": "q091",
+      "before": "Il",
+      "after": " son café lentement.",
+      "answer": "boit",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'boit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "boit",
+          "label": "boit"
+        },
+        {
+          "id": "bois",
+          "label": "bois"
+        },
+        {
+          "id": "boie",
+          "label": "boie"
+        }
+      ]
+    },
+    {
+      "id": "q092",
+      "before": "Je",
+      "after": " un verre de vin rouge.",
+      "answer": "bois",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'bois' sans -t final.",
+      "choices": [
+        {
+          "id": "bois",
+          "label": "bois"
+        },
+        {
+          "id": "boit",
+          "label": "boit"
+        },
+        {
+          "id": "boi",
+          "label": "boi"
+        }
+      ]
+    },
+    {
+      "id": "q093",
+      "before": "Tu",
+      "after": " de l'eau chaque matin.",
+      "answer": "bois",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'bois' sans -t final.",
+      "choices": [
+        {
+          "id": "bois",
+          "label": "bois"
+        },
+        {
+          "id": "boit",
+          "label": "boit"
+        },
+        {
+          "id": "boie",
+          "label": "boie"
+        }
+      ]
+    },
+    {
+      "id": "q094",
+      "before": "On",
+      "after": " du champagne pour célébrer.",
+      "answer": "boit",
+      "difficulty": 2,
+      "explanation": "'On' → 3ème pers. sing. → 'boit' avec -t final. (On est plus formel que nous)",
+      "choices": [
+        {
+          "id": "boit",
+          "label": "boit"
+        },
+        {
+          "id": "bois",
+          "label": "bois"
+        },
+        {
+          "id": "boi",
+          "label": "boi"
+        }
+      ]
+    },
+    {
+      "id": "q095",
+      "before": "L'ambassadeur",
+      "after": " du thé britannique.",
+      "answer": "boit",
+      "difficulty": 2,
+      "explanation": "'L'ambassadeur' (3ème pers. sing.) → 'boit' avec -t final.",
+      "choices": [
+        {
+          "id": "boit",
+          "label": "boit"
+        },
+        {
+          "id": "bois",
+          "label": "bois"
+        },
+        {
+          "id": "boie",
+          "label": "boie"
+        }
+      ]
+    },
+    {
+      "id": "q096",
+      "before": "Il",
+      "after": " une lettre importante par courrier.",
+      "answer": "reçoit",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'reçoit' avec ç et -t final.",
+      "choices": [
+        {
+          "id": "reçoit",
+          "label": "reçoit"
+        },
+        {
+          "id": "reçois",
+          "label": "reçois"
+        },
+        {
+          "id": "reçoie",
+          "label": "reçoie"
+        }
+      ]
+    },
+    {
+      "id": "q097",
+      "before": "Je",
+      "after": " un colis du magasin.",
+      "answer": "reçois",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'reçois' avec ç, sans -t final.",
+      "choices": [
+        {
+          "id": "reçois",
+          "label": "reçois"
+        },
+        {
+          "id": "reçoit",
+          "label": "reçoit"
+        },
+        {
+          "id": "reçoi",
+          "label": "reçoi"
+        }
+      ]
+    },
+    {
+      "id": "q098",
+      "before": "Tu",
+      "after": " souvent des appels téléphoniques.",
+      "answer": "reçois",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'reçois' avec ç, sans -t final.",
+      "choices": [
+        {
+          "id": "reçois",
+          "label": "reçois"
+        },
+        {
+          "id": "reçoit",
+          "label": "reçoit"
+        },
+        {
+          "id": "reçoie",
+          "label": "reçoie"
+        }
+      ]
+    },
+    {
+      "id": "q099",
+      "before": "On",
+      "after": " un accueil chaleureux dans cette maison.",
+      "answer": "reçoit",
+      "difficulty": 2,
+      "explanation": "'On' → 3ème pers. sing. → 'reçoit' avec ç et -t final.",
+      "choices": [
+        {
+          "id": "reçoit",
+          "label": "reçoit"
+        },
+        {
+          "id": "reçois",
+          "label": "reçois"
+        },
+        {
+          "id": "reçoi",
+          "label": "reçoi"
+        }
+      ]
+    },
+    {
+      "id": "q100",
+      "before": "L'entreprise",
+      "after": " de nombreuses candidatures chaque mois.",
+      "answer": "reçoit",
+      "difficulty": 2,
+      "explanation": "'L'entreprise' (3ème pers. sing.) → 'reçoit' avec ç et -t final.",
+      "choices": [
+        {
+          "id": "reçoit",
+          "label": "reçoit"
+        },
+        {
+          "id": "reçois",
+          "label": "reçois"
+        },
+        {
+          "id": "reçoie",
+          "label": "reçoie"
+        }
+      ]
+    },
+    {
+      "id": "q101",
+      "before": "Il",
+      "after": " la rose depuis l'entrée.",
+      "answer": "sent",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'sent' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "sent",
+          "label": "sent"
+        },
+        {
+          "id": "sens",
+          "label": "sens"
+        },
+        {
+          "id": "san",
+          "label": "san"
+        }
+      ]
+    },
+    {
+      "id": "q102",
+      "before": "Je",
+      "after": " une douleur au genou.",
+      "answer": "sens",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'sens' sans -t final.",
+      "choices": [
+        {
+          "id": "sens",
+          "label": "sens"
+        },
+        {
+          "id": "sent",
+          "label": "sent"
+        },
+        {
+          "id": "sands",
+          "label": "sands"
+        }
+      ]
+    },
+    {
+      "id": "q103",
+      "before": "Tu",
+      "after": " que quelque chose ne va pas ?",
+      "answer": "sens",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'sens' sans -t final.",
+      "choices": [
+        {
+          "id": "sens",
+          "label": "sens"
+        },
+        {
+          "id": "sent",
+          "label": "sent"
+        },
+        {
+          "id": "sands",
+          "label": "sands"
+        }
+      ]
+    },
+    {
+      "id": "q104",
+      "before": "Elle",
+      "after": " l'absence de son ami.",
+      "answer": "sent",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'sent' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "sent",
+          "label": "sent"
+        },
+        {
+          "id": "sens",
+          "label": "sens"
+        },
+        {
+          "id": "san",
+          "label": "san"
+        }
+      ]
+    },
+    {
+      "id": "q105",
+      "before": "Mon frère",
+      "after": " déjà les premiers symptômes.",
+      "answer": "sent",
+      "difficulty": 2,
+      "explanation": "'Mon frère' (3ème pers. sing.) → 'sent' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "sent",
+          "label": "sent"
+        },
+        {
+          "id": "sens",
+          "label": "sens"
+        },
+        {
+          "id": "san",
+          "label": "san"
+        }
+      ]
+    },
+    {
+      "id": "q106",
+      "before": "Il",
+      "after": " jamais à personne.",
+      "answer": "ment",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'ment' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "ment",
+          "label": "ment"
+        },
+        {
+          "id": "mens",
+          "label": "mens"
+        },
+        {
+          "id": "man",
+          "label": "man"
+        }
+      ]
+    },
+    {
+      "id": "q107",
+      "before": "Tu",
+      "after": " sur ton âge.",
+      "answer": "mens",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'mens' sans -t final.",
+      "choices": [
+        {
+          "id": "mens",
+          "label": "mens"
+        },
+        {
+          "id": "ment",
+          "label": "ment"
+        },
+        {
+          "id": "mand",
+          "label": "mand"
+        }
+      ]
+    },
+    {
+      "id": "q108",
+      "before": "Je",
+      "after": " rarement aux enfants.",
+      "answer": "mens",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'mens' sans -t final.",
+      "choices": [
+        {
+          "id": "mens",
+          "label": "mens"
+        },
+        {
+          "id": "ment",
+          "label": "ment"
+        },
+        {
+          "id": "man",
+          "label": "man"
+        }
+      ]
+    },
+    {
+      "id": "q109",
+      "before": "Elle",
+      "after": " sur son expérience.",
+      "answer": "ment",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'ment' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "ment",
+          "label": "ment"
+        },
+        {
+          "id": "mens",
+          "label": "mens"
+        },
+        {
+          "id": "mend",
+          "label": "mend"
+        }
+      ]
+    },
+    {
+      "id": "q110",
+      "before": "Le politicien",
+      "after": " au public depuis des années.",
+      "answer": "ment",
+      "difficulty": 2,
+      "explanation": "'Le politicien' (3ème pers. sing.) → 'ment' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "ment",
+          "label": "ment"
+        },
+        {
+          "id": "mens",
+          "label": "mens"
+        },
+        {
+          "id": "mants",
+          "label": "mants"
+        }
+      ]
+    },
+    {
+      "id": "q111",
+      "before": "Il",
+      "after": " le café aux clients.",
+      "answer": "sert",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'sert' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "sert",
+          "label": "sert"
+        },
+        {
+          "id": "sers",
+          "label": "sers"
+        },
+        {
+          "id": "ser",
+          "label": "ser"
+        }
+      ]
+    },
+    {
+      "id": "q112",
+      "before": "Tu",
+      "after": " le repas à midi.",
+      "answer": "sers",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'sers' sans -t final.",
+      "choices": [
+        {
+          "id": "sers",
+          "label": "sers"
+        },
+        {
+          "id": "sert",
+          "label": "sert"
+        },
+        {
+          "id": "serf",
+          "label": "serf"
+        }
+      ]
+    },
+    {
+      "id": "q113",
+      "before": "Je",
+      "after": " de mes talents pour aider.",
+      "answer": "sers",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'sers' sans -t final.",
+      "choices": [
+        {
+          "id": "sers",
+          "label": "sers"
+        },
+        {
+          "id": "sert",
+          "label": "sert"
+        },
+        {
+          "id": "serd",
+          "label": "serd"
+        }
+      ]
+    },
+    {
+      "id": "q114",
+      "before": "Elle",
+      "after": " l'eau avec élégance.",
+      "answer": "sert",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'sert' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "sert",
+          "label": "sert"
+        },
+        {
+          "id": "sers",
+          "label": "sers"
+        },
+        {
+          "id": "ser",
+          "label": "ser"
+        }
+      ]
+    },
+    {
+      "id": "q115",
+      "before": "La serveuse",
+      "after": " les plats rapidement.",
+      "answer": "sert",
+      "difficulty": 2,
+      "explanation": "'La serveuse' (3ème pers. sing.) → 'sert' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "sert",
+          "label": "sert"
+        },
+        {
+          "id": "sers",
+          "label": "sers"
+        },
+        {
+          "id": "serf",
+          "label": "serf"
+        }
+      ]
+    },
+    {
+      "id": "q116",
+      "before": "Il",
+      "after": " attentivement le cours.",
+      "answer": "suit",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'suit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "suit",
+          "label": "suit"
+        },
+        {
+          "id": "suis",
+          "label": "suis"
+        },
+        {
+          "id": "sui",
+          "label": "sui"
+        }
+      ]
+    },
+    {
+      "id": "q117",
+      "before": "Je",
+      "after": " les instructions précises.",
+      "answer": "suis",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'suis' sans -t final (attention : 'suis' = aussi 'am' en anglais/français).",
+      "choices": [
+        {
+          "id": "suis",
+          "label": "suis"
+        },
+        {
+          "id": "suit",
+          "label": "suit"
+        },
+        {
+          "id": "suît",
+          "label": "suît"
+        }
+      ]
+    },
+    {
+      "id": "q118",
+      "before": "Tu",
+      "after": " ton ami partout !",
+      "answer": "suis",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'suis' sans -t final.",
+      "choices": [
+        {
+          "id": "suis",
+          "label": "suis"
+        },
+        {
+          "id": "suit",
+          "label": "suit"
+        },
+        {
+          "id": "suît",
+          "label": "suît"
+        }
+      ]
+    },
+    {
+      "id": "q119",
+      "before": "Elle",
+      "after": " son mari dans le voyage.",
+      "answer": "suit",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'suit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "suit",
+          "label": "suit"
+        },
+        {
+          "id": "suis",
+          "label": "suis"
+        },
+        {
+          "id": "sui",
+          "label": "sui"
+        }
+      ]
+    },
+    {
+      "id": "q120",
+      "before": "Mon enfant",
+      "after": " l'histoire avec fascination.",
+      "answer": "suit",
+      "difficulty": 2,
+      "explanation": "'Mon enfant' (3ème pers. sing.) → 'suit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "suit",
+          "label": "suit"
+        },
+        {
+          "id": "suis",
+          "label": "suis"
+        },
+        {
+          "id": "sui",
+          "label": "sui"
+        }
+      ]
+    },
+    {
+      "id": "q121",
+      "before": "Il",
+      "after": " très vite sur l'autoroute.",
+      "answer": "conduit",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'conduit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "conduit",
+          "label": "conduit"
+        },
+        {
+          "id": "conduis",
+          "label": "conduis"
+        },
+        {
+          "id": "conduie",
+          "label": "conduie"
+        }
+      ]
+    },
+    {
+      "id": "q122",
+      "before": "Je",
+      "after": " ma nouvelle voiture au travail.",
+      "answer": "conduis",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'conduis' sans -t final.",
+      "choices": [
+        {
+          "id": "conduis",
+          "label": "conduis"
+        },
+        {
+          "id": "conduit",
+          "label": "conduit"
+        },
+        {
+          "id": "condui",
+          "label": "condui"
+        }
+      ]
+    },
+    {
+      "id": "q123",
+      "before": "Mon père",
+      "after": " les enfants à l'école chaque matin.",
+      "answer": "conduit",
+      "difficulty": 2,
+      "explanation": "'Mon père' (3ème pers. sing.) → 'conduit' avec -t final.",
+      "choices": [
+        {
+          "id": "conduit",
+          "label": "conduit"
+        },
+        {
+          "id": "conduis",
+          "label": "conduis"
+        },
+        {
+          "id": "conduie",
+          "label": "conduie"
+        }
+      ]
+    },
+    {
+      "id": "q124",
+      "before": "Tu",
+      "after": " trop lentement, dépêche-toi!",
+      "answer": "conduis",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'conduis' sans -t final.",
+      "choices": [
+        {
+          "id": "conduis",
+          "label": "conduis"
+        },
+        {
+          "id": "conduit",
+          "label": "conduit"
+        },
+        {
+          "id": "conduie",
+          "label": "conduie"
+        }
+      ]
+    },
+    {
+      "id": "q125",
+      "before": "Le chauffeur",
+      "after": " le bus avec beaucoup d'expérience.",
+      "answer": "conduit",
+      "difficulty": 2,
+      "explanation": "'Le chauffeur' (3ème pers. sing.) → 'conduit' avec -t final.",
+      "choices": [
+        {
+          "id": "conduit",
+          "label": "conduit"
+        },
+        {
+          "id": "conduis",
+          "label": "conduis"
+        },
+        {
+          "id": "condui",
+          "label": "condui"
+        }
+      ]
+    },
+    {
+      "id": "q126",
+      "before": "Elle",
+      "after": " quand elle te voit.",
+      "answer": "sourit",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'sourit' avec -t final (distinguer 'souris' = la souris).",
+      "choices": [
+        {
+          "id": "sourit",
+          "label": "sourit"
+        },
+        {
+          "id": "souris",
+          "label": "souris"
+        },
+        {
+          "id": "souries",
+          "label": "souries"
+        }
+      ]
+    },
+    {
+      "id": "q127",
+      "before": "Je",
+      "after": " à mes amis pendant la fête.",
+      "answer": "souris",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'souris' (attention: 'souris' = aussi la souris!).",
+      "choices": [
+        {
+          "id": "souris",
+          "label": "souris"
+        },
+        {
+          "id": "sourit",
+          "label": "sourit"
+        },
+        {
+          "id": "souries",
+          "label": "souries"
+        }
+      ]
+    },
+    {
+      "id": "q128",
+      "before": "La mère",
+      "after": " tendrement à son bébé.",
+      "answer": "sourit",
+      "difficulty": 2,
+      "explanation": "'La mère' (3ème pers. sing.) → 'sourit' avec -t final.",
+      "choices": [
+        {
+          "id": "sourit",
+          "label": "sourit"
+        },
+        {
+          "id": "souris",
+          "label": "souris"
+        },
+        {
+          "id": "souri",
+          "label": "souri"
+        }
+      ]
+    },
+    {
+      "id": "q129",
+      "before": "Tu",
+      "after": " beaucoup en voyant ce film comique.",
+      "answer": "souris",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'souris' sans -t final.",
+      "choices": [
+        {
+          "id": "souris",
+          "label": "souris"
+        },
+        {
+          "id": "sourit",
+          "label": "sourit"
+        },
+        {
+          "id": "souries",
+          "label": "souries"
+        }
+      ]
+    },
+    {
+      "id": "q130",
+      "before": "Le clown",
+      "after": " à tous les enfants.",
+      "answer": "sourit",
+      "difficulty": 2,
+      "explanation": "'Le clown' (3ème pers. sing.) → 'sourit' avec -t final.",
+      "choices": [
+        {
+          "id": "sourit",
+          "label": "sourit"
+        },
+        {
+          "id": "souris",
+          "label": "souris"
+        },
+        {
+          "id": "souri",
+          "label": "souri"
+        }
+      ]
+    },
+    {
+      "id": "q131",
+      "before": "On",
+      "after": " tous les noms des capitales européennes.",
+      "answer": "connaît",
+      "difficulty": 1,
+      "explanation": "'On' → 3ème pers. sing. → 'connaît' avec -t final et circumflex sur î.",
+      "choices": [
+        {
+          "id": "connaît",
+          "label": "connaît"
+        },
+        {
+          "id": "connais",
+          "label": "connais"
+        },
+        {
+          "id": "connaie",
+          "label": "connaie"
+        }
+      ]
+    },
+    {
+      "id": "q132",
+      "before": "Je",
+      "after": " bien cette région depuis mon enfance.",
+      "answer": "connais",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'connais' sans circumflex.",
+      "choices": [
+        {
+          "id": "connais",
+          "label": "connais"
+        },
+        {
+          "id": "connaît",
+          "label": "connaît"
+        },
+        {
+          "id": "connai",
+          "label": "connai"
+        }
+      ]
+    },
+    {
+      "id": "q133",
+      "before": "Mon professeur",
+      "after": " très bien la grammaire française.",
+      "answer": "connaît",
+      "difficulty": 2,
+      "explanation": "'Mon professeur' (3ème pers. sing.) → 'connaît' avec circumflex sur î.",
+      "choices": [
+        {
+          "id": "connaît",
+          "label": "connaît"
+        },
+        {
+          "id": "connais",
+          "label": "connais"
+        },
+        {
+          "id": "connaie",
+          "label": "connaie"
+        }
+      ]
+    },
+    {
+      "id": "q134",
+      "before": "Tu",
+      "after": " le directeur depuis longtemps?",
+      "answer": "connais",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'connais' sans circumflex.",
+      "choices": [
+        {
+          "id": "connais",
+          "label": "connais"
+        },
+        {
+          "id": "connaît",
+          "label": "connaît"
+        },
+        {
+          "id": "connai",
+          "label": "connai"
+        }
+      ]
+    },
+    {
+      "id": "q135",
+      "before": "Elle",
+      "after": " quelques personnes sympathiques dans ce quartier.",
+      "answer": "connaît",
+      "difficulty": 2,
+      "explanation": "'Elle' → 3ème pers. sing. → 'connaît' avec circumflex sur î.",
+      "choices": [
+        {
+          "id": "connaît",
+          "label": "connaît"
+        },
+        {
+          "id": "connais",
+          "label": "connais"
+        },
+        {
+          "id": "connai",
+          "label": "connai"
+        }
+      ]
+    },
+    {
+      "id": "q136",
+      "before": "Il",
+      "after": " très vite pour attraper le bus.",
+      "answer": "court",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'court' (attention: 'cours' = leçons!).",
+      "choices": [
+        {
+          "id": "court",
+          "label": "court"
+        },
+        {
+          "id": "cours",
+          "label": "cours"
+        },
+        {
+          "id": "coure",
+          "label": "coure"
+        }
+      ]
+    },
+    {
+      "id": "q137",
+      "before": "Je",
+      "after": " chaque matin pour rester en forme.",
+      "answer": "cours",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'cours' (attention au piège: 'cours' = aussi leçons!).",
+      "choices": [
+        {
+          "id": "cours",
+          "label": "cours"
+        },
+        {
+          "id": "court",
+          "label": "court"
+        },
+        {
+          "id": "coure",
+          "label": "coure"
+        }
+      ]
+    },
+    {
+      "id": "q138",
+      "before": "Le champion",
+      "after": " plus rapidement que tous les autres.",
+      "answer": "court",
+      "difficulty": 2,
+      "explanation": "'Le champion' (3ème pers. sing.) → 'court' avec -t final.",
+      "choices": [
+        {
+          "id": "court",
+          "label": "court"
+        },
+        {
+          "id": "cours",
+          "label": "cours"
+        },
+        {
+          "id": "courd",
+          "label": "courd"
+        }
+      ]
+    },
+    {
+      "id": "q139",
+      "before": "Tu",
+      "after": " dans le parc après l'école.",
+      "answer": "cours",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'cours' sans -t final (attention: 'cours' ≠ leçon ici).",
+      "choices": [
+        {
+          "id": "cours",
+          "label": "cours"
+        },
+        {
+          "id": "court",
+          "label": "court"
+        },
+        {
+          "id": "coure",
+          "label": "coure"
+        }
+      ]
+    },
+    {
+      "id": "q140",
+      "before": "Ma sœur",
+      "after": " aussi vite qu'un athlète.",
+      "answer": "court",
+      "difficulty": 2,
+      "explanation": "'Ma sœur' (3ème pers. sing.) → 'court' avec -t final.",
+      "choices": [
+        {
+          "id": "court",
+          "label": "court"
+        },
+        {
+          "id": "cours",
+          "label": "cours"
+        },
+        {
+          "id": "courd",
+          "label": "courd"
+        }
+      ]
+    },
+    {
+      "id": "q141",
+      "before": "La plante",
+      "after": " de soif sans arrosage.",
+      "answer": "meurt",
+      "difficulty": 2,
+      "explanation": "'La plante' → 3ème pers. sing. → 'meurt' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "meurt",
+          "label": "meurt"
+        },
+        {
+          "id": "meurs",
+          "label": "meurs"
+        },
+        {
+          "id": "meur",
+          "label": "meur"
+        }
+      ]
+    },
+    {
+      "id": "q142",
+      "before": "Je",
+      "after": " de peur en voyant le film d'horreur.",
+      "answer": "meurs",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'meurs' avec -s muet.",
+      "choices": [
+        {
+          "id": "meurs",
+          "label": "meurs"
+        },
+        {
+          "id": "meurt",
+          "label": "meurt"
+        },
+        {
+          "id": "meurd",
+          "label": "meurd"
+        }
+      ]
+    },
+    {
+      "id": "q143",
+      "before": "Mon grand-père",
+      "after": " à l'âge de quatre-vingt-dix ans.",
+      "answer": "meurt",
+      "difficulty": 2,
+      "explanation": "'Mon grand-père' → 3ème pers. sing. → 'meurt' avec -t final.",
+      "choices": [
+        {
+          "id": "meurt",
+          "label": "meurt"
+        },
+        {
+          "id": "meurs",
+          "label": "meurs"
+        },
+        {
+          "id": "meurre",
+          "label": "meurre"
+        }
+      ]
+    },
+    {
+      "id": "q144",
+      "before": "Tu",
+      "after": " d'envie de goûter ce gâteau délicieux.",
+      "answer": "meurs",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'meurs' avec -s muet.",
+      "choices": [
+        {
+          "id": "meurs",
+          "label": "meurs"
+        },
+        {
+          "id": "meurt",
+          "label": "meurt"
+        },
+        {
+          "id": "meur",
+          "label": "meur"
+        }
+      ]
+    },
+    {
+      "id": "q145",
+      "before": "Elle",
+      "after": " de curiosité en recevant le mystérieux colis.",
+      "answer": "meurt",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'meurt' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "meurt",
+          "label": "meurt"
+        },
+        {
+          "id": "meurs",
+          "label": "meurs"
+        },
+        {
+          "id": "meurd",
+          "label": "meurd"
+        }
+      ]
+    },
+    {
+      "id": "q146",
+      "before": "Le champion",
+      "after": " rapidement pour gagner la course.",
+      "answer": "bat",
+      "difficulty": 2,
+      "explanation": "'Le champion' → 3ème pers. sing. → 'bat' (pas de -s supplémentaire).",
+      "choices": [
+        {
+          "id": "bat",
+          "label": "bat"
+        },
+        {
+          "id": "bats",
+          "label": "bats"
+        },
+        {
+          "id": "bad",
+          "label": "bad"
+        }
+      ]
+    },
+    {
+      "id": "q147",
+      "before": "Je",
+      "after": " le record avec cette nouvelle performance.",
+      "answer": "bats",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'bats' avec -s muet.",
+      "choices": [
+        {
+          "id": "bats",
+          "label": "bats"
+        },
+        {
+          "id": "bat",
+          "label": "bat"
+        },
+        {
+          "id": "bate",
+          "label": "bate"
+        }
+      ]
+    },
+    {
+      "id": "q148",
+      "before": "Tu",
+      "after": " des œufs pour la pâte à crêpes.",
+      "answer": "bats",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'bats' avec -s muet (différent de 'il bat').",
+      "choices": [
+        {
+          "id": "bats",
+          "label": "bats"
+        },
+        {
+          "id": "bat",
+          "label": "bat"
+        },
+        {
+          "id": "batt",
+          "label": "batt"
+        }
+      ]
+    },
+    {
+      "id": "q149",
+      "before": "Mon cœur",
+      "after": " très fort quand j'ai peur.",
+      "answer": "bat",
+      "difficulty": 2,
+      "explanation": "'Mon cœur' → 3ème pers. sing. → 'bat' (pas de -s).",
+      "choices": [
+        {
+          "id": "bat",
+          "label": "bat"
+        },
+        {
+          "id": "bats",
+          "label": "bats"
+        },
+        {
+          "id": "batt",
+          "label": "batt"
+        }
+      ]
+    },
+    {
+      "id": "q150",
+      "before": "Le tambour",
+      "after": " la mesure pendant le concert.",
+      "answer": "bat",
+      "difficulty": 2,
+      "explanation": "'Le tambour' (3ème pers. sing.) → 'bat' sans -s supplémentaire.",
+      "choices": [
+        {
+          "id": "bat",
+          "label": "bat"
+        },
+        {
+          "id": "bats",
+          "label": "bats"
+        },
+        {
+          "id": "bad",
+          "label": "bad"
+        }
+      ]
+    },
+    {
+      "id": "q151",
+      "before": "Cette musique",
+      "after": " beaucoup aux enfants.",
+      "answer": "plaît",
+      "difficulty": 2,
+      "explanation": "'Cette musique' → 3ème pers. sing. → 'plaît' avec accent circonflexe et -t muet.",
+      "choices": [
+        {
+          "id": "plaît",
+          "label": "plaît"
+        },
+        {
+          "id": "plais",
+          "label": "plais"
+        },
+        {
+          "id": "plait",
+          "label": "plait"
+        }
+      ]
+    },
+    {
+      "id": "q152",
+      "before": "Je te",
+      "after": " de plus en plus, à ce qu'il paraît.",
+      "answer": "plais",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'plais' avec -s.",
+      "choices": [
+        {
+          "id": "plais",
+          "label": "plais"
+        },
+        {
+          "id": "plaît",
+          "label": "plaît"
+        },
+        {
+          "id": "plaie",
+          "label": "plaie"
+        }
+      ]
+    },
+    {
+      "id": "q153",
+      "before": "Tu",
+      "after": " tellement à ta mère.",
+      "answer": "plais",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'plais' avec -s muet.",
+      "choices": [
+        {
+          "id": "plais",
+          "label": "plais"
+        },
+        {
+          "id": "plaît",
+          "label": "plaît"
+        },
+        {
+          "id": "plai",
+          "label": "plai"
+        }
+      ]
+    },
+    {
+      "id": "q154",
+      "before": "Le gâteau au chocolat",
+      "after": " à tout le monde.",
+      "answer": "plaît",
+      "difficulty": 2,
+      "explanation": "'Le gâteau' → 3ème pers. sing. → 'plaît' avec accent circonflexe et -t final.",
+      "choices": [
+        {
+          "id": "plaît",
+          "label": "plaît"
+        },
+        {
+          "id": "plais",
+          "label": "plais"
+        },
+        {
+          "id": "plait",
+          "label": "plait"
+        }
+      ]
+    },
+    {
+      "id": "q155",
+      "before": "L'idée",
+      "after": " à tout le groupe.",
+      "answer": "plaît",
+      "difficulty": 2,
+      "explanation": "'L'idée' → 3ème pers. sing. → 'plaît' avec accent circonflexe (important!).",
+      "choices": [
+        {
+          "id": "plaît",
+          "label": "plaît"
+        },
+        {
+          "id": "plais",
+          "label": "plais"
+        },
+        {
+          "id": "plaie",
+          "label": "plaie"
+        }
+      ]
+    },
+    {
+      "id": "q156",
+      "before": "Mon chien",
+      "after": " l'orage et se réfugie sous le lit.",
+      "answer": "craint",
+      "difficulty": 2,
+      "explanation": "'Mon chien' → 3ème pers. sing. → 'craint' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "craint",
+          "label": "craint"
+        },
+        {
+          "id": "crains",
+          "label": "crains"
+        },
+        {
+          "id": "crain",
+          "label": "crain"
+        }
+      ]
+    },
+    {
+      "id": "q157",
+      "before": "Je",
+      "after": " de perdre mes amis.",
+      "answer": "crains",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'crains' avec -s muet.",
+      "choices": [
+        {
+          "id": "crains",
+          "label": "crains"
+        },
+        {
+          "id": "craint",
+          "label": "craint"
+        },
+        {
+          "id": "craind",
+          "label": "craind"
+        }
+      ]
+    },
+    {
+      "id": "q158",
+      "before": "Tu",
+      "after": " le noir depuis ton enfance.",
+      "answer": "crains",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2ème pers. sing. → 'crains' avec -s muet.",
+      "choices": [
+        {
+          "id": "crains",
+          "label": "crains"
+        },
+        {
+          "id": "craint",
+          "label": "craint"
+        },
+        {
+          "id": "crain",
+          "label": "crain"
+        }
+      ]
+    },
+    {
+      "id": "q159",
+      "before": "Elle",
+      "after": " les hauteurs depuis son accident.",
+      "answer": "craint",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'craint' avec -nt final (muet).",
+      "choices": [
+        {
+          "id": "craint",
+          "label": "craint"
+        },
+        {
+          "id": "crains",
+          "label": "crains"
+        },
+        {
+          "id": "crain",
+          "label": "crain"
+        }
+      ]
+    },
+    {
+      "id": "q160",
+      "before": "Mon petit frère",
+      "after": " le tonnerre et pleure chaque été.",
+      "answer": "craint",
+      "difficulty": 2,
+      "explanation": "'Mon petit frère' → 3ème pers. sing. → 'craint' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "craint",
+          "label": "craint"
+        },
+        {
+          "id": "crains",
+          "label": "crains"
+        },
+        {
+          "id": "craind",
+          "label": "craind"
+        }
+      ]
+    },
+    {
+      "id": "q161",
+      "before": "Elle",
+      "after": " un portrait de sa grand-mère.",
+      "answer": "peint",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'peint' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "peint",
+          "label": "peint"
+        },
+        {
+          "id": "peins",
+          "label": "peins"
+        },
+        {
+          "id": "pein",
+          "label": "pein"
+        }
+      ]
+    },
+    {
+      "id": "q162",
+      "before": "Tu",
+      "after": " les murs en bleu.",
+      "answer": "peins",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2e pers. sing. → 'peins' avec -s final.",
+      "choices": [
+        {
+          "id": "peins",
+          "label": "peins"
+        },
+        {
+          "id": "peint",
+          "label": "peint"
+        },
+        {
+          "id": "peind",
+          "label": "peind"
+        }
+      ]
+    },
+    {
+      "id": "q163",
+      "before": "Le peintre",
+      "after": " des tableaux magnifiques.",
+      "answer": "peint",
+      "difficulty": 2,
+      "explanation": "'Le peintre' (sing.) → 3ème pers. sing. → 'peint'.",
+      "choices": [
+        {
+          "id": "peint",
+          "label": "peint"
+        },
+        {
+          "id": "peins",
+          "label": "peins"
+        },
+        {
+          "id": "peinds",
+          "label": "peinds"
+        }
+      ]
+    },
+    {
+      "id": "q164",
+      "before": "Je",
+      "after": " sur le canvas depuis deux heures.",
+      "answer": "peins",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'peins' avec -s final.",
+      "choices": [
+        {
+          "id": "peins",
+          "label": "peins"
+        },
+        {
+          "id": "peint",
+          "label": "peint"
+        },
+        {
+          "id": "pein",
+          "label": "pein"
+        }
+      ]
+    },
+    {
+      "id": "q165",
+      "before": "Mon ami",
+      "after": " les portes chaque printemps.",
+      "answer": "peint",
+      "difficulty": 2,
+      "explanation": "'Mon ami' (sing.) → 3ème pers. sing. → 'peint'.",
+      "choices": [
+        {
+          "id": "peint",
+          "label": "peint"
+        },
+        {
+          "id": "peins",
+          "label": "peins"
+        },
+        {
+          "id": "peind",
+          "label": "peind"
+        }
+      ]
+    },
+    {
+      "id": "q166",
+      "before": "Il",
+      "after": " beaucoup d'argent.",
+      "answer": "vaut",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'vaut' (homophones: vaut/vaux [vo]).",
+      "choices": [
+        {
+          "id": "vaut",
+          "label": "vaut"
+        },
+        {
+          "id": "vaux",
+          "label": "vaux"
+        },
+        {
+          "id": "vau",
+          "label": "vau"
+        }
+      ]
+    },
+    {
+      "id": "q167",
+      "before": "Tu",
+      "after": " la peine d'essayer.",
+      "answer": "vaux",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2e pers. sing. → 'vaux' (homophones: vaux/vaut [vo]).",
+      "choices": [
+        {
+          "id": "vaux",
+          "label": "vaux"
+        },
+        {
+          "id": "vaut",
+          "label": "vaut"
+        },
+        {
+          "id": "vaud",
+          "label": "vaud"
+        }
+      ]
+    },
+    {
+      "id": "q168",
+      "before": "Ce diamant",
+      "after": " une fortune.",
+      "answer": "vaut",
+      "difficulty": 2,
+      "explanation": "'Ce diamant' (sing.) → 3ème pers. sing. → 'vaut'.",
+      "choices": [
+        {
+          "id": "vaut",
+          "label": "vaut"
+        },
+        {
+          "id": "vaux",
+          "label": "vaux"
+        },
+        {
+          "id": "vauts",
+          "label": "vauts"
+        }
+      ]
+    },
+    {
+      "id": "q169",
+      "before": "Je",
+      "after": " mieux que ma sœur.",
+      "answer": "vaux",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'vaux'.",
+      "choices": [
+        {
+          "id": "vaux",
+          "label": "vaux"
+        },
+        {
+          "id": "vaut",
+          "label": "vaut"
+        },
+        {
+          "id": "vau",
+          "label": "vau"
+        }
+      ]
+    },
+    {
+      "id": "q170",
+      "before": "Chaque moment avec toi",
+      "after": " son poids en or.",
+      "answer": "vaut",
+      "difficulty": 2,
+      "explanation": "'Chaque moment' (sing.) → 3ème pers. sing. → 'vaut'.",
+      "choices": [
+        {
+          "id": "vaut",
+          "label": "vaut"
+        },
+        {
+          "id": "vaux",
+          "label": "vaux"
+        },
+        {
+          "id": "vaud",
+          "label": "vaud"
+        }
+      ]
+    },
+    {
+      "id": "q171",
+      "before": "Elle",
+      "after": " travailler toute la journée.",
+      "answer": "doit",
+      "difficulty": 1,
+      "explanation": "'Elle' → 3ème pers. sing. → 'doit' (homophones: doit/dois [dwa]).",
+      "choices": [
+        {
+          "id": "doit",
+          "label": "doit"
+        },
+        {
+          "id": "dois",
+          "label": "dois"
+        },
+        {
+          "id": "doie",
+          "label": "doie"
+        }
+      ]
+    },
+    {
+      "id": "q172",
+      "before": "Tu",
+      "after": " me rendre ce livre demain.",
+      "answer": "dois",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2e pers. sing. → 'dois' (homophones: dois/doit [dwa]).",
+      "choices": [
+        {
+          "id": "dois",
+          "label": "dois"
+        },
+        {
+          "id": "doit",
+          "label": "doit"
+        },
+        {
+          "id": "doid",
+          "label": "doid"
+        }
+      ]
+    },
+    {
+      "id": "q173",
+      "before": "L'étudiant",
+      "after": " remettre son mémoire lundi.",
+      "answer": "doit",
+      "difficulty": 2,
+      "explanation": "'L'étudiant' (sing.) → 3ème pers. sing. → 'doit'.",
+      "choices": [
+        {
+          "id": "doit",
+          "label": "doit"
+        },
+        {
+          "id": "dois",
+          "label": "dois"
+        },
+        {
+          "id": "doie",
+          "label": "doie"
+        }
+      ]
+    },
+    {
+      "id": "q174",
+      "before": "Je",
+      "after": " admettre que j'ai fait une erreur.",
+      "answer": "dois",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'dois'.",
+      "choices": [
+        {
+          "id": "dois",
+          "label": "dois"
+        },
+        {
+          "id": "doit",
+          "label": "doit"
+        },
+        {
+          "id": "doid",
+          "label": "doid"
+        }
+      ]
+    },
+    {
+      "id": "q175",
+      "before": "Mon patron",
+      "after": " vérifier les comptes chaque semaine.",
+      "answer": "doit",
+      "difficulty": 2,
+      "explanation": "'Mon patron' (sing.) → 3ème pers. sing. → 'doit'.",
+      "choices": [
+        {
+          "id": "doit",
+          "label": "doit"
+        },
+        {
+          "id": "dois",
+          "label": "dois"
+        },
+        {
+          "id": "doie",
+          "label": "doie"
+        }
+      ]
+    },
+    {
+      "id": "q176",
+      "before": "Le chat",
+      "after": " dès qu'il entend l'aspirateur.",
+      "answer": "fuit",
+      "difficulty": 2,
+      "explanation": "'Le chat' → 3ème pers. sing. → 'fuit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "fuit",
+          "label": "fuit"
+        },
+        {
+          "id": "fuis",
+          "label": "fuis"
+        },
+        {
+          "id": "fuie",
+          "label": "fuie"
+        }
+      ]
+    },
+    {
+      "id": "q177",
+      "before": "Tu",
+      "after": " devant le danger.",
+      "answer": "fuis",
+      "difficulty": 1,
+      "explanation": "'Tu' → 2e pers. sing. → 'fuis' avec -s final.",
+      "choices": [
+        {
+          "id": "fuis",
+          "label": "fuis"
+        },
+        {
+          "id": "fuit",
+          "label": "fuit"
+        },
+        {
+          "id": "fuî",
+          "label": "fuî"
+        }
+      ]
+    },
+    {
+      "id": "q178",
+      "before": "Il",
+      "after": " vers la forêt.",
+      "answer": "fuit",
+      "difficulty": 1,
+      "explanation": "'Il' → 3ème pers. sing. → 'fuit'.",
+      "choices": [
+        {
+          "id": "fuit",
+          "label": "fuit"
+        },
+        {
+          "id": "fuis",
+          "label": "fuis"
+        },
+        {
+          "id": "fui",
+          "label": "fui"
+        }
+      ]
+    },
+    {
+      "id": "q179",
+      "before": "Je",
+      "after": " ce pays depuis longtemps.",
+      "answer": "fuis",
+      "difficulty": 1,
+      "explanation": "'Je' → 1ère pers. sing. → 'fuis'.",
+      "choices": [
+        {
+          "id": "fuis",
+          "label": "fuis"
+        },
+        {
+          "id": "fuit",
+          "label": "fuit"
+        },
+        {
+          "id": "fui",
+          "label": "fui"
+        }
+      ]
+    },
+    {
+      "id": "q180",
+      "before": "La biche",
+      "after": " dans la forêt à toute vitesse.",
+      "answer": "fuit",
+      "difficulty": 2,
+      "explanation": "'La biche' → 3ème pers. sing. → 'fuit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "fuit",
+          "label": "fuit"
+        },
+        {
+          "id": "fuis",
+          "label": "fuis"
+        },
+        {
+          "id": "fuie",
+          "label": "fuie"
+        }
+      ]
+    },
+    {
+      "id": "q181",
+      "before": "Le tabac",
+      "after": " gravement à la santé.",
+      "answer": "nuit",
+      "difficulty": 2,
+      "explanation": "'Le tabac' (masculine singular noun) → 3ème pers. sing. → 'nuit' avec -t final (muet). Ne pas confondre avec 'nuit' (the night).",
+      "choices": [
+        {
+          "id": "nuit",
+          "label": "nuit"
+        },
+        {
+          "id": "nuis",
+          "label": "nuis"
+        },
+        {
+          "id": "nuie",
+          "label": "nuie"
+        }
+      ]
+    },
+    {
+      "id": "q182",
+      "before": "Je te",
+      "after": " avec mes critiques.",
+      "answer": "nuis",
+      "difficulty": 1,
+      "explanation": "'Je' (1ère pers. sing.) → 'nuis' sans -t final. Homophone possible avec 3ème pers. 'nuit'.",
+      "choices": [
+        {
+          "id": "nuis",
+          "label": "nuis"
+        },
+        {
+          "id": "nuit",
+          "label": "nuit"
+        },
+        {
+          "id": "nui",
+          "label": "nui"
+        }
+      ]
+    },
+    {
+      "id": "q183",
+      "before": "Tu ne",
+      "after": " à personne en restant honnête.",
+      "answer": "nuis",
+      "difficulty": 1,
+      "explanation": "'Tu' (2ème pers. sing.) → 'nuis' sans -t final.",
+      "choices": [
+        {
+          "id": "nuis",
+          "label": "nuis"
+        },
+        {
+          "id": "nuit",
+          "label": "nuit"
+        },
+        {
+          "id": "nuît",
+          "label": "nuît"
+        }
+      ]
+    },
+    {
+      "id": "q184",
+      "before": "Cette décision",
+      "after": " à tous les participants.",
+      "answer": "nuit",
+      "difficulty": 2,
+      "explanation": "'Cette décision' (feminine singular noun) → 3ème pers. sing. → 'nuit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "nuit",
+          "label": "nuit"
+        },
+        {
+          "id": "nuis",
+          "label": "nuis"
+        },
+        {
+          "id": "nuie",
+          "label": "nuie"
+        }
+      ]
+    },
+    {
+      "id": "q185",
+      "before": "Il",
+      "after": " à l'équipe par son absence.",
+      "answer": "nuit",
+      "difficulty": 1,
+      "explanation": "'Il' (3ème pers. sing.) → 'nuit' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "nuit",
+          "label": "nuit"
+        },
+        {
+          "id": "nuis",
+          "label": "nuis"
+        },
+        {
+          "id": "nui",
+          "label": "nui"
+        }
+      ]
+    },
+    {
+      "id": "q186",
+      "before": "Elle",
+      "after": " de bon cœur à la blague.",
+      "answer": "rit",
+      "difficulty": 1,
+      "explanation": "'Elle' (3ème pers. sing.) → 'rit' sans -e final. Ne pas confondre avec 'ris' (sweetbread/rice).",
+      "choices": [
+        {
+          "id": "rit",
+          "label": "rit"
+        },
+        {
+          "id": "ris",
+          "label": "ris"
+        },
+        {
+          "id": "rie",
+          "label": "rie"
+        }
+      ]
+    },
+    {
+      "id": "q187",
+      "before": "Je",
+      "after": " en voyant cette comédie.",
+      "answer": "ris",
+      "difficulty": 1,
+      "explanation": "'Je' (1ère pers. sing.) → 'ris' sans -t final. Homonyme: 'ris' = sweetbread (culinary term).",
+      "choices": [
+        {
+          "id": "ris",
+          "label": "ris"
+        },
+        {
+          "id": "rit",
+          "label": "rit"
+        },
+        {
+          "id": "ri",
+          "label": "ri"
+        }
+      ]
+    },
+    {
+      "id": "q188",
+      "before": "Tu",
+      "after": " toujours de mes maladresses.",
+      "answer": "ris",
+      "difficulty": 1,
+      "explanation": "'Tu' (2ème pers. sing.) → 'ris' sans -t final.",
+      "choices": [
+        {
+          "id": "ris",
+          "label": "ris"
+        },
+        {
+          "id": "rit",
+          "label": "rit"
+        },
+        {
+          "id": "rît",
+          "label": "rît"
+        }
+      ]
+    },
+    {
+      "id": "q189",
+      "before": "Le clown",
+      "after": " aux enfants.",
+      "answer": "rit",
+      "difficulty": 2,
+      "explanation": "'Le clown' (masculine singular noun) → 3ème pers. sing. → 'rit' sans -e final.",
+      "choices": [
+        {
+          "id": "rit",
+          "label": "rit"
+        },
+        {
+          "id": "ris",
+          "label": "ris"
+        },
+        {
+          "id": "rie",
+          "label": "rie"
+        }
+      ]
+    },
+    {
+      "id": "q190",
+      "before": "On",
+      "after": " ensemble à chaque réunion.",
+      "answer": "rit",
+      "difficulty": 1,
+      "explanation": "'On' (3ème pers. sing.) → 'rit' sans -e final.",
+      "choices": [
+        {
+          "id": "rit",
+          "label": "rit"
+        },
+        {
+          "id": "ris",
+          "label": "ris"
+        },
+        {
+          "id": "ri",
+          "label": "ri"
+        }
+      ]
+    },
+    {
+      "id": "q191",
+      "before": "Cette explication",
+      "after": " pour résoudre le problème.",
+      "answer": "suffit",
+      "difficulty": 2,
+      "explanation": "'Cette explication' (feminine singular noun) → 3ème pers. sing. → 'suffit' avec double-f et -t final.",
+      "choices": [
+        {
+          "id": "suffit",
+          "label": "suffit"
+        },
+        {
+          "id": "suffis",
+          "label": "suffis"
+        },
+        {
+          "id": "suffie",
+          "label": "suffie"
+        }
+      ]
+    },
+    {
+      "id": "q192",
+      "before": "Je",
+      "after": " de peu de choses pour être heureux.",
+      "answer": "suffis",
+      "difficulty": 1,
+      "explanation": "'Je' (1ère pers. sing.) → 'suffis' avec double-f, sans -t final.",
+      "choices": [
+        {
+          "id": "suffis",
+          "label": "suffis"
+        },
+        {
+          "id": "suffit",
+          "label": "suffit"
+        },
+        {
+          "id": "suffi",
+          "label": "suffi"
+        }
+      ]
+    },
+    {
+      "id": "q193",
+      "before": "Tu",
+      "after": " à toi-même.",
+      "answer": "suffis",
+      "difficulty": 1,
+      "explanation": "'Tu' (2ème pers. sing.) → 'suffis' avec double-f, sans -t final.",
+      "choices": [
+        {
+          "id": "suffis",
+          "label": "suffis"
+        },
+        {
+          "id": "suffit",
+          "label": "suffit"
+        },
+        {
+          "id": "suffît",
+          "label": "suffît"
+        }
+      ]
+    },
+    {
+      "id": "q194",
+      "before": "Un seul coup",
+      "after": " pour casser la vitre.",
+      "answer": "suffit",
+      "difficulty": 2,
+      "explanation": "'Un seul coup' (masculine singular noun) → 3ème pers. sing. → 'suffit' avec double-f et -t final.",
+      "choices": [
+        {
+          "id": "suffit",
+          "label": "suffit"
+        },
+        {
+          "id": "suffis",
+          "label": "suffis"
+        },
+        {
+          "id": "suffie",
+          "label": "suffie"
+        }
+      ]
+    },
+    {
+      "id": "q195",
+      "before": "Il",
+      "after": " d'une signature pour valider le contrat.",
+      "answer": "suffit",
+      "difficulty": 1,
+      "explanation": "'Il' (3ème pers. sing.) → 'suffit' avec double-f et -t final.",
+      "choices": [
+        {
+          "id": "suffit",
+          "label": "suffit"
+        },
+        {
+          "id": "suffis",
+          "label": "suffis"
+        },
+        {
+          "id": "suffi",
+          "label": "suffi"
+        }
+      ]
+    },
+    {
+      "id": "q196",
+      "before": "Le tribunal",
+      "after": " le différend rapidement.",
+      "answer": "résout",
+      "difficulty": 2,
+      "explanation": "'Le tribunal' (masculine singular noun) → 3ème pers. sing. → 'résout' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "résout",
+          "label": "résout"
+        },
+        {
+          "id": "résous",
+          "label": "résous"
+        },
+        {
+          "id": "résoue",
+          "label": "résoue"
+        }
+      ]
+    },
+    {
+      "id": "q197",
+      "before": "Je",
+      "after": " ce problème mathématique.",
+      "answer": "résous",
+      "difficulty": 1,
+      "explanation": "'Je' (1ère pers. sing.) → 'résous' sans -t final.",
+      "choices": [
+        {
+          "id": "résous",
+          "label": "résous"
+        },
+        {
+          "id": "résout",
+          "label": "résout"
+        },
+        {
+          "id": "résou",
+          "label": "résou"
+        }
+      ]
+    },
+    {
+      "id": "q198",
+      "before": "Tu",
+      "after": " enfin ce conflit.",
+      "answer": "résous",
+      "difficulty": 1,
+      "explanation": "'Tu' (2ème pers. sing.) → 'résous' sans -t final.",
+      "choices": [
+        {
+          "id": "résous",
+          "label": "résous"
+        },
+        {
+          "id": "résout",
+          "label": "résout"
+        },
+        {
+          "id": "résoud",
+          "label": "résoud"
+        }
+      ]
+    },
+    {
+      "id": "q199",
+      "before": "Elle",
+      "after": " de rester et de m'aider.",
+      "answer": "résout",
+      "difficulty": 1,
+      "explanation": "'Elle' (3ème pers. sing.) → 'résout' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "résout",
+          "label": "résout"
+        },
+        {
+          "id": "résous",
+          "label": "résous"
+        },
+        {
+          "id": "résoue",
+          "label": "résoue"
+        }
+      ]
+    },
+    {
+      "id": "q200",
+      "before": "On",
+      "after": " de partir au plus tôt.",
+      "answer": "résout",
+      "difficulty": 1,
+      "explanation": "'On' (3ème pers. sing.) → 'résout' avec -t final (muet).",
+      "choices": [
+        {
+          "id": "résout",
+          "label": "résout"
+        },
+        {
+          "id": "résous",
+          "label": "résous"
+        },
+        {
+          "id": "résou",
+          "label": "résou"
+        }
+      ]
+    }
+  ],
+  "group": "aventurier"
+}

@@ -1,0 +1,1683 @@
+{
+  "id": "son-sont",
+  "title": "son · sont",
+  "shortTitle": "son / sont",
+  "description": "Distinguer 'son' (adjectif possessif, remplaçable par 'mon' ou 'ma') et 'sont' (verbe être conjugué, remplaçable par 'ils sont').",
+  "choices": [
+    {
+      "id": "son",
+      "label": "son"
+    },
+    {
+      "id": "sont",
+      "label": "sont"
+    }
+  ],
+  "decisionAxes": [
+    {
+      "id": "remplacement",
+      "question": "Peut-on remplacer par 'ils sont' ?",
+      "sub": "Teste mentalement : 'ils sont...' — si la phrase garde un sens → 'sont'. Sinon, essaie 'mon' ou 'ma' → 'son'.",
+      "options": [
+        {
+          "value": true,
+          "label": "Oui — 'ils sont' fonctionne",
+          "sub": "",
+          "eliminates": [
+            "son"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non — 'mon' ou 'ma' fonctionne",
+          "sub": "",
+          "eliminates": [
+            "sont"
+          ]
+        }
+      ]
+    }
+  ],
+  "memoCard": {
+    "title": "son ou sont ?",
+    "rows": [
+      {
+        "form": "son",
+        "test": "Remplaçable par 'mon' ou 'ma'",
+        "example": "Son chien aboie. → Mon chien aboie. ✓"
+      },
+      {
+        "form": "sont",
+        "test": "Remplaçable par 'ils sont'",
+        "example": "Ils sont partis. → ils sont partis. ✓"
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "before": "Ils ",
+      "after": " arrivés en retard à la réunion.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'ils sont arrivés' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q002",
+      "before": "Il a oublié ",
+      "after": " passeport la veille du voyage.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon passeport' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q003",
+      "before": "Les résultats ",
+      "after": " meilleurs que prévu cette année.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'ils sont meilleurs' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q004",
+      "before": "Les enfants ",
+      "after": " à l'école le matin.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'ils sont à l'école' → c'est 'sont', le verbe être à la 3ème personne du pluriel."
+    },
+    {
+      "id": "q005",
+      "before": "Elle a rangé ",
+      "after": " manteau dans le placard.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon manteau' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q006",
+      "before": "Mes parents ",
+      "after": " allés faire les courses samedi.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'ils sont allés' → c'est 'sont', le verbe être au passé composé."
+    },
+    {
+      "id": "q007",
+      "before": "Il aime préparer ",
+      "after": " repas préféré le dimanche.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon repas préféré' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q008",
+      "before": "Les chats ",
+      "after": " sur le canapé pendant la sieste.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'ils sont sur le canapé' → c'est 'sont', le verbe être décrivant une situation."
+    },
+    {
+      "id": "q009",
+      "before": "Aujourd'hui, elle accompagne ",
+      "after": " ami à l'école après les cours.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon ami' → c'est 'son', adjectif possessif devant une voyelle."
+    },
+    {
+      "id": "q010",
+      "before": "Les devoirs de maths ",
+      "after": " plus difficiles que prévu.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'ils sont difficiles' → c'est 'sont', le verbe être avec un adjectif."
+    },
+    {
+      "id": "q011",
+      "before": "Mon frère a quitté ",
+      "after": " école primaire à la fin de l'année.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon école' → c'est 'son', adjectif possessif devant une voyelle."
+    },
+    {
+      "id": "q012",
+      "before": "Après le repas, ils ",
+      "after": " restés pour discuter autour du café.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'ils sont restés' → c'est 'sont', le verbe être au passé composé."
+    },
+    {
+      "id": "q013",
+      "before": "Elle prépare toujours ",
+      "after": " déjeuner avec soin et attention.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon déjeuner' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q014",
+      "before": "Les trois frères ",
+      "after": " devenus ingénieurs, avocat et médecin.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'ils sont devenus' → c'est 'sont', le verbe être avec l'attribut du sujet."
+    },
+    {
+      "id": "q015",
+      "before": "Bien que fatigué, il a gardé ",
+      "after": " sourire malgré les difficultés.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'mon sourire' → c'est 'son', adjectif possessif dans une phrase complexe."
+    },
+    {
+      "id": "q016",
+      "before": "Les voitures des voisins ",
+      "after": " garées devant la maison depuis hier matin.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'elles sont garées' → c'est 'sont', le verbe être avec un participe passé."
+    },
+    {
+      "id": "q017",
+      "before": "Malgré les protestations, elle a décidé de nettoyer ",
+      "after": " appartement le weekend.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'mon appartement' → c'est 'son', adjectif possessif devant une voyelle dans une phrase longue."
+    },
+    {
+      "id": "q018",
+      "before": "Les responsables de cette entreprise ",
+      "after": " conscients que les changements nécessaires prendront du temps.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'ils sont conscients' → c'est 'sont', le verbe être avec un adjectif dans une phrase complexe."
+    },
+    {
+      "id": "q019",
+      "before": "Avant de partir en vacances, il a vérifié ",
+      "after": " passeport et ses documents importants.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'mon passeport' → c'est 'son', adjectif possessif dans une structure temporelle."
+    },
+    {
+      "id": "q020",
+      "before": "Même si les résultats ",
+      "after": " meilleurs cette année, il continue à travailler dur.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'ils sont meilleurs' → c'est 'sont', le verbe être malgré une concession au début."
+    },
+    {
+      "id": "q021",
+      "before": "Chaque matin, elle prend ",
+      "after": " petit-déjeuner avant d'aller au travail.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon petit-déjeuner' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q022",
+      "before": "Les enfants du quartier ",
+      "after": " sortis jouer au parc malgré la pluie.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'ils sont sortis' → c'est 'sont', le verbe être au passé composé."
+    },
+    {
+      "id": "q023",
+      "before": "À cause du bruit, il a fermé ",
+      "after": " ordinateur et a décidé de faire une pause.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon ordinateur' → c'est 'son', adjectif possessif devant une voyelle."
+    },
+    {
+      "id": "q024",
+      "before": "Les étudiants ",
+      "after": " tous présents à la réunion.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'Ils sont tous présents' → c'est le verbe être à la 3ème personne du pluriel, donc 'sont'."
+    },
+    {
+      "id": "q025",
+      "before": "Il a oublié ",
+      "after": " agenda au bureau.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon agenda' ou 'ton agenda' → c'est l'adjectif possessif 'son'."
+    },
+    {
+      "id": "q026",
+      "before": "Mes collègues ",
+      "after": " en train de préparer le projet.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'Ils sont en train de préparer' → c'est 'sont', verbe être au pluriel."
+    },
+    {
+      "id": "q027",
+      "before": "Elle a remis ",
+      "after": " essai avant la deadline.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon essai' ou 'ton essai' → c'est l'adjectif possessif 'son'."
+    },
+    {
+      "id": "q028",
+      "before": "Les réunions de demain ",
+      "after": " reportées à la semaine prochaine.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'Elles sont reportées' → c'est 'sont', verbe être au féminin pluriel."
+    },
+    {
+      "id": "q029",
+      "before": "Le directeur a validé ",
+      "after": " emploi du temps personnalisé.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon emploi du temps' → c'est l'adjectif possessif 'son' (avant une voyelle)."
+    },
+    {
+      "id": "q030",
+      "before": "Tous les participants ",
+      "after": " d'accord pour continuer le projet.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'Ils sont d'accord' → c'est 'sont', verbe être."
+    },
+    {
+      "id": "q031",
+      "before": "Elle a partagé ",
+      "after": " avis sur la stratégie marketing.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon avis' → c'est l'adjectif possessif 'son' (avant une voyelle)."
+    },
+    {
+      "id": "q032",
+      "before": "Les documents que nous avons consultés ",
+      "after": " très détaillés et informatifs.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'Ils sont très détaillés' → c'est 'sont', verbe être au pluriel."
+    },
+    {
+      "id": "q033",
+      "before": "Pendant la pause, il a discuté de ",
+      "after": " expérience professionnelle avec ses collègues.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'ma expérience' ou 'ta expérience' → c'est l'adjectif possessif 'son'."
+    },
+    {
+      "id": "q034",
+      "before": "Les deux équipes ",
+      "after": " maintenant intégrées et travaillent ensemble.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'Elles sont intégrées' → c'est 'sont', verbe être au pluriel."
+    },
+    {
+      "id": "q035",
+      "before": "Le professeur a corrigé ",
+      "after": " devoir en détail hier soir.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon devoir' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q036",
+      "before": "Les objectifs de l'année prochaine ",
+      "after": " déjà définis par la direction.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'Ils sont déjà définis' → c'est 'sont', verbe être au pluriel."
+    },
+    {
+      "id": "q037",
+      "before": "Il doit apporter ",
+      "after": " ordinateur portable au bureau demain.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon ordinateur' → c'est l'adjectif possessif 'son'."
+    },
+    {
+      "id": "q038",
+      "before": "Les stagiaires que nous avons formés ",
+      "after": " devenues des collaborateurs très compétents.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'Elles sont devenues' → c'est 'sont', verbe être au féminin pluriel."
+    },
+    {
+      "id": "q039",
+      "before": "Elle a présenté les résultats de ",
+      "after": " étude avec beaucoup de clarté.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon étude' ou 'ta étude' → c'est l'adjectif possessif 'son' (avant une voyelle)."
+    },
+    {
+      "id": "q040",
+      "before": "Les changements dans la structure organisationnelle ",
+      "after": " nécessaires et bien accueillis par tous.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'Ils sont nécessaires' → c'est 'sont', verbe être au pluriel."
+    },
+    {
+      "id": "q041",
+      "before": "Le chef de projet a délégué ",
+      "after": " autorité à plusieurs responsables.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon autorité' → c'est l'adjectif possessif 'son'."
+    },
+    {
+      "id": "q042",
+      "before": "Les réussites professionnelles que nous célébrons aujourd'hui ",
+      "after": " le fruit de notre travail collectif.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'Elles sont le fruit' → c'est 'sont', verbe être au pluriel."
+    },
+    {
+      "id": "q043",
+      "before": "Il a montré à tous ",
+      "after": " engagement envers l'excellence dans son rôle.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon engagement' → c'est l'adjectif possessif 'son'."
+    },
+    {
+      "id": "q044",
+      "before": "Le chat lèche",
+      "after": " pelage après le repas.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'le chat lèche mon pelage' → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q045",
+      "before": "Les oiseaux",
+      "after": " partis vers le sud.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'ils sont partis' → c'est le verbe être à la 3ème personne du pluriel"
+    },
+    {
+      "id": "q046",
+      "before": "L'ours regagne",
+      "after": " antre pour hiberner.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'l'ours regagne mon antre' → c'est l'adjectif possessif 'son' (avant voyelle)"
+    },
+    {
+      "id": "q047",
+      "before": "Les nuages",
+      "after": " de plus en plus sombres.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'ils sont sombres' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q048",
+      "before": "Le renard traverse la forêt avec",
+      "after": " petit.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "L'adjectif possessif décrit qui accompagne le renard"
+    },
+    {
+      "id": "q049",
+      "before": "Les fleurs du printemps",
+      "after": " enfin épanouies.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "Les fleurs elles-mêmes → verbe être 'sont'"
+    },
+    {
+      "id": "q050",
+      "before": "Le cerf protège",
+      "after": " territoire contre les autres mâles.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "Adjectif possessif : le cerf protège mon territoire"
+    },
+    {
+      "id": "q051",
+      "before": "Les tempêtes d'été",
+      "after": " souvent imprévisibles.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "Les tempêtes elles-mêmes → verbe être 'sont'"
+    },
+    {
+      "id": "q052",
+      "before": "L'aigle a construit",
+      "after": " nid au sommet de la falaise.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "L'aigle a construit mon nid → adjectif possessif 'son'"
+    },
+    {
+      "id": "q053",
+      "before": "Les papillons",
+      "after": " attirés par les lumières de la nuit.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "Les papillons eux-mêmes → verbe être 'sont'"
+    },
+    {
+      "id": "q054",
+      "before": "Malgré l'orage, le berger continue de surveiller",
+      "after": " troupeau.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "Adjectif possessif : surveiller mon troupeau"
+    },
+    {
+      "id": "q055",
+      "before": "Les migrations annuelles des mammifères",
+      "after": " guidées par des instincts millénaires.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "Les migrations elles-mêmes → verbe être 'sont'"
+    },
+    {
+      "id": "q056",
+      "before": "Le loup utilise",
+      "after": " odorat exceptionnellement développé pour chasser.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "Possessif : utilise mon odorat (celui du loup)"
+    },
+    {
+      "id": "q057",
+      "before": "Les saisons dans cette région",
+      "after": " marquées par des changements drastiques de température.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "Les saisons elles-mêmes → verbe être 'sont'"
+    },
+    {
+      "id": "q058",
+      "before": "Le chamois grimpe les pentes raides en protégeant",
+      "after": " équilibre précaire.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "Adjectif possessif : protéger mon équilibre"
+    },
+    {
+      "id": "q059",
+      "before": "Les phénomènes météorologiques",
+      "after": " de plus en plus extrêmes chaque année.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "Les phénomènes eux-mêmes → verbe être 'sont'"
+    },
+    {
+      "id": "q060",
+      "before": "Le daim préserve",
+      "after": " environnement naturel en tant qu'herbivore.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "Adjectif possessif : préserve mon environnement"
+    },
+    {
+      "id": "q061",
+      "before": "Les étoiles de la nuit d'été",
+      "after": " brillantes et innombrables.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "Les étoiles elles-mêmes → verbe être 'sont'"
+    },
+    {
+      "id": "q062",
+      "before": "L'écureuil entasse",
+      "after": " réserve de noisettes pour l'hiver.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "Adjectif possessif : entasse ma réserve"
+    },
+    {
+      "id": "q063",
+      "before": "Les marées côtières",
+      "after": " influencées par la lune et le soleil.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "Les marées elles-mêmes → verbe être 'sont'"
+    },
+    {
+      "id": "q064",
+      "before": "Le joueur de tennis a perdu",
+      "after": " premier match de la saison.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'son premier match' = 'le premier match du joueur' → adjectif possessif → 'son'"
+    },
+    {
+      "id": "q065",
+      "before": "Les deux athlètes",
+      "after": " arrivés à la ligne d'arrivée en même temps.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'ils sont arrivés' → verbe être 3e pers. pluriel → 'sont'"
+    },
+    {
+      "id": "q066",
+      "before": "Le guitariste joue ",
+      "after": " meilleur album lors du concert.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon meilleur album' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q067",
+      "before": "Les spectateurs du cinéma",
+      "after": " contents du film d'action.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'ils sont contents' → verbe être 3e pers. pluriel → 'sont'"
+    },
+    {
+      "id": "q068",
+      "before": "Malgré la blessure, ",
+      "after": " joueur préféré a remporté le match.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon joueur préféré' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q069",
+      "before": "Ces musiciennes",
+      "after": " très talentueuses et reconnues internationalement.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "Sujet pluriel féminin + attribut → verbe être conjugué → 'sont'"
+    },
+    {
+      "id": "q070",
+      "before": "Le chef d'orchestre dirige avec passion ",
+      "after": " équipe de musiciens.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon équipe' → c'est 'son', adjectif possessif devant une voyelle."
+    },
+    {
+      "id": "q071",
+      "before": "Les gameurs",
+      "after": " passionnés par ce nouveau jeu vidéo très attendu.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "Sujet pluriel + adjectif attribut → construction avec 'être' → 'sont'"
+    },
+    {
+      "id": "q072",
+      "before": "Le nageur olympique améliore",
+      "after": " performance à chaque entraînement.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "Adjectif possessif singulier pour un objet singulier → 'sa performance' mais 'son' devant voyelle → 'son'"
+    },
+    {
+      "id": "q073",
+      "before": "Les compétiteurs d'échecs",
+      "after": " concentrés pendant la partie.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "Sujet pluriel + attribut → 'ils sont' → verbe être → 'sont'"
+    },
+    {
+      "id": "q074",
+      "before": "Malgré les critiques,",
+      "after": " producteur de films continue à créer des chefs-d'œuvre.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "Dans une phrase avec sujet implicite, 'son' est le possessif du sujet → 'le producteur et son producteur' → 'son'"
+    },
+    {
+      "id": "q075",
+      "before": "Les acteurs de cinéma",
+      "after": " devenus très populaires après cette série Netflix.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "Passé composé avec 'être' au pluriel → 'ils sont devenus' → 'sont'"
+    },
+    {
+      "id": "q076",
+      "before": "Le danseur exécute",
+      "after": " dernier ballet avec une grâce incomparable.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "Adjectif possessif pour indiquer que le ballet appartient au danseur → 'son dernier ballet' → 'son'"
+    },
+    {
+      "id": "q077",
+      "before": "Les chanteuses de l'opéra",
+      "after": " prêtes pour le grand spectacle de gala.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "Construction 'être + adjectif' au pluriel → 'elles sont prêtes' → 'sont'"
+    },
+    {
+      "id": "q078",
+      "before": "À la fin du match, l'entraîneur est épuisé mais ",
+      "after": " équipe est fière de lui.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'mon équipe' → c'est 'son', adjectif possessif devant une voyelle."
+    },
+    {
+      "id": "q079",
+      "before": "Les auteurs-compositeurs ",
+      "after": " reconnus pour avoir créé les plus grandes chansons de la décennie.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'ils sont reconnus' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q080",
+      "before": "Le joueur de basket améliore constamment ",
+      "after": " style de jeu au fil des entraînements.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon style' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q081",
+      "before": "Les acrobates du cirque",
+      "after": " suspendus dans les airs pendant leur numéro.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'ils sont suspendus' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q082",
+      "before": "Le réalisateur de films d'aventure raconte toujours",
+      "after": " histoire avec beaucoup de suspense.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "Adjectif possessif pour le propriétaire de l'histoire → 'son histoire' → 'son'"
+    },
+    {
+      "id": "q083",
+      "before": "Les téléspectateurs du film de science-fiction",
+      "after": " restés assis pendant trois heures sans bouger.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'ils sont restés assis' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q084",
+      "before": "Le touriste admire ",
+      "after": " pays d'origine lors de chaque visite.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon pays' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q085",
+      "before": "Les deux amis",
+      "after": " partis en vacances à Bali.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'ils sont partis' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q086",
+      "before": "Le voyageur revient chaque année dans ",
+      "after": " pays de naissance.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon pays' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q087",
+      "before": "Ces villes",
+      "after": " très touristiques en été.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'elles sont très touristiques' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q088",
+      "before": "Le chauffeur de taxi connaît ",
+      "after": " quartier par cœur.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon quartier' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q089",
+      "before": "Les avions",
+      "after": " arrivés à l'aéroport de Paris.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'ils sont arrivés' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q090",
+      "before": "Le musée ferme",
+      "after": " accès le dimanche.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'son accès' (mon accès) → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q091",
+      "before": "Les monuments historiques",
+      "after": " préservés depuis des siècles.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'ils sont préservés' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q092",
+      "before": "Le train prend",
+      "after": " itinéraire habituel malgré le retard.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'son itinéraire' (mon itinéraire) → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q093",
+      "before": "Les passagers",
+      "after": " impatients d'explorer les rues étroites de Venise.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'ils sont impatients' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q094",
+      "before": "L'île cache",
+      "after": " meilleur secret dans les grottes marines.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'son meilleur secret' (mon meilleur secret) → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q095",
+      "before": "Les routes côtières",
+      "after": " dangereuses pendant la tempête.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'elles sont dangereuses' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q096",
+      "before": "Le guide touristique explique",
+      "after": " histoire à tous les visiteurs.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'son histoire' (mon histoire) → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q097",
+      "before": "Les ponts",
+      "after": " construits au Moyen Âge dans cette région.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'ils sont construits' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q098",
+      "before": "Le voyageur organise",
+      "after": " programme avec soin chaque jour.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'son programme' (mon programme) → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q099",
+      "before": "Ces villes côtières",
+      "after": " réputées pour leur architecture coloniale.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'elles sont réputées' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q100",
+      "before": "Le paysage révèle tout ",
+      "after": " éclat sous les rayons du coucher de soleil.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon éclat' → c'est 'son', adjectif possessif devant une voyelle."
+    },
+    {
+      "id": "q101",
+      "before": "Les traversées en ferry",
+      "after": " plus spectaculaires en automne.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'elles sont plus spectaculaires' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q102",
+      "before": "Le carrefour marque",
+      "after": " position stratégique sur la carte.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'sa position' (ma position) → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q103",
+      "before": "Les aéroports internationaux",
+      "after": " fermés pour maintenance pendant trois jours.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'ils sont fermés' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q104",
+      "before": "Le ministre a présenté",
+      "after": " projet de loi sur le climat.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'le projet du ministre' → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q105",
+      "before": "Les entreprises",
+      "after": " engagées à réduire leurs émissions carbone.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'elles sont engagées' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q106",
+      "before": "L'économiste a analysé",
+      "after": " rapport sur la croissance économique.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'le rapport de l'économiste' → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q107",
+      "before": "Les manifestants",
+      "after": " descendus dans les rues pour défendre leurs droits.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'les manifestants ils sont descendus' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q108",
+      "before": "Le gouvernement a dévoilé",
+      "after": " stratégie pour lutter contre la pauvreté.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'la stratégie du gouvernement' → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q109",
+      "before": "Les scientifiques",
+      "after": " unanimes : le changement climatique s'accélère.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'les scientifiques ils sont unanimes' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q110",
+      "before": "Le candidat a exposé",
+      "after": " vision pour l'environnement.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'la vision du candidat' → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q111",
+      "before": "Les électeurs",
+      "after": " appelés à voter lors du scrutin de dimanche.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'les électeurs ils sont appelés' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q112",
+      "before": "L'entrepreneur a présenté ",
+      "after": " programme de développement durable.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon programme' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q113",
+      "before": "Les pays membres",
+      "after": " convenus d'un accord sur le commerce international.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'les pays ils sont convenus' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q114",
+      "before": "Le chef d'État a défendu",
+      "after": " politique étrangère auprès des journalistes.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'la politique du chef d'État' → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q115",
+      "before": "Les citoyens",
+      "after": " conscients des enjeux environnementaux actuels.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'les citoyens ils sont conscients' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q116",
+      "before": "Le directeur a validé",
+      "after": " budget pour l'année fiscale.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'le budget du directeur' → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q117",
+      "before": "Les observateurs internationaux",
+      "after": " préoccupés par la situation politique régionale.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'les observateurs ils sont préoccupés' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q118",
+      "before": "L'avocat a exposé",
+      "after": " argumentaire devant la cour.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'l'argumentaire de l'avocat' → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q119",
+      "before": "Les économies émergentes",
+      "after": " en phase de transformation rapide.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'les économies elles sont en phase' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q120",
+      "before": "Le scientifique a publié",
+      "after": " étude sur les énergies renouvelables.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'l'étude du scientifique' → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q121",
+      "before": "Les institutions financières",
+      "after": " tenues de respecter les nouvelles régulations.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'les institutions elles sont tenues' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q122",
+      "before": "Le consultant a présenté",
+      "after": " analyse des tendances du marché.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'l'analyse du consultant' → c'est l'adjectif possessif 'son'"
+    },
+    {
+      "id": "q123",
+      "before": "Les parlementaires",
+      "after": " divisés sur la question de la réforme fiscale.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'les parlementaires ils sont divisés' → c'est le verbe être 'sont'"
+    },
+    {
+      "id": "q124",
+      "before": "Les peintres du musée",
+      "after": " réputés pour leur style impressionniste.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'Les peintres sont réputés' → verbe être = 'sont'"
+    },
+    {
+      "id": "q125",
+      "before": "Picasso a créé",
+      "after": " chef-d'œuvre 'Guernica' en 1937.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'son chef-d'œuvre' (adjectif possessif) → c'est 'son'"
+    },
+    {
+      "id": "q126",
+      "before": "Les sculptures de Rodin",
+      "after": " admirées par des millions de visiteurs.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'Les sculptures sont admirées' → verbe être = 'sont'"
+    },
+    {
+      "id": "q127",
+      "before": "Mozart a composé plusieurs symphonies pendant",
+      "after": " séjour en Italie.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'pendant son séjour' (adjectif possessif) → c'est 'son'"
+    },
+    {
+      "id": "q128",
+      "before": "Les écrivains français du XIXe siècle",
+      "after": " connus pour leurs romans réalistes.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'Les écrivains sont connus' → verbe être = 'sont'"
+    },
+    {
+      "id": "q129",
+      "before": "Le Louvre conserve",
+      "after": " collection d'art antique parmi les plus riches du monde.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon/ma collection' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q130",
+      "before": "Les œuvres de Van Gogh",
+      "after": " caractérisées par des couleurs vibrantes et des coups de pinceau épais.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'Les œuvres sont caractérisées' → verbe être = 'sont'"
+    },
+    {
+      "id": "q131",
+      "before": "Shakespeare a écrit plusieurs tragédies pendant",
+      "after": " carrière au Globe Theatre.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'ma carrière' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q132",
+      "before": "Les châteaux de la Loire",
+      "after": " des témoins remarquables de l'architecture Renaissance française.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'Les châteaux sont des témoins' → verbe être = 'sont'"
+    },
+    {
+      "id": "q133",
+      "before": "Léonard de Vinci a exploré",
+      "after": " passion pour l'anatomie et la perspective dans ses peintures.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'ma passion' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q134",
+      "before": "Les ballet du compositeur Tchaïkovski",
+      "after": " toujours des incontournables des grandes scènes lyriques.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'Les ballets sont toujours' → verbe être = 'sont'"
+    },
+    {
+      "id": "q135",
+      "before": "Molière a marqué",
+      "after": " époque par des comédies satiriques d'une grande finesse.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon époque' → c'est 'son', adjectif possessif (devant voyelle)."
+    },
+    {
+      "id": "q136",
+      "before": "Les fragments de manuscrits anciens trouvés à Qumrân",
+      "after": " parmi les découvertes archéologiques les plus importantes du XXe siècle.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'Les fragments sont parmi' → verbe être = 'sont'"
+    },
+    {
+      "id": "q137",
+      "before": "Cervantès a consacré",
+      "after": " génie littéraire à la création de Don Quichotte.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'son génie littéraire' (adjectif possessif) → c'est 'son'"
+    },
+    {
+      "id": "q138",
+      "before": "Les fresques de Michel-Ange à la chapelle Sixtine",
+      "after": " considérées comme l'apogée de la Renaissance italienne.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'Les fresques sont considérées' → verbe être = 'sont'"
+    },
+    {
+      "id": "q139",
+      "before": "Dante a écrit 'La Divine Comédie' en utilisant",
+      "after": " style poétique novateur pour l'époque.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'son style poétique' (adjectif possessif) → c'est 'son'"
+    },
+    {
+      "id": "q140",
+      "before": "Les œuvres de Monet ",
+      "after": " parmi les plus reproduites au monde.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'elles sont parmi les plus...' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q141",
+      "before": "Le palais de Versailles reflète",
+      "after": " éclat architectural à travers ses jardins et ses salles dorées.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'mon éclat' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q142",
+      "before": "Les poètes symbolistes de la fin du XIXe siècle ",
+      "after": " reconnus pour avoir exploré des thèmes d'introspection et de mystère.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'ils sont reconnus' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q143",
+      "before": "Goethe a développé",
+      "after": " philosophie personnelle à travers ses nombreuses œuvres.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'ma philosophie' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q144",
+      "before": "L'algorithme a atteint",
+      "after": " objectif de précision.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'L'algorithme a atteint mon objectif' → c'est l'adjectif possessif 'son'."
+    },
+    {
+      "id": "q145",
+      "before": "Les chercheurs",
+      "after": " arrivés à une conclusion révolutionnaire.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'Les chercheurs ils sont arrivés' → c'est le verbe être 'sont'."
+    },
+    {
+      "id": "q146",
+      "before": "La médecin a examiné",
+      "after": " patient avec attention.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut remplacer par 'son patient' = adjectif possessif 'son'."
+    },
+    {
+      "id": "q147",
+      "before": "Les ordinateurs du laboratoire",
+      "after": " en panne depuis hier.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'Les ordinateurs ils sont en panne' → verbe être 'sont'."
+    },
+    {
+      "id": "q148",
+      "before": "Le chercheur a présenté",
+      "after": " projet innovant à la conférence.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'il a présenté son projet' → adjectif possessif 'son'."
+    },
+    {
+      "id": "q149",
+      "before": "Les résultats de l'étude clinique",
+      "after": " probants et statistiquement significatifs.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'Les résultats ils sont probants' → verbe être 'sont'."
+    },
+    {
+      "id": "q150",
+      "before": "Le virus a muté et modifié ",
+      "after": " matériel génétique au fil des mutations.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'mon matériel génétique' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q151",
+      "before": "Les données collectées par les capteurs",
+      "after": " transmises au serveur central.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'Les données elles sont transmises' → verbe être 'sont'."
+    },
+    {
+      "id": "q152",
+      "before": "L'équipe médicale a amélioré",
+      "after": " diagnostic grâce à l'intelligence artificielle.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'elle a amélioré son diagnostic' → adjectif possessif 'son'."
+    },
+    {
+      "id": "q153",
+      "before": "Les molécules de protéine",
+      "after": " repliées de manière complexe.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'Les molécules elles sont repliées' → verbe être 'sont'."
+    },
+    {
+      "id": "q154",
+      "before": "Le scientifique a présenté ",
+      "after": " brevet dans une revue internationale.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'mon brevet' → c'est 'son', adjectif possessif."
+    },
+    {
+      "id": "q155",
+      "before": "Les protocoles d'expérimentation",
+      "after": " validés par la communauté scientifique internationale.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'Les protocoles ils sont validés' → verbe être 'sont'."
+    },
+    {
+      "id": "q156",
+      "before": "Le programmeur a optimisé",
+      "after": " code source pour réduire la latence réseau.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'il a optimisé son code' → adjectif possessif 'son'."
+    },
+    {
+      "id": "q157",
+      "before": "Les mutations génétiques détectées lors du séquençage ADN",
+      "after": " responsables de la maladie rare.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'Les mutations elles sont responsables' → verbe être 'sont'."
+    },
+    {
+      "id": "q158",
+      "before": "Le patient a suivi",
+      "after": " traitement antibiotique pendant deux semaines.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'il a suivi son traitement' → adjectif possessif 'son'."
+    },
+    {
+      "id": "q159",
+      "before": "Les instruments de laboratoire calibrés avec précision",
+      "after": " essentiels pour garantir la fiabilité des mesures.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'Les instruments ils sont essentiels' → verbe être 'sont'."
+    },
+    {
+      "id": "q160",
+      "before": "L'ingénieur a conçu",
+      "after": " système de surveillance automatisé.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'elle a conçu son système' → adjectif possessif 'son'."
+    },
+    {
+      "id": "q161",
+      "before": "Les technologies émergentes",
+      "after": " en train de transformer la médecine moderne.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "On peut dire 'Les technologies elles sont en train' → verbe être 'sont'."
+    },
+    {
+      "id": "q162",
+      "before": "Le laboratoire a renforcé",
+      "after": " capacité de production de vaccins.",
+      "answer": "son",
+      "difficulty": 1,
+      "explanation": "On peut dire 'il a renforcé sa capacité' → adjectif possessif 'son'."
+    },
+    {
+      "id": "q163",
+      "before": "Les résultats de recherche publiés par l'équipe",
+      "after": " désormais accessibles à tous les chercheurs.",
+      "answer": "sont",
+      "difficulty": 1,
+      "explanation": "On peut dire 'Les résultats ils sont accessibles' → verbe être 'sont'."
+    },
+    {
+      "id": "q164",
+      "before": "Bien que",
+      "after": " ami soit très occupé, il nous rend visite chaque semaine.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'son ami' → adjectif possessif remplaçable par 'mon ami'"
+    },
+    {
+      "id": "q165",
+      "before": "Les enfants",
+      "after": " arrivés à l'école avec leurs cartables neufs.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "Passé composé avec 'être' → 'sont arrivés' remplaçable par 'ils sont arrivés'"
+    },
+    {
+      "id": "q166",
+      "before": "Après la cérémonie,",
+      "after": " équipe a célébré la victoire au restaurant.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'son équipe' → adjectif possessif (avant voyelle)"
+    },
+    {
+      "id": "q167",
+      "before": "Les étudiants qui avaient travaillé dur",
+      "after": " devenus ingénieurs le mois dernier.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "Passé composé avec 'être' → 'sont devenus' remplaçable par 'ils sont devenus'"
+    },
+    {
+      "id": "q168",
+      "before": "Malgré les obstacles,",
+      "after": " histoire inspirante a touchée beaucoup de lecteurs.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'son histoire' → adjectif possessif (avant voyelle)"
+    },
+    {
+      "id": "q169",
+      "before": "Après avoir quitté le pays,",
+      "after": " partis rejoindre des familles en exil.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "Passé composé avec 'être' → 'sont partis' remplaçable par 'ils sont partis'"
+    },
+    {
+      "id": "q170",
+      "before": "Durant le concert,",
+      "after": " âge n'importait pas pour apprécier la musique.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'son âge' → adjectif possessif (avant voyelle)"
+    },
+    {
+      "id": "q171",
+      "before": "Les actrices du film, qui",
+      "after": " arrivées tardivement à la première, ont salué le public avec élégance.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "Passé composé avec 'être' → 'sont arrivées' remplaçable par 'elles sont arrivées'"
+    },
+    {
+      "id": "q172",
+      "before": "Grâce à",
+      "after": " œuvre magistrale, l'auteur a reçu le prix Goncourt.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'son œuvre' → adjectif possessif (avant voyelle)"
+    },
+    {
+      "id": "q173",
+      "before": "Pendant que les athlètes",
+      "after": " entrés dans le stade, la foule s'est levée d'enthousiasme.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "Passé composé avec 'être' → 'sont entrés' remplaçable par 'ils sont entrés'"
+    },
+    {
+      "id": "q174",
+      "before": "Lorsque",
+      "after": " ami architecte a présenté les plans, tout le monde a approuvé.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'son ami' → adjectif possessif (avant voyelle)"
+    },
+    {
+      "id": "q175",
+      "before": "Les membres de l'équipe qui",
+      "after": " restés solidaires malgré les défaites.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "Verbe 'être' au présent → 'sont restés' remplaçable par 'ils sont restés'"
+    },
+    {
+      "id": "q176",
+      "before": "Bien que difficile,",
+      "after": " apprentissage s'est avéré très enrichissant.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'son apprentissage' → adjectif possessif (avant voyelle)"
+    },
+    {
+      "id": "q177",
+      "before": "Les deux sœurs qui habiteraient ensemble",
+      "after": " installées dans la nouvelle maison hier.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "Passé composé avec 'être' → 'sont installées' remplaçable par 'elles sont installées'"
+    },
+    {
+      "id": "q178",
+      "before": "Quand le directeur a annoncé",
+      "after": " absence prolongée, tous ont été surpris.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'son absence' → adjectif possessif (avant voyelle)"
+    },
+    {
+      "id": "q179",
+      "before": "Les documents qui",
+      "after": " présentés au tribunal ont révélé la vérité.",
+      "answer": "sont",
+      "difficulty": 2,
+      "explanation": "Passé composé passif avec 'être' → 'sont présentés' remplaçable par 'ils sont présentés'"
+    },
+    {
+      "id": "q180",
+      "before": "Malgré les critiques,",
+      "after": " approche innovante a changé l'industrie.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "On peut dire 'son approche' → adjectif possessif (avant voyelle, dans une phrase longue)"
+    },
+    {
+      "id": "q181",
+      "before": "Après les examens,",
+      "after": " revenus jubilants du lycée avec leurs résultats.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "Verbe 'être' au présent → 'sont revenus' remplaçable par 'ils sont revenus'"
+    },
+    {
+      "id": "q182",
+      "before": "Lors de la réunion, les collaborateurs qui",
+      "after": " intrigués par",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "Verbe 'être' passif → 'sont intrigués' remplaçable par 'ils sont intrigués'"
+    },
+    {
+      "id": "q183",
+      "before": "Considérant",
+      "after": " expérience exceptionnelle dans le domaine, on lui a offert le poste.",
+      "answer": "son",
+      "difficulty": 2,
+      "explanation": "On peut dire 'son expérience' → adjectif possessif (avant voyelle)"
+    },
+    {
+      "id": "q184",
+      "before": "Malgré",
+      "after": " âge avancé, il restait d'une vivacité remarquable.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "« son âge » = adjectif possessif + voyelle. Remplaçable par « mon âge ». Piège : « sont » serait illogique après « malgré »."
+    },
+    {
+      "id": "q185",
+      "before": "Les écrivains qui ",
+      "after": " à l'origine des œuvres les plus lues ont marqué la littérature française.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'ils sont à l'origine' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q186",
+      "before": "Elle a présenté",
+      "after": " engagement politique avec une conviction inébranlable.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "« son engagement » = adjectif possessif + voyelle. Remplaçable par « mon engagement ». Piège : structure élaborée."
+    },
+    {
+      "id": "q187",
+      "before": "Les athlètes qui",
+      "after": " arrivés en retard ne pourront pas participer.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "« sont arrivés » = verbe être + participe passé accordé. Remplaçable par « ils sont arrivés ». Piège : accord du participe."
+    },
+    {
+      "id": "q188",
+      "before": "Devant",
+      "after": " adversaire redoutable, le champion a dû déployer toute son énergie.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "« son adversaire » = adjectif possessif + voyelle. Remplaçable par « mon adversaire ». Piège : contexte compétitif."
+    },
+    {
+      "id": "q189",
+      "before": "Les réformes qui ",
+      "after": " proposées visent à moderniser l'administration.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'elles sont proposées' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q190",
+      "before": "À travers",
+      "after": " ombre qui s'allongeait, on devinait sa silhouette.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "« son ombre » = adjectif possessif + voyelle. Remplaçable par « mon ombre ». Piège : style poétique/littéraire."
+    },
+    {
+      "id": "q191",
+      "before": "Les candidates qui ",
+      "after": " devenues inspiratrices ont reçu des prix nationaux.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'elles sont devenues' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q192",
+      "before": "Malgré",
+      "after": " apparence ordinaire, cet objet possédait une valeur inestimable.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "« son apparence » = adjectif possessif + voyelle. Remplaçable par « mon apparence ». Piège : contraste avec « valeur »."
+    },
+    {
+      "id": "q193",
+      "before": "Les chercheurs qui ",
+      "after": " restés mobilisés pendant dix ans ont publié leurs résultats.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'ils sont restés' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q194",
+      "before": "Avec",
+      "after": " éloquence naturelle, l'orateur captiva l'assemblée.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "« son éloquence » = adjectif possessif + voyelle. Remplaçable par « mon éloquence ». Piège : régistre soutenu."
+    },
+    {
+      "id": "q195",
+      "before": "Les vainqueurs qui ",
+      "after": " sortis du stade aux acclamations ont salué le public.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'ils sont sortis' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q196",
+      "before": "En raison de",
+      "after": " inexpérience notoire, il n'obtint pas le poste.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "« son inexpérience » = adjectif possessif + voyelle. Remplaçable par « mon inexpérience ». Piège : contexte négatif."
+    },
+    {
+      "id": "q197",
+      "before": "Les musiciens qui ",
+      "after": " devenus reconnus grâce à leur talent ont influencé toute une génération.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'ils sont devenus' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q198",
+      "before": "Lors de",
+      "after": " entrée dans la salle, tous les regards se tournèrent vers lui.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "« son entrée » = adjectif possessif + voyelle. Remplaçable par « mon entrée ». Piège : moment dramatique."
+    },
+    {
+      "id": "q199",
+      "before": "Les innovations qui ",
+      "after": " introduites depuis dix ans révolutionnent l'industrie.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'elles sont introduites' → c'est 'sont', le verbe être."
+    },
+    {
+      "id": "q200",
+      "before": "Grâce à",
+      "after": " audace et sa perspicacité, elle surpassa ses rivales.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "« son audace » = adjectif possessif + voyelle. Remplaçable par « mon audace ». Piège : première partie d'une énumération."
+    },
+    {
+      "id": "q201",
+      "before": "Les témoins qui",
+      "after": " restés silencieux pendant le procès firent enfin leurs déclarations.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "« sont restés » = verbe être + participe passé accordé. Remplaçable par « ils sont restés ». Piège : action suivie d'une autre."
+    },
+    {
+      "id": "q202",
+      "before": "Sous",
+      "after": " aspect bourru se cachait une grande sensibilité.",
+      "answer": "son",
+      "difficulty": 3,
+      "explanation": "« son aspect » = adjectif possessif + voyelle. Remplaçable par « mon aspect ». Piège : apparence trompeuse."
+    },
+    {
+      "id": "q203",
+      "before": "Les scientifiques qui ",
+      "after": " parvenus à découvrir une nouvelle particule ont reçu le prix Nobel.",
+      "answer": "sont",
+      "difficulty": 3,
+      "explanation": "On peut dire 'ils sont parvenus' → c'est 'sont', le verbe être."
+    }
+  ],
+  "group": "aventurier"
+}

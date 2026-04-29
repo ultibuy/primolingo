@@ -1,0 +1,1722 @@
+{
+  "id": "pluriel-al-ou",
+  "title": "pluriel en -aux · -als · -oux · -ous",
+  "shortTitle": "pluriel -al / -ou",
+  "description": "Les noms en -al font leur pluriel en -aux (cheval → chevaux), sauf quelques exceptions en -als (bal, festival…). Les noms en -ou prennent -ous, sauf 7 exceptions en -oux (bijou, caillou, chou, genou, hibou, joujou, pou).",
+  "choices": [
+    {
+      "id": "aux",
+      "label": "-aux"
+    },
+    {
+      "id": "als",
+      "label": "-als"
+    },
+    {
+      "id": "oux",
+      "label": "-oux"
+    },
+    {
+      "id": "ous",
+      "label": "-ous"
+    }
+  ],
+  "decisionAxes": [
+    {
+      "id": "terminaison",
+      "question": "Le nom au singulier se termine par…",
+      "options": [
+        {
+          "value": "al",
+          "label": "-al",
+          "eliminates": [
+            "oux",
+            "ous"
+          ]
+        },
+        {
+          "value": "ou",
+          "label": "-ou",
+          "eliminates": [
+            "aux",
+            "als"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exception_al",
+      "question": "Ce nom fait-il partie des exceptions ?",
+      "sub": "Exceptions en -als : bal, carnaval, festival, récital, régal, chacal, bancal…",
+      "dependsOn": "terminaison",
+      "showWhen": "al",
+      "options": [
+        {
+          "value": true,
+          "label": "Oui ",
+          "eliminates": [
+            "aux"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non (règle générale) ",
+          "eliminates": [
+            "als"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exception_ou",
+      "question": "Ce nom fait-il partie des 7 exceptions ?",
+      "sub": "Les 7 exceptions en -oux : bijou, caillou, chou, genou, hibou, joujou, pou",
+      "dependsOn": "terminaison",
+      "showWhen": "ou",
+      "options": [
+        {
+          "value": true,
+          "label": "Oui ",
+          "eliminates": [
+            "ous"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non (règle générale) ",
+          "eliminates": [
+            "oux"
+          ]
+        }
+      ]
+    }
+  ],
+  "memoCard": {
+    "title": "La règle en un coup d'œil",
+    "rows": [
+      {
+        "form": "-aux",
+        "test": "nom en -al, cas général",
+        "example": "cheval → chevaux"
+      },
+      {
+        "form": "-als",
+        "test": "nom en -al, exception",
+        "example": "festival → festivals"
+      },
+      {
+        "form": "-oux",
+        "test": "l'un des 7 : bij, caill, ch, gen, hib, joujo, p",
+        "example": "genou → genoux"
+      },
+      {
+        "form": "-ous",
+        "test": "nom en -ou, cas général",
+        "example": "trou → trous"
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "before": "Les chev",
+      "after": " galopent librement dans la prairie.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« cheval » → -al, règle générale → pluriel en -aux : chevaux."
+    },
+    {
+      "id": "q002",
+      "before": "Les anim",
+      "after": " sauvages vivent en forêt tropicale.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« animal » → -al, règle générale → pluriel en -aux : animaux."
+    },
+    {
+      "id": "q003",
+      "before": "Les journ",
+      "after": " du matin sont empilés sur le comptoir.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« journal » → -al, règle générale → pluriel en -aux : journaux."
+    },
+    {
+      "id": "q004",
+      "before": "Les can",
+      "after": " de la ville reflètent le ciel au coucher du soleil.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« canal » → -al, règle générale → pluriel en -aux : canaux."
+    },
+    {
+      "id": "q005",
+      "before": "Les résultats médic",
+      "after": " confirment le diagnostic du spécialiste.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« médical » → -al, règle générale → pluriel en -aux : médicaux."
+    },
+    {
+      "id": "q006",
+      "before": "Les festiv",
+      "after": " de musique attirent des milliers de spectateurs chaque été.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« festival » est une exception en -als : festivals (et non « festivaux »)."
+    },
+    {
+      "id": "q007",
+      "before": "Les b",
+      "after": " masqués étaient très populaires au XVIIIe siècle.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« bal » est une exception en -als : bals (et non « baux »)."
+    },
+    {
+      "id": "q008",
+      "before": "Les carnav",
+      "after": " de Venise et de Rio sont célèbres dans le monde entier.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« carnaval » est une exception en -als : carnavals (et non « carnavaux »)."
+    },
+    {
+      "id": "q009",
+      "before": "Les récit",
+      "after": " de piano ont enthousiasmé le public ce soir-là.",
+      "answer": "als",
+      "difficulty": 3,
+      "explanation": "« récital » est une exception en -als : récitals (et non « récitaux »)."
+    },
+    {
+      "id": "q010",
+      "before": "Deux chac",
+      "after": " rôdaient autour du campement à la tombée de la nuit.",
+      "answer": "als",
+      "difficulty": 3,
+      "explanation": "« chacal » est une exception en -als : chacals (et non « chacaux »)."
+    },
+    {
+      "id": "q011",
+      "before": "Elle a offert de magnifiques bij",
+      "after": " à sa meilleure amie pour son anniversaire.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« bijou » fait partie des 7 exceptions en -oux : bijoux."
+    },
+    {
+      "id": "q012",
+      "before": "Les enfants ramassent des caill",
+      "after": " colorés au bord de la rivière.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« caillou » fait partie des 7 exceptions en -oux : cailloux."
+    },
+    {
+      "id": "q013",
+      "before": "Il a mal aux gen",
+      "after": " après avoir couru dix kilomètres.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« genou » fait partie des 7 exceptions en -oux : genoux."
+    },
+    {
+      "id": "q014",
+      "before": "Les hib",
+      "after": " chassent silencieusement dans les forêts la nuit.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« hibou » fait partie des 7 exceptions en -oux : hiboux."
+    },
+    {
+      "id": "q015",
+      "before": "La maîtresse a découvert des p",
+      "after": " dans les cheveux de plusieurs élèves.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« pou » fait partie des 7 exceptions en -oux : poux."
+    },
+    {
+      "id": "q016",
+      "before": "Les tr",
+      "after": " dans la chaussée sont dangereux pour les cyclistes.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« trou » → -ou, règle générale → pluriel en -ous : trous."
+    },
+    {
+      "id": "q017",
+      "before": "Les verr",
+      "after": " de toutes les portes sont verrouillés pour la nuit.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« verrou » → -ou, règle générale → pluriel en -ous : verrous."
+    },
+    {
+      "id": "q018",
+      "before": "Les cl",
+      "after": " du tableau d'affichage étaient tous rouillés.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« clou » → -ou, règle générale → pluriel en -ous : clous."
+    },
+    {
+      "id": "q019",
+      "before": "Ces voy",
+      "after": " ont été interpellés par la police en pleine nuit.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« voyou » → -ou, règle générale → pluriel en -ous : voyous."
+    },
+    {
+      "id": "q020",
+      "before": "Les bamb",
+      "after": " géants du jardin botanique atteignent dix mètres de hauteur.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« bambou » → -ou, règle générale → pluriel en -ous : bambous."
+    },
+    {
+      "id": "q021",
+      "before": "Les signal",
+      "after": " routiers indiquent la limite de vitesse.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« signal » → -al, règle générale → pluriel en -aux : signaux."
+    },
+    {
+      "id": "q022",
+      "before": "Les local",
+      "after": " commerciaux sont fermés le dimanche.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« local » → -al, règle générale → pluriel en -aux : locaux."
+    },
+    {
+      "id": "q023",
+      "before": "Les recours légal",
+      "after": " sont disponibles pour les citoyens.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« légal » → -al, règle générale → pluriel en -aux : légaux."
+    },
+    {
+      "id": "q024",
+      "before": "Les championnats national",
+      "after": " de football réunissent les meilleures équipes du pays.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« national » → -al, règle générale → pluriel en -aux : nationaux."
+    },
+    {
+      "id": "q025",
+      "before": "Les principes général",
+      "after": " s'appliquent à tous les cas.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« général » → -al, règle générale → pluriel en -aux : généraux."
+    },
+    {
+      "id": "q026",
+      "before": "Les programmes social",
+      "after": " aident les personnes en difficulté.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« social » → -al, règle générale → pluriel en -aux : sociaux."
+    },
+    {
+      "id": "q027",
+      "before": "Les concerts musical",
+      "after": " attirent beaucoup de spectateurs.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« musical » → -al, règle générale → pluriel en -aux : musicaux."
+    },
+    {
+      "id": "q028",
+      "before": "Les gouvernements régional",
+      "after": " ont leurs propres budgets.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« régional » → -al, règle générale → pluriel en -aux : régionaux."
+    },
+    {
+      "id": "q029",
+      "before": "Les tableaux original",
+      "after": " sont exposés au musée.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« original » → -al, règle générale → pluriel en -aux : originaux."
+    },
+    {
+      "id": "q030",
+      "before": "Les sentiments loyal",
+      "after": " caractérisent une véritable amitié.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« loyal » → -al, règle générale → pluriel en -aux : loyaux."
+    },
+    {
+      "id": "q031",
+      "before": "Les palais royal",
+      "after": " sont des monuments historiques.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« royal » → -al, règle générale → pluriel en -aux : royaux."
+    },
+    {
+      "id": "q032",
+      "before": "Les principes moral",
+      "after": " nous guident dans la vie.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« moral » → -al, règle générale → pluriel en -aux : moraux."
+    },
+    {
+      "id": "q033",
+      "before": "Les exercices vocal",
+      "after": " améliorent progressivement la voix.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« vocal » → -al, règle générale → pluriel en -aux : vocaux."
+    },
+    {
+      "id": "q034",
+      "before": "Les objectifs idéal",
+      "after": " sont difficiles à atteindre.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« idéal » → -al, règle générale → pluriel en -aux : idéaux."
+    },
+    {
+      "id": "q035",
+      "before": "Les acteurs principal",
+      "after": " jouent les rôles les plus importants.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« principal » → -al, règle générale → pluriel en -aux : principaux."
+    },
+    {
+      "id": "q036",
+      "before": "Les tribunal",
+      "after": " rendent justice dans le pays.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« tribunal » → -al, règle générale → pluriel en -aux : tribunaux."
+    },
+    {
+      "id": "q037",
+      "before": "Les investissements capital",
+      "after": " sont essentiels pour la croissance.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« capital » → -al, règle générale → pluriel en -aux : capitaux."
+    },
+    {
+      "id": "q038",
+      "before": "Les états mental",
+      "after": " influencent notre santé.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« mental » → -al, règle générale → pluriel en -aux : mentaux."
+    },
+    {
+      "id": "q039",
+      "before": "Les traits horizontal",
+      "after": " divisent la page en sections.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« horizontal » → -al, règle générale → pluriel en -aux : horizontaux."
+    },
+    {
+      "id": "q040",
+      "before": "Les axes vertical",
+      "after": " indiquent la hauteur du graphique.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« vertical » → -al, règle générale → pluriel en -aux : verticaux."
+    },
+    {
+      "id": "q041",
+      "before": "Les résidus végétal",
+      "after": " sont biodégradables.",
+      "answer": "aux",
+      "difficulty": 3,
+      "explanation": "« végétal » → -al, règle générale → pluriel en -aux : végétaux."
+    },
+    {
+      "id": "q042",
+      "before": "Les gisements minéral",
+      "after": " sont exploités depuis des siècles.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« minéral » → -al, règle générale → pluriel en -aux : minéraux."
+    },
+    {
+      "id": "q043",
+      "before": "Les officiers amiral",
+      "after": " commandent la flotte en haute mer.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« amiral » → -al, règle générale → pluriel en -aux : amiraux."
+    },
+    {
+      "id": "q044",
+      "before": "Les clubs rival",
+      "after": " s'affrontent lors de derbies mémorables.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« rival » → -al, règle générale → pluriel en -aux : rivaux."
+    },
+    {
+      "id": "q045",
+      "before": "Les penseurs libéral",
+      "after": " défendent la liberté individuelle.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« libéral » → -al, règle générale → pluriel en -aux : libéraux."
+    },
+    {
+      "id": "q046",
+      "before": "Les cas marginal",
+      "after": " nécessitent une attention particulière.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« marginal » → -al, règle générale → pluriel en -aux : marginaux."
+    },
+    {
+      "id": "q047",
+      "before": "Les empires colonial",
+      "after": " ont dominé le monde pendant des siècles.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« colonial » → -al, règle générale → pluriel en -aux : coloniaux."
+    },
+    {
+      "id": "q048",
+      "before": "Les services postal",
+      "after": " livrent le courrier chaque jour.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« postal » → -al, règle générale → pluriel en -aux : postaux."
+    },
+    {
+      "id": "q049",
+      "before": "Les avantages fiscal",
+      "after": " attirent de nombreuses entreprises.",
+      "answer": "aux",
+      "difficulty": 3,
+      "explanation": "« fiscal » → -al, règle générale → pluriel en -aux : fiscaux."
+    },
+    {
+      "id": "q050",
+      "before": "Les arrangements floral",
+      "after": " décorent l'église pour le mariage.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« floral » → -al, règle générale → pluriel en -aux : floraux."
+    },
+    {
+      "id": "q051",
+      "before": "Les récifs coral",
+      "after": " abritent de nombreuses espèces marines.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« coral » → -al, règle générale → pluriel en -aux : coraux."
+    },
+    {
+      "id": "q052",
+      "before": "Les os temporal",
+      "after": " protègent des structures sensibles de l'oreille.",
+      "answer": "aux",
+      "difficulty": 3,
+      "explanation": "« temporal » → -al, règle générale → pluriel en -aux : temporaux."
+    },
+    {
+      "id": "q053",
+      "before": "Les points central",
+      "after": " sont au cœur de la discussion.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« central » → -al, règle générale → pluriel en -aux : centraux."
+    },
+    {
+      "id": "q054",
+      "before": "Les pays occidental",
+      "after": " entretiennent des relations diplomatiques étroites.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« occidental » → -al, règle générale → pluriel en -aux : occidentaux."
+    },
+    {
+      "id": "q055",
+      "before": "Les pays oriental",
+      "after": " offrent de riches traditions culturelles.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« oriental » → -al, règle générale → pluriel en -aux : orientaux."
+    },
+    {
+      "id": "q056",
+      "before": "Les échanges commercial",
+      "after": " stimulent la croissance économique.",
+      "answer": "aux",
+      "difficulty": 1,
+      "explanation": "« commercial » → -al, règle générale → pluriel en -aux : commerciaux."
+    },
+    {
+      "id": "q057",
+      "before": "Les savoir-faire artisanal",
+      "after": " sont transmis de génération en génération.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« artisanal » → -al, règle générale → pluriel en -aux : artisanaux."
+    },
+    {
+      "id": "q058",
+      "before": "Les paysages pastoral",
+      "after": " inspirent les peintres depuis des siècles.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« pastoral » → -al, règle générale → pluriel en -aux : pastoraux."
+    },
+    {
+      "id": "q059",
+      "before": "Les diplômes doctoral",
+      "after": " exigent plusieurs années de recherche.",
+      "answer": "aux",
+      "difficulty": 3,
+      "explanation": "« doctoral » → -al, règle générale → pluriel en -aux : doctoraux."
+    },
+    {
+      "id": "q060",
+      "before": "Les projets structural",
+      "after": " renforcent l'infrastructure du pays.",
+      "answer": "aux",
+      "difficulty": 3,
+      "explanation": "« structural » → -al, règle générale → pluriel en -aux : structuraux."
+    },
+    {
+      "id": "q061",
+      "before": "Les styles architectural",
+      "after": " reflètent les différentes périodes historiques.",
+      "answer": "aux",
+      "difficulty": 3,
+      "explanation": "« architectural » → -al, règle générale → pluriel en -aux : architecturaux."
+    },
+    {
+      "id": "q062",
+      "before": "Les liens ancestral",
+      "after": " unissent les membres de la tribu.",
+      "answer": "aux",
+      "difficulty": 3,
+      "explanation": "« ancestral » → -al, règle générale → pluriel en -aux : ancestraux."
+    },
+    {
+      "id": "q063",
+      "before": "Les ciels boréal",
+      "after": " s'illuminent d'aurores spectaculaires.",
+      "answer": "aux",
+      "difficulty": 3,
+      "explanation": "« boréal » → -al, règle générale → pluriel en -aux : boréaux."
+    },
+    {
+      "id": "q064",
+      "before": "Les paysages littoral",
+      "after": " attirent les touristes en été.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« littoral » → -al, règle générale → pluriel en -aux : littoraux."
+    },
+    {
+      "id": "q065",
+      "before": "Les débats électoral",
+      "after": " déterminent le cours de la nation.",
+      "answer": "aux",
+      "difficulty": 2,
+      "explanation": "« électoral » → -al, règle générale → pluriel en -aux : électoraux."
+    },
+    {
+      "id": "q066",
+      "before": "Les festiv",
+      "after": " de jazz réunissent les meilleurs musiciens.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« festival » est une exception en -als : festivals (et non « festivaux »)."
+    },
+    {
+      "id": "q067",
+      "before": "Les carnav",
+      "after": " brésiliens attirent des millions de spectateurs.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« carnaval » est une exception en -als : carnavals (et non « carnavalux »)."
+    },
+    {
+      "id": "q068",
+      "before": "Les récit",
+      "after": " de piano fascinent le public.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« récital » est une exception en -als : récitals (et non « récitaux »)."
+    },
+    {
+      "id": "q069",
+      "before": "Ces rég",
+      "after": " culinaires resteront inoubliables.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« régal » est une exception en -als : régals (et non « régaux »)."
+    },
+    {
+      "id": "q070",
+      "before": "Les chac",
+      "after": " rôdent dans la savane africaine.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« chacal » est une exception en -als : chacals (et non « chacaux »)."
+    },
+    {
+      "id": "q071",
+      "before": "Les b",
+      "after": " masqués du Moyen Âge étaient très populaires.",
+      "answer": "als",
+      "difficulty": 1,
+      "explanation": "« bal » est une exception en -als : bals (et non « baux »)."
+    },
+    {
+      "id": "q072",
+      "before": "Les combats nav",
+      "after": " opposaient les grandes puissances maritimes.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« naval » est une exception en -als : navals (et non « navaux »)."
+    },
+    {
+      "id": "q073",
+      "before": "Les ét",
+      "after": " du marché débordent de fruits frais.",
+      "answer": "als",
+      "difficulty": 1,
+      "explanation": "« étal » est une exception en -als : étals (et non « étaux »)."
+    },
+    {
+      "id": "q074",
+      "before": "Les meubles banc",
+      "after": " du café devront bientôt être remplacés.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« bancal » est une exception en -als : bancals (et non « bancaux »)."
+    },
+    {
+      "id": "q075",
+      "before": "Les festiv",
+      "after": " de cinéma présentent des œuvres innovantes.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« festival » est une exception en -als : festivals (et non « festivaux »)."
+    },
+    {
+      "id": "q076",
+      "before": "Les b",
+      "after": " d'été rassemblent toute la région.",
+      "answer": "als",
+      "difficulty": 1,
+      "explanation": "« bal » est une exception en -als : bals (et non « baux »)."
+    },
+    {
+      "id": "q077",
+      "before": "Les serv",
+      "after": " sont des félins nocturnes.",
+      "answer": "als",
+      "difficulty": 3,
+      "explanation": "« serval » est une exception en -als : servals (et non « servaux »)."
+    },
+    {
+      "id": "q078",
+      "before": "Les ét",
+      "after": " du boucher proposent des viandes de qualité.",
+      "answer": "als",
+      "difficulty": 1,
+      "explanation": "« étal » est une exception en -als : étals (et non « étaux »)."
+    },
+    {
+      "id": "q079",
+      "before": "Les récit",
+      "after": " de violon enchantent les mélomanes.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« récital » est une exception en -als : récitals (et non « récitaux »)."
+    },
+    {
+      "id": "q080",
+      "before": "Les rég",
+      "after": " du restaurant méritaient ces compliments.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« régal » est une exception en -als : régals (et non « régaux »)."
+    },
+    {
+      "id": "q081",
+      "before": "Les festiv",
+      "after": " du rire attirent les amateurs d'humour.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« festival » est une exception en -als : festivals (et non « festivaux »)."
+    },
+    {
+      "id": "q082",
+      "before": "Les carnav",
+      "after": " de Venise sont célèbres dans le monde entier.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« carnaval » est une exception en -als : carnavals (et non « carnavalux »)."
+    },
+    {
+      "id": "q083",
+      "before": "Les chac",
+      "after": " approchaient silencieusement leurs proies.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« chacal » est une exception en -als : chacals (et non « chacaux »)."
+    },
+    {
+      "id": "q084",
+      "before": "Les b",
+      "after": " de charité animaient les soirées de l'aristocratie.",
+      "answer": "als",
+      "difficulty": 1,
+      "explanation": "« bal » est une exception en -als : bals (et non « baux »)."
+    },
+    {
+      "id": "q085",
+      "before": "Les chantiers nav",
+      "after": " de Brest étaient les plus productifs d'Europe.",
+      "answer": "als",
+      "difficulty": 3,
+      "explanation": "« naval » est une exception en -als : navals (et non « navaux »)."
+    },
+    {
+      "id": "q086",
+      "before": "Les arguments banc",
+      "after": " de son plaidoyer n'ont convaincu personne.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« bancal » est une exception en -als : bancals (et non « bancaux »)."
+    },
+    {
+      "id": "q087",
+      "before": "Les cal",
+      "after": " sur ses mains témoignaient de son dur labeur.",
+      "answer": "als",
+      "difficulty": 3,
+      "explanation": "« cal » est une exception en -als : cals (et non « caux »)."
+    },
+    {
+      "id": "q088",
+      "before": "Les récit",
+      "after": " de chant éblouissaient le public ce soir-là.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« récital » est une exception en -als : récitals (et non « récitaux »)."
+    },
+    {
+      "id": "q089",
+      "before": "Les festiv",
+      "after": " d'été parsèment le calendrier culturel.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« festival » est une exception en -als : festivals (et non « festivaux »)."
+    },
+    {
+      "id": "q090",
+      "before": "Les rég",
+      "after": " gastronomiques enrichissent nos meilleurs souvenirs.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« régal » est une exception en -als : régals (et non « régaux »)."
+    },
+    {
+      "id": "q091",
+      "before": "Les ét",
+      "after": " du marché aux fleurs embellissent la place.",
+      "answer": "als",
+      "difficulty": 1,
+      "explanation": "« étal » est une exception en -als : étals (et non « étaux »)."
+    },
+    {
+      "id": "q092",
+      "before": "Les carnav",
+      "after": " de Nice dégoulinent de confettis et de musique.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« carnaval » est une exception en -als : carnavals (et non « carnavalux »)."
+    },
+    {
+      "id": "q093",
+      "before": "Les b",
+      "after": " traditionnels perpétuent les coutumes locales.",
+      "answer": "als",
+      "difficulty": 1,
+      "explanation": "« bal » est une exception en -als : bals (et non « baux »)."
+    },
+    {
+      "id": "q094",
+      "before": "Les arsenaux nav",
+      "after": " produisaient des dizaines de navires par an.",
+      "answer": "als",
+      "difficulty": 3,
+      "explanation": "« naval » est une exception en -als : navals (et non « navaux »)."
+    },
+    {
+      "id": "q095",
+      "before": "Les chac",
+      "after": " de cette région sont protégés par les autorités.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« chacal » est une exception en -als : chacals (et non « chacaux »)."
+    },
+    {
+      "id": "q096",
+      "before": "Les raisonnements banc",
+      "after": " ne résistent pas à l'analyse.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« bancal » est une exception en -als : bancals (et non « bancaux »)."
+    },
+    {
+      "id": "q097",
+      "before": "Les récit",
+      "after": " poétiques captivaient l'auditoire au fil des soirées.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« récital » est une exception en -als : récitals (et non « récitaux »)."
+    },
+    {
+      "id": "q098",
+      "before": "Les festiv",
+      "after": " musicaux se succèdent tout l'été.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« festival » est une exception en -als : festivals (et non « festivaux »)."
+    },
+    {
+      "id": "q099",
+      "before": "Les rég",
+      "after": " offerts lors du banquet ont ravi tous les invités.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« régal » est une exception en -als : régals (et non « régaux »)."
+    },
+    {
+      "id": "q100",
+      "before": "Les ét",
+      "after": " s'alignent le long des rues commerçantes.",
+      "answer": "als",
+      "difficulty": 1,
+      "explanation": "« étal » est une exception en -als : étals (et non « étaux »)."
+    },
+    {
+      "id": "q101",
+      "before": "Les carnav",
+      "after": " sud-américains durent parfois plusieurs jours.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« carnaval » est une exception en -als : carnavals (et non « carnavalux »)."
+    },
+    {
+      "id": "q102",
+      "before": "Les b",
+      "after": " costumés rappellent les fastes de l'époque baroque.",
+      "answer": "als",
+      "difficulty": 1,
+      "explanation": "« bal » est une exception en -als : bals (et non « baux »)."
+    },
+    {
+      "id": "q103",
+      "before": "Les serv",
+      "after": " chassent les petits rongeurs avec une agilité remarquable.",
+      "answer": "als",
+      "difficulty": 3,
+      "explanation": "« serval » est une exception en -als : servals (et non « servaux »)."
+    },
+    {
+      "id": "q104",
+      "before": "Les combats nav",
+      "after": " se succédaient sur toutes les mers du globe.",
+      "answer": "als",
+      "difficulty": 3,
+      "explanation": "« naval » est une exception en -als : navals (et non « navaux »)."
+    },
+    {
+      "id": "q105",
+      "before": "Les chac",
+      "after": " hurlaient sous la lune dans la savane.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« chacal » est une exception en -als : chacals (et non « chacaux »)."
+    },
+    {
+      "id": "q106",
+      "before": "Les schémas banc",
+      "after": " de ce projet devront être entièrement repensés.",
+      "answer": "als",
+      "difficulty": 3,
+      "explanation": "« bancal » est une exception en -als : bancals (et non « bancaux »)."
+    },
+    {
+      "id": "q107",
+      "before": "Les récit",
+      "after": " de danse moderne ravissaient les amateurs du genre.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« récital » est une exception en -als : récitals (et non « récitaux »)."
+    },
+    {
+      "id": "q108",
+      "before": "Les festiv",
+      "after": " littéraires célèbrent les auteurs contemporains.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« festival » est une exception en -als : festivals (et non « festivaux »)."
+    },
+    {
+      "id": "q109",
+      "before": "Les rég",
+      "after": " des fêtes de fin d'année ravissaient les enfants.",
+      "answer": "als",
+      "difficulty": 2,
+      "explanation": "« régal » est une exception en -als : régals (et non « régaux »)."
+    },
+    {
+      "id": "q110",
+      "before": "Les ét",
+      "after": " du fromager proposaient des délices savoureux.",
+      "answer": "als",
+      "difficulty": 1,
+      "explanation": "« étal » est une exception en -als : étals (et non « étaux »)."
+    },
+    {
+      "id": "q111",
+      "before": "Ces bij",
+      "after": " proviennent d'Afrique du Sud et sont très précieux.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« bijou » fait partie des 7 exceptions en -oux : bijoux."
+    },
+    {
+      "id": "q112",
+      "before": "Ma grand-mère conserve tous ses bij",
+      "after": " dans une boîte en velours.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« bijou » fait partie des 7 exceptions en -oux : bijoux."
+    },
+    {
+      "id": "q113",
+      "before": "Les bij",
+      "after": " de cette collection coûtent plusieurs milliers d'euros.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« bijou » fait partie des 7 exceptions en -oux : bijoux."
+    },
+    {
+      "id": "q114",
+      "before": "Elle portait de magnifiques bij",
+      "after": " le jour de son mariage.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« bijou » fait partie des 7 exceptions en -oux : bijoux."
+    },
+    {
+      "id": "q115",
+      "before": "Les bij",
+      "after": " volés au musée n'ont jamais été retrouvés.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« bijou » fait partie des 7 exceptions en -oux : bijoux."
+    },
+    {
+      "id": "q116",
+      "before": "Pendant les soldes, les bij",
+      "after": " sont à moitié prix dans ce magasin.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« bijou » fait partie des 7 exceptions en -oux : bijoux."
+    },
+    {
+      "id": "q117",
+      "before": "Les bij",
+      "after": " en diamant sont réservés aux occasions spéciales.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« bijou » fait partie des 7 exceptions en -oux : bijoux."
+    },
+    {
+      "id": "q118",
+      "before": "Les enfants ont ramassé des caill",
+      "after": " blancs sur la plage.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« caillou » fait partie des 7 exceptions en -oux : cailloux."
+    },
+    {
+      "id": "q119",
+      "before": "Le chemin était semé de caill",
+      "after": " qui rendaient la marche inconfortable.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« caillou » fait partie des 7 exceptions en -oux : cailloux."
+    },
+    {
+      "id": "q120",
+      "before": "Nous avons construit un muret en caill",
+      "after": " pour délimiter le jardin.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« caillou » fait partie des 7 exceptions en -oux : cailloux."
+    },
+    {
+      "id": "q121",
+      "before": "Les caill",
+      "after": " multicolores étaient parfaits pour ce jeu.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« caillou » fait partie des 7 exceptions en -oux : cailloux."
+    },
+    {
+      "id": "q122",
+      "before": "Son jardin était rempli de caill",
+      "after": " de différentes tailles.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« caillou » fait partie des 7 exceptions en -oux : cailloux."
+    },
+    {
+      "id": "q123",
+      "before": "Les caill",
+      "after": " polis par la rivière brillaient au soleil.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« caillou » fait partie des 7 exceptions en -oux : cailloux."
+    },
+    {
+      "id": "q124",
+      "before": "La mère de famille prépare des ch",
+      "after": " farcis pour le repas dominical.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« chou » fait partie des 7 exceptions en -oux : choux."
+    },
+    {
+      "id": "q125",
+      "before": "Le marché vend des ch",
+      "after": " frais tous les vendredis matin.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« chou » fait partie des 7 exceptions en -oux : choux."
+    },
+    {
+      "id": "q126",
+      "before": "La pâtissière a préparé une douzaine de ch",
+      "after": " à la crème pour la réception.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« chou » fait partie des 7 exceptions en -oux : choux."
+    },
+    {
+      "id": "q127",
+      "before": "Les ch",
+      "after": " de Bruxelles sont moins connus que les choux ordinaires.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« chou » fait partie des 7 exceptions en -oux : choux."
+    },
+    {
+      "id": "q128",
+      "before": "Au restaurant, on propose des ch",
+      "after": " farcis à la viande et au riz.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« chou » fait partie des 7 exceptions en -oux : choux."
+    },
+    {
+      "id": "q129",
+      "before": "Le fermier a cultivé plusieurs variétés de ch",
+      "after": " dans ses champs cette année.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« chou » fait partie des 7 exceptions en -oux : choux."
+    },
+    {
+      "id": "q130",
+      "before": "Elle a mal aux gen",
+      "after": " après avoir grimpé l'escalier trop rapidement.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« genou » fait partie des 7 exceptions en -oux : genoux."
+    },
+    {
+      "id": "q131",
+      "before": "Le gymnaste s'appuie sur ses gen",
+      "after": " pour maintenir l'équilibre.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« genou » fait partie des 7 exceptions en -oux : genoux."
+    },
+    {
+      "id": "q132",
+      "before": "Les gen",
+      "after": " du skateur étaient couverts de bleus après sa chute.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« genou » fait partie des 7 exceptions en -oux : genoux."
+    },
+    {
+      "id": "q133",
+      "before": "L'enfant s'est mis à gen",
+      "after": " pour prier dans l'église.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« genou » fait partie des 7 exceptions en -oux : genoux."
+    },
+    {
+      "id": "q134",
+      "before": "Les sportifs protègent leurs gen",
+      "after": " avec des protège-genoux spéciaux.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« genou » fait partie des 7 exceptions en -oux : genoux."
+    },
+    {
+      "id": "q135",
+      "before": "Elle a posé un baiser sur les gen",
+      "after": " de sa petite fille endormie.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« genou » fait partie des 7 exceptions en -oux : genoux."
+    },
+    {
+      "id": "q136",
+      "before": "Les hib",
+      "after": " sont des oiseaux de proie nocturnes très intelligents.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« hibou » fait partie des 7 exceptions en -oux : hiboux."
+    },
+    {
+      "id": "q137",
+      "before": "Les hib",
+      "after": " ont des yeux énormes qui leur permettent de voir dans le noir.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« hibou » fait partie des 7 exceptions en -oux : hiboux."
+    },
+    {
+      "id": "q138",
+      "before": "Au zoo, les hib",
+      "after": " attirent toujours l'attention des enfants.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« hibou » fait partie des 7 exceptions en -oux : hiboux."
+    },
+    {
+      "id": "q139",
+      "before": "Les hib",
+      "after": " font un bruit caractéristique qu'on peut entendre la nuit.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« hibou » fait partie des 7 exceptions en -oux : hiboux."
+    },
+    {
+      "id": "q140",
+      "before": "Dans la réserve naturelle, on peut observer des hib",
+      "after": " de différentes espèces.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« hibou » fait partie des 7 exceptions en -oux : hiboux."
+    },
+    {
+      "id": "q141",
+      "before": "Les anciens livres parlaient des hib",
+      "after": " comme de créatures mystiques.",
+      "answer": "oux",
+      "difficulty": 3,
+      "explanation": "« hibou » fait partie des 7 exceptions en -oux : hiboux."
+    },
+    {
+      "id": "q142",
+      "before": "Les p",
+      "after": " sont des parasites qui doivent être traités immédiatement.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« pou » fait partie des 7 exceptions en -oux : poux."
+    },
+    {
+      "id": "q143",
+      "before": "Après avoir attrapé des p",
+      "after": " à l'école, l'enfant a dû faire plusieurs shampoings.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« pou » fait partie des 7 exceptions en -oux : poux."
+    },
+    {
+      "id": "q144",
+      "before": "Le médecin a prescrit un traitement pour éliminer les p",
+      "after": " de la tête.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« pou » fait partie des 7 exceptions en -oux : poux."
+    },
+    {
+      "id": "q145",
+      "before": "Les p",
+      "after": " se transmettent facilement d'un enfant à l'autre.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« pou » fait partie des 7 exceptions en -oux : poux."
+    },
+    {
+      "id": "q146",
+      "before": "Pour prévenir les p",
+      "after": ", on recommande de laver régulièrement les cheveux.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« pou » fait partie des 7 exceptions en -oux : poux."
+    },
+    {
+      "id": "q147",
+      "before": "Les p",
+      "after": " sont trop minuscules pour être vus à l'œil nu.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« pou » fait partie des 7 exceptions en -oux : poux."
+    },
+    {
+      "id": "q148",
+      "before": "Les enfants apportent leurs jouj",
+      "after": " préférés pour les montrer à leurs camarades.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« joujou » fait partie des 7 exceptions en -oux : joujoux."
+    },
+    {
+      "id": "q149",
+      "before": "Le petit garçon range ses jouj",
+      "after": " dans un coffre en bois peint.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« joujou » fait partie des 7 exceptions en -oux : joujoux."
+    },
+    {
+      "id": "q150",
+      "before": "Les jouj",
+      "after": " cassés doivent être réparés avec soin.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« joujou » fait partie des 7 exceptions en -oux : joujoux."
+    },
+    {
+      "id": "q151",
+      "before": "À Noël, les magasins vendent beaucoup de jouj",
+      "after": " colorés et lumineux.",
+      "answer": "oux",
+      "difficulty": 1,
+      "explanation": "« joujou » fait partie des 7 exceptions en -oux : joujoux."
+    },
+    {
+      "id": "q152",
+      "before": "La fillette joue avec ses jouj",
+      "after": " dans le jardin tous les après-midi.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« joujou » fait partie des 7 exceptions en -oux : joujoux."
+    },
+    {
+      "id": "q153",
+      "before": "Les parents offrent de nouveaux jouj",
+      "after": " à leurs enfants pour leur anniversaire.",
+      "answer": "oux",
+      "difficulty": 2,
+      "explanation": "« joujou » fait partie des 7 exceptions en -oux : joujoux."
+    },
+    {
+      "id": "q154",
+      "before": "Ces bij",
+      "after": " étaient les plus beaux trésors de l'exposition.",
+      "answer": "oux",
+      "difficulty": 3,
+      "explanation": "« bijou » fait partie des 7 exceptions en -oux : bijoux."
+    },
+    {
+      "id": "q155",
+      "before": "Le collectionneur a acquis plusieurs caill",
+      "after": " rares lors de la vente aux enchères.",
+      "answer": "oux",
+      "difficulty": 3,
+      "explanation": "« caillou » fait partie des 7 exceptions en -oux : cailloux."
+    },
+    {
+      "id": "q156",
+      "before": "Les fil",
+      "after": " ont été arrêtés pour vol à l'étalage au marché.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« filou » → -ou, règle générale → pluriel en -ous : filous."
+    },
+    {
+      "id": "q157",
+      "before": "Les carib",
+      "after": " sauvages migrent à travers les forêts du Canada.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« caribou » → -ou, règle générale → pluriel en -ous : caribous."
+    },
+    {
+      "id": "q158",
+      "before": "Les tab",
+      "after": " culturels varient considérablement selon les régions.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« tabou » → -ou, règle générale → pluriel en -ous : tabous."
+    },
+    {
+      "id": "q159",
+      "before": "Les couc",
+      "after": " chantaient au lever du soleil dans les bois.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« coucou » → -ou, règle générale → pluriel en -ous : coucous."
+    },
+    {
+      "id": "q160",
+      "before": "Elle n'a pas un s",
+      "after": " en poche pour se payer un café.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« sou » → -ou, règle générale → pluriel en -ous : sous."
+    },
+    {
+      "id": "q161",
+      "before": "Ces sportifs ont renforcé leurs c",
+      "after": " grâce aux exercices de natation.",
+      "answer": "ous",
+      "difficulty": 3,
+      "explanation": "« cou » → -ou, règle générale → pluriel en -ous : cous."
+    },
+    {
+      "id": "q162",
+      "before": "Les écr",
+      "after": " et les boulons doivent être serrés correctement.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« écrou » → -ou, règle générale → pluriel en -ous : écrous."
+    },
+    {
+      "id": "q163",
+      "before": "Les kangour",
+      "after": " bondissaient dans la savane australienne.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« kangourou » → -ou, règle générale → pluriel en -ous : kangourous."
+    },
+    {
+      "id": "q164",
+      "before": "Elle lui donna plusieurs bis",
+      "after": " sur les joues en guise de salutation.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« bisou » → -ou, règle générale → pluriel en -ous : bisous."
+    },
+    {
+      "id": "q165",
+      "before": "Les fl",
+      "after": " sur les photographies ont gâché le rendu final.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« flou » → -ou, règle générale → pluriel en -ous : flous."
+    },
+    {
+      "id": "q166",
+      "before": "Les gn",
+      "after": " se déplaçaient lentement à travers les plaines africaines.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« gnou » → -ou, règle générale → pluriel en -ous : gnous."
+    },
+    {
+      "id": "q167",
+      "before": "Les lic",
+      "after": " des chevaux étaient usés après des années de service.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« licou » → -ou, règle générale → pluriel en -ous : licous."
+    },
+    {
+      "id": "q168",
+      "before": "Les f",
+      "after": " du village étaient connus pour leur excentricité.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« fou » → -ou, règle générale → pluriel en -ous : fous."
+    },
+    {
+      "id": "q169",
+      "before": "Les mat",
+      "after": " dormaient sur le toit par une chaude nuit d'été.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« matou » → -ou, règle générale → pluriel en -ous : matous."
+    },
+    {
+      "id": "q170",
+      "before": "Les sapaj",
+      "after": " grimaçaient en se balançant dans les arbres.",
+      "answer": "ous",
+      "difficulty": 3,
+      "explanation": "« sapajou » → -ou, règle générale → pluriel en -ous : sapajous."
+    },
+    {
+      "id": "q171",
+      "before": "Les andal",
+      "after": " sont fiers de leur riche patrimoine culturel.",
+      "answer": "ous",
+      "difficulty": 3,
+      "explanation": "« andalou » → -ou, règle générale → pluriel en -ous : andalous."
+    },
+    {
+      "id": "q172",
+      "before": "Les tr",
+      "after": " creusés par les enfants sur la plage étaient remplis d'eau.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« trou » → -ou, règle générale → pluriel en -ous : trous."
+    },
+    {
+      "id": "q173",
+      "before": "Les verr",
+      "after": " rouillés du vieux portail grinçaient à l'ouverture.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« verrou » → -ou, règle générale → pluriel en -ous : verrous."
+    },
+    {
+      "id": "q174",
+      "before": "Les cl",
+      "after": " dorés tenaient le tableau suspendu au mur.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« clou » → -ou, règle générale → pluriel en -ous : clous."
+    },
+    {
+      "id": "q175",
+      "before": "Ces voy",
+      "after": " causaient des troubles dans tout le quartier.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« voyou » → -ou, règle générale → pluriel en -ous : voyous."
+    },
+    {
+      "id": "q176",
+      "before": "Les bamb",
+      "after": " se balançaient doucement dans la brise du matin.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« bambou » → -ou, règle générale → pluriel en -ous : bambous."
+    },
+    {
+      "id": "q177",
+      "before": "Les fil",
+      "after": " des bandes rivales ont organisé un vol audacieux.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« filou » → -ou, règle générale → pluriel en -ous : filous."
+    },
+    {
+      "id": "q178",
+      "before": "Les couc",
+      "after": " des horloges sonnaient à chaque heure pleine.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« coucou » → -ou, règle générale → pluriel en -ous : coucous."
+    },
+    {
+      "id": "q179",
+      "before": "Tous les s",
+      "after": " ont été échangés contre de la monnaie moderne.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« sou » → -ou, règle générale → pluriel en -ous : sous."
+    },
+    {
+      "id": "q180",
+      "before": "Les écr",
+      "after": " des machines devaient être remplacés régulièrement.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« écrou » → -ou, règle générale → pluriel en -ous : écrous."
+    },
+    {
+      "id": "q181",
+      "before": "Les kangour",
+      "after": " roux sont plus rares que les kangourous gris.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« kangourou » → -ou, règle générale → pluriel en -ous : kangourous."
+    },
+    {
+      "id": "q182",
+      "before": "Les bis",
+      "after": " étaient sa façon préférée de montrer son affection.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« bisou » → -ou, règle générale → pluriel en -ous : bisous."
+    },
+    {
+      "id": "q183",
+      "before": "Les fl",
+      "after": " artistiques de ce photographe sont très recherchés.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« flou » → -ou, règle générale → pluriel en -ous : flous."
+    },
+    {
+      "id": "q184",
+      "before": "Les gn",
+      "after": " disparaissaient rapidement du paysage africain.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« gnou » → -ou, règle générale → pluriel en -ous : gnous."
+    },
+    {
+      "id": "q185",
+      "before": "Les lic",
+      "after": " de corde s'avéraient plus pratiques que les métalliques.",
+      "answer": "ous",
+      "difficulty": 3,
+      "explanation": "« licou » → -ou, règle générale → pluriel en -ous : licous."
+    },
+    {
+      "id": "q186",
+      "before": "Les f",
+      "after": " du roi s'agitaient pendant la cérémonie.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« fou » → -ou, règle générale → pluriel en -ous : fous."
+    },
+    {
+      "id": "q187",
+      "before": "Les mat",
+      "after": " du quartier se disputaient le territoire du jardin.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« matou » → -ou, règle générale → pluriel en -ous : matous."
+    },
+    {
+      "id": "q188",
+      "before": "Les sapaj",
+      "after": " se nourrissaient de fruits tropicaux dans la canopée.",
+      "answer": "ous",
+      "difficulty": 3,
+      "explanation": "« sapajou » → -ou, règle générale → pluriel en -ous : sapajous."
+    },
+    {
+      "id": "q189",
+      "before": "Les andal",
+      "after": " cultivaient traditionnellement des olives et des oranges.",
+      "answer": "ous",
+      "difficulty": 3,
+      "explanation": "« andalou » → -ou, règle générale → pluriel en -ous : andalous."
+    },
+    {
+      "id": "q190",
+      "before": "Les tr",
+      "after": " de la mine étaient entourés de barrières de sécurité.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« trou » → -ou, règle générale → pluriel en -ous : trous."
+    },
+    {
+      "id": "q191",
+      "before": "Les verr",
+      "after": " neufs ont été installés pour renforcer la sécurité.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« verrou » → -ou, règle générale → pluriel en -ous : verrous."
+    },
+    {
+      "id": "q192",
+      "before": "Les cl",
+      "after": " du parquet étaient tous bien enfoncés.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« clou » → -ou, règle générale → pluriel en -ous : clous."
+    },
+    {
+      "id": "q193",
+      "before": "Ces voy",
+      "after": " recherchés par la gendarmerie ont finalement été capturés.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« voyou » → -ou, règle générale → pluriel en -ous : voyous."
+    },
+    {
+      "id": "q194",
+      "before": "Les bamb",
+      "after": " asiatiques poussaient à une vitesse impressionnante.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« bambou » → -ou, règle générale → pluriel en -ous : bambous."
+    },
+    {
+      "id": "q195",
+      "before": "Les fil",
+      "after": " s'échappaient toujours habilement des poursuites policières.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« filou » → -ou, règle générale → pluriel en -ous : filous."
+    },
+    {
+      "id": "q196",
+      "before": "Les couc",
+      "after": " suisses étaient célèbres dans toute l'Europe.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« coucou » → -ou, règle générale → pluriel en -ous : coucous."
+    },
+    {
+      "id": "q197",
+      "before": "Des s",
+      "after": " anciens s'échangeaient souvent lors des brocantes.",
+      "answer": "ous",
+      "difficulty": 2,
+      "explanation": "« sou » → -ou, règle générale → pluriel en -ous : sous."
+    },
+    {
+      "id": "q198",
+      "before": "Les écr",
+      "after": " desserrés causaient des vibrations anormales.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« écrou » → -ou, règle générale → pluriel en -ous : écrous."
+    },
+    {
+      "id": "q199",
+      "before": "Les kangour",
+      "after": " sautaient très haut pour défendre leur territoire.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« kangourou » → -ou, règle générale → pluriel en -ous : kangourous."
+    },
+    {
+      "id": "q200",
+      "before": "Les bis",
+      "after": " volants des enfants ravissaient tous les cœurs.",
+      "answer": "ous",
+      "difficulty": 1,
+      "explanation": "« bisou » → -ou, règle générale → pluriel en -ous : bisous."
+    }
+  ],
+  "group": "aventurier"
+}

@@ -1,0 +1,255 @@
+{
+  "id": "ant-ent",
+  "title": "-ant · -ent",
+  "shortTitle": "-ant / -ent",
+  "description": "Les adjectifs terminés par le son [ɑ̃] s'écrivent -ant ou -ent. La clé : le mot est-il le participe présent d'un verbe français usuel ?",
+  "choices": [
+    {
+      "id": "ant",
+      "label": "ant"
+    },
+    {
+      "id": "ent",
+      "label": "ent"
+    }
+  ],
+  "decisionAxes": [
+    {
+      "id": "exception",
+      "question": "Est-ce une exception à connaître par  ❤️  ?",
+      "sub": "— *Exceptions -ent malgré un verbe proche* : négligent, différent, précédent, excellent,, influent, violent, résident. <br>— *Exceptions -ant malgré un participe différent* : puissant , savant , vaillant",
+      "options": [
+        {
+          "value": "ent-exc",
+          "label": "Oui — exception -ent",
+          "eliminates": [
+            "ant"
+          ]
+        },
+        {
+          "value": "ant-exc",
+          "label": "Oui — exception -ant",
+          "eliminates": [
+            "ent"
+          ]
+        },
+        {
+          "value": "non",
+          "label": "Non, cas standard",
+          "eliminates": []
+        }
+      ]
+    },
+    {
+      "id": "verbe",
+      "question": "Peut-on former le participe présent d'un verbe usuel avec cette forme ?",
+      "sub": "Ex : charmer → charmant, fatiguer → fatigant, amuser → amusant",
+      "dependsOn": "exception",
+      "showWhen": "non",
+      "options": [
+        {
+          "value": true,
+          "label": "Oui → -ant",
+          "eliminates": [
+            "ent"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non → -ent",
+          "eliminates": [
+            "ant"
+          ]
+        }
+      ]
+    }
+  ],
+  "memoCard": {
+    "title": "Comment choisir -ant ou -ent ?",
+    "rows": [
+      {
+        "form": "-ant",
+        "test": "Le mot est le participe présent d'un verbe français (charmer → charmant)",
+        "example": "charmant, fatigant, amusant, pesant"
+      },
+      {
+        "form": "-ent",
+        "test": "Adjectif d'origine latine sans participe présent correspondant",
+        "example": "violent, prudent, récent, ardent"
+      },
+      {
+        "form": "Exceptions -ent",
+        "test": "Verbe existe mais l'adjectif verbal diffère du participe",
+        "example": "négligent, différent, précédent, excellent, convergent, adhérent, émergent, influent, somnolent, résident"
+      },
+      {
+        "form": "Exceptions -ant",
+        "test": "Forme figée dont le participe présent a divergé",
+        "example": "puissant (pouvoir→pouvant), savant (savoir→sachant), vaillant (valoir→valant)"
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "before": "Il a un sourire charm",
+      "after": " qui met tout le monde à l'aise.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Charmer → participe présent = charmant. Cas standard, pas d'exception."
+    },
+    {
+      "id": "q002",
+      "before": "Ce spectacle est vraiment amus",
+      "after": ", le public a beaucoup ri.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Amuser → participe présent = amusant. Cas standard, pas d'exception."
+    },
+    {
+      "id": "q003",
+      "before": "Ce long trajet est vraiment fatig",
+      "after": ".",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Fatiguer → participe présent = fatigant. Cas standard, pas d'exception."
+    },
+    {
+      "id": "q004",
+      "before": "Il a tenu un discours brill",
+      "after": " devant tout le jury.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Briller → participe présent = brillant. Cas standard, pas d'exception."
+    },
+    {
+      "id": "q005",
+      "before": "Ce silence était pes",
+      "after": " dans la salle.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Peser → participe présent = pesant. Cas standard, pas d'exception."
+    },
+    {
+      "id": "q006",
+      "before": "Ce type de bug est cour",
+      "after": " sur les vieux appareils.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Courir → participe présent = courant. Cas standard, pas d'exception."
+    },
+    {
+      "id": "q007",
+      "before": "Il se montre toujours plais",
+      "after": " en société.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Plaire → participe présent = plaisant. Cas standard, pas d'exception."
+    },
+    {
+      "id": "q008",
+      "before": "Un seul argument n'est pas suffis",
+      "after": " pour convaincre.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Suffire → participe présent = suffisant. Cas standard, pas d'exception."
+    },
+    {
+      "id": "q009",
+      "before": "Son comportement était viol",
+      "after": " et déplacé.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Violent vient du latin violentus, sans participe présent français correspondant. Cas standard -ent."
+    },
+    {
+      "id": "q010",
+      "before": "Il faut être prud",
+      "after": " sur ce chantier.",
+      "answer": "ent",
+      "difficulty": 1,
+      "explanation": "Prudent vient du latin prudens, pas de verbe français correspondant. Cas standard -ent."
+    },
+    {
+      "id": "q011",
+      "before": "Cet événement est trop réc",
+      "after": " pour en tirer des leçons.",
+      "answer": "ent",
+      "difficulty": 1,
+      "explanation": "Récent vient du latin recens, pas de verbe français correspondant. Cas standard -ent."
+    },
+    {
+      "id": "q012",
+      "before": "C'est un mouvement ard",
+      "after": " qui ne faiblit pas.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Ardent vient du latin ardens, pas de verbe français correspondant. Cas standard -ent."
+    },
+    {
+      "id": "q013",
+      "before": "Ce type d'incident est fréqu",
+      "after": " en hiver.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Fréquent vient du latin frequens, pas de verbe français correspondant. Cas standard -ent."
+    },
+    {
+      "id": "q014",
+      "before": "C'est un geste néglig",
+      "after": " qui peut coûter cher.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Négliger → participe présent = négligeant, mais l'adjectif s'écrit négligent. Exception -ent à retenir."
+    },
+    {
+      "id": "q015",
+      "before": "Ce résultat est très différ",
+      "after": " de ce qu'on attendait.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Différer → participe présent = différant, mais l'adjectif s'écrit différent. Exception -ent à retenir."
+    },
+    {
+      "id": "q016",
+      "before": "Comme dans le chapitre précéd",
+      "after": ", l'auteur insiste sur ce point.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Précéder → participe présent = précédant, mais l'adjectif s'écrit précédent. Exception -ent à retenir."
+    },
+    {
+      "id": "q017",
+      "before": "Son travail est excell",
+      "after": ", je n'ai rien à redire.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Exceller → participe présent = excellant, mais l'adjectif s'écrit excellent. Exception -ent à retenir."
+    },
+    {
+      "id": "q018",
+      "before": "Ce pays est puis",
+      "after": " économiquement et militairement.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Puissant vient de pouvoir, dont le participe présent est pouvant. Forme ancienne figée en -ant — exception -ant à mémoriser."
+    },
+    {
+      "id": "q019",
+      "before": "Il tient un discours sav",
+      "after": " que peu de gens comprennent.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Savant vient de savoir, dont le participe présent est sachant. Forme ancienne figée en -ant — exception -ant à mémoriser."
+    },
+    {
+      "id": "q020",
+      "before": "Il s'est montré vaill",
+      "after": " face à l'adversité.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Vaillant vient du vieux français vaillir, dont le participe présent est valant. Forme ancienne figée en -ant — exception -ant à mémoriser."
+    }
+  ],
+  "group": "heros"
+}

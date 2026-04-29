@@ -1,0 +1,1722 @@
+{
+  "id": "pp-etre-groupe1",
+  "title": "é · ée · és · ées — passé composé 1er groupe",
+  "shortTitle": "Accord PP être",
+  "description": "Choisir la bonne terminaison du participe passé d'un verbe du 1er groupe conjugué avec avoir ou être. Avec avoir, le participe est invariable (-é). Avec être, il s'accorde en genre et en nombre avec le sujet.",
+  "choices": [
+    {
+      "id": "e",
+      "label": "é"
+    },
+    {
+      "id": "ee",
+      "label": "ée"
+    },
+    {
+      "id": "es",
+      "label": "és"
+    },
+    {
+      "id": "ees",
+      "label": "ées"
+    }
+  ],
+  "decisionAxes": [
+    {
+      "id": "auxiliaire",
+      "question": "L'auxiliaire est-il 'avoir' ?",
+      "sub": "Repère le mot avant le participe : a, as, avons, avez, ont → avoir ; est, es, sommes, êtes, sont → être",
+      "options": [
+        {
+          "value": true,
+          "label": "Oui — avoir",
+          "sub": "",
+          "eliminates": [
+            "ee",
+            "es",
+            "ees"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non — être",
+          "sub": "",
+          "eliminates": []
+        }
+      ]
+    },
+    {
+      "id": "genreNombre",
+      "question": "Quel est le genre et le nombre du sujet ?",
+      "sub": "Le participe passé avec être s'accorde comme un adjectif avec le sujet",
+      "dependsOn": "auxiliaire",
+      "showWhen": false,
+      "options": [
+        {
+          "value": "ms",
+          "label": "Masculin singulier",
+          "eliminates": [
+            "ee",
+            "es",
+            "ees"
+          ]
+        },
+        {
+          "value": "fs",
+          "label": "Féminin singulier",
+          "eliminates": [
+            "e",
+            "es",
+            "ees"
+          ]
+        },
+        {
+          "value": "mp",
+          "label": "Masculin pluriel",
+          "eliminates": [
+            "e",
+            "ee",
+            "ees"
+          ]
+        },
+        {
+          "value": "fp",
+          "label": "Féminin pluriel",
+          "eliminates": [
+            "e",
+            "ee",
+            "es"
+          ]
+        }
+      ]
+    }
+  ],
+  "memoCard": {
+    "title": "Accord du participe passé — 1er groupe",
+    "rows": [
+      {
+        "form": "-é",
+        "test": "auxiliaire avoir (invariable) OU être + masc. sing.",
+        "example": "Il a chanté. / Il est arrivé."
+      },
+      {
+        "form": "-ée",
+        "test": "être + féminin singulier",
+        "example": "Elle est arrivée en avance."
+      },
+      {
+        "form": "-és",
+        "test": "être + masculin pluriel",
+        "example": "Ils sont retournés à l'école."
+      },
+      {
+        "form": "-ées",
+        "test": "être + féminin pluriel",
+        "example": "Elles sont rentrées tard."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "before": "Elle a chant",
+      "after": " en chœur.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q002",
+      "before": "Elles ont dans",
+      "after": " toute la soirée.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q003",
+      "before": "Il est arriv",
+      "after": " en avance.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet masculin singulier → -é."
+    },
+    {
+      "id": "q004",
+      "before": "Elle est tomb",
+      "after": " du vélo.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q005",
+      "before": "Ils sont tomb",
+      "after": " en courant.",
+      "answer": "es",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q006",
+      "before": "Elles sont arriv",
+      "after": " les premières.",
+      "answer": "ees",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q007",
+      "before": "Nous avons march",
+      "after": " deux heures.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q008",
+      "before": "Il a jou",
+      "after": " au football.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q009",
+      "before": "Elle est arriv",
+      "after": " très tôt ce matin.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est féminin singulier → terminaison -ée."
+    },
+    {
+      "id": "q010",
+      "before": "Elle est tomb",
+      "after": " avant tout le monde.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est féminin singulier → terminaison -ée."
+    },
+    {
+      "id": "q011",
+      "before": "La jeune fille est tomb",
+      "after": " dans l'escalier.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q012",
+      "before": "Les garçons sont arriv",
+      "after": " ensemble.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q013",
+      "before": "Mes cousines sont tomb",
+      "after": " dans la cour.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q014",
+      "before": "Ils sont arriv",
+      "after": " très tôt ce matin.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est masculin pluriel → terminaison -és."
+    },
+    {
+      "id": "q015",
+      "before": "Ils sont tomb",
+      "after": " avant tout le monde.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est masculin pluriel → terminaison -és."
+    },
+    {
+      "id": "q016",
+      "before": "Sa meilleure amie est arriv",
+      "after": " à la maison avant la tempête.",
+      "answer": "ee",
+      "difficulty": 3,
+      "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q017",
+      "before": "Après leur entraînement, les athlètes masculins sont tomb",
+      "after": " de fatigue.",
+      "answer": "es",
+      "difficulty": 3,
+      "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q018",
+      "before": "Elles sont arriv",
+      "after": " très tôt ce matin.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est féminin pluriel → terminaison -ées."
+    },
+    {
+      "id": "q019",
+      "before": "Les trois danseuses sont arriv",
+      "after": " tard à cause du trafic.",
+      "answer": "ees",
+      "difficulty": 3,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q020",
+      "before": "Elles sont tomb",
+      "after": " avant tout le monde.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est féminin pluriel → terminaison -ées."
+    },
+    {
+      "id": "q021",
+      "before": "Elles ont travaill",
+      "after": " dur ce mois.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q022",
+      "before": "Elle est rest",
+      "after": " au bureau.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q023",
+      "before": "Ils sont rest",
+      "after": " après la fête.",
+      "answer": "es",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q024",
+      "before": "Elles sont rest",
+      "after": " debout toute la nuit.",
+      "answer": "ees",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q025",
+      "before": "Elle a parl",
+      "after": " trop vite.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q026",
+      "before": "Elle est rentr",
+      "after": " à minuit.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q027",
+      "before": "Les garçons sont rentr",
+      "after": " épuisés.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q028",
+      "before": "Les filles sont rentr",
+      "after": " trempées.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q029",
+      "before": "Il a écout",
+      "after": " la radio.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q030",
+      "before": "Elle est rest",
+      "after": " silencieuse.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q031",
+      "before": "Ils sont rentr",
+      "after": " tard hier soir.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q032",
+      "before": "Elles sont rentr",
+      "after": " heureuses de leurs vacances.",
+      "answer": "ees",
+      "difficulty": 3,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q033",
+      "before": "Ma mère a prépar",
+      "after": " un gâteau.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q034",
+      "before": "Elle est rentr",
+      "after": " dans la maison.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q035",
+      "before": "Les enfants sont rest",
+      "after": " calmes.",
+      "answer": "es",
+      "difficulty": 3,
+      "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q036",
+      "before": "Elles sont rest",
+      "after": " ensemble.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q037",
+      "before": "Elle a nag",
+      "after": " deux kilomètres.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q038",
+      "before": "Elle est rest",
+      "after": " chez elle.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q039",
+      "before": "Ils sont rest",
+      "after": " immobiles.",
+      "answer": "es",
+      "difficulty": 3,
+      "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q040",
+      "before": "Elles sont rentr",
+      "after": " fatiguées du travail.",
+      "answer": "ees",
+      "difficulty": 3,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q041",
+      "before": "Elle a trouv",
+      "after": " la solution.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q042",
+      "before": "Elle est entr",
+      "after": " dans le magasin.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q043",
+      "before": "Les enfants sont retourn",
+      "after": " en classe.",
+      "answer": "es",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q044",
+      "before": "Elles sont entr",
+      "after": " discrètement.",
+      "answer": "ees",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q045",
+      "before": "Ma sœur a donn",
+      "after": " son manteau.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q046",
+      "before": "Elles sont retourn",
+      "after": " au point de départ.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q047",
+      "before": "Il est retourn",
+      "after": " au bureau.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet masculin singulier → -é."
+    },
+    {
+      "id": "q048",
+      "before": "Les filles ont aim",
+      "after": " ce film.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q049",
+      "before": "Elle a achet",
+      "after": " des fleurs.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q050",
+      "before": "Ils sont entr",
+      "after": " par la porte de derrière.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q051",
+      "before": "Elle est retourn",
+      "after": " très tôt ce matin.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est féminin singulier → terminaison -ée."
+    },
+    {
+      "id": "q052",
+      "before": "Elle est retourn",
+      "after": " chez elle.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q053",
+      "before": "Elle est entr",
+      "after": " avant tout le monde.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est féminin singulier → terminaison -ée."
+    },
+    {
+      "id": "q054",
+      "before": "Les étudiants sont entr",
+      "after": " dans la salle d'examen.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q055",
+      "before": "Ils sont retourn",
+      "after": " très tôt ce matin.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est masculin pluriel → terminaison -és."
+    },
+    {
+      "id": "q056",
+      "before": "La classe est retourn",
+      "after": " du voyage scolaire.",
+      "answer": "ee",
+      "difficulty": 3,
+      "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q057",
+      "before": "Elles sont aim",
+      "after": " par tous.",
+      "answer": "ees",
+      "difficulty": 3,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q058",
+      "before": "Elles sont entr",
+      "after": " très tôt ce matin.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est féminin pluriel → terminaison -ées."
+    },
+    {
+      "id": "q059",
+      "before": "Les touristes françaises sont entr",
+      "after": " dans le musée dès l'ouverture.",
+      "answer": "ees",
+      "difficulty": 3,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel ('les touristes françaises') → terminaison -ées."
+    },
+    {
+      "id": "q060",
+      "before": "Elles sont retourn",
+      "after": " avant tout le monde.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est féminin pluriel → terminaison -ées."
+    },
+    {
+      "id": "q061",
+      "before": "Elle a cherch",
+      "after": " ses clés ce matin.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q062",
+      "before": "Les enfants ont chant",
+      "after": " pendant le spectacle de fin d'année.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : chanté."
+    },
+    {
+      "id": "q063",
+      "before": "Marie est arriv",
+      "after": " à l'école avec dix minutes de retard.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (Marie) → accord : arrivée."
+    },
+    {
+      "id": "q064",
+      "before": "Les deux garçons sont tomb",
+      "after": " en jouant au football.",
+      "answer": "es",
+      "difficulty": 3,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : tombés."
+    },
+    {
+      "id": "q065",
+      "before": "Ses cousines sont arriv",
+      "after": " hier pour les vacances de Pâques.",
+      "answer": "ees",
+      "difficulty": 3,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel (cousines) → accord : arrivées."
+    },
+    {
+      "id": "q066",
+      "before": "Il a apport",
+      "after": " des fleurs à sa mère.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Avec 'avoir', pas d'accord même avec un sujet féminin destinataire : -é."
+    },
+    {
+      "id": "q067",
+      "before": "Tu as march",
+      "after": " pendant deux heures ce matin.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : marché."
+    },
+    {
+      "id": "q068",
+      "before": "Les enfants ont dessin",
+      "after": " de beaux paysages en classe.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q069",
+      "before": "Anne est tomb",
+      "after": " en descendant l'escalier.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (Anne) → accord : tombée."
+    },
+    {
+      "id": "q070",
+      "before": "Elle a cri",
+      "after": " de joie en voyant le résultat.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Avec 'avoir', pas d'accord : -é."
+    },
+    {
+      "id": "q071",
+      "before": "Ils sont arriv",
+      "after": " en retard au rendez-vous.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : arrivés."
+    },
+    {
+      "id": "q072",
+      "before": "Elles sont arriv",
+      "after": " les premières sur le lieu du pique-nique.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel → accord : arrivées."
+    },
+    {
+      "id": "q073",
+      "before": "Nous avons dans",
+      "after": " sur cette nouvelle chanson en cours de musique.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : dansé."
+    },
+    {
+      "id": "q074",
+      "before": "Tu as jou",
+      "after": " au tennis ce weekend.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : joué."
+    },
+    {
+      "id": "q075",
+      "before": "Elle est arriv",
+      "after": " à l'école ce matin.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (elle) → accord : arrivée."
+    },
+    {
+      "id": "q076",
+      "before": "Les garçons sont tomb",
+      "after": " en glissant sur la glace.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : tombés."
+    },
+    {
+      "id": "q077",
+      "before": "Tes cousines sont arriv",
+      "after": " hier soir pour les vacances.",
+      "answer": "ees",
+      "difficulty": 3,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel (cousines) → accord : arrivées."
+    },
+    {
+      "id": "q078",
+      "before": "Vous avez regard",
+      "after": " le film jusqu'à la fin.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable même avec sujet pluriel : regardé."
+    },
+    {
+      "id": "q079",
+      "before": "Ma mère est arriv",
+      "after": " de son travail très tard.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (ma mère) → accord : arrivée."
+    },
+    {
+      "id": "q080",
+      "before": "Les enfants de la classe sont tomb",
+      "after": " d'accord sur le projet.",
+      "answer": "es",
+      "difficulty": 3,
+      "explanation": "Auxiliaire ÊTRE + sujet groupe nominal masculin pluriel → accord : tombés."
+    },
+    {
+      "id": "q081",
+      "before": "Elle a visit",
+      "after": " le musée avec sa famille.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q082",
+      "before": "Ses amies sont retourn",
+      "after": " bredouilles de la fête.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel (ses amies) → accord : retournées."
+    },
+    {
+      "id": "q083",
+      "before": "Les voisines sont tomb",
+      "after": " sur le verglas devant la maison.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel (les voisines) → accord : tombées."
+    },
+    {
+      "id": "q084",
+      "before": "Les filles ont rang",
+      "after": " leur chambre.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q085",
+      "before": "Nous avons parl",
+      "after": " pendant deux heures.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : parlé."
+    },
+    {
+      "id": "q086",
+      "before": "Ma mère a nettoy",
+      "after": " la voiture ce weekend.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q087",
+      "before": "Elle est rest",
+      "after": " à la maison toute la journée.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier → accord : restée."
+    },
+    {
+      "id": "q088",
+      "before": "Les garçons sont rentr",
+      "after": " tard ce soir.",
+      "answer": "es",
+      "difficulty": 1,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : rentrés."
+    },
+    {
+      "id": "q089",
+      "before": "Mon père a décor",
+      "after": " le salon pour la fête.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q090",
+      "before": "Mes sœurs sont rest",
+      "after": " silencieuses pendant le film.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel → accord : restées."
+    },
+    {
+      "id": "q091",
+      "before": "Tu as écout",
+      "after": " cette chanson hier ?",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : écouté."
+    },
+    {
+      "id": "q092",
+      "before": "La professeure est rentr",
+      "after": " dans la salle de classe.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier → accord : rentrée."
+    },
+    {
+      "id": "q093",
+      "before": "Les élèves sont rest",
+      "after": " en classe pendant la pause.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : restés."
+    },
+    {
+      "id": "q094",
+      "before": "Mes sœurs sont rentr",
+      "after": " avant la nuit.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel → accord : rentrées."
+    },
+    {
+      "id": "q095",
+      "before": "J'ai écout",
+      "after": " les conseils de mes parents.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : écouté."
+    },
+    {
+      "id": "q096",
+      "before": "Elle a trouv",
+      "after": " son portefeuille dans la cuisine.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : trouvé."
+    },
+    {
+      "id": "q097",
+      "before": "Marie est rest",
+      "after": " chez sa grand-mère tout l'été.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (Marie) → accord : restée."
+    },
+    {
+      "id": "q098",
+      "before": "Les randonneurs sont pass",
+      "after": " par le col de montagne.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q099",
+      "before": "Les garçons sont rentr",
+      "after": " tard du match de football.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : rentrés."
+    },
+    {
+      "id": "q100",
+      "before": "Tes sœurs sont rest",
+      "after": " bloquées dans l'ascenseur.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel → accord : restées."
+    },
+    {
+      "id": "q101",
+      "before": "Il a appel",
+      "after": " son ami hier soir.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q102",
+      "before": "Tu as donn",
+      "after": " ton avis sur ce projet ?",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : donné."
+    },
+    {
+      "id": "q103",
+      "before": "Sophie est rentr",
+      "after": " à pied de l'école aujourd'hui.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (Sophie) → accord : rentrée."
+    },
+    {
+      "id": "q104",
+      "before": "Mes cousins sont rest",
+      "after": " toute la nuit pour célébrer.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : restés."
+    },
+    {
+      "id": "q105",
+      "before": "Ma sœur a réserv",
+      "after": " une table au restaurant.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q106",
+      "before": "Les filles ont oubli",
+      "after": " leurs affaires à la bibliothèque.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Auxiliaire AVOIR → participe invariable même avec sujet féminin pluriel : oublié."
+    },
+    {
+      "id": "q107",
+      "before": "Les filles ont termin",
+      "after": " leurs devoirs de vacances.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q108",
+      "before": "Elle a ferm",
+      "after": " les fenêtres avant de partir.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q109",
+      "before": "Il a donn",
+      "after": " un cadeau magnifique pour son anniversaire.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : donné."
+    },
+    {
+      "id": "q110",
+      "before": "Marc a aim",
+      "after": " cette nouvelle chanson dès sa sortie.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : aimé."
+    },
+    {
+      "id": "q111",
+      "before": "Elle est retourn",
+      "after": " à la maison après les cours.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier → accord : retournée."
+    },
+    {
+      "id": "q112",
+      "before": "Les garçons sont entr",
+      "after": " dans la bibliothèque en silence.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : entrés."
+    },
+    {
+      "id": "q113",
+      "before": "Toutes les filles sont retourn",
+      "after": " à leur place avant le signal.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel → accord : retournées."
+    },
+    {
+      "id": "q114",
+      "before": "Tes parents ont achet",
+      "after": " les fournitures scolaires hier.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : acheté."
+    },
+    {
+      "id": "q115",
+      "before": "Ma sœur est entr",
+      "after": " dans la classe avec quelques minutes de retard.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier → accord : entrée."
+    },
+    {
+      "id": "q116",
+      "before": "Les élèves sont retourn",
+      "after": " à leurs bancs après la récréation.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : retournés."
+    },
+    {
+      "id": "q117",
+      "before": "Les étudiantes sont entr",
+      "after": " dans l'amphithéâtre en bavardant.",
+      "answer": "ees",
+      "difficulty": 3,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel (étudiantes) → accord : entrées."
+    },
+    {
+      "id": "q118",
+      "before": "Les randonneuses sont mont",
+      "after": " jusqu'au refuge pour la nuit.",
+      "answer": "ees",
+      "difficulty": 3,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel ('les randonneuses') → terminaison -ées."
+    },
+    {
+      "id": "q119",
+      "before": "Nous avons aim",
+      "after": " ce film au cinéma la semaine dernière.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : aimé."
+    },
+    {
+      "id": "q120",
+      "before": "J'ai apport",
+      "after": " les documents à la réunion.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : apporté."
+    },
+    {
+      "id": "q121",
+      "before": "Elle a organis",
+      "after": " une fête magnifique.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q122",
+      "before": "Elle est entr",
+      "after": " dans la salle de classe.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier → accord : entrée."
+    },
+    {
+      "id": "q123",
+      "before": "Les garçons sont retourn",
+      "after": " à la maison.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : retournés."
+    },
+    {
+      "id": "q124",
+      "before": "Elles sont retourn",
+      "after": " trop tard du voyage.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel → accord : retournées."
+    },
+    {
+      "id": "q125",
+      "before": "Ma mère a vérifi",
+      "after": " les devoirs.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q126",
+      "before": "Le dessinateur a dessin",
+      "after": " un magnifique paysage.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Auxiliaire AVOIR → participe invariable : dessiné."
+    },
+    {
+      "id": "q127",
+      "before": "Marie est entr",
+      "after": " dans le bâtiment avec enthousiasme.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (Marie) → accord : entrée."
+    },
+    {
+      "id": "q128",
+      "before": "Les enfants sont retourn",
+      "after": " en courant.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : retournés."
+    },
+    {
+      "id": "q129",
+      "before": "Le professeur a expliqu",
+      "after": " la règle de grammaire.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q130",
+      "before": "Les actrices sont entr",
+      "after": " sur scène sous les applaudissements.",
+      "answer": "ees",
+      "difficulty": 3,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel (actrices) → accord : entrées."
+    },
+    {
+      "id": "q131",
+      "before": "Ils ont cri",
+      "after": " leur joie en apprenant les résultats.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q132",
+      "before": "J'ai port",
+      "after": " mon sac à dos hier.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : porté."
+    },
+    {
+      "id": "q133",
+      "before": "Les filles ont lanc",
+      "after": " le ballon très haut.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q134",
+      "before": "Elle est pass",
+      "after": " devant la gare ce matin.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier → accord : passée."
+    },
+    {
+      "id": "q135",
+      "before": "Les enfants sont mont",
+      "after": " au grenier pour jouer.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : montés."
+    },
+    {
+      "id": "q136",
+      "before": "Tes cousines sont pass",
+      "after": " par le parc hier soir.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel (cousines) → accord : passées."
+    },
+    {
+      "id": "q137",
+      "before": "Elle a essay",
+      "after": " plusieurs approches différentes.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q138",
+      "before": "Tu as visit",
+      "after": " le musée pendant tes vacances.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : visité."
+    },
+    {
+      "id": "q139",
+      "before": "Ma mère est rentr",
+      "after": " épuisée du travail.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (ma mère) → accord : rentrée."
+    },
+    {
+      "id": "q140",
+      "before": "Mes frères sont mont",
+      "after": " jusqu'au sommet de la montagne.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : montés."
+    },
+    {
+      "id": "q141",
+      "before": "Elle a utilis",
+      "after": " un crayon rouge.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q142",
+      "before": "Les filles sont entr",
+      "after": " dans la salle en silence.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel → accord : entrées."
+    },
+    {
+      "id": "q143",
+      "before": "Vous avez rang",
+      "after": " vos affaires avant de partir.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : rangé."
+    },
+    {
+      "id": "q144",
+      "before": "J'ai nettoy",
+      "after": " la maison avant l'arrivée des invités.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : nettoyé."
+    },
+    {
+      "id": "q145",
+      "before": "Ma sœur a invit",
+      "after": " tous ses amis.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q146",
+      "before": "Elle est pass",
+      "after": " devant le théâtre ce matin.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier → accord : passée."
+    },
+    {
+      "id": "q147",
+      "before": "Les enfants sont mont",
+      "after": " à l'étage pour jouer.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : montés."
+    },
+    {
+      "id": "q148",
+      "before": "Tes cousines sont pass",
+      "after": " par notre maison hier.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel (cousines) → accord : passées."
+    },
+    {
+      "id": "q149",
+      "before": "Les filles ont gagn",
+      "after": " le tournoi.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q150",
+      "before": "Elle a rat",
+      "after": " le bus.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q151",
+      "before": "Nous avons décor",
+      "after": " la salle pour la fête.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : décoré."
+    },
+    {
+      "id": "q152",
+      "before": "Marie est mont",
+      "after": " à l'appartement du premier étage.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (Marie) → accord : montée."
+    },
+    {
+      "id": "q153",
+      "before": "Il a cuisin",
+      "after": " un délicieux plat.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q154",
+      "before": "Les garçons sont pass",
+      "after": " par la gare centrale.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : passés."
+    },
+    {
+      "id": "q155",
+      "before": "Ses amies sont pass",
+      "after": " devant chez nous sans sonner.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel (ses amies) → accord : passées."
+    },
+    {
+      "id": "q156",
+      "before": "Vous avez pass",
+      "after": " un excellent examen.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : passé."
+    },
+    {
+      "id": "q157",
+      "before": "J'ai appel",
+      "after": " mon ami pour lui donner des nouvelles.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : appelé."
+    },
+    {
+      "id": "q158",
+      "before": "La directrice est arriv",
+      "after": " à l'école avec dix minutes de retard.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (la directrice) → accord : arrivée."
+    },
+    {
+      "id": "q159",
+      "before": "Les garçons sont tomb",
+      "after": " dans l'escalier pendant la récréation.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : tombés."
+    },
+    {
+      "id": "q160",
+      "before": "Ses cousines sont rest",
+      "after": " chez nous tout le week-end.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel (cousines) → accord : restées."
+    },
+    {
+      "id": "q161",
+      "before": "Elle a admir",
+      "after": " le tableau impressionniste.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q162",
+      "before": "Elle est mont",
+      "after": " au troisième étage.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q163",
+      "before": "Ils sont pass",
+      "after": " devant la boulangerie.",
+      "answer": "es",
+      "difficulty": 3,
+      "explanation": "Verbe intransitif avec 'être' → accord avec le sujet. Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q164",
+      "before": "Les filles ont recommenc",
+      "after": " depuis le début.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q165",
+      "before": "Elles sont mont",
+      "after": " dans le grenier.",
+      "answer": "ees",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q166",
+      "before": "Il a amélior",
+      "after": " ses résultats en mathématiques.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q167",
+      "before": "Elle est pass",
+      "after": " par la rue principale.",
+      "answer": "ee",
+      "difficulty": 3,
+      "explanation": "Verbe intransitif avec 'être' → accord avec le sujet. Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q168",
+      "before": "Ma sœur a continu",
+      "after": " ses études à l'université.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q169",
+      "before": "Ils sont mont",
+      "after": " sur le toit de l'immeuble.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q170",
+      "before": "Elle a commenc",
+      "after": " à lire ce roman policier.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q171",
+      "before": "Elles sont pass",
+      "after": " à côté de l'école hier.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Verbe intransitif avec 'être' → accord avec le sujet. Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q172",
+      "before": "Elle est pass",
+      "after": " très tôt ce matin.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est féminin singulier → terminaison -ée."
+    },
+    {
+      "id": "q173",
+      "before": "Elle est mont",
+      "after": " en haut de la tour.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q174",
+      "before": "Mes cousins sont pass",
+      "after": " près du marché ce matin.",
+      "answer": "es",
+      "difficulty": 3,
+      "explanation": "Verbe intransitif avec 'être' → accord avec le sujet. Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q175",
+      "before": "Ils sont mont",
+      "after": " très tôt ce matin.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est masculin pluriel → terminaison -és."
+    },
+    {
+      "id": "q176",
+      "before": "Elles sont mont",
+      "after": " à la bibliothèque municipale.",
+      "answer": "ees",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+    },
+    {
+      "id": "q177",
+      "before": "Elles sont pass",
+      "after": " très tôt ce matin.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est féminin pluriel → terminaison -ées."
+    },
+    {
+      "id": "q178",
+      "before": "Elle est pass",
+      "after": " devant l'école primaire.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Verbe intransitif avec 'être' → accord avec le sujet. Auxiliaire 'être' + sujet féminin singulier → -ée."
+    },
+    {
+      "id": "q179",
+      "before": "Elles sont mont",
+      "after": " avant tout le monde.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "L'auxiliaire est 'être' et le sujet est féminin pluriel → terminaison -ées."
+    },
+    {
+      "id": "q180",
+      "before": "Ils sont mont",
+      "after": " dans le petit train touristique.",
+      "answer": "es",
+      "difficulty": 3,
+      "explanation": "Verbe intransitif avec 'être' → accord avec le sujet. Auxiliaire 'être' + sujet masculin pluriel → -és."
+    },
+    {
+      "id": "q181",
+      "before": "Elle a install",
+      "after": " une nouvelle application.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q182",
+      "before": "Nous avons réserv",
+      "after": " une table au restaurant pour demain soir.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : réservé."
+    },
+    {
+      "id": "q183",
+      "before": "Elle est arriv",
+      "after": " la première en classe ce matin.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier → accord : arrivée."
+    },
+    {
+      "id": "q184",
+      "before": "Tous les élèves sont arriv",
+      "after": " avant la sonnerie.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : arrivés."
+    },
+    {
+      "id": "q185",
+      "before": "Il a protég",
+      "after": " ses documents importants.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q186",
+      "before": "La voiture est tomb",
+      "after": " en panne sur l'autoroute.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (la voiture) → accord : tombée."
+    },
+    {
+      "id": "q187",
+      "before": "Mes frères sont rest",
+      "after": " silencieux pendant toute la présentation.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : restés."
+    },
+    {
+      "id": "q188",
+      "before": "Marie est rentr",
+      "after": " à la maison à 18h.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (Marie) → accord : rentrée."
+    },
+    {
+      "id": "q189",
+      "before": "Ma sœur a anim",
+      "after": " la soirée avec enthousiasme.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q190",
+      "before": "Les garçons sont retourn",
+      "after": " à l'école après les vacances.",
+      "answer": "es",
+      "difficulty": 1,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : retournés."
+    },
+    {
+      "id": "q191",
+      "before": "Les filles sont entr",
+      "after": " dans la salle de classe.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel → accord : entrées."
+    },
+    {
+      "id": "q192",
+      "before": "Il a install",
+      "after": " le nouveau logiciel sur son ordinateur.",
+      "answer": "e",
+      "difficulty": 1,
+      "explanation": "Auxiliaire AVOIR → participe invariable : installé."
+    },
+    {
+      "id": "q193",
+      "before": "Les filles ont libér",
+      "after": " les animaux de la cage.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Avec 'avoir', le participe est invariable : -é."
+    },
+    {
+      "id": "q194",
+      "before": "Camille est rentr",
+      "after": " tard du concert hier soir.",
+      "answer": "ee",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (Camille) → accord : rentrée."
+    },
+    {
+      "id": "q195",
+      "before": "Elle a démarr",
+      "after": " le moteur sans difficulté.",
+      "answer": "e",
+      "difficulty": 2,
+      "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+    },
+    {
+      "id": "q196",
+      "before": "Les enfants sont retourn",
+      "after": " au parc pour jouer.",
+      "answer": "es",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : retournés."
+    },
+    {
+      "id": "q197",
+      "before": "Mes cousines sont entr",
+      "after": " dans le restaurant avec enthousiasme.",
+      "answer": "ees",
+      "difficulty": 2,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel (cousines) → accord : entrées."
+    },
+    {
+      "id": "q198",
+      "before": "Sophie est rentr",
+      "after": " de ses courses vers midi.",
+      "answer": "ee",
+      "difficulty": 1,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin singulier (Sophie) → accord : rentrée."
+    },
+    {
+      "id": "q199",
+      "before": "Les artistes sont retourn",
+      "after": " sur scène pour le rappel.",
+      "answer": "es",
+      "difficulty": 3,
+      "explanation": "Auxiliaire ÊTRE + sujet masculin pluriel → accord : retournés."
+    },
+    {
+      "id": "q200",
+      "before": "Les danseuses sont entr",
+      "after": " sur scène sous les applaudissements.",
+      "answer": "ees",
+      "difficulty": 3,
+      "explanation": "Auxiliaire ÊTRE + sujet féminin pluriel (danseuses) → accord : entrées."
+    }
+  ],
+  "group": "legende"
+}

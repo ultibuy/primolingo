@@ -1,0 +1,2530 @@
+{
+  "id": "pp-ir-groupes",
+  "title": "i · is · ert · u — participe passé verbes en -ir",
+  "shortTitle": "PP verbes en -ir",
+  "description": "Choisir la bonne terminaison du participe passé d'un verbe en -ir. Clé : si le verbe est du 2ème groupe (-issons), le participe passé est toujours -i. Si c'est le 3ème groupe, on met le participe passé au féminin pour trouver la terminaison.",
+  "choices": [
+    {
+      "id": "i",
+      "label": "i"
+    },
+    {
+      "id": "is",
+      "label": "is"
+    },
+    {
+      "id": "ert",
+      "label": "ert"
+    },
+    {
+      "id": "u",
+      "label": "u"
+    }
+  ],
+  "decisionAxes": [
+    {
+      "id": "groupe",
+      "question": "Quel est le groupe du verbe ?",
+      "sub": "Test : conjugue à la 1ère personne du pluriel. Si ça fait '-issons' → 2ème groupe. Sinon → 3ème groupe.",
+      "options": [
+        {
+          "value": "g2",
+          "label": "2ème groupe",
+          "sub": "",
+          "eliminates": [
+            "is",
+            "ert",
+            "u"
+          ]
+        },
+        {
+          "value": "g3",
+          "label": "3ème groupe",
+          "sub": "",
+          "eliminates": []
+        }
+      ]
+    },
+    {
+      "id": "feminin",
+      "question": "Si tu dis \"Elle est...\" écoute la terminaison du participe passé",
+      "sub": "Il a  ouvert → Elle est ouverte (-erte). Parfois la phrase n'aura pas de sens (par exemple \"Elle est mentie\", mais ça t'aidera quand même)",
+      "dependsOn": "groupe",
+      "showWhen": "g3",
+      "options": [
+        {
+          "value": "ie",
+          "label": "-ie",
+          "eliminates": [
+            "is",
+            "ert",
+            "u"
+          ]
+        },
+        {
+          "value": "ise",
+          "label": "-ise ",
+          "eliminates": [
+            "i",
+            "ert",
+            "u"
+          ]
+        },
+        {
+          "value": "erte",
+          "label": "-erte",
+          "eliminates": [
+            "i",
+            "is",
+            "u"
+          ]
+        },
+        {
+          "value": "ue",
+          "label": "-ue",
+          "eliminates": [
+            "i",
+            "is",
+            "ert"
+          ]
+        }
+      ]
+    }
+  ],
+  "memoCard": {
+    "title": "Participe passé des verbes en -ir",
+    "rows": [
+      {
+        "form": "-i",
+        "test": "2ème groupe (nous -issons) OU 3ème groupe féminin en -ie",
+        "example": "fini, choisi, parti, dormi, sorti"
+      },
+      {
+        "form": "-is",
+        "test": "3ème groupe, féminin en -ise",
+        "example": "acquis, conquis"
+      },
+      {
+        "form": "-ert",
+        "test": "3ème groupe, féminin en -erte",
+        "example": "ouvert, offert, couvert, souffert"
+      },
+      {
+        "form": "-u",
+        "test": "3ème groupe, féminin en -ue",
+        "example": "couru, venu, tenu, devenu"
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "before": "Il a fin",
+      "after": " son devoir avant le dîner.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Finir fait 'nous finissons' → 2ème groupe → participe passé toujours en -i."
+    },
+    {
+      "id": "q002",
+      "before": "Elle a chois",
+      "after": " la robe bleue pour la soirée.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Choisir fait 'nous choisissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q003",
+      "before": "Il a réuss",
+      "after": " son examen avec mention.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Réussir fait 'nous réussissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q004",
+      "before": "Les enfants ont grand",
+      "after": " très vite cet été.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Grandir fait 'nous grandissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q005",
+      "before": "Il a obé",
+      "after": " sans hésiter aux consignes.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Obéir fait 'nous obéissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q006",
+      "before": "Elle a ag",
+      "after": " rapidement face à l'urgence.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Agir fait 'nous agissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q007",
+      "before": "Il a roug",
+      "after": " de honte devant toute la classe.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Rougir fait 'nous rougissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q008",
+      "before": "Elle a pâl",
+      "after": " en apprenant la nouvelle.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Pâlir fait 'nous pâlissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q009",
+      "before": "Il a maigr",
+      "after": " de plusieurs kilos pendant les vacances.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Maigrir fait 'nous maigrissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q010",
+      "before": "Il a gross",
+      "after": " depuis son retour de voyage.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Grossir fait 'nous grossissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q011",
+      "before": "Les fruits ont mûr",
+      "after": " sous le soleil d'août.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Mûrir fait 'nous mûrissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q012",
+      "before": "Il a vieill",
+      "after": " prématurément à cause du stress.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Vieillir fait 'nous vieillissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q013",
+      "before": "Le public a applaud",
+      "after": " chaleureusement à la fin du spectacle.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Applaudir fait 'nous applaudissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q014",
+      "before": "Il a réfléch",
+      "after": " longuement avant de prendre sa décision.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Réfléchir fait 'nous réfléchissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q015",
+      "before": "Ils ont établ",
+      "after": " un nouveau record cette année.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Établir fait 'nous établissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q016",
+      "before": "Elle a nourr",
+      "after": " le chat avant de partir.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Nourrir fait 'nous nourrissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q017",
+      "before": "Il a rempl",
+      "after": " le formulaire en ligne.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Remplir fait 'nous remplissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q018",
+      "before": "L'entreprise a fourn",
+      "after": " tous les documents nécessaires.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Fournir fait 'nous fournissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q019",
+      "before": "Il a sais",
+      "after": " l'occasion sans hésiter.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Saisir fait 'nous saisissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q020",
+      "before": "Il a guér",
+      "after": " rapidement grâce au traitement.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Guérir fait 'nous guérissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q021",
+      "before": "Ils ont bât",
+      "after": " cette maison en moins de six mois.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Bâtir fait 'nous bâtissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q022",
+      "before": "Elle a invest",
+      "after": " ses économies dans cette startup.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Investir fait 'nous investissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q023",
+      "before": "Il a avert",
+      "after": " ses collègues du danger.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Avertir fait 'nous avertissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q024",
+      "before": "Elle a réag",
+      "after": " calmement face à la crise.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Réagir fait 'nous réagissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q025",
+      "before": "Il a franch",
+      "after": " la ligne d'arrivée en premier.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Franchir fait 'nous franchissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q026",
+      "before": "Elle a accompl",
+      "after": " un vrai exploit sportif.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Accomplir fait 'nous accomplissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q027",
+      "before": "Le professeur a pun",
+      "after": " l'élève pour son comportement.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Punir fait 'nous punissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q028",
+      "before": "L'équipe a sub",
+      "after": " une lourde défaite ce soir.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Subir fait 'nous subissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q029",
+      "before": "Les touristes ont envah",
+      "after": " la ville pendant tout l'été.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Envahir fait 'nous envahissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q030",
+      "before": "Ce tableau a embell",
+      "after": " toute la pièce.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Embellir fait 'nous embellissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q031",
+      "before": "L'entreprise a garant",
+      "after": " la qualité de ses produits.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Garantir fait 'nous garantissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q032",
+      "before": "Ils ont défin",
+      "after": " les nouvelles règles du jeu.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Définir fait 'nous définissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q033",
+      "before": "Il a ralent",
+      "after": " à l'approche du virage.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Ralentir fait 'nous ralentissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q034",
+      "before": "Ce projet les a un",
+      "after": " autour d'un objectif commun.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Unir fait 'nous unissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q035",
+      "before": "Le roi a bann",
+      "after": " le traître de son royaume.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Bannir fait 'nous bannissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q036",
+      "before": "Il est part",
+      "after": " tôt ce matin pour ne pas rater le train.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Partir est du 3ème groupe (nous partons, pas de -iss-). Au féminin : 'partie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q037",
+      "before": "Il est sort",
+      "after": " sans prévenir personne.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Sortir est du 3ème groupe (nous sortons). Au féminin : 'sortie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q038",
+      "before": "Il a dorm",
+      "after": " douze heures d'affilée après la randonnée.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Dormir est du 3ème groupe (nous dormons). Au féminin : 'dormie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q039",
+      "before": "Il a ment",
+      "after": " à ses parents pour éviter les ennuis.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Mentir est du 3ème groupe (nous mentons). Au féminin : 'mentie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q040",
+      "before": "Il a sent",
+      "after": " une odeur de brûlé en rentrant chez lui.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Sentir est du 3ème groupe (nous sentons). Au féminin : 'sentie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q041",
+      "before": "Le serveur a serv",
+      "after": " le repas avec le sourire.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Servir est du 3ème groupe (nous servons). Au féminin : 'servie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q042",
+      "before": "Le suspect a fu",
+      "after": " avant l'arrivée de la police.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Fuir est du 3ème groupe (nous fuyons). Au féminin : 'fuie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q043",
+      "before": "Mon frère est part",
+      "after": " vivre à l'étranger l'année dernière.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Partir est du 3ème groupe. Au féminin : 'partie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q044",
+      "before": "Le soleil est sort",
+      "after": " enfin après plusieurs jours de pluie.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Sortir est du 3ème groupe. Au féminin : 'sortie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q045",
+      "before": "Le bébé a dorm",
+      "after": " toute la nuit sans se réveiller.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Dormir est du 3ème groupe. Au féminin : 'dormie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q046",
+      "before": "Le témoin a ment",
+      "after": " délibérément à la barre des témoins.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Mentir est du 3ème groupe. Au féminin : 'mentie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q047",
+      "before": "Il a sent",
+      "after": " la pluie arriver avant même les premiers nuages.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Sentir est du 3ème groupe. Au féminin : 'sentie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q048",
+      "before": "Ce manuel a serv",
+      "after": " de référence pendant des décennies.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Servir est du 3ème groupe. Au féminin : 'servie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q049",
+      "before": "L'entrepreneur est part",
+      "after": " de zéro pour construire son empire.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Partir est du 3ème groupe. Au féminin : 'partie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q050",
+      "before": "Ce roman est sort",
+      "after": " en librairie la semaine dernière.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Sortir est du 3ème groupe. Au féminin : 'sortie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q051",
+      "before": "Les habitants ont fu",
+      "after": " la zone sinistrée en masse.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Fuir est du 3ème groupe. Au féminin : 'fuie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q052",
+      "before": "L'ours a dorm",
+      "after": " pendant tout l'hiver dans sa caverne.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Dormir est du 3ème groupe. Au féminin : 'dormie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q053",
+      "before": "Il avait déjà ment",
+      "after": " une fois dans cette affaire.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Mentir est du 3ème groupe. Au féminin : 'mentie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q054",
+      "before": "Ce pont a serv",
+      "after": " de passage pendant plus d'un siècle.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Servir est du 3ème groupe. Au féminin : 'servie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q055",
+      "before": "Il a sent",
+      "after": " que quelque chose n'allait pas dans cette situation.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Sentir est du 3ème groupe. Au féminin : 'sentie' (-ie) → PP = -i."
+    },
+    {
+      "id": "q056",
+      "before": "Il est ven",
+      "after": " me voir à l'improviste hier soir.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Venir est du 3ème groupe (nous venons). Au féminin : 'venue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q057",
+      "before": "Il a cour",
+      "after": " un marathon entier sans s'arrêter.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Courir est du 3ème groupe (nous courons). Au féminin : 'courue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q058",
+      "before": "Il a ten",
+      "after": " sa promesse jusqu'au bout.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Tenir est du 3ème groupe (nous tenons). Au féminin : 'tenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q059",
+      "before": "Il est deven",
+      "after": " médecin après dix ans d'études.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Devenir est du 3ème groupe. Au féminin : 'devenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q060",
+      "before": "Il est reven",
+      "after": " bredouille de sa partie de pêche.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Revenir est du 3ème groupe. Au féminin : 'revenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q061",
+      "before": "Il est parven",
+      "after": " à ses fins malgré tous les obstacles.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Parvenir est du 3ème groupe. Au féminin : 'parvenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q062",
+      "before": "Il a reten",
+      "after": " sa respiration pendant de longues secondes.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Retenir est du 3ème groupe. Au féminin : 'retenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q063",
+      "before": "Il a obten",
+      "after": " son diplôme après deux ans d'efforts.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Obtenir est du 3ème groupe. Au féminin : 'obtenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q064",
+      "before": "Il a mainten",
+      "after": " sa position malgré la pression adverse.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Maintenir est du 3ème groupe. Au féminin : 'maintenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q065",
+      "before": "Il a conten",
+      "after": " sa colère pendant toute la réunion.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Contenir est du 3ème groupe. Au féminin : 'contenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q066",
+      "before": "Il a préven",
+      "after": " les autorités dès qu'il a découvert le problème.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Prévenir est du 3ème groupe. Au féminin : 'prévenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q067",
+      "before": "Le médecin est interven",
+      "after": " rapidement pour stabiliser le patient.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Intervenir est du 3ème groupe. Au féminin : 'intervenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q068",
+      "before": "Il a cour",
+      "after": " le risque de tout perdre en investissant ainsi.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Courir est du 3ème groupe. Au féminin : 'courue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q069",
+      "before": "Le premier ministre est ven",
+      "after": " inaugurer le nouveau bâtiment.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Venir est du 3ème groupe. Au féminin : 'venue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q070",
+      "before": "Il a ten",
+      "after": " le cap malgré les difficultés rencontrées en mer.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Tenir est du 3ème groupe. Au féminin : 'tenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q071",
+      "before": "Ce qui était un hobby est deven",
+      "after": " son métier à plein temps.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Devenir est du 3ème groupe. Au féminin : 'devenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q072",
+      "before": "Cette rumeur a cour",
+      "after": " pendant des semaines dans toute l'école.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Courir est du 3ème groupe. Au féminin : 'courue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q073",
+      "before": "La mémoire lui est reven",
+      "after": " progressivement après l'accident.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Revenir est du 3ème groupe. Au féminin : 'revenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q074",
+      "before": "Il a obten",
+      "after": " gain de cause après un long procès.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Obtenir est du 3ème groupe. Au féminin : 'obtenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q075",
+      "before": "Il a ten",
+      "after": " la porte ouverte par politesse.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Tenir est du 3ème groupe. Au féminin : 'tenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q076",
+      "before": "Un ami est ven",
+      "after": " passer le week-end à la maison.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Venir est du 3ème groupe. Au féminin : 'venue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q077",
+      "before": "Le chien a cour",
+      "after": " après le ballon dans tout le jardin.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Courir est du 3ème groupe. Au féminin : 'courue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q078",
+      "before": "Il a reten",
+      "after": " toutes les leçons de l'échec précédent.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Retenir est du 3ème groupe. Au féminin : 'retenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q079",
+      "before": "Il est parven",
+      "after": " à joindre l'équipe après plusieurs tentatives.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Parvenir est du 3ème groupe. Au féminin : 'parvenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q080",
+      "before": "Il s'est vêt",
+      "after": " chaudement avant d'affronter le grand froid.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Vêtir est du 3ème groupe (nous vêtons, sans -iss-). Au féminin : 'vêtue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q081",
+      "before": "Il a ouv",
+      "after": " la fenêtre pour aérer la pièce.",
+      "answer": "ert",
+      "difficulty": 1,
+      "explanation": "Ouvrir est du 3ème groupe (nous ouvrons). Au féminin : 'ouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q082",
+      "before": "Il lui a off",
+      "after": " un bouquet de fleurs pour son anniversaire.",
+      "answer": "ert",
+      "difficulty": 1,
+      "explanation": "Offrir est du 3ème groupe (nous offrons). Au féminin : 'offerte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q083",
+      "before": "La neige a couv",
+      "after": " toute la ville pendant la nuit.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Couvrir est du 3ème groupe (nous couvrons). Au féminin : 'couverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q084",
+      "before": "Il a souff",
+      "after": " en silence pendant de nombreuses années.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Souffrir est du 3ème groupe (nous souffrons). Au féminin : 'soufferte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q085",
+      "before": "Il a découv",
+      "after": " un nouveau restaurant près de chez lui.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Découvrir est du 3ème groupe. Au féminin : 'découverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q086",
+      "before": "Il a ouv",
+      "after": " son propre cabinet de conseil l'année dernière.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Ouvrir est du 3ème groupe. Au féminin : 'ouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q087",
+      "before": "Cette expérience lui a off",
+      "after": " une perspective totalement nouvelle.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Offrir est du 3ème groupe. Au féminin : 'offerte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q088",
+      "before": "La végétation avait recouv",
+      "after": " entièrement les ruines antiques.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Recouvrir est du 3ème groupe. Au féminin : 'recouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q089",
+      "before": "L'équipe a souff",
+      "after": " de nombreuses blessures lors du tournoi.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Souffrir est du 3ème groupe. Au féminin : 'soufferte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q090",
+      "before": "L'archéologue a découv",
+      "after": " un manuscrit rare dans les sous-sols du musée.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Découvrir est du 3ème groupe. Au féminin : 'découverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q091",
+      "before": "Il a ouv",
+      "after": " la voie à toute une génération de chercheurs.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Ouvrir est du 3ème groupe. Au féminin : 'ouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q092",
+      "before": "Le gouvernement a off",
+      "after": " une aide financière aux familles dans le besoin.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Offrir est du 3ème groupe. Au féminin : 'offerte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q093",
+      "before": "Le journaliste a couv",
+      "after": " l'événement depuis le terrain pendant une semaine.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Couvrir est du 3ème groupe. Au féminin : 'couverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q094",
+      "before": "Il a entrouv",
+      "after": " la porte pour entendre la conversation.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Entrouvrir est du 3ème groupe. Au féminin : 'entrouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q095",
+      "before": "Il a souff",
+      "after": " d'une blessure au genou pendant toute la saison.",
+      "answer": "ert",
+      "difficulty": 1,
+      "explanation": "Souffrir est du 3ème groupe. Au féminin : 'soufferte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q096",
+      "before": "Il a acqu",
+      "after": " une solide expérience au fil des années.",
+      "answer": "is",
+      "difficulty": 3,
+      "explanation": "Acquérir est du 3ème groupe (nous acquérons). Au féminin : 'acquise' (-ise) → PP = -is."
+    },
+    {
+      "id": "q097",
+      "before": "Alexandre le Grand a conqu",
+      "after": " un vaste empire en quelques années.",
+      "answer": "is",
+      "difficulty": 3,
+      "explanation": "Conquérir est du 3ème groupe (nous conquérons). Au féminin : 'conquise' (-ise) → PP = -is."
+    },
+    {
+      "id": "q098",
+      "before": "L'entreprise a acqu",
+      "after": " plusieurs brevets importants cette année.",
+      "answer": "is",
+      "difficulty": 3,
+      "explanation": "Acquérir est du 3ème groupe. Au féminin : 'acquise' (-ise) → PP = -is."
+    },
+    {
+      "id": "q099",
+      "before": "Cette chanteuse a conqu",
+      "after": " le cœur du public dès son premier album.",
+      "answer": "is",
+      "difficulty": 3,
+      "explanation": "Conquérir est du 3ème groupe. Au féminin : 'conquise' (-ise) → PP = -is."
+    },
+    {
+      "id": "q100",
+      "before": "Il a acqu",
+      "after": " la nationalité française après cinq ans de résidence.",
+      "answer": "is",
+      "difficulty": 3,
+      "explanation": "Acquérir est du 3ème groupe. Au féminin : 'acquise' (-ise) → PP = -is."
+    },
+    {
+      "id": "q101",
+      "before": "Il a about",
+      "after": " à un accord satisfaisant.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Aboutir (2e groupe) → nous aboutissons → PP abouti"
+    },
+    {
+      "id": "q102",
+      "before": "Les négociations ont about",
+      "after": " à une solution.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Aboutir (2e groupe) → nous aboutissons → PP abouti"
+    },
+    {
+      "id": "q103",
+      "before": "Ses critiques l'ont affaibl",
+      "after": " moralement.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Affaiblir (2e groupe) → nous affaiblissons → PP affaibli"
+    },
+    {
+      "id": "q104",
+      "before": "La maladie a affaibl",
+      "after": " son système immunitaire.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Affaiblir (2e groupe) → nous affaiblissons → PP affaibli"
+    },
+    {
+      "id": "q105",
+      "before": "Le fardeau a alourd",
+      "after": " ses épaules.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Alourdir (2e groupe) → nous alourdissons → PP alourdi"
+    },
+    {
+      "id": "q106",
+      "before": "Les dettes ont alourd",
+      "after": " la situation budgétaire.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Alourdir (2e groupe) → nous alourdissons → PP alourdi"
+    },
+    {
+      "id": "q107",
+      "before": "La catastrophe a anéant",
+      "after": " leurs espoirs.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Anéantir (2e groupe) → nous anéantissons → PP anéanti"
+    },
+    {
+      "id": "q108",
+      "before": "Ces événements ont anéant",
+      "after": " la confiance du public.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Anéantir (2e groupe) → nous anéantissons → PP anéanti"
+    },
+    {
+      "id": "q109",
+      "before": "Nous avons approfondi",
+      "after": " notre compréhension du sujet.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Approfondir (2e groupe) → nous approfondissons → PP approfondi"
+    },
+    {
+      "id": "q110",
+      "before": "L'équipe a approfondi",
+      "after": " ses recherches scientifiques.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Approfondir (2e groupe) → nous approfondissons → PP approfondi"
+    },
+    {
+      "id": "q111",
+      "before": "Le sculpteur a arrond",
+      "after": " les angles du bloc de pierre.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Arrondir (2e groupe) → nous arrondissons → PP arrondi"
+    },
+    {
+      "id": "q112",
+      "before": "Ils ont arrond",
+      "after": " leurs revenus en faisant des heures supplémentaires.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Arrondir (2e groupe) → nous arrondissons → PP arrondi"
+    },
+    {
+      "id": "q113",
+      "before": "Le cours de yoga a assoupl",
+      "after": " ses articulations.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Assouplir (2e groupe) → nous assouplissons → PP assoupli"
+    },
+    {
+      "id": "q114",
+      "before": "Cette expérience a assoupl",
+      "after": " sa position rigide.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Assouplir (2e groupe) → nous assouplissons → PP assoupli"
+    },
+    {
+      "id": "q115",
+      "before": "Ses paroles ont attendr",
+      "after": " le cœur du juge.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Attendrir (2e groupe) → nous attendrissons → PP attendri"
+    },
+    {
+      "id": "q116",
+      "before": "La viande a été attendr",
+      "after": " à feu doux.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Attendrir (2e groupe) → nous attendrissons → PP attendri"
+    },
+    {
+      "id": "q117",
+      "before": "Le soleil a brun",
+      "after": " sa peau pendant l'été.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Brunir (2e groupe) → nous brunissons → PP bruni"
+    },
+    {
+      "id": "q118",
+      "before": "Le temps a brun",
+      "after": " les feuilles d'or de l'automne.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Brunir (2e groupe) → nous brunissons → PP bruni"
+    },
+    {
+      "id": "q119",
+      "before": "Sa foi l'a convert",
+      "after": " à une nouvelle religion.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Convertir (2e groupe) → nous convertissons → PP converti"
+    },
+    {
+      "id": "q120",
+      "before": "L'accident l'a convert",
+      "after": " au pacifisme.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Convertir (2e groupe) → nous convertissons → PP converti"
+    },
+    {
+      "id": "q121",
+      "before": "Il a désobé",
+      "after": " à ses parents sans raison.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Désobéir au 2ème groupe → PP en -i. Phrase : Il a désobéi à ses parents."
+    },
+    {
+      "id": "q122",
+      "before": "Une fois encore, elle avait désobé",
+      "after": " aux règles.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Désobéir au 2ème groupe → PP en -i. Contexte au plus-que-parfait."
+    },
+    {
+      "id": "q123",
+      "before": "Le soleil l'a éblou",
+      "after": " en sortant de la maison.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Éblouir au 2ème groupe → PP en -i. Phrase : Le soleil l'a ébloui."
+    },
+    {
+      "id": "q124",
+      "before": "Ces lumières brillantes m'ont éblou",
+      "after": " complètement.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Éblouir au 2ème groupe → PP en -i. Contexte avec complément d'objet."
+    },
+    {
+      "id": "q125",
+      "before": "On a élarg",
+      "after": " la route pour améliorer la circulation.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Élargir au 2ème groupe → PP en -i. Phrase : On a élargi la route."
+    },
+    {
+      "id": "q126",
+      "before": "Les horizons ont été élarg",
+      "after": " par cette découverte.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Élargir au 2ème groupe → PP en -i. Contexte passif."
+    },
+    {
+      "id": "q127",
+      "before": "Ce voyage l'a enrich",
+      "after": " personnellement.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Enrichir au 2ème groupe → PP en -i. Phrase : Ce voyage l'a enrichi."
+    },
+    {
+      "id": "q128",
+      "before": "Son expérience l'avait déjà enrich",
+      "after": " bien avant.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Enrichir au 2ème groupe → PP en -i. Contexte au plus-que-parfait."
+    },
+    {
+      "id": "q129",
+      "before": "Le bruit l'a étourd",
+      "after": " pendant plusieurs minutes.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Étourdir au 2ème groupe → PP en -i. Attention : la phrase contient déjà 'étourdi' complet (piège)."
+    },
+    {
+      "id": "q129_corr",
+      "before": "Ces nouvelles l'ont étourd",
+      "after": " complètement.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Étourdir au 2ème groupe → PP en -i. Phrase : Ces nouvelles l'ont étourdi."
+    },
+    {
+      "id": "q130",
+      "before": "La chaleur avait étourd",
+      "after": " tous les participants.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Étourdir au 2ème groupe → PP en -i. Contexte avec sujet collectif."
+    },
+    {
+      "id": "q131",
+      "before": "Le temps a flétr",
+      "after": " cette belle fleur.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Flétrir au 2ème groupe → PP en -i. Phrase : Le temps a flétri cette fleur."
+    },
+    {
+      "id": "q132",
+      "before": "Ses espoirs avaient été flétri",
+      "after": " par l'adversité.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Flétrir au 2ème groupe → PP en -i. Contexte passif au plus-que-parfait."
+    },
+    {
+      "id": "q133",
+      "before": "Le papier a jaun",
+      "after": " avec les années.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Jaunir au 2ème groupe → PP en -i. Phrase : Le papier a jauni."
+    },
+    {
+      "id": "q134",
+      "before": "Les dents s'étaient jaun",
+      "after": " à cause de ses habitudes.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Jaunir au 2ème groupe → PP en -i. Contexte pronominal au plus-que-parfait."
+    },
+    {
+      "id": "q135",
+      "before": "Nous avons mun",
+      "after": " les troupes de provisions.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Munir au 2ème groupe → PP en -i. Phrase : Nous avons muni les troupes."
+    },
+    {
+      "id": "q136",
+      "before": "Elle s'était mun",
+      "after": " de courage pour cette épreuve.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Munir au 2ème groupe → PP en -i. Contexte pronominal réfléchi."
+    },
+    {
+      "id": "q137",
+      "before": "Le ciel a noirc",
+      "after": " d'un seul coup.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Noircir au 2ème groupe → PP en -i. Phrase : Le ciel a noirci."
+    },
+    {
+      "id": "q138",
+      "before": "Ces événements l'ont noirc",
+      "after": " à jamais aux yeux de tous.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Noircir au 2ème groupe → PP en -i. Contexte métaphorique (ternir la réputation)."
+    },
+    {
+      "id": "q139",
+      "before": "Cette crème l'a rajeun",
+      "after": " de dix ans selon elle.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Rajeunir au 2ème groupe → PP en -i. Phrase : Cette crème l'a rajeuni."
+    },
+    {
+      "id": "q140",
+      "before": "Le voyage avait rajeun",
+      "after": " son esprit et son corps.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Rajeunir au 2ème groupe → PP en -i. Contexte avec complément composé."
+    },
+    {
+      "id": "q141",
+      "before": "Il a rétabl",
+      "after": " la situation rapidement.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Rétablir est un verbe du 2ème groupe (nous rétablissons). Son participe passé se termine en -i."
+    },
+    {
+      "id": "q142",
+      "before": "Le gouvernement a rétabl",
+      "after": " l'ordre public.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Rétablir fait 'nous rétablissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q143",
+      "before": "Les enfants ont sal",
+      "after": " leurs vêtements dans la boue.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Salir (nous salissons) → participe passé 'sali'. 2ème groupe régulier."
+    },
+    {
+      "id": "q144",
+      "before": "Elle a sal",
+      "after": " sa réputation avec ses mensonges.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Salir fait 'nous salissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q145",
+      "before": "Son meilleur ami l'a trah",
+      "after": " en vendant ses secrets.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Trahir (nous trahissons) → participe passé 'trahi'. 2ème groupe."
+    },
+    {
+      "id": "q146",
+      "before": "Le secret a été trah",
+      "after": " par un des membres du groupe.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Trahir fait 'nous trahissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q147",
+      "before": "La musique douce a adouc",
+      "after": " l'atmosphère tendue.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Adoucir (nous adoucissons) → participe passé 'adouci'. 2ème groupe."
+    },
+    {
+      "id": "q148",
+      "before": "Le temps a adouc",
+      "after": " les traits de son visage.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Adoucir fait 'nous adoucissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q149",
+      "before": "Le charpentier a aplat",
+      "after": " la surface avant de peindre.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Aplatir (nous aplatissons) → participe passé 'aplati'. 2ème groupe."
+    },
+    {
+      "id": "q150",
+      "before": "La pluie a aplat",
+      "after": " les fleurs du jardin.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Aplatir fait 'nous aplatissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q151",
+      "before": "Le chien a bond",
+      "after": " par-dessus la clôture avec joie.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Bondir (nous bondissons) → participe passé 'bondi'. 2ème groupe."
+    },
+    {
+      "id": "q152",
+      "before": "Les enfants ont bond",
+      "after": " de joie en recevant le cadeau.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Bondir fait 'nous bondissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q153",
+      "before": "L'entreprise a démol",
+      "after": " l'ancien bâtiment pour construire neuf.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Démolir (nous démolissons) → participe passé 'démoli'. 2ème groupe."
+    },
+    {
+      "id": "q154",
+      "before": "Les ouvriers ont démol",
+      "after": " les murs avec précision.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Démolir fait 'nous démolissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q155",
+      "before": "La baleine a englout",
+      "after": " le petit bateau en une seconde.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Engloutir (nous engloutissons) → participe passé 'englouti'. 2ème groupe."
+    },
+    {
+      "id": "q156",
+      "before": "Les vagues ont englout",
+      "after": " le navire sans laisser de traces.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Engloutir fait 'nous engloutissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q157",
+      "before": "Sa santé a faibl",
+      "after": " au fil des années.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Faiblir (nous faiblissons) → participe passé 'faibli'. 2ème groupe."
+    },
+    {
+      "id": "q158",
+      "before": "Les bruits lointains ont faibl",
+      "after": " jusqu'à disparaître complètement.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Faiblir fait 'nous faiblissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q159",
+      "before": "Elle a garn",
+      "after": " la table avec des fleurs fraîches.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Garnir (nous garnissons) → participe passé 'garni'. 2ème groupe."
+    },
+    {
+      "id": "q160",
+      "before": "Le cuisinier a garn",
+      "after": " le plat avec des herbes aromatiques.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Garnir fait 'nous garnissons' → 2ème groupe → participe passé en -i."
+    },
+    {
+      "id": "q161",
+      "before": "Le prisonnier a gém",
+      "after": " dans sa cellule pendant des jours.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Gémir (2ème groupe) → gémi. Nous gémissons → PP en -i."
+    },
+    {
+      "id": "q162",
+      "before": "Elle a gém",
+      "after": " de douleur après l'intervention.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Gémir (2ème groupe) → gémi. Nous gémissons → PP en -i."
+    },
+    {
+      "id": "q163",
+      "before": "La vache a mug",
+      "after": " quand le fermier l'a appelée.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Mugir (2ème groupe) → mugi. Nous mugissons → PP en -i."
+    },
+    {
+      "id": "q164",
+      "before": "Les bêtes ont mug",
+      "after": " à l'approche de l'orage.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Mugir (2ème groupe) → mugi. Nous mugissons → PP en -i."
+    },
+    {
+      "id": "q165",
+      "before": "L'artisan a pol",
+      "after": " la surface du meuble avec soin.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Polir (2ème groupe) → poli. Nous polissons → PP en -i."
+    },
+    {
+      "id": "q166",
+      "before": "Elle a pol",
+      "after": " ses ongles avant la cérémonie.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Polir (2ème groupe) → poli. Nous polissons → PP en -i."
+    },
+    {
+      "id": "q167",
+      "before": "La crise a sév",
+      "after": " dans le pays pendant trois ans.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Sévir (2ème groupe) → sévi. Nous sévissons → PP en -i."
+    },
+    {
+      "id": "q168",
+      "before": "Les épidémies ont sév",
+      "after": " particulièrement en hiver.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Sévir (2ème groupe) → sévi. Nous sévissons → PP en -i."
+    },
+    {
+      "id": "q169",
+      "before": "Un événement a surg",
+      "after": " soudainement pendant le débat.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Surgir (2ème groupe) → surgi. Nous surgissons → PP en -i."
+    },
+    {
+      "id": "q170",
+      "before": "Les difficultés ont surg",
+      "after": " quand le projet a débuté.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Surgir (2ème groupe) → surgi. Nous surgissons → PP en -i."
+    },
+    {
+      "id": "q171",
+      "before": "Le bruit a retent",
+      "after": " dans toute la vallée.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Retentir (2ème groupe) → retenti. Nous retentissons → PP en -i."
+    },
+    {
+      "id": "q172",
+      "before": "Les applaudissements ont retent",
+      "after": " pendant plusieurs minutes.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Retentir (2ème groupe) → retenti. Nous retentissons → PP en -i."
+    },
+    {
+      "id": "q173",
+      "before": "Le prisonnier a langu",
+      "after": " loin de sa famille pendant des années.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Languir (2ème groupe) → langui. Nous languissons → PP en -i."
+    },
+    {
+      "id": "q174",
+      "before": "Tous les otages ont langu",
+      "after": " en captivité sans nouvelles.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Languir (2ème groupe) → langui. Nous languissons → PP en -i."
+    },
+    {
+      "id": "q175",
+      "before": "L'avion a atterr",
+      "after": " sans incident sur la piste mouillée.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Atterrir (2ème groupe) → atterri. Nous atterrissons → PP en -i."
+    },
+    {
+      "id": "q176",
+      "before": "Les hélicoptères ont atterr",
+      "after": " dans le champ de bataille.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Atterrir (2ème groupe) → atterri. Nous atterrissons → PP en -i."
+    },
+    {
+      "id": "q177",
+      "before": "Nous avons compat",
+      "after": " à ses malheurs avec sincérité.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Compatir (2ème groupe) → compati. Nous compatissons → PP en -i."
+    },
+    {
+      "id": "q178",
+      "before": "Ils ont compat",
+      "after": " à la douleur du peuple meurtri.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Compatir (2ème groupe) → compati. Nous compatissons → PP en -i."
+    },
+    {
+      "id": "q179",
+      "before": "Il est repart",
+      "after": " aussitôt après le repas.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Repartir (3ème groupe) → reparti. Conjugué avec être pour l'auxiliaire du départ."
+    },
+    {
+      "id": "q180",
+      "before": "Elle est repart",
+      "after": " précipitamment sans explication.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Repartir (3ème groupe) → reparti. Conjugué avec être pour l'auxiliaire du départ."
+    },
+    {
+      "id": "q181",
+      "before": "Il est repart",
+      "after": " sans prévenir ses collègues.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Repartir est du 3ème groupe (nous repartons). Au féminin: 'repartie' (-ie) → PP = -i. Verbe de mouvement avec être."
+    },
+    {
+      "id": "q182",
+      "before": "Elle est repart",
+      "after": " pour un nouveau projet.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Repartir est du 3ème groupe (nous repartons). Au féminin: 'repartie' (-ie) → PP = -i. Verbe de mouvement avec être."
+    },
+    {
+      "id": "q183",
+      "before": "Les enfants sont repart",
+      "after": " à l'école après les vacances.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Repartir est du 3ème groupe (nous repartons). Au féminin: 'repartie' (-ie) → PP = -i. Sujet pluriel avec être."
+    },
+    {
+      "id": "q184",
+      "before": "Il est ressort",
+      "after": " de la réunion très énervé.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Ressortir est du 3ème groupe (nous ressortons). Au féminin: 'ressortie' (-ie) → PP = -i. Verbe de mouvement avec être."
+    },
+    {
+      "id": "q185",
+      "before": "Elle est ressort",
+      "after": " en emportant tous les documents.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Ressortir est du 3ème groupe (nous ressortons). Au féminin: 'ressortie' (-ie) → PP = -i. Verbe de mouvement avec être."
+    },
+    {
+      "id": "q186",
+      "before": "Les preuves sont ressort",
+      "after": " au moment du procès.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Ressortir est du 3ème groupe (nous ressortons). Au féminin: 'ressortie' (-ie) → PP = -i. Sujet pluriel avec être."
+    },
+    {
+      "id": "q187",
+      "before": "Ce fait a dément",
+      "after": " toutes les rumeurs circulant.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Démentir est du 3ème groupe (nous démentons). Au féminin: 'démentie' (-ie) → PP = -i. Verbe d'action avec avoir."
+    },
+    {
+      "id": "q188",
+      "before": "L'avocat a dément",
+      "after": " les accusations avec fermeté.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Démentir est du 3ème groupe (nous démentons). Au féminin: 'démentie' (-ie) → PP = -i. Verbe d'action avec avoir."
+    },
+    {
+      "id": "q189",
+      "before": "Les témoins ont dément",
+      "after": " la version des événements.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Démentir est du 3ème groupe (nous démentons). Au féminin: 'démentie' (-ie) → PP = -i. Sujet pluriel avec avoir."
+    },
+    {
+      "id": "q190",
+      "before": "Elle a dément",
+      "after": " catégoriquement cette information.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Démentir est du 3ème groupe (nous démentons). Au féminin: 'démentie' (-ie) → PP = -i. Verbe d'action avec avoir."
+    },
+    {
+      "id": "q191",
+      "before": "Il a ressent",
+      "after": " une vive douleur au bras.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Ressentir est du 3ème groupe (nous ressentons). Au féminin: 'ressentie' (-ie) → PP = -i. Verbe de sensation avec avoir."
+    },
+    {
+      "id": "q192",
+      "before": "Elle a ressent",
+      "after": " une profonde émotion en lisant sa lettre.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Ressentir est du 3ème groupe (nous ressentons). Au féminin: 'ressentie' (-ie) → PP = -i. Verbe de sensation avec avoir."
+    },
+    {
+      "id": "q193",
+      "before": "Les victimes ont ressent",
+      "after": " l'impact psychologique de cette tragédie.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Ressentir est du 3ème groupe (nous ressentons). Au féminin: 'ressentie' (-ie) → PP = -i. Sujet pluriel avec avoir."
+    },
+    {
+      "id": "q194",
+      "before": "Nous avons ressent",
+      "after": " un tremblement de terre pendant la nuit.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Ressentir est du 3ème groupe (nous ressentons). Au féminin: 'ressentie' (-ie) → PP = -i. Contexte collectif avec avoir."
+    },
+    {
+      "id": "q195",
+      "before": "Elle a pressent",
+      "after": " que quelque chose n'allait pas.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Pressentir est du 3ème groupe (nous pressentons). Au féminin: 'pressentie' (-ie) → PP = -i. Verbe d'intuition avec avoir."
+    },
+    {
+      "id": "q196",
+      "before": "Les experts ont pressent",
+      "after": " une crise économique imminente.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Pressentir est du 3ème groupe (nous pressentons). Au féminin: 'pressentie' (-ie) → PP = -i. Sujet pluriel avec avoir."
+    },
+    {
+      "id": "q197",
+      "before": "Il a pressent",
+      "after": " le danger et s'est enfui.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Pressentir est du 3ème groupe (nous pressentons). Au féminin: 'pressentie' (-ie) → PP = -i. Contexte d'anticipation avec avoir."
+    },
+    {
+      "id": "q198",
+      "before": "Il a consent",
+      "after": " à un effort supplémentaire pour l'équipe.",
+      "answer": "i",
+      "difficulty": 1,
+      "explanation": "Consentir est du 3ème groupe (nous consentons). Au féminin: 'consentie' (-ie) → PP = -i. Verbe d'accord avec avoir."
+    },
+    {
+      "id": "q199",
+      "before": "Elles ont consent",
+      "after": " à participer au projet malgré les doutes.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Consentir est du 3ème groupe (nous consentons). Au féminin: 'consentie' (-ie) → PP = -i. Sujet pluriel féminin avec avoir."
+    },
+    {
+      "id": "q200",
+      "before": "Le gouvernement a consent",
+      "after": " à des négociations pour la paix.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Consentir est du 3ème groupe (nous consentons). Au féminin: 'consentie' (-ie) → PP = -i. Contexte politique avec avoir."
+    },
+    {
+      "id": "q201",
+      "before": "Ce tableau a apparten",
+      "after": " à un musée.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Appartenir est du 3ème groupe. Au féminin : 'appartenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q202",
+      "before": "Ces droits ont apparten",
+      "after": " à ses ancêtres.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Appartenir est du 3ème groupe. Au féminin : 'appartenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q203",
+      "before": "La maison a apparten",
+      "after": " à ma grand-mère.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Appartenir est du 3ème groupe. Au féminin : 'appartenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q204",
+      "before": "Il a souten",
+      "after": " son équipe jusqu'au bout.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Soutenir est du 3ème groupe. Au féminin : 'soutenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q205",
+      "before": "Nous avons souten",
+      "after": " vos projets avec enthousiasme.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Soutenir est du 3ème groupe. Au féminin : 'soutenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q206",
+      "before": "La thèse a souten",
+      "after": " ses arguments brillamment.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Soutenir est du 3ème groupe. Au féminin : 'soutenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q207",
+      "before": "Il a entreten",
+      "after": " sa forme tout l'hiver.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Entretenir est du 3ème groupe. Au féminin : 'entretenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q208",
+      "before": "Elles ont entreten",
+      "after": " des relations amicales.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Entretenir est du 3ème groupe. Au féminin : 'entretenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q209",
+      "before": "Le jardin a bien été entreten",
+      "after": " cette année.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Entretenir est du 3ème groupe. Au féminin : 'entretenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q210",
+      "before": "Un incident est surven",
+      "after": " en fin de réunion.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Survenir est du 3ème groupe. Au féminin : 'survenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q211",
+      "before": "Des complications sont surven",
+      "after": " pendant l'opération.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Survenir est du 3ème groupe. Au féminin : 'survenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q212",
+      "before": "Un événement inattendu est surven",
+      "after": " hier soir.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Survenir est du 3ème groupe. Au féminin : 'survenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q213",
+      "before": "Je me suis souven",
+      "after": " de cette promesse.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Se souvenir est du 3ème groupe. Au féminin : 'souvenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q214",
+      "before": "Elles se sont souven",
+      "after": " de leurs vacances ensemble.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Se souvenir est du 3ème groupe. Au féminin : 'souvenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q215",
+      "before": "Nous nous sommes souven",
+      "after": " de ce jour merveilleux.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Se souvenir est du 3ème groupe. Au féminin : 'souvenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q216",
+      "before": "Il a conven",
+      "after": " de ses erreurs.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Convenir est du 3ème groupe. Au féminin : 'convenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q217",
+      "before": "Nous avons conven",
+      "after": " d'une date pour la réunion.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Convenir est du 3ème groupe. Au féminin : 'convenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q218",
+      "before": "Ce qui a été conven",
+      "after": " entre nous reste secret.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Convenir est du 3ème groupe. Au féminin : 'convenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q219",
+      "before": "Une aide alimentaire a subven",
+      "after": " à leurs besoins.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Subvenir est du 3ème groupe. Au féminin : 'subvenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q220",
+      "before": "Des ressources ont subven",
+      "after": " à toutes les dépenses du projet.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Subvenir est du 3ème groupe. Au féminin : 'subvenue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q221",
+      "before": "Il a parcour",
+      "after": " l'Europe entière en train.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Parcourir est du 3ème groupe. Au féminin : 'parcourue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q222",
+      "before": "Elle a parcour",
+      "after": " plusieurs kilomètres à vélo.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Parcourir est du 3ème groupe. Au féminin : 'parcourue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q223",
+      "before": "Les touristes ont parcour",
+      "after": " le musée en deux heures.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Parcourir est du 3ème groupe. Au féminin : 'parcourue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q224",
+      "before": "Nous avons parcour",
+      "after": " les rues du centre-ville ce matin.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Parcourir est du 3ème groupe. Au féminin : 'parcourue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q225",
+      "before": "Les pompiers ont secour",
+      "after": " les victimes de l'accident.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Secourir est du 3ème groupe. Au féminin : 'secourue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q226",
+      "before": "Elle a secour",
+      "after": " son ami en difficulté.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Secourir est du 3ème groupe. Au féminin : 'secourue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q227",
+      "before": "L'équipe de sauvetage a secour",
+      "after": " plusieurs personnes lors de la tempête.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Secourir est du 3ème groupe. Au féminin : 'secourue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q228",
+      "before": "Elles ont secour",
+      "after": " les naufragés avant l'arrivée des garde-côtes.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Secourir est du 3ème groupe. Au féminin : 'secourue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q229",
+      "before": "Plusieurs équipes ont concour",
+      "after": " pour le premier prix.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Concourir est du 3ème groupe. Au féminin : 'concourue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q230",
+      "before": "Les athlètes ont concour",
+      "after": " avec détermination lors des championnats.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Concourir est du 3ème groupe. Au féminin : 'concourue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q231",
+      "before": "Trois entreprises ont concour",
+      "after": " pour obtenir le contrat lucratif.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Concourir est du 3ème groupe. Au féminin : 'concourue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q232",
+      "before": "Nos candidats ont concour",
+      "after": " d'excellence dans cette compétition nationale.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Concourir est du 3ème groupe. Au féminin : 'concourue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q233",
+      "before": "Le marathonien a cour",
+      "after": " toute la nuit sans s'arrêter.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Courir est du 3ème groupe. Au féminin : 'courue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q234",
+      "before": "Elle a cour",
+      "after": " après le bus mais l'a manqué.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Courir est du 3ème groupe. Au féminin : 'courue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q235",
+      "before": "Les enfants ont cour",
+      "after": " dans le parc pendant une heure.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Courir est du 3ème groupe. Au féminin : 'courue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q236",
+      "before": "Le champion a cour",
+      "after": " le 100 mètres en record personnel.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Courir est du 3ème groupe. Au féminin : 'courue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q237",
+      "before": "Il est ven",
+      "after": " nous rendre visite dimanche dernier.",
+      "answer": "u",
+      "difficulty": 1,
+      "explanation": "Venir est du 3ème groupe. Au féminin : 'venue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q238",
+      "before": "Le directeur est ven",
+      "after": " inspecter l'établissement en personne.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Venir est du 3ème groupe. Au féminin : 'venue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q239",
+      "before": "Plusieurs journalistes sont ven",
+      "after": " couvrir l'événement diplomatique.",
+      "answer": "u",
+      "difficulty": 2,
+      "explanation": "Venir est du 3ème groupe. Au féminin : 'venue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q240",
+      "before": "Le président est ven",
+      "after": " inaugurer le nouvel hôpital avec enthousiasme.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Venir est du 3ème groupe. Au féminin : 'venue' (-ue) → PP = -u."
+    },
+    {
+      "id": "q241",
+      "before": "Il a ouv",
+      "after": " la porte de son bureau.",
+      "answer": "ert",
+      "difficulty": 1,
+      "explanation": "Ouvrir est du 3ème groupe. Au féminin : 'ouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q242",
+      "before": "Elle a couv",
+      "after": " le gâteau d'un glaçage blanc.",
+      "answer": "ert",
+      "difficulty": 1,
+      "explanation": "Couvrir est du 3ème groupe. Au féminin : 'couverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q243",
+      "before": "Ils ont off",
+      "after": " des cadeaux aux enfants pour Noël.",
+      "answer": "ert",
+      "difficulty": 1,
+      "explanation": "Offrir est du 3ème groupe. Au féminin : 'offerte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q244",
+      "before": "Tu as rouv",
+      "after": " les fenêtres pour aérer la maison.",
+      "answer": "ert",
+      "difficulty": 1,
+      "explanation": "Rouvrir est du 3ème groupe. Au féminin : 'rouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q245",
+      "before": "Nous avons souff",
+      "after": " pendant plusieurs années avant de réussir.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Souffrir est du 3ème groupe. Au féminin : 'soufferte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q246",
+      "before": "Il a rouv",
+      "after": " son restaurant après les travaux de rénovation.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Rouvrir est du 3ème groupe. Au féminin : 'rouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q247",
+      "before": "Le musée a rouv",
+      "after": " ses portes au public ce matin.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Rouvrir est du 3ème groupe. Au féminin : 'rouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q248",
+      "before": "Elle a off",
+      "after": " son aide précieuse à son ami en difficulté.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Offrir est du 3ème groupe. Au féminin : 'offerte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q249",
+      "before": "Nous avons couv",
+      "after": " une distance de cent kilomètres en une journée.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Couvrir est du 3ème groupe. Au féminin : 'couverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q250",
+      "before": "Elles ont souff",
+      "after": " du froid intense pendant tout l'hiver.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Souffrir est du 3ème groupe. Au féminin : 'soufferte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q251",
+      "before": "Il a ouv",
+      "after": " un compte bancaire en ligne sans difficulté.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Ouvrir est du 3ème groupe. Au féminin : 'ouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q252",
+      "before": "Malgré les obstacles, elle a off",
+      "after": " son temps et ses compétences au projet caritatif.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Offrir est du 3ème groupe. Au féminin : 'offerte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q253",
+      "before": "Le chercheur a couv",
+      "after": " les enjeux scientifiques dans son article détaillé.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Couvrir est du 3ème groupe. Au féminin : 'couverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q254",
+      "before": "Nous avons rouv",
+      "after": " le débat sur cette question fondamentale.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Rouvrir est du 3ème groupe. Au féminin : 'rouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q255",
+      "before": "Le gouvernement a off",
+      "after": " des compensations aux victimes de la catastrophe.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Offrir est du 3ème groupe. Au féminin : 'offerte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q256",
+      "before": "Malgré la pandémie, les écoles ont rouv",
+      "after": " progressivement leurs portes.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Rouvrir est du 3ème groupe. Au féminin : 'rouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q257",
+      "before": "Les journalistes ont couv",
+      "after": " l'événement avec impartialité.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Couvrir est du 3ème groupe. Au féminin : 'couverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q258",
+      "before": "Pendant des années, elle a souff",
+      "after": " silencieusement sans en parler à personne.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Souffrir est du 3ème groupe. Au féminin : 'soufferte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q259",
+      "before": "Les architectes ont couv",
+      "after": " tous les détails du projet dans leurs plans.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Couvrir est du 3ème groupe. Au féminin : 'couverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q260",
+      "before": "Ils ont souff",
+      "after": " des pertes importantes lors de l'accident.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Souffrir est du 3ème groupe. Au féminin : 'soufferte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q261",
+      "before": "Il a découv",
+      "after": " une nouvelle technique révolutionnaire.",
+      "answer": "ert",
+      "difficulty": 1,
+      "explanation": "Découvrir est du 3ème groupe. Au féminin : 'découverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q262",
+      "before": "La mousse a recouv",
+      "after": " les vieilles pierres du château.",
+      "answer": "ert",
+      "difficulty": 1,
+      "explanation": "Recouvrir est du 3ème groupe. Au féminin : 'recouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q263",
+      "before": "Il a entrouv",
+      "after": " les yeux dans la pénombre.",
+      "answer": "ert",
+      "difficulty": 1,
+      "explanation": "Entrouvrir est du 3ème groupe. Au féminin : 'entrouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q264",
+      "before": "Elle a souff",
+      "after": " silencieusement pendant des années.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Souffrir est du 3ème groupe. Au féminin : 'soufferte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q265",
+      "before": "Le poste requ",
+      "after": " un permis de conduire valide.",
+      "answer": "is",
+      "difficulty": 2,
+      "explanation": "Requérir est du 3ème groupe (nous requérons). Au féminin : 'requise' (-ise) → PP = -is."
+    },
+    {
+      "id": "q266",
+      "before": "L'expédition a découv",
+      "after": " les vestiges d'une civilisation perdue.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Découvrir est du 3ème groupe. Au féminin : 'découverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q267",
+      "before": "Cette opération a requ",
+      "after": " une grande discrétion de la part de tous.",
+      "answer": "is",
+      "difficulty": 2,
+      "explanation": "Requérir est du 3ème groupe. Au féminin : 'requise' (-ise) → PP = -is."
+    },
+    {
+      "id": "q268",
+      "before": "Les nuages ont recouv",
+      "after": " le ciel pendant toute la journée.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Recouvrir est du 3ème groupe. Au féminin : 'recouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q269",
+      "before": "Il a souff",
+      "after": " de nombreuses injustices dans sa vie.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Souffrir est du 3ème groupe. Au féminin : 'soufferte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q270",
+      "before": "La mission a requ",
+      "after": " une équipe spécialisée de douze personnes.",
+      "answer": "is",
+      "difficulty": 2,
+      "explanation": "Requérir est du 3ème groupe. Au féminin : 'requise' (-ise) → PP = -is."
+    },
+    {
+      "id": "q271",
+      "before": "Elle a découv",
+      "after": " sa passion pour la peinture à l'adolescence.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Découvrir est du 3ème groupe. Au féminin : 'découverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q272",
+      "before": "La forêt a entrouv",
+      "after": " ses portes mystérieuses aux explorateurs.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Entrouvrir est du 3ème groupe. Au féminin : 'entrouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q273",
+      "before": "Le projet a requ",
+      "after": " l'approbation de tous les membres du comité.",
+      "answer": "is",
+      "difficulty": 3,
+      "explanation": "Requérir est du 3ème groupe. Au féminin : 'requise' (-ise) → PP = -is."
+    },
+    {
+      "id": "q274",
+      "before": "La neige a recouv",
+      "after": " les paysages montagneux en quelques heures.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Recouvrir est du 3ème groupe. Au féminin : 'recouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q275",
+      "before": "Elle a souff",
+      "after": " les conséquences de cette mauvaise décision.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Souffrir est du 3ème groupe. Au féminin : 'soufferte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q276",
+      "before": "La tâche a requ",
+      "after": " des compétences techniques très spécifiques.",
+      "answer": "is",
+      "difficulty": 3,
+      "explanation": "Requérir est du 3ème groupe. Au féminin : 'requise' (-ise) → PP = -is."
+    },
+    {
+      "id": "q277",
+      "before": "On a découv",
+      "after": " des documents anciens dans les archives nationales.",
+      "answer": "ert",
+      "difficulty": 2,
+      "explanation": "Découvrir est du 3ème groupe. Au féminin : 'découverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q278",
+      "before": "La couche de peinture a entrouv",
+      "after": " la porte à de nouvelles possibilités décoratives.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Entrouvrir est du 3ème groupe. Au féminin : 'entrouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q279",
+      "before": "Cette fonction requ",
+      "after": " une expérience minimale de cinq ans.",
+      "answer": "is",
+      "difficulty": 2,
+      "explanation": "Requérir est du 3ème groupe. Au féminin : 'requise' (-ise) → PP = -is."
+    },
+    {
+      "id": "q280",
+      "before": "Le sable a recouv",
+      "after": " complètement les traces du passage des caravanes.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Recouvrir est du 3ème groupe. Au féminin : 'recouverte' (-erte) → PP = -ert."
+    },
+    {
+      "id": "q281",
+      "before": "Cette initiative a about",
+      "after": " à la création de plusieurs emplois.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Aboutir (2ème groupe) : nous aboutissons → PP en -i."
+    },
+    {
+      "id": "q282",
+      "before": "Son expérience a enrich",
+      "after": " considérablement sa compréhension du sujet.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Enrichir (2ème groupe) : nous enrichissons → PP en -i."
+    },
+    {
+      "id": "q283",
+      "before": "Un événement imprévu a surg",
+      "after": " juste avant la réunion.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Surgir (2ème groupe) : nous surgissons → PP en -i."
+    },
+    {
+      "id": "q284",
+      "before": "Le rétablissement de la paix a rétabl",
+      "after": " la confiance entre les deux nations.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Rétablir (2ème groupe) : nous rétablissons → PP en -i."
+    },
+    {
+      "id": "q285",
+      "before": "Cette défaite militaire a anéant",
+      "after": " tous les espoirs de victoire rapide.",
+      "answer": "i",
+      "difficulty": 2,
+      "explanation": "Anéantir (2ème groupe) : nous anéantissons → PP en -i."
+    },
+    {
+      "id": "q286",
+      "before": "Il a dément",
+      "after": " avec véhémence les accusations portées contre lui.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Démentir (3ème groupe) : féminin démentie (-ie) → PP = -i."
+    },
+    {
+      "id": "q287",
+      "before": "Elle a pressent",
+      "after": " que quelque chose d'étrange se préparait.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Pressentir (3ème groupe) : féminin pressentie (-ie) → PP = -i."
+    },
+    {
+      "id": "q288",
+      "before": "Les deux parties ont consent",
+      "after": " à un arrangement amiable.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Consentir (3ème groupe) : féminin consentie (-ie) → PP = -i."
+    },
+    {
+      "id": "q289",
+      "before": "L'affaire a ressort",
+      "after": " de compétences différentes selon les contextes.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Ressortir (3ème groupe) : féminin ressorties (-ie) → PP = -i."
+    },
+    {
+      "id": "q290",
+      "before": "Elle a ressent",
+      "after": " une profonde injustice face à cette situation.",
+      "answer": "i",
+      "difficulty": 3,
+      "explanation": "Ressentir (3ème groupe) : féminin ressentie (-ie) → PP = -i."
+    },
+    {
+      "id": "q291",
+      "before": "Cette propriété a apparten",
+      "after": " à une famille aristocratique depuis le XVIIIe siècle.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Appartenir (3ème groupe) : féminin appartenue (-ue) → PP = -u."
+    },
+    {
+      "id": "q292",
+      "before": "Ce château a souten",
+      "after": " plusieurs sièges avant de capituler.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Soutenir (3ème groupe) : féminin soutenue (-ue) → PP = -u."
+    },
+    {
+      "id": "q293",
+      "before": "Le voyageur a parcour",
+      "after": " plus de trois mille kilomètres durant son périple.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Parcourir (3ème groupe) : féminin parcourue (-ue) → PP = -u."
+    },
+    {
+      "id": "q294",
+      "before": "Les secouristes ont secour",
+      "after": " les naufragés grâce à leur courage et leur dévouement.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Secourir (3ème groupe) : féminin secourue (-ue) → PP = -u."
+    },
+    {
+      "id": "q295",
+      "before": "Une crise économique a surven",
+      "after": " au moment où personne ne s'y attendait.",
+      "answer": "u",
+      "difficulty": 3,
+      "explanation": "Survenir (3ème groupe) : féminin survenue (-ue) → PP = -u."
+    },
+    {
+      "id": "q296",
+      "before": "Le restaurateur a rouv",
+      "after": " le restaurant historique après vingt ans de fermeture.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Rouvrir (3ème groupe) : féminin rouverte (-erte) → PP = -ert."
+    },
+    {
+      "id": "q297",
+      "before": "L'archéologue a recouv",
+      "after": " des vestiges exceptionnels lors de fouilles en Méditerranée.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Recouvrir (3ème groupe) : féminin recouverte (-erte) → PP = -ert."
+    },
+    {
+      "id": "q298",
+      "before": "Après le sinistre, les habitants ont entrouv",
+      "after": " prudemment les portes de leurs maisons.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Entrouvrir (3ème groupe) : féminin entrouverte (-erte) → PP = -ert."
+    },
+    {
+      "id": "q299",
+      "before": "Le musée a découv",
+      "after": " dans ses archives une correspondance inédite du peintre.",
+      "answer": "ert",
+      "difficulty": 3,
+      "explanation": "Découvrir (3ème groupe) : féminin découverte (-erte) → PP = -ert."
+    },
+    {
+      "id": "q300",
+      "before": "Ce poste a requ",
+      "after": " une habilitation gouvernementale très difficile à obtenir.",
+      "answer": "is",
+      "difficulty": 3,
+      "explanation": "Requérir (3ème groupe) : féminin requise (-ise) → PP = -is."
+    }
+  ],
+  "group": "legende"
+}
