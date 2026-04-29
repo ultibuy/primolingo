@@ -218,12 +218,17 @@ export default function QuizGuided({
           />
         )}
 
-        {/* Round 2 reminder banner */}
-        {hasSyllable && question.round === 2 && !showResult && (
+        {/* Round reminder banner */}
+        {hasSyllable && !showResult && (
           <div style={roundReminderStyle}>
-            <strong>Rappel :</strong> son dur avant e/i → ajoute <strong>u</strong> (gue, gui)
-            &nbsp;·&nbsp;
-            son doux avant a/o/u → ajoute <strong>e</strong> (gea, geo, geu)
+            {question.round === 1 && formatRichText(
+              'Le g est dur devant a, o, u. Pour s\'en souvenir : *GAOU*.'
+            )}
+            {question.round === 2 && formatRichText(
+              'Le g est dur devant a, o, u — penser à *GAOU*.<br>' +
+              'Son *doux devant a, o, u* → on ajoute un *e* → ge<br>' +
+              'Son *dur devant i, e, é* → on ajoute un *u* → gu'
+            )}
           </div>
         )}
 

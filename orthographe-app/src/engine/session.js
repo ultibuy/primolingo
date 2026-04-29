@@ -53,7 +53,25 @@ export function selectSessionQuestions(rule, ruleProgress, maxQuestions = 20, mo
     if (effectiveMode === 'guided') {
       const guidedDone = ruleProgress?.guidedSessionsCompleted || 0;
       const targetRound = guidedDone === 0 ? 1 : 2;
-      questions = questions.filter(q => q.round === targetRound);
+      const roundPool = questions.filter(q => q.round === targetRound);
+
+      // Interleave dur/doux for balanced alternation
+      const durQs = shuffleArray(roundPool.filter(q => q.answer === 'dur'));
+      const douxQs = shuffleArray(roundPool.filter(q => q.answer === 'doux'));
+      const interleaved = [];
+      const total = roundPool.length; // use all available (30)
+      for (let i = 0; i < total; i++) {
+        const bucket = i % 2 === 0 ? durQs : douxQs;
+        interleaved.push(bucket[Math.floor(i / 2) % bucket.length]);
+      }
+
+      return interleaved.map(q => ({
+        ...q,
+        _ruleChoices: (q.choices && q.choices.length) ? q.choices : rule.choices,
+        _ruleDecisionAxes: [],
+        _ruleId: rule.id,
+        _ruleTitle: rule.shortTitle || rule.title,
+      }));
     } else {
       questions = questions.filter(q => !q.round);
     }
