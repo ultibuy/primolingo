@@ -610,7 +610,8 @@ export default function Dashboard({
         Character mood tooltip
       --------------------------------------------------------------------------- */}
       {moodTooltip && (() => {
-        const currentMood = activeCharacterMood || 'walk';
+        const popupCharId = (moodTooltip && moodTooltip.characterId) ? moodTooltip.characterId : activeCharacterId;
+        const currentMood = (moodTooltip && moodTooltip.mood) ? moodTooltip.mood : (activeCharacterMood || 'walk');
         const info = MOOD_DESCRIPTIONS[currentMood] || MOOD_DESCRIPTIONS.walk;
         return (
           <div style={{
@@ -629,7 +630,7 @@ export default function Dashboard({
             }} onClick={(e) => e.stopPropagation()}>
               <PopupCloseButton onClick={() => setMoodTooltip(false)} />
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.6rem' }}>
-                <CharacterSprite id={activeCharacterId} mood={currentMood} size={100} glow={true} />
+                <CharacterSprite id={popupCharId} mood={currentMood} size={100} glow={true} />
               </div>
               <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#e2e2e2', marginBottom: '0.3rem' }}>
                 {info.label}
@@ -1069,7 +1070,7 @@ export default function Dashboard({
                             onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
                             pandaMood={dashboardCharMood}
                             characterId={getCharacterForRule(rule.id, allRuleIds, shopOwned)}
-                            onCharacterClick={() => setMoodTooltip(true)}
+                            onCharacterClick={(info) => setMoodTooltip(info || true)}
                           />
                         </div>
                       );
@@ -1108,7 +1109,7 @@ export default function Dashboard({
                               onEditRule={isDebug ? (ruleId) => { const r = rules.find(x => x.id === ruleId); if (r) setEditingRule(r); } : undefined}
                               pandaMood={dashboardCharMood}
                               characterId={getCharacterForRule(rule.id, allRuleIds, shopOwned)}
-                              onCharacterClick={() => setMoodTooltip(true)}
+                              onCharacterClick={(info) => setMoodTooltip(info || true)}
                             />
                           </div>
                         );
@@ -1223,7 +1224,7 @@ export default function Dashboard({
                               isFirst={isFirst}
                               pandaMood={dashboardCharMood}
                               characterId={getCharacterForRule(dictee.id, allDicteeIds, shopOwned)}
-                              onCharacterClick={() => setMoodTooltip(true)}
+                              onCharacterClick={(info) => setMoodTooltip(info || true)}
                             />
                           </div>
                         );

@@ -84,34 +84,37 @@ export default function LevelPath({ currentLevel, progress = 0, onNodeClick, onC
       )}
 
       {/* Active character — walks along the path, sits on diamond node at max level */}
-      {characterId && fillFraction > 0.02 && (
-        <div
-          onClick={(e) => { e.stopPropagation(); onCharacterClick?.(); }}
-          style={{
-            position: 'absolute',
-            left: fillFraction >= 0.99
-              ? `${lastCenter}%`
-              : `${firstCenter + fillFraction * trackWidth}%`,
-            top: fillFraction >= 0.99
-              ? NODE_ACTIVE / 2 - 36
-              : NODE_ACTIVE / 2 - 40,
-            transform: 'translateX(-50%)',
-            zIndex: 3,
-            cursor: onCharacterClick ? 'pointer' : 'default',
-          }}
-        >
-          <CharacterSprite
-            id={characterId}
-            size={28}
-            mood={pandaMood != null
-              ? pandaMood
-              : fillFraction >= 0.99
-                ? 'sit'
-                : (partialSegment < 0.05 && completedSegments > 0 && completedSegments < segments ? 'sit' : 'walk')}
-            glow={true}
-          />
-        </div>
-      )}
+      {characterId && fillFraction > 0.02 && (() => {
+        const activeMood = pandaMood != null
+          ? pandaMood
+          : fillFraction >= 0.99
+            ? 'sit'
+            : (partialSegment < 0.05 && completedSegments > 0 && completedSegments < segments ? 'sit' : 'walk');
+        return (
+          <div
+            onClick={(e) => { e.stopPropagation(); onCharacterClick?.({ characterId, mood: activeMood }); }}
+            style={{
+              position: 'absolute',
+              left: fillFraction >= 0.99
+                ? `${lastCenter}%`
+                : `${firstCenter + fillFraction * trackWidth}%`,
+              top: fillFraction >= 0.99
+                ? NODE_ACTIVE / 2 - 36
+                : NODE_ACTIVE / 2 - 40,
+              transform: 'translateX(-50%)',
+              zIndex: 3,
+              cursor: onCharacterClick ? 'pointer' : 'default',
+            }}
+          >
+            <CharacterSprite
+              id={characterId}
+              size={28}
+              mood={activeMood}
+              glow={true}
+            />
+          </div>
+        );
+      })()}
 
       {/* Nodes */}
       {LEVELS.map((level, i) => {
