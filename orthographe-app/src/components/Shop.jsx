@@ -1264,6 +1264,7 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim, onB
   const [justPurchased, setJustPurchased] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const prevOwnedRef = useRef(false);
+  const cardRef = useRef(null);
 
   const ownedIds = progress.shop?.owned || [];
   const charItemId = `char-${char.id}`;
@@ -1275,7 +1276,8 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim, onB
   // Cinematic trigger
   useEffect(() => {
     if (!prevOwnedRef.current && ownsCharacter) {
-      // Just purchased — run cinematic
+      // Just purchased — scroll into view then run cinematic
+      setTimeout(() => cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
       setJustPurchased(true);
       setShowToast(true);
       setStep(2);
@@ -1302,7 +1304,7 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim, onB
       {showPreview && (
         <CharacterPreviewPopup char={char} childName={childName} onClose={() => setShowPreview(false)} />
       )}
-      <div style={{
+      <div ref={cardRef} style={{
         borderRadius: 18,
         padding: 16,
         background: isExpanded
