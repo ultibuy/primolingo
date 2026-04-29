@@ -26,13 +26,13 @@ export const BASE_EMOTIONS = [
 
 // 7 émotions spéciales — à débloquer à l'unité
 export const SHOP_EMOTIONS = [
-  { id: 'wave',    symbol: '👋', name: 'Salut',      price: 200, desc: 'Ton perso te salue avant ta première question !' },
-  { id: 'kiss',    symbol: '💋', name: 'Bisou',      price: 200, desc: 'Ton perso t\'envoie un bisou avant ta première question !' },
-  { id: 'clap',    symbol: '👏', name: 'Bravo',      price: 200, desc: 'Ton perso t\'applaudit à chaque bonne réponse !' },
-  { id: 'victory', symbol: '🏆', name: 'Victoire',   price: 200, desc: 'Ton perso exulte quand tu termines le quiz avec un super score !' },
-  { id: 'dance',   symbol: '💃', name: 'Danse',      price: 200, desc: 'Ton perso danse quand tu termines le quiz avec un super score !' },
-  { id: 'surprise',symbol: '😲', name: 'Surprise',   price: 200, desc: 'Ton perso est choqué quand tu fais une erreur dans le quiz.' },
-  { id: 'think',   symbol: '🤔', name: 'Hésitation', price: 200, desc: 'Ton perso prend un air pensif quand tu fais une erreur dans le quiz.' },
+  { id: 'wave',    symbol: '👋', name: 'Salut',      price: 130, desc: 'Ton perso te salue avant ta première question !' },
+  { id: 'kiss',    symbol: '💋', name: 'Bisou',      price: 130, desc: 'Ton perso t\'envoie un bisou avant ta première question !' },
+  { id: 'clap',    symbol: '👏', name: 'Bravo',      price: 130, desc: 'Ton perso t\'applaudit à chaque bonne réponse !' },
+  { id: 'victory', symbol: '🏆', name: 'Victoire',   price: 130, desc: 'Ton perso exulte quand tu termines le quiz avec un super score !' },
+  { id: 'dance',   symbol: '💃', name: 'Danse',      price: 130, desc: 'Ton perso danse quand tu termines le quiz avec un super score !' },
+  { id: 'surprise',symbol: '😲', name: 'Surprise',   price: 130, desc: 'Ton perso est choqué quand tu fais une erreur dans le quiz.' },
+  { id: 'think',   symbol: '🤔', name: 'Hésitation', price: 130, desc: 'Ton perso prend un air pensif quand tu fais une erreur dans le quiz.' },
 ];
 
 export const PURCHASABLE_CHARS = SHOP_CHARACTERS.map((char) => char.id);
