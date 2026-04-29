@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import CoinIcon from './CoinIcon.jsx';
 
 // Variant accent/secondary/emphasis color palette
 const VARIANT_COLORS = {
@@ -102,12 +103,16 @@ export default function MotivationBanner({
       {/* Icon */}
       <div style={iconContainerStyle}>
         {emoji && (
-          <span
-            className={floatEmoji ? 'banner-emoji' : undefined}
-            style={{ fontSize: 24 }}
-          >
-            {emoji}
-          </span>
+          emoji === '🪙'
+            ? <CoinIcon size={28} />
+            : (
+              <span
+                className={floatEmoji ? 'banner-emoji' : undefined}
+                style={{ fontSize: 24 }}
+              >
+                {emoji}
+              </span>
+            )
         )}
       </div>
 
