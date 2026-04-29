@@ -60,7 +60,7 @@
       "after": " couche souvent devant la cheminée.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "« Je me couche » fonctionne avec 'je' → c'est 'se' (pronom réfléchi)."
+      "explanation": "« couche » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q002",
@@ -68,7 +68,7 @@
       "after": "sera une longue journée.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "« Je me sera » est impossible → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "⚠️ Cas particulier : « ce sera » — 'ce' est ici le sujet (= « cela »), pas un pronom réfléchi → c'est « ce »."
     },
     {
       "id": "q003",
@@ -76,7 +76,7 @@
       "after": " qu'il faut faire.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "« Je me qu'il faut faire » est impossible → c'est 'ce' (pronom démonstratif)."
+      "explanation": "« qu » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q004",
@@ -84,7 +84,7 @@
       "after": " réveille toujours trop tôt le matin.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "« Je me réveille » fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« réveille » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q005",
@@ -92,7 +92,7 @@
       "after": " n'est pas ce que tu crois.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "« Je me n'est pas » est impossible → c'est 'ce' (pronom démonstratif neutre)."
+      "explanation": "⚠️ Cas particulier : « ce n'est pas » — 'ce' est ici le sujet (= « cela »), pas un pronom réfléchi → c'est « ce »."
     },
     {
       "id": "q006",
@@ -100,7 +100,7 @@
       "after": " sont amusés au parc toute l'après-midi.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "« Je me suis amusé » fonctionne → c'est 'se' (pronom réfléchi au passé composé)."
+      "explanation": "« sont » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q007",
@@ -108,7 +108,7 @@
       "after": "professeur explique la leçon très bien.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "« Je me professeur » est impossible → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "« professeur » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q008",
@@ -116,7 +116,7 @@
       "after": " divise en deux bras à la sortie du village.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "« Je me divise » fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« divise » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q009",
@@ -124,7 +124,7 @@
       "after": "livre est vraiment passionnant.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "« Je me livre » ne donne pas de sens ici → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "« livre » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q010",
@@ -132,7 +132,7 @@
       "after": " retrouvent tous les vendredis au café du coin.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "« Je me retrouve » fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« retrouvent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q011",
@@ -140,7 +140,7 @@
       "after": "que tu dis m'étonne beaucoup.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "« Je me que tu dis » est impossible → c'est 'ce' (pronom démonstratif neutre)."
+      "explanation": "« que » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q012",
@@ -148,7 +148,7 @@
       "after": " bat avec courage contre l'ennemi.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "« Je me bats » fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« bat » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q013",
@@ -156,7 +156,7 @@
       "after": " magnifique coucher de soleil !",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "« Je me magnifique coucher » est impossible → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "« magnifique » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q014",
@@ -164,7 +164,7 @@
       "after": " prépare activement pour la finale.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "« Je me prépare » fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« prépare » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q015",
@@ -172,7 +172,7 @@
       "after": " dont je voulais te parler depuis longtemps.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "« Je me dont je voulais » est impossible → c'est 'ce' (pronom démonstratif neutre)."
+      "explanation": "« dont » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q016",
@@ -180,7 +180,7 @@
       "after": " cache sous le lit dès qu'il entend du bruit.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "« Je me cache » fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« cache » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q017",
@@ -188,7 +188,7 @@
       "after": "'est-il vraiment souvenu de notre rendez-vous ?",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "« Je me suis souvenu » fonctionne → c'est 'se' (pronom réfléchi). Forme inversée : se + est-il → s'est-il."
+      "explanation": "« est » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q018",
@@ -196,7 +196,7 @@
       "after": " qu'elle entreprend finit toujours par réussir.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "« Je me qu'elle entreprend » est impossible → c'est 'ce' (pronom démonstratif après 'tout')."
+      "explanation": "« qu » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q019",
@@ -204,7 +204,7 @@
       "after": " plaint depuis ce matin sans s'arrêter.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "« Je me plains » fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« plaint » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q020",
@@ -212,7 +212,7 @@
       "after": " à quoi je m'attendais.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "« Je me à quoi » est impossible → c'est 'ce' (pronom démonstratif dans la locution 'ce à quoi')."
+      "explanation": "« à » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q021",
@@ -220,7 +220,7 @@
       "after": " brosse les dents avant de dormir.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "« Je me brosse les dents » fonctionne avec 'je' → c'est 'se' (pronom réfléchi)."
+      "explanation": "« brosse » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q022",
@@ -228,7 +228,7 @@
       "after": "jour, les vacances arrivent enfin.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "« Je me jour » est impossible → c'est 'ce' (pronom démonstratif neutre)."
+      "explanation": "« jour » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q023",
@@ -236,7 +236,7 @@
       "after": " méfier des apparences trompeuses.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : « se méfier » → remplacé par « me méfier » avec 'je' → fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« méfier » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q024",
@@ -244,7 +244,7 @@
       "after": " beau paysage à l'horizon !",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "« Je me beau paysage » est impossible → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "« beau » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q025",
@@ -252,7 +252,7 @@
       "after": " fane rapidement sans eau.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "« Je me fane » fonctionne avec 'je' → c'est 'se' (pronom réfléchi)."
+      "explanation": "« fane » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q026",
@@ -260,7 +260,7 @@
       "after": " qu'il veut dire.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "« Je me qu'il veut dire » est impossible → c'est 'ce' (pronom démonstratif neutre)."
+      "explanation": "« qu » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q027",
@@ -268,7 +268,7 @@
       "after": " préparent intensément pour la compétition.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "« Je me prépare » fonctionne avec 'je' → c'est 'se' (pronom réfléchi)."
+      "explanation": "« préparent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q028",
@@ -276,7 +276,7 @@
       "after": " que les magiciens font ?",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "« Je me que les magiciens font » est impossible → c'est 'ce' (pronom démonstratif)."
+      "explanation": "« que » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q029",
@@ -284,7 +284,7 @@
       "after": " dispute souvent avec son frère.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "« Je me dispute » fonctionne avec 'je' → c'est 'se' (pronom réfléchi)."
+      "explanation": "« dispute » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q030",
@@ -292,7 +292,7 @@
       "after": " que nous décidons aujourd'hui.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "« Je me que nous décidons » est impossible → c'est 'ce' (pronom démonstratif neutre)."
+      "explanation": "« que » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q031",
@@ -300,7 +300,7 @@
       "after": " rassemblent avant l'orage.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "« Je me rassemble » fonctionne avec 'je' → c'est 'se' (pronom réfléchi)."
+      "explanation": "« rassemblent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q032",
@@ -308,7 +308,7 @@
       "after": " modèle qu'elle a acheté.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "« Ce modèle » : 'ce' est un déterminant démonstratif devant un nom. Test : 'je me modèle' est impossible → c'est 'ce'."
+      "explanation": "« modèle » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q033",
@@ -316,7 +316,7 @@
       "after": " demander toutes ces questions bizarres ?",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "« Je me demander » fonctionne avec 'je' → c'est 'se' (pronom réfléchi à l'infinitif)."
+      "explanation": "« demander » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q034",
@@ -324,7 +324,7 @@
       "after": " travail soit difficile.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "« Je me travail soit difficile » est impossible → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "« travail » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q035",
@@ -332,7 +332,7 @@
       "after": " desséchent si on oublie de les arroser.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "« Je me dessèche » fonctionne avec 'je' → c'est 'se' (pronom réfléchi)."
+      "explanation": "« desséchent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q036",
@@ -340,7 +340,7 @@
       "after": " qui a volé le trésor ?",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "« Ce qui a volé » : 'ce' est un pronom démonstratif neutre. Test : 'je me qui a volé' est impossible → c'est 'ce'."
+      "explanation": "« qui » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q037",
@@ -348,7 +348,7 @@
       "after": " amusent dans la cour de récréation.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "« Je m'amuse » fonctionne avec 'je' → c'est 'se' (pronom réfléchi)."
+      "explanation": "« amusent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q038",
@@ -356,7 +356,7 @@
       "after": " concept fondamental, tu resteras bloqué.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "« Ce concept » : 'ce' est un déterminant démonstratif devant un nom. Test : 'je me concept' est impossible → c'est 'ce'."
+      "explanation": "« concept » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q039",
@@ -364,7 +364,7 @@
       "after": " reproduisent en remontant les fleuves.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "« Je me reproduis » fonctionne avec 'je' → c'est 'se' (pronom réfléchi)."
+      "explanation": "« reproduisent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q040",
@@ -372,7 +372,7 @@
       "after": " destin avec sérénité.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "« Je me destin » est impossible (structure archaïque, c'est un COD) → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "« destin » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q041",
@@ -380,7 +380,7 @@
       "after": " peigne chaque matin avant d'aller au travail.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Pronom réfléchi : elle se peigne = je me peigne (je remplace elle). Test : 'je me peigne' fonctionne → c'est 'se'."
+      "explanation": "« peigne » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q042",
@@ -388,7 +388,7 @@
       "after": " type que je n'aime pas du tout.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Déterminant démonstratif. Test : 'je me type' ne fonctionne pas → c'est 'ce' (ce type)."
+      "explanation": "« type » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q043",
@@ -396,7 +396,7 @@
       "after": " demande pourquoi tu es en retard.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Pronom réfléchi : il se demande = je me demande. Test fonctionne → 'se'."
+      "explanation": "« demande » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q044",
@@ -404,7 +404,7 @@
       "after": " gâteau que j'ai préparé !",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Déterminant démonstratif (ce gâteau). Test : 'je me gâteau' ne fonctionne pas → 'ce'."
+      "explanation": "« gâteau » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q045",
@@ -412,7 +412,7 @@
       "after": " battent à la récréation.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Pronom réfléchi : ils se battent = je me bats. Test : 'je me battent' (conjugaison différente mais structure fonctionne) → 'se'."
+      "explanation": "« battent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q046",
@@ -420,7 +420,7 @@
       "after": " robinet qui fuit ?",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Déterminant démonstratif (ce robinet). Test : 'je me robinet' ne marche pas → 'ce'."
+      "explanation": "« robinet » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q047",
@@ -428,7 +428,7 @@
       "after": " plaît beaucoup à ses collègues.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Pronom réfléchi : elle se plaît = je me plais. Test fonctionne → 'se'. (Signifie : elle aime cet endroit)"
+      "explanation": "« plaît » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q048",
@@ -436,7 +436,7 @@
       "after": " que tu penses vraiment.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Pronom démonstratif (dis-moi ce que tu penses). Test : 'je me que' ne fonctionne pas → 'ce'."
+      "explanation": "« que » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q049",
@@ -444,7 +444,7 @@
       "after": " préparent intensément pour la compétition.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Pronom réfléchi : ils se préparent = je me prépare. Test fonctionne → 'se'."
+      "explanation": "« préparent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q050",
@@ -452,7 +452,7 @@
       "after": " calcul difficile.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Déterminant démonstratif (ce calcul). Test : 'je me calcul' ne marche pas → 'ce'."
+      "explanation": "« calcul » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q051",
@@ -460,7 +460,7 @@
       "after": " sent mal après le sport.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Pronom réfléchi : il se sent = je me sens. Test fonctionne → 'se'."
+      "explanation": "« sent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q052",
@@ -468,7 +468,7 @@
       "after": " conseil que je te donne.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Déterminant démonstratif (ce conseil). Test : 'je me conseil' ne marche pas → 'ce'."
+      "explanation": "« conseil » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q053",
@@ -476,7 +476,7 @@
       "after": " maquillent en secret avant d'aller à l'école.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Pronom réfléchi : ils se maquillent = je me maquille. Test fonctionne → 'se'."
+      "explanation": "« maquillent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q054",
@@ -484,7 +484,7 @@
       "after": " choix ?",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Déterminant démonstratif (ce choix). Test : 'je me choix' ne fonctionne pas → 'ce'."
+      "explanation": "« choix » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q055",
@@ -492,7 +492,7 @@
       "after": " sont trompés en lisant les instructions.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Pronom réfléchi : ils se sont trompés = je me suis trompé. Test fonctionne → 'se' (auxiliaire 'être' avec verbe pronominal)."
+      "explanation": "« sont » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q056",
@@ -500,7 +500,7 @@
       "after": " fait : tu dois étudier plus.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Pronom démonstratif (accepte ce fait). Test : 'je me fait' ne marche pas → 'ce'."
+      "explanation": "« fait » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q057",
@@ -508,7 +508,7 @@
       "after": " ronge les ongles constamment.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Pronom réfléchi : elle se ronge = je me ronge. Test fonctionne → 'se' (contexte difficile)."
+      "explanation": "« ronge » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q058",
@@ -516,7 +516,7 @@
       "after": " garçon qui te promet des choses impossibles.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "« Ce garçon » : déterminant démonstratif. Test : 'je me garçon' ne fonctionne pas → c'est 'ce'."
+      "explanation": "« garçon » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q059",
@@ -524,7 +524,7 @@
       "after": " racontaient tous leurs secrets en vacances.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "« Je me raconte » fonctionne → c'est 'se' (pronom réfléchi, action réciproque)."
+      "explanation": "« racontaient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q060",
@@ -532,7 +532,7 @@
       "after": " que je t'ai conseillé hier.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Pronom démonstratif (pense à ce que...). Test : 'je me que' ne fonctionne pas → 'ce' (construction 'ce que' pour reprendre une idée)."
+      "explanation": "« que » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q061",
@@ -540,7 +540,7 @@
       "after": " demande ce qui se passe.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me demande' fonctionne → c'est 'se' (pronom réfléchi)"
+      "explanation": "« demande » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q062",
@@ -548,7 +548,7 @@
       "after": "garçon dort profondément.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'je me garçon' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)"
+      "explanation": "« garçon » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q063",
@@ -556,7 +556,7 @@
       "after": " sont levés tôt.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me suis levé' fonctionne → c'est 'se' (pronom réfléchi)"
+      "explanation": "« sont » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q064",
@@ -564,7 +564,7 @@
       "after": "livre est très intéressant.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'je me livre' ne fonctionne pas ici → c'est 'ce' (déterminant démonstratif)"
+      "explanation": "« livre » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q065",
@@ -572,7 +572,7 @@
       "after": " souvenait de son enfance.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me souviens' fonctionne → c'est 'se' (pronom réfléchi)"
+      "explanation": "« souvenait » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q066",
@@ -580,7 +580,7 @@
       "after": "paysage montagneux offrait une belle vue.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'je me paysage' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)"
+      "explanation": "« paysage » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q067",
@@ -588,7 +588,7 @@
       "after": " débrouillait avec courage.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me débrouille' fonctionne → c'est 'se' (pronom réfléchi)"
+      "explanation": "« débrouillait » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q068",
@@ -596,7 +596,7 @@
       "after": " métier demande de la patience.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'je me métier' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)"
+      "explanation": "« métier » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q069",
@@ -604,7 +604,7 @@
       "after": " posaient délicatement sur les branches.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me pose' fonctionne → c'est 'se' (pronom réfléchi)"
+      "explanation": "« posaient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q070",
@@ -612,7 +612,7 @@
       "after": "restaurant propose une cuisine excellente.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'je me restaurant' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)"
+      "explanation": "« restaurant » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q071",
@@ -620,7 +620,7 @@
       "after": " rendit compte de son erreur que trop tard.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me rends compte' fonctionne → c'est 'se' (pronom réfléchi)"
+      "explanation": "« rendit » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q072",
@@ -628,7 +628,7 @@
       "after": " siècle, la technologie a transformé le monde.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'je me siècle' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)"
+      "explanation": "« siècle » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q073",
@@ -636,7 +636,7 @@
       "after": " concentrent sur chaque détail.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me concentre' fonctionne → c'est 'se' (pronom réfléchi)"
+      "explanation": "« concentrent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q074",
@@ -644,7 +644,7 @@
       "after": "moment était parfait pour voyager.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'je me moment' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)"
+      "explanation": "« moment » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q075",
@@ -652,7 +652,7 @@
       "after": " spécialisa dans la neurobiologie.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me spécialise' fonctionne → c'est 'se' (pronom réfléchi)"
+      "explanation": "« spécialisa » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q076",
@@ -660,7 +660,7 @@
       "after": " phénomène météorologique requiert des connaissances scientifiques.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'je me phénomène' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)"
+      "explanation": "« phénomène » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q077",
@@ -668,7 +668,7 @@
       "after": " préparent pendant des mois.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me prépare' fonctionne → c'est 'se' (pronom réfléchi)"
+      "explanation": "« préparent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q078",
@@ -676,7 +676,7 @@
       "after": " carrefour de l'histoire, tout pouvait encore basculer.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Test : 'je me carrefour' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "« carrefour » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q079",
@@ -684,7 +684,7 @@
       "after": " réunissaient chaque semaine pour jouer de la musique.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me réunis' fonctionne → c'est 'se' (pronom réfléchi)"
+      "explanation": "« réunissaient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q080",
@@ -692,7 +692,7 @@
       "after": " défi de taille, l'équipe a fini par l'emporter.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Test : 'je me défi' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "« défi » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q081",
@@ -700,7 +700,7 @@
       "after": " concentre sur sa performance avant le concert.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me concentre' fonctionne → 'se' est un pronom réfléchi."
+      "explanation": "« concentre » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q082",
@@ -708,7 +708,7 @@
       "after": " spectacle est vraiment impressionnant, je te conseille d'y aller !",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'je me spectacle' ne fonctionne pas → 'ce' est un déterminant démonstratif."
+      "explanation": "« spectacle » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q083",
@@ -716,7 +716,7 @@
       "after": " demande si vous avez un crayon.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me demande' fonctionne → 'se' est un pronom réfléchi."
+      "explanation": "« demande » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q084",
@@ -724,7 +724,7 @@
       "after": " disque que j'ai acheté hier.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'je me disque' ne fonctionne pas → 'ce' est un déterminant démonstratif."
+      "explanation": "« disque » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q085",
@@ -732,7 +732,7 @@
       "after": " protègent lors du danger.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me protège' fonctionne → 'se' est un pronom réfléchi."
+      "explanation": "« protègent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q086",
@@ -740,7 +740,7 @@
       "after": " paysage montagneux avec admiration.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'je me paysage' ne fonctionne pas → 'ce' est un déterminant démonstratif."
+      "explanation": "« paysage » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q087",
@@ -748,7 +748,7 @@
       "after": " repose après son examen difficile.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me repose' fonctionne → 'se' est un pronom réfléchi."
+      "explanation": "« repose » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q088",
@@ -756,7 +756,7 @@
       "after": " château que tu as visité ?",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'je me château' ne fonctionne pas → 'ce' est un déterminant démonstratif."
+      "explanation": "« château » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q089",
@@ -764,7 +764,7 @@
       "after": " souvient de chaque détail de sa création.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me souviens' fonctionne → 'se' est un pronom réfléchi (verbe pronominal)."
+      "explanation": "« souvient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q090",
@@ -772,7 +772,7 @@
       "after": " concept de physique quantique demande de l'effort.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'je me concept' ne fonctionne pas → 'ce' est un déterminant démonstratif."
+      "explanation": "« concept » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q091",
@@ -780,7 +780,7 @@
       "after": " dégrade rapidement cette semaine.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me dégrade' fonctionne → 'se' est un pronom réfléchi (verbe pronominal)."
+      "explanation": "« dégrade » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q092",
@@ -788,7 +788,7 @@
       "after": " film que tout le monde recommande.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'je me film' ne fonctionne pas → 'ce' est un déterminant démonstratif."
+      "explanation": "« film » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q093",
@@ -796,7 +796,7 @@
       "after": " préoccupent de la santé de leurs patients.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me préoccupe' fonctionne → 'se' est un pronom réfléchi."
+      "explanation": "« préoccupent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q094",
@@ -804,7 +804,7 @@
       "after": " moment où tout a changé dans ta vie ?",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'je me moment' ne fonctionne pas → 'ce' est un déterminant démonstratif."
+      "explanation": "« moment » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q095",
@@ -812,7 +812,7 @@
       "after": " développent surtout lors de fortes pluies.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me développe' fonctionne → 'se' est un pronom réfléchi."
+      "explanation": "« développent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q096",
@@ -820,7 +820,7 @@
       "after": " projet comme une opportunité d'apprentissage personnel.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'je me projet' ne fonctionne pas → 'ce' est un déterminant démonstratif."
+      "explanation": "« projet » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q097",
@@ -828,7 +828,7 @@
       "after": " cristallise en flocons lorsque la température baisse considérablement.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Test : 'je me cristallise' fonctionne → 'se' est un pronom réfléchi (verbe pronominal)."
+      "explanation": "« cristallise » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q098",
@@ -836,7 +836,7 @@
       "after": " processus biologique complexe nécessite une grande rigueur scientifique.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Test : 'je me processus' ne fonctionne pas → 'ce' est un déterminant démonstratif."
+      "explanation": "« processus » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q099",
@@ -844,7 +844,7 @@
       "after": " multiplient rapidement pour régénérer les tissus endommagés.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Test : 'je me multiplie' fonctionne → 'se' est un pronom réfléchi."
+      "explanation": "« multiplient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q100",
@@ -852,7 +852,7 @@
       "after": " rêve merveilleux selon ton propre imaginaire et tes émotions.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Test : 'je me rêve' ne fonctionne pas (sens différent) → 'ce' est un déterminant démonstratif."
+      "explanation": "« rêve » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q101",
@@ -860,7 +860,7 @@
       "after": " demande si c'est vraiment nécessaire.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : « je me demande » → fonctionne. C'est le pronom réfléchi se (elle se demande)."
+      "explanation": "« demande » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q102",
@@ -868,7 +868,7 @@
       "after": " coucher de soleil magnifique !",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : « je me coucher » → ne fonctionne pas. C'est le déterminant démonstratif ce (ce coucher)."
+      "explanation": "« coucher » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q103",
@@ -876,7 +876,7 @@
       "after": " lave les mains avant le repas.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : « je me lave » → fonctionne. C'est le pronom réfléchi se (il se lave)."
+      "explanation": "« lave » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q104",
@@ -884,7 +884,7 @@
       "after": " genre de film d'horreur.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : « je me genre » → ne fonctionne pas. C'est le déterminant démonstratif ce (ce genre)."
+      "explanation": "« genre » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q105",
@@ -892,7 +892,7 @@
       "after": " cachent derrière l'arbre.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : « je me cache » → fonctionne. C'est le pronom réfléchi se (ils se cachent)."
+      "explanation": "« cachent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q106",
@@ -900,7 +900,7 @@
       "after": " calcul pour moi ?",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : « je me calcul » → ne fonctionne pas. C'est le déterminant démonstratif ce (ce calcul)."
+      "explanation": "« calcul » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q107",
@@ -908,7 +908,7 @@
       "after": " réveille toujours très tôt le matin.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : « je me réveille » → fonctionne. C'est le pronom réfléchi se (elle se réveille)."
+      "explanation": "« réveille » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q108",
@@ -916,7 +916,7 @@
       "after": " connaît bien.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me connais bien' fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« connaît » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q109",
@@ -924,7 +924,7 @@
       "after": " prépare mentalement pour la compétition.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : « je me prépare » → fonctionne. C'est le pronom réfléchi se (l'athlète se prépare)."
+      "explanation": "« prépare » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q110",
@@ -932,7 +932,7 @@
       "after": " résultat me surprend beaucoup.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : « je me résultat » → ne fonctionne pas. C'est le déterminant démonstratif ce (ce résultat)."
+      "explanation": "« résultat » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q111",
@@ -940,7 +940,7 @@
       "after": " concentrent sur leur examen.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : « je me concentre » → fonctionne. C'est le pronom réfléchi se (ils se concentrent)."
+      "explanation": "« concentrent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q112",
@@ -948,7 +948,7 @@
       "after": " mauvais temps, on sort quand même.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : « je me mauvais temps » → ne fonctionne pas. C'est ce (ce mauvais temps)."
+      "explanation": "« mauvais » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q113",
@@ -956,7 +956,7 @@
       "after": " rappelle ses promesses et en a honte.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : « je me rappelle » → fonctionne. C'est le pronom réfléchi se (il se rappelle)."
+      "explanation": "« rappelle » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q114",
@@ -964,7 +964,7 @@
       "after": " papillon vole avec grâce !",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : « je me papillon » → ne fonctionne pas. C'est le déterminant démonstratif ce (ce papillon)."
+      "explanation": "« papillon » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q115",
@@ -972,7 +972,7 @@
       "after": " rencontrent chaque semaine au parc.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : « je me rencontre » → fonctionne. C'est le pronom réfléchi se (elles se rencontrent)."
+      "explanation": "« rencontrent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q116",
@@ -980,7 +980,7 @@
       "after": " force à lire des livres complexes.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Test : « je me force » → fonctionne. C'est le pronom réfléchi se dans une structure d'amélioration personnelle."
+      "explanation": "« force » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q117",
@@ -988,7 +988,7 @@
       "after": " contexte politique instable, personne n'ose parler.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Test : « je me contexte » → ne fonctionne pas. C'est le déterminant démonstratif ce (ce contexte)."
+      "explanation": "« contexte » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q118",
@@ -996,7 +996,7 @@
       "after": " sentît coupable, il continua son chemin.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Test : « je me sentisse » → fonctionne (subjonctif). C'est le pronom réfléchi se (il se sentît)."
+      "explanation": "« sentît » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q119",
@@ -1004,7 +1004,7 @@
       "after": " changement climatique affectant nos côtes.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : « je me changement » → ne fonctionne pas. C'est le déterminant démonstratif ce (ce changement)."
+      "explanation": "« changement » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q120",
@@ -1012,7 +1012,7 @@
       "after": " défient mutuellement pendant le match.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : « je me défie » → fonctionne (réciproque). C'est le pronom réfléchi se (ils se défient)."
+      "explanation": "« défient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q121",
@@ -1020,7 +1020,7 @@
       "after": " souvient de ses vacances à la montagne.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : « je me souviens » → c'est « se ». Pronom réfléchi à la 3ème personne."
+      "explanation": "« souvient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q122",
@@ -1028,7 +1028,7 @@
       "after": " livre, dernier ouvrage du prix Goncourt, a reçu d'excellentes critiques.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : « je me livre » ne fonctionne pas → c'est « ce ». Déterminant démonstratif."
+      "explanation": "« livre » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q123",
@@ -1036,7 +1036,7 @@
       "after": " précipitaient vers le portail pour voir arriver leurs parents.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : « je me précipite » → c'est « se ». Pronom réfléchi du verbe « se précipiter »."
+      "explanation": "« précipitaient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q124",
@@ -1044,7 +1044,7 @@
       "after": " qui s'était passé.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : « je me qui s'était passé » ne marche pas → c'est « ce ». Pronom démonstratif."
+      "explanation": "« qui » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q125",
@@ -1052,7 +1052,7 @@
       "after": " demandait si elle devait partir ou rester.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : « je me demande » → c'est « se ». Pronom réfléchi du verbe « se demander »."
+      "explanation": "« demandait » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q126",
@@ -1060,7 +1060,7 @@
       "after": " que tu dis là me surprend beaucoup.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : « je me que tu dis » non → c'est « ce ». Pronom démonstratif référant à l'idée."
+      "explanation": "« que » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q127",
@@ -1068,7 +1068,7 @@
       "after": " posent la question de l'impact réel de la Révolution française.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : « je me pose » → c'est « se ». Pronom réfléchi du verbe « se poser »."
+      "explanation": "« posent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q128",
@@ -1076,7 +1076,7 @@
       "after": " discours diplomatique était vraiment regrettable pour les deux nations.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Test : 'je me discours' est impossible → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "« discours » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q129",
@@ -1084,7 +1084,7 @@
       "after": " sont félicités du succès du spectacle.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : « je me félicite » → c'est « se ». Pronom réfléchi du verbe « se féliciter »."
+      "explanation": "« sont » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q130",
@@ -1092,7 +1092,7 @@
       "after": " que j'ai entendu aujourd'hui m'a profondément troublé.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : « je me que j'ai entendu » ne marche pas → c'est « ce ». Pronom démonstratif neutre."
+      "explanation": "« que » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q131",
@@ -1100,7 +1100,7 @@
       "after": " reposaient après la compétition épuisante.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : « je me repose » → c'est « se ». Pronom réfléchi du verbe « se reposer »."
+      "explanation": "« reposaient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q132",
@@ -1108,7 +1108,7 @@
       "after": " raisonnement me paraît plus convaincant que le précédent.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Test : 'je me raisonnement' est impossible → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "« raisonnement » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q133",
@@ -1116,7 +1116,7 @@
       "after": " permettait de rêver à des jours meilleurs.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Test : « je me permets de rêver » → c'est « se ». Pronom réfléchi du verbe « se permettre »."
+      "explanation": "« permettait » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q134",
@@ -1124,7 +1124,7 @@
       "after": " qui s'est déroulé, nous pouvons tirer certaines conclusions.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Test : « je me qui s'est déroulé » ne fonctionne pas → c'est « ce ». Pronom démonstratif."
+      "explanation": "« qui » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q135",
@@ -1132,7 +1132,7 @@
       "after": " parlaient avec passion de leurs projets futurs.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : « je me parle » → c'est « se ». Pronom réfléchi du verbe « se parler »."
+      "explanation": "« parlaient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q136",
@@ -1140,7 +1140,7 @@
       "after": " climat de tension était palpable dans toute l'assemblée.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Test : 'je me climat' est impossible → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "« climat » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q137",
@@ -1148,7 +1148,7 @@
       "after": " concentraient sur chaque détail de leur préparation culinaire.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : « je me concentre » → c'est « se ». Pronom réfléchi du verbe « se concentrer »."
+      "explanation": "« concentraient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q138",
@@ -1156,7 +1156,7 @@
       "after": " qu'on te raconte dans les journaux ?",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : « je me qu'on te raconte » non → c'est « ce ». Pronom démonstratif neutre introduisant une proposition."
+      "explanation": "« qu » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q139",
@@ -1164,7 +1164,7 @@
       "after": " disputaient bruyamment sur le terrain de jeu.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Test : « je me dispute » → c'est « se ». Pronom réfléchi du verbe « se disputer »."
+      "explanation": "« disputaient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q140",
@@ -1172,7 +1172,7 @@
       "after": " dernier film du réalisateur brise tous les codes du cinéma contemporain.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Test : 'je me dernier film' est impossible → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "« dernier » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q141",
@@ -1180,7 +1180,7 @@
       "after": " demande pourquoi il est parti.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : je me demande → 'se' pronom réfléchi. Elle se demande = elle demande à elle-même."
+      "explanation": "« demande » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q142",
@@ -1188,7 +1188,7 @@
       "after": " sont amusés toute l'après-midi.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : ils se sont amusés = je me suis amusé(e) → 'se' pronom réfléchi."
+      "explanation": "« sont » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q143",
@@ -1196,7 +1196,7 @@
       "after": " livre est très intéressant.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Déterminant démonstratif. Test : je me livre ne fonctionne pas → 'ce' (ce livre = this book)."
+      "explanation": "« livre » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q145",
@@ -1204,7 +1204,7 @@
       "after": " préparent pour la compétition.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : ils se préparent = je me prépare → 'se' pronom réfléchi."
+      "explanation": "« préparent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q146",
@@ -1212,7 +1212,7 @@
       "after": " moment était vraiment magique.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Déterminant démonstratif. Test : je me moment ne fonctionne pas → 'ce' (ce moment = that moment)."
+      "explanation": "« moment » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q147",
@@ -1220,7 +1220,7 @@
       "after": " lève tôt chaque matin.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : elle se lève = je me lève → 'se' pronom réfléchi (action sur elle-même)."
+      "explanation": "« lève » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q148",
@@ -1228,7 +1228,7 @@
       "after": " film que tu regardais hier était excellent.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Déterminant démonstratif. Test : je me film ne fonctionne pas → 'ce' (ce film = that film)."
+      "explanation": "« film » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q149",
@@ -1236,7 +1236,7 @@
       "after": " retrouvent à la gare chaque vendredi.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : ils se retrouvent = je me retrouve → 'se' pronom réfléchi (action mutuelle)."
+      "explanation": "« retrouvent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q150",
@@ -1244,7 +1244,7 @@
       "after": " projet est trop ambitieux pour nous.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Déterminant démonstratif. Test : je me projet ne fonctionne pas → 'ce' (ce projet = this project)."
+      "explanation": "« projet » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q151",
@@ -1252,7 +1252,7 @@
       "after": " fait belle en cette robe rouge.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : Marie se fait belle = je me fais belle → 'se' pronom réfléchi (elle s'embellit)."
+      "explanation": "« fait » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q152",
@@ -1260,7 +1260,7 @@
       "after": " qui se passe ici est inacceptable.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : je me qui... ne fonctionne pas → 'ce' (pronom démonstratif neutre : ce qui = what)."
+      "explanation": "« qui » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q153",
@@ -1268,7 +1268,7 @@
       "after": " sont perdus dans la grande ville.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : ils se sont perdus = je me suis perdu(e) → 'se' pronom réfléchi (ils se perdent eux-mêmes)."
+      "explanation": "« sont » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q154",
@@ -1276,7 +1276,7 @@
       "after": " que tu dis n'a aucun sens.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Test : je me que tu dis... ne fonctionne pas → 'ce' (pronom démonstratif : ce que = what)."
+      "explanation": "« que » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q156",
@@ -1284,7 +1284,7 @@
       "after": " monsieur était vraiment désagréable.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Déterminant démonstratif. Test : je me monsieur ne fonctionne pas → 'ce' (ce monsieur = that gentleman)."
+      "explanation": "« monsieur » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q157",
@@ -1292,7 +1292,7 @@
       "after": " couche sans protester ce soir.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : l'enfant se couche = je me couche → 'se' pronom réfléchi (action sur lui-même)."
+      "explanation": "« couche » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q158",
@@ -1300,7 +1300,7 @@
       "after": " document est confidentiel.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Déterminant démonstratif. Test : je me document ne fonctionne pas → 'ce' (ce document = this document)."
+      "explanation": "« document » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q159",
@@ -1308,7 +1308,7 @@
       "after": " souviennent encore de leurs vacances.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Test : elles se souviennent = je me souviens → 'se' pronom réfléchi avec verbe souvenir (se souvenir de quelque chose)."
+      "explanation": "« souviennent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q160",
@@ -1316,7 +1316,7 @@
       "after": " quartier vous plaît-il vraiment ?",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Déterminant démonstratif. Test : je me quartier ne fonctionne pas → 'ce' (ce quartier). Forme interrogative inversée."
+      "explanation": "« quartier » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q161",
@@ -1324,7 +1324,7 @@
       "after": " rappelle chaque matin pour faire l'exercice.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me rappelle chaque matin' fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« rappelle » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q162",
@@ -1332,7 +1332,7 @@
       "after": " détendre après une longue journée de travail.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'il faut que je me détende' → le pronom réfléchi devient 'me' → c'est 'se'."
+      "explanation": "« détendre » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q163",
@@ -1340,7 +1340,7 @@
       "after": " miroir dans la salle de bain.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'Je me miroir' ✗ → C'est un déterminant démonstratif, donc 'ce'."
+      "explanation": "« miroir » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q164",
@@ -1348,7 +1348,7 @@
       "after": " sont rencontrés à la bibliothèque.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me rencontre' fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« sont » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q165",
@@ -1356,7 +1356,7 @@
       "after": " paysage magnifique depuis la montagne.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'Je me paysage' ✗ → Déterminant démonstratif, donc 'ce'."
+      "explanation": "« paysage » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q166",
@@ -1364,7 +1364,7 @@
       "after": " cachaient dans le grenier.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'Je me cacher' ✓ → Pronom réfléchi, donc 'se'."
+      "explanation": "« cachaient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q167",
@@ -1372,7 +1372,7 @@
       "after": " film français avec beaucoup d'intérêt.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'Je me film' ✗ → Déterminant démonstratif, donc 'ce'."
+      "explanation": "« film » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q168",
@@ -1380,7 +1380,7 @@
       "after": " téléphonaient toutes les semaines.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'Je me téléphoner' ✓ → Pronom réfléchi, donc 'se'."
+      "explanation": "« téléphonaient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q169",
@@ -1388,7 +1388,7 @@
       "after": " que je t'explique ?",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'Je me que' ✗ → Déterminant démonstratif, donc 'ce'."
+      "explanation": "« que » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q170",
@@ -1396,7 +1396,7 @@
       "after": " demandait si elle réussirait l'examen.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'Je me demander' ✓ → Pronom réfléchi, donc 'se'."
+      "explanation": "« demandait » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q171",
@@ -1404,7 +1404,7 @@
       "after": " instant précis où le soleil touche l'horizon.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'Je me instant' ✗ → Déterminant démonstratif, donc 'ce'."
+      "explanation": "« instant » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q172",
@@ -1412,7 +1412,7 @@
       "after": " préparaient un repas exceptionnel.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'Je me préparer' ✓ → Pronom réfléchi, donc 'se'."
+      "explanation": "« préparaient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q173",
@@ -1420,7 +1420,7 @@
       "after": " problème depuis longtemps.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'Je me problème' ✗ → Déterminant démonstratif, donc 'ce'."
+      "explanation": "« problème » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q174",
@@ -1428,7 +1428,7 @@
       "after": " sont dit au revoir avant de partir.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me dis' fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« sont » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q175",
@@ -1436,7 +1436,7 @@
       "after": " gâteau au chocolat ?",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'Je me gâteau' ✗ → Déterminant démonstratif, donc 'ce'."
+      "explanation": "« gâteau » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q176",
@@ -1444,7 +1444,7 @@
       "after": " disputent souvent à propos des poubelles.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Test : 'je me dispute' fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« disputent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q177",
@@ -1452,7 +1452,7 @@
       "after": " rendez-vous important que tu ne dois pas oublier.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'Je me rendez-vous' ✗ → Déterminant démonstratif, donc 'ce'."
+      "explanation": "« rendez » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q178",
@@ -1460,7 +1460,7 @@
       "after": " souviennent toujours de leurs années d'université.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Test : 'je me souviens' fonctionne → c'est 'se' (pronom réfléchi, verbe pronominal)."
+      "explanation": "« souviennent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q179",
@@ -1468,7 +1468,7 @@
       "after": " style de peinture renaissance ?",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'Je me style' ✗ → Déterminant démonstratif, donc 'ce'."
+      "explanation": "« style » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q180",
@@ -1476,7 +1476,7 @@
       "after": " sont concentrés pendant l'examen.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Test : 'Je me concentrer' ✓ → Pronom réfléchi, donc 'se'. Accord au passé composé."
+      "explanation": "« sont » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q181",
@@ -1484,7 +1484,7 @@
       "after": " demande pourquoi personne ne lui répond.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me demande' ✓ → C'est un pronom réfléchi. Réponse : se"
+      "explanation": "« demande » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q182",
@@ -1492,7 +1492,7 @@
       "after": " livre raconte une histoire captivante.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'je me livre' ✗ → Ce n'est pas réfléchi. Réponse : ce"
+      "explanation": "« livre » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q183",
@@ -1500,7 +1500,7 @@
       "after": " sent vraiment mal à l'aise dans cette situation.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me sens' ✓ → Pronom réfléchi. Réponse : se"
+      "explanation": "« sent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q184",
@@ -1508,7 +1508,7 @@
       "after": " qui arrive dans la rue.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'je me qui arrive' ✗ → Démonstratif. Réponse : ce"
+      "explanation": "« qui » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q186",
@@ -1516,7 +1516,7 @@
       "after": " balancent doucement au vent.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me balance' ✓ → Pronom réfléchi. Réponse : se"
+      "explanation": "« balancent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q187",
@@ -1524,7 +1524,7 @@
       "after": "matin, il faisait beau dehors.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'je me matin' ✗ → Démonstratif temporel. Réponse : ce"
+      "explanation": "« matin » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q188",
@@ -1532,7 +1532,7 @@
       "after": " cache derrière un mensonge depuis longtemps.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me cache' ✓ → Pronom réfléchi. Réponse : se"
+      "explanation": "« cache » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q189",
@@ -1540,7 +1540,7 @@
       "after": " qui s'est passé ce jour-là.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'je me qui s'est passé' ✗ → Pronom démonstratif. Réponse : ce"
+      "explanation": "« qui » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q190",
@@ -1548,7 +1548,7 @@
       "after": " fanent rapidement dans la chaleur.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me fane' ✓ → Pronom réfléchi. Réponse : se"
+      "explanation": "« fanent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q191",
@@ -1556,7 +1556,7 @@
       "after": " demande si tout ira bien demain.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me demande' ✓ → Pronom réfléchi (même avec 'on'). Réponse : se"
+      "explanation": "« demande » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q192",
@@ -1564,7 +1564,7 @@
       "after": "film que tu veux regarder est excellent.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'je me film' ✗ → Déterminant démonstratif. Réponse : ce"
+      "explanation": "« film » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q193",
@@ -1572,7 +1572,7 @@
       "after": " rappellent constamment de faire attention.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me rappelle' ✓ → Pronom réfléchi. Réponse : se"
+      "explanation": "« rappellent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q194",
@@ -1580,7 +1580,7 @@
       "after": " que tu voulais dire.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'je me que tu voulais dire' ✗ → Pronom démonstratif. Réponse : ce"
+      "explanation": "« que » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q195",
@@ -1588,7 +1588,7 @@
       "after": " battaient dans la cour de récréation.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me bats' ✓ → Pronom réfléchi. Réponse : se"
+      "explanation": "« battaient » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q196",
@@ -1596,7 +1596,7 @@
       "after": " qu'il disait, tout le monde a douté.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Test : 'je me qu'il disait' ✗ → Expression 'malgré ce que' (pronom démonstratif). Réponse : ce"
+      "explanation": "« qu » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q197",
@@ -1604,7 +1604,7 @@
       "after": " sent responsable de la situation.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : 'je me sens' ✓ → Pronom réfléchi. Réponse : se"
+      "explanation": "« sent » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q198",
@@ -1612,7 +1612,7 @@
       "after": " projet vous intéresse-t-il tant?",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'je me projet' ✗ → Déterminant démonstratif. Réponse : ce"
+      "explanation": "« projet » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q199",
@@ -1620,7 +1620,7 @@
       "after": " forment en patterns étranges aujourd'hui.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Test : 'je me forme' ✓ → Pronom réfléchi (action réfléchie du nuage). Réponse : se"
+      "explanation": "« forment » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q200",
@@ -1628,7 +1628,7 @@
       "after": " que tu as fait, tout s'est arrangé.",
       "answer": "ce",
       "difficulty": 3,
-      "explanation": "Test : 'je me que tu as fait' ✗ → Expression 'grâce à ce que' (pronom démonstratif). Réponse : ce"
+      "explanation": "« que » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q201",
@@ -1636,7 +1636,7 @@
       "after": " dépasse au dernier moment avant la ligne d'arrivée.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "« Je me dépasse » fonctionne → c'est 'se' (pronom réfléchi)."
+      "explanation": "« dépasse » est un verbe juste après → c'est « se »."
     },
     {
       "id": "q202",
@@ -1644,7 +1644,7 @@
       "after": "résultat dépasse toutes nos espérances.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "« Je me résultat » est impossible → c'est 'ce' (déterminant démonstratif)."
+      "explanation": "« résultat » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     },
     {
       "id": "q203",
@@ -1652,7 +1652,7 @@
       "after": " qui va se passer ensuite.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "« Je me qui va se passer » est impossible → c'est 'ce' (pronom démonstratif neutre)."
+      "explanation": "« qui » n'est pas un verbe, pas de verbe juste après → c'est « ce »."
     }
   ],
   "group": "aventurier"
