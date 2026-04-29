@@ -200,7 +200,7 @@ export const SHOP_CATALOG = {
     category: 'themes',
     name: 'My Hero Academy',
     description: 'Palette héroïque vert olive et or doux avec ambiance manga.',
-    price: 360,
+    price: 200,
     type: 'permanent',
     tier: 'premium',
   },
@@ -304,7 +304,7 @@ export const SHOP_CATALOG = {
     category: 'victoryAnimations',
     name: 'Glow Néon',
     description: 'Halo néon clignotant autour du trophée',
-    price: 190,
+    price: 130,
     type: 'permanent',
   },
   'anim-glitch': {
@@ -312,7 +312,7 @@ export const SHOP_CATALOG = {
     category: 'victoryAnimations',
     name: 'Effet Glitch',
     description: 'Distorsion numérique brève',
-    price: 190,
+    price: 130,
     type: 'permanent',
   },
   'anim-shockwave': {
@@ -320,7 +320,7 @@ export const SHOP_CATALOG = {
     category: 'victoryAnimations',
     name: 'Onde de choc',
     description: 'Cercle qui s\'expand depuis le centre',
-    price: 190,
+    price: 130,
     type: 'permanent',
   },
   'anim-confetti': {
@@ -328,7 +328,7 @@ export const SHOP_CATALOG = {
     category: 'victoryAnimations',
     name: 'Confettis sobres',
     description: 'Quelques confettis dorés qui tombent',
-    price: 190,
+    price: 130,
     type: 'permanent',
   },
 
