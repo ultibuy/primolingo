@@ -351,7 +351,7 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
               {previewFlameItem.name}
             </div>
             <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, marginBottom: '1.15rem' }}>
-              Voilà l’animation qui sera utilisée pour la flamme de ton streak.
+              Voilà l'animation qui sera utilisée pour la flamme de ton streak.
             </div>
             <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'center' }}>
               <button
@@ -592,7 +592,7 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
               {previewVictoryItem.name}
             </div>
             <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, marginBottom: '1.15rem' }}>
-              Voilà l’animation qui apparaîtra sur l’écran de fin après une session réussie.
+              Voilà l'animation qui apparaîtra sur l'écran de fin après une session réussie.
             </div>
             <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'center' }}>
               <button
@@ -763,9 +763,12 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
           })}
         </div>
 
-        {activeTab === 'persos' ? (
-          <div style={{
-            marginBottom: '1.5rem',
+        {activeTab === 'persos' ? ((() => {
+          const ownedIds = progress.shop?.owned || [];
+          const ownedChars = SHOP_CHARACTERS.filter(c => ownedIds.includes(`char-${c.id}`));
+          const unownedChars = SHOP_CHARACTERS.filter(c => !ownedIds.includes(`char-${c.id}`));
+          const sectionStyle = {
+            marginBottom: '1.2rem',
             padding: '1rem',
             borderRadius: 22,
             background: 'linear-gradient(180deg, rgba(7,19,12,0.52), rgba(15,15,28,0.58))',
@@ -773,35 +776,72 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
             backdropFilter: 'blur(16px)',
             WebkitBackdropFilter: 'blur(16px)',
             boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.04)',
-          }}>
-            <div style={{
-              fontSize: '0.78rem', color: '#6b7280', fontWeight: 700,
-              textTransform: 'uppercase', letterSpacing: '0.06em',
-              marginBottom: '0.6rem', paddingLeft: '0.2rem',
-              display: 'flex', alignItems: 'center', gap: '0.4rem',
-            }}>
-              <span>{CATEGORY_ICONS.persos}</span>
-              Personnages et émotions
-            </div>
-            <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, margin: '0 0 1rem 0.2rem' }}>
-              Achète un perso pour l’activer dans tes quiz, puis débloque ses émotions spéciales.
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-              {SHOP_CHARACTERS.map((char) => (
-                <ShopCharacterCard
-                  key={char.id}
-                  char={char}
-                  progress={progress}
-                  coins={coins}
-                  childName={childName}
-                  purchaseAnim={purchaseAnim}
-                  onBuyCharacter={handleRequestCharacterPurchase}
-                  onBuyEmotion={handleRequestEmotionPurchase}
-                />
-              ))}
-            </div>
-          </div>
-        ) : activeTab === 'mystere' ? (
+          };
+          return (
+            <>
+              {/* Section 1 — Persos possédés */}
+              {ownedChars.length > 0 && (
+                <div style={sectionStyle}>
+                  <div style={{
+                    fontSize: '0.78rem', color: '#48bb78', fontWeight: 700,
+                    textTransform: 'uppercase', letterSpacing: '0.06em',
+                    marginBottom: '0.8rem', paddingLeft: '0.2rem',
+                    display: 'flex', alignItems: 'center', gap: '0.4rem',
+                  }}>
+                    <span>✓</span> Mes personnages ({ownedChars.length})
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                    {ownedChars.map((char) => (
+                      <ShopCharacterCard
+                        key={char.id}
+                        char={char}
+                        progress={progress}
+                        coins={coins}
+                        childName={childName}
+                        purchaseAnim={purchaseAnim}
+                        onBuyCharacter={handleRequestCharacterPurchase}
+                        onBuyEmotion={handleRequestEmotionPurchase}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Section 2 — Persos à acheter */}
+              {unownedChars.length > 0 && (
+                <div style={sectionStyle}>
+                  <div style={{
+                    fontSize: '0.78rem', color: '#6b7280', fontWeight: 700,
+                    textTransform: 'uppercase', letterSpacing: '0.06em',
+                    marginBottom: '0.4rem', paddingLeft: '0.2rem',
+                    display: 'flex', alignItems: 'center', gap: '0.4rem',
+                  }}>
+                    <span>{CATEGORY_ICONS.persos}</span>
+                    À débloquer ({unownedChars.length})
+                  </div>
+                  <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, margin: '0 0 1rem 0.2rem' }}>
+                    Achète un perso pour l'activer dans tes quiz, puis débloque ses émotions spéciales.
+                  </div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                    {unownedChars.map((char) => (
+                      <ShopCharacterCard
+                        key={char.id}
+                        char={char}
+                        progress={progress}
+                        coins={coins}
+                        childName={childName}
+                        purchaseAnim={purchaseAnim}
+                        onBuyCharacter={handleRequestCharacterPurchase}
+                        onBuyEmotion={handleRequestEmotionPurchase}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
+          );
+        })())
+        : activeTab === 'mystere' ? (
           <div style={{
             marginBottom: '1.5rem',
             padding: '1rem',
@@ -1071,7 +1111,7 @@ function MysteryImageCard({ imageId, mysteryImageDefinitions, progress, purchase
             ? 'Image entièrement dévoilée.'
             : dailyLocked
               ? `Limite du jour atteinte. Retour à partir du ${formatFrenchDate(nextUnlockDate)}.`
-              : `Il reste ${purchasesLeftToday} fragment${purchasesLeftToday > 1 ? 's' : ''} à dévoiler aujourd’hui.`}
+              : `Il reste ${purchasesLeftToday} fragment${purchasesLeftToday > 1 ? 's' : ''} à dévoiler aujourd'hui.`}
         </div>
       </div>
 
