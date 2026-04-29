@@ -55,17 +55,7 @@ export function selectSessionQuestions(rule, ruleProgress, maxQuestions = 20, mo
       const targetRound = guidedDone === 0 ? 1 : 2;
       const roundPool = questions.filter(q => q.round === targetRound);
 
-      // Interleave dur/doux for balanced alternation
-      const durQs = shuffleArray(roundPool.filter(q => q.answer === 'dur'));
-      const douxQs = shuffleArray(roundPool.filter(q => q.answer === 'doux'));
-      const interleaved = [];
-      const total = roundPool.length; // use all available (30)
-      for (let i = 0; i < total; i++) {
-        const bucket = i % 2 === 0 ? durQs : douxQs;
-        interleaved.push(bucket[Math.floor(i / 2) % bucket.length]);
-      }
-
-      return interleaved.map(q => ({
+      return shuffleArray(roundPool).map(q => ({
         ...q,
         _ruleChoices: (q.choices && q.choices.length) ? q.choices : rule.choices,
         _ruleDecisionAxes: [],

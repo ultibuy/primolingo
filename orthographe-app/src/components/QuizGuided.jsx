@@ -161,7 +161,10 @@ export default function QuizGuided({
         {/* Sentence OR syllable display */}
         {hasSyllable ? (
           <div style={syllableDisplayStyle}>
-            {question.syllable}
+            {(([consonant, vowel]) => (<>
+              <span style={{ color: 'var(--color-accent)' }}>{consonant}</span>
+              <span style={{ color: '#fb923c' }}>{vowel}</span>
+            </>))(splitSyllable(question.syllable))}
           </div>
         ) : (
           <div style={{ ...sentenceStyle, position: 'relative' }}>
@@ -226,8 +229,8 @@ export default function QuizGuided({
             )}
             {question.round === 2 && formatRichText(
               'Le g est dur devant a, o, u — penser à *GAOU*.<br>' +
-              'Son *doux devant a, o, u* → on ajoute un *e* → ge<br>' +
-              'Son *dur devant i, e, é* → on ajoute un *u* → gu'
+              'Pour avoir un son *doux devant a, o, u* → on ajoute un *e* → ge<br>' +
+              'Pour avoir un son *dur devant i, e, é* → on ajoute un *u* → gu'
             )}
           </div>
         )}
@@ -496,6 +499,12 @@ const sentenceStyle = {
   textAlign: 'center', marginBottom: '1.5rem',
   lineHeight: 1.7, border: '1px solid rgba(255,255,255,0.05)',
 };
+
+function splitSyllable(syl) {
+  if (syl.startsWith('gu')) return ['gu', syl.slice(2)];
+  if (syl.startsWith('ge') && syl.length > 2) return ['ge', syl.slice(2)];
+  return ['g', syl.slice(1)];
+}
 
 const syllableDisplayStyle = {
   fontSize: '4rem', fontWeight: 900, textAlign: 'center',
