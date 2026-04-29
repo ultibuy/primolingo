@@ -38,7 +38,7 @@ import {
 
 const CATEGORIES = [
   { key: 'cosmetique', label: 'Cosm\u00e9tique', filter: (item) => ['themes', 'flames', 'titles', 'victoryAnimations', 'entranceAnimations'].includes(item.category) },
-  { key: 'assurance', label: 'Assurance', filter: (item) => ['streakFreeze', 'doubleCoins'].includes(item.category) },
+  { key: 'boost', label: 'Boost', filter: (item) => ['streakFreeze', 'doubleCoins'].includes(item.category) },
   { key: 'persos', label: 'Persos', filter: () => false },
   { key: 'mystere', label: 'Image mystère', filter: () => false },
 ];
