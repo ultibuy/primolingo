@@ -113,6 +113,251 @@
   },
   "questions": [
     {
+      "id": "syl-ga-1",
+      "round": 1,
+      "syllable": "ga",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-go-1",
+      "round": 1,
+      "syllable": "go",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gu-1",
+      "round": 1,
+      "syllable": "gu",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gi-1",
+      "round": 1,
+      "syllable": "gi",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-ge-1",
+      "round": 1,
+      "syllable": "ge",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-ga-2",
+      "round": 1,
+      "syllable": "ga",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-go-2",
+      "round": 1,
+      "syllable": "go",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gi-2",
+      "round": 1,
+      "syllable": "gi",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-ge-2",
+      "round": 1,
+      "syllable": "ge",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gu-2",
+      "round": 1,
+      "syllable": "gu",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-ga-3",
+      "round": 1,
+      "syllable": "ga",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-ge-3",
+      "round": 1,
+      "syllable": "ge",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-go-3",
+      "round": 1,
+      "syllable": "go",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gi-3",
+      "round": 1,
+      "syllable": "gi",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gu-3",
+      "round": 1,
+      "syllable": "gu",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gue-1",
+      "round": 2,
+      "syllable": "gue",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gui-1",
+      "round": 2,
+      "syllable": "gui",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-geo-1",
+      "round": 2,
+      "syllable": "geo",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gea-1",
+      "round": 2,
+      "syllable": "gea",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gie-1",
+      "round": 2,
+      "syllable": "gie",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-ga-r2",
+      "round": 2,
+      "syllable": "ga",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gi-r2",
+      "round": 2,
+      "syllable": "gi",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gue-2",
+      "round": 2,
+      "syllable": "gue",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gui-2",
+      "round": 2,
+      "syllable": "gui",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-geo-2",
+      "round": 2,
+      "syllable": "geo",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gea-2",
+      "round": 2,
+      "syllable": "gea",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-go-r2",
+      "round": 2,
+      "syllable": "go",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-ge-r2",
+      "round": 2,
+      "syllable": "ge",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gie-2",
+      "round": 2,
+      "syllable": "gie",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gu-r2",
+      "round": 2,
+      "syllable": "gu",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gue-3",
+      "round": 2,
+      "syllable": "gue",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gui-3",
+      "round": 2,
+      "syllable": "gui",
+      "answer": "dur",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-geo-3",
+      "round": 2,
+      "syllable": "geo",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gea-3",
+      "round": 2,
+      "syllable": "gea",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
+      "id": "syl-gie-3",
+      "round": 2,
+      "syllable": "gie",
+      "answer": "doux",
+      "choices": [{ "id": "dur", "label": "Dur  [g]" }, { "id": "doux", "label": "Doux  [ʒ]" }]
+    },
+    {
       "id": "q001",
       "before": "Le train arrive à la ",
       "after": "are à 18 heures.",
@@ -282,11 +527,11 @@
     },
     {
       "id": "q022",
-      "before": "Ma mère a cuisiné une ",
-      "after": "alette des Rois pour toute la famille.",
+      "before": "Le ",
+      "after": "alop du cheval résonnait sur les pavés.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [g] dur + 'a' → g simple (galette)."
+      "explanation": "GALOP : le son [g] dur devant 'a' s'écrit toujours 'g'. Ici, 'g' + 'a' = [ga] dur."
     },
     {
       "id": "q023",
@@ -346,19 +591,19 @@
     },
     {
       "id": "q030",
-      "before": "La ",
-      "after": "are de Lyon est un hub ferroviaire majeur.",
+      "before": "Il prit un ",
+      "after": "obelet en plastique pour boire.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [g] dur + 'a' → g simple (gare)."
+      "explanation": "GOBELET : le son [g] dur devant 'o' s'écrit toujours 'g'. Ici, 'g' + 'o' = [go] dur."
     },
     {
       "id": "q031",
-      "before": "Papa joue au ",
-      "after": "olf tous les samedis matin.",
+      "before": "La ",
+      "after": "ondole glissait silencieusement sur le canal.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [g] dur + 'o' → g simple (golf)."
+      "explanation": "GONDOLE : le son [g] dur devant 'o' s'écrit toujours 'g'. Ici, 'g' + 'o' = [go] dur."
     },
     {
       "id": "q032",
@@ -370,11 +615,11 @@
     },
     {
       "id": "q033",
-      "before": "J'ai oublié ma ",
-      "after": "omme dans ma trousse ce matin.",
+      "before": "L'odeur du ",
+      "after": "oudron chaud se répandait dans la rue.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [g] dur + 'o' → g simple (gomme)."
+      "explanation": "GOUDRON : le son [g] dur devant 'ou' s'écrit toujours 'g'. Ici, 'g' + 'ou' = [gu] dur."
     },
     {
       "id": "q034",
@@ -514,27 +759,27 @@
     },
     {
       "id": "q051",
-      "before": "Mon frère apprend à jouer de la ",
-      "after": "itare depuis trois mois.",
+      "before": "La ",
+      "after": "illotine fut utilisée pendant la Révolution française.",
       "answer": "gu",
-      "difficulty": 1,
-      "explanation": "Son [g] dur + 'i' → gu (guitare). Le 'u' empêche le 'g' de sonner [ʒ] devant 'i'."
+      "difficulty": 2,
+      "explanation": "GUILLOTINE : devant 'i', le son [g] dur s'écrit 'gu'. Le 'u' est muet : 'gu' + 'i' = [gi] dur."
     },
     {
       "id": "q052",
-      "before": "La ",
-      "after": "irlande lumineuse décore le sapin de Noël.",
+      "before": "Elle acheta son billet au ",
+      "after": "ichet de la gare.",
       "answer": "gu",
-      "difficulty": 1,
-      "explanation": "Son [g] dur + 'i' → gu (guirlande)."
+      "difficulty": 2,
+      "explanation": "GUICHET : devant 'i', le son [g] dur s'écrit 'gu'. Le 'u' est muet : 'gu' + 'i' = [gi] dur."
     },
     {
       "id": "q053",
-      "before": "Tiens bien le ",
-      "after": "idon de ton vélo dans les descentes.",
+      "before": "Les enfants adorent les bonbons à la ",
+      "after": "imauve.",
       "answer": "gu",
-      "difficulty": 1,
-      "explanation": "Son [g] dur + 'i' → gu (guidon)."
+      "difficulty": 2,
+      "explanation": "GUIMAUVE : devant 'i', le son [g] dur s'écrit 'gu'. Le 'u' est muet : 'gu' + 'i' = [gi] dur."
     },
     {
       "id": "q054",
@@ -578,11 +823,11 @@
     },
     {
       "id": "q059",
-      "before": "Une ",
-      "after": "êpe a piqué la main de Tom dans le jardin.",
+      "before": "Ce ",
+      "after": "errier intrépide n'avait jamais perdu de bataille.",
       "answer": "gu",
-      "difficulty": 1,
-      "explanation": "Son [g] dur + 'ê' → gu (guêpe)."
+      "difficulty": 2,
+      "explanation": "GUERRIER : devant 'e', le son [g] dur s'écrit 'gu'. Le 'u' est muet : 'gu' + 'e' = [ge] dur."
     },
     {
       "id": "q060",
@@ -602,11 +847,11 @@
     },
     {
       "id": "q062",
-      "before": "Le boulanger sort une ba",
-      "after": "ette bien dorée du four.",
+      "before": "Le chat semblait ",
+      "after": "etter la souris depuis des heures.",
       "answer": "gu",
       "difficulty": 2,
-      "explanation": "Son [g] dur + 'e' → gu (baguette : ba+gu+ette). Le 'u' durcit le 'g' devant 'e'."
+      "explanation": "GUETTER : devant 'e', le son [g] dur s'écrit 'gu'. Le 'u' est muet : 'gu' + 'e' = [ge] dur."
     },
     {
       "id": "q063",
@@ -714,19 +959,19 @@
     },
     {
       "id": "q076",
-      "before": "Nous man",
-      "after": "ons une bonne raclette ce soir.",
+      "before": "Nous son",
+      "after": "ons souvent à notre avenir.",
       "answer": "ge",
       "difficulty": 2,
-      "explanation": "Verbe manger → nous mangeons : son [ʒ] doux + 'o' → ge. Le 'e' conserve le son doux devant 'o'."
+      "explanation": "SONGEONS : devant 'o', le son [ʒ] doux s'écrit 'ge'. On ajoute un 'e' muet pour conserver le son doux : 'ge' + 'o' = [ʒo]."
     },
     {
       "id": "q077",
-      "before": "Nous na",
-      "after": "ons dans la piscine chaque mercredi.",
+      "before": "Nous char",
+      "after": "ons les bagages dans le coffre.",
       "answer": "ge",
       "difficulty": 2,
-      "explanation": "Verbe nager → nous nageons : son [ʒ] doux + 'o' → ge."
+      "explanation": "CHARGEONS : devant 'o', le son [ʒ] doux s'écrit 'ge'. On ajoute un 'e' muet pour conserver le son doux : 'ge' + 'o' = [ʒo]."
     },
     {
       "id": "q078",
@@ -834,19 +1079,19 @@
     },
     {
       "id": "q091",
-      "before": "Un pi",
-      "after": "on blanc s'est posé sur le rebord de la fenêtre.",
+      "before": "Il lo",
+      "after": "ait dans un petit studio en ville.",
       "answer": "ge",
       "difficulty": 2,
-      "explanation": "Son [ʒ] doux + 'o' → ge (pigeon : pi+ge+on)."
+      "explanation": "LOGEAIT : devant 'a', le son [ʒ] doux s'écrit 'ge'. On ajoute un 'e' muet pour conserver le son doux : 'ge' + 'a' = [ʒa]."
     },
     {
       "id": "q092",
-      "before": "Le sportif a réalisé un plon",
-      "after": "on parfait, sans éclaboussures.",
+      "before": "Nous nous gor",
+      "after": "ons de chocolat pendant les fêtes.",
       "answer": "ge",
       "difficulty": 2,
-      "explanation": "Son [ʒ] doux + 'o' → ge (plongeon : plon+ge+on)."
+      "explanation": "GORGEONS : devant 'o', le son [ʒ] doux s'écrit 'ge'. On ajoute un 'e' muet pour conserver le son doux : 'ge' + 'o' = [ʒo]."
     },
     {
       "id": "q093",
@@ -858,11 +1103,11 @@
     },
     {
       "id": "q094",
-      "before": "Le quartier bour",
-      "after": "eois de la ville est très calme le week-end.",
+      "before": "Un beau ",
+      "after": "éranium fleurissait sur le balcon.",
       "answer": "g",
-      "difficulty": 3,
-      "explanation": "Son [ʒ] doux + 'e' → g simple (bourgeois : bour+g+eois)."
+      "difficulty": 1,
+      "explanation": "GÉRANIUM : devant 'é', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'é' = [ʒé] doux."
     },
     {
       "id": "q095",
@@ -914,11 +1159,11 @@
     },
     {
       "id": "q101",
-      "before": "Léo s'est cogné le ",
-      "after": "enou contre le bord de la table.",
+      "before": "L'animal blessé ",
+      "after": "émissait de douleur.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [ʒ] doux + 'e' → g simple (genou). Devant 'e', le 'g' sonne [ʒ] naturellement."
+      "explanation": "GÉMISSAIT : devant 'é', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'é' = [ʒé] doux."
     },
     {
       "id": "q102",
@@ -970,19 +1215,19 @@
     },
     {
       "id": "q108",
-      "before": "La ",
-      "after": "irafe peut mesurer jusqu'à six mètres de hauteur.",
+      "before": "Il reçut une ",
+      "after": "ifle retentissante.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [ʒ] doux + 'i' → g simple (girafe). Devant 'i', le 'g' sonne [ʒ] naturellement."
+      "explanation": "GIFLE : devant 'i', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'i' = [ʒi] doux."
     },
     {
       "id": "q109",
-      "before": "Mets ton ",
-      "after": "ilet, il fait vraiment froid ce matin.",
+      "before": "Le thé au ",
+      "after": "ingembre est excellent pour la digestion.",
       "answer": "g",
-      "difficulty": 1,
-      "explanation": "Son [ʒ] doux + 'i' → g simple (gilet)."
+      "difficulty": 2,
+      "explanation": "GINGEMBRE : devant 'i', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'i' = [ʒi] doux."
     },
     {
       "id": "q110",
@@ -1018,11 +1263,11 @@
     },
     {
       "id": "q114",
-      "before": "Les cours d'EPS se déroulent au ",
-      "after": "ymnase.",
+      "before": "Le pilote utilisa un ",
+      "after": "yroscope pour maintenir l'équilibre.",
       "answer": "g",
-      "difficulty": 1,
-      "explanation": "Son [ʒ] doux + 'y' → g simple (gymnase). Devant 'y', le 'g' sonne comme devant 'i'."
+      "difficulty": 2,
+      "explanation": "GYROSCOPE : devant 'y', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'y' = [ʒi] doux."
     },
     {
       "id": "q115",
@@ -1034,11 +1279,11 @@
     },
     {
       "id": "q116",
-      "before": "Le ",
-      "after": "éant de la forêt abattit un chêne d'un seul coup.",
+      "before": "La jeune ",
+      "after": "énisse broutait paisiblement dans le pré.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [ʒ] doux + 'é' → g simple (géant)."
+      "explanation": "GÉNISSE : devant 'é', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'é' = [ʒé] doux."
     },
     {
       "id": "q117",
@@ -1226,11 +1471,11 @@
     },
     {
       "id": "q140",
-      "before": "Le paysage de montagne offre un ma",
-      "after": "nifique panorama.",
+      "before": "Les enfants adoraient ",
+      "after": "rimper aux arbres en été.",
       "answer": "g",
-      "difficulty": 3,
-      "explanation": "Son [g] dur + 'n' (consonne) → g simple (magnifique : ma+g+nifique)."
+      "difficulty": 1,
+      "explanation": "GRIMPER : devant une consonne ('r'), le son [g] dur s'écrit toujours 'g'. Pas besoin d'ajouter 'u'."
     },
     {
       "id": "q141",
@@ -1250,19 +1495,19 @@
     },
     {
       "id": "q143",
-      "before": "L'équipe s'est entraînée avec ",
-      "after": "rand sérieux.",
+      "before": "La ",
+      "after": "rêle a abîmé les cultures cette année.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grand)."
+      "explanation": "GRÊLE : devant une consonne ('r'), le son [g] dur s'écrit toujours 'g'."
     },
     {
       "id": "q144",
-      "before": "La ",
-      "after": "alerie de tir était très fréquentée ce matin.",
+      "before": "Il tendit la main ",
+      "after": "auche pour saluer.",
       "answer": "g",
-      "difficulty": 2,
-      "explanation": "Son [g] dur + 'a' → g simple (galerie)."
+      "difficulty": 1,
+      "explanation": "GAUCHE : le son [g] dur devant 'au' s'écrit toujours 'g'. Ici, 'g' + 'au' = [go] dur."
     },
     {
       "id": "q145",
@@ -1274,19 +1519,19 @@
     },
     {
       "id": "q146",
-      "before": "En Islande, le ",
-      "after": "eyser jaillit toutes les cinq minutes.",
-      "answer": "g",
-      "difficulty": 3,
-      "explanation": "Son [g] dur + 'e' → attention ! 'geyser' est un mot d'emprunt islandais, il s'écrit 'g' même devant 'e' : [g] dur + 'ey'. Cas exceptionnel à retenir."
+      "before": "La ",
+      "after": "enon portait son petit sur le dos.",
+      "answer": "gu",
+      "difficulty": 2,
+      "explanation": "GUENON : devant 'e', le son [g] dur s'écrit 'gu'. Le 'u' est muet : 'gu' + 'e' = [ge] dur."
     },
     {
       "id": "q147",
-      "before": "En janvier, le ",
-      "after": "ivre couvre les vitres la nuit.",
+      "before": "Le médecin lui prescrit une ",
+      "after": "élule à avaler après le repas.",
       "answer": "g",
-      "difficulty": 2,
-      "explanation": "Son [ʒ] doux + 'i' → g simple (givre)."
+      "difficulty": 1,
+      "explanation": "GÉLULE : devant 'é', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'é' = [ʒé] doux."
     },
     {
       "id": "q148",
@@ -1314,19 +1559,19 @@
     },
     {
       "id": "q151",
-      "before": "Nous avons étudié la ",
-      "after": "éographie de l'Afrique ce trimestre.",
+      "before": "La ",
+      "after": "élatine est utilisée pour faire les gelées.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [ʒ] doux + 'é' → g simple (géographie)."
+      "explanation": "GÉLATINE : devant 'é', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'é' = [ʒé] doux."
     },
     {
       "id": "q152",
-      "before": "L'exercice de ",
-      "after": "éométrie était difficile.",
+      "before": "Le médecin prescrivit un médicament ",
+      "after": "énérique, moins coûteux.",
       "answer": "g",
-      "difficulty": 1,
-      "explanation": "Son [ʒ] doux + 'é' → g simple (géométrie)."
+      "difficulty": 2,
+      "explanation": "GÉNÉRIQUE : devant 'é', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'é' = [ʒé] doux."
     },
     {
       "id": "q153",
@@ -1346,11 +1591,11 @@
     },
     {
       "id": "q155",
-      "before": "La vieille horloge est posée sur le ",
-      "after": "éridon du couloir.",
+      "before": "Elle mit le titre entre ",
+      "after": "illemets.",
       "answer": "gu",
-      "difficulty": 3,
-      "explanation": "Son [g] dur + 'é' → gu (guéridon : gu+éridon). Le 'u' maintient le son dur devant 'é'."
+      "difficulty": 2,
+      "explanation": "GUILLEMETS : devant 'i', le son [g] dur s'écrit 'gu'. Le 'u' est muet : 'gu' + 'i' = [gi] dur."
     },
     {
       "id": "q156",
@@ -1362,19 +1607,19 @@
     },
     {
       "id": "q157",
-      "before": "La lar",
-      "after": "eur de cette rivière dépasse deux cents mètres.",
+      "before": "Le bruit le ",
+      "after": "ênait pour travailler.",
       "answer": "g",
-      "difficulty": 2,
-      "explanation": "Son [ʒ] doux + 'e' → g simple (largeur : lar+g+eur). Même 'g' que dans 'large' [laʁʒ]."
+      "difficulty": 1,
+      "explanation": "GÊNAIT : devant 'ê', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'ê' = [ʒê] doux."
     },
     {
       "id": "q158",
-      "before": "Notre ",
-      "after": "ide touristique nous a expliqué l'histoire du monument.",
+      "before": "Il mit accidentellement la main dans un ",
+      "after": "êpier.",
       "answer": "gu",
-      "difficulty": 1,
-      "explanation": "Son [g] dur + 'i' → gu (guide : gu+ide)."
+      "difficulty": 2,
+      "explanation": "GUÊPIER : devant 'ê', le son [g] dur s'écrit 'gu'. Le 'u' est muet : 'gu' + 'ê' = [gê] dur."
     },
     {
       "id": "q159",
@@ -1410,35 +1655,35 @@
     },
     {
       "id": "q163",
-      "before": "L'épilo",
-      "after": "e du roman nous a vraiment surpris.",
+      "before": "Le soldat montait la garde dans sa ",
+      "after": "érite.",
       "answer": "gu",
-      "difficulty": 3,
-      "explanation": "Son [g] dur + 'e' → gu (épilogue : épilo+gu+e). Le 'u' est obligatoire devant 'e'."
+      "difficulty": 2,
+      "explanation": "GUÉRITE : devant 'é', le son [g] dur s'écrit 'gu'. Le 'u' est muet : 'gu' + 'é' = [gé] dur."
     },
     {
       "id": "q164",
-      "before": "Ce monolo",
-      "after": "e théâtral a duré vingt minutes.",
+      "before": "L'auteur rédigea un court prolo",
+      "after": "e avant le premier chapitre.",
       "answer": "gu",
-      "difficulty": 3,
-      "explanation": "Son [g] dur + 'e' → gu (monologue : monolo+gu+e)."
+      "difficulty": 2,
+      "explanation": "PROLOGUE : devant 'e' muet final, le son [g] dur s'écrit 'gu'. Le 'u' est muet : 'gu' + 'e' = [ge] dur."
     },
     {
       "id": "q165",
-      "before": "Le dialo",
-      "after": "e entre les deux ministres a été tendu.",
+      "before": "Le général fit une longue haran",
+      "after": "e devant ses troupes.",
       "answer": "gu",
-      "difficulty": 3,
-      "explanation": "Son [g] dur + 'e' → gu (dialogue : dialo+gu+e)."
+      "difficulty": 2,
+      "explanation": "HARANGUE : devant 'e' muet final, le son [g] dur s'écrit 'gu'. Le 'u' est muet : 'gu' + 'e' = [ge] dur."
     },
     {
       "id": "q166",
-      "before": "Ce catalo",
-      "after": "e présente toutes les nouveautés de l'année.",
+      "before": "L'avion avait subi des dommages sur sa carlin",
+      "after": "e.",
       "answer": "gu",
       "difficulty": 3,
-      "explanation": "Son [g] dur + 'e' → gu (catalogue : catalo+gu+e)."
+      "explanation": "CARLINGUE : devant 'e' muet final, le son [g] dur s'écrit 'gu'. Le 'u' est muet : 'gu' + 'e' = [ge] dur."
     },
     {
       "id": "q167",
@@ -1474,35 +1719,35 @@
     },
     {
       "id": "q171",
-      "before": "Le ",
-      "after": "rand prix du roman est décerné chaque automne.",
+      "before": "L'allée du jardin était couverte de ",
+      "after": "ravier.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grand prix)."
+      "explanation": "GRAVIER : devant une consonne ('r'), le son [g] dur s'écrit toujours 'g'."
     },
     {
       "id": "q172",
-      "before": "Le ",
-      "after": "lacier fond à cause du réchauffement climatique.",
+      "before": "Ce fut un retour ",
+      "after": "lorieux pour l'équipe.",
       "answer": "g",
-      "difficulty": 2,
-      "explanation": "Son [g] dur + 'l' (consonne) → g simple (glacier)."
+      "difficulty": 1,
+      "explanation": "GLORIEUX : devant une consonne ('l'), le son [g] dur s'écrit toujours 'g'."
     },
     {
       "id": "q173",
       "before": "La ",
-      "after": "rande avenue était couverte de neige.",
+      "after": "rive chantait dans les branches du cerisier.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grande)."
+      "explanation": "GRIVE : devant une consonne ('r'), le son [g] dur s'écrit toujours 'g'."
     },
     {
       "id": "q174",
-      "before": "Une ima",
-      "after": "e de synthèse illustre parfaitement l'article.",
+      "before": "Elle admirait le beau paysa",
+      "after": " devant sa fenêtre.",
       "answer": "g",
-      "difficulty": 2,
-      "explanation": "Son [ʒ] doux + 'e' muet → g simple (image : ima+g+e)."
+      "difficulty": 1,
+      "explanation": "PAYSAGE : le 'g' devant 'e' muet final se prononce [ʒ] doux. Ici, 'g' + 'e' muet = son doux en fin de mot."
     },
     {
       "id": "q175",
@@ -1530,19 +1775,19 @@
     },
     {
       "id": "q178",
-      "before": "Un ",
-      "after": "este d'amitié peut changer une journée difficile.",
+      "before": "On découvrit un important ",
+      "after": "isement de pétrole dans cette région.",
       "answer": "g",
-      "difficulty": 1,
-      "explanation": "Son [ʒ] doux + 'e' → g simple (geste)."
+      "difficulty": 2,
+      "explanation": "GISEMENT : devant 'i', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'i' = [ʒi] doux."
     },
     {
       "id": "q179",
       "before": "Le ",
-      "after": "énie a besoin d'être cultivé dès l'enfance.",
+      "after": "éologue étudia les roches de la région.",
       "answer": "g",
       "difficulty": 2,
-      "explanation": "Son [ʒ] doux + 'é' → g simple (génie)."
+      "explanation": "GÉOLOGUE : devant 'é', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'é' = [ʒé] doux."
     },
     {
       "id": "q180",
@@ -1562,11 +1807,11 @@
     },
     {
       "id": "q182",
-      "before": "Nous voya",
-      "after": "ons à travers toute la région.",
+      "before": "Nous prolon",
+      "after": "ons la réunion d'une heure.",
       "answer": "ge",
       "difficulty": 2,
-      "explanation": "Verbe voyager → nous voyageons : son [ʒ] doux + 'o' → ge (voya+ge+ons)."
+      "explanation": "PROLONGEONS : devant 'o', le son [ʒ] doux s'écrit 'ge'. On ajoute un 'e' muet pour conserver le son doux : 'ge' + 'o' = [ʒo]."
     },
     {
       "id": "q183",
@@ -1586,75 +1831,75 @@
     },
     {
       "id": "q185",
-      "before": "Le ",
-      "after": "enou enflé lui faisait souffrir depuis une semaine.",
+      "before": "Elle eut une idée ",
+      "after": "éniale pour résoudre le problème.",
       "answer": "g",
-      "difficulty": 2,
-      "explanation": "Son [ʒ] doux + 'e' → g simple (genou)."
+      "difficulty": 1,
+      "explanation": "GÉNIALE : devant 'é', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'é' = [ʒé] doux."
     },
     {
       "id": "q186",
-      "before": "Une ",
-      "after": "irouette colorée tourne sur le toit de la ferme.",
+      "before": "L'arôme des clous de ",
+      "after": "irofle embaumait la cuisine.",
       "answer": "g",
       "difficulty": 2,
-      "explanation": "Son [ʒ] doux + 'i' → g simple (girouette)."
+      "explanation": "GIROFLE : devant 'i', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'i' = [ʒi] doux."
     },
     {
       "id": "q187",
-      "before": "Le ",
-      "after": "el coiffant est épuisé, il faudra en racheter.",
+      "before": "Elle portait un collier orné de pierres ",
+      "after": "renat.",
       "answer": "g",
-      "difficulty": 1,
-      "explanation": "Son [ʒ] doux + 'e' → g simple (gel)."
+      "difficulty": 2,
+      "explanation": "GRENAT : devant une consonne ('r'), le son [g] dur s'écrit toujours 'g'."
     },
     {
       "id": "q188",
-      "before": "Le ",
-      "after": "olfeur a réussi un birdie au troisième trou.",
+      "before": "Le prêtre aspergeait les fidèles avec son ",
+      "after": "oupillon.",
       "answer": "g",
-      "difficulty": 2,
-      "explanation": "Son [g] dur + 'o' → g simple (golfeur)."
+      "difficulty": 3,
+      "explanation": "GOUPILLON : le son [g] dur devant 'ou' s'écrit toujours 'g'. Ici, 'g' + 'ou' = [gu] dur."
     },
     {
       "id": "q189",
-      "before": "La ",
-      "after": "lace fond rapidement sous le soleil d'été.",
+      "before": "Après la moisson, les pauvres venaient ",
+      "after": "laner les épis oubliés.",
       "answer": "g",
-      "difficulty": 1,
-      "explanation": "Son [g] dur + 'l' (consonne) → g simple (glace)."
+      "difficulty": 2,
+      "explanation": "GLANER : devant une consonne ('l'), le son [g] dur s'écrit toujours 'g'."
     },
     {
       "id": "q190",
-      "before": "Ma voisine a planté de la ",
-      "after": "lycine sur son mur.",
+      "before": "Les poules ",
+      "after": "loussaient dans la basse-cour.",
       "answer": "g",
       "difficulty": 2,
-      "explanation": "Son [g] dur + 'l' (consonne) → g simple (glycine)."
+      "explanation": "GLOUSSAIENT : devant une consonne ('l'), le son [g] dur s'écrit toujours 'g'."
     },
     {
       "id": "q191",
-      "before": "Le ",
-      "after": "orille a été observé dans son habitat naturel.",
+      "before": "On entendait le tonnerre ",
+      "after": "ronder au loin.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [g] dur + 'o' → g simple (gorille)."
+      "explanation": "GRONDER : devant une consonne ('r'), le son [g] dur s'écrit toujours 'g'."
     },
     {
       "id": "q192",
-      "before": "Nous avons fait un beau voya",
-      "after": "e en Bretagne cet été.",
+      "before": "Le petit villa",
+      "after": " était animé le jour du marché.",
       "answer": "g",
-      "difficulty": 2,
-      "explanation": "Son [ʒ] doux + 'e' muet → g simple (voyage : voya+g+e)."
+      "difficulty": 1,
+      "explanation": "VILLAGE : le 'g' devant 'e' muet final se prononce [ʒ] doux. Ici, 'g' + 'e' muet = son doux en fin de mot."
     },
     {
       "id": "q193",
-      "before": "Le ",
-      "after": "rand ménage de printemps a duré la journée entière.",
+      "before": "Elle attrapait souvent la ",
+      "after": "rippe en hiver.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [g] dur + 'r' (consonne) → g simple (grand)."
+      "explanation": "GRIPPE : devant une consonne ('r'), le son [g] dur s'écrit toujours 'g'."
     },
     {
       "id": "q194",
@@ -1666,51 +1911,51 @@
     },
     {
       "id": "q195",
-      "before": "La ",
-      "after": "estion de ce projet est confiée à Marie.",
+      "before": "Les chercheurs étudient le patrimoine ",
+      "after": "énétique des espèces rares.",
       "answer": "g",
       "difficulty": 2,
-      "explanation": "Son [ʒ] doux + 'e' → g simple (gestion)."
+      "explanation": "GÉNÉTIQUE : devant 'é', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'é' = [ʒé] doux."
     },
     {
       "id": "q196",
-      "before": "Nous chan",
-      "after": "ons d'avis après avoir bien réfléchi.",
+      "before": "Nous allon",
+      "after": "ons notre promenade jusqu'au lac.",
       "answer": "ge",
       "difficulty": 2,
-      "explanation": "Verbe changer → nous changeons : son [ʒ] doux + 'o' → ge (chan+ge+ons)."
+      "explanation": "ALLONGEONS : devant 'o', le son [ʒ] doux s'écrit 'ge'. On ajoute un 'e' muet pour conserver le son doux : 'ge' + 'o' = [ʒo]."
     },
     {
       "id": "q197",
-      "before": "Nous parta",
-      "after": "ons tous nos repas en famille.",
+      "before": "Nous enga",
+      "after": "ons notre équipe dans ce projet ambitieux.",
       "answer": "ge",
       "difficulty": 2,
-      "explanation": "Verbe partager → nous partageons : son [ʒ] doux + 'o' → ge (parta+ge+ons)."
+      "explanation": "ENGAGEONS : devant 'o', le son [ʒ] doux s'écrit 'ge'. On ajoute un 'e' muet pour conserver le son doux : 'ge' + 'o' = [ʒo]."
     },
     {
       "id": "q198",
-      "before": "Le petit ",
-      "after": "arçon s'est endormi dans le canapé.",
+      "before": "Il a fait une grosse ",
+      "after": "affe en révélant le secret.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "Son [g] dur + 'a' → g simple (garçon)."
+      "explanation": "GAFFE : le son [g] dur devant 'a' s'écrit toujours 'g'. Ici, 'g' + 'a' = [ga] dur."
     },
     {
       "id": "q199",
-      "before": "La ",
-      "after": "irouette du clocher tourne par grand vent.",
+      "before": "Les ",
+      "after": "iroflées embaumaient le jardin au printemps.",
       "answer": "g",
       "difficulty": 2,
-      "explanation": "Son [ʒ] doux + 'i' → g simple (girouette)."
+      "explanation": "GIROFLÉES : devant 'i', le son [ʒ] doux s'écrit simplement 'g'. Ici, 'g' + 'i' = [ʒi] doux."
     },
     {
       "id": "q200",
-      "before": "La ",
-      "after": "irlande de fleurs ornait l'entrée du mariage.",
+      "before": "Les soldats portaient des ",
+      "after": "êtres pour protéger leurs jambes.",
       "answer": "gu",
-      "difficulty": 1,
-      "explanation": "Son [g] dur + 'i' → gu (guirlande : gu+irlande)."
+      "difficulty": 2,
+      "explanation": "GUÊTRES : devant 'ê', le son [g] dur s'écrit 'gu'. Le 'u' est muet : 'gu' + 'ê' = [gê] dur."
     }
   ],
   "group": "aventurier"

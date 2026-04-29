@@ -72,6 +72,7 @@ export default function QuizGuided({
     decisionAxes: question?._ruleDecisionAxes || rule.decisionAxes || [],
   };
   const hasVerb = question?.verb !== undefined;
+  const hasSyllable = !!question?.syllable;
   const eliminated = getEliminated(guidedRule, axisSelections, choices);
   const remaining = choices.filter(c => !eliminated.has(c.id));
   const onlyOneLeft = remaining.length === 1;
@@ -157,38 +158,44 @@ export default function QuizGuided({
           coins={coins}
         />
 
-        {/* Sentence */}
-        <div style={{ ...sentenceStyle, position: 'relative' }}>
-          {question.before}
-          {hasVerb
-            ? <><span style={{ whiteSpace: 'nowrap' }}>
-                <span style={{ color: '#e2e2e2', fontWeight: 600 }}>{question.verb}</span>
-                <span style={{
-                  textDecoration: 'underline',
-                  textDecorationStyle: 'dashed',
-                  textDecorationColor: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
-                  textUnderlineOffset: '4px',
-                  color: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
-                  fontWeight: 700, padding: '0 4px',
-                }}>
-                  {selected ? choices.find(c => c.id === selected)?.label.replace('-', '') : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
-                </span>
-              </span>{question.after}</>
-            : <><span style={{
-                  textDecoration: 'underline',
-                  textDecorationStyle: 'dashed',
-                  textDecorationColor: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
-                  textUnderlineOffset: '4px',
-                  color: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
-                  fontWeight: 700, padding: '0 4px',
-                }}>
-                  {selected ? choices.find(c => c.id === selected)?.label : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
-                </span>{question.after}</>}
-          {onFlagQuestion && <FlagBugButton key={question.id} onFlag={(unflag) => onFlagQuestion(question, rule, unflag)} />}
-        </div>
+        {/* Sentence OR syllable display */}
+        {hasSyllable ? (
+          <div style={syllableDisplayStyle}>
+            {question.syllable}
+          </div>
+        ) : (
+          <div style={{ ...sentenceStyle, position: 'relative' }}>
+            {question.before}
+            {hasVerb
+              ? <><span style={{ whiteSpace: 'nowrap' }}>
+                  <span style={{ color: '#e2e2e2', fontWeight: 600 }}>{question.verb}</span>
+                  <span style={{
+                    textDecoration: 'underline',
+                    textDecorationStyle: 'dashed',
+                    textDecorationColor: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
+                    textUnderlineOffset: '4px',
+                    color: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
+                    fontWeight: 700, padding: '0 4px',
+                  }}>
+                    {selected ? choices.find(c => c.id === selected)?.label.replace('-', '') : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
+                  </span>
+                </span>{question.after}</>
+              : <><span style={{
+                    textDecoration: 'underline',
+                    textDecorationStyle: 'dashed',
+                    textDecorationColor: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
+                    textUnderlineOffset: '4px',
+                    color: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
+                    fontWeight: 700, padding: '0 4px',
+                  }}>
+                    {selected ? choices.find(c => c.id === selected)?.label : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
+                  </span>{question.after}</>}
+            {onFlagQuestion && <FlagBugButton key={question.id} onFlag={(unflag) => onFlagQuestion(question, rule, unflag)} />}
+          </div>
+        )}
 
         {/* B5 — Label above the decision panel (same style as "Ta réponse") */}
-        {!showResult && (
+        {!hasSyllable && !showResult && (
           <div style={{
             display: 'flex', alignItems: 'center', gap: '0.8rem',
             margin: '0.5rem 0 1rem',
@@ -202,13 +209,22 @@ export default function QuizGuided({
         )}
 
         {/* Decision Panel */}
-        {!showResult && (
+        {!hasSyllable && !showResult && (
           <DecisionPanel
             rule={guidedRule}
             axisSelections={axisSelections}
             setAxisSelections={setAxisSelections}
             axisHints={question?.axisHints}
           />
+        )}
+
+        {/* Round 2 reminder banner */}
+        {hasSyllable && question.round === 2 && !showResult && (
+          <div style={roundReminderStyle}>
+            <strong>Rappel :</strong> son dur avant e/i → ajoute <strong>u</strong> (gue, gui)
+            &nbsp;·&nbsp;
+            son doux avant a/o/u → ajoute <strong>e</strong> (gea, geo, geu)
+          </div>
         )}
 
         {/* B1 — Separator between decision panel and answer buttons */}
@@ -315,9 +331,17 @@ export default function QuizGuided({
             }}>
               {isCorrect ? 'Bravo !' : 'Raté !'}
             </div>
-            <div style={{ fontSize: '0.85rem', lineHeight: 1.6, color: '#d1d5db' }}>
-              {question.explanation}
-            </div>
+            {hasSyllable ? (
+              <div style={{ fontSize: '0.85rem', lineHeight: 1.6, color: '#d1d5db' }}>
+                <strong style={{ color: '#c4b5fd' }}>{question.syllable}</strong>
+                {' → son '}
+                {question.answer === 'dur' ? 'dur [g] — comme dans "gare"' : 'doux [ʒ] — comme dans "girafe"'}
+              </div>
+            ) : (
+              <div style={{ fontSize: '0.85rem', lineHeight: 1.6, color: '#d1d5db' }}>
+                {question.explanation}
+              </div>
+            )}
           </div>
         )}
 
@@ -466,4 +490,19 @@ const sentenceStyle = {
   padding: '1.2rem 1.5rem', fontSize: '1.15rem',
   textAlign: 'center', marginBottom: '1.5rem',
   lineHeight: 1.7, border: '1px solid rgba(255,255,255,0.05)',
+};
+
+const syllableDisplayStyle = {
+  fontSize: '4rem', fontWeight: 900, textAlign: 'center',
+  letterSpacing: '0.05em', color: 'var(--color-accent)',
+  padding: '1.5rem 0 1rem', lineHeight: 1,
+  marginBottom: '0.5rem',
+};
+
+const roundReminderStyle = {
+  background: 'rgba(139,92,246,0.1)',
+  border: '1px solid rgba(139,92,246,0.3)',
+  borderRadius: 10, padding: '0.8rem 1rem',
+  fontSize: '0.82rem', color: '#c4b5fd',
+  marginBottom: '1rem', lineHeight: 1.5,
 };

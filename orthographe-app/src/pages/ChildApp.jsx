@@ -568,7 +568,7 @@ export default function ChildApp() {
       ruleProgress.sm2.nextReviewDate <= getToday());
 
     const quizMode = sm2Review ? 'direct' : (mode || determineQuizMode(ruleProgress));
-    const questions = selectSessionQuestions(rule, ruleProgress, sessionSize);
+    const questions = selectSessionQuestions(rule, ruleProgress, sessionSize, quizMode);
     if (questions.length === 0) return;
 
     launchQuizWithFirstSessionModal(() => {

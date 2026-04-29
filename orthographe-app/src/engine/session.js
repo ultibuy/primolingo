@@ -42,9 +42,22 @@ function shuffleArray(arr) {
  * @param {number} maxQuestions - Maximum questions for the session (default 20).
  * @returns {Array} Selected questions, shuffled.
  */
-export function selectSessionQuestions(rule, ruleProgress, maxQuestions = 20) {
-  const questions = rule.questions || [];
+export function selectSessionQuestions(rule, ruleProgress, maxQuestions = 20, mode = null) {
+  let questions = rule.questions || [];
   if (questions.length === 0) return [];
+
+  // Round filtering: rules with syllable-based rounds (e.g. g-gu-ge)
+  const hasRounds = questions.some(q => q.round);
+  if (hasRounds) {
+    const effectiveMode = mode || ((ruleProgress?.level || 0) < 2 ? 'guided' : 'direct');
+    if (effectiveMode === 'guided') {
+      const guidedDone = ruleProgress?.guidedSessionsCompleted || 0;
+      const targetRound = guidedDone === 0 ? 1 : 2;
+      questions = questions.filter(q => q.round === targetRound);
+    } else {
+      questions = questions.filter(q => !q.round);
+    }
+  }
 
   const recentlyShown = new Set(ruleProgress?.recentlyShown || []);
 
@@ -109,7 +122,7 @@ export function selectSessionQuestions(rule, ruleProgress, maxQuestions = 20) {
   return shuffleArray(selected).map(q => ({
     ...q,
     _ruleChoices: (q.choices && q.choices.length) ? q.choices : rule.choices,
-    _ruleDecisionAxes: rule.decisionAxes,
+    _ruleDecisionAxes: q.round ? [] : rule.decisionAxes,
     _ruleId: q._ruleId || rule.id,
     _ruleTitle: q._ruleTitle || rule.shortTitle || rule.title,
   }));
