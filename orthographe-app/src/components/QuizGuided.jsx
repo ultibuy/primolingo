@@ -163,7 +163,7 @@ export default function QuizGuided({
           <div style={syllableDisplayStyle}>
             {(([consonant, vowel]) => (<>
               <span style={{ color: 'var(--color-accent)' }}>{consonant}</span>
-              <span style={{ color: '#fb923c' }}>{vowel}</span>
+              <span style={{ color: '#fbbf24' }}>{vowel}</span>
             </>))(splitSyllable(question.syllable))}
           </div>
         ) : (
@@ -225,13 +225,17 @@ export default function QuizGuided({
         {hasSyllable && !showResult && (
           <div style={roundReminderStyle}>
             {question.round === 1 && formatRichText(
-              'Le g est dur devant a, o, u. Pour s\'en souvenir : *GAOU*.'
+              'g est dur (comme dans *ga*re) devant a, o, u. Pour se souvenir : *GAOU*'
             )}
-            {question.round === 2 && formatRichText(
-              'Le g est dur devant a, o, u — penser à *GAOU*.<br>' +
-              'Pour avoir un son *doux devant a, o, u* → on ajoute un *e* → ge<br>' +
-              'Pour avoir un son *dur devant i, e, é* → on ajoute un *u* → gu'
-            )}
+            {question.round === 2 && [
+              'g est dur (comme dans *ga*re) devant a, o, u — penser à *GAOU*',
+              'Pour avoir un son *doux devant a, o, u* → on ajoute un *e* → ge',
+              'Pour avoir un son *dur devant i, e, é* → on ajoute un *u* → gu',
+            ].map((line, i) => (
+              <div key={i} style={{ marginBottom: i < 2 ? '0.6rem' : 0 }}>
+                {formatRichText(line)}
+              </div>
+            ))}
           </div>
         )}
 

@@ -8,6 +8,13 @@ import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
 import CharacterSprite from './CharacterSprite.jsx';
 import mangaImage from '../assets/manga.png';
 import ryuImage from '../assets/ryu.png';
+import brasierImage from '../assets/brasier.png';
+import fleauImage from '../assets/fleau.png';
+import gardienCimesImage from '../assets/gardien-cimes.png';
+import gardienSeuilImage from '../assets/gardien-seuil.png';
+import regardImage from '../assets/regard.png';
+import seigneurImage from '../assets/seigneur.png';
+import eclatImage from '../assets/eclat.png';
 import { SHOP_CHARACTERS, SHOP_EMOTIONS, BASE_EMOTIONS } from '../data/shopCharacters.js';
 import { isLocalhost } from '../debug.js';
 import {
@@ -79,7 +86,19 @@ const EQUIP_SLOT_MAP = {
 const MYSTERY_IMAGE_ASSETS = {
   manga: ryuImage,
   ryu: mangaImage,
+  brasier: brasierImage,
+  fleau: fleauImage,
+  'gardien-cimes': gardienCimesImage,
+  'gardien-seuil': gardienSeuilImage,
+  regard: regardImage,
+  seigneur: seigneurImage,
+  eclat: eclatImage,
 };
+
+const MYSTERY_CATEGORIES = [
+  { id: 'asie', label: 'Asie', imageIds: ['manga', 'ryu'] },
+  { id: 'fantastiques', label: 'Animaux fantastiques', imageIds: ['brasier', 'fleau', 'gardien-cimes', 'gardien-seuil', 'regard', 'seigneur', 'eclat'] },
+];
 
 function getMysteryImageSource(imageId, mysteryImageDefinitions) {
   return mysteryImageDefinitions?.[imageId]?.imageDataUrl || MYSTERY_IMAGE_ASSETS[imageId] || '';
@@ -861,22 +880,39 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
               <span>{CATEGORY_ICONS.mystere}</span>
               Image mystère
             </div>
-            <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, margin: '0 0 1rem 0.2rem' }}>
-              Dévoile un fragment à la fois. Maximum 2 fragments par jour, sur les deux images confondues.
+            <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, margin: '0 0 1.2rem 0.2rem' }}>
+              Dévoile un fragment à la fois. Maximum 2 fragments par jour, sur toutes les images confondues.
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
-              {Object.keys(mysteryImageDefinitions).map((imageId) => (
-                <MysteryImageCard
-                  key={imageId}
-                  imageId={imageId}
-                  mysteryImageDefinitions={mysteryImageDefinitions}
-                  progress={progress}
-                  purchaseAnim={purchaseAnim}
-                  onPurchase={handleRequestMysteryPurchase}
-                  onPreview={() => setPreviewMysteryImageId(imageId)}
-                />
-              ))}
-            </div>
+            {MYSTERY_CATEGORIES.map(cat => {
+              const ids = cat.imageIds.filter(id => mysteryImageDefinitions[id]);
+              if (ids.length === 0) return null;
+              return (
+                <div key={cat.id} style={{ marginBottom: '1.5rem' }}>
+                  <div style={{
+                    fontSize: '0.72rem', color: '#6b7280', fontWeight: 700,
+                    textTransform: 'uppercase', letterSpacing: '0.08em',
+                    marginBottom: '0.7rem', paddingLeft: '0.2rem',
+                    borderBottom: '1px solid rgba(255,255,255,0.06)',
+                    paddingBottom: '0.4rem',
+                  }}>
+                    {cat.label}
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem' }}>
+                    {ids.map(imageId => (
+                      <MysteryImageCard
+                        key={imageId}
+                        imageId={imageId}
+                        mysteryImageDefinitions={mysteryImageDefinitions}
+                        progress={progress}
+                        purchaseAnim={purchaseAnim}
+                        onPurchase={handleRequestMysteryPurchase}
+                        onPreview={() => setPreviewMysteryImageId(imageId)}
+                      />
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         ) : (
           Object.entries(grouped).map(([groupKey, items]) => (

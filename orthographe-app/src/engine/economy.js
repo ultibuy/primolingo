@@ -16,11 +16,55 @@ export const MYSTERY_IMAGE_DEFINITIONS = {
     id: 'manga',
     name: 'Dragon céleste',
     revealOrder: [1, 2, 3, 4, 5, 0],
+    category: 'asie',
   },
   ryu: {
     id: 'ryu',
     name: 'Guerrier fulgurant',
     revealOrder: [0, 2, 3, 4, 5, 1],
+    category: 'asie',
+  },
+  brasier: {
+    id: 'brasier',
+    name: 'Le Brasier Éternel',
+    revealOrder: [0, 2, 3, 4, 5, 1],
+    category: 'fantastiques',
+  },
+  fleau: {
+    id: 'fleau',
+    name: 'Le Fléau des Marais',
+    revealOrder: [0, 2, 3, 4, 5, 1],
+    category: 'fantastiques',
+  },
+  'gardien-cimes': {
+    id: 'gardien-cimes',
+    name: 'Le Gardien des Cimes',
+    revealOrder: [0, 2, 3, 4, 5, 1],
+    category: 'fantastiques',
+  },
+  'gardien-seuil': {
+    id: 'gardien-seuil',
+    name: 'Le Gardien du Seuil',
+    revealOrder: [0, 2, 3, 4, 5, 1],
+    category: 'fantastiques',
+  },
+  regard: {
+    id: 'regard',
+    name: 'Le Regard Interdit',
+    revealOrder: [0, 2, 3, 4, 5, 1],
+    category: 'fantastiques',
+  },
+  seigneur: {
+    id: 'seigneur',
+    name: 'Le Seigneur des Profondeurs',
+    revealOrder: [0, 2, 3, 4, 5, 1],
+    category: 'fantastiques',
+  },
+  eclat: {
+    id: 'eclat',
+    name: "L'Éclat Blanc",
+    revealOrder: [0, 2, 3, 4, 5, 1],
+    category: 'fantastiques',
   },
 };
 
