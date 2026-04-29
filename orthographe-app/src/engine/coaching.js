@@ -14,21 +14,21 @@ export const SHOP_EMOTION_IDS = ['wave', 'kiss', 'clap', 'victory', 'dance', 'su
 const BASE_EMOTION_IDS = ['walk', 'sleep', 'sit'];
 
 const CHAR_NAME_MAP = {
-  panda: 'Panda 🐼',
-  dragon: 'Dragon 🐉',
-  lion: 'Lion 🦁',
-  loup: 'Loup 🐺',
-  requin: 'Requin 🦈',
-  renard: 'Renard 🦊',
-  cosmonaute: 'Cosmonaute 🧑‍🚀',
-  lapin: 'Lapin 🐰',
-  tigre: 'Tigre 🐯',
-  ours: 'Ours 🐻',
-  singe: 'Singe 🐒',
-  elephant: 'Éléphant 🐘',
-  crocodile: 'Crocodile 🐊',
-  pingouin: 'Pingouin 🐧',
-  robot: 'Robot 🤖',
+  panda:        'Panda Samouraï 🐼',
+  fox:          'Renard Espion 🦊',
+  wolf:         'Loup Fantôme 🐺',
+  tiger:        'Tigre de l\'Éclair 🐯',
+  lion:         'Lion Solaire 🦁',
+  stormEagle:   'Aigle Tempête 🦅',
+  ice:          'Reine des Glaces 🧊',
+  robot:        'Robot Gardien 🤖',
+  bear:         'Ours Viking 🐻',
+  sharkNinja:   'Requin Ninja 🦈',
+  owlWitch:     'Chouette Magicienne 🦉',
+  catDetective: 'Chat Détective 🐱',
+  dragon:       'Dragon de Feu 🐉',
+  mushroom:     'Esprit Champignon 🍄',
+  cosmo:        'Cosmonaute Intrépide 🧑‍🚀',
 };
 
 // ---------------------------------------------------------------------------
