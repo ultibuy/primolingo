@@ -45,6 +45,7 @@ function makeCss(id) {
     @keyframes ${id}Zzz2 { 0%{transform:translate(0,0) scale(0.4);opacity:0} 20%{opacity:0.9} 100%{transform:translate(18px,-48px) scale(1);opacity:0} }
     @keyframes ${id}Spark { 0%,100%{transform:scale(0);opacity:0} 50%{transform:scale(1);opacity:1} }
     @keyframes ${id}Qmark { 0%{transform:translateY(0) scale(0.7);opacity:0} 25%{opacity:1} 85%{opacity:1} 100%{transform:translateY(-28px) scale(1);opacity:0} }
+    @keyframes ${id}EyeRoll { 0%{transform:translate(0,-0.9px)} 12.5%{transform:translate(0.64px,-0.64px)} 25%{transform:translate(0.9px,0)} 37.5%{transform:translate(0.64px,0.64px)} 50%{transform:translate(0,0.9px)} 62.5%{transform:translate(-0.64px,0.64px)} 75%{transform:translate(-0.9px,0)} 87.5%{transform:translate(-0.64px,-0.64px)} 100%{transform:translate(0,-0.9px)} }
 
     @keyframes ${id}GhostPulse { 0%,100%{opacity:0.12;transform:scale(1)} 50%{opacity:0.3;transform:scale(1.08)} }
     @keyframes ${id}GhostWisp1 { 0%{transform:translate(0,0) scale(1);opacity:0.5} 100%{transform:translate(-6px,-18px) scale(0.3);opacity:0} }
@@ -70,6 +71,9 @@ function makeCss(id) {
     @keyframes ${id}SharkClapL { 0%,100%{transform:rotate(-45deg)} 50%{transform:rotate(-72deg)} }
     @keyframes ${id}SharkClapR { 0%,100%{transform:rotate(45deg)}  50%{transform:rotate(72deg)} }
     @keyframes ${id}SharkEyeShift { 0%,100%{transform:translateX(-1.2px)} 50%{transform:translateX(1.2px)} }
+
+    @keyframes ${id}LegSitL { 0%,100%{transform:rotate(-14deg)} 50%{transform:rotate(8deg)} }
+    @keyframes ${id}LegSitR { 0%,100%{transform:rotate(14deg)}  50%{transform:rotate(-8deg)} }
   `;
 }
 
@@ -153,6 +157,13 @@ function makeMoods(id) {
       legL:  { animation: 'none', transformOrigin: '11px 30px' },
       legR:  { animation: 'none', transformOrigin: '19px 30px' },
     },
+    sit: {
+      body:  { animation: 'none', transformOrigin: '15px 38px' },
+      armL:  { animation: 'none', transform: 'rotate(-10deg)', transformOrigin: '4px 18px' },
+      armR:  { animation: 'none', transform: 'rotate(10deg)', transformOrigin: '26px 18px' },
+      legL:  { animation: `${id}LegSitL 1.8s ${ei} infinite`, transformOrigin: '11px 26px' },
+      legR:  { animation: `${id}LegSitR 1.8s 0.5s ${ei} infinite`, transformOrigin: '19px 26px' },
+    },
   };
 }
 
@@ -212,6 +223,21 @@ function Eyes({ m, id, blink, lx=11, rx=19, y=11, r=2.2, color='#111', bg='white
     <circle cx={rx+0.4} cy={y+0.3} r={r*0.6} fill={color}/>
     <circle cx={rx+0.9} cy={y-0.4} r={r*0.2} fill={bg}/>
   </>);
+  if (m === 'think') {
+    const roll = `${id}EyeRoll 2.5s linear infinite`;
+    return (<>
+      <circle cx={lx} cy={y} r={r} fill={bg}/>
+      <g style={{ animation: roll, transformOrigin: `${lx}px ${y}px` }}>
+        <circle cx={lx} cy={y} r={r*0.5} fill={color}/>
+        <circle cx={lx+r*0.18} cy={y-r*0.18} r={r*0.18} fill={bg}/>
+      </g>
+      <circle cx={rx} cy={y} r={r} fill={bg}/>
+      <g style={{ animation: roll, transformOrigin: `${rx}px ${y}px` }}>
+        <circle cx={rx} cy={y} r={r*0.5} fill={color}/>
+        <circle cx={rx+r*0.18} cy={y-r*0.18} r={r*0.18} fill={bg}/>
+      </g>
+    </>);
+  }
   return (<>
     <g style={{ animation: blink, transformOrigin: `${lx}px ${y}px` }}>
       <circle cx={lx} cy={y} r={r} fill={bg}/>
@@ -794,34 +820,132 @@ function CharEagle({ s, m, id, blink }) {
 
 // 7. BEAR
 function CharBear({ s, m, id, blink }) {
+  const sleeping = m === 'sleep';
+  const happy    = m === 'victory' || m === 'cheer' || m === 'clap';
+
   return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#92400e"/>
+    <>
+      {/* Nordic sun-wheel halo — static background */}
+      <circle cx="15" cy="20" r="17" fill="#c89010" opacity="0.12"/>
+      <circle cx="15" cy="20" r="17" fill="none" stroke="#d4a020" strokeWidth="1.4" opacity="0.6"/>
+      <circle cx="15" cy="20" r="12" fill="none" stroke="#d4a020" strokeWidth="0.9" opacity="0.4"/>
+      <line x1="15" y1="3"   x2="15"   y2="37"   stroke="#d4a020" strokeWidth="1.3" opacity="0.55"/>
+      <line x1="-2" y1="20"  x2="32"   y2="20"   stroke="#d4a020" strokeWidth="1.3" opacity="0.55"/>
+      <line x1="3.4" y1="8.4"  x2="26.6" y2="31.6" stroke="#8090a0" strokeWidth="1.0" opacity="0.45"/>
+      <line x1="26.6" y1="8.4" x2="3.4"  y2="31.6" stroke="#8090a0" strokeWidth="1.0" opacity="0.45"/>
+      <circle cx="15" cy="20" r="2.8" fill="#f5c840" opacity="0.65"/>
+      <circle cx="15" cy="20" r="1.4" fill="#fff8d0" opacity="0.7"/>
+
+      <g style={s.body}>
+        {/* Legs */}
+        <g style={s.legL}>
+          <rect x="7.5" y="29" width="7" height="9" rx="3.2" fill="#c8762a"/>
+          <rect x="7"   y="34.5" width="8" height="4" rx="2" fill="#8b4a10"/>
+        </g>
+        <g style={s.legR}>
+          <rect x="15.5" y="29" width="7" height="9" rx="3.2" fill="#c8762a"/>
+          <rect x="15"   y="34.5" width="8" height="4" rx="2" fill="#8b4a10"/>
+        </g>
+
+        {/* Body + armor bands + belt */}
+        <rect x="6" y="16" width="18" height="15" rx="6" fill="#c8762a"/>
+        <ellipse cx="15" cy="22" rx="5.5" ry="5.5" fill="#f5d5a0" opacity="0.9"/>
+        <rect x="8"  y="18" width="14" height="1.5" rx="0.7" fill="#606878" opacity="0.6"/>
+        <rect x="9"  y="21" width="12" height="1.5" rx="0.7" fill="#606878" opacity="0.5"/>
+        <rect x="10" y="24" width="10" height="1.5" rx="0.7" fill="#606878" opacity="0.4"/>
+        <rect x="7"  y="27" width="16" height="2.5" rx="1.2" fill="#3a1c08"/>
+        <rect x="14" y="26.3" width="2" height="3.8" rx="0.4" fill="#c89020"/>
+
+        {/* Shield — armL */}
+        <g style={s.armL}>
+          <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#c8762a"/>
+          <rect x="1"   y="23" width="6" height="4" rx="2"   fill="#8b4a10"/>
+          <circle cx="2" cy="21" r="6.5" fill="#8b4a10"/>
+          <circle cx="2" cy="21" r="6.5" fill="none" stroke="#c89020" strokeWidth="1.4"/>
+          <line x1="-4.5" y1="21" x2="8.5" y2="21" stroke="#6a3408" strokeWidth="1.0" opacity="0.5"/>
+          <line x1="2" y1="14.5" x2="2" y2="27.5" stroke="#6a3408" strokeWidth="1.0" opacity="0.5"/>
+          <circle cx="2" cy="21" r="3"   fill="none" stroke="#c89020" strokeWidth="0.9" opacity="0.6"/>
+          <circle cx="2" cy="21" r="2"   fill="#c89020" opacity="0.75"/>
+          <circle cx="2" cy="21" r="1.1" fill="#f5d060"/>
+        </g>
+
+        {/* Ears — static, drawn before head */}
+        <circle cx="7"  cy="4" r="3.8" fill="#8b4a10"/>
+        <circle cx="7"  cy="4" r="2.8" fill="#c8762a"/>
+        <circle cx="7"  cy="4" r="1.4" fill="#f5d5a0" opacity="0.7"/>
+        <circle cx="23" cy="4" r="3.8" fill="#8b4a10"/>
+        <circle cx="23" cy="4" r="2.8" fill="#c8762a"/>
+        <circle cx="23" cy="4" r="1.4" fill="#f5d5a0" opacity="0.7"/>
+
+        {/* Head */}
+        <circle cx="15" cy="11.5" r="10.5" fill="#c8762a"/>
+        <ellipse cx="15" cy="15.5" rx="5.5" ry="4"   fill="#f5d5a0"/>
+        <ellipse cx="15" cy="13"   rx="2.2" ry="1.4"  fill="#2a0e04"/>
+
+        {/* Helmet horns (drawn before dome so dome covers base) */}
+        <path d="M7 8 Q5 3 2 -1 Q4 1 6 5 Q7 7 8 8 Z"   fill="#dde0e8"/>
+        <path d="M7 8 Q5 3 2 -1 Q4 1 6 5 Q7 7 8 8 Z"   fill="none" stroke="#a0a8b8" strokeWidth="0.7"/>
+        <path d="M23 8 Q25 3 28 -1 Q26 1 24 5 Q23 7 22 8 Z" fill="#dde0e8"/>
+        <path d="M23 8 Q25 3 28 -1 Q26 1 24 5 Q23 7 22 8 Z" fill="none" stroke="#a0a8b8" strokeWidth="0.7"/>
+
+        {/* Helmet dome + nasal */}
+        <path d="M6 8 Q6 1.5 15 1 Q24 1.5 24 8 Z" fill="#606878"/>
+        <rect x="5.5" y="6.5" width="19" height="3.5" rx="1.5" fill="#707888"/>
+        <rect x="5"   y="6.5" width="20" height="1.4"  rx="0.7"  fill="#c89020"/>
+        <rect x="13.5" y="7"  width="3"  height="5.5"  rx="1.5"  fill="#606878"/>
+
+        {/* Eyes — mood variants */}
+        {sleeping ? (<>
+          <path d="M8.5 10 Q10.5 12 12.5 10" fill="none" stroke="#1a0a02" strokeWidth="1.1" strokeLinecap="round"/>
+          <path d="M17.5 10 Q19.5 12 21.5 10" fill="none" stroke="#1a0a02" strokeWidth="1.1" strokeLinecap="round"/>
+        </>) : happy ? (<>
+          <path d="M8.5 11 Q10.5 9 12.5 11" fill="none" stroke="#1a0a02" strokeWidth="1.2" strokeLinecap="round"/>
+          <path d="M17.5 11 Q19.5 9 21.5 11" fill="none" stroke="#1a0a02" strokeWidth="1.2" strokeLinecap="round"/>
+        </>) : m === 'surprise' ? (<>
+          <circle cx="10.5" cy="10.5" r="2.8" fill="white"/>
+          <circle cx="10.5" cy="10.5" r="1.8" fill="#1a0a02"/>
+          <circle cx="11.2" cy="9.8"  r="0.6" fill="white"/>
+          <circle cx="19.5" cy="10.5" r="2.8" fill="white"/>
+          <circle cx="19.5" cy="10.5" r="1.8" fill="#1a0a02"/>
+          <circle cx="20.2" cy="9.8"  r="0.6" fill="white"/>
+        </>) : (<>
+          <g style={{ animation: blink, transformOrigin: '10.5px 10.5px' }}>
+            <circle cx="10.5" cy="10.5" r="2.2" fill="white"/>
+            <circle cx="10.5" cy="10.5" r="1.4" fill="#1a0a02"/>
+            <circle cx="11.2" cy="9.8"  r="0.5" fill="white" opacity="0.9"/>
+          </g>
+          <g style={{ animation: blink, transformOrigin: '19.5px 10.5px' }}>
+            <circle cx="19.5" cy="10.5" r="2.2" fill="white"/>
+            <circle cx="19.5" cy="10.5" r="1.4" fill="#1a0a02"/>
+            <circle cx="20.2" cy="9.8"  r="0.5" fill="white" opacity="0.9"/>
+          </g>
+        </>)}
+
+        {/* Mouth — mood variants */}
+        {m === 'kiss' ? (
+          <circle cx="15" cy="18" r="1.4" fill="#f472b6"/>
+        ) : m === 'surprise' ? (
+          <ellipse cx="15" cy="18" rx="2" ry="2.2" fill="#2a0e04"/>
+        ) : happy ? (
+          <path d="M11.5 17 Q15 20.5 18.5 17" fill="none" stroke="#2a0e04" strokeWidth="1.2" strokeLinecap="round"/>
+        ) : (
+          <path d="M12.5 17.5 Q15 19.5 17.5 17.5" fill="none" stroke="#2a0e04" strokeWidth="1.1" strokeLinecap="round"/>
+        )}
+
+        {/* Right arm + axe — drawn last so axe is always in front */}
+        <g style={s.armR}>
+          <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#c8762a"/>
+          <rect x="23"   y="23" width="6" height="4" rx="2"   fill="#8b4a10"/>
+          {/* Axe handle */}
+          <rect x="25.5" y="15" width="2.5" height="14" rx="1.2" fill="#8b5a28"/>
+          <rect x="25.2" y="26" width="3"   height="1.6"  rx="0.8" fill="#6a3a10"/>
+          {/* Axe blade */}
+          <path d="M25.5 16 L21.5 13.5 Q18 17 20.5 21.5 L25.5 20 Z" fill="#1a1a1a"/>
+          <path d="M21.5 13.5 Q18 17 20.5 21.5" fill="none" stroke="#b0b8c0" strokeWidth="1.2" strokeLinecap="round"/>
+          <circle cx="25.3" cy="18" r="0.75" fill="#d4a020"/>
+        </g>
       </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#92400e"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#92400e"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#92400e"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#92400e"/>
-      </g>
-      <circle cx="8"  cy="7.5" r="4" fill="#92400e"/>
-      <circle cx="22" cy="7.5" r="4" fill="#92400e"/>
-      <circle cx="15" cy="11.5" r="10.5" fill="#b45309"/>
-      <rect x="9" y="2" width="12" height="5" rx="2" fill="#6b7280"/>
-      <rect x="9" y="1" width="12" height="3" rx="1.5" fill="#9ca3af"/>
-      <polygon points="9,2 6,0 8,4" fill="#6b7280"/>
-      <polygon points="21,2 24,0 22,4" fill="#6b7280"/>
-      <line x1="9" y1="8" x2="13" y2="7" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round"/>
-      <line x1="17" y1="7" x2="21" y2="8" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="2" ry="1.3" fill="#7c2d12"/>
-      <Mouth m={m} color="#7c2d12"/>
-    </g>
+    </>
   );
 }
 
@@ -886,6 +1010,198 @@ function CharOwl({ s, m, id, blink }) {
       <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} r={2.5} color="#1a1a1a" bg="#fbbf24"/>
       <polygon points="13.5,14 15,16 16.5,14" fill="#f59e0b"/>
     </g>
+  );
+}
+
+// 9b. OWL WITCH (Chouette Magicienne)
+function CharOwlWitch({ s, m, id, blink }) {
+  const eyeEl = m === 'sleep' || m === 'surprise' || m === 'think'
+    ? <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} r={2.5} color="#1a0800" bg="#d4900a"/>
+    : (
+      <>
+        <circle cx={11} cy={11} r={3.2} fill="white" style={{ animation: blink, transformOrigin: '11px 11px' }}/>
+        <circle cx={11} cy={11.2} r={2.2} fill="#d4900a"/>
+        <circle cx={11} cy={11.2} r={1.3} fill="#1a0800"/>
+        <circle cx={11.8} cy={10.3} r={0.55} fill="white" opacity={0.9}/>
+        <circle cx={11} cy={11} r={3.2} fill="none" stroke="#8b5a18" strokeWidth={0.8}/>
+        <circle cx={19} cy={11} r={3.2} fill="white" style={{ animation: blink, transformOrigin: '19px 11px' }}/>
+        <circle cx={19} cy={11.2} r={2.2} fill="#d4900a"/>
+        <circle cx={19} cy={11.2} r={1.3} fill="#1a0800"/>
+        <circle cx={19.8} cy={10.3} r={0.55} fill="white" opacity={0.9}/>
+        <circle cx={19} cy={11} r={3.2} fill="none" stroke="#8b5a18" strokeWidth={0.8}/>
+      </>
+    );
+  return (
+    <>
+      {/* Golden mandala halo */}
+      <circle cx={15} cy={20} r={17} fill="#c89010" opacity={0.1}/>
+      <circle cx={15} cy={20} r={17} fill="none" stroke="#d4a020" strokeWidth={1.2} opacity={0.35}/>
+      <circle cx={15} cy={20} r={13} fill="none" stroke="#d4a020" strokeWidth={0.8} opacity={0.22}/>
+      <line x1={15} y1={3} x2={15} y2={6.5} stroke="#e8c030" strokeWidth={1.4} opacity={0.55}/>
+      <line x1={15} y1={33.5} x2={15} y2={37} stroke="#e8c030" strokeWidth={1.4} opacity={0.55}/>
+      <line x1={-2} y1={20} x2={1.5} y2={20} stroke="#e8c030" strokeWidth={1.4} opacity={0.55}/>
+      <line x1={28.5} y1={20} x2={32} y2={20} stroke="#e8c030" strokeWidth={1.4} opacity={0.55}/>
+      <line x1={3.5} y1={9.5} x2={6} y2={12} stroke="#e8c030" strokeWidth={1.1} opacity={0.45}/>
+      <line x1={26.5} y1={9.5} x2={24} y2={12} stroke="#e8c030" strokeWidth={1.1} opacity={0.45}/>
+      <line x1={3.5} y1={30.5} x2={6} y2={28} stroke="#e8c030" strokeWidth={1.1} opacity={0.45}/>
+      <line x1={26.5} y1={30.5} x2={24} y2={28} stroke="#e8c030" strokeWidth={1.1} opacity={0.45}/>
+      <circle cx={15} cy={20} r={2.5} fill="#f5c840" opacity={0.4}/>
+      {/* Tail */}
+      <path d="M10 33 Q15 38 20 33 Q17 30 15 31 Q13 30 10 33 Z" fill="#7a4e18"/>
+      <line x1={15} y1={31} x2={15} y2={37} stroke="#5a3808" strokeWidth={0.9} opacity={0.5}/>
+      <line x1={12} y1={31} x2={11} y2={36} stroke="#5a3808" strokeWidth={0.8} opacity={0.4}/>
+      <line x1={18} y1={31} x2={19} y2={36} stroke="#5a3808" strokeWidth={0.8} opacity={0.4}/>
+      <g style={s.body}>
+        <g style={s.legL}>
+          <rect x={8.5} y={29} width={5.5} height={6} rx={2.5} fill="#c8882a"/>
+          <path d="M8 34 L6.5 37 M10 34.5 L9.5 37.5 M12 35 L12 37.5" fill="none" stroke="#7a4e10" strokeWidth={1.3} strokeLinecap="round"/>
+        </g>
+        <g style={s.legR}>
+          <rect x={16} y={29} width={5.5} height={6} rx={2.5} fill="#c8882a"/>
+          <path d="M16 34 L15 37 M18 34.5 L17.5 37.5 M20 35 L20 37.5" fill="none" stroke="#7a4e10" strokeWidth={1.3} strokeLinecap="round"/>
+        </g>
+        <rect x={7} y={17} width={16} height={14} rx={7} fill="#a06828"/>
+        <ellipse cx={15} cy={23} rx={5} ry={5.5} fill="#e8c888" opacity={0.85}/>
+        <rect x={9} y={19} width={12} height={1.3} rx={0.6} fill="#7a4e18" opacity={0.35}/>
+        <rect x={9.5} y={22} width={11} height={1.3} rx={0.6} fill="#7a4e18" opacity={0.3}/>
+        <rect x={10} y={25} width={10} height={1.3} rx={0.6} fill="#7a4e18" opacity={0.25}/>
+        <rect x={8} y={28} width={14} height={2} rx={1} fill="#d4a020"/>
+        <rect x={13.5} y={27.5} width={3} height={3} rx={0.5} fill="#f5c840"/>
+        <g style={s.armL}>
+          <rect x={0} y={17} width={8} height={10} rx={4} fill="#8b5a20"/>
+          <path d="M0 23 Q-2 26 1 27.5" fill="#6a3e10"/>
+          <path d="M2 25 Q1 28 4 28.5" fill="#6a3e10"/>
+          <path d="M4.5 26.5 Q4 29 6.5 29" fill="#6a3e10"/>
+        </g>
+        <g style={s.armR}>
+          <rect x={22} y={17} width={8} height={10} rx={4} fill="#8b5a20"/>
+          <path d="M30 23 Q32 26 29 27.5" fill="#6a3e10"/>
+          <path d="M28 25 Q29 28 26 28.5" fill="#6a3e10"/>
+          <path d="M25.5 26.5 Q26 29 23.5 29" fill="#6a3e10"/>
+          {/* Magic wand */}
+          <rect x={28.2} y={11} width={1.3} height={9} rx={0.65} fill="#3a1a08"/>
+          <path d="M27 10 L28.85 9 L30.7 10 L30 11.8 L27.7 11.8 Z" fill="#f5c840"/>
+          <circle cx={28.85} cy={10} r={0.6} fill="white" opacity={0.7}/>
+        </g>
+        {/* Ear tufts */}
+        <path d="M9 5.5 Q8 0.5 11.5 3 Q11 5 10 6 Z" fill="#7a4e18"/>
+        <path d="M21 5.5 Q22 0.5 18.5 3 Q19 5 20 6 Z" fill="#7a4e18"/>
+        {/* Head */}
+        <circle cx={15} cy={11.5} r={10.5} fill="#a06828"/>
+        <ellipse cx={15} cy={12} rx={8} ry={8.5} fill="#e8c888" opacity={0.9}/>
+        <path d="M13 14 L17 14 Q17 15.8 15 18.5 Q13 15.8 13 14 Z" fill="#c89020"/>
+        <path d="M13.5 15.8 Q15 17.8 16.5 15.8" fill="none" stroke="#8b6010" strokeWidth={0.8}/>
+        {eyeEl}
+        {/* Witch hat */}
+        <path d="M5.5 6 L15 -7.5 L24.5 6 Z" fill="#2a1860"/>
+        <rect x={5.5} y={5} width={19} height={2} rx={0.6} fill="#1a0a40"/>
+        <path d="M15 -5 L15.6 -3.2 L17.5 -3.2 L16 -2.1 L16.7 -0.3 L15 -1.3 L13.3 -0.3 L14 -2.1 L12.5 -3.2 L14.4 -3.2 Z" fill="#f5c840" opacity={0.9}/>
+      </g>
+    </>
+  );
+}
+
+// 9c. CAT DETECTIVE (Chat Détective)
+function CharCatDetective({ s, m, id, blink }) {
+  return (
+    <>
+      {/* Green radar halo */}
+      <circle cx={15} cy={20} r={16} fill="#001a0d" opacity={0.3}/>
+      <circle cx={15} cy={20} r={16} fill="none" stroke="#22c55e" strokeWidth={1.5} opacity={0.3}/>
+      <circle cx={15} cy={20} r={12} fill="none" stroke="#22c55e" strokeWidth={1.2} opacity={0.38}/>
+      <circle cx={15} cy={20} r={8}  fill="none" stroke="#22c55e" strokeWidth={1}   opacity={0.45}/>
+      <circle cx={15} cy={20} r={4.5} fill="none" stroke="#4ade80" strokeWidth={0.9} opacity={0.55}/>
+      <line x1={15} y1={4}  x2={15}  y2={36}  stroke="#22c55e" strokeWidth={0.8} opacity={0.18}/>
+      <line x1={-1} y1={20} x2={31}  y2={20}  stroke="#22c55e" strokeWidth={0.8} opacity={0.18}/>
+      <line x1={3.5} y1={8.5} x2={26.5} y2={31.5} stroke="#22c55e" strokeWidth={0.7} opacity={0.13}/>
+      <line x1={26.5} y1={8.5} x2={3.5} y2={31.5} stroke="#22c55e" strokeWidth={0.7} opacity={0.13}/>
+      <path d="M15 20 L15 4"     stroke="#4ade80" strokeWidth={1.5} strokeLinecap="round" opacity={0.55}/>
+      <path d="M15 20 L26.5 8.5" stroke="#4ade80" strokeWidth={1.3} strokeLinecap="round" opacity={0.35}/>
+      <path d="M15 20 L31 20"    stroke="#4ade80" strokeWidth={1.2} strokeLinecap="round" opacity={0.2}/>
+      <circle cx={20.5} cy={10.5} r={1.2} fill="#4ade80" opacity={0.75}/>
+      <circle cx={6}    cy={16}   r={0.9} fill="#4ade80" opacity={0.55}/>
+      <circle cx={23}   cy={25}   r={0.7} fill="#4ade80" opacity={0.45}/>
+      <g style={s.body}>
+        {/* Tail — starts at bottom-right of body (y=31) */}
+        <path d="M20 31 Q30 27 29 19 Q28 12 24 17" stroke="#111" strokeWidth={3.5} fill="none" strokeLinecap="round"/>
+        <path d="M20 31 Q30 27 29 19 Q28 12 24 17" stroke="#333" strokeWidth={1.8} fill="none" strokeLinecap="round"/>
+        <g style={s.legL}>
+          <rect x={7.5}  y={29} width={7} height={9} rx={3.2} fill="#111"/>
+          <rect x={7}    y={35} width={8} height={4} rx={2.5} fill="#e8e8e8"/>
+        </g>
+        <g style={s.legR}>
+          <rect x={15.5} y={29} width={7} height={9} rx={3.2} fill="#111"/>
+          <rect x={15}   y={35} width={8} height={4} rx={2.5} fill="#e8e8e8"/>
+        </g>
+        {/* Tuxedo body */}
+        <rect x={6} y={16} width={18} height={15} rx={6} fill="#111"/>
+        <ellipse cx={15} cy={23} rx={5.5} ry={6} fill="white" opacity={0.95}/>
+        <rect x={10.5} y={16.5} width={9} height={2} rx={1} fill="#222" opacity={0.6}/>
+        {/* Left arm */}
+        <g style={s.armL}>
+          <rect x={1.5} y={17} width={5} height={9} rx={2.5} fill="#111"/>
+          <rect x={1}   y={23} width={6} height={4} rx={2.5} fill="white" opacity={0.9}/>
+        </g>
+        {/* Right arm extended horizontal + magnifying glass */}
+        <g style={s.armR}>
+          <rect x={23.5} y={17} width={5} height={5.5} rx={2.5} fill="#111"/>
+          <rect x={25} y={19.5} width={9} height={5} rx={2.5} fill="#111"/>
+          {/* Paw behind handle */}
+          <rect x={31} y={18.5} width={5.5} height={5} rx={2.2} fill="white" opacity={0.95}/>
+          {/* Lens frame */}
+          <circle cx={32.5} cy={7.5} r={5.8} fill="none" stroke="#92400e" strokeWidth={2.5}/>
+          <circle cx={32.5} cy={7.5} r={5.3} fill="#fef3c7" opacity={0.18}/>
+          <circle cx={32.5} cy={7.5} r={3.8} fill="none" stroke="#d97706" strokeWidth={0.9} opacity={0.4}/>
+          <path d="M29.8 5 Q30.8 4 32.5 4.5" fill="none" stroke="white" strokeWidth={1.4} strokeLinecap="round" opacity={0.8}/>
+          <circle cx={30.5} cy={6.5} r={0.7} fill="white" opacity={0.55}/>
+          {/* Connector ring */}
+          <rect x={30.3} y={12.8} width={4.4} height={2.2} rx={1.1} fill="#b45309"/>
+          <rect x={30.8} y={13.1} width={3.4} height={1.5} rx={0.7} fill="#d97706" opacity={0.6}/>
+          {/* Wooden handle */}
+          <rect x={30.7} y={14.8} width={3.8} height={7.5} rx={1.9} fill="#5c3010"/>
+          <rect x={31.2} y={14.8} width={2.8} height={7.5} rx={1.4} fill="#a0622a" opacity={0.85}/>
+          <line x1={30.7} y1={16.5} x2={34.5} y2={16.5} stroke="#3d1a00" strokeWidth={0.7} opacity={0.4}/>
+          <line x1={30.7} y1={18.5} x2={34.5} y2={18.5} stroke="#3d1a00" strokeWidth={0.7} opacity={0.4}/>
+          <line x1={30.7} y1={20.5} x2={34.5} y2={20.5} stroke="#3d1a00" strokeWidth={0.7} opacity={0.35}/>
+          <line x1={31.7} y1={15} x2={31.7} y2={22} stroke="#d4a06a" strokeWidth={0.6} strokeLinecap="round" opacity={0.5}/>
+          {/* Paw over handle */}
+          <rect x={31} y={18.5} width={5.5} height={5} rx={2.2} fill="white" opacity={0.97}/>
+          <rect x={31} y={22.5} width={5.5} height={1.2} rx={0.6} fill="#ddd" opacity={0.5}/>
+        </g>
+        {/* Cat ears */}
+        <polygon points="4,11 7.5,-1 13,10.5"      fill="#0d0d0d"/>
+        <polygon points="5.5,11 7.5,1.5 12,10.5"   fill="#111"/>
+        <polygon points="7,10.5 8,4.5 10.5,10.5"   fill="#f9a8c9" opacity={0.7}/>
+        <polygon points="17,10.5 22.5,-1 26,11"    fill="#0d0d0d"/>
+        <polygon points="18,10.5 22.5,1.5 24.5,10.5" fill="#111"/>
+        <polygon points="19.5,10.5 21.5,4.5 23,10.5" fill="#f9a8c9" opacity={0.7}/>
+        {/* Head */}
+        <circle cx={15} cy={11.5} r={10.5} fill="#111"/>
+        <ellipse cx={15} cy={18}   rx={5}   ry={3.5} fill="white"  opacity={0.95}/>
+        <ellipse cx={15} cy={15.5} rx={5}   ry={4}   fill="#f5f0e8"/>
+        <ellipse cx={15} cy={14.5} rx={1.7} ry={1.2} fill="#111"/>
+        <ellipse cx={15} cy={10}   rx={4}   ry={2.5} fill="white"  opacity={0.08}/>
+        {/* Whiskers */}
+        <line x1={4}    y1={14}   x2={10.5} y2={15}   stroke="white" strokeWidth={0.9} strokeLinecap="round" opacity={0.9}/>
+        <line x1={4.5}  y1={15.8} x2={10.5} y2={15.8} stroke="white" strokeWidth={0.9} strokeLinecap="round" opacity={0.9}/>
+        <line x1={5}    y1={17.5} x2={10.5} y2={16.8} stroke="white" strokeWidth={0.8} strokeLinecap="round" opacity={0.7}/>
+        <line x1={19.5} y1={15}   x2={26}   y2={14}   stroke="white" strokeWidth={0.9} strokeLinecap="round" opacity={0.9}/>
+        <line x1={19.5} y1={15.8} x2={25.5} y2={15.8} stroke="white" strokeWidth={0.9} strokeLinecap="round" opacity={0.9}/>
+        <line x1={19.5} y1={16.8} x2={25}   y2={17.5} stroke="white" strokeWidth={0.8} strokeLinecap="round" opacity={0.7}/>
+        {/* Green eyes */}
+        <Eyes m={m} id={id} blink={blink} lx={10.5} rx={19.5} y={10.5} r={2.8} color="#111" bg="#16a34a"/>
+        {/* Mouth */}
+        <path d="M13 17.5 Q15 19 17 17.5" fill="none" stroke="#333" strokeWidth={1} strokeLinecap="round"/>
+        {/* Fedora */}
+        <ellipse cx={15} cy={2.5} rx={12.5} ry={2.8} fill="#1a1a1a"/>
+        <rect x={9.8} y={-8} width={10.4} height={11} rx={2.5} fill="#1a1a1a"/>
+        <rect x={9.8} y={-8} width={10.4} height={1.5} rx={1.2} fill="#111"/>
+        <rect x={9.8} y={0.5} width={10.4} height={2.5} rx={0.5} fill="#6b4c2a"/>
+        <rect x={19}  y={0.8} width={2.5}  height={2}   rx={0.5} fill="#4a3320"/>
+        <rect x={19.5} y={1.3} width={1.5} height={1}   rx={0.3} fill="#7c5a38"/>
+        <ellipse cx={5} cy={3.8} rx={4} ry={1.5} fill="#222" transform="rotate(-15 5 3.8)"/>
+      </g>
+    </>
   );
 }
 
@@ -1632,84 +1948,105 @@ function CharSamurai({ s, m, id, blink }) {
 // 30. ROBOT
 function CharRobot({ s, m, id, blink }) {
   const sleeping = m === 'sleep';
+  const led = sleeping ? '#334155' : '#00e5ff';
+  const ledOp = sleeping ? 0.25 : 1;
   return (
     <g style={s.body}>
-      {/* Jambes — lourdes bottes mécaniques */}
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="2.5" fill="#38bdf8"/>
-        <line x1="11.25" y1="29" x2="11.25" y2="38" stroke="#1e293b" strokeWidth="0.5"/>
-        <rect x="7" y="36" width="8" height="3.5" rx="1.8" fill="#1a1a1a"/>
-        <line x1="8" y1="37.5" x2="14.5" y2="37.5" stroke="#64748b" strokeWidth="0.4"/>
-        <circle cx="11.25" cy="29.5" r="1.2" fill="none" stroke="#94a3b8" strokeWidth="0.5"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="2.5" fill="#38bdf8"/>
-        <line x1="19.25" y1="29" x2="19.25" y2="38" stroke="#1e293b" strokeWidth="0.5"/>
-        <rect x="15" y="36" width="8" height="3.5" rx="1.8" fill="#1a1a1a"/>
-        <line x1="16" y1="37.5" x2="22.5" y2="37.5" stroke="#64748b" strokeWidth="0.4"/>
-        <circle cx="19.25" cy="29.5" r="1.2" fill="none" stroke="#94a3b8" strokeWidth="0.5"/>
-      </g>
-
-      {/* Torse — panneaux blindés */}
-      <rect x="6" y="16" width="18" height="15" rx="3" fill="#38bdf8"/>
-      <rect x="12.5" y="16" width="5" height="15" rx="2" fill="#60a5fa" opacity="0.75"/>
-      <line x1="12.5" y1="16" x2="12.5" y2="31" stroke="#1e293b" strokeWidth="0.6"/>
-      <line x1="17.5" y1="16" x2="17.5" y2="31" stroke="#1e293b" strokeWidth="0.6"/>
-      <line x1="6" y1="23.5" x2="24" y2="23.5" stroke="#1e293b" strokeWidth="0.7"/>
-      {/* Écran de poitrine */}
-      <rect x="10" y="18" width="10" height="4.5" rx="1.5" fill="#1a1a1a"/>
-      <rect x="10.3" y="18.3" width="9.4" height="3.9" fill="#60a5fa" opacity="0.85"/>
-      <rect x="11" y="18.5" width="3.5" height="1.2" fill="white" opacity="0.25" rx="0.5"/>
-      {/* Rivets */}
-      <circle cx="7.5" cy="19" r="0.5" fill="#94a3b8" stroke="#1e293b" strokeWidth="0.3"/>
-      <circle cx="7.5" cy="24" r="0.5" fill="#94a3b8" stroke="#1e293b" strokeWidth="0.3"/>
-      <circle cx="22.5" cy="19" r="0.5" fill="#94a3b8" stroke="#1e293b" strokeWidth="0.3"/>
-      <circle cx="22.5" cy="24" r="0.5" fill="#94a3b8" stroke="#1e293b" strokeWidth="0.3"/>
-      {/* Évents d'échappement */}
-      <rect x="6" y="26" width="1.5" height="2" rx="0.4" fill="#1e293b"/>
-      <rect x="22.5" y="26" width="1.5" height="2" rx="0.4" fill="#1e293b"/>
-
-      {/* Bras — épaulières + poings mécaniques */}
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2" fill="#38bdf8"/>
-        <line x1="4" y1="17" x2="4" y2="26" stroke="#1e293b" strokeWidth="0.5"/>
-        <rect x="0.5" y="17" width="2.5" height="5" rx="1.2" fill="#60a5fa" opacity="0.8"/>
-        <rect x="1" y="24" width="6" height="3.5" rx="1.5" fill="#1a1a1a"/>
-        <circle cx="4" cy="17.5" r="1" fill="none" stroke="#94a3b8" strokeWidth="0.5"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2" fill="#38bdf8"/>
-        <line x1="26" y1="17" x2="26" y2="26" stroke="#1e293b" strokeWidth="0.5"/>
-        <rect x="27" y="17" width="2.5" height="5" rx="1.2" fill="#60a5fa" opacity="0.8"/>
-        <rect x="23" y="24" width="6" height="3.5" rx="1.5" fill="#1a1a1a"/>
-        <circle cx="26" cy="17.5" r="1" fill="none" stroke="#94a3b8" strokeWidth="0.5"/>
-      </g>
-
-      {/* Connecteur de cou */}
-      <rect x="11" y="13" width="8" height="4" rx="1.5" fill="#38bdf8"/>
-      <line x1="11" y1="15" x2="19" y2="15" stroke="#1e293b" strokeWidth="0.5"/>
-
-      {/* TÊTE — rectangle (pas un cercle !) */}
-      <rect x="5" y="2" width="20" height="11" rx="4" fill="#38bdf8"/>
-      {/* Lignes de panneaux crâniens */}
-      <line x1="10" y1="2.5" x2="10" y2="9" stroke="#1e293b" strokeWidth="0.5"/>
-      <line x1="20" y1="2.5" x2="20" y2="9" stroke="#1e293b" strokeWidth="0.5"/>
-      {/* Crête de casque */}
-      <polygon points="15,2 14,5 16,5" fill="#60a5fa" opacity="0.9"/>
-      {/* Antenne */}
-      <line x1="15" y1="2" x2="15" y2="0" stroke="#1e293b" strokeWidth="1.2" strokeLinecap="round"/>
-      <circle cx="15" cy="0.5" r="0.8" fill="#60a5fa"/>
-      {/* Visière — bande large */}
-      <rect x="8.5" y="6" width="13" height="3.5" rx="1.2" fill="#1a1a1a"/>
-      <rect x="8.8" y="6.3" width="12.4" height="2.9" fill={sleeping ? '#334155' : '#60a5fa'} opacity="0.9"/>
+      {/* Halo Radar Sentinelle — anneaux de scan tiretés */}
       {!sleeping && <>
-        <rect x="10" y="6.5" width="4" height="0.8" fill="white" opacity="0.35" rx="0.4"/>
-        <rect x="16" y="7.5" width="3" height="0.6" fill="white" opacity="0.2" rx="0.3"/>
+        <ellipse cx="15" cy="20" rx="18" ry="22" fill="none" stroke="#20d040" strokeWidth="1.2" strokeDasharray="3 2.5" opacity="0.22"/>
+        <ellipse cx="15" cy="20" rx="13.5" ry="16.5" fill="none" stroke="#20d040" strokeWidth="1" strokeDasharray="2.5 2" opacity="0.28"/>
+        <ellipse cx="15" cy="20" rx="9" ry="11" fill="none" stroke="#20cc40" strokeWidth="0.9" strokeDasharray="2 1.5" opacity="0.32"/>
+        {/* Balayage radial */}
+        <path d="M15 20 L33 14 A18 22 0 0 0 22 -1 Z" fill="#20d040" opacity="0.06"/>
+        {/* Croix cardinale */}
+        <line x1="15" y1="-4" x2="15" y2="0" stroke="#20d040" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+        <line x1="15" y1="40" x2="15" y2="44" stroke="#20d040" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+        <line x1="-5" y1="20" x2="-1" y2="20" stroke="#20d040" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+        <line x1="31" y1="20" x2="35" y2="20" stroke="#20d040" strokeWidth="1.5" strokeLinecap="round" opacity="0.6"/>
+        <circle cx="15" cy="-4" r="1.2" fill="#20d040" opacity="0.75"/>
+        <circle cx="33" cy="20" r="1.2" fill="#20d040" opacity="0.75"/>
+        <circle cx="15" cy="42" r="1.2" fill="#20d040" opacity="0.75"/>
+        <circle cx="-3" cy="20" r="1.2" fill="#20d040" opacity="0.75"/>
       </>}
-      <line x1="8.5" y1="6" x2="21.5" y2="6" stroke="#94a3b8" strokeWidth="0.4"/>
-      <line x1="8.5" y1="9.5" x2="21.5" y2="9.5" stroke="#94a3b8" strokeWidth="0.4"/>
-      {/* Halo lumineux visière */}
-      <ellipse cx="15" cy="7.75" rx="7.5" ry="2.5" fill="#60a5fa" opacity="0.2"/>
+
+      {/* Jambe gauche */}
+      <g style={s.legL}>
+        <rect x="7.5" y="29" width="6.5" height="8.5" rx="1.5" fill="#2d5e8e"/>
+        <rect x="6.5" y="35.5" width="8.5" height="3" rx="1.5" fill="#1a3d60"/>
+        <rect x="9" y="30" width="3.5" height="1.2" rx="0.5" fill="#5aa8d8" opacity="0.6"/>
+      </g>
+
+      {/* Jambe droite */}
+      <g style={s.legR}>
+        <rect x="16" y="29" width="6.5" height="8.5" rx="1.5" fill="#2d5e8e"/>
+        <rect x="15" y="35.5" width="8.5" height="3" rx="1.5" fill="#1a3d60"/>
+        <rect x="17.5" y="30" width="3.5" height="1.2" rx="0.5" fill="#5aa8d8" opacity="0.6"/>
+      </g>
+
+      {/* Corps blindé */}
+      <rect x="5.5" y="16" width="19" height="14" rx="3" fill="#2d5e8e"/>
+      {/* Panneau de poitrine */}
+      <rect x="8" y="18" width="14" height="10" rx="2" fill="#1a3d60"/>
+      {/* Cellule d'énergie — power core */}
+      <circle cx="15" cy="22.5" r="3.5" fill="#001020"/>
+      <circle cx="15" cy="22.5" r="2.5" fill={sleeping ? '#0d2740' : '#00b8ff'} opacity="0.85"/>
+      <circle cx="15" cy="22.5" r="1.2" fill="white" opacity={sleeping ? 0.15 : 0.9}/>
+      {/* Panneaux latéraux de détection */}
+      <rect x="9" y="18.5" width="4" height="1.2" rx="0.5" fill="#5aa8d8" opacity="0.5"/>
+      <rect x="17" y="18.5" width="4" height="1.2" rx="0.5" fill="#5aa8d8" opacity="0.5"/>
+      {/* Ceinture */}
+      <rect x="8" y="28" width="14" height="2" rx="1" fill="#1a3d60"/>
+
+      {/* Bras gauche */}
+      <g style={s.armL}>
+        <rect x="1.5" y="18" width="4.5" height="8.5" rx="2" fill="#2d5e8e"/>
+        <ellipse cx="4" cy="18" rx="2.5" ry="2" fill="#1a3d60"/>
+        {/* Pince */}
+        <rect x="1" y="23.5" width="5.5" height="3.5" rx="1.8" fill="#1a3d60"/>
+        <rect x="2" y="24.2" width="3.5" height="0.9" rx="0.4" fill="#5aa8d8" opacity="0.5"/>
+      </g>
+
+      {/* Bras droit */}
+      <g style={s.armR}>
+        <rect x="24" y="18" width="4.5" height="8.5" rx="2" fill="#2d5e8e"/>
+        <ellipse cx="26" cy="18" rx="2.5" ry="2" fill="#1a3d60"/>
+        <rect x="23.5" y="23.5" width="5.5" height="3.5" rx="1.8" fill="#1a3d60"/>
+        <rect x="24.5" y="24.2" width="3.5" height="0.9" rx="0.4" fill="#5aa8d8" opacity="0.5"/>
+      </g>
+
+      {/* Cou */}
+      <rect x="12" y="14" width="6" height="4" rx="1.5" fill="#1a3d60"/>
+
+      {/* Antenne de scan */}
+      <rect x="14" y="-3" width="2" height="7" rx="1" fill="#1a3d60"/>
+      <circle cx="15" cy="-3" r="2.2" fill={sleeping ? '#1a3d60' : '#00e5ff'}/>
+      <circle cx="15" cy="-3" r="0.9" fill="white" opacity={sleeping ? 0.15 : 0.8}/>
+
+      {/* Casque dôme */}
+      <circle cx="15" cy="10" r="10.5" fill="#2d5e8e"/>
+      <circle cx="15" cy="10" r="9.5" fill="#4882c8" opacity="0.3"/>
+      {/* Bolts latéraux */}
+      <circle cx="7" cy="8" r="1.5" fill="#1a3d60"/>
+      <circle cx="23" cy="8" r="1.5" fill="#1a3d60"/>
+      {/* Visière noire full-face */}
+      <rect x="5" y="7" width="20" height="7.5" rx="2" fill="#001020" opacity="0.92"/>
+
+      {/* Yeux LED cyan */}
+      <rect x="6.5" y="8.5" width="5.5" height="2.5" rx="1.2" fill={led} opacity={ledOp}/>
+      <rect x="18" y="8.5" width="5.5" height="2.5" rx="1.2" fill={led} opacity={ledOp}/>
+      {!sleeping && <>
+        <rect x="7" y="8.8" width="2" height="0.9" rx="0.4" fill="white" opacity="0.7"/>
+        <rect x="18.5" y="8.8" width="2" height="0.9" rx="0.4" fill="white" opacity="0.7"/>
+      </>}
+
+      {/* Bouche : grille de ventilation 5 slots */}
+      <rect x="9.5" y="11.5" width="11" height="2.5" rx="1.2" fill="#001020" opacity="0.9"/>
+      <rect x="10.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
+      <rect x="12.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
+      <rect x="14.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
+      <rect x="16.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
+      <rect x="18.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
     </g>
   );
 }
@@ -2197,33 +2534,74 @@ function CharSurfer({ s, m, id, blink }) {
 }
 
 // 44. MUSHROOM
+// ── Esprit Champignon (design UX v2 — remplace CharMushroom) ────────────────
 function CharMushroom({ s, m, id, blink }) {
   return (
     <g style={s.body}>
+      {/* Halo — Couronne de Spores */}
+      <ellipse cx="15" cy="19" rx="19" ry="15" fill="#e63946" opacity="0.04"/>
+      <ellipse cx="15" cy="19" rx="19" ry="15" fill="none" stroke="#e63946" strokeWidth="1.3" opacity="0.28"/>
+      <ellipse cx="15" cy="19" rx="15.5" ry="12" fill="none" stroke="#e63946" strokeWidth="0.9" opacity="0.18"/>
+      <circle cx="15" cy="4"  r="1.8" fill="#e63946" opacity="0.6"/>
+      <circle cx="15" cy="4"  r="0.8" fill="white"   opacity="0.7"/>
+      <circle cx="28" cy="8"  r="1.6" fill="#e63946" opacity="0.55"/>
+      <circle cx="28" cy="8"  r="0.7" fill="white"   opacity="0.65"/>
+      <circle cx="34" cy="19" r="1.5" fill="#e63946" opacity="0.5"/>
+      <circle cx="34" cy="19" r="0.6" fill="white"   opacity="0.6"/>
+      <circle cx="28" cy="30" r="1.6" fill="#e63946" opacity="0.55"/>
+      <circle cx="28" cy="30" r="0.7" fill="white"   opacity="0.65"/>
+      <circle cx="15" cy="34" r="1.7" fill="#e63946" opacity="0.58"/>
+      <circle cx="15" cy="34" r="0.75" fill="white"  opacity="0.68"/>
+      <circle cx="2"  cy="30" r="1.6" fill="#e63946" opacity="0.55"/>
+      <circle cx="2"  cy="30" r="0.7" fill="white"   opacity="0.65"/>
+      <circle cx="-4" cy="19" r="1.5" fill="#e63946" opacity="0.5"/>
+      <circle cx="-4" cy="19" r="0.6" fill="white"   opacity="0.6"/>
+      <circle cx="2"  cy="8"  r="1.6" fill="#e63946" opacity="0.55"/>
+      <circle cx="2"  cy="8"  r="0.7" fill="white"   opacity="0.65"/>
+      {/* Jambes */}
       <g style={s.legL}>
-        <rect x="8" y="30" width="6" height="8" rx="3" fill="#fef9c3"/>
+        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#faf7f0"/>
+        <rect x="7.5" y="34" width="7" height="4.5" rx="2.5" fill="#e63946"/>
       </g>
       <g style={s.legR}>
-        <rect x="16" y="30" width="6" height="8" rx="3" fill="#fef9c3"/>
+        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#faf7f0"/>
+        <rect x="15.5" y="34" width="7" height="4.5" rx="2.5" fill="#e63946"/>
       </g>
-      <rect x="7" y="17" width="16" height="14" rx="6" fill="#fef9c3"/>
+      {/* Corps / Tige */}
+      <rect x="9" y="18" width="12" height="13" rx="4.5" fill="#faf7f0"/>
+      <rect x="13" y="18" width="4" height="13" rx="2" fill="#f0ebe0" opacity="0.7"/>
+      <ellipse cx="15" cy="24" rx="6.5" ry="1.5" fill="#f5f0e4" stroke="#d4c8a8" strokeWidth="0.9"/>
+      {/* Bras */}
       <g style={s.armL}>
-        <rect x="2" y="18" width="5" height="8" rx="2.5" fill="#fef9c3"/>
+        <rect x="1" y="20" width="8" height="10" rx="3.5" fill="#faf7f0"/>
+        <rect x="1" y="27" width="8" height="3.5" rx="2" fill="#e63946"/>
       </g>
       <g style={s.armR}>
-        <rect x="23" y="18" width="5" height="8" rx="2.5" fill="#fef9c3"/>
+        <rect x="21" y="20" width="8" height="10" rx="3.5" fill="#faf7f0"/>
+        <rect x="21" y="27" width="8" height="3.5" rx="2" fill="#e63946"/>
       </g>
-      <ellipse cx="15" cy="7" rx="13" ry="9" fill="#dc2626"/>
-      <circle cx="10" cy="5" r="2" fill="white"/>
-      <circle cx="19" cy="4" r="1.5" fill="white"/>
-      <circle cx="15" cy="7" r="1.5" fill="white"/>
-      <circle cx="12" cy="9" r="1" fill="white"/>
-      <circle cx="18" cy="8" r="1" fill="white"/>
-      <ellipse cx="15" cy="13" rx="12" ry="4" fill="#dc2626"/>
-      <circle cx="15" cy="13.5" r="9" fill="#fef9c3"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={14} r={1.8} color="#111" bg="white"/>
-      <ellipse cx="15" cy="17" rx="1.2" ry="0.8" fill="#92400e"/>
-      <path d="M12.5 18 Q15 19.5 17.5 18" fill="none" stroke="#92400e" strokeWidth="0.8" strokeLinecap="round"/>
+      {/* Chapeau (tête) — rebord lamellé */}
+      <ellipse cx="15" cy="18" rx="15.5" ry="2.8" fill="#f5e8d5"/>
+      <line x1="5"  y1="17.8" x2="6.5"  y2="16.5" stroke="#dcc8a8" strokeWidth="0.9"/>
+      <line x1="9"  y1="17.5" x2="9.8"  y2="16.2" stroke="#dcc8a8" strokeWidth="0.9"/>
+      <line x1="13" y1="17.3" x2="13.2" y2="16"   stroke="#dcc8a8" strokeWidth="0.9"/>
+      <line x1="17" y1="17.3" x2="16.8" y2="16"   stroke="#dcc8a8" strokeWidth="0.9"/>
+      <line x1="21" y1="17.5" x2="20.2" y2="16.2" stroke="#dcc8a8" strokeWidth="0.9"/>
+      <line x1="25" y1="17.8" x2="23.5" y2="16.5" stroke="#dcc8a8" strokeWidth="0.9"/>
+      {/* Dôme principal */}
+      <path d="M 0 18 C 0 -3 30 -3 30 18 Z" fill="#e63946"/>
+      <path d="M 6 10 C 7.5 4 13 1.5 18 4" fill="none" stroke="#ff7a84" strokeWidth="1.4" strokeLinecap="round" opacity="0.55"/>
+      <circle cx="11"   cy="9"    r="1.3" fill="white" opacity="0.95"/>
+      <circle cx="18.5" cy="6"    r="1.5" fill="white" opacity="0.95"/>
+      <circle cx="22.5" cy="12.5" r="1.1" fill="white" opacity="0.92"/>
+      <circle cx="15"   cy="3.5"  r="1.1" fill="white" opacity="0.95"/>
+      <circle cx="25.5" cy="9"    r="0.9" fill="white" opacity="0.88"/>
+      <circle cx="4.5"  cy="10"   r="0.8" fill="white" opacity="0.82"/>
+      <circle cx="7"    cy="14.5" r="0.8" fill="white" opacity="0.75"/>
+      <circle cx="23"   cy="15"   r="0.7" fill="white" opacity="0.72"/>
+      {/* Yeux — bas du dôme */}
+      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={13} />
+      <Mouth m={m} />
     </g>
   );
 }
@@ -2699,6 +3077,89 @@ function CharSharkNinja({ s, m, id, blink }) {
 }
 
 // ─── CHARS MAP ───────────────────────────────────────────────────────────────
+// ── Cosmonaute Intrépide ─────────────────────────────────────────────────────
+function CharCosmo({ s, m, id, blink }) {
+  return (
+    <g style={s.body}>
+      {/* Traînée cométaire (halo) */}
+      <path d="M-3 44 Q4 33 13 21" fill="none" stroke="#0284c7" strokeWidth="4.5" opacity="0.12" strokeLinecap="round"/>
+      <path d="M-3 44 Q4 33 13 21" fill="none" stroke="#38bdf8" strokeWidth="2.5" opacity="0.22" strokeLinecap="round"/>
+      <path d="M-3 44 Q4 33 13 21" fill="none" stroke="#bae6fd" strokeWidth="1.2" opacity="0.45" strokeLinecap="round"/>
+      <circle cx="2"  cy="40" r="0.8" fill="#7dd3fc" opacity="0.7"/>
+      <circle cx="5"  cy="35" r="0.7" fill="#bae6fd" opacity="0.6"/>
+      <circle cx="9"  cy="29" r="0.6" fill="#38bdf8" opacity="0.65"/>
+      {/* Jambe gauche */}
+      <g style={s.legL}>
+        <rect x="7"   y="29" width="7.5" height="9"   rx="3"   fill="#f0f9ff"/>
+        <rect x="7.5" y="30.5" width="6.5" height="1.2" rx="0.5" fill="#0284c7" opacity="0.7"/>
+        <rect x="7"   y="33"  width="7.5" height="1.8" rx="0.8" fill="#0ea5e9" opacity="0.9"/>
+        <rect x="6.5" y="34.5" width="8" height="4"   rx="2"   fill="#075985"/>
+      </g>
+      {/* Jambe droite */}
+      <g style={s.legR}>
+        <rect x="15.5" y="29" width="7.5" height="9"   rx="3"   fill="#f0f9ff"/>
+        <rect x="16"   y="30.5" width="6.5" height="1.2" rx="0.5" fill="#0284c7" opacity="0.7"/>
+        <rect x="15.5" y="33"  width="7.5" height="1.8" rx="0.8" fill="#0ea5e9" opacity="0.9"/>
+        <rect x="15"   y="34.5" width="8" height="4"   rx="2"   fill="#075985"/>
+      </g>
+      {/* Corps */}
+      <rect x="4.5" y="16" width="21" height="14.5" rx="6"   fill="#f0f9ff"/>
+      <rect x="9"   y="16" width="12" height="2.5"  rx="1.2" fill="#e0f2fe"/>
+      <rect x="8"   y="18" width="14" height="9"    rx="2.5" fill="#f0faff" stroke="#0284c7" strokeWidth="1.2"/>
+      <rect x="9.5" y="19.5" width="11" height="1.5" rx="0.7" fill="#0284c7" opacity="0.6"/>
+      <rect x="9.5" y="23"   width="11" height="1.5" rx="0.7" fill="#0284c7" opacity="0.6"/>
+      <path d="M15 20 L16.7 21 L16.7 23 L15 24 L13.3 23 L13.3 21 Z" fill="#0284c7"/>
+      <path d="M15 20.8 L16.2 21.5 L16.2 22.8 L15 23.5 L13.8 22.8 L13.8 21.5 Z" fill="#7dd3fc"/>
+      {/* Bras gauche + patch mission */}
+      <g style={s.armL}>
+        <rect x="0" y="17" width="6" height="10" rx="3"   fill="#f0f9ff"/>
+        <circle cx="3" cy="20" r="2.2" fill="#0284c7"/>
+        <circle cx="3" cy="20" r="1.4" fill="#38bdf8"/>
+        <circle cx="3" cy="20" r="0.7" fill="#f0faff"/>
+        <rect x="0" y="23"   width="6" height="1.8" rx="0.8" fill="#0ea5e9" opacity="0.9"/>
+        <rect x="0" y="24.5" width="6" height="3.5" rx="2.5" fill="#075985"/>
+      </g>
+      {/* Bras droit + drapeau */}
+      <g style={s.armR}>
+        <rect x="24" y="17" width="6" height="10" rx="3" fill="#f0f9ff"/>
+        <rect x="26.3" y="10" width="1.6" height="16" rx="0.8" fill="#0284c7"/>
+        <rect x="27.9" y="10"  width="8"  height="5.5" rx="1"   fill="#0284c7"/>
+        <rect x="28.5" y="10.6" width="7" height="4.3" rx="0.6" fill="#38bdf8"/>
+        <circle cx="32" cy="12.7" r="1.4" fill="#f0faff"/>
+        <rect x="24" y="23"   width="6" height="1.8" rx="0.8" fill="#0ea5e9" opacity="0.9"/>
+        <rect x="24" y="24.5" width="6" height="3.5" rx="2.5" fill="#075985"/>
+      </g>
+      {/* Casque — tête */}
+      <circle cx="15" cy="11" r="12.5" fill="#f0faff"/>
+      <circle cx="15" cy="11" r="12.5" fill="none" stroke="#0284c7" strokeWidth="1.5"/>
+      <rect x="12" y="-2" width="6" height="4" rx="2"   fill="#0284c7"/>
+      <rect x="13" y="-1.5" width="4" height="3" rx="1.5" fill="#7dd3fc"/>
+      {/* Visière */}
+      <ellipse cx="15" cy="12" rx="8.5" ry="7.5" fill="#0284c7"/>
+      <ellipse cx="15" cy="12" rx="7.2" ry="6.2" fill="#e0f7ff" opacity="0.75"/>
+      <ellipse cx="15" cy="12.5" rx="6" ry="5.2" fill="#fde8d0"/>
+      <circle cx="10.5" cy="14.2" r="2" fill="#fca5a5" opacity="0.7"/>
+      <circle cx="19.5" cy="14.2" r="2" fill="#fca5a5" opacity="0.7"/>
+      {/* Yeux dans la visière */}
+      <Eyes m={m} id={id} blink={blink} lx={12} rx={18} y={11} r={1.8} color="#1a1a2e" bg="white"/>
+      {/* Bouche (repositionnée dans le casque) */}
+      {m === 'kiss'
+        ? <circle cx="15" cy="14.5" r="1.4" fill="#f472b6"/>
+        : m === 'surprise'
+          ? <ellipse cx="15" cy="14.8" rx="1.8" ry="2.1" fill="#1a1a2e"/>
+          : <path d="M12.5 14.5 Q15 16.5 17.5 14.5" fill="none" stroke="#b45309" strokeWidth="1" strokeLinecap="round"/>
+      }
+      {/* Antenne (avant-plan) */}
+      <rect x="19" y="-8" width="1.3" height="9" rx="0.6" fill="#0284c7"/>
+      <circle cx="19.6" cy="-8.5" r="1.3" fill="#7dd3fc"/>
+      <circle cx="19.6" cy="-8.5" r="0.7" fill="#0284c7"/>
+      <path d="M21.5 -5 Q23 -6.5 21.5 -8"  fill="none" stroke="#7dd3fc" strokeWidth="0.9" opacity="0.6" strokeLinecap="round"/>
+      <path d="M23 -4.5 Q25 -6.5 23 -8.5"  fill="none" stroke="#38bdf8" strokeWidth="0.8" opacity="0.4" strokeLinecap="round"/>
+      <ellipse cx="13" cy="8" rx="2.2" ry="1.2" fill="white" opacity="0.4"/>
+    </g>
+  );
+}
+
 const CHARS = {
   panda:      CharPanda,
   fox:        CharFox,
@@ -2708,8 +3169,10 @@ const CHARS = {
   eagle:      CharEagle,
   stormEagle: CharStormEagle,
   bear:       CharBear,
-  shark:      CharShark,
+  shark:      CharSharkNinja,
   owl:        CharOwl,
+  owlWitch:   CharOwlWitch,
+  catDetective: CharCatDetective,
   frog:       CharFrog,
   octopus:    CharOctopus,
   cat:        CharCat,
@@ -2746,6 +3209,7 @@ const CHARS = {
   rockstar:   CharRockstar,
   surfer:     CharSurfer,
   mushroom:   CharMushroom,
+  cosmo:      CharCosmo,
   cactus:     CharCactus,
   pizza:      CharPizza,
   clown:      CharClown,
@@ -2766,7 +3230,7 @@ export default function CharacterSprite({ id = 'panda', mood = 'walk', size = 40
   const blink = `${pid}Blink 3.5s ${ei} infinite`;
 
   return (
-    <div style={{
+    <div data-mood={mood} style={{
       width: size,
       height: h,
       display: 'inline-block',
