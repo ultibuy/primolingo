@@ -505,7 +505,7 @@ const sentenceStyle = {
 };
 
 function splitSyllable(syl) {
-  if (syl.startsWith('gu')) return ['gu', syl.slice(2)];
+  if (syl.startsWith('gu') && syl.length > 2) return ['gu', syl.slice(2)];
   if (syl.startsWith('ge') && syl.length > 2) return ['ge', syl.slice(2)];
   return ['g', syl.slice(1)];
 }

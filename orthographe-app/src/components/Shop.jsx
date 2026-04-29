@@ -889,11 +889,12 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
               return (
                 <div key={cat.id} style={{ marginBottom: '1.5rem' }}>
                   <div style={{
-                    fontSize: '0.72rem', color: '#6b7280', fontWeight: 700,
-                    textTransform: 'uppercase', letterSpacing: '0.08em',
-                    marginBottom: '0.7rem', paddingLeft: '0.2rem',
-                    borderBottom: '1px solid rgba(255,255,255,0.06)',
-                    paddingBottom: '0.4rem',
+                    fontSize: '0.75rem', color: '#e2e8f0', fontWeight: 800,
+                    textTransform: 'uppercase', letterSpacing: '0.1em',
+                    marginBottom: '0.7rem', padding: '0.35rem 0.6rem',
+                    background: 'rgba(255,255,255,0.06)',
+                    borderRadius: 8,
+                    border: '1px solid rgba(255,255,255,0.1)',
                   }}>
                     {cat.label}
                   </div>

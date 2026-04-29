@@ -55,7 +55,28 @@ export function selectSessionQuestions(rule, ruleProgress, maxQuestions = 20, mo
       const targetRound = guidedDone === 0 ? 1 : 2;
       const roundPool = questions.filter(q => q.round === targetRound);
 
-      return shuffleArray(roundPool).map(q => ({
+      let ordered;
+      if (targetRound === 1) {
+        ordered = shuffleArray(roundPool);
+      } else {
+        // Round 2: structured ordering
+        // 1. Forced intro: exactly gue, geo, gui, gea in that order
+        const INTRO_SYLLABLES = ['gue', 'geo', 'gui', 'gea'];
+        const COMPLEX_SYLLABLES = new Set(['gue', 'gui', 'geo', 'gea', 'gie']);
+        const introQs = INTRO_SYLLABLES.map(syl => {
+          const candidates = shuffleArray(roundPool.filter(q => q.syllable === syl));
+          return candidates[0];
+        }).filter(Boolean);
+        const usedIds = new Set(introQs.map(q => q.id));
+        const rest = roundPool.filter(q => !usedIds.has(q.id));
+        // 2. Middle: simple (2-letter) syllables only, shuffled
+        const simpleQs = shuffleArray(rest.filter(q => !COMPLEX_SYLLABLES.has(q.syllable)));
+        // 3. Last: complex syllables, shuffled
+        const complexQs = shuffleArray(rest.filter(q => COMPLEX_SYLLABLES.has(q.syllable)));
+        ordered = [...introQs, ...simpleQs, ...complexQs];
+      }
+
+      return ordered.map(q => ({
         ...q,
         _ruleChoices: (q.choices && q.choices.length) ? q.choices : rule.choices,
         _ruleDecisionAxes: [],
