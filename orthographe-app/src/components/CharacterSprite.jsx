@@ -1305,140 +1305,154 @@ function CharCat({ s, m, id, blink }) {
 
 // 13. DRAGON
 function CharDragon({ s, m, id, blink }) {
-  const ei = 'ease-in-out';
+  const sleeping  = m === 'sleep';
+  const surprised = m === 'surprise';
+  const kissing   = m === 'kiss';
+  const showFlame = !kissing && !surprised && !sleeping;
+
   return (
-    <>
-      <defs>
-        <radialGradient id={`${id}-fireGlow`} cx="50%" cy="50%" r="60%">
-          <stop offset="0%" stopColor="#f87171" stopOpacity="0.3"/>
-          <stop offset="100%" stopColor="#f97316" stopOpacity="0.05"/>
-        </radialGradient>
-        <linearGradient id={`${id}-bellyGlow`} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#f97316" stopOpacity="0.8"/>
-          <stop offset="100%" stopColor="#fbbf24" stopOpacity="0.4"/>
-        </linearGradient>
-      </defs>
+    <g style={s.body}>
 
-      {/* Fire aura */}
-      <circle cx="15" cy="18" r="26" fill={`url(#${id}-fireGlow)`}
-        style={{ animation: `${id}FireAuraPulse 2.5s ${ei} infinite`, transformOrigin: '15px 18px' }}/>
+      {/* ── Ailes bat-wing (P1 — pointe vive, derrière tout) ── */}
+      {/* Aile gauche */}
+      <path d="M 7 17 Q 0 11 -4 6 Q -8 2 -11 1 Q -10 7 -9 13 Q -7 21 -4 27 Q -1 31 4 31 Q 6 25 7 17 Z"
+        fill="#8b1a1a" opacity="0.9"/>
+      <path d="M 7 17 Q 0 11 -4 6 Q -8 2 -11 1"
+        fill="none" stroke="#5c0e0e" strokeWidth="1.6" strokeLinecap="round"/>
+      <line x1="7" y1="17" x2="-8" y2="9"  stroke="#5c0e0e" strokeWidth="1.1" opacity="0.85"/>
+      <line x1="7" y1="17" x2="-6" y2="19" stroke="#5c0e0e" strokeWidth="1"   opacity="0.8"/>
+      <line x1="7" y1="17" x2="-3" y2="28" stroke="#5c0e0e" strokeWidth="0.9" opacity="0.75"/>
+      <path d="M 7 17 Q 3 13 -2 9 Q -4 14 -3 22 Q -1 28 4 31 Q 6 25 7 17 Z"
+        fill="#c0392b" opacity="0.18"/>
 
-      <g style={s.body}>
-        {/* Wings */}
-        <ellipse cx="4" cy="20" rx="4.5" ry="7" fill="#f97316" opacity="0.7" transform="rotate(-25 4 20)"/>
-        <ellipse cx="3" cy="20" rx="2.5" ry="4.5" fill="#fca5a5" opacity="0.5" transform="rotate(-25 3 20)"/>
-        <ellipse cx="26" cy="20" rx="4.5" ry="7" fill="#f97316" opacity="0.7" transform="rotate(25 26 20)"/>
-        <ellipse cx="27" cy="20" rx="2.5" ry="4.5" fill="#fca5a5" opacity="0.5" transform="rotate(25 27 20)"/>
+      {/* Aile droite */}
+      <path d="M 23 17 Q 30 11 34 6 Q 38 2 41 1 Q 40 7 39 13 Q 37 21 34 27 Q 31 31 26 31 Q 24 25 23 17 Z"
+        fill="#8b1a1a" opacity="0.9"/>
+      <path d="M 23 17 Q 30 11 34 6 Q 38 2 41 1"
+        fill="none" stroke="#5c0e0e" strokeWidth="1.6" strokeLinecap="round"/>
+      <line x1="23" y1="17" x2="38" y2="9"  stroke="#5c0e0e" strokeWidth="1.1" opacity="0.85"/>
+      <line x1="23" y1="17" x2="36" y2="19" stroke="#5c0e0e" strokeWidth="1"   opacity="0.8"/>
+      <line x1="23" y1="17" x2="33" y2="28" stroke="#5c0e0e" strokeWidth="0.9" opacity="0.75"/>
+      <path d="M 23 17 Q 27 13 32 9 Q 34 14 33 22 Q 31 28 26 31 Q 24 25 23 17 Z"
+        fill="#c0392b" opacity="0.18"/>
 
-        {/* Tail */}
-        <ellipse cx="28" cy="28" rx="4.5" ry="6.5" fill="#dc2626" transform="rotate(35 28 28)"/>
-        <polygon points="31,22 34,19 32,24 35,21 33,26" fill="#f97316" opacity="0.9"/>
-        <polygon points="32,22 35,20 33,25 36,22 34,27" fill="#fbbf24" opacity="0.7"/>
+      {/* Queue */}
+      <path d="M 21 30 Q 29 26 28 35 Q 26 41 21 38 Q 24 35 22 32 Z" fill="#b91c1c"/>
 
-        {/* Legs — scales + gold claws */}
-        <g style={s.legL}>
-          <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#dc2626"/>
-          <path d="M8,32 L9.5,31 L8,33 L9.5,32" fill="#f97316" opacity="0.6"/>
-          <path d="M8,34 L9.5,33 L8,35 L9.5,34" fill="#f97316" opacity="0.6"/>
-          <circle cx="8" cy="38.5" r="1.2" fill="#fbbf24"/>
-          <circle cx="11" cy="38.5" r="1.2" fill="#fbbf24"/>
-        </g>
-        <g style={s.legR}>
-          <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#dc2626"/>
-          <path d="M16,32 L17.5,31 L16,33 L17.5,32" fill="#f97316" opacity="0.6"/>
-          <path d="M16,34 L17.5,33 L16,35 L17.5,34" fill="#f97316" opacity="0.6"/>
-          <circle cx="16" cy="38.5" r="1.2" fill="#fbbf24"/>
-          <circle cx="19" cy="38.5" r="1.2" fill="#fbbf24"/>
-        </g>
-
-        {/* Body — belly gradient + scale chevrons + spine */}
-        <rect x="6" y="16" width="18" height="15" rx="6" fill="#b91c1c"/>
-        <ellipse cx="15" cy="23" rx="6" ry="5.5" fill={`url(#${id}-bellyGlow)`}/>
-        <path d="M8,18 L10,17 L8,19 L10,18 M8,20 L10,19 L8,21 L10,20 M8,22 L10,21 L8,23 L10,22"
-          fill="none" stroke="#fca5a5" strokeWidth="0.8" opacity="0.5"/>
-        <path d="M20,18 L22,17 L20,19 L22,18 M20,20 L22,19 L20,21 L22,20 M20,22 L22,21 L20,23 L22,22"
-          fill="none" stroke="#fca5a5" strokeWidth="0.8" opacity="0.5"/>
-        <g opacity="0.6">
-          <path d="M15,17.5 L16.5,16.5 L15,18.5 L16.5,17.5"/>
-          <path d="M15,19.5 L16.5,18.5 L15,20.5 L16.5,19.5"/>
-          <path d="M15,21.5 L16.5,20.5 L15,22.5 L16.5,21.5"/>
-          <path d="M15,23.5 L16.5,22.5 L15,24.5 L16.5,23.5"/>
-        </g>
-
-        {/* Arms — scales + gold claws + shoulder spike */}
-        <g style={s.armL}>
-          <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#dc2626"/>
-          <path d="M2.5,19 L3.5,18.5 L2.5,20 L3.5,19.5" fill="#f97316" opacity="0.6"/>
-          <path d="M2.5,22 L3.5,21.5 L2.5,23 L3.5,22.5" fill="#f97316" opacity="0.6"/>
-          <polygon points="2,26 1.5,25.5 2,27 1.2,26.5" fill="#fbbf24"/>
-          <polygon points="4,26 4.5,25.5 4,27 4.8,26.5" fill="#fbbf24"/>
-          <polygon points="3,17 3.5,15.5 4,17 3.3,16" fill="#fbbf24" opacity="0.7"/>
-        </g>
-        <g style={s.armR}>
-          <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#dc2626"/>
-          <path d="M25.5,19 L26.5,18.5 L25.5,20 L26.5,19.5" fill="#f97316" opacity="0.6"/>
-          <path d="M25.5,22 L26.5,21.5 L25.5,23 L26.5,22.5" fill="#f97316" opacity="0.6"/>
-          <polygon points="26,26 25.5,25.5 26,27 25.2,26.5" fill="#fbbf24"/>
-          <polygon points="28,26 28.5,25.5 28,27 28.8,26.5" fill="#fbbf24"/>
-          <polygon points="27,17 27.5,15.5 28,17 27.3,16" fill="#fbbf24" opacity="0.7"/>
-        </g>
-
-        {/* Horns — curved paths */}
-        <path d="M6 7 Q4 3 7 2" fill="none" stroke="#b91c1c" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M23 7 Q25 3 23 2" fill="none" stroke="#b91c1c" strokeWidth="2" strokeLinecap="round"/>
-        <path d="M6.5 6.5 Q4.5 3.5 7 2.5" fill="none" stroke="#f97316" strokeWidth="1.2" strokeLinecap="round"/>
-        <path d="M23.5 6.5 Q24.5 3.5 23 2.5" fill="none" stroke="#f97316" strokeWidth="1.2" strokeLinecap="round"/>
-
-        {/* Head — elongated (not circular) */}
-        <ellipse cx="15" cy="11" rx="11" ry="8" fill="#b91c1c"/>
-        <ellipse cx="15" cy="10.5" rx="9.5" ry="6.5" fill="#dc2626"/>
-
-        {/* Snout */}
-        <ellipse cx="15" cy="15.5" rx="7" ry="5" fill="#b91c1c"/>
-        <ellipse cx="15" cy="15.8" rx="6.5" ry="4.5" fill="#dc2626"/>
-        <path d="M11,16 Q15,17.5 19,16" fill="#b91c1c" opacity="0.7"/>
-
-        {/* Nostrils + smoke glow */}
-        <circle cx="12.5" cy="17.5" r="1.2" fill="#444"/>
-        <circle cx="17.5" cy="17.5" r="1.2" fill="#444"/>
-        <circle cx="12.5" cy="15.5" r="0.8" fill="#f97316"
-          style={{ animation: `${id}NostrilGlow 1.8s ${ei} infinite` }}/>
-        <circle cx="12.8" cy="14.8" r="0.6" fill="#f97316" opacity="0.3"
-          style={{ animation: `${id}NostrilGlow 1.8s ${ei} 0.3s infinite` }}/>
-        <circle cx="17.5" cy="15.5" r="0.8" fill="#f97316"
-          style={{ animation: `${id}NostrilGlow 1.8s ${ei} 0.6s infinite` }}/>
-        <circle cx="17.2" cy="14.8" r="0.6" fill="#f97316" opacity="0.3"
-          style={{ animation: `${id}NostrilGlow 1.8s ${ei} 0.9s infinite` }}/>
-        <path d="M13,16 L14,15.5 M16,16 L15,15.5" stroke="#f97316" strokeWidth="0.6" opacity="0.5"/>
-
-        {/* Eyes — vertical reptilian slits */}
-        {m === 'sleep' ? (<>
-          <path d="M8.5 9.5 Q11 11 13.5 9.5" fill="none" stroke="#111" strokeWidth="1" strokeLinecap="round"/>
-          <path d="M16.5 9.5 Q19 11 21.5 9.5" fill="none" stroke="#111" strokeWidth="1" strokeLinecap="round"/>
-        </>) : m === 'surprise' ? (<>
-          <ellipse cx="11" cy="9.5" rx="2.2" ry="3.2" fill="#fbbf24"/>
-          <ellipse cx="11" cy="9.5" rx="1.4" ry="2.5" fill="#111"/>
-          <ellipse cx="19" cy="9.5" rx="2.2" ry="3.2" fill="#fbbf24"/>
-          <ellipse cx="19" cy="9.5" rx="1.4" ry="2.5" fill="#111"/>
-        </>) : (<>
-          <ellipse cx="11" cy="10.5" rx="2" ry="2.8" fill="#fbbf24"/>
-          <ellipse cx="11" cy="10.5" rx="1.2" ry="2.2" fill="#111"/>
-          <ellipse cx="19" cy="10.5" rx="2" ry="2.8" fill="#fbbf24"/>
-          <ellipse cx="19" cy="10.5" rx="1.2" ry="2.2" fill="#111"/>
-          <ellipse cx="11" cy="10.5" rx="2.4" ry="3.2" fill="none" stroke="#fde047" strokeWidth="0.4" opacity="0.7"/>
-          <ellipse cx="19" cy="10.5" rx="2.4" ry="3.2" fill="none" stroke="#fde047" strokeWidth="0.4" opacity="0.7"/>
-        </>)}
-
-        {/* Mouth + fangs */}
-        {m === 'kiss' ? (
-          <circle cx="15" cy="19" r="1.4" fill="#f472b6"/>
-        ) : (<>
-          <path d="M12 18.5 Q15 20 18 18.5" fill="none" stroke="#1a1a1a" strokeWidth="1" strokeLinecap="round"/>
-          <polygon points="13.5,19 13,20 14,19.5" fill="#fef3c7" opacity="0.8"/>
-          <polygon points="16.5,19 17,20 16,19.5" fill="#fef3c7" opacity="0.8"/>
-        </>)}
+      {/* ── Jambes ── */}
+      <g style={s.legL}>
+        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#dc2626"/>
+        <rect x="8" y="33" width="6" height="2.5" rx="1" fill="#991b1b" opacity="0.6"/>
+        <path d="M 10.5 37.5 L 10.3 38.8 M 13 37.5 L 13.2 38.8"
+          stroke="#fbbf24" strokeWidth="0.85" strokeLinecap="round"/>
       </g>
-    </>
+      <g style={s.legR}>
+        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#dc2626"/>
+        <rect x="16" y="33" width="6" height="2.5" rx="1" fill="#991b1b" opacity="0.6"/>
+        <path d="M 17 37.5 L 16.8 38.8 M 21.5 37.5 L 21.7 38.8"
+          stroke="#fbbf24" strokeWidth="0.85" strokeLinecap="round"/>
+      </g>
+
+      {/* ── Corps ── */}
+      <rect x="6" y="16" width="18" height="15" rx="6" fill="#dc2626"/>
+      <ellipse cx="15" cy="23" rx="5" ry="5.5" fill="#f97316"/>
+      <path d="M 8.5 19.5 Q 9.5 18 10.5 19.5 M 12.5 19.5 Q 13.5 18 14.5 19.5 M 18 19.5 Q 19 18 20 19.5 M 21.5 19.5 Q 22.5 18 23.5 19.5"
+        fill="none" stroke="#991b1b" strokeWidth="1" opacity="0.8"/>
+
+      {/* ── Bras ── */}
+      <g style={s.armL}>
+        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#dc2626"/>
+        <path d="M 3.5 25.5 L 3.3 26.8 M 5.5 26 L 5.3 27.3"
+          stroke="#fbbf24" strokeWidth="0.85" strokeLinecap="round"/>
+      </g>
+      <g style={s.armR}>
+        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#dc2626"/>
+        <path d="M 25.5 25.5 L 25.3 26.8 M 27.5 26 L 27.3 27.3"
+          stroke="#fbbf24" strokeWidth="0.85" strokeLinecap="round"/>
+      </g>
+
+      {/* ── Tête : cornes (derrière la tête) ── */}
+      <path d="M 11 5.5 Q 9.5 1.5 9 -1 Q 11 1 13.5 5 Z"  fill="#fbbf24"/>
+      <path d="M 19 5.5 Q 20.5 1.5 21 -1 Q 19 1 16.5 5 Z" fill="#fbbf24"/>
+      <path d="M 7 9.5 Q 4 7 3.5 4.5 Q 5.5 7.5 8 11 Z"   fill="#ef4444"/>
+      <path d="M 23 9.5 Q 26 7 26.5 4.5 Q 24.5 7.5 22 11 Z" fill="#ef4444"/>
+
+      {/* ── Tête principale ── */}
+      <circle cx="15" cy="11.5" r="10.5" fill="#dc2626"/>
+
+      {/* Museau + narines */}
+      <ellipse cx="15" cy="16.8" rx="5.5" ry="4" fill="#ef4444"/>
+      <circle cx="13.2" cy="16.4" r="0.9" fill="#991b1b"/>
+      <circle cx="16.8" cy="16.4" r="0.9" fill="#991b1b"/>
+
+      {/* Crête frontale */}
+      <path d="M 11.5 3 Q 13.5 1.5 15 2 Q 16.5 1.5 18.5 3"
+        fill="none" stroke="#fbbf24" strokeWidth="1.5" strokeLinecap="round"/>
+
+      {/* ── Yeux CUSTOM — pupille verticale ambre ── */}
+      {sleeping ? (
+        <>
+          <path d="M 8 10 Q 10.5 12.5 13 10"
+            fill="none" stroke="#1a1a1a" strokeWidth="1.3" strokeLinecap="round"/>
+          <path d="M 17 10 Q 19.5 12.5 22 10"
+            fill="none" stroke="#1a1a1a" strokeWidth="1.3" strokeLinecap="round"/>
+        </>
+      ) : surprised ? (
+        <>
+          <circle cx="10.5" cy="10" r="3.2" fill="white"/>
+          <circle cx="19.5" cy="10" r="3.2" fill="white"/>
+          <circle cx="10.5" cy="10" r="2"   fill="#fbbf24"/>
+          <ellipse cx="10.5" cy="10" rx="1"  ry="1.6" fill="#1a1a1a"/>
+          <circle cx="19.5" cy="10" r="2"   fill="#fbbf24"/>
+          <ellipse cx="19.5" cy="10" rx="1"  ry="1.6" fill="#1a1a1a"/>
+        </>
+      ) : (
+        <>
+          <circle cx="10.5" cy="10" r="2.8" fill="white"/>
+          <circle cx="19.5" cy="10" r="2.8" fill="white"/>
+          <ellipse cx="10.5" cy="10" rx="1.3" ry="2.1" fill="#fbbf24"/>
+          <ellipse cx="10.5" cy="10" rx="0.65" ry="1.5" fill="#1a1a1a"/>
+          <circle cx="11.2" cy="9.2" r="0.6" fill="white" opacity="0.9"/>
+          <ellipse cx="19.5" cy="10" rx="1.3" ry="2.1" fill="#fbbf24"/>
+          <ellipse cx="19.5" cy="10" rx="0.65" ry="1.5" fill="#1a1a1a"/>
+          <circle cx="20.2" cy="9.2" r="0.6" fill="white" opacity="0.9"/>
+        </>
+      )}
+
+      {/* ── Bouche CUSTOM ── */}
+      {kissing ? (
+        <circle cx="15" cy="20" r="1.4" fill="#f472b6"/>
+      ) : surprised ? (
+        <ellipse cx="15" cy="20.5" rx="2.2" ry="2.8" fill="#1a1a1a"/>
+      ) : (
+        <path d="M 12.5 19.8 Q 15 21.5 17.5 19.8"
+          fill="none" stroke="#1a1a1a" strokeWidth="1.1" strokeLinecap="round"/>
+      )}
+
+      {/* ── Front : flamme buccale + bracelets (cachés en kiss/surprise/sleep) ── */}
+      {showFlame && (
+        <>
+          {/* Flamme buccale — 3 couches */}
+          <path d="M 13 20 Q 10 22 8 26 Q 11 23 12 27 Q 13 23 15 28 Q 15 24 17 29 Q 17 24 19 27 Q 19 23 21 25 Q 19 21 17 20 Z"
+            fill="#f97316" opacity="0.95"/>
+          <path d="M 13.5 20 Q 11 23 10 27 Q 12 24 13 28 Q 14 24 15 29 Q 15.5 25 17 28 Q 17 24 19 26 Q 17.5 22 16 20 Z"
+            fill="#fbbf24" opacity="0.8"/>
+          <path d="M 14 20 Q 12 24 12.5 28 Q 13.5 25 15 29 Q 15 25 16.5 27 Q 16 23 14 20 Z"
+            fill="white" opacity="0.35"/>
+
+          {/* Bracelet de feu — poignet gauche */}
+          <path d="M 1.5 23 Q 0 21 1 19.5 Q 2 21 1.5 23 Z"  fill="#f97316" opacity="0.85"/>
+          <path d="M 2.5 24 Q 1 22 2 20.5 Q 3 22 2.5 24 Z"  fill="#fbbf24" opacity="0.75"/>
+          <path d="M 3.5 23.5 Q 2 22 3 20.5 Q 4 22 3.5 23.5 Z" fill="#f97316" opacity="0.7"/>
+
+          {/* Bracelet de feu — poignet droit */}
+          <path d="M 28.5 23 Q 30 21 29 19.5 Q 28 21 28.5 23 Z"  fill="#f97316" opacity="0.85"/>
+          <path d="M 27.5 24 Q 29 22 28 20.5 Q 27 22 27.5 24 Z"  fill="#fbbf24" opacity="0.75"/>
+          <path d="M 26.5 23.5 Q 28 22 27 20.5 Q 26 22 26.5 23.5 Z" fill="#f97316" opacity="0.7"/>
+        </>
+      )}
+
+    </g>
   );
 }
 
@@ -2276,115 +2290,6 @@ function CharThunder({ s, m, id, blink }) {
 }
 
 // 38. ICE
-function CharIce({ s, m, id, blink }) {
-  const sleeping = m === 'sleep';
-  const surprised = m === 'surprise';
-  const kissing = m === 'kiss';
-  const ei = 'ease-in-out';
-  return (
-    <>
-      <defs>
-        <linearGradient id={`${id}RobeGrad`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#1e40af"/>
-          <stop offset="50%" stopColor="#7dd3fc"/>
-          <stop offset="100%" stopColor="#cffafe"/>
-        </linearGradient>
-      </defs>
-
-      {/* Aura de glace pulsante */}
-      <circle cx="15" cy="18" r="24" fill="#bae6fd" opacity="0.12"
-        style={{ animation: `${id}Pulse 2.5s ${ei} infinite`, transformOrigin: '15px 18px' }}/>
-      {/* Étincelles flottantes */}
-      <circle cx="6"  cy="10" r="0.8" fill="#e0f2fe" opacity="0.6" style={{ animation: `${id}Float 2.8s ${ei} infinite` }}/>
-      <circle cx="24" cy="12" r="0.6" fill="#e0f2fe" opacity="0.6" style={{ animation: `${id}Float 3.2s ${ei} 0.4s infinite` }}/>
-      <circle cx="8"  cy="28" r="0.7" fill="#06b6d4" opacity="0.5" style={{ animation: `${id}Float 2.5s ${ei} 0.9s infinite` }}/>
-
-      <g style={s.body}>
-        {/* Jambes avec cristaux de givre */}
-        <g style={s.legL}>
-          <rect x="7.5" y="29" width="7" height="9" rx="3.5" fill="#bae6fd" opacity="0.85"/>
-          <path d="M9,31 L9.5,29.5 M11,31.5 L11.5,30" stroke="#06b6d4" strokeWidth="0.8" strokeLinecap="round" opacity="0.9"/>
-        </g>
-        <g style={s.legR}>
-          <rect x="15.5" y="29" width="7" height="9" rx="3.5" fill="#bae6fd" opacity="0.85"/>
-          <path d="M17,31 L17.5,29.5 M19,31.5 L19.5,30" stroke="#06b6d4" strokeWidth="0.8" strokeLinecap="round" opacity="0.9"/>
-        </g>
-
-        {/* Robe dégradée */}
-        <path d="M 6 16 Q 6 16 6.5 17 L 6 25 Q 6 28 8 30 L 22 30 Q 24 28 24 25 L 23.5 17 Q 24 16 24 16 Q 24 16 15 15 Q 6 16 6 16 Z"
-          fill={`url(#${id}RobeGrad)`} opacity="0.95"/>
-        <ellipse cx="15" cy="20.5" rx="5.5" ry="6" fill="#e0f2fe" opacity="0.8"/>
-        {/* Motifs givre */}
-        <g stroke="#06b6d4" strokeWidth="0.7" fill="none" opacity="0.7">
-          <line x1="10" y1="18" x2="10" y2="22"/><line x1="8"  y1="20" x2="12" y2="20"/>
-          <line x1="8.5" y1="18.5" x2="11.5" y2="21.5"/><line x1="11.5" y1="18.5" x2="8.5" y2="21.5"/>
-          <line x1="20" y1="19" x2="20" y2="23"/><line x1="18" y1="21" x2="22" y2="21"/>
-          <line x1="18.5" y1="19.5" x2="21.5" y2="22.5"/><line x1="21.5" y1="19.5" x2="18.5" y2="22.5"/>
-          <line x1="8" y1="23.5" x2="22" y2="23.5" opacity="0.5"/>
-        </g>
-        {/* Ceinture de joyaux */}
-        <rect x="9.5" y="24" width="11" height="2.5" rx="1" fill="#1e40af" opacity="0.9"/>
-        <circle cx="12" cy="25.3" r="0.9" fill="#f59e0b"/>
-        <circle cx="15" cy="25.3" r="1"   fill="#3b82f6"/>
-        <circle cx="18" cy="25.3" r="0.9" fill="#10b981"/>
-
-        {/* Bras avec épaulières de glace */}
-        <g style={s.armL}>
-          <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#bae6fd"/>
-          <ellipse cx="3.5" cy="17.5" rx="3" ry="2" fill="#06b6d4" opacity="0.85"/>
-          <polygon points="2.5,16.5 3,15 3.5,16.5" fill="#e0f2fe" opacity="0.9"/>
-        </g>
-        <g style={s.armR}>
-          <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#bae6fd"/>
-          <ellipse cx="26.5" cy="17.5" rx="3" ry="2" fill="#06b6d4" opacity="0.85"/>
-          <polygon points="26.5,16.5 27,15 27.5,16.5" fill="#e0f2fe" opacity="0.9"/>
-        </g>
-
-        {/* Tête — ellipse allongée (pas un cercle) */}
-        <ellipse cx="15" cy="10" rx="8" ry="10" fill="#f0f8ff" opacity="0.95"/>
-
-        {/* Couronne */}
-        <path d="M 7 7 Q 7 3 15 1 Q 23 3 23 7" fill="#1e40af" opacity="0.95" stroke="#0ea5e9" strokeWidth="0.6"/>
-        <polygon points="15,1 16.5,4 13.5,4"   fill="#06b6d4" stroke="#0ea5e9" strokeWidth="0.5"/>
-        <polygon points="11,3.5 12,5.5 10,5"   fill="#e0f2fe" stroke="#06b6d4" strokeWidth="0.5"/>
-        <polygon points="19,3.5 18,5.5 20,5"   fill="#e0f2fe" stroke="#06b6d4" strokeWidth="0.5"/>
-        <polygon points="8.5,5 9.2,6.5 7.8,6"  fill="#cffafe" stroke="#06b6d4" strokeWidth="0.4"/>
-        <polygon points="21.5,5 20.8,6.5 22.2,6" fill="#cffafe" stroke="#06b6d4" strokeWidth="0.4"/>
-        <circle cx="12" cy="6" r="0.7" fill="#f59e0b"/>
-        <circle cx="15" cy="5" r="0.8" fill="#3b82f6"/>
-        <circle cx="18" cy="6" r="0.7" fill="#10b981"/>
-
-        {/* Yeux — ellipses inclinées avec pupilles cyan */}
-        {sleeping ? (<>
-          <path d="M8.5 10.5 Q11 12.5 13.5 10.5" fill="none" stroke="#0f172a" strokeWidth="1.2" strokeLinecap="round"/>
-          <path d="M16.5 10.5 Q19 12.5 21.5 10.5" fill="none" stroke="#0f172a" strokeWidth="1.2" strokeLinecap="round"/>
-        </>) : (<>
-          <ellipse cx="11.5" cy="10.2" rx="1.5" ry="1.9" fill="#1e3a8a" transform="rotate(-15 11.5 10.2)"/>
-          <ellipse cx="11.5" cy="10.2" rx="0.8" ry="1"   fill="#06b6d4"/>
-          <circle  cx="11.5" cy="9.8"  r="0.4"            fill="white" opacity="0.7"/>
-          <ellipse cx="18.5" cy="10.2" rx="1.5" ry="1.9" fill="#1e3a8a" transform="rotate(15 18.5 10.2)"/>
-          <ellipse cx="18.5" cy="10.2" rx="0.8" ry="1"   fill="#06b6d4"/>
-          <circle  cx="18.5" cy="9.8"  r="0.4"            fill="white" opacity="0.7"/>
-        </>)}
-        {/* Sourcils élégants */}
-        <path d="M 10 8.8 Q 11.5 8 13 8.3" stroke="#0f172a" strokeWidth="0.6" fill="none" strokeLinecap="round"/>
-        <path d="M 17 8.3 Q 18.5 8 20 8.8" stroke="#0f172a" strokeWidth="0.6" fill="none" strokeLinecap="round"/>
-        {/* Bouche */}
-        {kissing
-          ? <circle cx="15" cy="13" r="1.2" fill="#ec4899" opacity="0.85"/>
-          : surprised
-            ? <ellipse cx="15" cy="13.5" rx="1.5" ry="1.8" fill="#fca5a5" opacity="0.9"/>
-            : <>
-                <path d="M 13 13 Q 15 14.2 17 13" fill="none" stroke="#0f172a" strokeWidth="0.8" strokeLinecap="round"/>
-                <circle cx="12.5" cy="13.2" r="0.3" fill="#e0f2fe" opacity="0.7"/>
-                <circle cx="17.5" cy="13.2" r="0.3" fill="#e0f2fe" opacity="0.7"/>
-              </>
-        }
-      </g>
-    </>
-  );
-}
-
 // 39. WIND
 function CharWind({ s, m, id, blink }) {
   return (
@@ -3202,7 +3107,6 @@ const CHARS = {
   fire:       CharFire,
   water:      CharWater,
   thunder:    CharThunder,
-  ice:        CharIce,
   wind:       CharWind,
   earth:      CharEarth,
   gamer:      CharGamer,

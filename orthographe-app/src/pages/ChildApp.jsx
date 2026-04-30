@@ -353,6 +353,8 @@ export default function ChildApp() {
   const [adminSettings, setAdminSettings] = useState(null);
   const [sessionSize, setSessionSize] = useState(DEFAULT_SESSION_SIZE);
   const [screen, setScreen] = useState('dashboard');
+  const [shopInitialTab, setShopInitialTab] = useState(null);
+  const [shopInitialSection, setShopInitialSection] = useState(null);
   const [dashboardTab, setDashboardTab] = useState('grammaire');
   const [pendingEntranceAnim, setPendingEntranceAnim] = useState(null);
   const [showLightning, setShowLightning] = useState(false);
@@ -1119,6 +1121,8 @@ export default function ChildApp() {
         onPurchase={handlePurchase}
         onEquip={handleEquip}
         onClose={() => setScreen('dashboard')}
+        initialTab={shopInitialTab}
+        initialSection={shopInitialSection}
       />
     );
   }
@@ -1132,7 +1136,7 @@ export default function ChildApp() {
       progress={progress}
       childName={childName}
       onPlay={handlePlay}
-      onOpenShop={() => setScreen('shop')}
+      onOpenShop={(tab, section) => { setShopInitialTab(tab || null); setShopInitialSection(section || null); setScreen('shop'); }}
       onOpenDictees={() => setScreen('dictees')}
       pendingEvents={pendingEvents}
       onEventsSeen={handleEventsSeen}

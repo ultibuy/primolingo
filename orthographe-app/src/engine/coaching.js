@@ -5,6 +5,7 @@
  */
 
 import { getToday } from './sm2.js';
+import { SHOP_EMOTIONS } from '../data/shopCharacters.js';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -20,7 +21,6 @@ const CHAR_NAME_MAP = {
   tiger:        'Tigre de l\'Éclair 🐯',
   lion:         'Lion Solaire 🦁',
   stormEagle:   'Aigle Tempête 🦅',
-  ice:          'Reine des Glaces 🧊',
   robot:        'Robot Gardien 🤖',
   bear:         'Ours Viking 🐻',
   sharkNinja:   'Requin Ninja 🦈',
@@ -92,17 +92,12 @@ function isAlreadyShown(coaching, arcId) {
   return !!(coaching?.shown?.[arcId]);
 }
 
-function wasShownWithin24h(coaching, arcId, todayStr) {
-  const lastShown = coaching?.lastShownByArc?.[arcId];
-  if (!lastShown) return false;
-  const diff = daysBetween(lastShown, todayStr);
-  return diff !== null && diff < 1;
+function wasShownWithin24h() {
+  return false;
 }
 
-function isCapReached(coaching, todayStr) {
-  const dsc = coaching?.dailyShownCount;
-  if (!dsc) return false;
-  return dsc.date === todayStr && dsc.count >= 4;
+function isCapReached() {
+  return false;
 }
 
 // ---------------------------------------------------------------------------
@@ -119,6 +114,10 @@ export function pickCoachingMessage(ctx) {
 
   // Cap check
   if (isCapReached(coaching, todayStr)) return null;
+
+  // 3-minute cooling between messages
+  const lastShownTs = coaching.lastShownTimestamp || 0;
+  if (Date.now() - lastShownTs < 3 * 60 * 1000) return null;
 
   const shown = coaching.shown || {};
   const lastShownByArc = coaching.lastShownByArc || {};
@@ -417,7 +416,7 @@ export function pickCoachingMessage(ctx) {
         `${streak.current} jours sans bouclier 🛡️, c'est jouer avec le feu 🔥. 160 pièces et tu dors tranquille.`,
         '160 pièces',
         '🛡️',
-        { label: 'Acheter', action: 'openShop' },
+        { label: 'Acheter', action: 'openShop:boost' },
         { oneShot: true }
       );
     }
@@ -430,7 +429,7 @@ export function pickCoachingMessage(ctx) {
         `Ta flamme de ${streak.current} jours 🔥 vaut le coup d'être protégée — un bouclier 🛡️ pour 160 pièces.`,
         `flamme de ${streak.current} jours`,
         '🔥',
-        { label: 'Acheter', action: 'openShop' },
+        { label: 'Acheter', action: 'openShop:boost' },
         { oneShot: true }
       );
     }
@@ -443,7 +442,7 @@ export function pickCoachingMessage(ctx) {
         `Tu as 1 bouclier 🛡️. À ta flamme de ${streak.current} jours, le second pour 160 pièces fait du bien.`,
         '160 pièces',
         '🛡️',
-        { label: 'Acheter', action: 'openShop' },
+        { label: 'Acheter', action: 'openShop:boost' },
         { oneShot: true }
       );
     }
@@ -453,10 +452,10 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc13.1') && !isAlreadyShown(coaching, 'arc13.1')) {
     if (coins >= 160 && shields === 0 && streak.current < 3) {
       return msg('arc13.1', 'flamme',
-        '160 pièces 🪙 = 1 bouclier 🛡️. Si tu rates un jour, ta flamme est sauvée.',
+        '160 pièces = 1 bouclier 🛡️. Si tu rates un jour, ta flamme est sauvée.',
         '1 bouclier',
         '🛡️',
-        { label: 'Acheter', action: 'openShop' },
+        { label: 'Acheter', action: 'openShop:boost' },
         { oneShot: true }
       );
     }
@@ -469,7 +468,7 @@ export function pickCoachingMessage(ctx) {
         'C\'est bon, tu peux débloquer le Panda 🐼 — va faire un tour dans la boutique.',
         'débloquer le Panda',
         '🐼',
-        { label: 'Boutique', action: 'openShopChars' },
+        { label: 'Boutique', action: 'openShop:persos' },
         { oneShot: true }
       );
     }
@@ -480,7 +479,7 @@ export function pickCoachingMessage(ctx) {
     if (coins >= 200 && coins < 250 && ownedChars.length === 0) {
       const needed = 250 - coins;
       return msg('arc1.4', 'panda',
-        `Plus que ${needed} pièces 🪙 pour débloquer le Panda Samouraï 🐼.`,
+        `Plus que ${needed} pièces pour débloquer le Panda Samouraï 🐼.`,
         `${needed} pièces`,
         '🐼',
         null,
@@ -493,10 +492,10 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc6.3') && !isAlreadyShown(coaching, 'arc6.3')) {
     if (coins >= 250 && ownedChars.length === 0) {
       return msg('arc6.3', 'panda',
-        '250 pièces 🪙 — adopte le Panda Samouraï 🐼 dans la boutique, il vient avec ses 3 émotions de base.',
+        '250 pièces — adopte le Panda Samouraï 🐼 dans la boutique, il vient avec ses 3 émotions de base.',
         'Panda Samouraï',
         '🐼',
-        { label: 'Boutique', action: 'openShopChars' },
+        { label: 'Boutique', action: 'openShop:persos' },
         { oneShot: true }
       );
     }
@@ -507,10 +506,10 @@ export function pickCoachingMessage(ctx) {
     if (coins >= 450 && coins < 500 && ownedChars.length >= 1) {
       const needed = 500 - coins;
       return msg('arc6.4', 'pieces',
-        `Plus que ${needed} pièces 🪙 pour adopter un 2e perso.`,
+        `Plus que ${needed} pièces pour adopter un 2e perso.`,
         `${needed} pièces`,
         '🪙',
-        { label: 'Boutique', action: 'openShopChars' },
+        { label: 'Boutique', action: 'openShop:persos' },
         { oneShot: true }
       );
     }
@@ -520,29 +519,30 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc6.5') && !isAlreadyShown(coaching, 'arc6.5')) {
     if (coins >= 500 && ownedChars.length === 1) {
       return msg('arc6.5', 'pieces',
-        '500 pièces 🪙 — choisis ton 2e perso parmi 14 (Dragon 🐉, Lion 🦁, Loup 🐺, Cosmonaute 🧑‍🚀…).',
+        '500 pièces — choisis ton 2e perso parmi 14 (Dragon 🐉, Lion 🦁, Loup 🐺, Cosmonaute 🧑‍🚀…).',
         '2e perso',
         '🪙',
-        { label: 'Boutique', action: 'openShopChars' },
+        { label: 'Boutique', action: 'openShop:persos' },
         { oneShot: true }
       );
     }
   }
 
-  // --- arc6.7: 200 coins, has char, no shop emotions for most recent char ---
+  // --- arc6.7: enough coins for an emotion, has char, no shop emotions for most recent char ---
   if (allowed('arc6.7') && !isAlreadyShown(coaching, 'arc6.7')) {
-    if (coins >= 200 && ownedChars.length > 0) {
+    const emotionPrice = SHOP_EMOTIONS[0]?.price || 130;
+    if (coins >= emotionPrice && ownedChars.length > 0) {
       // Find most recently purchased char (last char-X item in owned)
       const lastCharItem = [...shopOwned].reverse().find(id => /^char-[^-]+$/.test(id));
       if (lastCharItem) {
         const charId = lastCharItem.slice(5);
         const ownedEmos = getOwnedShopEmotions(shopOwned, charId);
         if (ownedEmos.length === 0) {
-          return msg('arc6.7', 'panda',
-            `200 pièces 🪙 = 1 nouvelle émotion pour ton ${getCharName(charId)}. Va dans la boutique → Persos.`,
+          return msg('arc6.7', 'pieces',
+            `${emotionPrice} pièces = 1 nouvelle émotion pour ton ${getCharName(charId)}. Va dans la boutique → Persos.`,
             `1 nouvelle émotion`,
             '🪙',
-            { label: 'Boutique', action: 'openShop' },
+            { label: 'Boutique', action: 'openShop:persos' },
             { oneShot: true }
           );
         }
@@ -554,10 +554,10 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc6.6') && !isAlreadyShown(coaching, 'arc6.6')) {
     if (coins >= 500 && ownedChars.length >= 2) {
       return msg('arc6.6', 'pieces',
-        '500 pièces 🪙 — un nouveau perso à ajouter à ta collection.',
+        '500 pièces — un nouveau perso à ajouter à ta collection.',
         'un nouveau perso',
         '🪙',
-        { label: 'Boutique', action: 'openShopChars' },
+        { label: 'Boutique', action: 'openShop:persos' },
         { oneShot: true }
       );
     }
@@ -567,7 +567,7 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc6.13') && !isAlreadyShown(coaching, 'arc6.13')) {
     if (coins < 30 && streak.current > 0) {
       return msg('arc6.13', 'pieces',
-        `Plus que ${coins} pièces 🪙. Une session à 16/20 = +20 pièces, vite !`,
+        `Plus que ${coins} pièces. Une session à 16/20 = +20 pièces, vite !`,
         '+20 pièces',
         '🪙',
         null,
@@ -581,10 +581,10 @@ export function pickCoachingMessage(ctx) {
     const hasTheme = shopOwned.some(id => id.startsWith('theme-'));
     if (coins >= 80 && !hasTheme) {
       return msg('arc6.1', 'pieces',
-        '80 pièces 🪙 — tu peux changer le thème de ton dashboard dans la boutique.',
+        '80 pièces — tu peux changer le thème de ton dashboard dans la boutique.',
         'changer le thème',
         '🪙',
-        { label: 'Boutique', action: 'openShop' },
+        { label: 'Boutique', action: 'openShop:cosmetique:themes' },
         { oneShot: true }
       );
     }
@@ -594,7 +594,7 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc1.7.streak5') && !isAlreadyShown(coaching, 'arc1.7.streak5')) {
     if (streak.current === 5) {
       return msg('arc1.7.streak5', 'flamme',
-        'Plus que 2 jours pour atteindre 7 jours et empocher 100 pièces 🪙.',
+        'Plus que 2 jours pour atteindre 7 jours et empocher 100 pièces.',
         '100 pièces',
         '🔥',
         null,
@@ -606,7 +606,7 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc1.7.streak6') && !isAlreadyShown(coaching, 'arc1.7.streak6')) {
     if (streak.current === 6) {
       return msg('arc1.7.streak6', 'flamme',
-        'Demain ta flamme passe à 7 jours — 100 pièces 🪙 à la clé.',
+        'Demain ta flamme passe à 7 jours — 100 pièces à la clé.',
         '100 pièces',
         '🔥',
         null,
@@ -619,7 +619,7 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc5.3') && !isAlreadyShown(coaching, 'arc5.3')) {
     if (streak.current === 6 && !todayDone) {
       return msg('arc5.3', 'flamme',
-        'Demain ta flamme passe à 7 jours — 100 pièces 🪙.',
+        'Demain ta flamme passe à 7 jours — 100 pièces.',
         '100 pièces',
         '🔥',
         null,
@@ -714,10 +714,10 @@ export function pickCoachingMessage(ctx) {
       : false;
     if (!hasAnyRevealed && coins >= 60) {
       return msg('arc6.8', 'pieces',
-        '60 pièces 🪙 = 1 morceau d\'image mystère. Découvre ton image cachée morceau par morceau.',
+        '60 pièces = 1 morceau d\'image mystère. Découvre ton image cachée morceau par morceau.',
         '1 morceau d\'image mystère',
         '🎁',
-        { label: 'Boutique', action: 'openShop' },
+        { label: 'Boutique', action: 'openShop:mystere' },
         { oneShot: true }
       );
     }
@@ -728,10 +728,10 @@ export function pickCoachingMessage(ctx) {
     const hasVictoryAnim = shopOwned.some(id => id.startsWith('victory-'));
     if (!hasVictoryAnim && coins >= 190) {
       return msg('arc6.10', 'pieces',
-        '190 pièces 🪙 — tu peux acheter une animation qui se déclenche à chaque bonne réponse.',
-        'animation',
+        '190 pièces — débloque une animation de victoire sur ton écran de fin de quiz.',
+        'animation de victoire',
         '🪙',
-        { label: 'Boutique', action: 'openShop' },
+        { label: 'Boutique', action: 'openShop:cosmetique:victoryAnimations' },
         { oneShot: true }
       );
     }
@@ -742,10 +742,10 @@ export function pickCoachingMessage(ctx) {
     const hasEntranceAnim = shopOwned.some(id => id.startsWith('entrance-'));
     if (!hasEntranceAnim && coins >= 300) {
       return msg('arc6.11', 'pieces',
-        '300 pièces 🪙 — débloque un effet plein écran 💥 pour tes prochains paliers.',
+        '300 pièces — débloque un effet plein écran 💥 pour tes prochains paliers.',
         'effet plein écran',
         '💥',
-        { label: 'Boutique', action: 'openShop' },
+        { label: 'Boutique', action: 'openShop:cosmetique:entranceAnimations' },
         { oneShot: true }
       );
     }
@@ -756,10 +756,10 @@ export function pickCoachingMessage(ctx) {
     const hasPremiumTheme = shopOwned.some(id => id.startsWith('theme-aurora') || id.startsWith('theme-midnight'));
     if (!hasPremiumTheme && coins >= 320) {
       return msg('arc6.12', 'pieces',
-        '320 pièces 🪙 — un thème premium est à ta portée (Aurora, Midnight Purple).',
+        '320 pièces — un thème premium est à ta portée (Aurora, Midnight Purple).',
         'thème premium',
         '🪙',
-        { label: 'Boutique', action: 'openShop' },
+        { label: 'Boutique', action: 'openShop:cosmetique:themes' },
         { oneShot: true }
       );
     }
@@ -772,10 +772,10 @@ export function pickCoachingMessage(ctx) {
     const hasActiveDoubleCoins = activeBoosts.doubleCoins && (activeBoosts.doubleCoinsRemainingSessions || 0) > 0;
     if (dayOfWeek === 1 && coins >= 100 && !hasActiveDoubleCoins) {
       return msg('arc7.1', 'pieces',
-        'Lundi : tu peux relancer le boost Double coins 🪙×2 pour 5 sessions.',
+        'Lundi : tu peux relancer le boost Double coins ×2 pour 5 sessions.',
         'Double coins',
         '🪙',
-        { label: 'Boutique', action: 'openShop' },
+        { label: 'Boutique', action: 'openShop:boost' },
         { oneShot: true }
       );
     }
@@ -789,7 +789,7 @@ export function pickCoachingMessage(ctx) {
       const remaining = activeBoosts.doubleCoinsRemainingSessions || 0;
       if (activeBoosts.doubleCoins && remaining > 0) {
         return msg('arc7.2', 'pieces',
-          `Double coins actif — encore ${remaining} session${remaining > 1 ? 's' : ''} ×2 🪙.`,
+          `Double coins actif — encore ${remaining} session${remaining > 1 ? 's' : ''} ×2.`,
           `${remaining} session${remaining > 1 ? 's' : ''}`,
           '🪙',
           null,
@@ -988,6 +988,7 @@ export function markCoachingShown(progress, msg, todayStr) {
   }
 
   next.coaching.lastBannerArc = msg.arcId;
+  next.coaching.lastShownTimestamp = Date.now();
 
   return next;
 }

@@ -5,7 +5,6 @@ export const SHOP_CHARACTERS = [
   { id: 'tiger',        emoji: '🐯',    name: "Tigre de l'Éclair",     tag: 'Vitesse absolue',             color: '#fde047', price: 500 },
   { id: 'lion',         emoji: '🦁',    name: 'Lion Solaire',          tag: 'Roi de la savane',            color: '#fbbf24', price: 500 },
   { id: 'stormEagle',   emoji: '🦅',    name: 'Aigle Tempête',         tag: 'Seigneur des vents',          color: '#67e8f9', price: 500 },
-  { id: 'ice',          emoji: '🧊',    name: 'Reine des Glaces',      tag: 'Froid et beauté',             color: '#bae6fd', price: 500 },
   { id: 'robot',        emoji: '🤖',    name: 'Robot Gardien',         tag: 'Précis et indestructible',    color: '#38bdf8', price: 500 },
   { id: 'bear',         emoji: '🐻',    name: 'Ours Viking',           tag: 'Force et vaillance',          color: '#d4a020', price: 500 },
   { id: 'sharkNinja',   emoji: '🦈',    name: 'Requin Ninja',          tag: 'Maître des profondeurs',      color: '#00BFFF', price: 500 },

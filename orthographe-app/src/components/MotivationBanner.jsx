@@ -62,8 +62,8 @@ export default function MotivationBanner({
     alignItems: 'center',
     gap: 12,
     opacity: visible ? 1 : 0,
-    transform: visible ? 'translateY(0)' : 'translateY(4px)',
-    transition: 'opacity 220ms ease, transform 220ms ease',
+    transform: visible ? 'translateY(0) scale(1)' : 'translateY(18px) scale(0.96)',
+    transition: 'opacity 400ms ease-out, transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1)',
     ...style,
   };
 

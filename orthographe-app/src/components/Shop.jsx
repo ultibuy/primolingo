@@ -70,7 +70,7 @@ const SUBCATEGORY_DESCRIPTIONS = {
   themes: "Change le fond d\u2019écran de ton tableau de bord",
   flames: "Personnalise l\u2019icône de ta flamme de streak",
   titles: "Affiche un titre stylé sous ton compteur de jours",
-  victoryAnimations: "Joue une animation quand tu valides une bonne réponse",
+  victoryAnimations: "Joue une animation sur ton écran de fin de quiz",
   entranceAnimations: "Déclenche un effet visuel quand tu passes un niveau",
   streakFreeze: "Protège ton streak si tu oublies une journée",
   doubleCoins: "Double les pièces gagnées pendant 5 sessions",
@@ -114,8 +114,10 @@ function formatFrenchDate(dateStr) {
   }).format(new Date(year, month - 1, day));
 }
 
-export default function Shop({ progress, adminSettings, childName = '', onPurchase, onEquip, onClose }) {
-  const [activeTab, setActiveTab] = useState('cosmetique');
+const VALID_TAB_KEYS = new Set(CATEGORIES.map(c => c.key));
+
+export default function Shop({ progress, adminSettings, childName = '', onPurchase, onEquip, onClose, initialTab, initialSection }) {
+  const [activeTab, setActiveTab] = useState(VALID_TAB_KEYS.has(initialTab) ? initialTab : 'cosmetique');
   const [purchaseAnim, setPurchaseAnim] = useState(null);
   const [mounted, setMounted] = useState(false);
   // FIX 4 — Purchase confirmation state
@@ -130,6 +132,16 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
     requestAnimationFrame(() => setMounted(true));
   }, []);
 
+  // Scroll to target section after mount
+  useEffect(() => {
+    if (!initialSection || !mounted) return;
+    const timer = setTimeout(() => {
+      const el = document.querySelector(`[data-section="${initialSection}"]`);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 350);
+    return () => clearTimeout(timer);
+  }, [mounted, initialSection]);
+
   const coins = progress.coins || 0;
   const shields = progress.shields || 0;
   const isDebug = isLocalhost();
@@ -141,7 +153,7 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
   const baseShopTotal = allItems.reduce((sum, item) => sum + (item.price || 0), 0) + charactersTotal;
   const mysteryImagesTotal = Object.keys(mysteryImageDefinitions).length * MYSTERY_IMAGE_PARTS * MYSTERY_IMAGE_PRICE;
   const globalShopTotal = baseShopTotal + mysteryImagesTotal;
-  const activeCat = CATEGORIES.find(c => c.key === activeTab);
+  const activeCat = CATEGORIES.find(c => c.key === activeTab) || CATEGORIES[0];
   const filteredItems = allItems.filter(activeCat.filter);
 
   // Group cosm\u00e9tique items by subcategory
@@ -917,7 +929,7 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
           </div>
         ) : (
           Object.entries(grouped).map(([groupKey, items]) => (
-            <div key={groupKey} style={{
+            <div key={groupKey} data-section={groupKey} style={{
               marginBottom: '1.5rem',
               padding: '1rem',
               borderRadius: 22,

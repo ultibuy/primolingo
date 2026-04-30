@@ -553,8 +553,11 @@ export default function Dashboard({
   }, []);
 
   const handleCtaAction = useCallback((action) => {
-    if (action === 'openShop' || action === 'openShopChars') {
-      onOpenShop?.();
+    if (action && action.startsWith('openShop')) {
+      const parts = action.split(':');
+      const tab = parts[1] || null;
+      const section = parts[2] || null;
+      onOpenShop?.(tab, section);
     }
   }, [onOpenShop]);
 
@@ -621,7 +624,7 @@ export default function Dashboard({
             zIndex: 998, cursor: 'pointer',
           }} onClick={() => setMoodTooltip(false)}>
             <div style={{
-              textAlign: 'center', padding: '1.5rem 1.6rem',
+              textAlign: 'center', padding: '2.5rem 1.6rem 1.5rem',
               background: 'rgba(var(--color-bg1-rgb),0.95)',
               borderRadius: 18,
               border: '1px solid rgba(255,255,255,0.1)',
