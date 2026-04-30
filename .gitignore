@@ -1,0 +1,40 @@
+# ── Sensitive ──────────────────────────────────────────────────────────────────
+.github-token
+ziPh4utu
+
+# ── Character design prototypes (root-level iteration files) ───────────────────
+Char*.jsx
+Char*.html
+Char*.svg
+
+# ── Animation prototypes ───────────────────────────────────────────────────────
+anim_*.js
+
+# ── Claude Code skills ─────────────────────────────────────────────────────────
+*.skill
+*-edit.skill
+
+# ── Zip archives ──────────────────────────────────────────────────────────────
+*.zip
+
+# ── Bulk data / batch processing artifacts ────────────────────────────────────
+questions_part_*.json
+new_verbs_part_*.json
+replacement_*.json
+replacement_final.json
+report_batch_*.json
+verify_batch_*.json
+conjugaison-3eme-groupe-present.json
+
+# ── Preview prototypes ────────────────────────────────────────────────────────
+preview-*.jsx
+redesign-preview.html
+
+# ── Design asset directories (managed outside git) ────────────────────────────
+emoji-to-sprite/
+long-former-writer-edit/
+ux-designer/
+persos à intégrer/
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store

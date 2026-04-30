@@ -8,6 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+scripts/sentry-check.sh
 dist
 dist-ssr
 *.local
@@ -25,3 +26,15 @@ dist-ssr
 
 # User progress data
 user-data/
+
+# Firebase local cache
+.firebase/
+
+# Test artifacts
+test-results/
+tests/screenshots/
+
+# Design workspace (not shipped)
+trash/
+ux-designer/
+persos-a-integrer/
