@@ -23,6 +23,9 @@ export const saveParentImages = backend.saveParentImages;
 export const getDailyBackups = backend.getDailyBackups;
 export const restoreDailyBackup = backend.restoreDailyBackup;
 
+export const loadParentalPin = backend.loadParentalPin;
+export const saveParentalPin = backend.saveParentalPin;
+
 // Children CRUD (used by pages directly)
 export const listChildren = backend.listChildren;
 export const getChild = backend.getChild;

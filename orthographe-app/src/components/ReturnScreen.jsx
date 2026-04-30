@@ -4,8 +4,7 @@ import DiamondIcon from './DiamondIcon.jsx';
 import DiamondStatus from './DiamondStatus.jsx';
 import CrownIcon from './CrownIcon.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
-import OtpVerification from './OtpVerification.jsx';
-import { useAuth } from '../contexts/AuthContext.jsx';
+import PinInput from './PinInput.jsx';
 
 /**
  * ReturnScreen — shown when Damien returns after inactivity (>= 2 days).
@@ -22,19 +21,22 @@ export default function ReturnScreen({
   shieldsToUse,
   shieldsToBuy,
   costToBuy,
-  coins,
+  coins: _coins,
   previousStreak,
   daysMissed,
   diamondChanges,
   onContinue,
   onSaveStreak,
+  onPinSubmit,
+  pinLockout,
+  hasPinSetup,
 }) {
-  const { user } = useAuth();
   const [step, setStep] = useState(0);
   const [mounted, setMounted] = useState(false);
   const [stepVisible, setStepVisible] = useState(false);
-  const [showSecretCodeStep, setShowSecretCodeStep] = useState(false);
-  const [secretCodeError, setSecretCodeError] = useState(null);
+  const [showPinStep, setShowPinStep] = useState(false);
+  const [pinError, setPinError] = useState(null);
+  const [pinLockedUntil, setPinLockedUntil] = useState(pinLockout?.lockedUntil || 0);
 
   // Streak animation state
   const [streakCountdown, setStreakCountdown] = useState(previousStreak || 0);
@@ -103,7 +105,7 @@ export default function ReturnScreen({
       clearTimeout(timer);
       if (countdownRef.current) cancelAnimationFrame(countdownRef.current);
     };
-  }, [step, streakLost, streakStep]);
+  }, [step, streakLost, streakStep]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // ─── Diamond degradation sequence ───────────────────────────────
   useEffect(() => {
@@ -139,8 +141,6 @@ export default function ReturnScreen({
   }, [step, actionStep]);
 
   const goNext = useCallback(() => {
-    setShowSecretCodeStep(false);
-    setSecretCodeError(null);
     if (step < actionStep) {
       setStep(s => s + 1);
     } else {
@@ -159,14 +159,14 @@ export default function ReturnScreen({
         transform: stepVisible ? 'translateY(0)' : 'translateY(20px)',
         transition: 'opacity 0.5s ease, transform 0.5s ease',
       }}>
-        {!showSecretCodeStep ? (
+        {!showPinStep ? (
           <>
             <div style={{ fontSize: '2.6rem', marginBottom: '0.9rem' }}>{'📆'}</div>
             <h2 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#e2e2e2', marginBottom: '0.5rem' }}>
               Retour après une pause
             </h2>
             <p style={{ fontSize: '0.98rem', color: '#cbd5e1', lineHeight: 1.6, maxWidth: 360, margin: '0 auto 1.4rem' }}>
-              {daysMissed} jour{daysMissed > 1 ? 's' : ''} de flamme raté{daysMissed > 1 ? 's' : ''}, si tu avais une bonne raison choisis « demander à Papa ».
+              {daysMissed} jour{daysMissed > 1 ? 's' : ''} de flamme raté{daysMissed > 1 ? 's' : ''}{hasPinSetup ? ', si tu avais une bonne raison demande le code à ton parent.' : '.'}
             </p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', maxWidth: 320, margin: '0 auto' }}>
               <button
@@ -175,24 +175,42 @@ export default function ReturnScreen({
               >
                 Continuer
               </button>
-              <button
-                onClick={() => setShowSecretCodeStep(true)}
-                style={secondaryButtonStyle}
-              >
-                Demander à Papa
-              </button>
+              {hasPinSetup && (
+                <button
+                  onClick={() => setShowPinStep(true)}
+                  style={secondaryButtonStyle}
+                >
+                  Demander à tes parents
+                </button>
+              )}
             </div>
           </>
         ) : (
-          <OtpVerification
-            uid={user?.uid}
-            email={user?.email}
-            onSuccess={() => {
-              setShowSecretCodeStep(false);
-              onSaveStreak();
-            }}
-            onCancel={() => setShowSecretCodeStep(false)}
-          />
+          <div style={{ maxWidth: 320, margin: '0 auto' }}>
+            <div style={{ fontSize: '2rem', marginBottom: '0.6rem' }}>🔒</div>
+            <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#e2e2e2', marginBottom: '0.4rem' }}>
+              Code parental
+            </h2>
+            <p style={{ fontSize: '0.88rem', color: '#9ca3af', marginBottom: '1.2rem', lineHeight: 1.5 }}>
+              Demande le code à tes parents pour sauver ta flamme.
+            </p>
+            <PinInput
+              onComplete={async (pin) => {
+                const result = await onPinSubmit?.(pin);
+                if (result?.ok) return;
+                setPinError(result?.error || 'Code incorrect.');
+                if (result?.lockedUntil) setPinLockedUntil(result.lockedUntil);
+              }}
+              error={pinError}
+              lockedUntil={pinLockedUntil}
+            />
+            <button
+              onClick={() => { setShowPinStep(false); setPinError(null); }}
+              style={{ ...secondaryButtonStyle, marginTop: '1rem', width: '100%' }}
+            >
+              Annuler
+            </button>
+          </div>
         )}
       </div>
     );
@@ -547,7 +565,7 @@ export default function ReturnScreen({
         </div>
 
         {/* Navigation — only show before action step, hide on steps that have their own buttons */}
-        {step < actionStep && step !== introStep && !(step === streakStep && streakSaveable) && !showSecretCodeStep && (
+        {step < actionStep && step !== introStep && !(step === streakStep && streakSaveable) && (
           <div style={{
             textAlign: 'center', marginTop: '2rem',
             opacity: stepVisible ? 1 : 0,

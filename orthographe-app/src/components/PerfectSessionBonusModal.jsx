@@ -1,11 +1,12 @@
 import CoinIcon from './CoinIcon.jsx';
-import PopupCloseButton from './PopupCloseButton.jsx';
+import PopupModal from './PopupModal.jsx';
 
 export default function PerfectSessionBonusModal({ bonus = 10, onContinue }) {
   return (
-    <div style={overlayStyle}>
-      <div style={cardStyle}>
-        <PopupCloseButton onClick={onContinue} />
+    <PopupModal
+      onClose={onContinue}
+      panelStyle={cardStyle}
+    >
         <div style={iconWrapStyle}>
           <CoinIcon size={34} animate />
         </div>
@@ -16,32 +17,13 @@ export default function PerfectSessionBonusModal({ bonus = 10, onContinue }) {
         <button type="button" onClick={onContinue} style={buttonStyle}>
           Voir le récapitulatif
         </button>
-      </div>
-    </div>
+    </PopupModal>
   );
 }
 
-const overlayStyle = {
-  position: 'fixed',
-  inset: 0,
-  background: 'rgba(0,0,0,0.68)',
-  backdropFilter: 'blur(10px)',
-  WebkitBackdropFilter: 'blur(10px)',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  padding: '1rem',
-  zIndex: 1000,
-};
-
 const cardStyle = {
-  position: 'relative',
   width: 'min(460px, calc(100vw - 2rem))',
-  borderRadius: 24,
   padding: '1.6rem 1.35rem 1.3rem',
-  background: 'linear-gradient(180deg, rgba(var(--color-bg1-rgb),0.97), rgba(var(--color-bg2-rgb),0.9))',
-  border: '1px solid rgba(var(--color-accent-rgb),0.18)',
-  boxShadow: '0 20px 50px rgba(0,0,0,0.38)',
   textAlign: 'center',
 };
 

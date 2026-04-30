@@ -8,6 +8,7 @@ import CrownIcon from './CrownIcon.jsx';
 import DiamondIcon from './DiamondIcon.jsx';
 import DiamondStatus from './DiamondStatus.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
+import PopupModal from './PopupModal.jsx';
 import LevelHelpPopup from './LevelHelpPopup.jsx';
 import RuleEditor from './RuleEditor.jsx';
 import { isLocalhost } from '../debug.js';
@@ -17,9 +18,8 @@ import { getStreakInfo } from '../engine/scoring.js';
 import { getToday } from '../engine/sm2.js';
 import { getDoubleCoinsBonusEarned, getDoubleCoinsRemainingSessions, getEquipped, SHOP_CATALOG } from '../engine/economy.js';
 import { exportProgress } from '../store/persistence.js';
-import { CHARACTERS, CHARACTER_CATEGORIES } from '../data/characters.js';
 import CharacterSprite from './CharacterSprite.jsx';
-import { resolveCharacterMood, resolveShopCharacter, getCharacterForRule, SHOP_CHARACTERS } from '../data/shopCharacters.js';
+import { resolveCharacterMood, resolveShopCharacter, getCharacterForRule, SHOP_CHARACTERS, SHOP_EMOTIONS, BASE_EMOTIONS } from '../data/shopCharacters.js';
 import { allDictees, getDicteeWordsForLevel } from '../content/dicteesLoader.js';
 import DicteeCard from './DicteeCard.jsx';
 
@@ -40,10 +40,10 @@ const MILESTONE_MESSAGES = {
 // ---------------------------------------------------------------------------
 const EVENT_CONFIG = {
   firstQuiz:        { msg: "Premi\u00e8re session termin\u00e9e, ta flamme passe \u00e0 1 !\nReviens demain pour le faire grimper.", icon: '🔥' },
-  levelUp:          { msg: 'Niveau suivant atteint\ !', icon: '\⭐' },
-  level_up_1:       { msg: 'Niveau Découverte atteint\ !', icon: '\⭐' },
-  level_up_2:       { msg: 'Mode direct déverrouillé\ ! 🔓', icon: '🔓' },
-  direct_unlocked:  { msg: 'Mode direct déverrouillé\ ! 🔓', icon: '🔓', dedupOf: 'level_up_2' },
+  levelUp:          { msg: 'Niveau suivant atteint !', icon: '⭐' },
+  level_up_1:       { msg: 'Niveau Découverte atteint !', icon: '⭐' },
+  level_up_2:       { msg: 'Mode direct déverrouillé ! 🔓', icon: '🔓' },
+  direct_unlocked:  { msg: 'Mode direct déverrouillé ! 🔓', icon: '🔓', dedupOf: 'level_up_2' },
   level_up_3:       { msg: 'Règle maîtrisée. Cette couronne, tu l\'as gagnée.', icon: '👑' },
   crown_earned:     { msg: 'Règle maîtrisée. Cette couronne, tu l\'as gagnée.', icon: '👑', dedupOf: 'level_up_3' },
   crown:            { msg: 'Règle maîtrisée. Cette couronne, tu l\'as gagnée.', icon: '👑' },
@@ -51,12 +51,12 @@ const EVENT_CONFIG = {
   diamond_earned:   { msg: 'Parfait, trois fois de suite. C\'est gravé.', icon: '💎', dedupOf: 'level_up_4' },
   diamond:          { msg: 'Parfait, trois fois de suite. C\'est gravé.', icon: '💎' },
   sm2_activated:    { msg: 'Le diamant est vivant. Maintiens-le.', icon: '💎✨', dedupOf: 'level_up_4' },
-  directUnlocked:   { msg: 'Mode direct déverrouillé\ !', icon: '🔓', dedupOf: 'level_up_2' },
+  directUnlocked:   { msg: 'Mode direct déverrouillé !', icon: '🔓', dedupOf: 'level_up_2' },
   shieldUsed:       { icon: '🛡️' },
   streakLost:       { msg: 'Raté hier. Ça arrive. Reprends aujourd\'hui.', icon: '💪' },
   streakMilestone:  { icon: '🔥' },
-  sm2ReviewPassed:  { msg: 'Révision réussie\ ! Le diamant brille.', icon: '💎' },
-  sm2ReviewFragile: { msg: 'Presque\ ! Le diamant exige 90\ %.', icon: '⚠️' },
+  sm2ReviewPassed:  { msg: 'Révision réussie ! Le diamant brille.', icon: '💎' },
+  sm2ReviewFragile: { msg: 'Presque ! Le diamant exige 90 %.', icon: '⚠️' },
   sm2ReviewFailed:  { msg: 'Le diamant se fissure… Révise vite.', icon: '💥' },
   diamondBroken:    { msg: 'Le diamant s\'est brisé.', icon: '💥' },
   perfectSessionBonus: null, // silent — mood + entrance anim handled separately
@@ -237,20 +237,20 @@ function buildOverlayData(evt) {
   // Special handling for events with dynamic messages
   if (evt.type === 'milestone') {
     if (typeof evt.streak === 'number') {
-      msg = MILESTONE_MESSAGES[evt.streak] || `Flamme de ${evt.streak} jours\ !`;
+      msg = MILESTONE_MESSAGES[evt.streak] || `Flamme de ${evt.streak} jours !`;
       icon = '🔥';
     } else {
-      msg = MILESTONE_MESSAGES[evt.value] || `Flamme de ${evt.value} jours\ !`;
+      msg = MILESTONE_MESSAGES[evt.value] || `Flamme de ${evt.value} jours !`;
       icon = '🔥';
     }
   } else if (evt.type === 'streakMilestone') {
-    msg = MILESTONE_MESSAGES[evt.value] || `Flamme de ${evt.value} jours\ !`;
+    msg = MILESTONE_MESSAGES[evt.value] || `Flamme de ${evt.value} jours !`;
     icon = '🔥';
   } else if (evt.type === 'shieldUsed') {
     msg = 'Bouclier 🛡️ consommé, ta flamme tient. Pense à en racheter un avant la prochaine fois.';
     sub = evt.value ? `Ta flamme de ${evt.value} jours est protégée.` : '';
   } else if (evt.type === 'directUnlocked') {
-    sub = `«\ ${evt.value}\ » — plus d\'aide, juste toi.`;
+    sub = `« ${evt.value} » — plus d'aide, juste toi.`;
   } else if (evt.type === 'streakLost') {
     const coins = evt.coins || 0;
     const shields = evt.shields || 0;
@@ -299,7 +299,7 @@ function buildOverlayData(evt) {
       if (levelCfg) { msg = levelCfg.msg; icon = levelCfg.icon; }
     }
     if (!sub && evt.ruleTitle) {
-      sub = `«\ ${evt.ruleTitle}\ »`;
+      sub = `« ${evt.ruleTitle} »`;
     }
   }
 
@@ -350,16 +350,21 @@ export default function Dashboard({
   onTriggerEntranceAnim,
   sessionSize,
   onDebugSetSessionSize,
-  onOpenDictees,
   onPlayDictee,
-  initialTab = 'grammaire',
+  initialTab,
   onTabChange,
   onProgressChange,
 }) {
   const [overlay, setOverlay] = useState(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [activeTab, setActiveTab] = useState(initialTab);
+  const [activeTab, setActiveTab] = useState(() => {
+    if (initialTab) return initialTab;
+    const rp = progress?.rules || {};
+    const grammarNotStarted = rules.filter(r => (rp[r.id]?.level || 0) === 0).length;
+    const dicteeNotStarted = allDictees.filter(d => (rp[`${d.id}-level1`]?.level || 0) === 0).length;
+    return dicteeNotStarted > grammarNotStarted ? 'dictee' : 'grammaire';
+  });
   const handleTabChange = (tab) => { setActiveTab(tab); onTabChange?.(tab); };
   const [showStreakHelp, setShowStreakHelp] = useState(false);
   const [levelHelp, setLevelHelp] = useState(null); // { level: 'bronze', ruleTitle, ruleProgress }
@@ -378,17 +383,7 @@ export default function Dashboard({
   const [streakAlert, setStreakAlert] = useState(null); // { nextMilestone, reward }
   const [moodTooltip, setMoodTooltip] = useState(false); // show character mood popup
   const [pandaMood, setPandaMood] = useState(null); // null = default walk
-  const pandaMoodTimerRef = useRef(null);
   const shopOwnedRef = useRef(progress.shop?.owned || []);
-
-  const triggerPandaMood = useCallback((mood, duration = 4000) => {
-    if (pandaMoodTimerRef.current) clearTimeout(pandaMoodTimerRef.current);
-    setPandaMood(mood);
-    pandaMoodTimerRef.current = setTimeout(() => {
-      setPandaMood(null);
-      pandaMoodTimerRef.current = null;
-    }, duration);
-  }, []);
 
   const triggerRandomEntranceAnim = useCallback((ownedAnims) => {
     if (!ownedAnims.length || !onTriggerEntranceAnim) return;
@@ -519,7 +514,7 @@ export default function Dashboard({
   const equippedFlame = getEquipped(progress, 'flame');
   const doubleCoinsRemaining = getDoubleCoinsRemainingSessions(progress);
   const doubleCoinsBonusEarned = getDoubleCoinsBonusEarned(progress);
-  const shopOwned = progress.shop?.owned || [];
+  const shopOwned = useMemo(() => progress.shop?.owned || [], [progress.shop?.owned]);
   // Keep ref in sync (used by showNextEvent)
   useEffect(() => { shopOwnedRef.current = shopOwned; }, [shopOwned]);
 
@@ -564,11 +559,58 @@ export default function Dashboard({
   const summary = computeGlobalLevelSummary(rules, progress);
 
   // A6 — Split rules into sections
-  const { revisions, inProgress, toDiscover } = splitRulesIntoSections(rules, progress);
+  const { revisions } = splitRulesIntoSections(rules, progress);
 
 
   // A4 — Only show level summary if there's at least one crown or diamond
   const showLevelSummary = summary.couronne > 0 || summary.diamant > 0 || summary.diamondVivant > 0;
+  const levelSummaryBadges = [
+    summary.diamondVivant > 0 && {
+      key: 'diamondVivant',
+      icon: <DiamondStatus health={1.0} size={isCompactLayout ? 15 : 18} />,
+      count: summary.diamondVivant,
+      color: '#67e8f9',
+      label: 'Vivant',
+      compactLabel: 'Vivant',
+      level: 'badge_diamond',
+    },
+    summary.diamant > 0 && {
+      key: 'diamant',
+      icon: <DiamondStatus health={0.7} size={isCompactLayout ? 14 : 16} />,
+      count: summary.diamant,
+      color: '#60a5fa',
+      label: 'Diamant',
+      compactLabel: 'Diamant',
+      level: 'badge_diamond',
+    },
+    summary.couronne > 0 && {
+      key: 'couronne',
+      icon: <CrownIcon size={isCompactLayout ? 13 : 14} active animate={false} />,
+      count: summary.couronne,
+      color: '#fbbf24',
+      label: 'Couronne',
+      compactLabel: 'Cour.',
+      level: 'crown',
+    },
+    summary.enCours > 0 && {
+      key: 'enCours',
+      icon: <span style={{ fontSize: isCompactLayout ? '0.64rem' : '0.7rem' }}>{'⭐'}</span>,
+      count: summary.enCours,
+      color: '#c0c0c0',
+      label: 'En cours',
+      compactLabel: 'En cours',
+      level: 'badge_en_cours',
+    },
+    summary.nouveau > 0 && {
+      key: 'nouveau',
+      icon: <span style={{ fontSize: isCompactLayout ? '0.64rem' : '0.7rem' }}>{'🔒'}</span>,
+      count: summary.nouveau,
+      color: '#4b5563',
+      label: 'Nouvelle',
+      compactLabel: 'Nouv.',
+      level: 'badge_nouvelle',
+    },
+  ].filter(Boolean);
   const streakHeadline = streak > 0
     ? `${streak} jour${streak > 1 ? 's' : ''} d'affilée`
     : 'Allume la première flamme';
@@ -829,7 +871,7 @@ export default function Dashboard({
             {/* A3 — Shields: only show if streak >= 3, as number not repeated icons */}
             {streak >= 3 && shields > 0 && (
               <div
-                title="Boucliers\ : protègent ta flamme si tu rates un jour"
+                title="Boucliers : protègent ta flamme si tu rates un jour"
                 style={{
                   display: 'flex', alignItems: 'center', gap: '0.2rem',
                   cursor: 'default',
@@ -943,24 +985,26 @@ export default function Dashboard({
         ===================================================================== */}
         {showLevelSummary && (
           <div style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            gap: '0.5rem', flexWrap: 'wrap', padding: '0.8rem 0.5rem', marginBottom: '0.6rem',
+            display: 'grid',
+            gridTemplateColumns: `repeat(${levelSummaryBadges.length}, minmax(0, 1fr))`,
+            alignItems: 'center',
+            gap: isCompactLayout ? '0.28rem' : '0.5rem',
+            padding: isCompactLayout ? '0.8rem 0' : '0.8rem 0.5rem',
+            marginBottom: '0.6rem',
+            width: '100%',
+            boxSizing: 'border-box',
           }}>
-            {summary.diamondVivant > 0 && (
-              <LevelBadge icon={<DiamondStatus health={1.0} size={18} />} count={summary.diamondVivant} color="#67e8f9" label="Vivant" onClick={() => setLevelHelp({ level: 'badge_diamond' })} />
-            )}
-            {summary.diamant > 0 && (
-              <LevelBadge icon={<DiamondStatus health={0.7} size={16} />} count={summary.diamant} color="#60a5fa" label="Diamant" onClick={() => setLevelHelp({ level: 'badge_diamond' })} />
-            )}
-            {summary.couronne > 0 && (
-              <LevelBadge icon={<CrownIcon size={14} active animate={false} />} count={summary.couronne} color="#fbbf24" label="Couronne" onClick={() => setLevelHelp({ level: 'crown' })} />
-            )}
-            {summary.enCours > 0 && (
-              <LevelBadge icon={<span style={{ fontSize: '0.7rem' }}>{'\⭐'}</span>} count={summary.enCours} color="#c0c0c0" label="En cours" onClick={() => setLevelHelp({ level: 'badge_en_cours' })} />
-            )}
-            {summary.nouveau > 0 && (
-              <LevelBadge icon={<span style={{ fontSize: '0.7rem' }}>{'🔒'}</span>} count={summary.nouveau} color="#4b5563" label="Nouvelle" onClick={() => setLevelHelp({ level: 'badge_nouvelle' })} />
-            )}
+            {levelSummaryBadges.map((badge) => (
+              <LevelBadge
+                key={badge.key}
+                icon={badge.icon}
+                count={badge.count}
+                color={badge.color}
+                label={isCompactLayout ? badge.compactLabel : badge.label}
+                compact={isCompactLayout}
+                onClick={() => setLevelHelp({ level: badge.level })}
+              />
+            ))}
           </div>
         )}
 
@@ -1296,10 +1340,10 @@ export default function Dashboard({
           </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.8rem' }}>
             {[
-              { label: '⚡ Frappe de foudre', fn: () => setShowLightning(true), color: '#fde047' },
-              { label: '✨ Explosion d\'étoiles', fn: () => setShowStars(true), color: '#fbbf24' },
-              { label: '🔥 Inferno', fn: () => setShowInferno(true), color: '#f97316' },
-              { label: '❄️ Freeze', fn: () => setShowFreeze(true), color: '#38bdf8' },
+              { label: '⚡ Frappe de foudre', fn: () => onTriggerEntranceAnim?.('entrance-lightning'), color: '#fde047' },
+              { label: '✨ Explosion d\'étoiles', fn: () => onTriggerEntranceAnim?.('entrance-stars'), color: '#fbbf24' },
+              { label: '🔥 Inferno', fn: () => onTriggerEntranceAnim?.('entrance-inferno'), color: '#f97316' },
+              { label: '❄️ Freeze', fn: () => onTriggerEntranceAnim?.('entrance-freeze'), color: '#38bdf8' },
             ].map(({ label, fn, color }) => (
               <button key={label} onClick={fn} style={{
                 padding: '0.38rem 0.8rem', borderRadius: 6,
@@ -1340,15 +1384,11 @@ export default function Dashboard({
               </button>
             ))}
           </div>
-          {/* ── Ménagerie ─────────────────────────────────────────── */}
+          {/* ── Boutique — 17 persos × 10 moods ─────────────────── */}
           <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
-            🐾 Ménagerie — {CHARACTERS.length} personnages
+            🐾 Boutique — {SHOP_CHARACTERS.length} personnages
           </div>
-          {/* ── Boutique ──────────────────────────────────────────── */}
           <div style={{ marginBottom: '0.9rem' }}>
-            <div style={{ fontSize: '0.6rem', color: '#a78bfa', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.4rem', opacity: 0.85 }}>
-              Boutique ({SHOP_CHARACTERS.length})
-            </div>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(90px, 1fr))', gap: '0.35rem' }}>
               {SHOP_CHARACTERS.map(ch => (
                 <div key={ch.id} style={{
@@ -1378,49 +1418,34 @@ export default function Dashboard({
               ))}
             </div>
           </div>
-
-          {Object.entries(CHARACTER_CATEGORIES).map(([catKey, cat]) => {
-            const chars = CHARACTERS.filter(c => c.cat === catKey);
-            return (
-              <div key={catKey} style={{ marginBottom: '0.9rem' }}>
-                <div style={{ fontSize: '0.6rem', color: cat.color, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '0.4rem', opacity: 0.85 }}>
-                  {cat.label} ({chars.length})
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(90px, 1fr))', gap: '0.35rem' }}>
-                  {chars.map(ch => (
-                    <div key={ch.id} style={{
-                      display: 'flex', flexDirection: 'column', alignItems: 'center',
-                      background: `${ch.color}12`,
-                      border: `1px solid ${ch.color}35`,
-                      borderRadius: 10, padding: '0.45rem 0.3rem 0.5rem',
-                      gap: '0.1rem',
-                      cursor: 'default',
-                    }}>
-                      {/* Emoji de référence + sprite animé */}
-                      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', marginBottom: '0.1rem' }}>
-                        {/* Emoji référence */}
-                        <div style={{ fontSize: '1.8rem', lineHeight: 1, filter: `drop-shadow(0 0 4px ${ch.color}80)` }}>
-                          {ch.emoji}
-                        </div>
-                        <div style={{ width: '80%', height: '1px', background: 'rgba(255,255,255,0.1)' }} />
-                        {/* Sprite SVG animé */}
-                        <div style={{
-                          width: 64, height: 58,
-                          display: 'flex', alignItems: 'center', justifyContent: 'center',
-                          background: `radial-gradient(circle at 50% 60%, ${ch.color}18 0%, transparent 70%)`,
-                          borderRadius: 6,
-                        }}>
-                          <CharacterSprite id={ch.id} mood={pandaMood || 'walk'} size={40} glow={true} />
-                        </div>
-                      </div>
-                      <span style={{ fontSize: '0.58rem', fontWeight: 700, color: ch.color, textAlign: 'center', lineHeight: 1.2 }}>{ch.name}</span>
-                      <span style={{ fontSize: '0.5rem', color: '#6b7280', textAlign: 'center', lineHeight: 1.2 }}>{ch.tag}</span>
-                    </div>
+          {/* ── All moods for each char ──────────────────────────── */}
+          <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
+            🎭 Tous les moods ({[...BASE_EMOTIONS, ...SHOP_EMOTIONS].length})
+          </div>
+          <div style={{ marginBottom: '0.9rem', overflowX: 'auto' }}>
+            <table style={{ borderCollapse: 'collapse', minWidth: '100%', fontSize: '0.5rem' }}>
+              <thead>
+                <tr>
+                  <th style={{ color: '#6b7280', padding: '2px 4px', textAlign: 'left' }}>perso</th>
+                  {[...BASE_EMOTIONS, ...SHOP_EMOTIONS].map(e => (
+                    <th key={e.id} style={{ color: '#a78bfa', padding: '2px 4px', textAlign: 'center', fontWeight: 600 }}>{e.symbol}</th>
                   ))}
-                </div>
-              </div>
-            );
-          })}
+                </tr>
+              </thead>
+              <tbody>
+                {SHOP_CHARACTERS.map(ch => (
+                  <tr key={ch.id}>
+                    <td style={{ color: ch.color, padding: '2px 4px', whiteSpace: 'nowrap', fontSize: '0.55rem', fontWeight: 600 }}>{ch.emoji} {ch.name}</td>
+                    {[...BASE_EMOTIONS, ...SHOP_EMOTIONS].map(e => (
+                      <td key={e.id} style={{ padding: '1px 2px', textAlign: 'center' }}>
+                        <CharacterSprite id={ch.id} mood={e.id} size={28} glow={false} />
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
 
           <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
             🛠 Debug — Flamme
@@ -1818,32 +1843,23 @@ export default function Dashboard({
 
     {/* ── Bug report modal (partagé grammaire + dictée) ── */}
     {bugTarget && (
-      <div
-        onClick={() => { setBugTarget(null); setBugDesc(''); setBugCopied(false); }}
-        style={{
-          position: 'fixed', inset: 0, zIndex: 1000,
-          background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(6px)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          padding: '1rem',
+      <PopupModal
+        onClose={() => { setBugTarget(null); setBugDesc(''); setBugCopied(false); }}
+        overlayStyle={{ background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}
+        panelStyle={{
+          background: '#1e1e2e',
+          borderRadius: 20,
+          border: '1px solid rgba(255,255,255,0.1)',
+          padding: '1.4rem 1.5rem',
+          width: 'min(420px, calc(100vw - 2rem))',
+          display: 'grid',
+          gap: '0.9rem',
         }}
       >
-        <div
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            background: '#1e1e2e', borderRadius: 20,
-            border: '1px solid rgba(255,255,255,0.1)',
-            padding: '1.4rem 1.5rem', width: 'min(420px, 100%)',
-            display: 'grid', gap: '0.9rem',
-          }}
-        >
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
             <span style={{ fontWeight: 800, fontSize: '1rem', color: '#e2e2e2' }}>
               🐛 Signaler un problème
             </span>
-            <button
-              onClick={() => { setBugTarget(null); setBugDesc(''); setBugCopied(false); }}
-              style={{ background: 'none', border: 'none', color: '#6b7280', fontSize: '1.2rem', cursor: 'pointer', lineHeight: 1 }}
-            >✕</button>
           </div>
           <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5 }}>
             <strong style={{ color: 'var(--color-accent)' }}>{bugTarget.title}</strong>
@@ -1884,8 +1900,7 @@ export default function Dashboard({
           >
             {bugCopied ? '✓ Copié !' : 'Copier le rapport'}
           </button>
-        </div>
-      </div>
+      </PopupModal>
     )}
 
     {memoRule && (
@@ -2041,54 +2056,42 @@ function SectionLabel({ children }) {
   );
 }
 
-function LevelBadge({ icon, count, color, label, onClick }) {
+function LevelBadge({ icon, count, color, label, compact = false, onClick }) {
   return (
     <div
       onClick={onClick}
       style={{
-        display: 'flex', alignItems: 'center', gap: '0.3rem',
+        minWidth: 0,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        gap: compact ? '0.16rem' : '0.3rem',
         background: `${color}10`,
         border: `1px solid ${color}25`,
-        borderRadius: 10, padding: '0.3rem 0.6rem',
+        borderRadius: 10,
+        padding: compact ? '0.28rem 0.22rem' : '0.3rem 0.6rem',
         cursor: onClick ? 'pointer' : 'default',
         transition: 'all 0.15s ease',
+        whiteSpace: 'nowrap',
+        overflow: 'hidden',
       }}
     >
       {icon}
-      <span style={{ fontSize: '0.82rem', fontWeight: 800, color }}>
+      <span style={{ fontSize: compact ? '0.76rem' : '0.82rem', fontWeight: 800, color, flexShrink: 0 }}>
         {count}
       </span>
-      <span style={{ fontSize: '0.62rem', color: '#6b7280', fontWeight: 600 }}>
+      <span style={{
+        minWidth: 0,
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        fontSize: compact ? '0.54rem' : '0.62rem',
+        color: '#6b7280',
+        fontWeight: 600,
+      }}>
         {label}
       </span>
     </div>
   );
 }
 
-
-const specialActionButtonStyle = {
-  width: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  gap: '0.8rem',
-  padding: '0.9rem 1rem',
-  borderRadius: 16,
-  border: '1px solid rgba(255,255,255,0.1)',
-  background: 'rgba(255,255,255,0.04)',
-  cursor: 'pointer',
-  color: 'inherit',
-};
-
-const badgeStyle = {
-  minWidth: 28,
-  padding: '0.2rem 0.45rem',
-  borderRadius: 999,
-  background: 'rgba(251,191,36,0.14)',
-  color: '#fbbf24',
-  fontSize: '0.75rem',
-  fontWeight: 800,
-  textAlign: 'center',
-};
 
 function DiamondSparkBadge() {
   return (

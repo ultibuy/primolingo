@@ -18,7 +18,7 @@
     "test:coaching:update": "node tests/coaching-banner.test.js --update-snapshots"
   },
   "dependencies": {
-    "@emailjs/browser": "^4.4.1",
+    "@sentry/react": "^10.51.0",
     "firebase": "^12.12.0",
     "firebase-admin": "^13.8.0",
     "puppeteer": "^24.40.0",

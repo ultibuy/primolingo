@@ -53,6 +53,22 @@ export async function saveAdminSettings(uid, settings) {
 }
 
 // ---------------------------------------------------------------------------
+// Parental PIN (stored hashed on the parent user document)
+// ---------------------------------------------------------------------------
+
+export async function loadParentalPin(uid) {
+  const ref = doc(db, 'users', uid);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) return null;
+  return snap.data().parentalPin || null;
+}
+
+export async function saveParentalPin(uid, pinData) {
+  const ref = doc(db, 'users', uid);
+  await updateDoc(ref, { parentalPin: pinData });
+}
+
+// ---------------------------------------------------------------------------
 // Per-child settings (prodQuestionCount, enabledMysteryImageIds)
 // ---------------------------------------------------------------------------
 

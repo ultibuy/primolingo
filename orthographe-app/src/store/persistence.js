@@ -17,7 +17,7 @@ import {
   restoreDailyBackup  as storeRestoreDailyBackup,
 } from '../services/store.js';
 
-const SECRET_CODE_LENGTH = 4;
+const PIN_LENGTH = 4;
 
 // ---------------------------------------------------------------------------
 // Default structures
@@ -47,7 +47,7 @@ export function createDefaultProgress() {
     },
     weeklyChest: { lastOpened: null },
     firstQuizDone: false,
-    parentalCode: null,
+    pinLockout: { failedAttempts: 0, lockedUntil: 0 },
     rules: {},
     coaching: createDefaultCoaching(),
   };
@@ -56,7 +56,6 @@ export function createDefaultProgress() {
 export function createDefaultAdminSettings() {
   return {
     prodQuestionCount: 20,
-    parentalCode: 'PAPA',
     customMysteryImages: [],
   };
 }
@@ -81,12 +80,6 @@ export function createDefaultRuleProgress() {
 // Helpers
 // ---------------------------------------------------------------------------
 
-function normalizeSecretCode(value) {
-  return String(value || '')
-    .toUpperCase()
-    .replace(/[^A-Z0-9]/g, '')
-    .slice(0, SECRET_CODE_LENGTH);
-}
 
 function normalizeCustomMysteryImages(value) {
   if (!Array.isArray(value)) return [];
@@ -148,7 +141,6 @@ export async function loadAdminSettings(uid, childId) {
     const customMysteryImages = allImages.filter(img => enabledIds.includes(img.id));
     return {
       prodQuestionCount: Math.max(1, Math.min(Number.parseInt(settings.prodQuestionCount, 10) || 20, 50)),
-      parentalCode: createDefaultAdminSettings().parentalCode,
       customMysteryImages,
     };
   } catch (error) {

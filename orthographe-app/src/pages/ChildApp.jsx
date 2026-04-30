@@ -1,10 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import '../index.css';
 
 // Context
 import { useAuth } from '../contexts/AuthContext.jsx';
-import { getChild } from '../services/store.js';
+import { getChild, loadParentalPin } from '../services/store.js';
+import { verifyPin } from '../services/pin-crypto.js';
 
 // Content
 import { allRules } from '../content/loader.js';
@@ -15,7 +16,7 @@ import { getCharacterForRule } from '../data/shopCharacters.js';
 import { selectSessionQuestions } from '../engine/session.js';
 import { calculateDiamondHealth, getToday, parseLocalDate } from '../engine/sm2.js';
 import { createDefaultCoaching, pickCoachingMessage } from '../engine/coaching.js';
-import { calculateCoins, checkLevelUp, updateStreak, processSessionResult } from '../engine/scoring.js';
+import { processSessionResult } from '../engine/scoring.js';
 import {
   applyTheme,
   canPurchaseMysteryImagePiece,
@@ -54,16 +55,15 @@ import DicteesPage from '../pages/DicteesPage.jsx';
 import DicteeQuizGuided from '../components/DicteeQuizGuided.jsx';
 import DicteeQuizReconstruct from '../components/DicteeQuizReconstruct.jsx';
 import CoinIcon from '../components/CoinIcon.jsx';
-import PopupCloseButton from '../components/PopupCloseButton.jsx';
+import PopupModal from '../components/PopupModal.jsx';
 
 // ---------------------------------------------------------------------------
 // Constants
 // ---------------------------------------------------------------------------
 const DEFAULT_SESSION_SIZE = 20;
 const INACTIVITY_DAYS = 2;
-const SECRET_CODE_LENGTH = 4;
-const SECRET_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-const SECRET_CODE_BASE_LOCK_MS = 15000;
+const PIN_LENGTH = 4;
+const PIN_BASE_LOCK_MS = 15000;
 
 function getFirstQuizBonusDismissKey(childId) {
   return `ortho_first_quiz_bonus_dismissed:${childId || 'unknown'}`;
@@ -78,24 +78,9 @@ function getDebugChildName() {
   }
 }
 
-function normalizeSecretCode(value) {
-  return (value || '')
-    .toUpperCase()
-    .replace(/[^A-Z0-9]/g, '')
-    .slice(0, SECRET_CODE_LENGTH);
-}
-
-function generateSecretCode() {
-  let code = '';
-  for (let i = 0; i < SECRET_CODE_LENGTH; i += 1) {
-    code += SECRET_CODE_ALPHABET[Math.floor(Math.random() * SECRET_CODE_ALPHABET.length)];
-  }
-  return code;
-}
-
-function getSecretCodeLockDurationMs(failedAttempts) {
+function getPinLockDurationMs(failedAttempts) {
   if (failedAttempts <= 0) return 0;
-  return Math.min(SECRET_CODE_BASE_LOCK_MS * (2 ** (failedAttempts - 1)), 60 * 60 * 1000);
+  return Math.min(PIN_BASE_LOCK_MS * (2 ** (failedAttempts - 1)), 60 * 60 * 1000);
 }
 
 // ---------------------------------------------------------------------------
@@ -204,16 +189,18 @@ function migrateProgress(p, mysteryImageDefinitions) {
   }
   if (next.shields === undefined) next.shields = 0;
   if (next.coins === undefined) next.coins = 0;
-  if (!next.parentalCode || typeof next.parentalCode !== 'object') {
-    next.parentalCode = {
-      code: generateSecretCode(),
-      failedAttempts: 0,
-      lockedUntil: 0,
-    };
-  } else {
-    next.parentalCode.code = normalizeSecretCode(next.parentalCode.code) || generateSecretCode();
-    next.parentalCode.failedAttempts = Number.isFinite(next.parentalCode.failedAttempts) ? next.parentalCode.failedAttempts : 0;
-    next.parentalCode.lockedUntil = Number.isFinite(next.parentalCode.lockedUntil) ? next.parentalCode.lockedUntil : 0;
+  // Migrate old parentalCode to pinLockout
+  if (next.parentalCode) {
+    if (!next.pinLockout) {
+      next.pinLockout = {
+        failedAttempts: next.parentalCode.failedAttempts || 0,
+        lockedUntil: next.parentalCode.lockedUntil || 0,
+      };
+    }
+    delete next.parentalCode;
+  }
+  if (!next.pinLockout || typeof next.pinLockout !== 'object') {
+    next.pinLockout = { failedAttempts: 0, lockedUntil: 0 };
   }
 
   delete next.firstQuizDone;
@@ -345,7 +332,6 @@ function createDefaultRuleProgress() {
 export default function ChildApp() {
   const { childId } = useParams();
   const { user } = useAuth();
-  const navigate = useNavigate();
   const uid = user?.uid;
 
   const [progress, setProgress] = useState(null);
@@ -355,7 +341,7 @@ export default function ChildApp() {
   const [screen, setScreen] = useState('dashboard');
   const [shopInitialTab, setShopInitialTab] = useState(null);
   const [shopInitialSection, setShopInitialSection] = useState(null);
-  const [dashboardTab, setDashboardTab] = useState('grammaire');
+  const [dashboardTab, setDashboardTab] = useState(null);
   const [pendingEntranceAnim, setPendingEntranceAnim] = useState(null);
   const [showLightning, setShowLightning] = useState(false);
   const [showStars, setShowStars] = useState(false);
@@ -373,6 +359,7 @@ export default function ChildApp() {
   const [activeDicteeLevel, setActiveDicteeLevel] = useState(null);
   const [dicteeWords, setDicteeWords] = useState([]);
   const [saveError, setSaveError] = useState(null);
+  const [parentalPin, setParentalPin] = useState(null);
   const [loadError, setLoadError] = useState(null);
   const [loadRetryCount, setLoadRetryCount] = useState(0);
   const loadSucceededRef = useRef(false);
@@ -383,6 +370,7 @@ export default function ChildApp() {
 
   useEffect(() => {
     if (!adminSettings) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSessionSize(adminSettings.prodQuestionCount || DEFAULT_SESSION_SIZE);
   }, [adminSettings]);
 
@@ -396,6 +384,7 @@ export default function ChildApp() {
   // Drain pendingEntranceAnim immediately (plays while still in shop)
   useEffect(() => {
     if (!pendingEntranceAnim) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     triggerEntranceAnim(pendingEntranceAnim);
     setPendingEntranceAnim(null);
   }, [pendingEntranceAnim, triggerEntranceAnim]);
@@ -500,13 +489,15 @@ export default function ChildApp() {
     if (!uid || !childId) return;
 
     let cancelled = false;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoadError(null);
     loadSucceededRef.current = false;
 
     refreshDailyBackups();
-    Promise.all([loadProgress(uid, childId), loadAdminSettings(uid, childId)]).then(async ([raw, settings]) => {
+    Promise.all([loadProgress(uid, childId), loadAdminSettings(uid, childId), loadParentalPin(uid)]).then(async ([raw, settings, pin]) => {
       if (cancelled) return;
       setAdminSettings(settings);
+      setParentalPin(pin);
       const definitions = getMysteryImageDefinitions(settings?.customMysteryImages);
       const { progress: migratedProgress } = migrateProgress(raw, definitions);
       let p = migratedProgress;
@@ -540,13 +531,14 @@ export default function ChildApp() {
     });
 
     return () => { cancelled = true; };
-  }, [uid, childId, persistProgress, loadRetryCount]);
+  }, [uid, childId, persistProgress, loadRetryCount]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (!uid || !childId) return;
 
     const debugChildName = getDebugChildName();
     if (debugChildName) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setChildName(debugChildName);
       return;
     }
@@ -674,7 +666,7 @@ export default function ChildApp() {
     setScreen('dictee-quiz');
   }, [progress]);
 
-  const handleDicteeFinish = useCallback((score, total, answers) => {
+  const handleDicteeFinish = useCallback((score, total, _answers) => {
     const quizId = `${activeDictee.id}-${activeDicteeLevel}`;
     const wasDicteeReview = isDicteeReview;
     const events = [];
@@ -833,28 +825,31 @@ export default function ChildApp() {
   }, [returnData, persistProgress]);
 
 
-  const handleReturnSecretCodeSubmit = useCallback((rawCode) => {
-    const enteredCode = normalizeSecretCode(rawCode);
-    const parentalCode = progress?.parentalCode || {};
-    const storedCode = normalizeSecretCode(adminSettings?.parentalCode);
+  const handleReturnPinSubmit = useCallback(async (enteredPin) => {
+    const lockout = progress?.pinLockout || { failedAttempts: 0, lockedUntil: 0 };
     const now = Date.now();
 
-    if (enteredCode.length !== SECRET_CODE_LENGTH) {
-      return { ok: false, error: `Le code doit contenir ${SECRET_CODE_LENGTH} caractères.` };
+    if (enteredPin.length !== PIN_LENGTH) {
+      return { ok: false, error: `Le code doit contenir ${PIN_LENGTH} chiffres.` };
     }
 
-    if (parentalCode.lockedUntil && parentalCode.lockedUntil > now) {
-      return { ok: false, error: 'Réessaie un peu plus tard.', lockedUntil: parentalCode.lockedUntil };
+    if (lockout.lockedUntil && lockout.lockedUntil > now) {
+      return { ok: false, error: 'Réessaie un peu plus tard.', lockedUntil: lockout.lockedUntil };
     }
 
-    if (enteredCode !== storedCode) {
-      const failedAttempts = (parentalCode.failedAttempts || 0) + 1;
-      const lockedUntil = now + getSecretCodeLockDurationMs(failedAttempts);
+    // parentalPin is { salt, hash } — verify with crypto
+    const pinOk = parentalPin?.salt && parentalPin?.hash
+      ? await verifyPin(enteredPin, parentalPin.salt, parentalPin.hash)
+      : enteredPin === parentalPin; // fallback for legacy plain-text pins
+
+    if (!pinOk) {
+      const failedAttempts = (lockout.failedAttempts || 0) + 1;
+      const lockedUntil = now + getPinLockDurationMs(failedAttempts);
 
       setProgress(prev => {
         const next = {
           ...prev,
-          parentalCode: { ...prev.parentalCode, failedAttempts, lockedUntil },
+          pinLockout: { failedAttempts, lockedUntil },
         };
         persistProgress(next);
         return next;
@@ -866,7 +861,7 @@ export default function ChildApp() {
     setProgress(prev => {
       const next = {
         ...prev,
-        parentalCode: { ...prev.parentalCode, failedAttempts: 0, lockedUntil: 0 },
+        pinLockout: { failedAttempts: 0, lockedUntil: 0 },
         streak: { ...prev.streak, lastActiveDate: getToday(-1) },
       };
       persistProgress(next);
@@ -875,7 +870,7 @@ export default function ChildApp() {
     setReturnData(null);
     setScreen('dashboard');
     return { ok: true };
-  }, [adminSettings, persistProgress, progress]);
+  }, [parentalPin, persistProgress, progress]);
 
   const handleCloseQuiz = useCallback(() => {
     setScreen('dashboard');
@@ -884,7 +879,6 @@ export default function ChildApp() {
     setIsSM2Review(false);
     setSessionQuestions([]);
     setPendingEvents([]);
-    setIsSniper(false);
   }, []);
 
   const renderWithSaveError = (content) => (
@@ -900,18 +894,18 @@ export default function ChildApp() {
         const isWelcome = !progress?.milestones?.firstSession;
         const bonusAmount = isWelcome ? 200 : 10;
         return (
-          <div style={firstQuizModalBackdropStyle}>
-            <div style={firstQuizModalCardStyle}>
-              <PopupCloseButton
-                onClick={() => {
-                  pendingQuizLaunchRef.current = null;
-                  dismissFirstQuizBonusForToday();
-                  setShowFirstQuizBonusModal(false);
-                }}
-                top={12}
-                right={12}
-                size={38}
-              />
+          <PopupModal
+            onClose={() => {
+              pendingQuizLaunchRef.current = null;
+              dismissFirstQuizBonusForToday();
+              setShowFirstQuizBonusModal(false);
+            }}
+            ariaLabel={isWelcome ? 'Bonus de bienvenue' : 'Bonus du jour'}
+            zIndex={1200}
+            overlayStyle={firstQuizModalBackdropStyle}
+            panelStyle={firstQuizModalCardStyle}
+            closeButtonProps={{ size: 38 }}
+          >
               <div style={{ fontSize: '2.5rem', marginBottom: '0.3rem' }}>{isWelcome ? '🎉' : '👋'}</div>
               <div style={firstQuizBonusKickerStyle}>{isWelcome ? 'Bienvenue !' : 'Bonus du jour'}</div>
               <div style={firstQuizBonusTitleStyle}>
@@ -937,8 +931,7 @@ export default function ChildApp() {
                   Commencer
                 </button>
               </div>
-            </div>
-          </div>
+          </PopupModal>
         );
       })()}
       {content}
@@ -1020,6 +1013,9 @@ export default function ChildApp() {
         diamondChanges={returnData.diamondChanges}
         onContinue={handleReturnContinue}
         onSaveStreak={handleReturnSaveStreak}
+        onPinSubmit={handleReturnPinSubmit}
+        pinLockout={progress?.pinLockout}
+        hasPinSetup={!!parentalPin}
       />
     );
   }
@@ -1168,10 +1164,9 @@ const saveErrorStyle = {
 };
 
 const firstQuizModalBackdropStyle = {
-  position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.62)',
+  background: 'rgba(0,0,0,0.62)',
   backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
-  display: 'flex', alignItems: 'center', justifyContent: 'center',
-  zIndex: 1200, padding: '1rem',
+  padding: '1rem',
 };
 
 const firstQuizModalCardStyle = {
@@ -1180,7 +1175,7 @@ const firstQuizModalCardStyle = {
   border: '1px solid rgba(var(--color-accent-rgb),0.2)',
   borderRadius: 24, padding: '1.35rem 1.25rem 1.15rem',
   boxShadow: '0 24px 60px rgba(0,0,0,0.38)',
-  position: 'relative', display: 'grid', gap: '0.75rem', textAlign: 'center',
+  display: 'grid', gap: '0.75rem', textAlign: 'center',
 };
 
 const firstQuizBonusKickerStyle = {

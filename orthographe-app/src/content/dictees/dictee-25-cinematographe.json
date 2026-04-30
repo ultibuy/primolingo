@@ -1,0 +1,1212 @@
+{
+  "id": "dictee-25",
+  "number": 25,
+  "title": "Le cinématographe",
+  "themeImage": null,
+  "words": {
+    "level1": [
+      {
+        "id": "d25-w001",
+        "word": "France",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "france.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "Fran",
+          "ce"
+        ],
+        "syllableDistractors": [
+          "Fren",
+          "se",
+          "che",
+          "ces"
+        ],
+        "guidedChoices": [
+          "France",
+          "Frence",
+          "Franse"
+        ],
+        "answerIndex": 0,
+        "example": "Le cinéma a été inventé en France."
+      },
+      {
+        "id": "d25-w002",
+        "word": "machine",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "machine.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ma",
+          "chi",
+          "ne"
+        ],
+        "syllableDistractors": [
+          "mac",
+          "shi",
+          "né",
+          "nes"
+        ],
+        "guidedChoices": [
+          "machine",
+          "machinne",
+          "machyne"
+        ],
+        "answerIndex": 0,
+        "example": "Les frères Lumière ont inventé une machine étonnante."
+      },
+      {
+        "id": "d25-w003",
+        "word": "image",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "image.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "i",
+          "ma",
+          "ge"
+        ],
+        "syllableDistractors": [
+          "y",
+          "mage",
+          "je",
+          "ages"
+        ],
+        "guidedChoices": [
+          "image",
+          "imaje",
+          "immage"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque image défile très vite."
+      },
+      {
+        "id": "d25-w004",
+        "word": "public",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "public.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "pu",
+          "blic"
+        ],
+        "syllableDistractors": [
+          "pou",
+          "blique",
+          "blik",
+          "blics"
+        ],
+        "guidedChoices": [
+          "public",
+          "publique",
+          "publik"
+        ],
+        "answerIndex": 0,
+        "example": "Le public a été émerveillé par la projection."
+      },
+      {
+        "id": "d25-w005",
+        "word": "écran",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "ecran.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "é",
+          "cran"
+        ],
+        "syllableDistractors": [
+          "e",
+          "cren",
+          "crand",
+          "crans"
+        ],
+        "guidedChoices": [
+          "inventer",
+          "invanter",
+          "inventter"
+        ],
+        "answerIndex": 0,
+        "example": "Les images sont projetées sur un écran blanc."
+      },
+      {
+        "id": "d25-w006",
+        "word": "cinématographe",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "cinematographe.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ci",
+          "né",
+          "ma",
+          "to",
+          "gra",
+          "phe"
+        ],
+        "syllableDistractors": [
+          "sy",
+          "ne",
+          "tho",
+          "graf"
+        ],
+        "guidedChoices": [
+          "cinématographe",
+          "cinematographe",
+          "sinématographe"
+        ],
+        "answerIndex": 0,
+        "example": "Le cinématographe a révolutionné le spectacle."
+      },
+      {
+        "id": "d25-w007",
+        "word": "film",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "film.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "f",
+          "i",
+          "l",
+          "m"
+        ],
+        "syllableDistractors": [
+          "e",
+          "ll",
+          "n"
+        ],
+        "guidedChoices": [
+          "projeter",
+          "projetter",
+          "projecter"
+        ],
+        "answerIndex": 0,
+        "example": "Le premier film durait moins d'une minute."
+      },
+      {
+        "id": "d25-w008",
+        "word": "projection",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "projection.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "pro",
+          "jec",
+          "tion"
+        ],
+        "syllableDistractors": [
+          "preu",
+          "jeck",
+          "sion",
+          "tien"
+        ],
+        "guidedChoices": [
+          "réaliser",
+          "realiser",
+          "réalizer"
+        ],
+        "answerIndex": 0,
+        "example": "La première projection a eu lieu à Paris."
+      },
+      {
+        "id": "d25-w009",
+        "word": "salle",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "salle.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "s",
+          "a",
+          "l",
+          "l",
+          "e"
+        ],
+        "syllableDistractors": [
+          "c",
+          "z",
+          "y"
+        ],
+        "guidedChoices": [
+          "organiser",
+          "orgeniser",
+          "organisser"
+        ],
+        "answerIndex": 0,
+        "example": "Une salle obscure accueille les spectateurs."
+      },
+      {
+        "id": "d25-w010",
+        "word": "inventer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "inventer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "in",
+          "ven",
+          "ter"
+        ],
+        "syllableDistractors": [
+          "en",
+          "vant",
+          "tée",
+          "tez"
+        ],
+        "guidedChoices": [
+          "inventer",
+          "invanter",
+          "inventter"
+        ],
+        "answerIndex": 0,
+        "example": "Il fallait inventer une nouvelle technique."
+      },
+      {
+        "id": "d25-w011",
+        "word": "permettre",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "permettre.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "per",
+          "met",
+          "tre"
+        ],
+        "syllableDistractors": [
+          "par",
+          "mait",
+          "ter",
+          "trait"
+        ],
+        "guidedChoices": [
+          "permettre",
+          "permétre",
+          "permetre"
+        ],
+        "answerIndex": 0,
+        "example": "Cela va permettre à tous de voir des images animées."
+      },
+      {
+        "id": "d25-w012",
+        "word": "projeter",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "projeter.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "pro",
+          "je",
+          "ter"
+        ],
+        "syllableDistractors": [
+          "preu",
+          "jè",
+          "tée",
+          "tez"
+        ],
+        "guidedChoices": [
+          "projeter",
+          "projetter",
+          "projecter"
+        ],
+        "answerIndex": 0,
+        "example": "On peut projeter le film sur un grand écran."
+      },
+      {
+        "id": "d25-w013",
+        "word": "réaliser",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "realiser.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ré",
+          "a",
+          "li",
+          "ser"
+        ],
+        "syllableDistractors": [
+          "re",
+          "ali",
+          "sé",
+          "sez"
+        ],
+        "guidedChoices": [
+          "réaliser",
+          "realiser",
+          "réalizer"
+        ],
+        "answerIndex": 0,
+        "example": "Méliès va réaliser des centaines de films."
+      },
+      {
+        "id": "d25-w014",
+        "word": "organiser",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "organiser.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "or",
+          "ga",
+          "ni",
+          "ser"
+        ],
+        "syllableDistractors": [
+          "aur",
+          "gua",
+          "ny",
+          "sez"
+        ],
+        "guidedChoices": [
+          "organiser",
+          "orgeniser",
+          "organisser"
+        ],
+        "answerIndex": 0,
+        "example": "Il fallait organiser la première séance publique."
+      },
+      {
+        "id": "d25-w015",
+        "word": "premier",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "premier.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "pre",
+          "mier"
+        ],
+        "syllableDistractors": [
+          "pré",
+          "mié",
+          "miers",
+          "miez"
+        ],
+        "guidedChoices": [
+          "premier",
+          "prémier",
+          "premiers"
+        ],
+        "answerIndex": 0,
+        "example": "Le premier film est tourné à Lyon."
+      },
+      {
+        "id": "d25-w016",
+        "word": "première",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "premiere.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "pre",
+          "miè",
+          "re"
+        ],
+        "syllableDistractors": [
+          "pré",
+          "mier",
+          "ères",
+          "ré"
+        ],
+        "guidedChoices": [
+          "première",
+          "premiére",
+          "premièere"
+        ],
+        "answerIndex": 0,
+        "example": "La première projection a eu lieu en 1895."
+      },
+      {
+        "id": "d25-w017",
+        "word": "puis",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "puis.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "p",
+          "u",
+          "i",
+          "s"
+        ],
+        "syllableDistractors": [
+          "t",
+          "e",
+          "y"
+        ],
+        "guidedChoices": [
+          "employer",
+          "emploiyer",
+          "employyer"
+        ],
+        "answerIndex": 1,
+        "example": "Il a allumé la lampe, puis il a lancé le film."
+      },
+      {
+        "id": "d25-w018",
+        "word": "sur",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "sur.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "s",
+          "u",
+          "r"
+        ],
+        "syllableDistractors": [
+          "e",
+          "t",
+          "z"
+        ],
+        "guidedChoices": [
+          "filmer",
+          "phylmer",
+          "filmmer"
+        ],
+        "answerIndex": 0,
+        "example": "Le film passe sur l'écran."
+      },
+      {
+        "id": "d25-w019",
+        "word": "aussi",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "aussi.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "aus",
+          "si"
+        ],
+        "syllableDistractors": [
+          "o",
+          "ssi",
+          "ci",
+          "sy"
+        ],
+        "guidedChoices": [
+          "enregistrer",
+          "enregister",
+          "anregistrer"
+        ],
+        "answerIndex": 0,
+        "example": "Le son sera ajouté plus tard, aussi."
+      }
+    ],
+    "level2": [
+      {
+        "id": "d25-w020",
+        "word": "magicien",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "magicien.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ma",
+          "gi",
+          "cien"
+        ],
+        "syllableDistractors": [
+          "mag",
+          "ji",
+          "sien",
+          "tien"
+        ],
+        "guidedChoices": [
+          "créer",
+          "creer",
+          "créér"
+        ],
+        "answerIndex": 0,
+        "example": "Méliès était d'abord un magicien de théâtre."
+      },
+      {
+        "id": "d25-w021",
+        "word": "possibilité",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "possibilite.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "pos",
+          "si",
+          "bi",
+          "li",
+          "té"
+        ],
+        "syllableDistractors": [
+          "po",
+          "sy",
+          "bli",
+          "tay"
+        ],
+        "guidedChoices": [
+          "entrer",
+          "antrer",
+          "entrrer"
+        ],
+        "answerIndex": 0,
+        "example": "Le cinéma offre la possibilité de rêver."
+      },
+      {
+        "id": "d25-w022",
+        "word": "voyage",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "voyage.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "vo",
+          "ya",
+          "ge"
+        ],
+        "syllableDistractors": [
+          "veau",
+          "ja",
+          "yes",
+          "ges"
+        ],
+        "guidedChoices": [
+          "voyage",
+          "voyaje",
+          "voyages"
+        ],
+        "answerIndex": 0,
+        "example": "Le Voyage dans la lune est un film célèbre."
+      },
+      {
+        "id": "d25-w023",
+        "word": "lune",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "lune.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "l",
+          "u",
+          "n",
+          "e"
+        ],
+        "syllableDistractors": [
+          "ll",
+          "o",
+          "z"
+        ],
+        "guidedChoices": [
+          "lune",
+          "lunne",
+          "lun"
+        ],
+        "answerIndex": 0,
+        "example": "Méliès envoie ses héros vers la lune."
+      },
+      {
+        "id": "d25-w024",
+        "word": "cinéma",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "cinema.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ci",
+          "né",
+          "ma"
+        ],
+        "syllableDistractors": [
+          "sy",
+          "ne",
+          "mat",
+          "mas"
+        ],
+        "guidedChoices": [
+          "cinéma",
+          "cinema",
+          "sinéma"
+        ],
+        "answerIndex": 0,
+        "example": "Le cinéma est devenu un art populaire."
+      },
+      {
+        "id": "d25-w025",
+        "word": "trucage",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "trucage.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "tru",
+          "ca",
+          "ge"
+        ],
+        "syllableDistractors": [
+          "tru",
+          "ka",
+          "ges",
+          "je"
+        ],
+        "guidedChoices": [
+          "trucage",
+          "truqage",
+          "trukage"
+        ],
+        "answerIndex": 0,
+        "example": "Méliès invente le trucage cinématographique."
+      },
+      {
+        "id": "d25-w026",
+        "word": "effet",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "effet.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ef",
+          "fet"
+        ],
+        "syllableDistractors": [
+          "é",
+          "fait",
+          "fets",
+          "fer"
+        ],
+        "guidedChoices": [
+          "effet",
+          "éfet",
+          "effets"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque effet spécial étonne les spectateurs."
+      },
+      {
+        "id": "d25-w027",
+        "word": "offrir",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "offrir.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "of",
+          "frir"
+        ],
+        "syllableDistractors": [
+          "o",
+          "frire",
+          "frir",
+          "frier"
+        ],
+        "guidedChoices": [
+          "offrir",
+          "ofrir",
+          "offrire"
+        ],
+        "answerIndex": 0,
+        "example": "Le cinéma va offrir des heures de rêve."
+      },
+      {
+        "id": "d25-w028",
+        "word": "utiliser",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "utiliser.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "u",
+          "ti",
+          "li",
+          "ser"
+        ],
+        "syllableDistractors": [
+          "ou",
+          "ty",
+          "lyse",
+          "sez"
+        ],
+        "guidedChoices": [
+          "utiliser",
+          "utilizer",
+          "utilliser"
+        ],
+        "answerIndex": 0,
+        "example": "Il faut utiliser une caméra pour filmer."
+      },
+      {
+        "id": "d25-w029",
+        "word": "comprendre",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "comprendre.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "com",
+          "pren",
+          "dre"
+        ],
+        "syllableDistractors": [
+          "con",
+          "pran",
+          "der",
+          "dré"
+        ],
+        "guidedChoices": [
+          "comprendre",
+          "comprandre",
+          "konprendre"
+        ],
+        "answerIndex": 0,
+        "example": "Pas besoin de mots pour comprendre l'histoire."
+      },
+      {
+        "id": "d25-w030",
+        "word": "futur",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "futur.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "fu",
+          "tur"
+        ],
+        "syllableDistractors": [
+          "fou",
+          "ture",
+          "tours",
+          "tures"
+        ],
+        "guidedChoices": [
+          "futur",
+          "futurs",
+          "futeur"
+        ],
+        "answerIndex": 0,
+        "example": "Les frères Lumière imaginaient un futur passionnant."
+      },
+      {
+        "id": "d25-w031",
+        "word": "professionnel",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "professionnel.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "pro",
+          "fes",
+          "sion",
+          "nel"
+        ],
+        "syllableDistractors": [
+          "preu",
+          "fé",
+          "tien",
+          "nelle"
+        ],
+        "guidedChoices": [
+          "professionnel",
+          "professionel",
+          "proffessionnel"
+        ],
+        "answerIndex": 0,
+        "example": "Méliès devient un cinéaste professionnel."
+      },
+      {
+        "id": "d25-w032",
+        "word": "multiple",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "multiple.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "mul",
+          "ti",
+          "ple"
+        ],
+        "syllableDistractors": [
+          "mult",
+          "ty",
+          "ples",
+          "pl"
+        ],
+        "guidedChoices": [
+          "multiple",
+          "multyple",
+          "multipple"
+        ],
+        "answerIndex": 0,
+        "example": "Le film a de multiples projections par jour."
+      },
+      {
+        "id": "d25-w033",
+        "word": "spécial",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "special.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "spé",
+          "cial"
+        ],
+        "syllableDistractors": [
+          "spe",
+          "ciale",
+          "syal",
+          "ssial"
+        ],
+        "guidedChoices": [
+          "spécial",
+          "special",
+          "spéciale"
+        ],
+        "answerIndex": 0,
+        "example": "Un effet spécial fait disparaître un acteur."
+      },
+      {
+        "$ref": "shared:comme"
+      }
+    ],
+    "level3": [
+      {
+        "id": "d25-w035",
+        "word": "décor",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "decor.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "dé",
+          "cor"
+        ],
+        "syllableDistractors": [
+          "de",
+          "core",
+          "cors",
+          "cord"
+        ],
+        "guidedChoices": [
+          "décor",
+          "decor",
+          "décort"
+        ],
+        "answerIndex": 0,
+        "example": "Le décor du film représente la lune."
+      },
+      {
+        "id": "d25-w036",
+        "word": "comédien",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "comedien.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "co",
+          "mé",
+          "dien"
+        ],
+        "syllableDistractors": [
+          "ko",
+          "me",
+          "dyen",
+          "tien"
+        ],
+        "guidedChoices": [
+          "comédien",
+          "comedien",
+          "commédien"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque comédien joue plusieurs rôles."
+      },
+      {
+        "id": "d25-w037",
+        "word": "concert",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "concert.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "con",
+          "cert"
+        ],
+        "syllableDistractors": [
+          "kon",
+          "ser",
+          "certs",
+          "saire"
+        ],
+        "guidedChoices": [
+          "concert",
+          "consert",
+          "concerts"
+        ],
+        "answerIndex": 0,
+        "example": "Au début, un pianiste accompagnait le film comme un concert."
+      },
+      {
+        "id": "d25-w038",
+        "word": "extérieur",
+        "displayPrefix": "l'",
+        "category": "nom",
+        "audioFile": "exterieur.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ex",
+          "té",
+          "rieur"
+        ],
+        "syllableDistractors": [
+          "es",
+          "te",
+          "rieure",
+          "ier"
+        ],
+        "guidedChoices": [
+          "extérieur",
+          "extérieure",
+          "exterrieur"
+        ],
+        "answerIndex": 0,
+        "example": "Le tournage a eu lieu à l'extérieur du studio."
+      },
+      {
+        "id": "d25-w039",
+        "word": "histoire",
+        "displayPrefix": "l'",
+        "category": "nom",
+        "audioFile": "histoire.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "his",
+          "toi",
+          "re"
+        ],
+        "syllableDistractors": [
+          "is",
+          "twa",
+          "rer",
+          "tor"
+        ],
+        "guidedChoices": [
+          "histoire",
+          "istoire",
+          "histoires"
+        ],
+        "answerIndex": 0,
+        "example": "L'histoire du cinéma commence en 1895."
+      },
+      {
+        "id": "d25-w040",
+        "word": "employer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "employer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "em",
+          "ploy",
+          "er"
+        ],
+        "syllableDistractors": [
+          "en",
+          "ployé",
+          "ployez",
+          "ployer"
+        ],
+        "guidedChoices": [
+          "employer",
+          "emploiyer",
+          "employyer"
+        ],
+        "answerIndex": 0,
+        "example": "Méliès va employer des dizaines d'acteurs."
+      },
+      {
+        "id": "d25-w041",
+        "word": "filmer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "filmer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "fil",
+          "mer"
+        ],
+        "syllableDistractors": [
+          "phil",
+          "mé",
+          "mée",
+          "mez"
+        ],
+        "guidedChoices": [
+          "filmer",
+          "phylmer",
+          "filmmer"
+        ],
+        "answerIndex": 0,
+        "example": "Il faut filmer vingt-quatre images par seconde."
+      },
+      {
+        "id": "d25-w042",
+        "word": "enregistrer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "enregistrer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "en",
+          "re",
+          "gis",
+          "trer"
+        ],
+        "syllableDistractors": [
+          "an",
+          "ré",
+          "gys",
+          "trez"
+        ],
+        "guidedChoices": [
+          "enregistrer",
+          "enregister",
+          "anregistrer"
+        ],
+        "answerIndex": 0,
+        "example": "Plus tard, on saura enregistrer aussi le son."
+      },
+      {
+        "id": "d25-w043",
+        "word": "créer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "creer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "cré",
+          "er"
+        ],
+        "syllableDistractors": [
+          "cre",
+          "é",
+          "ée",
+          "ez"
+        ],
+        "guidedChoices": [
+          "créer",
+          "creer",
+          "créér"
+        ],
+        "answerIndex": 0,
+        "example": "Le réalisateur veut créer une oeuvre originale."
+      },
+      {
+        "id": "d25-w044",
+        "word": "entrer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "entrer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "en",
+          "trer"
+        ],
+        "syllableDistractors": [
+          "an",
+          "tré",
+          "trée",
+          "trez"
+        ],
+        "guidedChoices": [
+          "entrer",
+          "antrer",
+          "entrrer"
+        ],
+        "answerIndex": 0,
+        "example": "Le public va entrer dans la salle obscure."
+      },
+      {
+        "id": "d25-w045",
+        "word": "fantastique",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "fantastique.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "fan",
+          "tas",
+          "ti",
+          "que"
+        ],
+        "syllableDistractors": [
+          "fen",
+          "tass",
+          "ki",
+          "k"
+        ],
+        "guidedChoices": [
+          "fantastique",
+          "fantastik",
+          "phantastique"
+        ],
+        "answerIndex": 0,
+        "example": "Méliès tournait des films au monde fantastique."
+      },
+      {
+        "id": "d25-w046",
+        "word": "également",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "egalement.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "é",
+          "ga",
+          "le",
+          "ment"
+        ],
+        "syllableDistractors": [
+          "e",
+          "gal",
+          "man",
+          "mant"
+        ],
+        "guidedChoices": [
+          "également",
+          "egalement",
+          "égallement"
+        ],
+        "answerIndex": 0,
+        "example": "Il a également écrit ses propres scénarios."
+      },
+      {
+        "id": "d25-w047",
+        "word": "ainsi",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "ainsi.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "a",
+          "i",
+          "n",
+          "s",
+          "i"
+        ],
+        "syllableDistractors": [
+          "é",
+          "y",
+          "z"
+        ],
+        "guidedChoices": [
+          "ainsi",
+          "insi",
+          "ainci"
+        ],
+        "answerIndex": 0,
+        "example": "Ainsi naquit le septième art."
+      }
+    ]
+  }
+}

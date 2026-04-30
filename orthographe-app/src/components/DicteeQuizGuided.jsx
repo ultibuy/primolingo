@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import ProgressBar from './ProgressBar.jsx';
 import EndScreen from './EndScreen.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
@@ -49,7 +49,7 @@ export default function DicteeQuizGuided({
     const choices = word.guidedChoices.map((text, i) => ({ text, originalIndex: i }));
     // Fisher-Yates shuffle
     for (let i = choices.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
+      const j = Math.floor(Math.random() * (i + 1)); // eslint-disable-line react-hooks/purity
       [choices[i], choices[j]] = [choices[j], choices[i]];
     }
     const correctIndex = choices.findIndex(c => c.originalIndex === word.answerIndex);
@@ -92,7 +92,7 @@ export default function DicteeQuizGuided({
     const streakMilestone = computeStreakMilestone(streak, milestones, isFirstSessionOfDay, sessionPct);
 
     // Build questions/answers in the format EndScreen expects
-    const endQuestions = words.map((w, i) => ({
+    const endQuestions = words.map((w, _i) => ({
       id: w.id,
       before: w.displayPrefix ? w.displayPrefix + ' ' : '',
       after: '',
@@ -214,10 +214,6 @@ export default function DicteeQuizGuided({
                 opacity = 0.25;
               }
             }
-
-            const displayText = word.displayPrefix
-              ? `${word.displayPrefix} ${choice.text}`
-              : choice.text;
 
             return (
               <button

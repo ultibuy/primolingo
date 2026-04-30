@@ -198,7 +198,7 @@ export const SHOP_CATALOG = {
   'theme-my-hero-academy': {
     id: 'theme-my-hero-academy',
     category: 'themes',
-    name: 'My Hero Academy',
+    name: 'Manga',
     description: 'Palette héroïque vert olive et or doux avec ambiance manga.',
     price: 200,
     type: 'permanent',

@@ -34,7 +34,7 @@ export default function MotivationBanner({
   emphasis,
   emphasisColor,
   cta,
-  onDismiss,
+  onDismiss: _onDismiss,
   floatEmoji = false,
   style,
 }) {

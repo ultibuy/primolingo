@@ -194,7 +194,7 @@ export default function InfernoEntranceEffect({ onDone }) {
 
     raf = requestAnimationFrame(frame);
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 99998, pointerEvents: 'none' }}>

@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { onAuthStateChanged, signOut as firebaseSignOut } from 'firebase/auth';
 import { auth } from '../firebase';
-import { isLocalhost } from '../debug.js';
 
 const AuthContext = createContext(null);
 
@@ -10,8 +9,9 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // On localhost: bypass Firebase auth entirely
-    if (isLocalhost()) {
+    // Dev mode only: bypass Firebase auth entirely
+    if (import.meta.env.DEV) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setUser({ uid: 'localhost-dev', email: 'debug@test.com', displayName: 'Debug' });
       setLoading(false);
       return;
@@ -62,6 +62,7 @@ export function AuthProvider({ children }) {
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useAuth() {
   const ctx = useContext(AuthContext);
   if (!ctx) throw new Error('useAuth must be used inside AuthProvider');

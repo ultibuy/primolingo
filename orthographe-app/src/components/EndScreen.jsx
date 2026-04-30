@@ -589,6 +589,7 @@ export default function EndScreen({
               const chosenLabel = questionChoices.find(c => c.id === a?.chosen)?.label || '';
               const answerLabel = questionChoices.find(c => c.id === q.answer)?.label || '';
               const qHasVerb = q.verb !== undefined;
+              const isSyllable = !!q.syllable;
               return (
                 <div key={i} style={{
                   display: 'flex', alignItems: 'center', gap: '0.6rem',
@@ -599,14 +600,24 @@ export default function EndScreen({
                   <span style={{ fontSize: '0.85rem', width: 22, flexShrink: 0 }}>
                     {ok ? '\u2713' : '\u2717'}
                   </span>
-                  <span style={{ fontSize: '0.82rem', color: '#d1d5db', flex: 1 }}>
-                    {q.before}
-                    {qHasVerb && q.verb}
-                    <strong style={{ color: ok ? '#4ade80' : '#f87171' }}>
-                      {qHasVerb ? chosenLabel.replace('-', '') : chosenLabel}
-                    </strong>
-                    {q.after}
-                  </span>
+                  {isSyllable ? (
+                    <span style={{ fontSize: '0.82rem', color: '#d1d5db', flex: 1 }}>
+                      <strong style={{ color: '#c4b5fd', fontSize: '0.95rem' }}>{q.syllable}</strong>
+                      {' '}
+                      <strong style={{ color: ok ? '#4ade80' : '#f87171' }}>
+                        {chosenLabel}
+                      </strong>
+                    </span>
+                  ) : (
+                    <span style={{ fontSize: '0.82rem', color: '#d1d5db', flex: 1 }}>
+                      {q.before}
+                      {qHasVerb && q.verb}
+                      <strong style={{ color: ok ? '#4ade80' : '#f87171' }}>
+                        {qHasVerb ? chosenLabel.replace('-', '') : chosenLabel}
+                      </strong>
+                      {q.after}
+                    </span>
+                  )}
                   {!ok && (
                     <span style={{ fontSize: '0.75rem', color: '#9ca3af', flexShrink: 0 }}>
                       {'→'} {answerLabel}

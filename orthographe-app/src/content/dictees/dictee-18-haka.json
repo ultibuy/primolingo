@@ -1,0 +1,1293 @@
+{
+  "id": "dictee-18",
+  "number": 18,
+  "title": "Le Haka",
+  "themeImage": null,
+  "words": {
+    "level1": [
+      {
+        "id": "d18-w001",
+        "word": "Nouvelle-Zélande",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "nouvelle-zelande.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "Nou",
+          "vel",
+          "le-",
+          "Zé",
+          "lan",
+          "de"
+        ],
+        "syllableDistractors": [
+          "Nu",
+          "vèl",
+          "Ze",
+          "lend"
+        ],
+        "guidedChoices": [
+          "Nouvelle-Zélande",
+          "Nouvelle-Zelande",
+          "Nouvelle-Zéllande"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka vient de la Nouvelle-Zélande."
+      },
+      {
+        "id": "d18-w002",
+        "word": "danse",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "danse.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "dan",
+          "se"
+        ],
+        "syllableDistractors": [
+          "den",
+          "ce",
+          "sse",
+          "ze"
+        ],
+        "guidedChoices": [
+          "danse",
+          "dance",
+          "dence"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est une danse traditionnelle maorie."
+      },
+      {
+        "id": "d18-w003",
+        "word": "chant",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "chant.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "c",
+          "h",
+          "a",
+          "n",
+          "t"
+        ],
+        "syllableDistractors": [
+          "s",
+          "k",
+          "e",
+          "d"
+        ],
+        "guidedChoices": [
+          "chant",
+          "chan",
+          "chants"
+        ],
+        "answerIndex": 0,
+        "example": "Un chant puissant accompagne la danse du haka."
+      },
+      {
+        "id": "d18-w004",
+        "word": "ennemi",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "ennemi.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "en",
+          "ne",
+          "mi"
+        ],
+        "syllableDistractors": [
+          "an",
+          "né",
+          "my",
+          "mis"
+        ],
+        "guidedChoices": [
+          "ennemi",
+          "enemi",
+          "ennémi"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka servait à effrayer l'ennemi avant le combat."
+      },
+      {
+        "id": "d18-w005",
+        "word": "combat",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "combat.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "com",
+          "bat"
+        ],
+        "syllableDistractors": [
+          "kon",
+          "ba",
+          "bats",
+          "bât"
+        ],
+        "guidedChoices": [
+          "combat",
+          "conbat",
+          "combats"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka précédait le combat chez les Maoris."
+      },
+      {
+        "id": "d18-w006",
+        "word": "respect",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "respect.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "res",
+          "pect"
+        ],
+        "syllableDistractors": [
+          "rès",
+          "pèc",
+          "pet",
+          "pecte"
+        ],
+        "guidedChoices": [
+          "respect",
+          "respec",
+          "respet"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka témoigne du respect envers l'adversaire."
+      },
+      {
+        "id": "d18-w007",
+        "word": "pratiquer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "pratiquer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "pra",
+          "ti",
+          "quer"
+        ],
+        "syllableDistractors": [
+          "prat",
+          "ty",
+          "kée",
+          "ké"
+        ],
+        "guidedChoices": [
+          "pratiquer",
+          "pratiqué",
+          "pratyquer"
+        ],
+        "answerIndex": 0,
+        "example": "Les Maoris continuent de pratiquer le haka."
+      },
+      {
+        "id": "d18-w008",
+        "word": "accompagner",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "accompagner.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ac",
+          "com",
+          "pa",
+          "gner"
+        ],
+        "syllableDistractors": [
+          "ak",
+          "kon",
+          "pâ",
+          "gnée"
+        ],
+        "guidedChoices": [
+          "accompagner",
+          "acompagner",
+          "accompagné"
+        ],
+        "answerIndex": 0,
+        "example": "Des cris viennent accompagner les gestes du haka."
+      },
+      {
+        "id": "d18-w009",
+        "word": "témoigner",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "temoigner.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "té",
+          "moi",
+          "gner"
+        ],
+        "syllableDistractors": [
+          "te",
+          "moit",
+          "gnée",
+          "nyé"
+        ],
+        "guidedChoices": [
+          "témoigner",
+          "temoigner",
+          "témoigné"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka sert à témoigner du courage des guerriers."
+      },
+      {
+        "id": "d18-w010",
+        "word": "guerrier",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "guerrier.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "guer",
+          "ri",
+          "er"
+        ],
+        "syllableDistractors": [
+          "guèr",
+          "ry",
+          "ié",
+          "iers"
+        ],
+        "guidedChoices": [
+          "guerrier",
+          "guérier",
+          "guerrié"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est un chant guerrier très impressionnant."
+      },
+      {
+        "id": "d18-w011",
+        "word": "guerrière",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "guerriere.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "guer",
+          "ri",
+          "è",
+          "re"
+        ],
+        "syllableDistractors": [
+          "guèr",
+          "ry",
+          "é",
+          "rer"
+        ],
+        "guidedChoices": [
+          "guerrière",
+          "guérière",
+          "guerière"
+        ],
+        "answerIndex": 0,
+        "example": "Cette danse guerrière impressionne les adversaires."
+      },
+      {
+        "id": "d18-w012",
+        "word": "brutal",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "brutal.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "bru",
+          "tal"
+        ],
+        "syllableDistractors": [
+          "brut",
+          "tale",
+          "talle",
+          "brû"
+        ],
+        "guidedChoices": [
+          "brutal",
+          "brutale",
+          "bruttal"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka peut paraître brutal pour les spectateurs."
+      },
+      {
+        "id": "d18-w013",
+        "word": "simple",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "simple.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "sim",
+          "ple"
+        ],
+        "syllableDistractors": [
+          "sin",
+          "peler",
+          "pler",
+          "sinp"
+        ],
+        "guidedChoices": [
+          "simple",
+          "sinple",
+          "symple"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka n'est pas une simple danse."
+      },
+      {
+        "id": "d18-w014",
+        "word": "lors",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "lors.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "l",
+          "o",
+          "r",
+          "s"
+        ],
+        "syllableDistractors": [
+          "n",
+          "a",
+          "e",
+          "t"
+        ],
+        "guidedChoices": [
+          "lors",
+          "lor",
+          "lort"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est exécuté lors de grandes occasions."
+      },
+      {
+        "id": "d18-w015",
+        "word": "généralement",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "generalement.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "gé",
+          "né",
+          "ra",
+          "le",
+          "ment"
+        ],
+        "syllableDistractors": [
+          "je",
+          "ne",
+          "râ",
+          "mant"
+        ],
+        "guidedChoices": [
+          "généralement",
+          "generalement",
+          "générallement"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est généralement pratiqué par des hommes."
+      }
+    ],
+    "level2": [
+      {
+        "id": "d18-w016",
+        "word": "occasion",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "occasion.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "oc",
+          "ca",
+          "sion"
+        ],
+        "syllableDistractors": [
+          "ok",
+          "kas",
+          "cion",
+          "zion"
+        ],
+        "guidedChoices": [
+          "occasion",
+          "ocasion",
+          "occassion"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est pratiqué à chaque grande occasion."
+      },
+      {
+        "id": "d18-w017",
+        "word": "cérémonie",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "ceremonie.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "cé",
+          "ré",
+          "mo",
+          "nie"
+        ],
+        "syllableDistractors": [
+          "se",
+          "re",
+          "mau",
+          "ny"
+        ],
+        "guidedChoices": [
+          "cérémonie",
+          "ceremonie",
+          "cérémonnie"
+        ],
+        "answerIndex": 0,
+        "example": "Une cérémonie de mariage peut inclure un haka."
+      },
+      {
+        "id": "d18-w018",
+        "word": "mariage",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "mariage.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ma",
+          "ri",
+          "a",
+          "ge"
+        ],
+        "syllableDistractors": [
+          "mar",
+          "ry",
+          "â",
+          "je"
+        ],
+        "guidedChoices": [
+          "mariage",
+          "marriage",
+          "mariaje"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est parfois dansé lors d'un mariage."
+      },
+      {
+        "id": "d18-w019",
+        "word": "enterrement",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "enterrement.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "en",
+          "ter",
+          "re",
+          "ment"
+        ],
+        "syllableDistractors": [
+          "an",
+          "tère",
+          "rer",
+          "mant"
+        ],
+        "guidedChoices": [
+          "enterrement",
+          "enterement",
+          "anterrement"
+        ],
+        "answerIndex": 0,
+        "example": "On peut aussi danser le haka lors d'un enterrement."
+      },
+      {
+        "id": "d18-w020",
+        "word": "langue",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "langue.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "lan",
+          "gue"
+        ],
+        "syllableDistractors": [
+          "len",
+          "guer",
+          "g",
+          "lang"
+        ],
+        "guidedChoices": [
+          "langue",
+          "langues",
+          "langeu"
+        ],
+        "answerIndex": 0,
+        "example": "Les danseurs tirent la langue pour intimider l'adversaire."
+      },
+      {
+        "id": "d18-w021",
+        "word": "adversaire",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "adversaire.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ad",
+          "ver",
+          "sai",
+          "re"
+        ],
+        "syllableDistractors": [
+          "av",
+          "vèr",
+          "sère",
+          "rer"
+        ],
+        "guidedChoices": [
+          "adversaire",
+          "adversère",
+          "adverçaire"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est censé impressionner l'adversaire."
+      },
+      {
+        "id": "d18-w022",
+        "word": "homme",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "homme.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "hom",
+          "me"
+        ],
+        "syllableDistractors": [
+          "om",
+          "meu",
+          "mer",
+          "mes"
+        ],
+        "guidedChoices": [
+          "homme",
+          "home",
+          "omme"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est généralement pratiqué par un homme."
+      },
+      {
+        "id": "d18-w023",
+        "word": "cuisse",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "cuisse.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "cuis",
+          "se"
+        ],
+        "syllableDistractors": [
+          "kui",
+          "sse",
+          "ce",
+          "quiss"
+        ],
+        "guidedChoices": [
+          "cuisse",
+          "cuise",
+          "quisse"
+        ],
+        "answerIndex": 0,
+        "example": "Les danseurs se tapent la cuisse avec force."
+      },
+      {
+        "id": "d18-w024",
+        "word": "poitrine",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "poitrine.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "poi",
+          "tri",
+          "ne"
+        ],
+        "syllableDistractors": [
+          "poit",
+          "try",
+          "ner",
+          "trin"
+        ],
+        "guidedChoices": [
+          "poitrine",
+          "poitrinne",
+          "poitryne"
+        ],
+        "answerIndex": 0,
+        "example": "Ils se frappent aussi la poitrine avec les mains."
+      },
+      {
+        "id": "d18-w025",
+        "word": "interpréter",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "interpreter.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "in",
+          "ter",
+          "pré",
+          "ter"
+        ],
+        "syllableDistractors": [
+          "int",
+          "tèr",
+          "pre",
+          "tée"
+        ],
+        "guidedChoices": [
+          "interpréter",
+          "interpreter",
+          "interprété"
+        ],
+        "answerIndex": 0,
+        "example": "Les joueurs de rugby savent interpréter le haka."
+      },
+      {
+        "id": "d18-w026",
+        "word": "pouvoir",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "pouvoir.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "pou",
+          "voir"
+        ],
+        "syllableDistractors": [
+          "pu",
+          "voire",
+          "voirs",
+          "voirr"
+        ],
+        "guidedChoices": [
+          "pouvoir",
+          "pouvoire",
+          "pouvoirs"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka peut pouvoir intimider n'importe quel adversaire."
+      },
+      {
+        "id": "d18-w027",
+        "word": "tirer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "tirer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ti",
+          "rer"
+        ],
+        "syllableDistractors": [
+          "ty",
+          "rée",
+          "rér",
+          "rir"
+        ],
+        "guidedChoices": [
+          "tirer",
+          "tyrer",
+          "tiré"
+        ],
+        "answerIndex": 0,
+        "example": "Les guerriers aiment tirer la langue pendant le haka."
+      },
+      {
+        "id": "d18-w028",
+        "word": "se taper",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "se-taper.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "se",
+          "ta",
+          "per"
+        ],
+        "syllableDistractors": [
+          "sé",
+          "tap",
+          "pée",
+          "pèr"
+        ],
+        "guidedChoices": [
+          "se taper",
+          "se tapper",
+          "se tapé"
+        ],
+        "answerIndex": 0,
+        "example": "Les danseurs doivent se taper les cuisses en rythme."
+      },
+      {
+        "id": "d18-w029",
+        "word": "intimider",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "intimider.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "in",
+          "ti",
+          "mi",
+          "der"
+        ],
+        "syllableDistractors": [
+          "int",
+          "ty",
+          "my",
+          "dée"
+        ],
+        "guidedChoices": [
+          "intimider",
+          "intimidé",
+          "intimyder"
+        ],
+        "answerIndex": 0,
+        "example": "Le but du haka est d'intimider l'adversaire."
+      },
+      {
+        "id": "d18-w030",
+        "word": "amical",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "amical.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "a",
+          "mi",
+          "cal"
+        ],
+        "syllableDistractors": [
+          "am",
+          "my",
+          "kal",
+          "cale"
+        ],
+        "guidedChoices": [
+          "amical",
+          "amicale",
+          "amikale"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka peut aussi être amical lors d'un accueil."
+      },
+      {
+        "id": "d18-w031",
+        "word": "particulier",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "particulier.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "par",
+          "ti",
+          "cu",
+          "li",
+          "er"
+        ],
+        "syllableDistractors": [
+          "pare",
+          "ty",
+          "ku",
+          "ly"
+        ],
+        "guidedChoices": [
+          "particulier",
+          "partiqulier",
+          "particulié"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque haka a un rythme particulier."
+      },
+      {
+        "id": "d18-w032",
+        "word": "particulière",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "particuliere.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "par",
+          "ti",
+          "cu",
+          "liè",
+          "re"
+        ],
+        "syllableDistractors": [
+          "pare",
+          "ty",
+          "ku",
+          "lié"
+        ],
+        "guidedChoices": [
+          "particulière",
+          "particuliere",
+          "partiqulière"
+        ],
+        "answerIndex": 0,
+        "example": "Cette danse a une énergie particulière."
+      },
+      {
+        "id": "d18-w033",
+        "word": "fort",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "fort.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "f",
+          "o",
+          "r",
+          "t"
+        ],
+        "syllableDistractors": [
+          "p",
+          "a",
+          "e",
+          "d"
+        ],
+        "guidedChoices": [
+          "fort",
+          "fore",
+          "fors"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka exige un cri fort et puissant."
+      },
+      {
+        "id": "d18-w034",
+        "word": "important",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "important.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "im",
+          "por",
+          "tant"
+        ],
+        "syllableDistractors": [
+          "in",
+          "pore",
+          "tan",
+          "tent"
+        ],
+        "guidedChoices": [
+          "important",
+          "inportant",
+          "importent"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est un élément important de la culture maorie."
+      },
+      {
+        "id": "d18-w035",
+        "word": "méchant",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "mechant.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "mé",
+          "chant"
+        ],
+        "syllableDistractors": [
+          "me",
+          "chan",
+          "chent",
+          "chans"
+        ],
+        "guidedChoices": [
+          "méchant",
+          "mechant",
+          "méchent"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka n'a pas pour but d'être méchant."
+      },
+      {
+        "id": "d18-w036",
+        "word": "violent",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "violent.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "vi",
+          "o",
+          "lent"
+        ],
+        "syllableDistractors": [
+          "vy",
+          "au",
+          "lant",
+          "len"
+        ],
+        "guidedChoices": [
+          "violent",
+          "violant",
+          "violen"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka peut sembler violent, mais c'est un art."
+      },
+      {
+        "id": "d18-w037",
+        "word": "aussi",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "aussi.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "aus",
+          "si"
+        ],
+        "syllableDistractors": [
+          "os",
+          "sy",
+          "ci",
+          "sis"
+        ],
+        "guidedChoices": [
+          "aussi",
+          "ausi",
+          "ossi"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est aussi pratiqué lors des mariages."
+      },
+      {
+        "id": "d18-w038",
+        "word": "comme",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "comme.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "com",
+          "me"
+        ],
+        "syllableDistractors": [
+          "kon",
+          "meu",
+          "mer",
+          "kom"
+        ],
+        "guidedChoices": [
+          "comme",
+          "come",
+          "komme"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est utilisé comme signe de respect."
+      },
+      {
+        "id": "d18-w039",
+        "word": "selon",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "selon.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "se",
+          "lon"
+        ],
+        "syllableDistractors": [
+          "sé",
+          "lont",
+          "lond",
+          "long"
+        ],
+        "guidedChoices": [
+          "selon",
+          "selont",
+          "celon"
+        ],
+        "answerIndex": 0,
+        "example": "Selon la tradition, le haka honore les ancêtres."
+      }
+    ],
+    "level3": [
+      {
+        "id": "d18-w040",
+        "word": "équipe",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "equipe.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "é",
+          "qui",
+          "pe"
+        ],
+        "syllableDistractors": [
+          "e",
+          "ki",
+          "per",
+          "pé"
+        ],
+        "guidedChoices": [
+          "équipe",
+          "equipe",
+          "ékipe"
+        ],
+        "answerIndex": 0,
+        "example": "L'équipe de rugby néo-zélandaise danse le haka."
+      },
+      {
+        "id": "d18-w041",
+        "word": "match",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "match.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "m",
+          "a",
+          "t",
+          "c",
+          "h"
+        ],
+        "syllableDistractors": [
+          "n",
+          "e",
+          "d",
+          "k"
+        ],
+        "guidedChoices": [
+          "match",
+          "matche",
+          "mach"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est dansé avant chaque match des All Blacks."
+      },
+      {
+        "id": "d18-w042",
+        "word": "démonstration",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "demonstration.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "dé",
+          "mons",
+          "tra",
+          "tion"
+        ],
+        "syllableDistractors": [
+          "de",
+          "mon",
+          "trâ",
+          "sion"
+        ],
+        "guidedChoices": [
+          "démonstration",
+          "demonstration",
+          "démonstation"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est une démonstration de force et de courage."
+      },
+      {
+        "id": "d18-w043",
+        "word": "faire",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "faire.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "fai",
+          "re"
+        ],
+        "syllableDistractors": [
+          "fé",
+          "rer",
+          "fair",
+          "fe"
+        ],
+        "guidedChoices": [
+          "faire",
+          "fèr",
+          "fère"
+        ],
+        "answerIndex": 0,
+        "example": "Les All Blacks aiment faire le haka avant chaque match."
+      },
+      {
+        "id": "d18-w044",
+        "word": "célèbre",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "celebre.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "cé",
+          "lè",
+          "bre"
+        ],
+        "syllableDistractors": [
+          "se",
+          "le",
+          "brer",
+          "brée"
+        ],
+        "guidedChoices": [
+          "célèbre",
+          "celebre",
+          "célebre"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka des All Blacks est célèbre dans le monde entier."
+      },
+      {
+        "id": "d18-w045",
+        "word": "ancestral",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "ancestral.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "an",
+          "ces",
+          "tral"
+        ],
+        "syllableDistractors": [
+          "en",
+          "sès",
+          "trâl",
+          "trale"
+        ],
+        "guidedChoices": [
+          "ancestral",
+          "ansestral",
+          "ancestrale"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est un rite ancestral des Maoris."
+      },
+      {
+        "id": "d18-w046",
+        "word": "récent",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "recent.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ré",
+          "cent"
+        ],
+        "syllableDistractors": [
+          "re",
+          "san",
+          "sent",
+          "sant"
+        ],
+        "guidedChoices": [
+          "récent",
+          "recent",
+          "récant"
+        ],
+        "answerIndex": 0,
+        "example": "Un match récent a montré un haka impressionnant."
+      },
+      {
+        "id": "d18-w047",
+        "word": "bruyant",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "bruyant.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "bru",
+          "yant"
+        ],
+        "syllableDistractors": [
+          "brui",
+          "yan",
+          "iant",
+          "yent"
+        ],
+        "guidedChoices": [
+          "bruyant",
+          "bruiant",
+          "bruyent"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est un spectacle bruyant et impressionnant."
+      },
+      {
+        "id": "d18-w048",
+        "word": "grâce",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "grace.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "grâ",
+          "ce"
+        ],
+        "syllableDistractors": [
+          "gra",
+          "se",
+          "cé",
+          "sse"
+        ],
+        "guidedChoices": [
+          "grâce",
+          "grace",
+          "grâse"
+        ],
+        "answerIndex": 0,
+        "example": "Grâce au haka, les Maoris transmettent leur culture."
+      },
+      {
+        "id": "d18-w049",
+        "word": "avant",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "avant.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "a",
+          "vant"
+        ],
+        "syllableDistractors": [
+          "â",
+          "van",
+          "vent",
+          "vant"
+        ],
+        "guidedChoices": [
+          "avant",
+          "avent",
+          "avants"
+        ],
+        "answerIndex": 0,
+        "example": "Le haka est dansé avant le début du match."
+      }
+    ]
+  }
+}

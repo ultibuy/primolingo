@@ -9,8 +9,11 @@ export const SHOP_CHARACTERS = [
   { id: 'bear',         emoji: '🐻',    name: 'Ours Viking',           tag: 'Force et vaillance',          color: '#d4a020', price: 500 },
   { id: 'sharkNinja',   emoji: '🦈',    name: 'Requin Ninja',          tag: 'Maître des profondeurs',      color: '#00BFFF', price: 500 },
   { id: 'owlWitch',     emoji: '🦉',    name: 'Chouette Magicienne',   tag: 'Gardienne des sorts anciens', color: '#a78bfa', price: 500 },
-  { id: 'catDetective', emoji: '🐱',    name: 'Chat Détective',        tag: 'Rien ne lui échappe',         color: '#4ade80', price: 500 },
-  { id: 'dragon',       emoji: '🐉',    name: 'Dragon de Feu',         tag: 'Souffle incandescent',        color: '#ef4444', price: 500 },
+  { id: 'catDetective',  emoji: '🐱',    name: 'Chat Détective',        tag: 'Rien ne lui échappe',          color: '#4ade80', price: 500 },
+  { id: 'turtleNomad',  emoji: '🐢',    name: 'Tortue Nomade',         tag: 'Gardien des horizons lointains', color: '#65a30d', price: 500 },
+  { id: 'raccoonHacker',emoji: '🦝',    name: 'Raton Hackeur',         tag: 'Maître du code et des ombres', color: '#22d3ee', price: 500 },
+  { id: 'spyPenguin',   emoji: '🐧',    name: 'Pingouin Espion',       tag: 'Agent secret des glaces',      color: '#dc2626', price: 500 },
+  { id: 'dragon',       emoji: '🐉',    name: 'Dragon de Feu',         tag: 'Souffle incandescent',         color: '#ef4444', price: 500 },
   { id: 'mushroom',     emoji: '🍄',    name: 'Esprit Champignon',     tag: 'Gardien de la forêt',         color: '#e63946', price: 500 },
   { id: 'cosmo',        emoji: '🧑‍🚀', name: 'Cosmonaute Intrépide',  tag: "Explorateur de l'infini",    color: '#38bdf8', price: 500 },
 ];

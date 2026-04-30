@@ -232,12 +232,15 @@ export default function DicteeQuizReconstruct({
 
   const word = words[currentIndex];
 
+  /* eslint-disable react-hooks/preserve-manual-memoization */
   const letterPool = useMemo(
     () => (word ? computeLetterPool(word) : []),
     [currentIndex], // eslint-disable-line react-hooks/exhaustive-deps
   );
+  /* eslint-enable react-hooks/preserve-manual-memoization */
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setBuiltChars([]);
     setShowResult(null);
     setWrongCount(0);
@@ -279,7 +282,7 @@ export default function DicteeQuizReconstruct({
       setShakeKey(k => k + 1);
       setAnswers(prev => [...prev, { wordId: word.id, correct: false, attempts: wrongCount + 1, typed: assembledString }]);
     }
-  }, [showResult, builtChars, assembledString, word, wrongCount, currentIndex, words.length]);
+  }, [showResult, builtChars, assembledString, word, wrongCount]);
 
   const handleNext = useCallback(() => {
     if (currentIndex + 1 >= words.length) setFinished(true);

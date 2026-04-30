@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { createPortal } from 'react-dom';
 import CoinIcon from './CoinIcon.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
+import PopupModal from './PopupModal.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
 import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
@@ -693,7 +693,7 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
       )}
 
       <div style={{
-        maxWidth: 700, width: '100%', padding: '1rem 1.5rem 3rem',
+        maxWidth: 700, width: '100%', boxSizing: 'border-box', padding: '1rem 1.5rem 3rem',
         opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(12px)',
         transition: 'all 0.5s ease',
       }}>
@@ -799,6 +799,9 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
           const ownedChars = SHOP_CHARACTERS.filter(c => ownedIds.includes(`char-${c.id}`));
           const unownedChars = SHOP_CHARACTERS.filter(c => !ownedIds.includes(`char-${c.id}`));
           const sectionStyle = {
+            width: '100%',
+            minWidth: 0,
+            boxSizing: 'border-box',
             marginBottom: '1.2rem',
             padding: '1rem',
             borderRadius: 22,
@@ -1184,21 +1187,12 @@ function MysteryImageCard({ imageId, mysteryImageDefinitions, progress, purchase
 }
 
 function CharacterPreviewPopup({ char, childName, onClose }) {
-  return createPortal(
-    <div
-      onClick={onClose}
-      style={{
-        position: 'fixed', inset: 0, zIndex: 9999,
-        background: 'rgba(0,0,0,0.75)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        backdropFilter: 'blur(6px)',
-        WebkitBackdropFilter: 'blur(6px)',
-        padding: '1rem',
-      }}
-    >
-      <div
-        onClick={e => e.stopPropagation()}
-        style={{
+  return (
+    <PopupModal
+      onClose={onClose}
+      zIndex={9999}
+      overlayStyle={{ background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)' }}
+      panelStyle={{
           background: 'linear-gradient(160deg, rgba(var(--color-bg1-rgb),0.97), rgba(var(--color-bg2-rgb),0.92))',
           border: `1px solid ${char.color}44`,
           borderRadius: 28,
@@ -1206,11 +1200,9 @@ function CharacterPreviewPopup({ char, childName, onClose }) {
           display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.2rem',
           boxShadow: `0 0 60px ${char.color}30, 0 20px 60px rgba(0,0,0,0.6)`,
           minWidth: 220,
-          position: 'relative',
-          animation: 'bounce-in 0.3s ease forwards',
-        }}
-      >
-        <PopupCloseButton onClick={onClose} top={12} right={12} size={38} />
+      }}
+      closeButtonProps={{ size: 40 }}
+    >
 
         <CharacterSprite id={char.id} mood="walk" size={120} glow={true} />
 
@@ -1222,9 +1214,7 @@ function CharacterPreviewPopup({ char, childName, onClose }) {
             {char.name}
           </div>
         </div>
-      </div>
-    </div>,
-    document.body
+    </PopupModal>
   );
 }
 
@@ -1248,6 +1238,8 @@ function EmotionCard({ emo, isBase, charId = null, isOwned = false, animateIn = 
       onClick={onClick}
       style={{
         position: 'relative',
+        minWidth: 0,
+        boxSizing: 'border-box',
         padding: isBase ? '10px 8px 10px' : '12px 10px 12px',
         borderRadius: 14,
         background: isBase
@@ -1299,7 +1291,7 @@ function EmotionCard({ emo, isBase, charId = null, isOwned = false, animateIn = 
             </div>
           )}
         </div>
-        <div style={{ fontSize: '0.6rem', color: '#9ca3af', lineHeight: 1.3 }}>{emo.desc}</div>
+        <div style={{ fontSize: '0.6rem', color: '#9ca3af', lineHeight: 1.3, overflowWrap: 'anywhere' }}>{emo.desc}</div>
       </div>
     </div>
   );
@@ -1307,17 +1299,17 @@ function EmotionCard({ emo, isBase, charId = null, isOwned = false, animateIn = 
 
 // ── ShopCharacterCard ────────────────────────────────────────────────────────
 
-function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim, onBuyCharacter, onBuyEmotion }) {
-  const [showPreview, setShowPreview] = useState(false);
-  const [step, setStep] = useState(0); // 0=init, 2=expanded+toast, 3=+base, 4=+paid
-  const [justPurchased, setJustPurchased] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  const prevOwnedRef = useRef(false);
-  const cardRef = useRef(null);
-
+function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim: _purchaseAnim, onBuyCharacter, onBuyEmotion }) {
   const ownedIds = progress.shop?.owned || [];
   const charItemId = `char-${char.id}`;
   const ownsCharacter = ownedIds.includes(charItemId);
+
+  const [showPreview, setShowPreview] = useState(false);
+  const [step, setStep] = useState(() => ownsCharacter ? 4 : 0); // 0=init, 2=expanded+toast, 3=+base, 4=+paid
+  const [justPurchased, setJustPurchased] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const prevOwnedRef = useRef(ownsCharacter);
+  const cardRef = useRef(null);
   const charPrice = char.price ?? 500;
   const canBuyCharacter = coins >= charPrice;
   const missingForCharacter = Math.max(0, charPrice - coins);
@@ -1327,6 +1319,7 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim, onB
     if (!prevOwnedRef.current && ownsCharacter) {
       // Just purchased — scroll into view then run cinematic
       setTimeout(() => cardRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 80);
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setJustPurchased(true);
       setShowToast(true);
       setStep(2);
@@ -1336,15 +1329,10 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim, onB
       prevOwnedRef.current = true;
       return () => { clearTimeout(t3); clearTimeout(t4); clearTimeout(tToast); };
     }
-    if (ownsCharacter && step === 0) {
-      // Already owned on mount — show full state, no animation
-      setStep(4);
-      prevOwnedRef.current = true;
-    }
     if (!ownsCharacter) {
       prevOwnedRef.current = false;
     }
-  }, [ownsCharacter]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [ownsCharacter]);
 
   const isExpanded = step >= 2;
 
@@ -1354,6 +1342,9 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim, onB
         <CharacterPreviewPopup char={char} childName={childName} onClose={() => setShowPreview(false)} />
       )}
       <div ref={cardRef} style={{
+        width: '100%',
+        minWidth: 0,
+        boxSizing: 'border-box',
         borderRadius: 18,
         padding: 16,
         background: isExpanded
@@ -1366,7 +1357,7 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim, onB
         transition: 'background 0.4s ease, border 0.4s ease, box-shadow 0.4s ease',
       }}>
         {/* ── Header ── */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, justifyContent: 'space-between', minWidth: 0 }}>
           <div
             onClick={() => ownsCharacter && setShowPreview(true)}
             style={{ display: 'flex', alignItems: 'center', gap: 14, flex: 1, minWidth: 0, cursor: ownsCharacter ? 'pointer' : 'default' }}
@@ -1383,7 +1374,7 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim, onB
                 ? <CharacterSprite id={char.id} mood="walk" size={38} glow={false} />
                 : <span style={{ fontSize: '1.6rem' }}>{char.emoji}</span>}
             </div>
-            <div style={{ minWidth: 0 }}>
+            <div style={{ minWidth: 0, overflowWrap: 'anywhere' }}>
               <div style={{ fontSize: '0.95rem', fontWeight: 800, color: ownsCharacter ? char.color : '#fff', marginBottom: '0.1rem' }}>
                 {char.name}
               </div>
@@ -1453,7 +1444,7 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim, onB
             {step >= 3 && (
               <div style={{ marginBottom: 16 }}>
                 <SectionLabel kicker="Incluses" title="Émotions de base" color="#48bb78" count={BASE_EMOTIONS.length} />
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 8 }}>
                   {BASE_EMOTIONS.map((emo, i) => (
                     <EmotionCard key={emo.id} emo={emo} isBase={true} charId={char.id} animateIn={justPurchased && step === 3} delay={i * 90} />
                   ))}
@@ -1465,7 +1456,7 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim, onB
             {step >= 4 && (
               <div>
                 <SectionLabel kicker="À débloquer" title="Émotions spéciales" color="#f5b400" count={SHOP_EMOTIONS.length} />
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 8 }}>
                   {SHOP_EMOTIONS.map((emo, i) => {
                     const owned = ownedIds.includes(`char-${char.id}-${emo.id}`);
                     return (

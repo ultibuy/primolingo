@@ -1,0 +1,1204 @@
+{
+  "id": "dictee-24",
+  "number": 24,
+  "title": "La Vénus de Milo",
+  "themeImage": null,
+  "words": {
+    "level1": [
+      {
+        "id": "d24-w001",
+        "word": "Grèce",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "grece.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "Grè",
+          "ce"
+        ],
+        "syllableDistractors": [
+          "Gré",
+          "se",
+          "ke",
+          "ces"
+        ],
+        "guidedChoices": [
+          "Grèce",
+          "Grece",
+          "Gresse"
+        ],
+        "answerIndex": 0,
+        "example": "La statue vient de la Grèce antique."
+      },
+      {
+        "id": "d24-w002",
+        "word": "statue",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "statue.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "sta",
+          "tue"
+        ],
+        "syllableDistractors": [
+          "sta",
+          "tut",
+          "tu",
+          "tues"
+        ],
+        "guidedChoices": [
+          "statue",
+          "statu",
+          "statues"
+        ],
+        "answerIndex": 0,
+        "example": "Cette statue est exposée au musée du Louvre."
+      },
+      {
+        "$ref": "shared:morceau"
+      },
+      {
+        "id": "d24-w004",
+        "word": "île",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "ile.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "î",
+          "l",
+          "e"
+        ],
+        "syllableDistractors": [
+          "i",
+          "y",
+          "ll"
+        ],
+        "guidedChoices": [
+          "île",
+          "ile",
+          "îsle"
+        ],
+        "answerIndex": 0,
+        "example": "La statue a été trouvée sur une île grecque."
+      },
+      {
+        "id": "d24-w005",
+        "word": "corps",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "corps.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "c",
+          "o",
+          "r",
+          "p",
+          "s"
+        ],
+        "syllableDistractors": [
+          "k",
+          "a",
+          "t"
+        ],
+        "guidedChoices": [
+          "corps",
+          "cors",
+          "corp"
+        ],
+        "answerIndex": 0,
+        "example": "Le corps de la statue est sculpté dans le marbre."
+      },
+      {
+        "id": "d24-w006",
+        "word": "métal",
+        "displayPrefix": "du ",
+        "category": "nom",
+        "audioFile": "metal.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "mé",
+          "tal"
+        ],
+        "syllableDistractors": [
+          "me",
+          "tale",
+          "thal",
+          "talle"
+        ],
+        "guidedChoices": [
+          "métal",
+          "metal",
+          "métale"
+        ],
+        "answerIndex": 0,
+        "example": "Du métal renforce l'intérieur de la statue."
+      },
+      {
+        "id": "d24-w007",
+        "word": "bloc",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "bloc.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "b",
+          "l",
+          "o",
+          "c"
+        ],
+        "syllableDistractors": [
+          "k",
+          "que",
+          "p"
+        ],
+        "guidedChoices": [
+          "bloc",
+          "block",
+          "bloque"
+        ],
+        "answerIndex": 0,
+        "example": "La statue est taillée dans un bloc de marbre."
+      },
+      {
+        "id": "d24-w008",
+        "word": "clou",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "clou.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "c",
+          "l",
+          "o",
+          "u"
+        ],
+        "syllableDistractors": [
+          "k",
+          "ou",
+          "t"
+        ],
+        "guidedChoices": [
+          "clou",
+          "cloux",
+          "clout"
+        ],
+        "answerIndex": 0,
+        "example": "Un clou ancien tient les morceaux ensemble."
+      },
+      {
+        "id": "d24-w009",
+        "word": "intérieur",
+        "displayPrefix": "l'",
+        "category": "nom",
+        "audioFile": "interieur.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "in",
+          "té",
+          "rieur"
+        ],
+        "syllableDistractors": [
+          "int",
+          "ter",
+          "rier",
+          "rieure"
+        ],
+        "guidedChoices": [
+          "intérieur",
+          "interieur",
+          "intérieurs"
+        ],
+        "answerIndex": 0,
+        "example": "L'intérieur de la statue est creux."
+      },
+      {
+        "id": "d24-w010",
+        "word": "bras",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "bras.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "b",
+          "r",
+          "a",
+          "s"
+        ],
+        "syllableDistractors": [
+          "t",
+          "z",
+          "p"
+        ],
+        "guidedChoices": [
+          "bras",
+          "bra",
+          "brat"
+        ],
+        "answerIndex": 0,
+        "example": "Il manque le bras gauche de la Vénus."
+      },
+      {
+        "id": "d24-w011",
+        "word": "faire",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "faire.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "fai",
+          "re"
+        ],
+        "syllableDistractors": [
+          "fé",
+          "fer",
+          "raie",
+          "rer"
+        ],
+        "guidedChoices": [
+          "faire",
+          "fère",
+          "fer"
+        ],
+        "answerIndex": 0,
+        "example": "Le sculpteur a su faire un chef-d'oeuvre."
+      },
+      {
+        "id": "d24-w012",
+        "word": "disparaître",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "disparaitre.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "dis",
+          "pa",
+          "raî",
+          "tre"
+        ],
+        "syllableDistractors": [
+          "dys",
+          "para",
+          "rai",
+          "ter"
+        ],
+        "guidedChoices": [
+          "disparaître",
+          "disparaitre",
+          "disparètre"
+        ],
+        "answerIndex": 0,
+        "example": "Les bras ont fini par disparaître au fil du temps."
+      },
+      {
+        "id": "d24-w013",
+        "word": "différent",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "different.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "dif",
+          "fé",
+          "rent"
+        ],
+        "syllableDistractors": [
+          "di",
+          "fe",
+          "rant",
+          "rente"
+        ],
+        "guidedChoices": [
+          "signaler",
+          "sinaler",
+          "sinyaler"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque visage de statue est différent."
+      },
+      {
+        "id": "d24-w014",
+        "word": "maintenu",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "maintenu.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "main",
+          "te",
+          "nu"
+        ],
+        "syllableDistractors": [
+          "men",
+          "ten",
+          "nue",
+          "nut"
+        ],
+        "guidedChoices": [
+          "maintenu",
+          "maintenue",
+          "mintenu"
+        ],
+        "answerIndex": 0,
+        "example": "Le marbre est maintenu par des clous."
+      },
+      {
+        "id": "d24-w015",
+        "word": "plusieurs",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "plusieurs.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "plu",
+          "sieurs"
+        ],
+        "syllableDistractors": [
+          "plus",
+          "sieur",
+          "sier",
+          "ssieurs"
+        ],
+        "guidedChoices": [
+          "plusieurs",
+          "plusieur",
+          "plusiers"
+        ],
+        "answerIndex": 0,
+        "example": "Plusieurs morceaux ont été retrouvés."
+      },
+      {
+        "id": "d24-w016",
+        "word": "depuis",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "depuis.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "de",
+          "puis"
+        ],
+        "syllableDistractors": [
+          "dé",
+          "puit",
+          "pui",
+          "pis"
+        ],
+        "guidedChoices": [
+          "depuis",
+          "depui",
+          "dépuis"
+        ],
+        "answerIndex": 0,
+        "example": "Elle est exposée au Louvre depuis longtemps."
+      },
+      {
+        "id": "d24-w017",
+        "word": "longtemps",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "longtemps.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "long",
+          "temps"
+        ],
+        "syllableDistractors": [
+          "lon",
+          "tens",
+          "tant",
+          "ten"
+        ],
+        "guidedChoices": [
+          "longtemps",
+          "longtens",
+          "lontemps"
+        ],
+        "answerIndex": 0,
+        "example": "On a cherché ses bras pendant longtemps."
+      },
+      {
+        "id": "d24-w018",
+        "word": "ensemble",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "ensemble.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "en",
+          "sem",
+          "ble"
+        ],
+        "syllableDistractors": [
+          "an",
+          "sen",
+          "blé",
+          "blay"
+        ],
+        "guidedChoices": [
+          "devoir",
+          "dévoir",
+          "devoire"
+        ],
+        "answerIndex": 0,
+        "example": "Les morceaux ont été remontés ensemble."
+      }
+    ],
+    "level2": [
+      {
+        "id": "d24-w019",
+        "word": "dieu",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "dieu.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "d",
+          "i",
+          "e",
+          "u"
+        ],
+        "syllableDistractors": [
+          "x",
+          "t",
+          "s"
+        ],
+        "guidedChoices": [
+          "montrer",
+          "monntrer",
+          "montreir"
+        ],
+        "answerIndex": 0,
+        "example": "Le dieu Apollon est représenté en statue."
+      },
+      {
+        "id": "d24-w020",
+        "word": "déesse",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "deesse.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "dé",
+          "es",
+          "se"
+        ],
+        "syllableDistractors": [
+          "de",
+          "ée",
+          "ce",
+          "sse"
+        ],
+        "guidedChoices": [
+          "déesse",
+          "déésse",
+          "deesse"
+        ],
+        "answerIndex": 0,
+        "example": "La déesse de l'amour s'appelle Vénus."
+      },
+      {
+        "id": "d24-w021",
+        "word": "cheveu",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "cheveu.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "che",
+          "veu"
+        ],
+        "syllableDistractors": [
+          "she",
+          "veux",
+          "vou",
+          "ve"
+        ],
+        "guidedChoices": [
+          "cheveu",
+          "cheveux",
+          "chevu"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque cheveu est sculpté avec finesse."
+      },
+      {
+        "id": "d24-w022",
+        "word": "amour",
+        "displayPrefix": "l'",
+        "category": "nom",
+        "audioFile": "amour.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "a",
+          "mour"
+        ],
+        "syllableDistractors": [
+          "am",
+          "moure",
+          "mor",
+          "mours"
+        ],
+        "guidedChoices": [
+          "amour",
+          "amoure",
+          "amours"
+        ],
+        "answerIndex": 0,
+        "example": "Vénus est la déesse de l'amour."
+      },
+      {
+        "id": "d24-w023",
+        "word": "chignon",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "chignon.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "chi",
+          "gnon"
+        ],
+        "syllableDistractors": [
+          "shi",
+          "nion",
+          "gnion",
+          "gnons"
+        ],
+        "guidedChoices": [
+          "chignon",
+          "chinion",
+          "chignons"
+        ],
+        "answerIndex": 0,
+        "example": "La déesse porte un chignon élégant."
+      },
+      {
+        "id": "d24-w024",
+        "word": "trou",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "trou.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "t",
+          "r",
+          "o",
+          "u"
+        ],
+        "syllableDistractors": [
+          "d",
+          "e",
+          "s"
+        ],
+        "guidedChoices": [
+          "trou",
+          "troux",
+          "trout"
+        ],
+        "answerIndex": 0,
+        "example": "Un trou montre où se fixait le bracelet."
+      },
+      {
+        "id": "d24-w025",
+        "word": "bijou",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "bijou.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "bi",
+          "jou"
+        ],
+        "syllableDistractors": [
+          "bij",
+          "joux",
+          "jout",
+          "byjou"
+        ],
+        "guidedChoices": [
+          "bijou",
+          "bijoux",
+          "bijout"
+        ],
+        "answerIndex": 0,
+        "example": "Un bijou ornait sans doute son cou."
+      },
+      {
+        "id": "d24-w026",
+        "word": "bracelet",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "bracelet.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "bra",
+          "ce",
+          "let"
+        ],
+        "syllableDistractors": [
+          "bras",
+          "se",
+          "lay",
+          "letts"
+        ],
+        "guidedChoices": [
+          "bracelet",
+          "braselet",
+          "bracelay"
+        ],
+        "answerIndex": 0,
+        "example": "Le bracelet a disparu il y a longtemps."
+      },
+      {
+        "id": "d24-w027",
+        "word": "boucle",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "boucle.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "bou",
+          "cle"
+        ],
+        "syllableDistractors": [
+          "bouc",
+          "kle",
+          "clé",
+          "que"
+        ],
+        "guidedChoices": [
+          "boucle",
+          "boucles",
+          "bouqle"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque boucle de cheveux est sculptée."
+      },
+      {
+        "id": "d24-w028",
+        "word": "oreille",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "oreille.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "o",
+          "rei",
+          "lle"
+        ],
+        "syllableDistractors": [
+          "au",
+          "rey",
+          "yl",
+          "lles"
+        ],
+        "guidedChoices": [
+          "oreille",
+          "oreil",
+          "oreilles"
+        ],
+        "answerIndex": 0,
+        "example": "Une oreille a été cassée puis recollée."
+      },
+      {
+        "id": "d24-w029",
+        "word": "penser",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "penser.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "pen",
+          "ser"
+        ],
+        "syllableDistractors": [
+          "pan",
+          "sé",
+          "sée",
+          "sez"
+        ],
+        "guidedChoices": [
+          "penser",
+          "panser",
+          "pensser"
+        ],
+        "answerIndex": 0,
+        "example": "On peut penser qu'elle tenait une pomme."
+      },
+      {
+        "id": "d24-w030",
+        "word": "signaler",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "signaler.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "si",
+          "gna",
+          "ler"
+        ],
+        "syllableDistractors": [
+          "sy",
+          "nia",
+          "lée",
+          "lez"
+        ],
+        "guidedChoices": [
+          "signaler",
+          "sinaler",
+          "sinyaler"
+        ],
+        "answerIndex": 0,
+        "example": "Les trous peuvent signaler des bijoux disparus."
+      },
+      {
+        "$ref": "shared:long"
+      },
+      {
+        "id": "d24-w032",
+        "word": "rassemblé",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "rassemble.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ras",
+          "sem",
+          "blé"
+        ],
+        "syllableDistractors": [
+          "ra",
+          "sen",
+          "ble",
+          "blez"
+        ],
+        "guidedChoices": [
+          "rassemblé",
+          "rasemblé",
+          "rassemblait"
+        ],
+        "answerIndex": 0,
+        "example": "Les morceaux ont été rassemblé avec soin."
+      },
+      {
+        "id": "d24-w033",
+        "word": "auparavant",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "auparavant.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "au",
+          "pa",
+          "ra",
+          "vant"
+        ],
+        "syllableDistractors": [
+          "o",
+          "pou",
+          "vent",
+          "vente"
+        ],
+        "guidedChoices": [
+          "auparavant",
+          "auparavent",
+          "auparravant"
+        ],
+        "answerIndex": 0,
+        "example": "Auparavant, la statue était colorée."
+      }
+    ],
+    "level3": [
+      {
+        "id": "d24-w034",
+        "word": "visage",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "visage.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "vi",
+          "sa",
+          "ge"
+        ],
+        "syllableDistractors": [
+          "vy",
+          "za",
+          "je",
+          "ages"
+        ],
+        "guidedChoices": [
+          "visage",
+          "vissage",
+          "visaje"
+        ],
+        "answerIndex": 0,
+        "example": "Le visage de la déesse paraît serein."
+      },
+      {
+        "id": "d24-w035",
+        "word": "regard",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "regard.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "re",
+          "gard"
+        ],
+        "syllableDistractors": [
+          "ré",
+          "gar",
+          "garde",
+          "guard"
+        ],
+        "guidedChoices": [
+          "regard",
+          "régard",
+          "regart"
+        ],
+        "answerIndex": 0,
+        "example": "Son regard semble fixer l'horizon."
+      },
+      {
+        "id": "d24-w036",
+        "word": "Antiquité",
+        "displayPrefix": "l'",
+        "category": "nom",
+        "audioFile": "antiquite.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "An",
+          "ti",
+          "qui",
+          "té"
+        ],
+        "syllableDistractors": [
+          "en",
+          "ty",
+          "ki",
+          "tay"
+        ],
+        "guidedChoices": [
+          "Antiquité",
+          "Antiquitée",
+          "Antikité"
+        ],
+        "answerIndex": 0,
+        "example": "L'Antiquité grecque a produit de magnifiques sculptures."
+      },
+      {
+        "id": "d24-w037",
+        "word": "modèle",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "modele.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "mo",
+          "dè",
+          "le"
+        ],
+        "syllableDistractors": [
+          "mau",
+          "dé",
+          "lle",
+          "delles"
+        ],
+        "guidedChoices": [
+          "modèle",
+          "modéle",
+          "modele"
+        ],
+        "answerIndex": 0,
+        "example": "Une jeune femme servait de modèle au sculpteur."
+      },
+      {
+        "id": "d24-w038",
+        "word": "sculpture",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "sculpture.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "sculp",
+          "tu",
+          "re"
+        ],
+        "syllableDistractors": [
+          "scul",
+          "ture",
+          "tour",
+          "ré"
+        ],
+        "guidedChoices": [
+          "sculpture",
+          "sculture",
+          "skulpture"
+        ],
+        "answerIndex": 0,
+        "example": "Cette sculpture est mondialement célèbre."
+      },
+      {
+        "$ref": "shared:gens"
+      },
+      {
+        "id": "d24-w040",
+        "word": "devoir",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "devoir.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "de",
+          "voir"
+        ],
+        "syllableDistractors": [
+          "dé",
+          "voi",
+          "voire",
+          "voar"
+        ],
+        "guidedChoices": [
+          "devoir",
+          "dévoir",
+          "devoire"
+        ],
+        "answerIndex": 0,
+        "example": "On a dû devoir restaurer la statue."
+      },
+      {
+        "id": "d24-w041",
+        "word": "montrer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "montrer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "mon",
+          "trer"
+        ],
+        "syllableDistractors": [
+          "men",
+          "tré",
+          "trée",
+          "trez"
+        ],
+        "guidedChoices": [
+          "montrer",
+          "monntrer",
+          "montreir"
+        ],
+        "answerIndex": 0,
+        "example": "Le musée veut montrer la statue à tout le monde."
+      },
+      {
+        "id": "d24-w042",
+        "word": "flou",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "flou.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "f",
+          "l",
+          "o",
+          "u"
+        ],
+        "syllableDistractors": [
+          "k",
+          "ou",
+          "t"
+        ],
+        "guidedChoices": [
+          "flou",
+          "floux",
+          "flout"
+        ],
+        "answerIndex": 0,
+        "example": "Son sourire est doux et un peu flou."
+      },
+      {
+        "id": "d24-w043",
+        "word": "sérieux",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "serieux.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "sé",
+          "rieux"
+        ],
+        "syllableDistractors": [
+          "se",
+          "rieus",
+          "rieuse",
+          "rieu"
+        ],
+        "guidedChoices": [
+          "sérieux",
+          "serieux",
+          "sérieus"
+        ],
+        "answerIndex": 0,
+        "example": "Son visage paraît grave et sérieux."
+      },
+      {
+        "id": "d24-w044",
+        "word": "idéal",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "ideal.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "i",
+          "dé",
+          "al"
+        ],
+        "syllableDistractors": [
+          "y",
+          "de",
+          "ale",
+          "alle"
+        ],
+        "guidedChoices": [
+          "idéal",
+          "ideal",
+          "idéale"
+        ],
+        "answerIndex": 0,
+        "example": "Les Grecs cherchaient le corps idéal."
+      },
+      {
+        "id": "d24-w045",
+        "word": "beau",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "beau.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "b",
+          "e",
+          "a",
+          "u"
+        ],
+        "syllableDistractors": [
+          "o",
+          "x",
+          "t"
+        ],
+        "guidedChoices": [
+          "beau",
+          "beaux",
+          "bo"
+        ],
+        "answerIndex": 0,
+        "example": "Son visage est très beau."
+      },
+      {
+        "id": "d24-w046",
+        "word": "courageux",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "courageux.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "cou",
+          "ra",
+          "geux"
+        ],
+        "syllableDistractors": [
+          "cu",
+          "rah",
+          "jeu",
+          "geu"
+        ],
+        "guidedChoices": [
+          "courageux",
+          "couragueux",
+          "courajeux"
+        ],
+        "answerIndex": 0,
+        "example": "Le héros doit être courageux face au danger."
+      },
+      {
+        "id": "d24-w047",
+        "word": "sage",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "sage.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "s",
+          "a",
+          "g",
+          "e"
+        ],
+        "syllableDistractors": [
+          "j",
+          "z",
+          "es"
+        ],
+        "guidedChoices": [
+          "sage",
+          "saje",
+          "saage"
+        ],
+        "answerIndex": 0,
+        "example": "Le philosophe paraît sage et calme."
+      },
+      {
+        "id": "d24-w048",
+        "word": "normal",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "normal.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "nor",
+          "mal"
+        ],
+        "syllableDistractors": [
+          "nau",
+          "male",
+          "malle",
+          "mald"
+        ],
+        "guidedChoices": [
+          "normal",
+          "normale",
+          "normmal"
+        ],
+        "answerIndex": 0,
+        "example": "Une statue normale mesure environ deux mètres."
+      },
+      {
+        "id": "d24-w049",
+        "word": "mais",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "mais.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "m",
+          "a",
+          "i",
+          "s"
+        ],
+        "syllableDistractors": [
+          "é",
+          "y",
+          "x"
+        ],
+        "guidedChoices": [
+          "mais",
+          "mai",
+          "mé"
+        ],
+        "answerIndex": 0,
+        "example": "La statue est belle, mais incomplète."
+      }
+    ]
+  }
+}

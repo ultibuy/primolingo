@@ -1,0 +1,1210 @@
+{
+  "id": "dictee-17",
+  "number": 17,
+  "title": "La peinture aborigène",
+  "themeImage": null,
+  "words": {
+    "level1": [
+      {
+        "id": "d17-w001",
+        "word": "Australie",
+        "displayPrefix": "l'",
+        "category": "nom",
+        "audioFile": "australie.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "Aus",
+          "tra",
+          "lie"
+        ],
+        "syllableDistractors": [
+          "Os",
+          "trâ",
+          "ly",
+          "li"
+        ],
+        "guidedChoices": [
+          "Australie",
+          "Australy",
+          "Ostralie"
+        ],
+        "answerIndex": 0,
+        "example": "L'Australie est le pays des aborigènes."
+      },
+      {
+        "id": "d17-w002",
+        "word": "œuvre",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "oeuvre.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "œu",
+          "vre"
+        ],
+        "syllableDistractors": [
+          "eu",
+          "vrer",
+          "oeuf",
+          "vre"
+        ],
+        "guidedChoices": [
+          "œuvre",
+          "oeuvre",
+          "euvre"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque peinture aborigène est une œuvre unique."
+      },
+      {
+        "id": "d17-w003",
+        "word": "temps",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "temps.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "t",
+          "e",
+          "m",
+          "p",
+          "s"
+        ],
+        "syllableDistractors": [
+          "d",
+          "a",
+          "n",
+          "b"
+        ],
+        "guidedChoices": [
+          "temps",
+          "temp",
+          "tamps"
+        ],
+        "answerIndex": 0,
+        "example": "Le temps du rêve est au cœur de la culture aborigène."
+      },
+      {
+        "id": "d17-w004",
+        "word": "rêve",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "reve.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "r",
+          "ê",
+          "v",
+          "e"
+        ],
+        "syllableDistractors": [
+          "l",
+          "è",
+          "b",
+          "a"
+        ],
+        "guidedChoices": [
+          "rêve",
+          "rève",
+          "reve"
+        ],
+        "answerIndex": 0,
+        "example": "Le rêve raconte la création du monde."
+      },
+      {
+        "id": "d17-w005",
+        "word": "époque",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "epoque.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "é",
+          "po",
+          "que"
+        ],
+        "syllableDistractors": [
+          "e",
+          "pok",
+          "k",
+          "poc"
+        ],
+        "guidedChoices": [
+          "époque",
+          "epoque",
+          "époc"
+        ],
+        "answerIndex": 0,
+        "example": "Cette époque remonte à des milliers d'années."
+      },
+      {
+        "id": "d17-w006",
+        "word": "création",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "creation.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "cré",
+          "a",
+          "tion"
+        ],
+        "syllableDistractors": [
+          "cre",
+          "â",
+          "sion",
+          "cion"
+        ],
+        "guidedChoices": [
+          "création",
+          "creation",
+          "créassion"
+        ],
+        "answerIndex": 0,
+        "example": "Les peintures racontent la création du monde."
+      },
+      {
+        "id": "d17-w007",
+        "word": "ancêtre",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "ancetre.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "an",
+          "cê",
+          "tre"
+        ],
+        "syllableDistractors": [
+          "en",
+          "sè",
+          "trer",
+          "sêt"
+        ],
+        "guidedChoices": [
+          "ancêtre",
+          "ancètre",
+          "ansêtre"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque ancêtre a façonné une partie du monde."
+      },
+      {
+        "id": "d17-w008",
+        "word": "rivière",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "riviere.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ri",
+          "viè",
+          "re"
+        ],
+        "syllableDistractors": [
+          "ry",
+          "vié",
+          "rer",
+          "vière"
+        ],
+        "guidedChoices": [
+          "rivière",
+          "riviere",
+          "ryvière"
+        ],
+        "answerIndex": 0,
+        "example": "La rivière a été créée par le serpent arc-en-ciel."
+      },
+      {
+        "id": "d17-w009",
+        "word": "montagne",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "montagne.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "mon",
+          "ta",
+          "gne"
+        ],
+        "syllableDistractors": [
+          "mont",
+          "tâ",
+          "nye",
+          "nie"
+        ],
+        "guidedChoices": [
+          "montagne",
+          "montagnie",
+          "montaine"
+        ],
+        "answerIndex": 0,
+        "example": "Les ancêtres ont façonné chaque montagne."
+      },
+      {
+        "id": "d17-w010",
+        "word": "être",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "etre.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "ê",
+          "t",
+          "r",
+          "e"
+        ],
+        "syllableDistractors": [
+          "è",
+          "d",
+          "s",
+          "a"
+        ],
+        "guidedChoices": [
+          "être",
+          "ètre",
+          "ettre"
+        ],
+        "answerIndex": 0,
+        "example": "Un être spirituel a créé les premières rivières."
+      },
+      {
+        "id": "d17-w011",
+        "word": "appeler",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "appeler.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ap",
+          "pe",
+          "ler"
+        ],
+        "syllableDistractors": [
+          "a",
+          "pell",
+          "lée",
+          "lé"
+        ],
+        "guidedChoices": [
+          "appeler",
+          "apeler",
+          "appelé"
+        ],
+        "answerIndex": 0,
+        "example": "On peut appeler cette période le temps du rêve."
+      },
+      {
+        "id": "d17-w012",
+        "word": "raconter",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "raconter.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ra",
+          "con",
+          "ter"
+        ],
+        "syllableDistractors": [
+          "rac",
+          "conte",
+          "tée",
+          "tré"
+        ],
+        "guidedChoices": [
+          "raconter",
+          "rakonter",
+          "raconté"
+        ],
+        "answerIndex": 0,
+        "example": "Les peintures servent à raconter les légendes."
+      },
+      {
+        "id": "d17-w013",
+        "word": "façonner",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "faconner.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "fa",
+          "çon",
+          "ner"
+        ],
+        "syllableDistractors": [
+          "fas",
+          "son",
+          "née",
+          "nné"
+        ],
+        "guidedChoices": [
+          "façonner",
+          "fasonner",
+          "façoné"
+        ],
+        "answerIndex": 0,
+        "example": "Les ancêtres ont su façonner le paysage australien."
+      },
+      {
+        "id": "d17-w014",
+        "word": "vivant",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "vivant.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "vi",
+          "vant"
+        ],
+        "syllableDistractors": [
+          "vy",
+          "van",
+          "vent",
+          "vants"
+        ],
+        "guidedChoices": [
+          "vivant",
+          "vivants",
+          "vivent"
+        ],
+        "answerIndex": 0,
+        "example": "L'art aborigène est un art vivant."
+      },
+      {
+        "id": "d17-w015",
+        "word": "lors",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "lors.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "l",
+          "o",
+          "r",
+          "s"
+        ],
+        "syllableDistractors": [
+          "n",
+          "a",
+          "e",
+          "t"
+        ],
+        "guidedChoices": [
+          "lors",
+          "lor",
+          "lort"
+        ],
+        "answerIndex": 0,
+        "example": "Lors des cérémonies, les aborigènes peignent sur le sol."
+      },
+      {
+        "id": "d17-w016",
+        "word": "comment",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "comment.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "com",
+          "ment"
+        ],
+        "syllableDistractors": [
+          "kon",
+          "man",
+          "ment",
+          "mant"
+        ],
+        "guidedChoices": [
+          "comment",
+          "coment",
+          "commant"
+        ],
+        "answerIndex": 0,
+        "example": "Les peintures montrent comment le monde a été créé."
+      }
+    ],
+    "level2": [
+      {
+        "id": "d17-w017",
+        "word": "commencement",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "commencement.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "com",
+          "men",
+          "ce",
+          "ment"
+        ],
+        "syllableDistractors": [
+          "kon",
+          "man",
+          "se",
+          "mant"
+        ],
+        "guidedChoices": [
+          "commencement",
+          "comencement",
+          "commancement"
+        ],
+        "answerIndex": 0,
+        "example": "Le commencement du monde est raconté par les aborigènes."
+      },
+      {
+        "id": "d17-w018",
+        "word": "cérémonie",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "ceremonie.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "cé",
+          "ré",
+          "mo",
+          "nie"
+        ],
+        "syllableDistractors": [
+          "se",
+          "re",
+          "mau",
+          "ny"
+        ],
+        "guidedChoices": [
+          "cérémonie",
+          "ceremonie",
+          "cérémonnie"
+        ],
+        "answerIndex": 0,
+        "example": "Une cérémonie rituelle accompagne les peintures."
+      },
+      {
+        "id": "d17-w019",
+        "word": "sol",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "sol.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "s",
+          "o",
+          "l"
+        ],
+        "syllableDistractors": [
+          "c",
+          "a",
+          "n"
+        ],
+        "guidedChoices": [
+          "sol",
+          "sole",
+          "sols"
+        ],
+        "answerIndex": 0,
+        "example": "Les peintures sont tracées sur le sol."
+      },
+      {
+        "id": "d17-w020",
+        "word": "élément",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "element.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "é",
+          "lé",
+          "ment"
+        ],
+        "syllableDistractors": [
+          "e",
+          "le",
+          "mant",
+          "man"
+        ],
+        "guidedChoices": [
+          "élément",
+          "element",
+          "éléman"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque élément naturel a une signification sacrée."
+      },
+      {
+        "id": "d17-w021",
+        "word": "tracer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "tracer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "tra",
+          "cer"
+        ],
+        "syllableDistractors": [
+          "trac",
+          "sée",
+          "cé",
+          "sé"
+        ],
+        "guidedChoices": [
+          "tracer",
+          "trascer",
+          "tracé"
+        ],
+        "answerIndex": 0,
+        "example": "Les artistes aiment tracer des points sur la toile."
+      },
+      {
+        "id": "d17-w022",
+        "word": "s'effacer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "s-effacer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "s'ef",
+          "fa",
+          "cer"
+        ],
+        "syllableDistractors": [
+          "sef",
+          "fas",
+          "sée",
+          "cé"
+        ],
+        "guidedChoices": [
+          "s'effacer",
+          "s'éfacer",
+          "s'effacé"
+        ],
+        "answerIndex": 0,
+        "example": "Les dessins sur le sol vont s'effacer avec le temps."
+      },
+      {
+        "id": "d17-w023",
+        "word": "rituel",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "rituel.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ri",
+          "tu",
+          "el"
+        ],
+        "syllableDistractors": [
+          "ry",
+          "tou",
+          "elle",
+          "èl"
+        ],
+        "guidedChoices": [
+          "rituel",
+          "rituelle",
+          "rituèl"
+        ],
+        "answerIndex": 0,
+        "example": "Le dessin rituel est réalisé lors des cérémonies."
+      },
+      {
+        "id": "d17-w024",
+        "word": "rituelle",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "rituelle.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ri",
+          "tu",
+          "el",
+          "le"
+        ],
+        "syllableDistractors": [
+          "ry",
+          "tou",
+          "èl",
+          "ler"
+        ],
+        "guidedChoices": [
+          "rituelle",
+          "rituel",
+          "rituèle"
+        ],
+        "answerIndex": 0,
+        "example": "La danse rituelle accompagne la peinture."
+      },
+      {
+        "id": "d17-w025",
+        "word": "naturel",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "naturel.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "na",
+          "tu",
+          "rel"
+        ],
+        "syllableDistractors": [
+          "nat",
+          "tou",
+          "rèl",
+          "relle"
+        ],
+        "guidedChoices": [
+          "naturel",
+          "naturelle",
+          "naturèl"
+        ],
+        "answerIndex": 0,
+        "example": "Le pigment naturel vient de la terre rouge."
+      },
+      {
+        "id": "d17-w026",
+        "word": "naturelle",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "naturelle.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "na",
+          "tu",
+          "rel",
+          "le"
+        ],
+        "syllableDistractors": [
+          "nat",
+          "tou",
+          "rèl",
+          "ler"
+        ],
+        "guidedChoices": [
+          "naturelle",
+          "naturel",
+          "naturèle"
+        ],
+        "answerIndex": 0,
+        "example": "La couleur naturelle provient de la terre."
+      },
+      {
+        "id": "d17-w027",
+        "word": "même",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "meme.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "m",
+          "ê",
+          "m",
+          "e"
+        ],
+        "syllableDistractors": [
+          "n",
+          "è",
+          "l",
+          "a"
+        ],
+        "guidedChoices": [
+          "même",
+          "mème",
+          "meme"
+        ],
+        "answerIndex": 0,
+        "example": "Même aujourd'hui, les aborigènes peignent ainsi."
+      },
+      {
+        "id": "d17-w028",
+        "word": "avec",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "avec.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "a",
+          "v",
+          "e",
+          "c"
+        ],
+        "syllableDistractors": [
+          "o",
+          "b",
+          "i",
+          "k"
+        ],
+        "guidedChoices": [
+          "avec",
+          "avek",
+          "avèc"
+        ],
+        "answerIndex": 0,
+        "example": "Les artistes peignent avec des pigments naturels."
+      }
+    ],
+    "level3": [
+      {
+        "id": "d17-w029",
+        "word": "ligne",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "ligne.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "li",
+          "gne"
+        ],
+        "syllableDistractors": [
+          "ly",
+          "nie",
+          "gner",
+          "nye"
+        ],
+        "guidedChoices": [
+          "ligne",
+          "lygne",
+          "lignes"
+        ],
+        "answerIndex": 0,
+        "example": "La ligne représente le chemin d'un ancêtre."
+      },
+      {
+        "id": "d17-w030",
+        "word": "point",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "point.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "p",
+          "o",
+          "i",
+          "n",
+          "t"
+        ],
+        "syllableDistractors": [
+          "b",
+          "a",
+          "e",
+          "d"
+        ],
+        "guidedChoices": [
+          "point",
+          "poin",
+          "poins"
+        ],
+        "answerIndex": 0,
+        "example": "Le point est l'élément de base de la peinture aborigène."
+      },
+      {
+        "id": "d17-w031",
+        "word": "cercle",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "cercle.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "cer",
+          "cle"
+        ],
+        "syllableDistractors": [
+          "sèr",
+          "kle",
+          "cler",
+          "cel"
+        ],
+        "guidedChoices": [
+          "cercle",
+          "sercle",
+          "cerckle"
+        ],
+        "answerIndex": 0,
+        "example": "Le cercle représente un point d'eau sacré."
+      },
+      {
+        "id": "d17-w032",
+        "word": "hasard",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "hasard.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ha",
+          "sard"
+        ],
+        "syllableDistractors": [
+          "a",
+          "zard",
+          "sar",
+          "sart"
+        ],
+        "guidedChoices": [
+          "hasard",
+          "hazard",
+          "hasart"
+        ],
+        "answerIndex": 0,
+        "example": "Rien n'est laissé au hasard dans ces peintures."
+      },
+      {
+        "id": "d17-w033",
+        "word": "vue",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "vue.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "v",
+          "u",
+          "e"
+        ],
+        "syllableDistractors": [
+          "b",
+          "o",
+          "a"
+        ],
+        "guidedChoices": [
+          "vue",
+          "vu",
+          "vut"
+        ],
+        "answerIndex": 0,
+        "example": "Les peintures offrent une vue aérienne du paysage."
+      },
+      {
+        "id": "d17-w034",
+        "word": "région",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "region.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ré",
+          "gion"
+        ],
+        "syllableDistractors": [
+          "re",
+          "jion",
+          "gions",
+          "giont"
+        ],
+        "guidedChoices": [
+          "région",
+          "region",
+          "régions"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque région d'Australie a son propre style."
+      },
+      {
+        "id": "d17-w035",
+        "word": "récit",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "recit.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ré",
+          "cit"
+        ],
+        "syllableDistractors": [
+          "re",
+          "si",
+          "sit",
+          "cy"
+        ],
+        "guidedChoices": [
+          "récit",
+          "recit",
+          "récis"
+        ],
+        "answerIndex": 0,
+        "example": "Le récit du temps du rêve est sacré."
+      },
+      {
+        "id": "d17-w036",
+        "word": "légende",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "legende.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "lé",
+          "gen",
+          "de"
+        ],
+        "syllableDistractors": [
+          "le",
+          "jan",
+          "der",
+          "gend"
+        ],
+        "guidedChoices": [
+          "légende",
+          "legende",
+          "légande"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque peinture raconte une légende ancienne."
+      },
+      {
+        "id": "d17-w037",
+        "word": "aperçu",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "apercu.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "a",
+          "per",
+          "çu"
+        ],
+        "syllableDistractors": [
+          "ap",
+          "pèr",
+          "su",
+          "cu"
+        ],
+        "guidedChoices": [
+          "aperçu",
+          "apersu",
+          "apperçu"
+        ],
+        "answerIndex": 0,
+        "example": "Ces peintures donnent un aperçu de la culture aborigène."
+      },
+      {
+        "id": "d17-w038",
+        "word": "donner",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "donner.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "don",
+          "ner"
+        ],
+        "syllableDistractors": [
+          "donn",
+          "née",
+          "nné",
+          "nèr"
+        ],
+        "guidedChoices": [
+          "donner",
+          "doner",
+          "donné"
+        ],
+        "answerIndex": 0,
+        "example": "Ces œuvres peuvent donner un aperçu du passé."
+      },
+      {
+        "id": "d17-w039",
+        "word": "faire",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "faire.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "fai",
+          "re"
+        ],
+        "syllableDistractors": [
+          "fé",
+          "rer",
+          "fair",
+          "fe"
+        ],
+        "guidedChoices": [
+          "faire",
+          "fèr",
+          "fère"
+        ],
+        "answerIndex": 0,
+        "example": "Les artistes savent faire des peintures magnifiques."
+      },
+      {
+        "id": "d17-w040",
+        "word": "tracé",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "trace.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "tra",
+          "cé"
+        ],
+        "syllableDistractors": [
+          "trac",
+          "sé",
+          "cée",
+          "ce"
+        ],
+        "guidedChoices": [
+          "tracé",
+          "tracée",
+          "tracer"
+        ],
+        "answerIndex": 0,
+        "example": "Le dessin tracé sur le sol raconte une histoire."
+      },
+      {
+        "id": "d17-w041",
+        "word": "aérien",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "aerien.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "a",
+          "é",
+          "ri",
+          "en"
+        ],
+        "syllableDistractors": [
+          "â",
+          "e",
+          "ry",
+          "ien"
+        ],
+        "guidedChoices": [
+          "aérien",
+          "aerien",
+          "aérient"
+        ],
+        "answerIndex": 0,
+        "example": "Le point de vue aérien est typique de cet art."
+      },
+      {
+        "id": "d17-w042",
+        "word": "aérienne",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "aerienne.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "a",
+          "é",
+          "rien",
+          "ne"
+        ],
+        "syllableDistractors": [
+          "â",
+          "e",
+          "ryen",
+          "ner"
+        ],
+        "guidedChoices": [
+          "aérienne",
+          "aerienne",
+          "aériene"
+        ],
+        "answerIndex": 0,
+        "example": "La vue aérienne montre les chemins des ancêtres."
+      },
+      {
+        "id": "d17-w043",
+        "word": "ancien",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "ancien.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "an",
+          "ci",
+          "en"
+        ],
+        "syllableDistractors": [
+          "en",
+          "sy",
+          "ien",
+          "ain"
+        ],
+        "guidedChoices": [
+          "ancien",
+          "ansien",
+          "anciant"
+        ],
+        "answerIndex": 0,
+        "example": "Cet art ancien existe depuis des millénaires."
+      },
+      {
+        "id": "d17-w044",
+        "word": "ancienne",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "ancienne.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "an",
+          "ci",
+          "en",
+          "ne"
+        ],
+        "syllableDistractors": [
+          "en",
+          "sy",
+          "ien",
+          "ner"
+        ],
+        "guidedChoices": [
+          "ancienne",
+          "ansienne",
+          "anciene"
+        ],
+        "answerIndex": 0,
+        "example": "Cette technique ancienne est encore utilisée."
+      },
+      {
+        "id": "d17-w045",
+        "word": "parfois",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "parfois.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "par",
+          "fois"
+        ],
+        "syllableDistractors": [
+          "pare",
+          "foi",
+          "foit",
+          "foie"
+        ],
+        "guidedChoices": [
+          "parfois",
+          "parfoit",
+          "parfoie"
+        ],
+        "answerIndex": 0,
+        "example": "Parfois, les peintures représentent des animaux."
+      },
+      {
+        "id": "d17-w046",
+        "word": "voilà",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "voila.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "voi",
+          "là"
+        ],
+        "syllableDistractors": [
+          "voit",
+          "la",
+          "lâ",
+          "vois"
+        ],
+        "guidedChoices": [
+          "voilà",
+          "voila",
+          "voilât"
+        ],
+        "answerIndex": 0,
+        "example": "Voilà comment les aborigènes racontent leur histoire."
+      }
+    ]
+  }
+}

@@ -1,11 +1,12 @@
 export default function PopupCloseButton({
   onClick,
   ariaLabel = 'Fermer',
-  top = -12,
-  right = -12,
+  top,
+  right,
   size = 48,
   style,
 }) {
+  const cornerOffset = -Math.round(size / 2);
   return (
     <button
       type="button"
@@ -13,8 +14,8 @@ export default function PopupCloseButton({
       aria-label={ariaLabel}
       style={{
         ...baseStyle,
-        top,
-        right,
+        top: top ?? cornerOffset,
+        right: right ?? cornerOffset,
         width: size,
         height: size,
         ...style,

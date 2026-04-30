@@ -28,6 +28,24 @@ function shuffleArray(arr) {
 }
 
 /**
+ * Shuffle array ensuring no two consecutive items share the same key.
+ */
+function shuffleNoConsecutive(arr, keyFn) {
+  let a = shuffleArray(arr);
+  for (let i = 1; i < a.length; i++) {
+    if (keyFn(a[i]) === keyFn(a[i - 1])) {
+      for (let j = i + 1; j < a.length; j++) {
+        if (keyFn(a[j]) !== keyFn(a[i - 1])) {
+          [a[i], a[j]] = [a[j], a[i]];
+          break;
+        }
+      }
+    }
+  }
+  return a;
+}
+
+/**
  * Selects session questions from a rule's pool.
  *
  * Strategy:
@@ -57,23 +75,27 @@ export function selectSessionQuestions(rule, ruleProgress, maxQuestions = 20, mo
 
       let ordered;
       if (targetRound === 1) {
-        ordered = shuffleArray(roundPool);
+        // Random but never two consecutive same syllables
+        ordered = shuffleNoConsecutive(roundPool, q => q.syllable);
       } else {
         // Round 2: structured ordering
         // 1. Forced intro: exactly gue, geo, gui, gea in that order
         const INTRO_SYLLABLES = ['gue', 'geo', 'gui', 'gea'];
-        const COMPLEX_SYLLABLES = new Set(['gue', 'gui', 'geo', 'gea', 'gie']);
+        const COMPLEX_LAST = new Set(['gie']);
         const introQs = INTRO_SYLLABLES.map(syl => {
           const candidates = shuffleArray(roundPool.filter(q => q.syllable === syl));
           return candidates[0];
         }).filter(Boolean);
         const usedIds = new Set(introQs.map(q => q.id));
         const rest = roundPool.filter(q => !usedIds.has(q.id));
-        // 2. Middle: simple (2-letter) syllables only, shuffled
-        const simpleQs = shuffleArray(rest.filter(q => !COMPLEX_SYLLABLES.has(q.syllable)));
-        // 3. Last: complex syllables, shuffled
-        const complexQs = shuffleArray(rest.filter(q => COMPLEX_SYLLABLES.has(q.syllable)));
-        ordered = [...introQs, ...simpleQs, ...complexQs];
+        // 2. Middle: simples + combos mixed, no consecutive same syllable
+        const middleQs = shuffleNoConsecutive(
+          rest.filter(q => !COMPLEX_LAST.has(q.syllable)),
+          q => q.syllable
+        );
+        // 3. Last: complex syllables (gie etc.), shuffled
+        const endQs = shuffleArray(rest.filter(q => COMPLEX_LAST.has(q.syllable)));
+        ordered = [...introQs, ...middleQs, ...endQs];
       }
 
       return ordered.map(q => ({

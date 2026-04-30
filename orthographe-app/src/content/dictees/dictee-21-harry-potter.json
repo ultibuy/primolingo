@@ -1,0 +1,1179 @@
+{
+  "id": "dictee-21",
+  "number": 21,
+  "title": "Harry Potter",
+  "themeImage": null,
+  "words": {
+    "level1": [
+      {
+        "id": "d21-w001",
+        "word": "Angleterre",
+        "displayPrefix": "l'",
+        "category": "nom",
+        "audioFile": "angleterre.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "An",
+          "gle",
+          "ter",
+          "re"
+        ],
+        "syllableDistractors": [
+          "Ang",
+          "Engle",
+          "tère",
+          "erre"
+        ],
+        "guidedChoices": [
+          "Angleterre",
+          "Angletaire",
+          "Angletère"
+        ],
+        "answerIndex": 0,
+        "example": "Harry Potter habite en Angleterre."
+      },
+      {
+        "id": "d21-w002",
+        "word": "roman",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "roman.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ro",
+          "man"
+        ],
+        "syllableDistractors": [
+          "rom",
+          "men",
+          "mant",
+          "mane"
+        ],
+        "guidedChoices": [
+          "roman",
+          "romant",
+          "romand"
+        ],
+        "answerIndex": 0,
+        "example": "Harry Potter est un roman très célèbre."
+      },
+      {
+        "id": "d21-w003",
+        "word": "histoire",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "histoire.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "his",
+          "toi",
+          "re"
+        ],
+        "syllableDistractors": [
+          "is",
+          "toire",
+          "stor",
+          "toir"
+        ],
+        "guidedChoices": [
+          "histoire",
+          "histoires",
+          "histoyre"
+        ],
+        "answerIndex": 0,
+        "example": "C'est une histoire pleine de magie."
+      },
+      {
+        "id": "d21-w004",
+        "word": "orphelin",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "orphelin.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "or",
+          "phe",
+          "lin"
+        ],
+        "syllableDistractors": [
+          "or",
+          "fe",
+          "lain",
+          "ph"
+        ],
+        "guidedChoices": [
+          "orphelin",
+          "orfelin",
+          "orphelain"
+        ],
+        "answerIndex": 0,
+        "example": "Harry est un orphelin élevé par ses oncle et tante."
+      },
+      {
+        "id": "d21-w005",
+        "word": "oncle",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "oncle.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "on",
+          "cle"
+        ],
+        "syllableDistractors": [
+          "ont",
+          "kle",
+          "onc",
+          "cl"
+        ],
+        "guidedChoices": [
+          "oncle",
+          "onkle",
+          "onsle"
+        ],
+        "answerIndex": 0,
+        "example": "L'oncle Vernon est méchant avec Harry."
+      },
+      {
+        "id": "d21-w006",
+        "word": "tante",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "tante.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "tan",
+          "te"
+        ],
+        "syllableDistractors": [
+          "tant",
+          "ten",
+          "tente",
+          "der"
+        ],
+        "guidedChoices": [
+          "tante",
+          "tant",
+          "tente"
+        ],
+        "answerIndex": 0,
+        "example": "La tante Pétunia élève Harry sans amour."
+      },
+      {
+        "id": "d21-w007",
+        "word": "soir",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "soir.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "s",
+          "o",
+          "i",
+          "r"
+        ],
+        "syllableDistractors": [
+          "t",
+          "a",
+          "n",
+          "e"
+        ],
+        "guidedChoices": [
+          "soir",
+          "soird",
+          "swar"
+        ],
+        "answerIndex": 0,
+        "example": "Le soir, Harry lisait en cachette sous les draps."
+      },
+      {
+        "id": "d21-w008",
+        "word": "anniversaire",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "anniversaire.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "an",
+          "ni",
+          "ver",
+          "sai",
+          "re"
+        ],
+        "syllableDistractors": [
+          "ann",
+          "ny",
+          "vair",
+          "serre",
+          "rer"
+        ],
+        "guidedChoices": [
+          "anniversaire",
+          "aniversaire",
+          "anniverssaire"
+        ],
+        "answerIndex": 0,
+        "example": "Le jour de son anniversaire, Harry reçoit sa lettre."
+      },
+      {
+        "id": "d21-w009",
+        "word": "géant",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "geant.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "gé",
+          "ant"
+        ],
+        "syllableDistractors": [
+          "je",
+          "ent",
+          "gean",
+          "ante"
+        ],
+        "guidedChoices": [
+          "géant",
+          "jeant",
+          "géent"
+        ],
+        "answerIndex": 0,
+        "example": "Hagrid est un géant au grand cœur."
+      },
+      {
+        "id": "d21-w010",
+        "word": "sorcier",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "sorcier.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "sor",
+          "cier"
+        ],
+        "syllableDistractors": [
+          "sor",
+          "cié",
+          "sir",
+          "siér"
+        ],
+        "guidedChoices": [
+          "sorcier",
+          "sorcié",
+          "sorcie"
+        ],
+        "answerIndex": 0,
+        "example": "Harry découvre qu'il est un sorcier."
+      },
+      {
+        "id": "d21-w011",
+        "word": "raconter",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "raconter.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ra",
+          "con",
+          "ter"
+        ],
+        "syllableDistractors": [
+          "ra",
+          "conte",
+          "tée",
+          "tré"
+        ],
+        "guidedChoices": [
+          "raconter",
+          "rakonter",
+          "racconter"
+        ],
+        "answerIndex": 0,
+        "example": "Hagrid aime raconter l'histoire des parents de Harry."
+      },
+      {
+        "id": "d21-w012",
+        "word": "habiter",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "habiter.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ha",
+          "bi",
+          "ter"
+        ],
+        "syllableDistractors": [
+          "a",
+          "by",
+          "tée",
+          "biter"
+        ],
+        "guidedChoices": [
+          "habiter",
+          "abbiter",
+          "habitter"
+        ],
+        "answerIndex": 0,
+        "example": "Harry doit habiter dans un placard sous l'escalier."
+      },
+      {
+        "id": "d21-w013",
+        "word": "rencontrer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "rencontrer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ren",
+          "con",
+          "trer"
+        ],
+        "syllableDistractors": [
+          "ran",
+          "conte",
+          "trée",
+          "trés"
+        ],
+        "guidedChoices": [
+          "rencontrer",
+          "rancontrer",
+          "renkonter"
+        ],
+        "answerIndex": 0,
+        "example": "Harry va rencontrer ses amis à Poudlard."
+      },
+      {
+        "id": "d21-w014",
+        "word": "se rendre compte",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "rendre-compte.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "se",
+          "ren",
+          "dre",
+          "comp",
+          "te"
+        ],
+        "syllableDistractors": [
+          "ran",
+          "drer",
+          "kom",
+          "der"
+        ],
+        "guidedChoices": [
+          "se rendre compte",
+          "se randre compte",
+          "se rendre conpte"
+        ],
+        "answerIndex": 0,
+        "example": "Harry commence à se rendre compte qu'il est différent."
+      },
+      {
+        "id": "d21-w015",
+        "word": "gentil",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "gentil.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "gen",
+          "til"
+        ],
+        "syllableDistractors": [
+          "jen",
+          "tille",
+          "til",
+          "ti"
+        ],
+        "guidedChoices": [
+          "gentil",
+          "gentille",
+          "gentie"
+        ],
+        "answerIndex": 0,
+        "example": "Hagrid est très gentil avec Harry."
+      },
+      {
+        "id": "d21-w016",
+        "word": "gentille",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "gentille.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "gen",
+          "til",
+          "le"
+        ],
+        "syllableDistractors": [
+          "jen",
+          "tille",
+          "ll",
+          "tiel"
+        ],
+        "guidedChoices": [
+          "gentille",
+          "gentil",
+          "gentie"
+        ],
+        "answerIndex": 0,
+        "example": "Hermione est gentille mais un peu trop sérieuse."
+      },
+      {
+        "id": "d21-w017",
+        "word": "chez",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "chez.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "c",
+          "h",
+          "e",
+          "z"
+        ],
+        "syllableDistractors": [
+          "s",
+          "k",
+          "é",
+          "t"
+        ],
+        "guidedChoices": [
+          "chez",
+          "chait",
+          "ché"
+        ],
+        "answerIndex": 0,
+        "example": "Harry vit chez son oncle et sa tante."
+      },
+      {
+        "id": "d21-w018",
+        "word": "depuis",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "depuis.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "de",
+          "puis"
+        ],
+        "syllableDistractors": [
+          "du",
+          "pui",
+          "puit",
+          "puix"
+        ],
+        "guidedChoices": [
+          "depuis",
+          "depuit",
+          "depuix"
+        ],
+        "answerIndex": 0,
+        "example": "Harry vit chez les Dursley depuis sa naissance."
+      },
+      {
+        "id": "d21-w019",
+        "word": "toujours",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "toujours.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "tou",
+          "jours"
+        ],
+        "syllableDistractors": [
+          "tou",
+          "jou",
+          "jour",
+          "jourd"
+        ],
+        "guidedChoices": [
+          "toujours",
+          "toujour",
+          "tousjours"
+        ],
+        "answerIndex": 0,
+        "example": "Les Dursley sont toujours désagréables avec Harry."
+      },
+      {
+        "id": "d21-w020",
+        "word": "grâce à",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "grace-a.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "grâ",
+          "ce",
+          "à"
+        ],
+        "syllableDistractors": [
+          "gra",
+          "se",
+          "as",
+          "cé"
+        ],
+        "guidedChoices": [
+          "grâce à",
+          "grace à",
+          "grâse à"
+        ],
+        "answerIndex": 0,
+        "example": "Grâce à Hagrid, Harry apprend la vérité."
+      }
+    ],
+    "level2": [
+      {
+        "id": "d21-w021",
+        "word": "rentrée",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "rentree.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ren",
+          "trée"
+        ],
+        "syllableDistractors": [
+          "ran",
+          "tré",
+          "trée",
+          "trer"
+        ],
+        "guidedChoices": [
+          "rentrée",
+          "rentré",
+          "rantrée"
+        ],
+        "answerIndex": 0,
+        "example": "La rentrée à Poudlard est toujours magique."
+      },
+      {
+        "id": "d21-w022",
+        "word": "garçon",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "garcon.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "gar",
+          "çon"
+        ],
+        "syllableDistractors": [
+          "gar",
+          "son",
+          "cons",
+          "çont"
+        ],
+        "guidedChoices": [
+          "garçon",
+          "garson",
+          "garçons"
+        ],
+        "answerIndex": 0,
+        "example": "Harry est un garçon courageux."
+      },
+      {
+        "id": "d21-w023",
+        "word": "école",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "ecole.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "é",
+          "co",
+          "le"
+        ],
+        "syllableDistractors": [
+          "e",
+          "ko",
+          "ler",
+          "col"
+        ],
+        "guidedChoices": [
+          "école",
+          "ecole",
+          "écolle"
+        ],
+        "answerIndex": 0,
+        "example": "Poudlard est une école de sorcellerie."
+      },
+      {
+        "id": "d21-w024",
+        "word": "sorcellerie",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "sorcellerie.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "sor",
+          "cel",
+          "le",
+          "rie"
+        ],
+        "syllableDistractors": [
+          "sor",
+          "sel",
+          "lerie",
+          "rye"
+        ],
+        "guidedChoices": [
+          "sorcellerie",
+          "sorcélerie",
+          "sorcelerie"
+        ],
+        "answerIndex": 0,
+        "example": "Harry apprend la sorcellerie à Poudlard."
+      },
+      {
+        "id": "d21-w025",
+        "word": "professeur",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "professeur.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "pro",
+          "fes",
+          "seur"
+        ],
+        "syllableDistractors": [
+          "prot",
+          "fé",
+          "sseur",
+          "seur"
+        ],
+        "guidedChoices": [
+          "professeur",
+          "profeseur",
+          "proféseur"
+        ],
+        "answerIndex": 0,
+        "example": "Le professeur Dumbledore dirige l'école."
+      },
+      {
+        "id": "d21-w026",
+        "word": "train",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "train.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "t",
+          "r",
+          "a",
+          "i",
+          "n"
+        ],
+        "syllableDistractors": [
+          "k",
+          "o",
+          "e",
+          "s"
+        ],
+        "guidedChoices": [
+          "train",
+          "trin",
+          "traine"
+        ],
+        "answerIndex": 0,
+        "example": "Harry prend un train magique pour aller à Poudlard."
+      },
+      {
+        "id": "d21-w027",
+        "word": "ami",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "ami.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "a",
+          "mi"
+        ],
+        "syllableDistractors": [
+          "am",
+          "my",
+          "amie",
+          "amis"
+        ],
+        "guidedChoices": [
+          "ami",
+          "amie",
+          "amis"
+        ],
+        "answerIndex": 0,
+        "example": "Ron est le meilleur ami de Harry."
+      },
+      {
+        "id": "d21-w028",
+        "word": "connaissance",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "connaissance.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "con",
+          "nais",
+          "san",
+          "ce"
+        ],
+        "syllableDistractors": [
+          "kon",
+          "né",
+          "san",
+          "se"
+        ],
+        "guidedChoices": [
+          "connaissance",
+          "conaissence",
+          "conaissance"
+        ],
+        "answerIndex": 0,
+        "example": "Hermione a une grande connaissance de la magie."
+      },
+      {
+        "id": "d21-w029",
+        "word": "diriger",
+        "displayPrefix": "se ",
+        "category": "verbe",
+        "audioFile": "diriger.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "di",
+          "ri",
+          "ger"
+        ],
+        "syllableDistractors": [
+          "dy",
+          "ry",
+          "gé",
+          "gée"
+        ],
+        "guidedChoices": [
+          "diriger",
+          "dirijer",
+          "dirigher"
+        ],
+        "answerIndex": 0,
+        "example": "Harry se dirige vers le quai 9¾."
+      },
+      {
+        "id": "d21-w030",
+        "word": "faire",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "faire.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "fai",
+          "re"
+        ],
+        "syllableDistractors": [
+          "fé",
+          "rer",
+          "fair",
+          "fe"
+        ],
+        "guidedChoices": [
+          "faire",
+          "fèr",
+          "fèire"
+        ],
+        "answerIndex": 0,
+        "example": "Harry doit faire des sorts pour protéger ses amis."
+      },
+      {
+        "id": "d21-w031",
+        "word": "dirigé",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "dirige.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "di",
+          "ri",
+          "gé"
+        ],
+        "syllableDistractors": [
+          "dy",
+          "ry",
+          "gée",
+          "ger"
+        ],
+        "guidedChoices": [
+          "dirigé",
+          "dirigée",
+          "diriger"
+        ],
+        "answerIndex": 0,
+        "example": "Le sort mal dirigé peut être dangereux."
+      },
+      {
+        "id": "d21-w032",
+        "word": "futur",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "futur.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "fu",
+          "tur"
+        ],
+        "syllableDistractors": [
+          "fut",
+          "ture",
+          "thu",
+          "turd"
+        ],
+        "guidedChoices": [
+          "futur",
+          "futtur",
+          "future"
+        ],
+        "answerIndex": 0,
+        "example": "Harry est le futur sauveur du monde des sorciers."
+      },
+      {
+        "id": "d21-w033",
+        "word": "vers",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "vers.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "v",
+          "e",
+          "r",
+          "s"
+        ],
+        "syllableDistractors": [
+          "b",
+          "a",
+          "t",
+          "z"
+        ],
+        "guidedChoices": [
+          "vers",
+          "ver",
+          "verre"
+        ],
+        "answerIndex": 0,
+        "example": "Harry court vers le train en retard."
+      }
+    ],
+    "level3": [
+      {
+        "id": "d21-w034",
+        "word": "parent",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "parent.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "pa",
+          "rent"
+        ],
+        "syllableDistractors": [
+          "par",
+          "ran",
+          "rents",
+          "rant"
+        ],
+        "guidedChoices": [
+          "parent",
+          "parents",
+          "parant"
+        ],
+        "answerIndex": 0,
+        "example": "Le parent de Harry était un grand sorcier."
+      },
+      {
+        "id": "d21-w035",
+        "word": "pierre",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "pierre.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "pier",
+          "re"
+        ],
+        "syllableDistractors": [
+          "pié",
+          "rer",
+          "piè",
+          "erre"
+        ],
+        "guidedChoices": [
+          "pierre",
+          "pière",
+          "piérre"
+        ],
+        "answerIndex": 0,
+        "example": "La pierre philosophale peut rendre immortel."
+      },
+      {
+        "id": "d21-w036",
+        "word": "battre",
+        "displayPrefix": "se ",
+        "category": "verbe",
+        "audioFile": "battre.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "bat",
+          "tre"
+        ],
+        "syllableDistractors": [
+          "batt",
+          "trer",
+          "tra",
+          "trée"
+        ],
+        "guidedChoices": [
+          "battre",
+          "batre",
+          "batttre"
+        ],
+        "answerIndex": 0,
+        "example": "Harry doit se battre contre Voldemort."
+      },
+      {
+        "id": "d21-w037",
+        "word": "emparer",
+        "displayPrefix": "s'",
+        "category": "verbe",
+        "audioFile": "emparer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "em",
+          "pa",
+          "rer"
+        ],
+        "syllableDistractors": [
+          "am",
+          "par",
+          "rée",
+          "parer"
+        ],
+        "guidedChoices": [
+          "emparer",
+          "emparrer",
+          "anparer"
+        ],
+        "answerIndex": 0,
+        "example": "Voldemort veut s'emparer de la pierre philosophale."
+      },
+      {
+        "id": "d21-w038",
+        "word": "devenir",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "devenir.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "de",
+          "ve",
+          "nir"
+        ],
+        "syllableDistractors": [
+          "du",
+          "vi",
+          "ni",
+          "nire"
+        ],
+        "guidedChoices": [
+          "devenir",
+          "devanir",
+          "devnir"
+        ],
+        "answerIndex": 0,
+        "example": "Voldemort veut devenir le sorcier le plus puissant."
+      },
+      {
+        "id": "d21-w039",
+        "word": "puissant",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "puissant.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "puis",
+          "sant"
+        ],
+        "syllableDistractors": [
+          "pui",
+          "san",
+          "sant",
+          "ssent"
+        ],
+        "guidedChoices": [
+          "puissant",
+          "puisant",
+          "puissent"
+        ],
+        "answerIndex": 0,
+        "example": "Dumbledore est le sorcier le plus puissant du monde."
+      },
+      {
+        "id": "d21-w040",
+        "word": "maléfique",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "malefique.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ma",
+          "lé",
+          "fi",
+          "que"
+        ],
+        "syllableDistractors": [
+          "mal",
+          "le",
+          "fy",
+          "k"
+        ],
+        "guidedChoices": [
+          "maléfique",
+          "malefique",
+          "maléfic"
+        ],
+        "answerIndex": 0,
+        "example": "Voldemort est un sorcier maléfique."
+      },
+      {
+        "id": "d21-w041",
+        "word": "magique",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "magique.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ma",
+          "gi",
+          "que"
+        ],
+        "syllableDistractors": [
+          "ma",
+          "ji",
+          "k",
+          "gique"
+        ],
+        "guidedChoices": [
+          "magique",
+          "magic",
+          "majique"
+        ],
+        "answerIndex": 0,
+        "example": "La baguette magique est l'outil du sorcier."
+      },
+      {
+        "id": "d21-w042",
+        "word": "immortel",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "immortel.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "im",
+          "mor",
+          "tel"
+        ],
+        "syllableDistractors": [
+          "in",
+          "mor",
+          "telle",
+          "mortel"
+        ],
+        "guidedChoices": [
+          "immortel",
+          "imortel",
+          "immortelle"
+        ],
+        "answerIndex": 0,
+        "example": "Voldemort rêve de devenir immortel."
+      },
+      {
+        "id": "d21-w043",
+        "word": "contre",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "contre.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "con",
+          "tre"
+        ],
+        "syllableDistractors": [
+          "kon",
+          "trer",
+          "trée",
+          "nt"
+        ],
+        "guidedChoices": [
+          "contre",
+          "kontre",
+          "contres"
+        ],
+        "answerIndex": 0,
+        "example": "Harry se bat contre les forces du mal."
+      },
+      {
+        "id": "d21-w044",
+        "word": "désormais",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "desormais.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "dé",
+          "sor",
+          "mais"
+        ],
+        "syllableDistractors": [
+          "de",
+          "sor",
+          "mait",
+          "maix"
+        ],
+        "guidedChoices": [
+          "désormais",
+          "desormais",
+          "désormait"
+        ],
+        "answerIndex": 0,
+        "example": "Désormais, Harry sait qu'il est un sorcier."
+      },
+      {
+        "id": "d21-w045",
+        "word": "afin",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "afin.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "a",
+          "fin"
+        ],
+        "syllableDistractors": [
+          "à",
+          "vin",
+          "fain",
+          "fint"
+        ],
+        "guidedChoices": [
+          "afin",
+          "affin",
+          "à fin"
+        ],
+        "answerIndex": 0,
+        "example": "Harry s'entraîne afin de vaincre Voldemort."
+      }
+    ]
+  }
+}

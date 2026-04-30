@@ -4,7 +4,6 @@
  * Pure JS module. No React imports. All arc logic lives here.
  */
 
-import { getToday } from './sm2.js';
 import { SHOP_EMOTIONS } from '../data/shopCharacters.js';
 
 // ---------------------------------------------------------------------------
@@ -77,13 +76,6 @@ export function findRule(rules, ruleProgress, predicate) {
   return null;
 }
 
-function daysBetween(dateStr1, dateStr2) {
-  if (!dateStr1 || !dateStr2) return null;
-  const d1 = new Date(dateStr1);
-  const d2 = new Date(dateStr2);
-  return Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
-}
-
 function getCharName(charId) {
   return CHAR_NAME_MAP[charId] || charId;
 }
@@ -119,9 +111,6 @@ export function pickCoachingMessage(ctx) {
   const lastShownTs = coaching.lastShownTimestamp || 0;
   if (Date.now() - lastShownTs < 3 * 60 * 1000) return null;
 
-  const shown = coaching.shown || {};
-  const lastShownByArc = coaching.lastShownByArc || {};
-
   const streak = progress.streak || {};
   const coins = progress.coins || 0;
   const shields = progress.shields || 0;
@@ -133,6 +122,10 @@ export function pickCoachingMessage(ctx) {
   const firstQuizDone = !!(progress.milestones?.firstSession || progress.firstQuizDone);
 
   const todayDone = streak.lastActiveDate === todayStr;
+  const daily = progress.dailyActivity || { date: null, count: 0, yesterdayCount: 0, bestDaily: 0 };
+  const sessionsToday = daily.date === todayStr ? daily.count : 0;
+  const yesterdaySessions = daily.yesterdayCount || 0;
+  const bestDaily = daily.bestDaily || 0;
 
   // SM2 reviews due today
   const revisionsDueToday = rules.some(rule => {
@@ -189,6 +182,65 @@ export function pickCoachingMessage(ctx) {
         null,
         null,
         { oneShot: true }
+      );
+    }
+  }
+
+  // --- arc14: daily engagement (recurring, dashboard only) ---
+  if (trigger === 'dashboard' && todayDone && sessionsToday > 0) {
+
+    // arc14.5: new daily record
+    if (allowed('arc14.5') && sessionsToday >= 4 && sessionsToday === bestDaily) {
+      return msg('arc14.5', 'flamme',
+        `${sessionsToday} quiz aujourd'hui — c'est ton record ! 🏆`,
+        'ton record',
+        '🏆',
+        null,
+        { oneShot: false, recurring: true }
+      );
+    }
+
+    // arc14.4: doing better than yesterday
+    if (allowed('arc14.4') && sessionsToday >= 3 && yesterdaySessions > 0 && sessionsToday > yesterdaySessions) {
+      return msg('arc14.4', 'flamme',
+        `${sessionsToday} quiz aujourd'hui, c'est plus qu'hier (${yesterdaySessions}). Belle progression !`,
+        `plus qu'hier`,
+        '📈',
+        null,
+        { oneShot: false, recurring: true }
+      );
+    }
+
+    // arc14.3: third session
+    if (allowed('arc14.3') && sessionsToday === 3) {
+      return msg('arc14.3', 'panda',
+        '3e quiz aujourd\'hui, tu es en feu ! 🔥 Continue comme ça.',
+        '3e quiz',
+        '🔥',
+        null,
+        { oneShot: false, recurring: true }
+      );
+    }
+
+    // arc14.2: second session
+    if (allowed('arc14.2') && sessionsToday === 2) {
+      return msg('arc14.2', 'panda',
+        'Bravo pour ce 2e quiz ! Chaque session renforce ta mémoire.',
+        '2e quiz',
+        '💪',
+        null,
+        { oneShot: false, recurring: true }
+      );
+    }
+
+    // arc14.1: first session of the day — flame grew
+    if (allowed('arc14.1') && sessionsToday === 1 && streak.current >= 2) {
+      return msg('arc14.1', 'flamme',
+        `+1 jour ! Ta flamme est à ${streak.current} jours 🔥. Bien joué !`,
+        `${streak.current} jours`,
+        '🔥',
+        null,
+        { oneShot: false, recurring: true }
       );
     }
   }

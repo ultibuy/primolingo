@@ -1,0 +1,1113 @@
+{
+  "id": "dictee-23",
+  "number": 23,
+  "title": "La casa Batlló",
+  "themeImage": null,
+  "words": {
+    "level1": [
+      {
+        "id": "d23-w001",
+        "word": "Espagne",
+        "displayPrefix": "l'",
+        "category": "nom",
+        "audioFile": "espagne.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "Es",
+          "pa",
+          "gne"
+        ],
+        "syllableDistractors": [
+          "Esp",
+          "pe",
+          "guer",
+          "agne"
+        ],
+        "guidedChoices": [
+          "Espagne",
+          "Espagn",
+          "Espaigne"
+        ],
+        "answerIndex": 0,
+        "example": "La casa Batlló se trouve en Espagne."
+      },
+      {
+        "id": "d23-w002",
+        "word": "avenue",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "avenue.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "a",
+          "ve",
+          "nue"
+        ],
+        "syllableDistractors": [
+          "av",
+          "veu",
+          "neu",
+          "nu"
+        ],
+        "guidedChoices": [
+          "avenue",
+          "avenu",
+          "avennue"
+        ],
+        "answerIndex": 0,
+        "example": "Gaudí a construit la maison sur une avenue de Barcelone."
+      },
+      {
+        "id": "d23-w003",
+        "word": "création",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "creation.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "cré",
+          "a",
+          "tion"
+        ],
+        "syllableDistractors": [
+          "cre",
+          "sion",
+          "tien",
+          "ation"
+        ],
+        "guidedChoices": [
+          "création",
+          "créasion",
+          "creation"
+        ],
+        "answerIndex": 0,
+        "example": "La création de la casa Batlló a duré plusieurs années."
+      },
+      {
+        "id": "d23-w004",
+        "word": "architecte",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "architecte.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ar",
+          "chi",
+          "tec",
+          "te"
+        ],
+        "syllableDistractors": [
+          "arc",
+          "ki",
+          "tek",
+          "que"
+        ],
+        "guidedChoices": [
+          "architecte",
+          "architect",
+          "arquitecte"
+        ],
+        "answerIndex": 0,
+        "example": "Gaudí était un architecte de génie."
+      },
+      {
+        "id": "d23-w005",
+        "word": "ligne",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "ligne.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "li",
+          "gne"
+        ],
+        "syllableDistractors": [
+          "lig",
+          "nie",
+          "gner",
+          "ny"
+        ],
+        "guidedChoices": [
+          "ligne",
+          "lingne",
+          "lygne"
+        ],
+        "answerIndex": 0,
+        "example": "Sur la façade, aucune ligne n'est droite."
+      },
+      {
+        "id": "d23-w006",
+        "word": "façade",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "facade.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "fa",
+          "ça",
+          "de"
+        ],
+        "syllableDistractors": [
+          "fac",
+          "ca",
+          "sa",
+          "der"
+        ],
+        "guidedChoices": [
+          "façade",
+          "facade",
+          "façadde"
+        ],
+        "answerIndex": 0,
+        "example": "La façade ondule comme une vague."
+      },
+      {
+        "id": "d23-w007",
+        "word": "imagination",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "imagination.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "i",
+          "ma",
+          "gi",
+          "na",
+          "tion"
+        ],
+        "syllableDistractors": [
+          "im",
+          "magi",
+          "tien",
+          "sion"
+        ],
+        "guidedChoices": [
+          "imagination",
+          "imaginasion",
+          "immagination"
+        ],
+        "answerIndex": 0,
+        "example": "Gaudí avait une imagination débordante."
+      },
+      {
+        "$ref": "shared:gens"
+      },
+      {
+        "id": "d23-w009",
+        "word": "admirer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "admirer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ad",
+          "mi",
+          "rer"
+        ],
+        "syllableDistractors": [
+          "at",
+          "my",
+          "ré",
+          "rée"
+        ],
+        "guidedChoices": [
+          "admirer",
+          "addmirer",
+          "admirrer"
+        ],
+        "answerIndex": 0,
+        "example": "On peut admirer la maison pendant des heures."
+      },
+      {
+        "id": "d23-w010",
+        "word": "dans",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "dans.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "d",
+          "a",
+          "n",
+          "s"
+        ],
+        "syllableDistractors": [
+          "t",
+          "e",
+          "x"
+        ],
+        "guidedChoices": [
+          "dans",
+          "dan",
+          "dent"
+        ],
+        "answerIndex": 0,
+        "example": "Il y a beaucoup de couleurs dans la façade."
+      },
+      {
+        "id": "d23-w011",
+        "word": "avec",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "avec.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "a",
+          "v",
+          "e",
+          "c"
+        ],
+        "syllableDistractors": [
+          "k",
+          "qu",
+          "é"
+        ],
+        "guidedChoices": [
+          "avec",
+          "avéc",
+          "aveq"
+        ],
+        "answerIndex": 0,
+        "example": "Gaudí travaillait avec passion."
+      },
+      {
+        "id": "d23-w012",
+        "word": "bourgeois",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "bourgeois.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "bour",
+          "geois"
+        ],
+        "syllableDistractors": [
+          "bou",
+          "geoix",
+          "joi",
+          "geoit"
+        ],
+        "guidedChoices": [
+          "bourgeois",
+          "bourgois",
+          "bourgeoit"
+        ],
+        "answerIndex": 0,
+        "example": "Le quartier bourgeois de Barcelone abrite la casa Batlló."
+      },
+      {
+        "id": "d23-w013",
+        "word": "bourgeoise",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "bourgeoise.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "bour",
+          "geoi",
+          "se"
+        ],
+        "syllableDistractors": [
+          "bou",
+          "geoix",
+          "ze",
+          "geoisse"
+        ],
+        "guidedChoices": [
+          "bourgeoise",
+          "bourgoise",
+          "bourgeoisse"
+        ],
+        "answerIndex": 0,
+        "example": "La famille bourgeoise vivait dans une grande maison."
+      },
+      {
+        "id": "d23-w014",
+        "word": "génial",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "genial.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "gé",
+          "nial"
+        ],
+        "syllableDistractors": [
+          "je",
+          "niale",
+          "gni",
+          "nyal"
+        ],
+        "guidedChoices": [
+          "génial",
+          "géniale",
+          "genial"
+        ],
+        "answerIndex": 0,
+        "example": "Cet architecte est vraiment génial."
+      },
+      {
+        "id": "d23-w015",
+        "word": "géniale",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "geniale.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "gé",
+          "nia",
+          "le"
+        ],
+        "syllableDistractors": [
+          "je",
+          "nyal",
+          "lle",
+          "niale"
+        ],
+        "guidedChoices": [
+          "géniale",
+          "génialle",
+          "geniale"
+        ],
+        "answerIndex": 0,
+        "example": "Cette idée est tout à fait géniale."
+      },
+      {
+        "id": "d23-w016",
+        "word": "original",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "original.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "o",
+          "ri",
+          "gi",
+          "nal"
+        ],
+        "syllableDistractors": [
+          "au",
+          "ry",
+          "ji",
+          "nale"
+        ],
+        "guidedChoices": [
+          "original",
+          "origineal",
+          "originale"
+        ],
+        "answerIndex": 0,
+        "example": "Le style de Gaudí est très original."
+      },
+      {
+        "$ref": "shared:long"
+      },
+      {
+        "id": "d23-w018",
+        "word": "longue",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "longue.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "lon",
+          "gue"
+        ],
+        "syllableDistractors": [
+          "long",
+          "ge",
+          "guée",
+          "gh"
+        ],
+        "guidedChoices": [
+          "longue",
+          "long",
+          "longe"
+        ],
+        "answerIndex": 0,
+        "example": "La file d'attente est longue devant la maison."
+      }
+    ],
+    "level2": [
+      {
+        "id": "d23-w019",
+        "word": "vague",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "vague.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "va",
+          "gue"
+        ],
+        "syllableDistractors": [
+          "va",
+          "ge",
+          "gh",
+          "geu"
+        ],
+        "guidedChoices": [
+          "vague",
+          "vaque",
+          "vagu"
+        ],
+        "answerIndex": 0,
+        "example": "La façade ressemble à la vague de la mer."
+      },
+      {
+        "$ref": "shared:morceau"
+      },
+      {
+        "id": "d23-w021",
+        "word": "reflet",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "reflet.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "re",
+          "flet"
+        ],
+        "syllableDistractors": [
+          "ré",
+          "flets",
+          "flait",
+          "fai"
+        ],
+        "guidedChoices": [
+          "reflet",
+          "reflêt",
+          "reflets"
+        ],
+        "answerIndex": 0,
+        "example": "Le soleil donne un reflet bleu à la façade."
+      },
+      {
+        "id": "d23-w022",
+        "word": "céramique",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "ceramique.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "cé",
+          "ra",
+          "mi",
+          "que"
+        ],
+        "syllableDistractors": [
+          "se",
+          "ramy",
+          "k",
+          "ic"
+        ],
+        "guidedChoices": [
+          "céramique",
+          "céramic",
+          "seramique"
+        ],
+        "answerIndex": 0,
+        "example": "La céramique colorée recouvre toute la façade."
+      },
+      {
+        "id": "d23-w023",
+        "word": "masque",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "masque.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "mas",
+          "que"
+        ],
+        "syllableDistractors": [
+          "max",
+          "ke",
+          "ssque",
+          "qu"
+        ],
+        "guidedChoices": [
+          "masque",
+          "masc",
+          "mask"
+        ],
+        "answerIndex": 0,
+        "example": "Les balcons ressemblent à des masques de carnaval."
+      },
+      {
+        "id": "d23-w024",
+        "word": "colonne",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "colonne.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "co",
+          "lon",
+          "ne"
+        ],
+        "syllableDistractors": [
+          "col",
+          "lone",
+          "ko",
+          "ner"
+        ],
+        "guidedChoices": [
+          "colonne",
+          "collone",
+          "colone"
+        ],
+        "answerIndex": 0,
+        "example": "Une colonne sculptée soutient le toit."
+      },
+      {
+        "id": "d23-w025",
+        "word": "balcon",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "balcon.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "bal",
+          "con"
+        ],
+        "syllableDistractors": [
+          "ball",
+          "kon",
+          "bale",
+          "cont"
+        ],
+        "guidedChoices": [
+          "balcon",
+          "balcons",
+          "balconne"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque balcon a une forme différente."
+      },
+      {
+        "id": "d23-w026",
+        "word": "os",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "os.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "o",
+          "s"
+        ],
+        "syllableDistractors": [
+          "t",
+          "ss",
+          "u"
+        ],
+        "guidedChoices": [
+          "os",
+          "oss",
+          "osse"
+        ],
+        "answerIndex": 0,
+        "example": "Les colonnes ressemblent à un os de dinosaure."
+      },
+      {
+        "id": "d23-w027",
+        "word": "onduler",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "onduler.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "on",
+          "du",
+          "ler"
+        ],
+        "syllableDistractors": [
+          "ond",
+          "dou",
+          "lé",
+          "lée"
+        ],
+        "guidedChoices": [
+          "onduler",
+          "ondouler",
+          "ondullair"
+        ],
+        "answerIndex": 0,
+        "example": "La façade semble onduler sous le vent."
+      },
+      {
+        "id": "d23-w028",
+        "word": "intriguer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "intriguer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "in",
+          "tri",
+          "guer"
+        ],
+        "syllableDistractors": [
+          "int",
+          "try",
+          "gé",
+          "guée"
+        ],
+        "guidedChoices": [
+          "intriguer",
+          "intriger",
+          "intriquer"
+        ],
+        "answerIndex": 0,
+        "example": "Cette maison ne cesse d'intriguer les passants."
+      },
+      {
+        "id": "d23-w029",
+        "word": "sembler",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "sembler.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "sem",
+          "bler"
+        ],
+        "syllableDistractors": [
+          "sen",
+          "blé",
+          "blée",
+          "blay"
+        ],
+        "guidedChoices": [
+          "sembler",
+          "sanbler",
+          "semblaire"
+        ],
+        "answerIndex": 0,
+        "example": "La façade peut sembler vivante."
+      },
+      {
+        "id": "d23-w030",
+        "word": "ressembler",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "ressembler.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "res",
+          "sem",
+          "bler"
+        ],
+        "syllableDistractors": [
+          "re",
+          "sen",
+          "blé",
+          "blée"
+        ],
+        "guidedChoices": [
+          "ressembler",
+          "resembler",
+          "ressemblaire"
+        ],
+        "answerIndex": 0,
+        "example": "Le toit peut ressembler au dos d'un dragon."
+      },
+      {
+        "id": "d23-w031",
+        "word": "changeant",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "changeant.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "chan",
+          "geant"
+        ],
+        "syllableDistractors": [
+          "chant",
+          "gant",
+          "jeant",
+          "geante"
+        ],
+        "guidedChoices": [
+          "changeant",
+          "chanjeant",
+          "changant"
+        ],
+        "answerIndex": 0,
+        "example": "La façade a un aspect changeant selon la lumière."
+      },
+      {
+        "$ref": "shared:comme"
+      },
+      {
+        "id": "d23-w033",
+        "word": "derrière",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "derriere.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "der",
+          "riè",
+          "re"
+        ],
+        "syllableDistractors": [
+          "dé",
+          "rié",
+          "rer",
+          "ère"
+        ],
+        "guidedChoices": [
+          "derrière",
+          "dérrière",
+          "derière"
+        ],
+        "answerIndex": 0,
+        "example": "Le jardin se cache derrière la maison."
+      }
+    ],
+    "level3": [
+      {
+        "id": "d23-w034",
+        "word": "toit",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "toit.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "t",
+          "o",
+          "i",
+          "t"
+        ],
+        "syllableDistractors": [
+          "d",
+          "a",
+          "s"
+        ],
+        "guidedChoices": [
+          "toit",
+          "toi",
+          "toits"
+        ],
+        "answerIndex": 0,
+        "example": "Le toit ondule comme le dos d'un dragon."
+      },
+      {
+        "id": "d23-w035",
+        "word": "guirlande",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "guirlande.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "guir",
+          "lan",
+          "de"
+        ],
+        "syllableDistractors": [
+          "gui",
+          "lance",
+          "der",
+          "rlan"
+        ],
+        "guidedChoices": [
+          "guirlande",
+          "guirelande",
+          "girlande"
+        ],
+        "answerIndex": 0,
+        "example": "Une guirlande de céramique décore le balcon."
+      },
+      {
+        "id": "d23-w036",
+        "word": "écaille",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "ecaille.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "é",
+          "cail",
+          "le"
+        ],
+        "syllableDistractors": [
+          "e",
+          "kai",
+          "lle",
+          "yl"
+        ],
+        "guidedChoices": [
+          "écaille",
+          "ecaille",
+          "écaye"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque écaille du toit a une couleur différente."
+      },
+      {
+        "id": "d23-w037",
+        "word": "dos",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "dos.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "d",
+          "o",
+          "s"
+        ],
+        "syllableDistractors": [
+          "t",
+          "z",
+          "x"
+        ],
+        "guidedChoices": [
+          "dos",
+          "do",
+          "dot"
+        ],
+        "answerIndex": 0,
+        "example": "Le toit ressemble au dos d'un animal."
+      },
+      {
+        "id": "d23-w038",
+        "word": "croix",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "croix.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "c",
+          "r",
+          "o",
+          "i",
+          "x"
+        ],
+        "syllableDistractors": [
+          "k",
+          "a",
+          "s"
+        ],
+        "guidedChoices": [
+          "croix",
+          "croit",
+          "croi"
+        ],
+        "answerIndex": 0,
+        "example": "Une croix décore le sommet du toit."
+      },
+      {
+        "id": "d23-w039",
+        "word": "branche",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "branche.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "bran",
+          "che"
+        ],
+        "syllableDistractors": [
+          "bren",
+          "que",
+          "ches",
+          "ge"
+        ],
+        "guidedChoices": [
+          "branche",
+          "branch",
+          "brenche"
+        ],
+        "answerIndex": 0,
+        "example": "Une branche fleurie pousse sur le balcon."
+      },
+      {
+        "id": "d23-w040",
+        "word": "bourgeon",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "bourgeon.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "bour",
+          "geon"
+        ],
+        "syllableDistractors": [
+          "bou",
+          "jon",
+          "geons",
+          "geont"
+        ],
+        "guidedChoices": [
+          "bourgeon",
+          "bourjon",
+          "bourgeons"
+        ],
+        "answerIndex": 0,
+        "example": "Le bourgeon va bientôt s'ouvrir au printemps."
+      },
+      {
+        "id": "d23-w041",
+        "word": "distinguer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "distinguer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "dis",
+          "tin",
+          "guer"
+        ],
+        "syllableDistractors": [
+          "dys",
+          "ten",
+          "gé",
+          "guée"
+        ],
+        "guidedChoices": [
+          "distinguer",
+          "distingier",
+          "distinguguer"
+        ],
+        "answerIndex": 0,
+        "example": "On peut distinguer les écailles du toit."
+      },
+      {
+        "id": "d23-w042",
+        "word": "terminer",
+        "displayPrefix": "se ",
+        "category": "verbe",
+        "audioFile": "terminer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ter",
+          "mi",
+          "ner"
+        ],
+        "syllableDistractors": [
+          "thé",
+          "my",
+          "né",
+          "née"
+        ],
+        "guidedChoices": [
+          "terminer",
+          "termyner",
+          "tharminer"
+        ],
+        "answerIndex": 0,
+        "example": "Le toit semble se terminer par une croix."
+      },
+      {
+        "id": "d23-w043",
+        "word": "géant",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "geant.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "gé",
+          "ant"
+        ],
+        "syllableDistractors": [
+          "je",
+          "ent",
+          "an",
+          "ante"
+        ],
+        "guidedChoices": [
+          "géant",
+          "géan",
+          "geant"
+        ],
+        "answerIndex": 0,
+        "example": "Le toit ressemble à un dragon géant."
+      },
+      {
+        "id": "d23-w044",
+        "word": "multicolore",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "multicolore.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "mul",
+          "ti",
+          "co",
+          "lo",
+          "re"
+        ],
+        "syllableDistractors": [
+          "mult",
+          "ty",
+          "ko",
+          "or"
+        ],
+        "guidedChoices": [
+          "multicolore",
+          "multicollore",
+          "multicolor"
+        ],
+        "answerIndex": 0,
+        "example": "La façade est entièrement multicolore."
+      },
+      {
+        "id": "d23-w045",
+        "word": "en haut",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "en-haut.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "e",
+          "n",
+          " ",
+          "h",
+          "a",
+          "u",
+          "t"
+        ],
+        "syllableDistractors": [
+          "o",
+          "x",
+          "z"
+        ],
+        "guidedChoices": [
+          "en haut",
+          "en hau",
+          "en ho"
+        ],
+        "answerIndex": 0,
+        "example": "La croix se trouve tout en haut du toit."
+      },
+      {
+        "id": "d23-w046",
+        "word": "dont",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "dont.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "d",
+          "o",
+          "n",
+          "t"
+        ],
+        "syllableDistractors": [
+          "s",
+          "e",
+          "p"
+        ],
+        "guidedChoices": [
+          "dont",
+          "don",
+          "dond"
+        ],
+        "answerIndex": 0,
+        "example": "Une maison dont la façade est célèbre."
+      }
+    ]
+  }
+}

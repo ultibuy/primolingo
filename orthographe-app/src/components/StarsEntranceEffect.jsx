@@ -4,7 +4,7 @@ function rand(a, b) { return a + Math.random() * (b - a); }
 function easeOut(t) { return 1 - Math.pow(1 - t, 2.5); }
 
 function generateStars(cx, cy, W, H, count = 350) {
-  return Array.from({ length: count }, (_, i) => {
+  return Array.from({ length: count }, (_, _i) => {
     const angle = rand(0, Math.PI * 2);
     const maxDist = Math.sqrt(W * W + H * H) * 0.6;
     return {
@@ -156,7 +156,7 @@ export default function StarsEntranceEffect({ onDone }) {
 
     raf = requestAnimationFrame(frame);
     return () => cancelAnimationFrame(raf);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div style={{ position: 'fixed', inset: 0, zIndex: 99998, pointerEvents: 'none' }}>

@@ -1,0 +1,1259 @@
+{
+  "id": "dictee-16",
+  "number": 16,
+  "title": "Lava",
+  "themeImage": null,
+  "words": {
+    "level1": [
+      {
+        "id": "d16-w001",
+        "word": "Hawaï",
+        "displayPrefix": "",
+        "category": "nom",
+        "audioFile": "hawai.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "Ha",
+          "waï"
+        ],
+        "syllableDistractors": [
+          "Haw",
+          "wai",
+          "aï",
+          "waie"
+        ],
+        "guidedChoices": [
+          "Hawaï",
+          "Hawai",
+          "Haouaï"
+        ],
+        "answerIndex": 0,
+        "example": "Hawaï est un archipel au milieu de l'océan Pacifique."
+      },
+      {
+        "id": "d16-w002",
+        "word": "film",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "film.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "f",
+          "i",
+          "l",
+          "m"
+        ],
+        "syllableDistractors": [
+          "p",
+          "e",
+          "n",
+          "s"
+        ],
+        "guidedChoices": [
+          "film",
+          "filme",
+          "filma"
+        ],
+        "answerIndex": 0,
+        "example": "Lava est un film d'animation produit par Pixar."
+      },
+      {
+        "id": "d16-w003",
+        "word": "volcan",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "volcan.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "vol",
+          "can"
+        ],
+        "syllableDistractors": [
+          "vole",
+          "kan",
+          "cant",
+          "quand"
+        ],
+        "guidedChoices": [
+          "volcan",
+          "volcant",
+          "volkan"
+        ],
+        "answerIndex": 0,
+        "example": "Un volcan se dresse au milieu de l'océan."
+      },
+      {
+        "id": "d16-w004",
+        "word": "terre",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "terre.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ter",
+          "re"
+        ],
+        "syllableDistractors": [
+          "tèr",
+          "rer",
+          "taire",
+          "rre"
+        ],
+        "guidedChoices": [
+          "terre",
+          "tère",
+          "taire"
+        ],
+        "answerIndex": 0,
+        "example": "La terre tremble quand le volcan entre en éruption."
+      },
+      {
+        "id": "d16-w005",
+        "word": "océan",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "ocean.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "o",
+          "cé",
+          "an"
+        ],
+        "syllableDistractors": [
+          "os",
+          "sé",
+          "ent",
+          "ant"
+        ],
+        "guidedChoices": [
+          "océan",
+          "osséan",
+          "océant"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan est entouré par l'océan."
+      },
+      {
+        "id": "d16-w006",
+        "word": "archipel",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "archipel.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ar",
+          "chi",
+          "pel"
+        ],
+        "syllableDistractors": [
+          "arch",
+          "ki",
+          "pelle",
+          "pèl"
+        ],
+        "guidedChoices": [
+          "archipel",
+          "archipèle",
+          "arkipel"
+        ],
+        "answerIndex": 0,
+        "example": "Hawaï est un archipel composé de plusieurs îles."
+      },
+      {
+        "id": "d16-w007",
+        "word": "île",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "ile.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "î",
+          "l",
+          "e"
+        ],
+        "syllableDistractors": [
+          "i",
+          "n",
+          "a"
+        ],
+        "guidedChoices": [
+          "île",
+          "ile",
+          "îlle"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan forme une île au milieu de l'océan."
+      },
+      {
+        "id": "d16-w008",
+        "word": "éruption",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "eruption.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "é",
+          "rup",
+          "tion"
+        ],
+        "syllableDistractors": [
+          "e",
+          "ru",
+          "sion",
+          "cion"
+        ],
+        "guidedChoices": [
+          "éruption",
+          "eruption",
+          "érupsion"
+        ],
+        "answerIndex": 0,
+        "example": "L'éruption du volcan illumine le ciel de la nuit."
+      },
+      {
+        "id": "d16-w009",
+        "word": "résultat",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "resultat.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ré",
+          "sul",
+          "tat"
+        ],
+        "syllableDistractors": [
+          "re",
+          "sul",
+          "ta",
+          "tât"
+        ],
+        "guidedChoices": [
+          "résultat",
+          "resultat",
+          "résultât"
+        ],
+        "answerIndex": 0,
+        "example": "L'île est le résultat de milliers d'années d'éruptions."
+      },
+      {
+        "id": "d16-w010",
+        "word": "se dérouler",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "se-derouler.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "se",
+          "dé",
+          "rou",
+          "ler"
+        ],
+        "syllableDistractors": [
+          "de",
+          "roux",
+          "lée",
+          "dée"
+        ],
+        "guidedChoices": [
+          "se dérouler",
+          "se derouler",
+          "se déroulé"
+        ],
+        "answerIndex": 0,
+        "example": "L'histoire va se dérouler sur des millions d'années."
+      },
+      {
+        "id": "d16-w011",
+        "word": "se dresser",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "se-dresser.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "se",
+          "dres",
+          "ser"
+        ],
+        "syllableDistractors": [
+          "drès",
+          "sée",
+          "cé",
+          "der"
+        ],
+        "guidedChoices": [
+          "se dresser",
+          "se drésser",
+          "se dressé"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan va se dresser au-dessus de l'océan."
+      },
+      {
+        "id": "d16-w012",
+        "word": "compter",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "compter.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "comp",
+          "ter"
+        ],
+        "syllableDistractors": [
+          "con",
+          "tée",
+          "tèr",
+          "kon"
+        ],
+        "guidedChoices": [
+          "compter",
+          "conter",
+          "compté"
+        ],
+        "answerIndex": 0,
+        "example": "L'archipel peut compter plusieurs îles volcaniques."
+      },
+      {
+        "id": "d16-w013",
+        "word": "volcanique",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "volcanique.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "vol",
+          "ca",
+          "ni",
+          "que"
+        ],
+        "syllableDistractors": [
+          "vole",
+          "ka",
+          "ny",
+          "k"
+        ],
+        "guidedChoices": [
+          "volcanique",
+          "volkanique",
+          "volcanic"
+        ],
+        "answerIndex": 0,
+        "example": "Hawaï est une île volcanique au milieu du Pacifique."
+      },
+      {
+        "id": "d16-w014",
+        "word": "plusieurs",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "plusieurs.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "plu",
+          "sieurs"
+        ],
+        "syllableDistractors": [
+          "plus",
+          "sieur",
+          "cieurs",
+          "zieurs"
+        ],
+        "guidedChoices": [
+          "plusieurs",
+          "plusieur",
+          "plusieures"
+        ],
+        "answerIndex": 0,
+        "example": "L'archipel est composé de plusieurs îles."
+      },
+      {
+        "id": "d16-w015",
+        "word": "sur",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "sur.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "s",
+          "u",
+          "r"
+        ],
+        "syllableDistractors": [
+          "c",
+          "o",
+          "e"
+        ],
+        "guidedChoices": [
+          "sur",
+          "sûr",
+          "sure"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan se dresse sur la terre."
+      },
+      {
+        "id": "d16-w016",
+        "word": "sous",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "sous.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "s",
+          "o",
+          "u",
+          "s"
+        ],
+        "syllableDistractors": [
+          "c",
+          "a",
+          "e",
+          "z"
+        ],
+        "guidedChoices": [
+          "sous",
+          "sou",
+          "soue"
+        ],
+        "answerIndex": 0,
+        "example": "La lave coule sous la surface de la terre."
+      }
+    ],
+    "level2": [
+      {
+        "id": "d16-w017",
+        "word": "envie",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "envie.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "en",
+          "vie"
+        ],
+        "syllableDistractors": [
+          "an",
+          "vy",
+          "vi",
+          "vit"
+        ],
+        "guidedChoices": [
+          "envie",
+          "anvie",
+          "envye"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan a envie de rencontrer quelqu'un."
+      },
+      {
+        "id": "d16-w018",
+        "word": "animal",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "animal.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "a",
+          "ni",
+          "mal"
+        ],
+        "syllableDistractors": [
+          "an",
+          "ny",
+          "malle",
+          "male"
+        ],
+        "guidedChoices": [
+          "animal",
+          "annimal",
+          "animale"
+        ],
+        "answerIndex": 0,
+        "example": "Chaque animal de l'océan écoute le chant du volcan."
+      },
+      {
+        "id": "d16-w019",
+        "word": "tortue",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "tortue.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "tor",
+          "tue"
+        ],
+        "syllableDistractors": [
+          "tore",
+          "tu",
+          "tût",
+          "tur"
+        ],
+        "guidedChoices": [
+          "tortue",
+          "tortut",
+          "tortu"
+        ],
+        "answerIndex": 0,
+        "example": "La tortue nage dans l'océan près du volcan."
+      },
+      {
+        "id": "d16-w020",
+        "word": "baleine",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "baleine.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ba",
+          "lei",
+          "ne"
+        ],
+        "syllableDistractors": [
+          "bal",
+          "lè",
+          "ner",
+          "nne"
+        ],
+        "guidedChoices": [
+          "baleine",
+          "balaine",
+          "balleine"
+        ],
+        "answerIndex": 0,
+        "example": "La baleine passe au large du volcan."
+      },
+      {
+        "id": "d16-w021",
+        "word": "amour",
+        "displayPrefix": "un ",
+        "category": "nom",
+        "audioFile": "amour.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "a",
+          "mour"
+        ],
+        "syllableDistractors": [
+          "am",
+          "mours",
+          "moure",
+          "mur"
+        ],
+        "guidedChoices": [
+          "amour",
+          "amours",
+          "amoure"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan chante un amour qu'il espère trouver un jour."
+      },
+      {
+        "id": "d16-w022",
+        "word": "eau",
+        "displayPrefix": "l'",
+        "category": "nom",
+        "audioFile": "eau.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "e",
+          "a",
+          "u"
+        ],
+        "syllableDistractors": [
+          "o",
+          "i",
+          "n"
+        ],
+        "guidedChoices": [
+          "eau",
+          "eaux",
+          "o"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan s'enfonce doucement sous l'eau."
+      },
+      {
+        "id": "d16-w023",
+        "word": "chant",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "chant.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "c",
+          "h",
+          "a",
+          "n",
+          "t"
+        ],
+        "syllableDistractors": [
+          "s",
+          "k",
+          "e",
+          "d"
+        ],
+        "guidedChoices": [
+          "chant",
+          "chants",
+          "chan"
+        ],
+        "answerIndex": 0,
+        "example": "Le chant du volcan résonne dans tout l'océan."
+      },
+      {
+        "id": "d16-w024",
+        "word": "se sentir",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "se-sentir.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "se",
+          "sen",
+          "tir"
+        ],
+        "syllableDistractors": [
+          "san",
+          "tire",
+          "tyr",
+          "cen"
+        ],
+        "guidedChoices": [
+          "se sentir",
+          "se santir",
+          "se centir"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan commence à se sentir seul."
+      },
+      {
+        "id": "d16-w025",
+        "word": "chanter",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "chanter.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "chan",
+          "ter"
+        ],
+        "syllableDistractors": [
+          "chen",
+          "tée",
+          "tèr",
+          "tair"
+        ],
+        "guidedChoices": [
+          "chanter",
+          "chanté",
+          "chenter"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan aime chanter pour trouver l'amour."
+      },
+      {
+        "id": "d16-w026",
+        "word": "résonner",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "resonner.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "ré",
+          "son",
+          "ner"
+        ],
+        "syllableDistractors": [
+          "re",
+          "zon",
+          "née",
+          "née"
+        ],
+        "guidedChoices": [
+          "résonner",
+          "résoner",
+          "raisonner"
+        ],
+        "answerIndex": 0,
+        "example": "Sa voix va résonner à travers l'océan."
+      },
+      {
+        "id": "d16-w027",
+        "word": "savoir",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "savoir.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "sa",
+          "voir"
+        ],
+        "syllableDistractors": [
+          "ça",
+          "voire",
+          "voirs",
+          "voirr"
+        ],
+        "guidedChoices": [
+          "savoir",
+          "çavoir",
+          "savoirr"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan veut savoir s'il trouvera l'amour."
+      },
+      {
+        "id": "d16-w028",
+        "word": "amoureux",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "amoureux.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "a",
+          "mou",
+          "reux"
+        ],
+        "syllableDistractors": [
+          "am",
+          "mu",
+          "reu",
+          "reuse"
+        ],
+        "guidedChoices": [
+          "amoureux",
+          "amoureu",
+          "amoureuse"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan est amoureux de la montagne sous-marine."
+      },
+      {
+        "id": "d16-w029",
+        "word": "seul",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "seul.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "s",
+          "e",
+          "u",
+          "l"
+        ],
+        "syllableDistractors": [
+          "c",
+          "a",
+          "o",
+          "n"
+        ],
+        "guidedChoices": [
+          "seul",
+          "seule",
+          "seuls"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan se sent seul au milieu de l'océan."
+      },
+      {
+        "id": "d16-w030",
+        "word": "autre",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "autre.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "au",
+          "tre"
+        ],
+        "syllableDistractors": [
+          "aut",
+          "trer",
+          "ôt",
+          "trée"
+        ],
+        "guidedChoices": [
+          "autre",
+          "otre",
+          "hautre"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan cherche un autre volcan à aimer."
+      },
+      {
+        "id": "d16-w031",
+        "word": "avec",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "avec.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "a",
+          "v",
+          "e",
+          "c"
+        ],
+        "syllableDistractors": [
+          "o",
+          "b",
+          "i",
+          "k"
+        ],
+        "guidedChoices": [
+          "avec",
+          "avek",
+          "avèc"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan rêve de vivre avec quelqu'un."
+      },
+      {
+        "id": "d16-w032",
+        "word": "sans",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "sans.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "s",
+          "a",
+          "n",
+          "s"
+        ],
+        "syllableDistractors": [
+          "c",
+          "e",
+          "m",
+          "t"
+        ],
+        "guidedChoices": [
+          "sans",
+          "san",
+          "sens"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan vit sans personne à ses côtés."
+      },
+      {
+        "id": "d16-w033",
+        "word": "là",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "la.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "l",
+          "à"
+        ],
+        "syllableDistractors": [
+          "n",
+          "a"
+        ],
+        "guidedChoices": [
+          "là",
+          "la",
+          "las"
+        ],
+        "answerIndex": 0,
+        "example": "Elle est là, juste sous la surface de l'eau."
+      },
+      {
+        "id": "d16-w034",
+        "word": "comme",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "comme.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "com",
+          "me"
+        ],
+        "syllableDistractors": [
+          "kon",
+          "meu",
+          "mer",
+          "kom"
+        ],
+        "guidedChoices": [
+          "comme",
+          "come",
+          "komme"
+        ],
+        "answerIndex": 0,
+        "example": "Elle chante comme lui, avec tout son cœur."
+      }
+    ],
+    "level3": [
+      {
+        "id": "d16-w035",
+        "word": "jour",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "jour.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "j",
+          "o",
+          "u",
+          "r"
+        ],
+        "syllableDistractors": [
+          "g",
+          "a",
+          "e",
+          "s"
+        ],
+        "guidedChoices": [
+          "jour",
+          "jours",
+          "joure"
+        ],
+        "answerIndex": 0,
+        "example": "Un jour, les deux volcans se rencontrent enfin."
+      },
+      {
+        "id": "d16-w036",
+        "word": "mer",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "mer.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "m",
+          "e",
+          "r"
+        ],
+        "syllableDistractors": [
+          "n",
+          "a",
+          "s"
+        ],
+        "guidedChoices": [
+          "mer",
+          "mère",
+          "mert"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan disparaît sous la mer."
+      },
+      {
+        "id": "d16-w037",
+        "word": "musique",
+        "displayPrefix": "la ",
+        "category": "nom",
+        "audioFile": "musique.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "mu",
+          "si",
+          "que"
+        ],
+        "syllableDistractors": [
+          "muz",
+          "sy",
+          "k",
+          "queu"
+        ],
+        "guidedChoices": [
+          "musique",
+          "muzique",
+          "musike"
+        ],
+        "answerIndex": 0,
+        "example": "La musique du ukulélé accompagne cette belle histoire."
+      },
+      {
+        "id": "d16-w038",
+        "word": "histoire",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "histoire.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "his",
+          "toi",
+          "re"
+        ],
+        "syllableDistractors": [
+          "is",
+          "toire",
+          "stor",
+          "toir"
+        ],
+        "guidedChoices": [
+          "histoire",
+          "histoyre",
+          "istoire"
+        ],
+        "answerIndex": 0,
+        "example": "Lava raconte une histoire d'amour entre deux volcans."
+      },
+      {
+        "id": "d16-w039",
+        "word": "origine",
+        "displayPrefix": "une ",
+        "category": "nom",
+        "audioFile": "origine.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "o",
+          "ri",
+          "gi",
+          "ne"
+        ],
+        "syllableDistractors": [
+          "or",
+          "ry",
+          "ji",
+          "ner"
+        ],
+        "guidedChoices": [
+          "origine",
+          "origyne",
+          "orrigine"
+        ],
+        "answerIndex": 0,
+        "example": "L'origine de cette île est volcanique."
+      },
+      {
+        "id": "d16-w040",
+        "word": "ukulélé",
+        "displayPrefix": "le ",
+        "category": "nom",
+        "audioFile": "ukulele.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "u",
+          "ku",
+          "lé",
+          "lé"
+        ],
+        "syllableDistractors": [
+          "ou",
+          "cou",
+          "le",
+          "lè"
+        ],
+        "guidedChoices": [
+          "ukulélé",
+          "ukulele",
+          "uculélé"
+        ],
+        "answerIndex": 0,
+        "example": "Le ukulélé est un instrument typique d'Hawaï."
+      },
+      {
+        "id": "d16-w041",
+        "word": "sortir",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "sortir.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "sor",
+          "tir"
+        ],
+        "syllableDistractors": [
+          "sore",
+          "tire",
+          "tyr",
+          "tirs"
+        ],
+        "guidedChoices": [
+          "sortir",
+          "sortire",
+          "sortirent"
+        ],
+        "answerIndex": 0,
+        "example": "La lave va sortir du cratère du volcan."
+      },
+      {
+        "id": "d16-w042",
+        "word": "s'enfoncer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "s-enfoncer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "s'en",
+          "fon",
+          "cer"
+        ],
+        "syllableDistractors": [
+          "san",
+          "font",
+          "sée",
+          "cé"
+        ],
+        "guidedChoices": [
+          "s'enfoncer",
+          "s'anfoncer",
+          "s'enfoncé"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan commence à s'enfoncer sous l'eau."
+      },
+      {
+        "id": "d16-w043",
+        "word": "se rencontrer",
+        "displayPrefix": "",
+        "category": "verbe",
+        "audioFile": "se-rencontrer.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "se",
+          "ren",
+          "con",
+          "trer"
+        ],
+        "syllableDistractors": [
+          "ran",
+          "conte",
+          "trée",
+          "kon"
+        ],
+        "guidedChoices": [
+          "se rencontrer",
+          "se rancontrer",
+          "se rencontré"
+        ],
+        "answerIndex": 0,
+        "example": "Les deux volcans vont enfin se rencontrer."
+      },
+      {
+        "id": "d16-w044",
+        "word": "désespéré",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "desespere.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "dé",
+          "ses",
+          "pé",
+          "ré"
+        ],
+        "syllableDistractors": [
+          "de",
+          "sès",
+          "pe",
+          "rée"
+        ],
+        "guidedChoices": [
+          "désespéré",
+          "desespéré",
+          "désèspéré"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan est désespéré de rester seul."
+      },
+      {
+        "id": "d16-w045",
+        "word": "imaginaire",
+        "displayPrefix": "",
+        "category": "adjectif",
+        "audioFile": "imaginaire.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "i",
+          "ma",
+          "gi",
+          "nai",
+          "re"
+        ],
+        "syllableDistractors": [
+          "im",
+          "maj",
+          "ji",
+          "nère",
+          "ner"
+        ],
+        "guidedChoices": [
+          "imaginaire",
+          "imaginère",
+          "imajinaire"
+        ],
+        "answerIndex": 0,
+        "example": "Cette histoire imaginaire est pleine de tendresse."
+      },
+      {
+        "id": "d16-w046",
+        "word": "mais",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "mais.mp3",
+        "decompositionMode": "letters",
+        "syllables": [
+          "m",
+          "a",
+          "i",
+          "s"
+        ],
+        "syllableDistractors": [
+          "n",
+          "e",
+          "o",
+          "t"
+        ],
+        "guidedChoices": [
+          "mais",
+          "mai",
+          "met"
+        ],
+        "answerIndex": 0,
+        "example": "Le volcan chante, mais personne ne répond."
+      },
+      {
+        "id": "d16-w047",
+        "word": "grâce à",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "grace-a.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "grâ",
+          "ce",
+          "à"
+        ],
+        "syllableDistractors": [
+          "gra",
+          "se",
+          "as",
+          "cé"
+        ],
+        "guidedChoices": [
+          "grâce à",
+          "grace à",
+          "grâse à"
+        ],
+        "answerIndex": 0,
+        "example": "Grâce à son chant, le volcan finit par trouver l'amour."
+      },
+      {
+        "id": "d16-w048",
+        "word": "enfin",
+        "displayPrefix": "",
+        "category": "invariable",
+        "audioFile": "enfin.mp3",
+        "decompositionMode": "syllables",
+        "syllables": [
+          "en",
+          "fin"
+        ],
+        "syllableDistractors": [
+          "an",
+          "fain",
+          "fint",
+          "vin"
+        ],
+        "guidedChoices": [
+          "enfin",
+          "anfin",
+          "enfain"
+        ],
+        "answerIndex": 0,
+        "example": "Les deux volcans se retrouvent enfin."
+      }
+    ]
+  }
+}

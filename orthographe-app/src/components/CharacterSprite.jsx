@@ -3,39 +3,35 @@
 
 function makeCss(id) {
   return `
-    @keyframes ${id}Bounce      { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-2.5px)} }
+    @keyframes ${id}Bounce      { 0%,100%{transform:translate(var(--walk-body-tx,0px), var(--walk-body-ty,0px)) rotate(var(--walk-body-tilt,0deg))}  50%{transform:translate(var(--walk-body-tx,0px), calc(var(--walk-body-ty,0px) - 2.5px)) rotate(var(--walk-body-tilt,0deg))} }
     @keyframes ${id}LegL        { 0%,100%{transform:rotate(-22deg)} 50%{transform:rotate(22deg)}  }
     @keyframes ${id}LegR        { 0%,100%{transform:rotate(22deg)}  50%{transform:rotate(-22deg)} }
-    @keyframes ${id}ArmLWalk    { 0%,100%{transform:rotate(-15deg)} 50%{transform:rotate(18deg)}  }
-    @keyframes ${id}ArmRWalk    { 0%,100%{transform:rotate(15deg)}  50%{transform:rotate(-18deg)} }
-    @keyframes ${id}IdleBounce  { 0%,100%{transform:translateY(0)}  50%{transform:translateY(-1px)} }
-    @keyframes ${id}Wave        { 0%,100%{transform:rotate(-110deg) translateY(-2px)} 50%{transform:rotate(-148deg) translateY(-2px)} }
-    @keyframes ${id}ClapBounce  { 0%,100%{transform:translateY(0)}  40%{transform:translateY(-2px)} }
-    @keyframes ${id}ClapL       { 0%,100%{transform:rotate(65deg)}  50%{transform:rotate(78deg)} }
-    @keyframes ${id}ClapR       { 0%,100%{transform:rotate(-65deg)} 50%{transform:rotate(-78deg)} }
-    @keyframes ${id}CheerBounce { 0%,100%{transform:translateY(0)}  45%{transform:translateY(-9px)} }
-    @keyframes ${id}CheerArmL   { 0%,100%{transform:rotate(-148deg)} 50%{transform:rotate(-125deg)} }
-    @keyframes ${id}CheerArmR   { 0%,100%{transform:rotate(148deg)}  50%{transform:rotate(125deg)} }
-    @keyframes ${id}CheerLegL   { 0%,100%{transform:rotate(-10deg)} 50%{transform:rotate(5deg)} }
-    @keyframes ${id}CheerLegR   { 0%,100%{transform:rotate(10deg)}  50%{transform:rotate(-5deg)} }
-    @keyframes ${id}KissSway    { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-1px) rotate(2deg)} }
-    @keyframes ${id}KissArmR    { 0%,100%{transform:rotate(-20deg)} 50%{transform:rotate(-12deg)} }
-    @keyframes ${id}SleepBreathe{ 0%,100%{transform:rotate(-8deg) translateY(0)} 50%{transform:rotate(-8deg) translateY(1.5px)} }
+    @keyframes ${id}ArmLWalk    { 0%,100%{transform:translate(var(--walk-armL-tx,0px), var(--walk-armL-ty,0px)) rotate(calc(var(--walk-armL-rot,0deg) - 15deg))} 50%{transform:translate(var(--walk-armL-tx,0px), var(--walk-armL-ty,0px)) rotate(calc(var(--walk-armL-rot,0deg) + 18deg))}  }
+    @keyframes ${id}ArmRWalk    { 0%,100%{transform:translate(var(--walk-armR-tx,0px), var(--walk-armR-ty,0px)) rotate(calc(var(--walk-armR-rot,0deg) + 15deg))}  50%{transform:translate(var(--walk-armR-tx,0px), var(--walk-armR-ty,0px)) rotate(calc(var(--walk-armR-rot,0deg) - 18deg))} }
+    @keyframes ${id}IdleBounce  { 0%,100%{transform:translate(var(--idle-body-tx,0px), var(--idle-body-ty,0px)) rotate(var(--idle-body-tilt,0deg))}  50%{transform:translate(var(--idle-body-tx,0px), calc(var(--idle-body-ty,0px) - 1px)) rotate(var(--idle-body-tilt,0deg))} }
+    @keyframes ${id}Wave        { 0%,100%{transform:translate(var(--wave-armR-tx,0px), calc(var(--wave-armR-ty,0px) - 2px)) rotate(calc(var(--wave-armR-rot,0deg) - 110deg))} 50%{transform:translate(var(--wave-armR-tx,0px), calc(var(--wave-armR-ty,0px) - 2px)) rotate(calc(var(--wave-armR-rot,0deg) - 148deg))} }
+    @keyframes ${id}ClapBounce  { 0%,100%{transform:translate(var(--clap-body-tx,0px), var(--clap-body-ty,0px)) rotate(var(--clap-body-tilt,0deg))}  50%{transform:translate(var(--clap-body-tx,0px), calc(var(--clap-body-ty,0px) - 1.5px)) rotate(var(--clap-body-tilt,0deg))} }
+    @keyframes ${id}ClapL       { 0%,100%{transform:translate(var(--clap-armL-tx,0px), var(--clap-armL-ty,0px)) rotate(calc(var(--clap-armL-rot,0deg) + 15deg))}  50%{transform:translate(var(--clap-armL-tx,0px), var(--clap-armL-ty,0px)) rotate(calc(var(--clap-armL-rot,0deg) - 78deg))} }
+    @keyframes ${id}ClapR       { 0%,100%{transform:translate(var(--clap-armR-tx,0px), var(--clap-armR-ty,0px)) rotate(calc(var(--clap-armR-rot,0deg) - 15deg))} 50%{transform:translate(var(--clap-armR-tx,0px), var(--clap-armR-ty,0px)) rotate(calc(var(--clap-armR-rot,0deg) + 78deg))}  }
+    @keyframes ${id}KissSway    { 0%,100%{transform:translate(var(--kiss-body-tx,0px), var(--kiss-body-ty,0px)) rotate(calc(var(--kiss-body-tilt,0deg) - 2deg))} 50%{transform:translate(var(--kiss-body-tx,0px), calc(var(--kiss-body-ty,0px) - 1px)) rotate(calc(var(--kiss-body-tilt,0deg) + 2deg))} }
+    @keyframes ${id}KissArmR    { 0%,100%{transform:translate(var(--kiss-armR-tx,0px), var(--kiss-armR-ty,0px)) rotate(calc(var(--kiss-armR-rot,0deg) - 20deg))} 50%{transform:translate(var(--kiss-armR-tx,0px), var(--kiss-armR-ty,0px)) rotate(calc(var(--kiss-armR-rot,0deg) - 12deg))} }
+    @keyframes ${id}KissPucker  { 0%,100%{transform:scale(0.7)} 50%{transform:scale(1.15)} }
+    @keyframes ${id}SleepBreathe{ 0%,100%{transform:translate(var(--sleep-body-tx,0px), var(--sleep-body-ty,0px)) rotate(calc(var(--sleep-body-tilt,0deg) - 8deg))} 50%{transform:translate(var(--sleep-body-tx,0px), calc(var(--sleep-body-ty,0px) + 1.5px)) rotate(calc(var(--sleep-body-tilt,0deg) - 8deg))} }
     @keyframes ${id}DanceSway   { 0%,100%{transform:translateX(-5px) rotate(-4deg)} 50%{transform:translateX(5px) rotate(4deg)} }
     @keyframes ${id}DanceArmL   { 0%,100%{transform:rotate(-90deg)} 50%{transform:rotate(-25deg)} }
     @keyframes ${id}DanceArmR   { 0%,100%{transform:rotate(25deg)}  50%{transform:rotate(90deg)} }
     @keyframes ${id}DanceLegL   { 0%,100%{transform:rotate(-15deg)} 50%{transform:rotate(5deg)} }
     @keyframes ${id}DanceLegR   { 0%,100%{transform:rotate(5deg)}   50%{transform:rotate(-15deg)} }
-    @keyframes ${id}SurprisePop { 0%{transform:translateY(0) scale(1)} 18%{transform:translateY(-8px) scale(1.06)} 35%{transform:translateY(0) scale(0.94)} 50%{transform:translateY(-3px) scale(1)} 100%{transform:translateY(0) scale(1)} }
-    @keyframes ${id}SurpArmL    { 0%,100%{transform:rotate(-100deg)} 50%{transform:rotate(-80deg)} }
-    @keyframes ${id}SurpArmR    { 0%,100%{transform:rotate(100deg)}  50%{transform:rotate(80deg)} }
-    @keyframes ${id}VicBounce   { 0%,100%{transform:translateY(0)}  40%{transform:translateY(-11px)} }
-    @keyframes ${id}VicArmL     { 0%,100%{transform:rotate(-155deg)} 50%{transform:rotate(-135deg)} }
-    @keyframes ${id}VicArmR     { 0%,100%{transform:rotate(155deg)}  50%{transform:rotate(135deg)} }
+    @keyframes ${id}SurprisePop { 0%{transform:translate(var(--surprise-body-tx,0px), var(--surprise-body-ty,0px)) rotate(var(--surprise-body-tilt,0deg)) scale(1)} 18%{transform:translate(var(--surprise-body-tx,0px), calc(var(--surprise-body-ty,0px) - 8px)) rotate(var(--surprise-body-tilt,0deg)) scale(1.06)} 35%{transform:translate(var(--surprise-body-tx,0px), var(--surprise-body-ty,0px)) rotate(var(--surprise-body-tilt,0deg)) scale(0.94)} 50%{transform:translate(var(--surprise-body-tx,0px), calc(var(--surprise-body-ty,0px) - 3px)) rotate(var(--surprise-body-tilt,0deg)) scale(1)} 100%{transform:translate(var(--surprise-body-tx,0px), var(--surprise-body-ty,0px)) rotate(var(--surprise-body-tilt,0deg)) scale(1)} }
+    @keyframes ${id}SurpArmL    { 0%,100%{transform:translate(var(--surprise-armL-tx,0px), calc(var(--surprise-armL-ty,0px) - 2px)) rotate(calc(var(--surprise-armL-rot,0deg) + 148deg))} }
+    @keyframes ${id}SurpArmR    { 0%,100%{transform:translate(var(--surprise-armR-tx,0px), calc(var(--surprise-armR-ty,0px) - 2px)) rotate(calc(var(--surprise-armR-rot,0deg) - 148deg))} }
+    @keyframes ${id}VicBounce   { 0%,100%{transform:translate(var(--victory-body-tx,0px), var(--victory-body-ty,0px)) rotate(var(--vic-body-tilt, 0deg))}  40%{transform:translate(var(--victory-body-tx,0px), calc(var(--victory-body-ty,0px) - 11px)) rotate(var(--vic-body-tilt, 0deg))} }
+    @keyframes ${id}VicArmL     { 0%,100%{transform:translate(var(--vic-armL-tx, 0px), var(--vic-armL-ty, 0px)) rotate(var(--vic-armL-rot, -39deg))} 50%{transform:translate(var(--vic-armL-tx, 0px), var(--vic-armL-ty, 0px)) rotate(calc(var(--vic-armL-rot, -39deg) + 20deg))} }
+    @keyframes ${id}VicArmR     { 0%,100%{transform:translate(var(--vic-armR-tx, 0px), var(--vic-armR-ty, 0px)) rotate(var(--vic-armR-rot, 28deg))}  50%{transform:translate(var(--vic-armR-tx, 0px), var(--vic-armR-ty, 0px)) rotate(calc(var(--vic-armR-rot, 28deg) - 20deg))} }
     @keyframes ${id}VicLegL     { 0%,100%{transform:rotate(-12deg)} 50%{transform:rotate(5deg)} }
     @keyframes ${id}VicLegR     { 0%,100%{transform:rotate(12deg)}  50%{transform:rotate(-5deg)} }
-    @keyframes ${id}ThinkSway   { 0%,100%{transform:rotate(4deg) translateY(0)} 50%{transform:rotate(4deg) translateY(-1px)} }
-    @keyframes ${id}ThinkArmR   { 0%,100%{transform:rotate(-55deg)} 50%{transform:rotate(-50deg)} }
+    @keyframes ${id}ThinkSway   { 0%,100%{transform:rotate(var(--think-body-tilt, 0deg)) translateY(0)} 50%{transform:rotate(var(--think-body-tilt, 0deg)) translateY(-1px)} }
+    @keyframes ${id}ThinkArmR   { 0%,100%{transform:translate(var(--think-armR-tx, 0px), var(--think-armR-ty, 0px)) rotate(calc(var(--think-armR-rot, -55deg)))} 50%{transform:translate(var(--think-armR-tx, 0px), var(--think-armR-ty, 0px)) rotate(calc(var(--think-armR-rot, -55deg) + 5deg))} }
     @keyframes ${id}ChalAura    { 0%,100%{opacity:0.25; transform:scale(1)}   50%{opacity:0.55; transform:scale(1.12)} }
     @keyframes ${id}ChalSway    { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-0.5px) rotate(1deg)} }
     @keyframes ${id}Blink       { 0%,90%,100%{transform:scaleY(1)} 95%{transform:scaleY(0.07)} }
@@ -89,36 +85,29 @@ function makeMoods(id) {
     },
     wave: {
       body:  { animation: `${id}IdleBounce 1.2s ${ei} infinite`, transformOrigin: '15px 38px' },
-      armL:  { animation: 'none', transformOrigin: '4px 18px' },
+      armL:  { animation: 'none', transform: 'translate(var(--wave-armL-tx,0px), var(--wave-armL-ty,0px)) rotate(var(--wave-armL-rot,0deg))', transformOrigin: '4px 18px' },
       armR:  { animation: `${id}Wave 0.55s ${ei} infinite`, transformOrigin: '26px 18px' },
       legL:  { animation: 'none', transformOrigin: '11px 30px' },
       legR:  { animation: 'none', transformOrigin: '19px 30px' },
     },
     clap: {
-      body:  { animation: `${id}ClapBounce 0.4s ${ei} infinite`, transformOrigin: '15px 38px' },
-      armL:  { animation: `${id}ClapL 0.4s ${ei} infinite`, transformOrigin: '4px 18px' },
-      armR:  { animation: `${id}ClapR 0.4s ${ei} infinite`, transformOrigin: '26px 18px' },
+      body:  { animation: `${id}ClapBounce 0.42s ${ei} infinite`, transformOrigin: '15px 38px' },
+      armL:  { animation: `${id}ClapL 0.42s ${ei} infinite`, transformOrigin: '5px 19px' },
+      armR:  { animation: `${id}ClapR 0.42s ${ei} infinite`, transformOrigin: '25px 19px' },
       legL:  { animation: 'none', transformOrigin: '11px 30px' },
       legR:  { animation: 'none', transformOrigin: '19px 30px' },
     },
-    cheer: {
-      body:  { animation: `${id}CheerBounce 0.42s ${ei} infinite`, transformOrigin: '15px 38px' },
-      armL:  { animation: `${id}CheerArmL 0.42s ${ei} infinite`, transformOrigin: '4px 18px' },
-      armR:  { animation: `${id}CheerArmR 0.42s ${ei} infinite`, transformOrigin: '26px 18px' },
-      legL:  { animation: `${id}CheerLegL 0.42s ${ei} infinite`, transformOrigin: '11px 30px' },
-      legR:  { animation: `${id}CheerLegR 0.42s ${ei} infinite`, transformOrigin: '19px 30px' },
-    },
     kiss: {
       body:  { animation: `${id}KissSway 1.4s ${ei} infinite`, transformOrigin: '15px 38px' },
-      armL:  { animation: 'none', transformOrigin: '4px 18px' },
+      armL:  { animation: 'none', transform: 'translate(var(--kiss-armL-tx,0px), var(--kiss-armL-ty,0px)) rotate(var(--kiss-armL-rot,0deg))', transformOrigin: '4px 18px' },
       armR:  { animation: `${id}KissArmR 1.4s ${ei} infinite`, transformOrigin: '26px 18px' },
       legL:  { animation: 'none', transformOrigin: '11px 30px' },
       legR:  { animation: 'none', transformOrigin: '19px 30px' },
     },
     sleep: {
       body:  { animation: `${id}SleepBreathe 2.2s ${ei} infinite`, transformOrigin: '15px 38px' },
-      armL:  { animation: 'none', transformOrigin: '4px 18px' },
-      armR:  { animation: 'none', transformOrigin: '26px 18px' },
+      armL:  { animation: 'none', transform: 'translate(var(--sleep-armL-tx,0px), var(--sleep-armL-ty,0px)) rotate(var(--sleep-armL-rot,0deg))', transformOrigin: '4px 18px' },
+      armR:  { animation: 'none', transform: 'translate(var(--sleep-armR-tx,0px), var(--sleep-armR-ty,0px)) rotate(var(--sleep-armR-rot,0deg))', transformOrigin: '26px 18px' },
       legL:  { animation: 'none', transformOrigin: '11px 30px' },
       legR:  { animation: 'none', transformOrigin: '19px 30px' },
     },
@@ -145,8 +134,8 @@ function makeMoods(id) {
     },
     think: {
       body:  { animation: `${id}ThinkSway 2s ${ei} infinite`, transformOrigin: '15px 38px' },
-      armL:  { animation: 'none', transformOrigin: '4px 18px' },
-      armR:  { animation: `${id}ThinkArmR 2s ${ei} infinite`, transformOrigin: '26px 18px' },
+      armL:  { animation: 'none', transform: 'translate(var(--think-armL-tx, 0px), var(--think-armL-ty, 0px)) rotate(var(--think-armL-rot, -58deg))', transformOrigin: '4px 17px' },
+      armR:  { animation: `${id}ThinkArmR 2s ${ei} infinite`, transformOrigin: '24px 17px' },
       legL:  { animation: 'none', transformOrigin: '11px 30px' },
       legR:  { animation: 'none', transformOrigin: '19px 30px' },
     },
@@ -210,7 +199,16 @@ function FloatingElements({ m, id }) {
 }
 
 // ─── Eye helper ─────────────────────────────────────────────────────────────
-function Eyes({ m, id, blink, lx=11, rx=19, y=11, r=2.2, color='#111', bg='white' }) {
+// SleepEyes — paths "yeux fermés" réutilisables pour persos avec yeux inline custom.
+// Centralise le pattern Q (arc en U) — modifie ici pour propager partout.
+function SleepEyes({ lx, rx, y, color = '#111', strokeWidth = 1.2, dx = 2 }) {
+  return (<>
+    <path d={`M ${lx - dx} ${y} Q ${lx} ${y + 2} ${lx + dx} ${y}`} fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round"/>
+    <path d={`M ${rx - dx} ${y} Q ${rx} ${y + 2} ${rx + dx} ${y}`} fill="none" stroke={color} strokeWidth={strokeWidth} strokeLinecap="round"/>
+  </>);
+}
+
+function Eyes({ m, id, blink, lx=11, rx=19, y=11, r=2.2, color='#111', bg='white', joyColor }) {
   if (m === 'sleep') return (<>
     <path d={`M${lx-2} ${y} Q${lx} ${y+2} ${lx+2} ${y}`} fill="none" stroke={bg} strokeWidth="1.2" strokeLinecap="round"/>
     <path d={`M${rx-2} ${y} Q${rx} ${y+2} ${rx+2} ${y}`} fill="none" stroke={bg} strokeWidth="1.2" strokeLinecap="round"/>
@@ -238,6 +236,17 @@ function Eyes({ m, id, blink, lx=11, rx=19, y=11, r=2.2, color='#111', bg='white
       </g>
     </>);
   }
+  if (m === 'clap' || m === 'victory') {
+    // Happy arc eyes — joyful upturned curves
+    const sw = Math.max(1.1, r * 0.55);
+    const stroke = joyColor || color;
+    return (<>
+      <path d={`M${lx-r} ${y+r*0.3} Q${lx} ${y-r*0.9} ${lx+r} ${y+r*0.3}`}
+        fill="none" stroke={stroke} strokeWidth={sw} strokeLinecap="round"/>
+      <path d={`M${rx-r} ${y+r*0.3} Q${rx} ${y-r*0.9} ${rx+r} ${y+r*0.3}`}
+        fill="none" stroke={stroke} strokeWidth={sw} strokeLinecap="round"/>
+    </>);
+  }
   return (<>
     <g style={{ animation: blink, transformOrigin: `${lx}px ${y}px` }}>
       <circle cx={lx} cy={y} r={r} fill={bg}/>
@@ -252,10 +261,60 @@ function Eyes({ m, id, blink, lx=11, rx=19, y=11, r=2.2, color='#111', bg='white
   </>);
 }
 
-function Mouth({ m, color='#1a1a1a' }) {
-  if (m === 'kiss') return <circle cx="15" cy="16.5" r="1.6" fill="#f472b6"/>;
+function KissLips({ id, cx=15, cy=16.5, r=1.6, fill='#f472b6', stroke, strokeWidth }) {
+  return (
+    <circle
+      cx={cx} cy={cy} r={r} fill={fill} stroke={stroke} strokeWidth={strokeWidth}
+      style={{
+        animation: `${id}KissPucker 1.4s ease-in-out infinite`,
+        transformOrigin: '50% 50%',
+        transformBox: 'fill-box',
+      }}
+    />
+  );
+}
+
+function Mouth({ m, color='#1a1a1a', id }) {
+  if (m === 'kiss') return <KissLips id={id} cx={15} cy={17.5} r={1.6}/>;
   if (m === 'surprise') return <ellipse cx="15" cy="17" rx="2" ry="2.4" fill={color}/>;
   return <path d="M12.5 16.2 Q15 18.4 17.5 16.2" fill="none" stroke={color} strokeWidth="0.9" strokeLinecap="round"/>;
+}
+
+// MoodMouth — bouche configurable qui gère kiss / surprise / sleep / default (U-smile).
+// Centralise le pattern dupliqué dans 17 persos. Chaque prop a un défaut sensé,
+// mais peut être override par perso (cx, cy, couleurs, taille de la bouche surprise, etc.)
+function MoodMouth({
+  m, id,
+  cx = 15, cy = 17.5,                  // centre de la bouche (default = position smile)
+  smileColor = '#1a1a1a',              // couleur du U-smile
+  smileWidth = 2.5,                    // demi-largeur du smile (smile va de cx-w à cx+w)
+  smileDepth = 1.2,                    // profondeur du Q (cy + depth = bottom du smile)
+  smileStroke = 0.9,                   // épaisseur du trait
+  surpriseColor,                       // défaut = smileColor
+  surpriseRx = 2, surpriseRy = 2.4,    // taille du O surpris
+  surpriseDy = -0.5,                   // décalage Y du O (souvent légèrement au-dessus du smile)
+  kissCy, kissR = 1.4,                 // override du centre Y et rayon des lèvres kiss
+  kissFill, kissStroke, kissStrokeWidth,
+  hideOnSleep = false,                 // si true, la bouche disparaît en mode sleep
+  noSurprise = false,                  // si true, mode surprise tombe sur le smile (persos à bec)
+}) {
+  if (m === 'kiss') {
+    return <KissLips id={id} cx={cx} cy={kissCy ?? cy} r={kissR}
+      fill={kissFill} stroke={kissStroke} strokeWidth={kissStrokeWidth}/>;
+  }
+  if (m === 'surprise' && !noSurprise) {
+    return <ellipse cx={cx} cy={cy + surpriseDy} rx={surpriseRx} ry={surpriseRy}
+      fill={surpriseColor || smileColor}/>;
+  }
+  if (m === 'sleep' && hideOnSleep) return null;
+  // U-smile par défaut. cy = bottom du smile (control point Y du Q),
+  // smileDepth = distance verticale entre les ends et le control.
+  return (
+    <path
+      d={`M${cx - smileWidth} ${cy - smileDepth} Q${cx} ${cy} ${cx + smileWidth} ${cy - smileDepth}`}
+      fill="none" stroke={smileColor} strokeWidth={smileStroke} strokeLinecap="round"
+    />
+  );
 }
 
 
@@ -297,17 +356,21 @@ function CharPanda({ s, m, id, blink }) {
       <rect x="9.5" y="3.5" width="11" height="5.5" rx="2.5" fill="#7a9db0" opacity="0.9"/>
       <ellipse cx="10.5" cy="11" rx="4.2" ry="3.8" fill="#1a1a1a" transform="rotate(-8 10.5 11)"/>
       <ellipse cx="19.5" cy="11" rx="4.2" ry="3.8" fill="#1a1a1a" transform="rotate(8 19.5 11)"/>
-      <Eyes m={m} id={id} blink={blink} lx={10.5} rx={19.5} y={11} bg="white" color="#111"/>
+      <Eyes m={m} id={id} blink={blink} lx={10.5} rx={19.5} y={11} bg="white" color="#111" joyColor="white"/>
       <ellipse cx="15" cy="14.5" rx="2.1" ry="1.4" fill="#1a1a1a"/>
-      <Mouth m={m} color="#1a1a1a"/>
+      <g style={{
+        transform: 'translateY(1.5px) scale(0.95)',
+        transformOrigin: '15px 17px'
+      }}>
+        <Mouth m={m} id={id} color="#1a1a1a"/>
+      </g>
     </g>
   );
 }
 
 // 2. FOX
-function CharFox({ s, m, id, blink }) {
+function CharFox({ s, m, id, blink: _blink }) {
   const sleeping = m === 'sleep';
-  const ei = 'ease-in-out';
   return (
     <g style={s.body}>
       {/* Fluffy tail — behind everything */}
@@ -327,10 +390,6 @@ function CharFox({ s, m, id, blink }) {
       {/* Body — orange with white chest bib */}
       <rect x="6" y="16" width="18" height="15" rx="6" fill="#f97316"/>
       <ellipse cx="15" cy="22" rx="5" ry="6" fill="white" opacity="0.9"/>
-      {/* Spy collar + tie */}
-      <rect x="11" y="28" width="8" height="3" rx="1" fill="#111"/>
-      <polygon points="13.5,31 15,30 16.5,31 15.5,35 14.5,35" fill="#dc2626"/>
-
       {/* Arms — orange with black paws */}
       <g style={s.armL}>
         <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#f97316"/>
@@ -354,6 +413,18 @@ function CharFox({ s, m, id, blink }) {
       {/* Head — orange */}
       <circle cx="15" cy="11.5" r="10.5" fill="#f97316"/>
 
+      {/* Bow tie — at neck line, BELOW head so it's not hidden */}
+      <g style={{ transform: 'translateY(3.5px)' }}>
+        {/* Left wing — trapezoid: wide outer, narrow toward knot */}
+        <path d="M 10.5 17.8 L 14 19 L 14 20.6 L 10.5 21.8 Z" fill="#0a0a0a"/>
+        {/* Right wing */}
+        <path d="M 19.5 17.8 L 16 19 L 16 20.6 L 19.5 21.8 Z" fill="#0a0a0a"/>
+        {/* Knot — central rounded band */}
+        <rect x="13.7" y="18.6" width="2.6" height="2.4" rx="0.6" fill="#000"/>
+        {/* Subtle highlight on knot */}
+        <rect x="14" y="18.9" width="0.5" height="1.6" rx="0.25" fill="#2a2a2a"/>
+      </g>
+
       {/* Muzzle — prominent white pointed snout */}
       <ellipse cx="15" cy="15.5" rx="5.5" ry="4.5" fill="#fef3c7"/>
       <ellipse cx="15" cy="18"   rx="3"   ry="2.5" fill="#fef3c7"/>
@@ -370,9 +441,20 @@ function CharFox({ s, m, id, blink }) {
       <line x1="20" y1="16.8" x2="25"  y2="17.5"  stroke="#555" strokeWidth="0.6" strokeLinecap="round"/>
 
       {/* Eyes — spy sunglasses (not panda patches!) */}
-      {sleeping ? (<>
-        <path d="M8.5 10.5 Q11 12.5 13.5 10.5" fill="none" stroke="#111" strokeWidth="1.2" strokeLinecap="round"/>
-        <path d="M16.5 10.5 Q19 12.5 21.5 10.5" fill="none" stroke="#111" strokeWidth="1.2" strokeLinecap="round"/>
+      {sleeping ? (
+        <SleepEyes lx={11} rx={19} y={10.5} color="#111" strokeWidth={1.2} dx={2.5}/>
+      ) : m === 'surprise' ? (<>
+        {/* Sunglasses pushed up over eyebrows — surprised, glasses revealed */}
+        <rect x="7.5" y="6.5" width="6" height="2.8" rx="1" fill="#111" opacity="0.85"/>
+        <rect x="16.5" y="6.5" width="6" height="2.8" rx="1" fill="#111" opacity="0.85"/>
+        <line x1="13.5" y1="7.9" x2="16.5" y2="7.9" stroke="#111" strokeWidth="1" strokeLinecap="round"/>
+        {/* Wide surprised eyes below */}
+        <circle cx="10.5" cy="11" r="2.3" fill="white"/>
+        <circle cx="19.5" cy="11" r="2.3" fill="white"/>
+        <circle cx="10.5" cy="11" r="1.4" fill="#111"/>
+        <circle cx="19.5" cy="11" r="1.4" fill="#111"/>
+        <circle cx="11.1" cy="10.4" r="0.5" fill="white"/>
+        <circle cx="20.1" cy="10.4" r="0.5" fill="white"/>
       </>) : (<>
         {/* Left lens */}
         <rect x="7.5" y="9" width="6" height="4" rx="1.5" fill="#111"/>
@@ -386,16 +468,17 @@ function CharFox({ s, m, id, blink }) {
       </>)}
 
       {/* Mouth */}
-      {m === 'kiss'
-        ? <circle cx="15" cy="20" r="1.4" fill="#f472b6"/>
-        : <path d="M12.5 19.5 Q15 21.5 17.5 19.5" fill="none" stroke="#111" strokeWidth="0.9" strokeLinecap="round"/>
-      }
+      <MoodMouth m={m} id={id} cx={15} cy={21.5}
+        smileColor="#111" smileWidth={2.5} smileDepth={2}
+        surpriseRx={1.7} surpriseRy={2} surpriseDy={-1}
+        kissCy={20} kissR={1.4}
+      />
     </g>
   );
 }
 
 // 3. WOLF
-function CharWolf({ s, m, id, blink }) {
+function CharWolf({ s, m, id, blink: _blink }) {
   const ei = 'ease-in-out';
   return (
     <>
@@ -480,9 +563,22 @@ function CharWolf({ s, m, id, blink }) {
         <line x1="23" y1="13.5" x2="24.5" y2="13" stroke="#7f8ea3" strokeWidth="0.6" opacity="0.5"/>
 
         {/* Eyes — glowing purple */}
-        {m === 'sleep' ? (<>
-          <path d="M8.5 10.5 Q11 12.5 13.5 10.5" fill="none" stroke="#ddd6fe" strokeWidth="1.2" strokeLinecap="round"/>
-          <path d="M16.5 10.5 Q19 12.5 21.5 10.5" fill="none" stroke="#ddd6fe" strokeWidth="1.2" strokeLinecap="round"/>
+        {m === 'sleep' ? (
+          <SleepEyes lx={11} rx={19} y={10.5} color="#ddd6fe" strokeWidth={1.2} dx={2.5}/>
+        ) : (m === 'clap' || m === 'victory') ? (<>
+          {/* Joyful arc eyes — glowing purple */}
+          <path d="M8.5 11.5 Q10.5 8.5 12.5 11.5" fill="none" stroke="#c4b5fd" strokeWidth="1.4" strokeLinecap="round"/>
+          <path d="M17.5 11.5 Q19.5 8.5 21.5 11.5" fill="none" stroke="#c4b5fd" strokeWidth="1.4" strokeLinecap="round"/>
+        </>) : m === 'surprise' ? (<>
+          {/* Wide spectral eyes — circular glow */}
+          <circle cx="10.5" cy="10.5" r="3" fill="#8b5cf6" opacity="0.4"/>
+          <circle cx="19.5" cy="10.5" r="3" fill="#8b5cf6" opacity="0.4"/>
+          <circle cx="10.5" cy="10.5" r="2.5" fill="#ddd6fe"/>
+          <circle cx="19.5" cy="10.5" r="2.5" fill="#ddd6fe"/>
+          <circle cx="10.5" cy="10.5" r="1.4" fill="#4c1d95"/>
+          <circle cx="19.5" cy="10.5" r="1.4" fill="#4c1d95"/>
+          <circle cx="11.1" cy="10" r="0.5" fill="white"/>
+          <circle cx="20.1" cy="10" r="0.5" fill="white"/>
         </>) : (<>
           <g style={{ animation: `${id}GhostEyeGlow 2s ${ei} infinite` }}>
             <circle cx="10.5" cy="10.5" r="1.8" fill="#8b5cf6" opacity="0.3"/>
@@ -501,7 +597,10 @@ function CharWolf({ s, m, id, blink }) {
         {/* Nose */}
         <ellipse cx="15" cy="18.5" rx="1.3" ry="0.9" fill="#334155"/>
         {/* Mouth */}
-        <path d="M13.5,19.5 Q15,20.8 16.5,19.5" stroke="#475569" strokeWidth="0.8" fill="none" strokeLinecap="round"/>
+        {m === 'surprise'
+          ? <ellipse cx="15" cy="20.5" rx="1.7" ry="2" fill="#1e1b4b" stroke="#475569" strokeWidth="0.4"/>
+          : <path d="M13.5,19.5 Q15,20.8 16.5,19.5" stroke="#475569" strokeWidth="0.8" fill="none" strokeLinecap="round"/>
+        }
       </g>
     </>
   );
@@ -584,16 +683,35 @@ function CharTiger({ s, m, id, blink }) {
       <ellipse cx="15" cy="15.5" rx="6" ry="5" fill="white"/>
 
       {/* Eyes — electric glow */}
-      {m === 'sleep' ? (<>
-        <path d="M8.5 10 Q11 12 13.5 10" fill="none" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round"/>
-        <path d="M16.5 10 Q19 12 21.5 10" fill="none" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round"/>
+      {m === 'sleep' ? (
+        <SleepEyes lx={11} rx={19} y={10} color="#1a1a1a" strokeWidth={1.2} dx={2.5}/>
+      ) : m === 'surprise' ? (<>
+        {/* Wide shocked eyes */}
+        <circle cx="10.5" cy="10" r="2.8" fill="#fde047"/>
+        <circle cx="19.5" cy="10" r="2.8" fill="#fde047"/>
+        <circle cx="10.5" cy="10" r="1.7" fill="#1a1a1a"/>
+        <circle cx="19.5" cy="10" r="1.7" fill="#1a1a1a"/>
+        <circle cx="11.2" cy="9.4" r="0.55" fill="white"/>
+        <circle cx="20.2" cy="9.4" r="0.55" fill="white"/>
+      </>) : m === 'think' ? (<>
+        {/* Eye-roll — pupil orbits inside the yellow eye */}
+        <ellipse cx="10.5" cy="10" rx="2.8" ry="2" fill="#fde047" transform="rotate(-8,10.5,10)"/>
+        <g style={{ animation: `${id}EyeRoll 2.5s linear infinite`, transformOrigin: '10.5px 10px' }}>
+          <ellipse cx="10.5" cy="10" rx="1.4" ry="1.4" fill="#1a1a1a"/>
+          <circle cx="11.0" cy="9.5" r="0.5" fill="white" opacity="0.85"/>
+        </g>
+        <ellipse cx="19.5" cy="10" rx="2.8" ry="2" fill="#fde047" transform="rotate(8,19.5,10)"/>
+        <g style={{ animation: `${id}EyeRoll 2.5s linear infinite`, transformOrigin: '19.5px 10px' }}>
+          <ellipse cx="19.5" cy="10" rx="1.4" ry="1.4" fill="#1a1a1a"/>
+          <circle cx="20.0" cy="9.5" r="0.5" fill="white" opacity="0.85"/>
+        </g>
       </>) : (<>
-        <g style={{ animation: `${id}EyeZap 1s ${ei} infinite` }}>
+        <g style={{ animation: `${id}EyeZap 1s ${ei} infinite, ${blink}`, transformOrigin: '10.5px 10px' }}>
           <ellipse cx="10.5" cy="10" rx="2.8" ry="2" fill="#fde047" transform="rotate(-8,10.5,10)"/>
           <ellipse cx="10.5" cy="10" rx="1.4" ry="1.6" fill="#1a1a1a" transform="rotate(-8,10.5,10)"/>
           <circle cx="11.3" cy="9.2" r="0.6" fill="white" opacity="0.9"/>
         </g>
-        <g style={{ animation: `${id}EyeZap 1s ${ei} 0.3s infinite` }}>
+        <g style={{ animation: `${id}EyeZap 1s ${ei} 0.3s infinite, ${blink}`, transformOrigin: '19.5px 10px' }}>
           <ellipse cx="19.5" cy="10" rx="2.8" ry="2" fill="#fde047" transform="rotate(8,19.5,10)"/>
           <ellipse cx="19.5" cy="10" rx="1.4" ry="1.6" fill="#1a1a1a" transform="rotate(8,19.5,10)"/>
           <circle cx="20.3" cy="9.2" r="0.6" fill="white" opacity="0.9"/>
@@ -610,7 +728,16 @@ function CharTiger({ s, m, id, blink }) {
       <line x1="21" y1="16" x2="27" y2="16" stroke="#1a1a1a" strokeWidth="0.8" opacity="0.7"/>
 
       {/* Mouth */}
-      <path d="M13 17 Q15 18.5 17 17" fill="none" stroke="#1a1a1a" strokeWidth="1.2" strokeLinecap="round"/>
+      <g style={{
+        transform: 'none',
+        transformOrigin: '15px 18.5px'
+      }}>
+        <MoodMouth m={m} id={id} cx={15} cy={18.5}
+          smileColor="#1a1a1a" smileWidth={2} smileDepth={1.5} smileStroke={1.2}
+          surpriseRx={1.7} surpriseRy={2} surpriseDy={-0.7}
+          kissCy={17.5} kissR={1.4}
+        />
+      </g>
     </g>
   );
 }
@@ -618,7 +745,7 @@ function CharTiger({ s, m, id, blink }) {
 // 5. LION
 function CharLion({ s, m, id, blink }) {
   return (
-    <g style={s.body}>
+    <>
 
       {/* ── Halo : Double Couronne (16 rayons + 2 anneaux) ── */}
       <circle cx="15" cy="18" r="20" fill="#fbbf24" fillOpacity="0.1"/>
@@ -641,6 +768,7 @@ function CharLion({ s, m, id, blink }) {
       <line x1="8.9"  y1="3.2"  x2="7.5"  y2="0"    stroke="#f59e0b" strokeWidth="1.2" opacity="0.35"/>
       <circle cx="15" cy="18" r="13.5" fill="none" stroke="#f59e0b" strokeWidth="1.5" opacity="0.38"/>
       <circle cx="15" cy="18" r="11"   fill="#fbbf24" fillOpacity="0.12"/>
+    <g style={s.body}>
 
       {/* ── Jambes (articulées) ── */}
       <g style={s.legL}>
@@ -712,16 +840,26 @@ function CharLion({ s, m, id, blink }) {
       <circle cx="21.5" cy="14.5" r="2.8" fill="#f97316" fillOpacity="0.22"/>
 
       {/* ── Yeux CUSTOM (grands, avec blink / sleep / surprise) ── */}
-      {m === 'sleep' ? (<>
-        <path d="M 8.4 9 Q 11 11.5 13.6 9" fill="none" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
-        <path d="M 16.4 9 Q 19 11.5 21.6 9" fill="none" stroke="white" strokeWidth="1.3" strokeLinecap="round"/>
-      </>) : m === 'surprise' ? (<>
+      {m === 'sleep' ? (
+        <SleepEyes lx={11} rx={19} y={9} color="#111" strokeWidth={1.3} dx={2.6}/>
+      ) : m === 'surprise' ? (<>
         <circle cx="11" cy="9" r="3.2" fill="white"/>
         <circle cx="11" cy="9" r="1.9" fill="#1f2937"/>
         <circle cx="11.8" cy="8.2" r="0.7" fill="white"/>
         <circle cx="19"  cy="9" r="3.2" fill="white"/>
         <circle cx="19"  cy="9" r="1.9" fill="#1f2937"/>
         <circle cx="19.8" cy="8.2" r="0.7" fill="white"/>
+      </>) : m === 'think' ? (<>
+        <circle cx="11" cy="9" r="2.6" fill="white" stroke="#1f2937" strokeWidth="1"/>
+        <g style={{ animation: `${id}EyeRoll 2.5s linear infinite`, transformOrigin: '11px 9px' }}>
+          <circle cx="11" cy="9" r="1.5" fill="#1f2937"/>
+          <circle cx="11.5" cy="8.5" r="0.6" fill="white"/>
+        </g>
+        <circle cx="19" cy="9" r="2.6" fill="white" stroke="#1f2937" strokeWidth="1"/>
+        <g style={{ animation: `${id}EyeRoll 2.5s linear infinite`, transformOrigin: '19px 9px' }}>
+          <circle cx="19" cy="9" r="1.5" fill="#1f2937"/>
+          <circle cx="19.5" cy="8.5" r="0.6" fill="white"/>
+        </g>
       </>) : (<>
         <g style={{ animation: blink, transformOrigin: "11px 9px" }}>
           <circle cx="11"   cy="9" r="2.6" fill="white" stroke="#1f2937" strokeWidth="1"/>
@@ -736,12 +874,16 @@ function CharLion({ s, m, id, blink }) {
       </>)}
 
       {/* ── Bouche CUSTOM (U-smile dans le museau, avec kiss / surprise) ── */}
-      {m === 'kiss'
-        ? <circle cx="15" cy="18" r="1.6" fill="#f472b6"/>
-        : m === 'surprise'
-        ? <ellipse cx="15" cy="18.5" rx="2.2" ry="2.6" fill="#1f2937"/>
-        : <path d="M 12 17.5 Q 15 20 18 17.5" fill="none" stroke="#1f2937" strokeWidth="1.3" strokeLinecap="round"/>
-      }
+      <g style={{
+        transform: 'translateY(-1px) scale(0.8)',
+        transformOrigin: '15px 20px'
+      }}>
+        <MoodMouth m={m} id={id} cx={15} cy={20}
+          smileColor="#1f2937" smileWidth={3} smileDepth={2.5} smileStroke={1.3}
+          surpriseRx={2.2} surpriseRy={2.6} surpriseDy={-1.5}
+          kissCy={18} kissR={1.6}
+        />
+      </g>
 
       {/* ── Couronne (au-dessus de la crinière, zone front) ── */}
       <path d="M 9 -2.5 Q 15 -4 21 -2.5 L 21 -1 Q 15 -2.5 9 -1 Z" fill="#f59e0b"/>
@@ -757,71 +899,13 @@ function CharLion({ s, m, id, blink }) {
       <circle cx="19.8" cy="-5.5" r="0.7" fill="#fef3c7"/>
 
     </g>
+    </>
   );
 }
 
-// 6. EAGLE
-function CharEagle({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      {/* Legs with three talon claws each */}
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#78350f"/>
-        <polygon points="7.5,38 6,41 8,39.5" fill="#fbbf24"/>
-        <polygon points="11,38 10,41.5 12,39.5" fill="#fbbf24"/>
-        <polygon points="14.5,38 14,41 16,39.5" fill="#fbbf24"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#78350f"/>
-        <polygon points="15.5,38 14,41 16.5,39.5" fill="#fbbf24"/>
-        <polygon points="19,38 18.5,41.5 20.5,39.5" fill="#fbbf24"/>
-        <polygon points="22.5,38 22,41 24,39.5" fill="#fbbf24"/>
-      </g>
-      {/* Very dark brown body */}
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#292524"/>
-      {/* White neck/collar area onto body top */}
-      <ellipse cx="15" cy="19" rx="6" ry="4" fill="white" opacity="0.9"/>
-      {/* Wing arms with jagged feather tips and feather stroke lines */}
-      <g style={s.armL}>
-        <path d="M1.5,17 L6.5,17 L6.5,24 Q5,25.5 3.5,26 Q2.5,25 1.5,26 Q1,25 1.5,24 Z" fill="#78350f"/>
-        <line x1="3" y1="19" x2="2" y2="22" stroke="#92400e" strokeWidth="0.7"/>
-        <line x1="4.5" y1="19" x2="4" y2="23" stroke="#92400e" strokeWidth="0.7"/>
-        <line x1="6" y1="19" x2="5.5" y2="22" stroke="#92400e" strokeWidth="0.7"/>
-      </g>
-      <g style={s.armR}>
-        <path d="M23.5,17 L28.5,17 L28.5,24 Q27.5,25.5 26.5,26 Q25.5,25 24.5,26 Q23.5,25 23.5,24 Z" fill="#78350f"/>
-        <line x1="24" y1="19" x2="24" y2="22" stroke="#92400e" strokeWidth="0.7"/>
-        <line x1="25.5" y1="19" x2="25.5" y2="23" stroke="#92400e" strokeWidth="0.7"/>
-        <line x1="27" y1="19" x2="27.5" y2="22" stroke="#92400e" strokeWidth="0.7"/>
-      </g>
-      {/* White head — bald eagle */}
-      <circle cx="15" cy="11.5" r="10.5" fill="white"/>
-      {/* Fierce eyebrow lines — thick, angled inward for menacing look */}
-      <line x1="7.5" y1="7" x2="12.5" y2="8.5" stroke="#292524" strokeWidth="1.8" strokeLinecap="round"/>
-      <line x1="22.5" y1="7" x2="17.5" y2="8.5" stroke="#292524" strokeWidth="1.8" strokeLinecap="round"/>
-      {/* Fierce yellow eyes with black pupils */}
-      <circle cx="10.5" cy="10" r="2.5" fill="#fbbf24"/>
-      <circle cx="19.5" cy="10" r="2.5" fill="#fbbf24"/>
-      <circle cx="10.5" cy="10" r="1.2" fill="#111"/>
-      <circle cx="19.5" cy="10" r="1.2" fill="#111"/>
-      {/* Eye highlights */}
-      <circle cx="11" cy="9.4" r="0.5" fill="white"/>
-      <circle cx="20" cy="9.4" r="0.5" fill="white"/>
-      {/* Large hooked beak — most distinctive feature */}
-      {/* Upper mandible: large downward curve */}
-      <path d="M13,13.5 Q14,15.5 17,16 L15,17 Q12.5,16 12,14 Z" fill="#f59e0b"/>
-      {/* Hook tip curving down */}
-      <path d="M17,16 Q18.5,15.5 17.5,17.5 L15,17 Z" fill="#d97706"/>
-      {/* Lower mandible */}
-      <path d="M13,14.5 Q14,15.5 15.5,16 L14.5,16.5 Q13,16 12.5,14.8 Z" fill="#fbbf24"/>
-    </g>
-  );
-}
-
-// 7. BEAR
 function CharBear({ s, m, id, blink }) {
   const sleeping = m === 'sleep';
-  const happy    = m === 'victory' || m === 'cheer' || m === 'clap';
+  const happy    = m === 'clap' || m === 'victory';
 
   return (
     <>
@@ -860,6 +944,7 @@ function CharBear({ s, m, id, blink }) {
         <g style={s.armL}>
           <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#c8762a"/>
           <rect x="1"   y="23" width="6" height="4" rx="2"   fill="#8b4a10"/>
+          {m !== 'clap' && m !== 'wave' && m !== 'surprise' && (<>
           <circle cx="2" cy="21" r="6.5" fill="#8b4a10"/>
           <circle cx="2" cy="21" r="6.5" fill="none" stroke="#c89020" strokeWidth="1.4"/>
           <line x1="-4.5" y1="21" x2="8.5" y2="21" stroke="#6a3408" strokeWidth="1.0" opacity="0.5"/>
@@ -867,6 +952,7 @@ function CharBear({ s, m, id, blink }) {
           <circle cx="2" cy="21" r="3"   fill="none" stroke="#c89020" strokeWidth="0.9" opacity="0.6"/>
           <circle cx="2" cy="21" r="2"   fill="#c89020" opacity="0.75"/>
           <circle cx="2" cy="21" r="1.1" fill="#f5d060"/>
+          </>)}
         </g>
 
         {/* Ears — static, drawn before head */}
@@ -895,10 +981,9 @@ function CharBear({ s, m, id, blink }) {
         <rect x="13.5" y="7"  width="3"  height="5.5"  rx="1.5"  fill="#606878"/>
 
         {/* Eyes — mood variants */}
-        {sleeping ? (<>
-          <path d="M8.5 10 Q10.5 12 12.5 10" fill="none" stroke="#1a0a02" strokeWidth="1.1" strokeLinecap="round"/>
-          <path d="M17.5 10 Q19.5 12 21.5 10" fill="none" stroke="#1a0a02" strokeWidth="1.1" strokeLinecap="round"/>
-        </>) : happy ? (<>
+        {sleeping ? (
+          <SleepEyes lx={10.5} rx={19.5} y={10} color="#1a0a02" strokeWidth={1.1} dx={2}/>
+        ) : happy ? (<>
           <path d="M8.5 11 Q10.5 9 12.5 11" fill="none" stroke="#1a0a02" strokeWidth="1.2" strokeLinecap="round"/>
           <path d="M17.5 11 Q19.5 9 21.5 11" fill="none" stroke="#1a0a02" strokeWidth="1.2" strokeLinecap="round"/>
         </>) : m === 'surprise' ? (<>
@@ -908,6 +993,17 @@ function CharBear({ s, m, id, blink }) {
           <circle cx="19.5" cy="10.5" r="2.8" fill="white"/>
           <circle cx="19.5" cy="10.5" r="1.8" fill="#1a0a02"/>
           <circle cx="20.2" cy="9.8"  r="0.6" fill="white"/>
+        </>) : m === 'think' ? (<>
+          <circle cx="10.5" cy="10.5" r="2.2" fill="white"/>
+          <g style={{ animation: `${id}EyeRoll 2.5s linear infinite`, transformOrigin: '10.5px 10.5px' }}>
+            <circle cx="10.5" cy="10.5" r="1.3" fill="#1a0a02"/>
+            <circle cx="11.0" cy="10.0" r="0.45" fill="white" opacity="0.85"/>
+          </g>
+          <circle cx="19.5" cy="10.5" r="2.2" fill="white"/>
+          <g style={{ animation: `${id}EyeRoll 2.5s linear infinite`, transformOrigin: '19.5px 10.5px' }}>
+            <circle cx="19.5" cy="10.5" r="1.3" fill="#1a0a02"/>
+            <circle cx="20.0" cy="10.0" r="0.45" fill="white" opacity="0.85"/>
+          </g>
         </>) : (<>
           <g style={{ animation: blink, transformOrigin: '10.5px 10.5px' }}>
             <circle cx="10.5" cy="10.5" r="2.2" fill="white"/>
@@ -923,7 +1019,7 @@ function CharBear({ s, m, id, blink }) {
 
         {/* Mouth — mood variants */}
         {m === 'kiss' ? (
-          <circle cx="15" cy="18" r="1.4" fill="#f472b6"/>
+          <KissLips id={id} cx={15} cy={18} r={1.4}/>
         ) : m === 'surprise' ? (
           <ellipse cx="15" cy="18" rx="2" ry="2.2" fill="#2a0e04"/>
         ) : happy ? (
@@ -936,84 +1032,23 @@ function CharBear({ s, m, id, blink }) {
         <g style={s.armR}>
           <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#c8762a"/>
           <rect x="23"   y="23" width="6" height="4" rx="2"   fill="#8b4a10"/>
-          {/* Axe handle */}
-          <rect x="25.5" y="15" width="2.5" height="14" rx="1.2" fill="#8b5a28"/>
-          <rect x="25.2" y="26" width="3"   height="1.6"  rx="0.8" fill="#6a3a10"/>
-          {/* Axe blade */}
-          <path d="M25.5 16 L21.5 13.5 Q18 17 20.5 21.5 L25.5 20 Z" fill="#1a1a1a"/>
-          <path d="M21.5 13.5 Q18 17 20.5 21.5" fill="none" stroke="#b0b8c0" strokeWidth="1.2" strokeLinecap="round"/>
-          <circle cx="25.3" cy="18" r="0.75" fill="#d4a020"/>
+          {m !== 'clap' && m !== 'wave' && m !== 'surprise' && (
+            <g transform={m === 'think' ? 'rotate(52 26 23)' : undefined}>
+              {/* Axe handle */}
+              <rect x="25.5" y="15" width="2.5" height="14" rx="1.2" fill="#8b5a28"/>
+              <rect x="25.2" y="26" width="3"   height="1.6"  rx="0.8" fill="#6a3a10"/>
+              {/* Axe blade */}
+              <path d="M25.5 16 L21.5 13.5 Q18 17 20.5 21.5 L25.5 20 Z" fill="#1a1a1a"/>
+              <path d="M21.5 13.5 Q18 17 20.5 21.5" fill="none" stroke="#b0b8c0" strokeWidth="1.2" strokeLinecap="round"/>
+              <circle cx="25.3" cy="18" r="0.75" fill="#d4a020"/>
+            </g>
+          )}
         </g>
       </g>
     </>
   );
 }
 
-// 8. SHARK
-function CharShark({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#64748b"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#64748b"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#64748b"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#64748b"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#64748b"/>
-      </g>
-      <polygon points="15,1 12,6 18,6" fill="#475569"/>
-      <circle cx="15" cy="11.5" r="10.5" fill="#94a3b8"/>
-      <ellipse cx="15" cy="15" rx="6" ry="3.5" fill="white"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#1a1a1a"/>
-      {m !== 'sleep' && (
-        <g>
-          <path d="M11 16.5 L13 15.5 L15 16.5 L17 15.5 L19 16.5" fill="none" stroke="#1a1a1a" strokeWidth="0.8"/>
-        </g>
-      )}
-    </g>
-  );
-}
-
-// 9. OWL
-function CharOwl({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#6d28d9"/>
-        <polygon points="8,38 9.5,40 11,38 12.5,40 14,38" fill="#fbbf24"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#6d28d9"/>
-        <polygon points="16,38 17.5,40 19,38 20.5,40 22,38" fill="#fbbf24"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#7c3aed"/>
-      <circle cx="11" cy="21" r="1" fill="#5b21b6" opacity="0.5"/>
-      <circle cx="15" cy="20" r="1" fill="#5b21b6" opacity="0.5"/>
-      <circle cx="19" cy="22" r="1" fill="#5b21b6" opacity="0.5"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#7c3aed"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#7c3aed"/>
-      </g>
-      <polygon points="11,4 13,1 15,4" fill="#5b21b6"/>
-      <polygon points="17,4 19,1 21,4" fill="#5b21b6"/>
-      <circle cx="15" cy="11.5" r="10.5" fill="#7c3aed"/>
-      <circle cx="11" cy="11" r="4" fill="white"/>
-      <circle cx="19" cy="11" r="4" fill="white"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} r={2.5} color="#1a1a1a" bg="#fbbf24"/>
-      <polygon points="13.5,14 15,16 16.5,14" fill="#f59e0b"/>
-    </g>
-  );
-}
-
-// 9b. OWL WITCH (Chouette Magicienne)
 function CharOwlWitch({ s, m, id, blink }) {
   const eyeEl = m === 'sleep' || m === 'surprise' || m === 'think'
     ? <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} r={2.5} color="#1a0800" bg="#d4900a"/>
@@ -1078,10 +1113,14 @@ function CharOwlWitch({ s, m, id, blink }) {
           <path d="M30 23 Q32 26 29 27.5" fill="#6a3e10"/>
           <path d="M28 25 Q29 28 26 28.5" fill="#6a3e10"/>
           <path d="M25.5 26.5 Q26 29 23.5 29" fill="#6a3e10"/>
-          {/* Magic wand */}
-          <rect x={28.2} y={11} width={1.3} height={9} rx={0.65} fill="#3a1a08"/>
-          <path d="M27 10 L28.85 9 L30.7 10 L30 11.8 L27.7 11.8 Z" fill="#f5c840"/>
-          <circle cx={28.85} cy={10} r={0.6} fill="white" opacity={0.7}/>
+          {m !== 'clap' && m !== 'wave' && m !== 'surprise' && (
+            <g transform={m === 'think' ? 'rotate(52 26 23)' : undefined}>
+              {/* Magic wand */}
+              <rect x={28.2} y={11} width={1.3} height={9} rx={0.65} fill="#3a1a08"/>
+              <path d="M27 10 L28.85 9 L30.7 10 L30 11.8 L27.7 11.8 Z" fill="#f5c840"/>
+              <circle cx={28.85} cy={10} r={0.6} fill="white" opacity={0.7}/>
+            </g>
+          )}
         </g>
         {/* Ear tufts */}
         <path d="M9 5.5 Q8 0.5 11.5 3 Q11 5 10 6 Z" fill="#7a4e18"/>
@@ -1090,7 +1129,15 @@ function CharOwlWitch({ s, m, id, blink }) {
         <circle cx={15} cy={11.5} r={10.5} fill="#a06828"/>
         <ellipse cx={15} cy={12} rx={8} ry={8.5} fill="#e8c888" opacity={0.9}/>
         <path d="M13 14 L17 14 Q17 15.8 15 18.5 Q13 15.8 13 14 Z" fill="#c89020"/>
-        <path d="M13.5 15.8 Q15 17.8 16.5 15.8" fill="none" stroke="#8b6010" strokeWidth={0.8}/>
+        <g style={{
+          transform: 'translateY(2px) scale(0.65)',
+          transformOrigin: '15px 17.8px'
+        }}>
+          <MoodMouth m={m} id={id} cx={15} cy={17.8}
+            smileColor="#8b6010" smileWidth={1.5} smileDepth={2} smileStroke={0.8}
+            kissCy={17} kissR={1.4}
+          />
+        </g>
         {eyeEl}
         {/* Witch hat */}
         <path d="M5.5 6 L15 -7.5 L24.5 6 Z" fill="#2a1860"/>
@@ -1144,6 +1191,13 @@ function CharCatDetective({ s, m, id, blink }) {
         </g>
         {/* Right arm extended horizontal + magnifying glass */}
         <g style={s.armR}>
+          {(m === 'clap' || m === 'wave' || m === 'surprise') ? (
+            // Standard vertical paw for clap/wave/surprise (drop the magnifier prop)
+            <>
+              <rect x={23.5} y={17} width={5} height={9} rx={2.5} fill="#111"/>
+              <rect x={23}   y={23} width={6} height={4} rx={2.5} fill="white" opacity={0.95}/>
+            </>
+          ) : (<g transform={m === 'think' ? 'rotate(52 26 22)' : undefined}>
           <rect x={23.5} y={17} width={5} height={5.5} rx={2.5} fill="#111"/>
           <rect x={25} y={19.5} width={9} height={5} rx={2.5} fill="#111"/>
           {/* Paw behind handle */}
@@ -1167,6 +1221,7 @@ function CharCatDetective({ s, m, id, blink }) {
           {/* Paw over handle */}
           <rect x={31} y={18.5} width={5.5} height={5} rx={2.2} fill="white" opacity={0.97}/>
           <rect x={31} y={22.5} width={5.5} height={1.2} rx={0.6} fill="#ddd" opacity={0.5}/>
+          </g>)}
         </g>
         {/* Cat ears */}
         <polygon points="4,11 7.5,-1 13,10.5"      fill="#0d0d0d"/>
@@ -1189,9 +1244,16 @@ function CharCatDetective({ s, m, id, blink }) {
         <line x1={19.5} y1={15.8} x2={25.5} y2={15.8} stroke="white" strokeWidth={0.9} strokeLinecap="round" opacity={0.9}/>
         <line x1={19.5} y1={16.8} x2={25}   y2={17.5} stroke="white" strokeWidth={0.8} strokeLinecap="round" opacity={0.7}/>
         {/* Green eyes */}
-        <Eyes m={m} id={id} blink={blink} lx={10.5} rx={19.5} y={10.5} r={2.8} color="#111" bg="#16a34a"/>
+        <Eyes m={m} id={id} blink={blink} lx={10.5} rx={19.5} y={10.5} r={2.8} color="#111" bg="#16a34a" joyColor="#16a34a"/>
         {/* Mouth */}
-        <path d="M13 17.5 Q15 19 17 17.5" fill="none" stroke="#333" strokeWidth={1} strokeLinecap="round"/>
+        {m === 'kiss'
+          ? <KissLips id={id} cx={15} cy={17} r={1.4}/>
+          : m === 'surprise'
+          ? <ellipse cx={15} cy={17.3} rx={1.4} ry={1.7} fill="#1a1a1a"/>
+          : (m === 'clap' || m === 'victory')
+          ? <path d="M12.8 16.8 Q15 19.4 17.2 16.8 Q15 18.2 12.8 16.8 Z" fill="#1a1a1a" stroke="#1a1a1a" strokeWidth={0.5} strokeLinejoin="round"/>
+          : <path d="M13 17.5 Q15 19 17 17.5" fill="none" stroke="#333" strokeWidth={1} strokeLinecap="round"/>
+        }
         {/* Fedora */}
         <ellipse cx={15} cy={2.5} rx={12.5} ry={2.8} fill="#1a1a1a"/>
         <rect x={9.8} y={-8} width={10.4} height={11} rx={2.5} fill="#1a1a1a"/>
@@ -1205,105 +1267,284 @@ function CharCatDetective({ s, m, id, blink }) {
   );
 }
 
-// 10. FROG
-function CharFrog({ s, m, id, blink }) {
+// 9e. TURTLE NOMAD (Tortue Nomade)
+function CharTurtleNomad({ s, m, id, blink }) {
+  const sleeping = m === 'sleep';
   return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#16a34a"/>
-        <ellipse cx="9" cy="38.5" rx="4" ry="2" fill="#15803d"/>
+    <>
+      {/* Dust trail */}
+      <ellipse cx={15} cy={37} rx={13} ry={1.6} fill="#a8a29e" opacity={0.25}/>
+      <circle cx={3} cy={36} r={1.3} fill="#d6d3d1" opacity={0.5}/>
+      <circle cx={27} cy={36} r={1.1} fill="#d6d3d1" opacity={0.4}/>
+      <circle cx={5.5} cy={34.5} r={0.7} fill="#e7e5e4" opacity={0.45}/>
+      <g style={s.body}>
+        <g style={s.legL}>
+          <rect x={7.5} y={29} width={6.5} height={8} rx={2.5} fill="#65a30d"/>
+          <ellipse cx={10.5} cy={37} rx={3.5} ry={1.5} fill="#3f6212"/>
+        </g>
+        <g style={s.legR}>
+          <rect x={16} y={29} width={6.5} height={8} rx={2.5} fill="#65a30d"/>
+          <ellipse cx={19.5} cy={37} rx={3.5} ry={1.5} fill="#3f6212"/>
+        </g>
+        {/* Shell — backpack on back */}
+        <ellipse cx={15} cy={22.5} rx={11} ry={9} fill="#854d0e"/>
+        <ellipse cx={15} cy={22.5} rx={9} ry={7} fill="#a16207"/>
+        {/* Hexagon shell pattern */}
+        <path d="M15 17 L18 19 L18 23 L15 25 L12 23 L12 19 Z" fill="none" stroke="#451a03" strokeWidth={0.7} opacity={0.7}/>
+        <path d="M9 19 L11.5 20.5 L11.5 23 L9 24.5 L7 23 L7 21 Z" fill="none" stroke="#451a03" strokeWidth={0.6} opacity={0.6}/>
+        <path d="M21 19 L23 21 L23 23 L21 24.5 L18.5 23 L18.5 20.5 Z" fill="none" stroke="#451a03" strokeWidth={0.6} opacity={0.6}/>
+        <path d="M15 25 L17 26.5 L15 28 L13 26.5 Z" fill="none" stroke="#451a03" strokeWidth={0.6} opacity={0.55}/>
+        {/* Strap */}
+        <path d="M5 19 Q15 14 25 19" fill="none" stroke="#78350f" strokeWidth={1.2} opacity={0.8}/>
+        {/* Bedroll on top */}
+        <rect x={8} y={13.5} width={14} height={2.5} rx={1.2} fill="#dc2626"/>
+        <line x1={11} y1={13.5} x2={11} y2={16} stroke="#7f1d1d" strokeWidth={0.5}/>
+        <line x1={19} y1={13.5} x2={19} y2={16} stroke="#7f1d1d" strokeWidth={0.5}/>
+        <g style={s.armL}>
+          <rect x={1.5} y={17} width={5} height={9} rx={2.5} fill="#65a30d"/>
+        </g>
+        <g style={s.armR}>
+          <rect x={23.5} y={17} width={5} height={9} rx={2.5} fill="#65a30d"/>
+          {m !== 'clap' && m !== 'wave' && m !== 'surprise' && (
+            <g transform={m === 'think' ? 'rotate(52 26 23)' : undefined}>
+              {/* Walking stick — gnarled wood */}
+              <path d="M27 4 Q26 8 27.2 12 Q26 18 27.5 24 Q26.5 28 27 30" fill="none" stroke="#78350f" strokeWidth={1.4} strokeLinecap="round"/>
+              <circle cx={26.5} cy={4.5} r={1.3} fill="#92400e"/>
+              <circle cx={26.5} cy={4.5} r={0.5} fill="#451a03"/>
+              <path d="M28 9 L29 8 L28.5 10 Z" fill="#78350f"/>
+            </g>
+          )}
+        </g>
+        {/* Head */}
+        <ellipse cx={15} cy={11} rx={8} ry={8} fill="#84cc16"/>
+        <ellipse cx={15} cy={12.5} rx={6.5} ry={6} fill="#bef264" opacity={0.7}/>
+        {/* Headscarf */}
+        <path d="M5.5 7 Q15 0 24.5 7 L24.5 11 Q15 7.5 5.5 11 Z" fill="#0c4a6e"/>
+        <path d="M22 7 Q26 8 27 14 Q24 11 22 11 Z" fill="#0c4a6e"/>
+        <path d="M5.5 8 L24.5 8" stroke="#075985" strokeWidth={0.4} opacity={0.6}/>
+        {/* Yellow stripe headscarf */}
+        <path d="M6 9.5 L24 9.5" stroke="#fbbf24" strokeWidth={0.6}/>
+        <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11.5} color="#111" bg={sleeping ? '#111' : 'white'}/>
+        {/* Beak */}
+        {/* Beak */}
+        <path d="M13 14.5 L17 14.5 L15 17 Z" fill="#a16207"/>
+        <g style={{
+          transform: 'translateY(-0.25px) scale(0.6)',
+          transformOrigin: '15px 18.5px'
+        }}>
+          <MoodMouth m={m} id={id} cx={15} cy={18.5}
+            smileColor="#451a03" smileWidth={2} smileDepth={1.3} smileStroke={0.8}
+            kissR={1.2} kissCy={17.5}
+            hideOnSleep
+          />
+        </g>
       </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#16a34a"/>
-        <ellipse cx="19" cy="38.5" rx="4" ry="2" fill="#15803d"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#22c55e"/>
-      <rect x="8" y="13" width="14" height="3" rx="1.5" fill="#15803d"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#22c55e"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#22c55e"/>
-      </g>
-      <circle cx="10" cy="3" r="3.5" fill="#22c55e"/>
-      <circle cx="20" cy="3" r="3.5" fill="#22c55e"/>
-      <circle cx="15" cy="11.5" r="10.5" fill="#22c55e"/>
-      <rect x="9" y="9.5" width="12" height="3" rx="1.5" fill="#15803d"/>
-      <Eyes m={m} id={id} blink={blink} lx={10} rx={20} y={3} color="#111" bg="white"/>
-      <ellipse cx="15" cy="15" rx="5" ry="2" fill="#16a34a"/>
-      <ellipse cx="13" cy="14" rx="1" ry="0.7" fill="#1a1a1a"/>
-      <ellipse cx="17" cy="14" rx="1" ry="0.7" fill="#1a1a1a"/>
-      {m !== 'sleep' && <path d="M10.5 16.5 Q15 19 19.5 16.5" fill="none" stroke="#1a1a1a" strokeWidth="1" strokeLinecap="round"/>}
-    </g>
+    </>
   );
 }
 
-
-// 11. OCTOPUS
-function CharOctopus({ s, m, id, blink }) {
+// 9g. RACCOON HACKER (Raton Hackeur)
+function CharRaccoonHacker({ s, m, id, blink }) {
+  const sleeping = m === 'sleep';
+  const visorGlow = sleeping ? '#1f2937' : '#22d3ee';
   return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <path d="M10 30 Q7 33 8 37 Q9 40 11 38 Q13 36 11 33 Q10 31 10 30" fill="#7e22ce"/>
+    <>
+      {/* Cyber grid floor */}
+      <line x1={0} y1={37} x2={30} y2={37} stroke="#22d3ee" strokeWidth={0.4} opacity={0.4}/>
+      <line x1={5} y1={36} x2={25} y2={36} stroke="#22d3ee" strokeWidth={0.3} opacity={0.3}/>
+      {/* Floating code particles */}
+      <text x={2} y={8} fontSize={2.5} fill="#22d3ee" opacity={0.6} fontFamily="monospace">01</text>
+      <text x={26} y={6} fontSize={2.5} fill="#a78bfa" opacity={0.55} fontFamily="monospace">10</text>
+      <text x={28} y={20} fontSize={2.2} fill="#22d3ee" opacity={0.5} fontFamily="monospace">{`{}`}</text>
+      <circle cx={3} cy={20} r={0.5} fill="#22d3ee" opacity={0.6}/>
+      <circle cx={27} cy={26} r={0.5} fill="#a78bfa" opacity={0.5}/>
+      <g style={s.body}>
+        <g style={s.legL}>
+          <rect x={7.5} y={29} width={7} height={9} rx={3} fill="#3f3f46"/>
+          <rect x={7.5} y={35} width={7} height={3} rx={1} fill="#18181b"/>
+        </g>
+        <g style={s.legR}>
+          <rect x={15.5} y={29} width={7} height={9} rx={3} fill="#3f3f46"/>
+          <rect x={15.5} y={35} width={7} height={3} rx={1} fill="#18181b"/>
+        </g>
+        {/* Hoodie body */}
+        <rect x={6} y={16} width={18} height={15} rx={6} fill="#18181b"/>
+        {/* Hoodie pocket */}
+        <path d="M9 23 L21 23 L20 28 L10 28 Z" fill="#27272a"/>
+        <line x1={11} y1={23} x2={11} y2={28} stroke="#0a0a0a" strokeWidth={0.4}/>
+        <line x1={19} y1={23} x2={19} y2={28} stroke="#0a0a0a" strokeWidth={0.4}/>
+        {/* Drawstrings */}
+        <line x1={13} y1={17} x2={13} y2={22} stroke="#71717a" strokeWidth={0.5}/>
+        <line x1={17} y1={17} x2={17} y2={22} stroke="#71717a" strokeWidth={0.5}/>
+        <circle cx={13} cy={22.3} r={0.5} fill="#52525b"/>
+        <circle cx={17} cy={22.3} r={0.5} fill="#52525b"/>
+        <g style={s.armL}>
+          <rect x={1.5} y={17} width={5} height={9} rx={2.5} fill="#18181b"/>
+          <rect x={1.5} y={24} width={5} height={2.5} rx={1} fill="#27272a"/>
+        </g>
+        <g style={s.armR}>
+          <rect x={23.5} y={17} width={5} height={9} rx={2.5} fill="#18181b"/>
+          <rect x={23.5} y={24} width={5} height={2.5} rx={1} fill="#27272a"/>
+          {m !== 'clap' && m !== 'wave' && m !== 'surprise' && (
+            <g transform={m === 'think' ? 'rotate(52 26 23)' : undefined}>
+              {/* Mini laptop */}
+              <rect x={24.5} y={11} width={5} height={3.5} rx={0.4} fill="#3f3f46"/>
+              <rect x={24.7} y={11.2} width={4.6} height={3.1} rx={0.3} fill={visorGlow}/>
+              <rect x={25} y={11.5} width={4} height={0.4} fill="#0a0a0a"/>
+              <rect x={25} y={12.3} width={3} height={0.4} fill="#0a0a0a"/>
+              <rect x={25} y={13.1} width={3.5} height={0.4} fill="#0a0a0a"/>
+              <rect x={24.3} y={14.5} width={5.4} height={0.5} rx={0.2} fill="#52525b"/>
+            </g>
+          )}
+        </g>
+        {/* Pointed raccoon ears (under hood) */}
+        <polygon points="7.5,3 9,-2 12,2" fill="#3f3f46"/>
+        <polygon points="18,2 21,-2 22.5,3" fill="#3f3f46"/>
+        {/* Head — fur grey */}
+        <circle cx={15} cy={11.5} r={10.5} fill="#71717a"/>
+        {/* Hood drape over top of head */}
+        <path d="M3.5 8 Q15 -3 26.5 8 Q24 4 15 4 Q6 4 3.5 8 Z" fill="#0a0a0a"/>
+        <path d="M3.5 8 Q5 13 7 14" fill="#0a0a0a"/>
+        <path d="M26.5 8 Q25 13 23 14" fill="#0a0a0a"/>
+        {/* Face cheeks pale */}
+        <ellipse cx={11} cy={14} rx={3.5} ry={3} fill="#d4d4d8"/>
+        <ellipse cx={19} cy={14} rx={3.5} ry={3} fill="#d4d4d8"/>
+        {/* Cyber visor — replaces eyes when not sleeping/think */}
+        {(m !== 'sleep' && m !== 'think' && m !== 'kiss') ? (
+          <>
+            <rect x={6.5} y={9} width={17} height={4.5} rx={2} fill="#0a0a0a"/>
+            <rect x={7} y={9.5} width={16} height={3.5} rx={1.5} fill={visorGlow} opacity={0.85}/>
+            <rect x={8} y={10.2} width={2.5} height={0.6} fill="#fafafa" opacity={0.9}/>
+            <rect x={19.5} y={11.6} width={2.5} height={0.6} fill="#fafafa" opacity={0.9}/>
+            <rect x={11.5} y={11} width={1.5} height={0.5} fill="#a78bfa" opacity={0.85}/>
+            <rect x={16} y={10.4} width={1.5} height={0.5} fill="#a78bfa" opacity={0.85}/>
+          </>
+        ) : (
+          <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg={sleeping ? '#111' : 'white'}/>
+        )}
+        {/* Snout */}
+        <ellipse cx={15} cy={16} rx={3} ry={2} fill="#e4e4e7"/>
+        <ellipse cx={15} cy={15} rx={1} ry={0.7} fill="#0a0a0a"/>
+        <g style={{
+          transform: 'translateY(-1px) scale(0.8)',
+          transformOrigin: '15px 20px'
+        }}>
+          <MoodMouth m={m} id={id} cx={15} cy={20}
+            smileColor="#0a0a0a" smileWidth={2} smileDepth={1.5} smileStroke={0.8}
+            kissCy={20} kissR={1.2}
+            hideOnSleep
+          />
+        </g>
       </g>
-      <g style={s.legR}>
-        <path d="M20 30 Q23 33 22 37 Q21 40 19 38 Q17 36 19 33 Q20 31 20 30" fill="#7e22ce"/>
-      </g>
-      <rect x="7" y="17" width="16" height="13" rx="6" fill="#7e22ce"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#7e22ce"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#7e22ce"/>
-      </g>
-      <path d="M10 5 Q8 2 11 1 Q12 3 10 5" fill="#a855f7"/>
-      <path d="M14 3 Q13 0 15 0 Q16 2 14 3" fill="#a855f7"/>
-      <path d="M18 4 Q20 1 21 3 Q19 5 18 4" fill="#a855f7"/>
-      <path d="M22 7 Q25 5 25 8 Q23 9 22 7" fill="#a855f7"/>
-      <circle cx="15" cy="11.5" r="10.5" fill="#9333ea"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} r={2.8} color="#111" bg="white"/>
-      <ellipse cx="15" cy="15" rx="2" ry="1.2" fill="#6b21a8"/>
-      <path d="M12.5 16.5 Q15 18.5 17.5 16.5" fill="none" stroke="#6b21a8" strokeWidth="0.9" strokeLinecap="round"/>
-    </g>
+    </>
   );
 }
 
-// 12. CAT
-function CharCat({ s, m, id, blink }) {
+// 9h. SPY PENGUIN (Pingouin Espion)
+function CharSpyPenguin({ s, m, id, blink }) {
+  const sleeping = m === 'sleep';
   return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#fef3c7"/>
+    <>
+      {/* Spotlight beam */}
+      <path d="M15 0 L8 38 L22 38 Z" fill="#fef3c7" opacity={0.06}/>
+      {/* Crosshair reticle */}
+      <circle cx={26} cy={6} r={2.2} fill="none" stroke="#dc2626" strokeWidth={0.5} opacity={0.5}/>
+      <line x1={26} y1={3.5} x2={26} y2={8.5} stroke="#dc2626" strokeWidth={0.4} opacity={0.5}/>
+      <line x1={23.5} y1={6} x2={28.5} y2={6} stroke="#dc2626" strokeWidth={0.4} opacity={0.5}/>
+      <g style={s.body}>
+        <g style={s.legL}>
+          <rect x={8} y={29} width={6} height={5} rx={2} fill="#0a0a0a"/>
+          <ellipse cx={11} cy={36} rx={4.5} ry={1.8} fill="#f59e0b"/>
+        </g>
+        <g style={s.legR}>
+          <rect x={16} y={29} width={6} height={5} rx={2} fill="#0a0a0a"/>
+          <ellipse cx={19} cy={36} rx={4.5} ry={1.8} fill="#f59e0b"/>
+        </g>
+        {/* Body — black tuxedo back */}
+        <ellipse cx={15} cy={22} rx={10} ry={11} fill="#0a0a0a"/>
+        {/* White belly */}
+        <ellipse cx={15} cy={23} rx={6.5} ry={9} fill="#fafafa"/>
+        {/* Tuxedo lapels */}
+        <path d="M10 17 L15 22 L9 22 Z" fill="#0a0a0a"/>
+        <path d="M20 17 L15 22 L21 22 Z" fill="#0a0a0a"/>
+        {/* Bowtie */}
+        <path d="M12 18.5 L15 20 L18 18.5 L18 21 L15 19.5 L12 21 Z" fill="#dc2626"/>
+        <rect x={14.6} y={19.3} width={0.8} height={1.2} fill="#7f1d1d"/>
+        {/* Pocket square */}
+        <rect x={10.5} y={20} width={1.6} height={1.6} fill="#fafafa"/>
+        <path d="M10.7 20 L11.9 20 L11.3 21.5 Z" fill="#dc2626"/>
+        <g style={s.armL}>
+          <ellipse cx={4} cy={21} rx={2.8} ry={5} fill="#0a0a0a"/>
+        </g>
+        <g style={s.armR}>
+          <ellipse cx={26} cy={21} rx={2.8} ry={5} fill="#0a0a0a"/>
+          {m !== 'clap' && m !== 'wave' && m !== 'surprise' && (
+            <g transform={m === 'think' ? 'rotate(52 26 23)' : undefined}>
+              {/* Briefcase */}
+              <rect x={24.2} y={9} width={5.5} height={5} rx={0.5} fill="#451a03"/>
+              <rect x={24.2} y={9.5} width={5.5} height={4} rx={0.4} fill="#78350f"/>
+              <line x1={24.2} y1={11} x2={29.7} y2={11} stroke="#fbbf24" strokeWidth={0.4}/>
+              <rect x={26.5} y={11.5} width={1} height={0.7} rx={0.1} fill="#fbbf24"/>
+              <rect x={26.7} y={7.5} width={0.6} height={1.6} rx={0.2} fill="#451a03"/>
+              <rect x={25.7} y={8.4} width={2.6} height={0.7} rx={0.3} fill="#451a03"/>
+            </g>
+          )}
+        </g>
+        {/* Head */}
+        <circle cx={15} cy={11.5} r={9} fill="#0a0a0a"/>
+        {/* White face mask */}
+        <ellipse cx={15} cy={13} rx={6.5} ry={5.5} fill="#fafafa"/>
+        {/* Fedora hat */}
+        <ellipse cx={15} cy={3.5} rx={11} ry={1.5} fill="#1c1917"/>
+        <path d="M8 -3 L22 -3 L21 3.5 L9 3.5 Z" fill="#1c1917"/>
+        <rect x={8} y={2.5} width={14} height={1.2} fill="#dc2626"/>
+        <rect x={8} y={2.5} width={14} height={0.4} fill="#7f1d1d"/>
+        {/* Sunglasses on always except surprise (lifted) and sleep (closed eyes) */}
+        {sleeping ? (
+          <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="#111"/>
+        ) : m === 'surprise' ? (
+          <>
+            {/* Sunglasses pushed up to forehead */}
+            <rect x={7} y={5.5} width={7} height={2.8} rx={1} fill="#0a0a0a"/>
+            <rect x={16} y={5.5} width={7} height={2.8} rx={1} fill="#0a0a0a"/>
+            <line x1={14} y1={6.9} x2={16} y2={6.9} stroke="#0a0a0a" strokeWidth={1}/>
+            {/* Wide surprised eyes below */}
+            <circle cx={11} cy={11} r={2.3} fill="white"/>
+            <circle cx={19} cy={11} r={2.3} fill="white"/>
+            <circle cx={11} cy={11} r={1.4} fill="#111"/>
+            <circle cx={19} cy={11} r={1.4} fill="#111"/>
+            <circle cx={11.6} cy={10.4} r={0.5} fill="white"/>
+            <circle cx={19.6} cy={10.4} r={0.5} fill="white"/>
+          </>
+        ) : (
+          <>
+            <rect x={7} y={9.5} width={7} height={3.5} rx={1.5} fill="#0a0a0a"/>
+            <rect x={16} y={9.5} width={7} height={3.5} rx={1.5} fill="#0a0a0a"/>
+            <line x1={14} y1={11} x2={16} y2={11} stroke="#0a0a0a" strokeWidth={0.6}/>
+            <rect x={8} y={10} width={2.5} height={1} fill="#fafafa" opacity={0.5}/>
+            <rect x={17} y={10} width={2.5} height={1} fill="#fafafa" opacity={0.5}/>
+          </>
+        )}
+        {/* Earpiece */}
+        <circle cx={23.5} cy={12} r={0.9} fill="#fbbf24"/>
+        <line x1={23.5} y1={12.5} x2={22.5} y2={15} stroke="#a3a3a3" strokeWidth={0.4}/>
+        {/* Beak */}
+        <path d="M13 15 L17 15 L15 18 Z" fill="#f59e0b"/>
+        <g style={{
+          transform: 'translateY(-0.75px) scale(0.6)',
+          transformOrigin: '15px 19px'
+        }}>
+          <MoodMouth m={m} id={id} cx={15} cy={19}
+            smileColor="#451a03" smileWidth={1.5} smileDepth={1} smileStroke={0.7}
+            kissCy={18.5} kissR={1.2}
+            hideOnSleep
+          />
+        </g>
       </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#fef3c7"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#fef3c7"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#fef3c7"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#fef3c7"/>
-      </g>
-      <polygon points="7,8 9,2 12,8" fill="#f97316"/>
-      <polygon points="8.5,7.5 9,3.5 11,7.5" fill="#fde68a"/>
-      <polygon points="18,8 21,2 23,8" fill="#f97316"/>
-      <polygon points="19,7.5 21,3.5 22.5,7.5" fill="#fde68a"/>
-      <circle cx="15" cy="11.5" r="10.5" fill="#fef3c7"/>
-      <rect x="10" y="3" width="10" height="4" rx="2" fill="#292524"/>
-      <rect x="10.5" y="3.2" width="9" height="2" rx="1" fill="#44403c"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="#22c55e"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#92400e"/>
-      <line x1="8" y1="13" x2="13" y2="14" stroke="#78716c" strokeWidth="0.8"/>
-      <line x1="8" y1="15" x2="13" y2="15" stroke="#78716c" strokeWidth="0.8"/>
-      <line x1="17" y1="14" x2="22" y2="13" stroke="#78716c" strokeWidth="0.8"/>
-      <line x1="17" y1="15" x2="22" y2="15" stroke="#78716c" strokeWidth="0.8"/>
-      <Mouth m={m} color="#92400e"/>
-    </g>
+    </>
   );
 }
 
-// 13. DRAGON
 function CharDragon({ s, m, id, blink }) {
   const sleeping  = m === 'sleep';
   const surprised = m === 'surprise';
@@ -1408,22 +1649,26 @@ function CharDragon({ s, m, id, blink }) {
         </>
       ) : (
         <>
-          <circle cx="10.5" cy="10" r="2.8" fill="white"/>
-          <circle cx="19.5" cy="10" r="2.8" fill="white"/>
-          <ellipse cx="10.5" cy="10" rx="1.3" ry="2.1" fill="#fbbf24"/>
-          <ellipse cx="10.5" cy="10" rx="0.65" ry="1.5" fill="#1a1a1a"/>
-          <circle cx="11.2" cy="9.2" r="0.6" fill="white" opacity="0.9"/>
-          <ellipse cx="19.5" cy="10" rx="1.3" ry="2.1" fill="#fbbf24"/>
-          <ellipse cx="19.5" cy="10" rx="0.65" ry="1.5" fill="#1a1a1a"/>
-          <circle cx="20.2" cy="9.2" r="0.6" fill="white" opacity="0.9"/>
+          <g style={{ animation: blink, transformOrigin: '10.5px 10px' }}>
+            <circle cx="10.5" cy="10" r="2.8" fill="white"/>
+            <ellipse cx="10.5" cy="10" rx="1.3" ry="2.1" fill="#fbbf24"/>
+            <ellipse cx="10.5" cy="10" rx="0.65" ry="1.5" fill="#1a1a1a"/>
+            <circle cx="11.2" cy="9.2" r="0.6" fill="white" opacity="0.9"/>
+          </g>
+          <g style={{ animation: blink, transformOrigin: '19.5px 10px' }}>
+            <circle cx="19.5" cy="10" r="2.8" fill="white"/>
+            <ellipse cx="19.5" cy="10" rx="1.3" ry="2.1" fill="#fbbf24"/>
+            <ellipse cx="19.5" cy="10" rx="0.65" ry="1.5" fill="#1a1a1a"/>
+            <circle cx="20.2" cy="9.2" r="0.6" fill="white" opacity="0.9"/>
+          </g>
         </>
       )}
 
       {/* ── Bouche CUSTOM ── */}
       {kissing ? (
-        <circle cx="15" cy="20" r="1.4" fill="#f472b6"/>
+        <KissLips id={id} cx={15} cy={20} r={1.4}/>
       ) : surprised ? (
-        <ellipse cx="15" cy="20.5" rx="2.2" ry="2.8" fill="#1a1a1a"/>
+        <ellipse cx="15" cy="20.3" rx="1.4" ry="1.7" fill="#1a1a1a"/>
       ) : (
         <path d="M 12.5 19.8 Q 15 21.5 17.5 19.8"
           fill="none" stroke="#1a1a1a" strokeWidth="1.1" strokeLinecap="round"/>
@@ -1456,517 +1701,13 @@ function CharDragon({ s, m, id, blink }) {
   );
 }
 
-// 14. UNICORN
-function CharUnicorn({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#f9a8d4"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#c4b5fd"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#f8fafc"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#f9a8d4"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#c4b5fd"/>
-      </g>
-      <polygon points="15,0 13.5,7 16.5,7" fill="#a855f7"/>
-      <line x1="15" y1="0" x2="15" y2="7" stroke="#e879f9" strokeWidth="0.5"/>
-      <rect x="4" y="5" width="3" height="9" rx="1.5" fill="#f472b6"/>
-      <rect x="5" y="5" width="3" height="9" rx="1.5" fill="#818cf8"/>
-      <rect x="6" y="5" width="3" height="9" rx="1.5" fill="#a855f7"/>
-      <circle cx="15" cy="11.5" r="10.5" fill="#f8fafc"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#7c3aed" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#f9a8d4"/>
-      <path d="M12.5 16.2 Q15 18.4 17.5 16.2" fill="none" stroke="#f472b6" strokeWidth="0.9" strokeLinecap="round"/>
-    </g>
-  );
-}
-
-// 15. PHOENIX
-function CharPhoenix({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#f97316"/>
-        <polygon points="8,38 10,40 12,38 14,40 14.5,38" fill="#fbbf24"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#ef4444"/>
-        <polygon points="15.5,38 17,40 19,38 21,40 22.5,38" fill="#fbbf24"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#f97316"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#f97316"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#ef4444"/>
-      </g>
-      <polygon points="11,5 13,0 14,5" fill="#f97316"/>
-      <polygon points="14,4 15,0 16,4" fill="#fde047"/>
-      <polygon points="17,5 19,0 21,5" fill="#ef4444"/>
-      <circle cx="15" cy="11.5" r="10.5" fill="#fb923c"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="#fde047"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#c2410c"/>
-      <Mouth m={m} color="#c2410c"/>
-    </g>
-  );
-}
-
-// 16. KRAKEN
-function CharKraken({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <path d="M10 30 Q6 33 7 37 Q8 40 10 38 Q12 35 10 30" fill="#1e3a5f"/>
-        <circle cx="8" cy="34" r="0.8" fill="#1e40af" opacity="0.7"/>
-        <circle cx="9" cy="37" r="0.8" fill="#1e40af" opacity="0.7"/>
-      </g>
-      <g style={s.legR}>
-        <path d="M20 30 Q24 33 23 37 Q22 40 20 38 Q18 35 20 30" fill="#1e3a5f"/>
-        <circle cx="22" cy="34" r="0.8" fill="#1e40af" opacity="0.7"/>
-        <circle cx="21" cy="37" r="0.8" fill="#1e40af" opacity="0.7"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#1e3a5f"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#1e3a5f"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#1e3a5f"/>
-      </g>
-      <path d="M9 7 Q7 4 9 2 Q10 4 9 7" fill="#1e40af"/>
-      <path d="M13 5 Q11 2 13 1 Q14 3 13 5" fill="#1e40af"/>
-      <path d="M17 5 Q19 2 21 1 Q20 3 17 5" fill="#1e40af"/>
-      <path d="M21 7 Q23 4 21 2 Q20 4 21 7" fill="#1e40af"/>
-      <circle cx="15" cy="11.5" r="10.5" fill="#1e3a5f"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} r={2.5} color="#111" bg="#22d3ee"/>
-      <ellipse cx="15" cy="15" rx="1.5" ry="1" fill="#0c4a6e"/>
-      <Mouth m={m} color="#0c4a6e"/>
-    </g>
-  );
-}
-
-// 17. FAIRY
-function CharFairy({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#f9a8d4"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#f9a8d4"/>
-      </g>
-      <ellipse cx="5" cy="22" rx="3.5" ry="5" fill="#fce7f3" opacity="0.7" transform="rotate(-20 5 22)"/>
-      <ellipse cx="25" cy="22" rx="3.5" ry="5" fill="#fce7f3" opacity="0.7" transform="rotate(20 25 22)"/>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#fce7f3"/>
-      <circle cx="15" cy="18" r="1.5" fill="#f472b6"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#f9a8d4"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#f9a8d4"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#fce7f3"/>
-      <polygon points="8,7 9,4 10,7" fill="#9,4" />
-      <polygon points="8,7 9,4 10,7" fill="#f472b6"/>
-      <polygon points="20,7 21,4 22,7" fill="#f472b6"/>
-      <polygon points="12,5 13,3 14,5" fill="#fb923c"/>
-      <polygon points="16,5 17,3 18,5" fill="#a855f7"/>
-      <circle cx="9.5" cy="8" r="1.5" fill="#fce7f3"/>
-      <circle cx="20.5" cy="8" r="1.5" fill="#fce7f3"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#7c3aed" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="1.2" ry="0.8" fill="#f472b6"/>
-      <circle cx="20" cy="9" r="0.8" fill="#fde047" opacity="0.9"/>
-      <Mouth m={m} color="#be185d"/>
-    </g>
-  );
-}
-
-// 18. MERMAID
-function CharMermaid({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#0d9488"/>
-        <ellipse cx="11" cy="38.5" rx="5" ry="2.5" fill="#0f766e"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#0d9488"/>
-        <ellipse cx="19" cy="38.5" rx="5" ry="2.5" fill="#0f766e"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#0d9488"/>
-      <circle cx="11" cy="19" r="1" fill="#0f766e" opacity="0.5"/>
-      <circle cx="14" cy="21" r="1" fill="#0f766e" opacity="0.5"/>
-      <circle cx="17" cy="20" r="1" fill="#0f766e" opacity="0.5"/>
-      <circle cx="20" cy="22" r="1" fill="#0f766e" opacity="0.5"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#0d9488"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#0d9488"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#2dd4bf"/>
-      <rect x="4" y="4" width="3" height="12" rx="1.5" fill="#0d9488"/>
-      <rect x="5.5" y="4" width="3" height="12" rx="1.5" fill="#0f766e"/>
-      <rect x="7" y="5" width="3" height="11" rx="1.5" fill="#0d9488"/>
-      <circle cx="10" cy="7" r="1" fill="white" opacity="0.8"/>
-      <circle cx="12" cy="5" r="1" fill="white" opacity="0.8"/>
-      <circle cx="14" cy="7" r="1" fill="white" opacity="0.8"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#134e4a"/>
-      <Mouth m={m} color="#134e4a"/>
-    </g>
-  );
-}
-
-// 19. GHOST
-function CharGhost({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <path d="M8 29 Q6 33 8 36 Q9 39 11 37 Q13 35 11 29" fill="#f8fafc" opacity="0.85"/>
-      </g>
-      <g style={s.legR}>
-        <path d="M19 29 Q17 33 19 36 Q20 39 21 37 Q23 35 21 29" fill="#f8fafc" opacity="0.85"/>
-      </g>
-      <path d="M6 22 Q6 16 15 16 Q24 16 24 22 L24 31 Q22 29 20 31 Q18 29 16 31 Q14 29 12 31 Q10 29 8 31 Z" fill="#f8fafc" opacity="0.85"/>
-      <g style={s.armL}>
-        <path d="M1.5 17 Q0 21 2 26 Q4 26 5 22 Q5 18 1.5 17" fill="#f8fafc" opacity="0.85"/>
-      </g>
-      <g style={s.armR}>
-        <path d="M28.5 17 Q30 21 28 26 Q26 26 25 22 Q25 18 28.5 17" fill="#f8fafc" opacity="0.85"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#f8fafc" opacity="0.9"/>
-      <circle cx="11" cy="11" r="2.2" fill="#1e293b"/>
-      <circle cx="19" cy="11" r="2.2" fill="#1e293b"/>
-      <path d="M12.5 15.5 Q15 17.5 17.5 15.5" fill="none" stroke="#94a3b8" strokeWidth="0.9" strokeLinecap="round"/>
-    </g>
-  );
-}
-
-// 20. VAMPIRE
-function CharVampire({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#1e293b"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#1e293b"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#1e293b"/>
-      <polygon points="6,16 15,13 24,16 22,19 15,17 8,19" fill="#1e293b"/>
-      <polygon points="8,19 15,17 22,19 20,22 15,20 10,22" fill="#1e293b"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#1e293b"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#1e293b"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#f1f5f9"/>
-      <rect x="10" y="1" width="10" height="8" rx="3" fill="#1e293b"/>
-      <rect x="10.5" y="1" width="4.5" height="8" rx="2" fill="#0f172a"/>
-      <rect x="14.5" y="1" width="5" height="8" rx="2" fill="#0f172a"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="#ef4444"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#1e293b"/>
-      {m !== 'sleep' && <>
-        <polygon points="13.5,17.5 14.2,16 15,17" fill="white"/>
-        <polygon points="16.5,17.5 15.8,16 15,17" fill="white"/>
-      </>}
-    </g>
-  );
-}
-
-
-// 21. SKELETON
-function CharSkeleton({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#f8fafc"/>
-        <rect x="9" y="31" width="4" height="1.5" rx="0.7" fill="#cbd5e1"/>
-        <rect x="9" y="34" width="4" height="1.5" rx="0.7" fill="#cbd5e1"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#f8fafc"/>
-        <rect x="17" y="31" width="4" height="1.5" rx="0.7" fill="#cbd5e1"/>
-        <rect x="17" y="34" width="4" height="1.5" rx="0.7" fill="#cbd5e1"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#f8fafc"/>
-      <rect x="9" y="18" width="12" height="2" rx="1" fill="#cbd5e1"/>
-      <rect x="9" y="22" width="12" height="2" rx="1" fill="#cbd5e1"/>
-      <rect x="9" y="26" width="12" height="2" rx="1" fill="#cbd5e1"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#f8fafc"/>
-        <rect x="2" y="19" width="4" height="1.2" rx="0.6" fill="#cbd5e1"/>
-        <rect x="2" y="22" width="4" height="1.2" rx="0.6" fill="#cbd5e1"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#f8fafc"/>
-        <rect x="24" y="19" width="4" height="1.2" rx="0.6" fill="#cbd5e1"/>
-        <rect x="24" y="22" width="4" height="1.2" rx="0.6" fill="#cbd5e1"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#f8fafc"/>
-      <rect x="9" y="1" width="12" height="7" rx="2" fill="#1e293b"/>
-      <rect x="10" y="1.5" width="10" height="4" rx="1" fill="#374151"/>
-      <circle cx="12" cy="1.5" r="1" fill="#f8fafc"/>
-      <path d="M10 6 L20 6 L20 7 L10 7 Z" fill="#f8fafc" opacity="0.3"/>
-      <circle cx="11" cy="11" r="3" fill="#1e293b"/>
-      <circle cx="19" cy="11" r="3" fill="#1e293b"/>
-      <rect x="11" y="16" width="8" height="2" rx="1" fill="#1e293b"/>
-      <rect x="12" y="15.5" width="2" height="3" rx="0.5" fill="#1e293b"/>
-      <rect x="15" y="15.5" width="2" height="3" rx="0.5" fill="#1e293b"/>
-    </g>
-  );
-}
-
-// 22. WITCH
-function CharWitch({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#581c87"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#581c87"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#6b21a8"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#6b21a8"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#6b21a8"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#86efac"/>
-      <polygon points="15,0 10,7 20,7" fill="#1a1a1a"/>
-      <rect x="9" y="6.5" width="12" height="3" rx="0.5" fill="#111"/>
-      <polygon points="13,6.5 15,5 17,6.5" fill="#fde047"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="#fbbf24"/>
-      <circle cx="16" cy="14" r="1" fill="#166534"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#15803d"/>
-      <Mouth m={m} color="#166534"/>
-    </g>
-  );
-}
-
-// 23. KNIGHT
-function CharKnight({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#94a3b8"/>
-        <rect x="7" y="35" width="8" height="3.5" rx="1.5" fill="#64748b"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#94a3b8"/>
-        <rect x="15" y="35" width="8" height="3.5" rx="1.5" fill="#64748b"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#94a3b8"/>
-      <rect x="5" y="16" width="5" height="8" rx="2.5" fill="#64748b"/>
-      <rect x="20" y="16" width="5" height="8" rx="2.5" fill="#64748b"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#94a3b8"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#94a3b8"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#cbd5e1"/>
-      <rect x="9" y="2" width="12" height="14" rx="4" fill="#94a3b8"/>
-      <rect x="10" y="8" width="10" height="5" rx="2" fill="#374151"/>
-      <circle cx="15" cy="5" r="2" fill="#38bdf8"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={10} color="#fff" bg="#374151"/>
-      <Mouth m={m} color="#374151"/>
-    </g>
-  );
-}
-
-// 24. ARCHER
-function CharArcher({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#92400e"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#92400e"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#16a34a"/>
-      <rect x="21" y="14" width="3.5" height="10" rx="1.5" fill="#92400e"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#92400e"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#92400e"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#fde68a"/>
-      <path d="M5 3 Q15 1 25 3 Q24 12 15 14 Q6 12 5 3 Z" fill="#15803d" opacity="0.9"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#92400e"/>
-      <Mouth m={m} color="#92400e"/>
-    </g>
-  );
-}
-
-// 25. NINJA
-function CharNinja({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#1e293b"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#1e293b"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#1e293b"/>
-      <polygon points="15,19 17,23 13,23" fill="#475569" opacity="0.7"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#1e293b"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#1e293b"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#1e293b"/>
-      <rect x="5" y="9" width="20" height="6" rx="3" fill="#0f172a"/>
-      <g style={{ animation: blink, transformOrigin: '11px 12px' }}>
-        <ellipse cx="11" cy="12" rx="2.5" ry="2" fill="#22d3ee"/>
-      </g>
-      <g style={{ animation: blink, transformOrigin: '19px 12px' }}>
-        <ellipse cx="19" cy="12" rx="2.5" ry="2" fill="#22d3ee"/>
-      </g>
-    </g>
-  );
-}
-
-// 26. SUPERHERO
-function CharSuperhero({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#1d4ed8"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#1d4ed8"/>
-      </g>
-      <polygon points="6,16 15,11 24,16 26,31 15,35 4,31" fill="#ef4444" opacity="0.9"/>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#1d4ed8"/>
-      <polygon points="15,19 17.5,22.5 15,21 12.5,22.5" fill="#fde047"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#1d4ed8"/>
-        <rect x="1.5" y="22" width="5" height="4" rx="2" fill="#fbbf24"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#1d4ed8"/>
-        <rect x="23.5" y="22" width="5" height="4" rx="2" fill="#fbbf24"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#dbeafe"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#1d4ed8"/>
-      <Mouth m={m} color="#1d4ed8"/>
-    </g>
-  );
-}
-
-// 27. VIKING
-function CharViking({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#92400e"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#92400e"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#78350f"/>
-      <rect x="5" y="15" width="20" height="5" rx="2" fill="#9ca3af"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#92400e"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#92400e"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#fde68a"/>
-      <rect x="8" y="2" width="14" height="8" rx="2" fill="#9ca3af"/>
-      <rect x="8" y="2" width="14" height="4" rx="1" fill="#d1d5db"/>
-      <ellipse cx="6" cy="5" rx="3" ry="2" fill="#e5e7eb" transform="rotate(-15 6 5)"/>
-      <ellipse cx="24" cy="5" rx="3" ry="2" fill="#e5e7eb" transform="rotate(15 24 5)"/>
-      <ellipse cx="5" cy="17" rx="2.5" ry="4" fill="#fde68a"/>
-      <ellipse cx="25" cy="17" rx="2.5" ry="4" fill="#fde68a"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#92400e"/>
-      <Mouth m={m} color="#92400e"/>
-    </g>
-  );
-}
-
-// 28. PIRATE
-function CharPirate({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#1e3a5f"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#1e3a5f"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#1e3a5f"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#1e3a5f"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#1e3a5f"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#fde68a"/>
-      <polygon points="7,8 15,3 23,8 22,10 15,6 8,10" fill="#1a1a1a"/>
-      <rect x="7" y="7.5" width="16" height="3" rx="1" fill="#111"/>
-      <circle cx="15" cy="7.5" r="1.5" fill="#f8fafc"/>
-      <rect x="17" y="9.5" width="6" height="3.5" rx="1.5" fill="#1a1a1a"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={12} color="#111" bg="white"/>
-      <ellipse cx="15" cy="15" rx="1.5" ry="1" fill="#92400e"/>
-      <Mouth m={m} color="#92400e"/>
-    </g>
-  );
-}
-
-// 29. SAMURAI
-function CharSamurai({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#0f766e"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#0f766e"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#0d9488"/>
-      <rect x="7" y="15" width="16" height="4" rx="2" fill="#b45309"/>
-      <rect x="9" y="17" width="12" height="2" rx="1" fill="#fbbf24" opacity="0.7"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#0d9488"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#0d9488"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#fde68a"/>
-      <ellipse cx="15" cy="6" rx="3" ry="5" fill="#1a1a1a"/>
-      <rect x="8" y="8" width="14" height="5" rx="2" fill="#1a1a1a" opacity="0.5"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#92400e"/>
-      <Mouth m={m} color="#92400e"/>
-    </g>
-  );
-}
-
-// 30. ROBOT
-function CharRobot({ s, m, id, blink }) {
+function CharRobot({ s, m, id, blink: _blink }) {
   const sleeping = m === 'sleep';
   const led = sleeping ? '#334155' : '#00e5ff';
   const ledOp = sleeping ? 0.25 : 1;
   return (
-    <g style={s.body}>
-      {/* Halo Radar Sentinelle — anneaux de scan tiretés */}
+    <>
+      {/* Halo Radar Sentinelle — anneaux de scan tiretés (FIXE, hors body) */}
       {!sleeping && <>
         <ellipse cx="15" cy="20" rx="18" ry="22" fill="none" stroke="#20d040" strokeWidth="1.2" strokeDasharray="3 2.5" opacity="0.22"/>
         <ellipse cx="15" cy="20" rx="13.5" ry="16.5" fill="none" stroke="#20d040" strokeWidth="1" strokeDasharray="2.5 2" opacity="0.28"/>
@@ -1983,7 +1724,7 @@ function CharRobot({ s, m, id, blink }) {
         <circle cx="15" cy="42" r="1.2" fill="#20d040" opacity="0.75"/>
         <circle cx="-3" cy="20" r="1.2" fill="#20d040" opacity="0.75"/>
       </>}
-
+    <g style={s.body}>
       {/* Jambe gauche */}
       <g style={s.legL}>
         <rect x="7.5" y="29" width="6.5" height="8.5" rx="1.5" fill="#2d5e8e"/>
@@ -2047,403 +1788,52 @@ function CharRobot({ s, m, id, blink }) {
       <rect x="5" y="7" width="20" height="7.5" rx="2" fill="#001020" opacity="0.92"/>
 
       {/* Yeux LED cyan */}
-      <rect x="6.5" y="8.5" width="5.5" height="2.5" rx="1.2" fill={led} opacity={ledOp}/>
-      <rect x="18" y="8.5" width="5.5" height="2.5" rx="1.2" fill={led} opacity={ledOp}/>
-      {!sleeping && <>
-        <rect x="7" y="8.8" width="2" height="0.9" rx="0.4" fill="white" opacity="0.7"/>
-        <rect x="18.5" y="8.8" width="2" height="0.9" rx="0.4" fill="white" opacity="0.7"/>
-      </>}
+      {(m === 'clap' || m === 'victory') && !sleeping ? (<>
+        {/* Joyful LED arcs — compact, centered on each LED bar */}
+        <path d="M 8 10.5 Q 9.25 9 10.5 10.5" fill="none" stroke={led} strokeWidth="1.4" strokeLinecap="round" opacity={ledOp}/>
+        <path d="M 19.5 10.5 Q 20.75 9 22 10.5" fill="none" stroke={led} strokeWidth="1.4" strokeLinecap="round" opacity={ledOp}/>
+      </>) : m === 'think' && !sleeping ? (<>
+        {/* Hésitation — pupille LED qui scanne de gauche à droite, contenue dans la barre */}
+        <rect x="6.5" y="8.5" width="5.5" height="2.5" rx="1.2" fill="#001020" opacity="0.6"/>
+        <rect x="18" y="8.5" width="5.5" height="2.5" rx="1.2" fill="#001020" opacity="0.6"/>
+        <g style={{ animation: `${id}SharkEyeShift 1.4s ease-in-out infinite` }}>
+          <rect x="7.5" y="8.7" width="2" height="2.1" rx="0.8" fill={led} opacity={ledOp}/>
+          <rect x="7.7" y="8.9" width="0.7" height="0.7" rx="0.3" fill="white" opacity="0.85"/>
+        </g>
+        <g style={{ animation: `${id}SharkEyeShift 1.4s ease-in-out infinite` }}>
+          <rect x="19" y="8.7" width="2" height="2.1" rx="0.8" fill={led} opacity={ledOp}/>
+          <rect x="19.2" y="8.9" width="0.7" height="0.7" rx="0.3" fill="white" opacity="0.85"/>
+        </g>
+      </>) : (<>
+        <rect x="6.5" y="8.5" width="5.5" height="2.5" rx="1.2" fill={led} opacity={ledOp}/>
+        <rect x="18" y="8.5" width="5.5" height="2.5" rx="1.2" fill={led} opacity={ledOp}/>
+        {!sleeping && <>
+          <rect x="7" y="8.8" width="2" height="0.9" rx="0.4" fill="white" opacity="0.7"/>
+          <rect x="18.5" y="8.8" width="2" height="0.9" rx="0.4" fill="white" opacity="0.7"/>
+        </>}
+      </>)}
 
       {/* Bouche : grille de ventilation 5 slots */}
-      <rect x="9.5" y="11.5" width="11" height="2.5" rx="1.2" fill="#001020" opacity="0.9"/>
-      <rect x="10.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
-      <rect x="12.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
-      <rect x="14.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
-      <rect x="16.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
-      <rect x="18.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
+      {m === 'kiss' ? (
+        <KissLips id={id} cx={15} cy={12.7} r={1.6}/>
+      ) : (<>
+        <rect x="9.5" y="11.5" width="11" height="2.5" rx="1.2" fill="#001020" opacity="0.9"/>
+        <rect x="10.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
+        <rect x="12.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
+        <rect x="14.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
+        <rect x="16.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
+        <rect x="18.8" y="12" width="1.2" height="1.5" rx="0.5" fill={led} opacity={sleeping ? 0.15 : 0.75}/>
+      </>)}
     </g>
+    </>
   );
 }
 
 
-// 31. ALIEN
-function CharAlien({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="8" y="29" width="6" height="9" rx="3" fill="#4ade80"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="16" y="29" width="6" height="9" rx="3" fill="#4ade80"/>
-      </g>
-      <rect x="7" y="16" width="16" height="15" rx="6" fill="#4ade80"/>
-      <g style={s.armL}>
-        <rect x="2" y="17" width="4" height="9" rx="2" fill="#4ade80"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="24" y="17" width="4" height="9" rx="2" fill="#4ade80"/>
-      </g>
-      <ellipse cx="15" cy="10" rx="11" ry="13" fill="#4ade80"/>
-      <ellipse cx="10" cy="10" rx="4" ry="3" fill="#111" transform="rotate(-10 10 10)"/>
-      <ellipse cx="20" cy="10" rx="4" ry="3" fill="#111" transform="rotate(10 20 10)"/>
-      <ellipse cx="10" cy="10" rx="2.5" ry="2" fill="#86efac" transform="rotate(-10 10 10)"/>
-      <ellipse cx="20" cy="10" rx="2.5" ry="2" fill="#86efac" transform="rotate(10 20 10)"/>
-      <ellipse cx="15" cy="17" rx="2" ry="0.8" fill="#16a34a"/>
-      <path d="M12 18.5 Q15 20 18 18.5" fill="none" stroke="#16a34a" strokeWidth="0.8"/>
-    </g>
-  );
-}
-
-// 32. ASTRONAUT
-function CharAstronaut({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#f1f5f9"/>
-        <rect x="7.5" y="34" width="7" height="4" rx="2" fill="#cbd5e1"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#f1f5f9"/>
-        <rect x="15.5" y="34" width="7" height="4" rx="2" fill="#cbd5e1"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#f1f5f9"/>
-      <rect x="17" y="18" width="5" height="7" rx="1" fill="#dc2626" opacity="0.8"/>
-      <rect x="18" y="19" width="3" height="2" rx="0.5" fill="#f8fafc"/>
-      <rect x="9" y="19" width="5" height="3" rx="1" fill="#3b82f6" opacity="0.7"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#f1f5f9"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#f1f5f9"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#f1f5f9"/>
-      <circle cx="15" cy="11.5" r="8.5" fill="#1e293b"/>
-      <circle cx="15" cy="11.5" r="7" fill="#0ea5e9" opacity="0.3"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <Mouth m={m} color="white"/>
-    </g>
-  );
-}
-
-// 33. CYBORG
-function CharCyborg({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#fde68a"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#94a3b8"/>
-      </g>
-      <rect x="6" y="16" width="9" height="15" rx="6" fill="#fde68a"/>
-      <rect x="15" y="16" width="9" height="15" rx="6" fill="#94a3b8"/>
-      <line x1="9" y1="20" x2="14" y2="20" stroke="#92400e" strokeWidth="0.7" opacity="0.5"/>
-      <line x1="16" y1="19" x2="21" y2="19" stroke="#22d3ee" strokeWidth="0.7"/>
-      <line x1="16" y1="22" x2="21" y2="22" stroke="#22d3ee" strokeWidth="0.7"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#fde68a"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#94a3b8"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#fde68a"/>
-      <path d="M15 1 L15 22" stroke="#94a3b8" strokeWidth="0.5" opacity="0.5"/>
-      <rect x="15" y="1" width="10.5" height="21" rx="10.5" fill="#94a3b8" opacity="0.5"/>
-      <line x1="16" y1="8" x2="24" y2="8" stroke="#22d3ee" strokeWidth="0.6"/>
-      <line x1="16" y1="11" x2="24" y2="11" stroke="#22d3ee" strokeWidth="0.6"/>
-      <g style={{ animation: blink, transformOrigin: '11px 11px' }}>
-        <circle cx="11" cy="11" r="2.2" fill="white"/>
-        <circle cx="11.4" cy="11.3" r="1.1" fill="#111"/>
-        <circle cx="11.8" cy="10.7" r="0.45" fill="white"/>
-      </g>
-      <g style={{ animation: blink, transformOrigin: '19px 11px' }}>
-        <circle cx="19" cy="11" r="2.2" fill="#22d3ee"/>
-        <circle cx="19.4" cy="11.3" r="1.1" fill="#1e3a5f"/>
-        <circle cx="19.8" cy="10.7" r="0.5" fill="white"/>
-      </g>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#92400e"/>
-      <Mouth m={m} color="#92400e"/>
-    </g>
-  );
-}
-
-// 34. ANDROID
-function CharAndroid({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="2" fill="#bae6fd"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="2" fill="#bae6fd"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#e0f2fe"/>
-      <path d="M9 20 Q11 18 13 20 Q11 22 9 20 Z" fill="#7c3aed" opacity="0.4"/>
-      <path d="M17 20 Q19 18 21 20 Q19 22 17 20 Z" fill="#7c3aed" opacity="0.4"/>
-      <line x1="9" y1="23" x2="21" y2="23" stroke="#7c3aed" strokeWidth="0.7" opacity="0.6"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2" fill="#bae6fd"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2" fill="#bae6fd"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#e0f2fe"/>
-      <line x1="9" y1="7" x2="21" y2="7" stroke="#7c3aed" strokeWidth="0.7" opacity="0.5"/>
-      <line x1="9" y1="10" x2="21" y2="10" stroke="#7c3aed" strokeWidth="0.7" opacity="0.5"/>
-      <line x1="9" y1="13" x2="21" y2="13" stroke="#7c3aed" strokeWidth="0.7" opacity="0.5"/>
-      <g style={{ animation: blink, transformOrigin: '15px 11px' }}>
-        <circle cx="15" cy="11" r="4" fill="#7c3aed"/>
-        <circle cx="15" cy="11" r="2.5" fill="#a855f7"/>
-        <circle cx="15" cy="11" r="1" fill="#f3e8ff"/>
-      </g>
-      <ellipse cx="15" cy="17" rx="2" ry="0.8" fill="#7c3aed" opacity="0.6"/>
-    </g>
-  );
-}
-
-// 35. FIRE
-function CharFire({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#ef4444"/>
-        <polygon points="8,38 10,40 12,38 14,40 14.5,38" fill="#fbbf24"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#dc2626"/>
-        <polygon points="15.5,38 17,40 19,38 21,40 22.5,38" fill="#fbbf24"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#f97316"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#f97316"/>
-        <polygon points="1.5,26 4,28 6.5,26" fill="#fbbf24"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#ef4444"/>
-        <polygon points="23.5,26 26,28 28.5,26" fill="#fbbf24"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#f97316"/>
-      <polygon points="10,6 13,0 14,5 15,1 16,5 17,0 20,6" fill="#fbbf24"/>
-      <polygon points="11,7 13.5,2 15,6 16.5,2 19,7" fill="#fde047"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={12} color="#111" bg="#fde047"/>
-      <ellipse cx="15" cy="15.5" rx="1.5" ry="1" fill="#c2410c"/>
-      <Mouth m={m} color="#c2410c"/>
-    </g>
-  );
-}
-
-// 36. WATER
-function CharWater({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#38bdf8"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#0ea5e9"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#38bdf8"/>
-      <path d="M8 22 Q10 20 12 22 Q14 20 16 22 Q18 20 20 22 Q22 20 24 22" fill="none" stroke="white" strokeWidth="0.8" opacity="0.7"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#38bdf8"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#0ea5e9"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#7dd3fc"/>
-      <circle cx="9" cy="6" r="1.5" fill="#bae6fd" opacity="0.8"/>
-      <circle cx="21" cy="5" r="1" fill="#bae6fd" opacity="0.8"/>
-      <circle cx="7" cy="13" r="1.2" fill="#bae6fd" opacity="0.7"/>
-      <circle cx="23" cy="14" r="0.8" fill="#bae6fd" opacity="0.7"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#0c4a6e" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#0ea5e9"/>
-      <Mouth m={m} color="#0ea5e9"/>
-    </g>
-  );
-}
-
-// 37. THUNDER
-function CharThunder({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#eab308"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#ca8a04"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#fde047"/>
-      <polygon points="13,16 15,19 14,22 17,19 15,22 16,16" fill="#f97316" opacity="0.8"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#fde047"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#eab308"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#fde047"/>
-      <polygon points="13,2 11,7 14,7 12,12 17,5 14,5" fill="#f97316"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={12} color="#111" bg="white"/>
-      <ellipse cx="15" cy="15.5" rx="1.5" ry="1" fill="#92400e"/>
-      <Mouth m={m} color="#92400e"/>
-    </g>
-  );
-}
-
-// 38. ICE
-// 39. WIND
-function CharWind({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#bae6fd" opacity="0.8"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#e0f7ff" opacity="0.8"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#e0f7ff" opacity="0.85"/>
-      <path d="M8 20 Q12 18 16 20 Q20 18 24 20" fill="none" stroke="#7dd3fc" strokeWidth="1" opacity="0.8"/>
-      <path d="M8 24 Q12 22 16 24 Q20 22 24 24" fill="none" stroke="#bae6fd" strokeWidth="0.8" opacity="0.7"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#bae6fd" opacity="0.8"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#e0f7ff" opacity="0.8"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#e0f7ff" opacity="0.9"/>
-      <path d="M8 7 Q12 4 16 7 Q18 5 20 7" fill="none" stroke="#7dd3fc" strokeWidth="1.2"/>
-      <path d="M6 11 Q10 8 14 11" fill="none" stroke="#bae6fd" strokeWidth="1"/>
-      <path d="M16 11 Q20 8 24 11" fill="none" stroke="#bae6fd" strokeWidth="1"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={12} color="#0369a1" bg="white"/>
-      <ellipse cx="15" cy="15.5" rx="1.5" ry="1" fill="#0369a1"/>
-      <Mouth m={m} color="#0369a1"/>
-    </g>
-  );
-}
-
-// 40. EARTH
-function CharEarth({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#92400e"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#78350f"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#92400e"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#92400e"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#78350f"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#b45309"/>
-      <circle cx="9" cy="5" r="2" fill="#16a34a"/>
-      <circle cx="21" cy="6" r="1.5" fill="#16a34a"/>
-      <circle cx="14" cy="3" r="1.2" fill="#15803d"/>
-      <path d="M9 6 L8 8 L7 7 L9 6" fill="#16a34a"/>
-      <path d="M21 7 L20 9 L22 9 L21 7" fill="#16a34a"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="1.8" ry="1.2" fill="#7c2d12"/>
-      <Mouth m={m} color="#7c2d12"/>
-    </g>
-  );
-}
-
-
-// 41. GAMER
-function CharGamer({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#581c87"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#4c1d95"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#6d28d9"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#6d28d9"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#6d28d9"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#e2e8f0"/>
-      <path d="M5 4 Q5 1 15 1 Q25 1 25 4 Q25 16 15 17 Q5 16 5 4 Z" fill="#6d28d9" opacity="0.9"/>
-      <rect x="2" y="8" width="5" height="8" rx="2" fill="#7c3aed"/>
-      <rect x="23" y="8" width="5" height="8" rx="2" fill="#7c3aed"/>
-      <ellipse cx="11" cy="12" rx="2.5" ry="2" fill="#38bdf8" opacity="0.5"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={12} color="#111" bg="white"/>
-      <ellipse cx="15" cy="15.5" rx="1.5" ry="1" fill="#6d28d9"/>
-      <Mouth m={m} color="#6d28d9"/>
-    </g>
-  );
-}
-
-// 42. ROCKSTAR
-function CharRockstar({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#1a1a1a"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#1a1a1a"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#1a1a1a"/>
-      <polygon points="15,18 17,22 13,22" fill="#f472b6" opacity="0.8"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#1a1a1a"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#1a1a1a"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#fde68a"/>
-      <polygon points="12,6 14,0 15,5 16,0 18,6 17,7 15,3 13,7" fill="#f472b6"/>
-      <ellipse cx="10" cy="11" rx="3" ry="1.8" fill="#1a1a1a" opacity="0.85"/>
-      <ellipse cx="20" cy="11" rx="3" ry="1.8" fill="#1a1a1a" opacity="0.85"/>
-      <circle cx="18" cy="8" r="1.5" fill="#fde047"/>
-      <Eyes m={m} id={id} blink={blink} lx={10} rx={20} y={11} r={1.5} color="white" bg="#1a1a1a"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#b45309"/>
-      <Mouth m={m} color="#b45309"/>
-    </g>
-  );
-}
-
-// 43. SURFER
-function CharSurfer({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#0ea5e9"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#0284c7"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#38bdf8"/>
-      <path d="M9 23 Q12 21 15 23 Q18 21 22 23" fill="none" stroke="white" strokeWidth="1" opacity="0.7"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#38bdf8"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#38bdf8"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#d97706"/>
-      <path d="M5 5 Q8 2 11 5 Q12 2 14 4 Q15 2 16 4 Q18 2 20 5 Q22 2 25 5" fill="none" stroke="#b45309" strokeWidth="1.5" strokeLinecap="round"/>
-      <path d="M5 7 Q9 5 13 7 Q15 5 17 7 Q20 5 25 7" fill="none" stroke="#fbbf24" strokeWidth="1" opacity="0.7"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#92400e"/>
-      <path d="M12 16.5 Q15 18.5 18 16.5" fill="none" stroke="#92400e" strokeWidth="0.9" strokeLinecap="round"/>
-    </g>
-  );
-}
-
-// 44. MUSHROOM
-// ── Esprit Champignon (design UX v2 — remplace CharMushroom) ────────────────
 function CharMushroom({ s, m, id, blink }) {
   return (
-    <g style={s.body}>
-      {/* Halo — Couronne de Spores */}
+    <>
+      {/* Halo — Couronne de Spores (FIXE, hors body) */}
       <ellipse cx="15" cy="19" rx="19" ry="15" fill="#e63946" opacity="0.04"/>
       <ellipse cx="15" cy="19" rx="19" ry="15" fill="none" stroke="#e63946" strokeWidth="1.3" opacity="0.28"/>
       <ellipse cx="15" cy="19" rx="15.5" ry="12" fill="none" stroke="#e63946" strokeWidth="0.9" opacity="0.18"/>
@@ -2463,6 +1853,7 @@ function CharMushroom({ s, m, id, blink }) {
       <circle cx="-4" cy="19" r="0.6" fill="white"   opacity="0.6"/>
       <circle cx="2"  cy="8"  r="1.6" fill="#e63946" opacity="0.55"/>
       <circle cx="2"  cy="8"  r="0.7" fill="white"   opacity="0.65"/>
+    <g style={s.body}>
       {/* Jambes */}
       <g style={s.legL}>
         <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#faf7f0"/>
@@ -2506,205 +1897,20 @@ function CharMushroom({ s, m, id, blink }) {
       <circle cx="23"   cy="15"   r="0.7" fill="white" opacity="0.72"/>
       {/* Yeux — bas du dôme */}
       <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={13} />
-      <Mouth m={m} />
+      <Mouth m={m} id={id}/>
     </g>
-  );
-}
-
-// 45. CACTUS
-function CharCactus({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#16a34a"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#15803d"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#16a34a"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#16a34a"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#16a34a"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#22c55e"/>
-      <line x1="8" y1="8" x2="6" y2="6" stroke="#15803d" strokeWidth="1.2" strokeLinecap="round"/>
-      <line x1="9" y1="10" x2="6.5" y2="10" stroke="#15803d" strokeWidth="1.2" strokeLinecap="round"/>
-      <line x1="22" y1="8" x2="24" y2="6" stroke="#15803d" strokeWidth="1.2" strokeLinecap="round"/>
-      <line x1="21" y1="10" x2="23.5" y2="10" stroke="#15803d" strokeWidth="1.2" strokeLinecap="round"/>
-      <line x1="13" y1="4" x2="12" y2="2" stroke="#15803d" strokeWidth="1" strokeLinecap="round"/>
-      <line x1="17" y1="4" x2="18" y2="2" stroke="#15803d" strokeWidth="1" strokeLinecap="round"/>
-      <rect x="10" y="1" width="10" height="4" rx="2" fill="#78350f"/>
-      <rect x="9" y="0.5" width="12" height="2.5" rx="1.2" fill="#92400e"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#15803d"/>
-      <Mouth m={m} color="#15803d"/>
-    </g>
-  );
-}
-
-// 46. PIZZA
-function CharPizza({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#f97316"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#ea580c"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#fef3c7"/>
-      <circle cx="11" cy="20" r="1.5" fill="#ef4444"/>
-      <circle cx="17" cy="21" r="1.5" fill="#ef4444"/>
-      <circle cx="14" cy="25" r="1.5" fill="#ef4444"/>
-      <circle cx="20" cy="24" r="1.5" fill="#16a34a"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#f97316"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#ea580c"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#f97316"/>
-      <circle cx="15" cy="11.5" r="9" fill="#fbbf24"/>
-      <circle cx="15" cy="11.5" r="7" fill="#fef3c7"/>
-      <circle cx="12" cy="9" r="1.5" fill="#ef4444"/>
-      <circle cx="18" cy="10" r="1.5" fill="#ef4444"/>
-      <circle cx="14" cy="13" r="1" fill="#16a34a"/>
-      <circle cx="17" cy="13.5" r="1" fill="#16a34a"/>
-      <circle cx="11.5" cy="12.5" r="0.8" fill="#a16207"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <Mouth m={m} color="#c2410c"/>
-    </g>
-  );
-}
-
-// 47. CLOWN
-function CharClown({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#a855f7"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#f97316"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#fbbf24"/>
-      <path d="M6 15 L8 17 L10 15 L12 17 L14 15 L16 17 L18 15 L20 17 L22 15 L24 17 L24 16 L6 16 Z" fill="#ef4444"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#22c55e"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#3b82f6"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="white"/>
-      <circle cx="8" cy="6" r="3" fill="#f472b6"/>
-      <circle cx="22" cy="5" r="2.5" fill="#fbbf24"/>
-      <circle cx="15" cy="3" r="2.5" fill="#22c55e"/>
-      <circle cx="10" cy="3" r="2" fill="#3b82f6"/>
-      <circle cx="20" cy="3" r="2" fill="#f97316"/>
-      <circle cx="15" cy="13.5" r="2.5" fill="#ef4444"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <path d="M11 16.5 Q15 19.5 19 16.5" fill="none" stroke="#111" strokeWidth="1" strokeLinecap="round"/>
-    </g>
-  );
-}
-
-// 48. STAR
-function CharStar({ s, m, id, blink }) {
-  const starPath = "M15,1 L17.8,9.2 L26.5,9.2 L19.4,14.3 L22.2,22.5 L15,17.4 L7.8,22.5 L10.6,14.3 L3.5,9.2 L12.2,9.2 Z";
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#fbbf24"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#f59e0b"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#fbbf24"/>
-      <polygon points="15,17 16.5,21 20.5,21 17.5,23.5 18.5,27 15,24.5 11.5,27 12.5,23.5 9.5,21 13.5,21" fill="#fde047"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#fbbf24"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#f59e0b"/>
-      </g>
-      <path d={starPath} fill="#fde047" transform="scale(0.45) translate(2,0)"/>
-      <circle cx="15" cy="11.5" r="8" fill="#fbbf24"/>
-      <circle cx="15" cy="11.5" r="7" fill="#fde047"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#111" bg="white"/>
-      <ellipse cx="15" cy="14.5" rx="1.5" ry="1" fill="#d97706"/>
-      <Mouth m={m} color="#d97706"/>
-    </g>
-  );
-}
-
-// 49. MOON
-function CharMoon({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="3" fill="#6366f1"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="3" fill="#4f46e5"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="6" fill="#818cf8"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2.5" fill="#818cf8"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2.5" fill="#6366f1"/>
-      </g>
-      <circle cx="15" cy="11.5" r="10.5" fill="#818cf8"/>
-      <path d="M13 3 Q20 7 18 15 Q14 18 12 16 Q8 12 10 6 Q11 3 13 3 Z" fill="#c7d2fe" opacity="0.9"/>
-      <circle cx="10" cy="7" r="1.5" fill="#e0e7ff" opacity="0.6"/>
-      <circle cx="13" cy="5" r="1" fill="#e0e7ff" opacity="0.7"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={12} color="#111" bg="#e0e7ff"/>
-      <ellipse cx="15" cy="15.5" rx="1.5" ry="1" fill="#3730a3"/>
-      <Mouth m={m} color="#3730a3"/>
-    </g>
-  );
-}
-
-// 50. CRYSTAL
-function CharCrystal({ s, m, id, blink }) {
-  return (
-    <g style={s.body}>
-      <g style={s.legL}>
-        <rect x="7.5" y="29" width="7" height="9" rx="2" fill="#67e8f9"/>
-      </g>
-      <g style={s.legR}>
-        <rect x="15.5" y="29" width="7" height="9" rx="2" fill="#22d3ee"/>
-      </g>
-      <rect x="6" y="16" width="18" height="15" rx="4" fill="#67e8f9"/>
-      <line x1="6" y1="20" x2="24" y2="20" stroke="#a5f3fc" strokeWidth="0.7"/>
-      <line x1="6" y1="24" x2="24" y2="24" stroke="#a5f3fc" strokeWidth="0.7"/>
-      <g style={s.armL}>
-        <rect x="1.5" y="17" width="5" height="9" rx="2" fill="#67e8f9"/>
-      </g>
-      <g style={s.armR}>
-        <rect x="23.5" y="17" width="5" height="9" rx="2" fill="#22d3ee"/>
-      </g>
-      <polygon points="15,1 22,7 22,16 15,22 8,16 8,7" fill="#a5f3fc"/>
-      <polygon points="15,3 21,8 21,15 15,20 9,15 9,8" fill="#67e8f9"/>
-      <line x1="15" y1="3" x2="15" y2="20" stroke="#e0f7ff" strokeWidth="0.6" opacity="0.8"/>
-      <line x1="9" y1="8" x2="21" y2="15" stroke="#e0f7ff" strokeWidth="0.6" opacity="0.8"/>
-      <line x1="21" y1="8" x2="9" y2="15" stroke="#e0f7ff" strokeWidth="0.6" opacity="0.8"/>
-      <Eyes m={m} id={id} blink={blink} lx={11} rx={19} y={11} color="#0e7490" bg="white"/>
-      <ellipse cx="15" cy="15" rx="1.5" ry="1" fill="#0e7490"/>
-      <Mouth m={m} color="#0e7490"/>
-    </g>
+    </>
   );
 }
 
 function CharStormEagle({ s, m, id, blink }) {
   return (
-    <g style={s.body}>
+    <>
       <circle cx="15" cy="18" r="14" fill="none" stroke="#FFD700" strokeWidth="0.8" opacity="0.4" />
       <circle cx="15" cy="18" r="12" fill="none" stroke="#67e8f9" strokeWidth="0.5" opacity="0.3" />
       <path d="M 18 5 L 19.5 10 L 18.5 10 L 20 16 L 17 16 L 19 24" stroke="#FFD700" strokeWidth="1.5" fill="none" opacity="0.8" strokeLinecap="round" />
       <path d="M 18 5 L 19.5 10 L 18.5 10 L 20 16 L 17 16 L 19 24" stroke="#FFED4E" strokeWidth="0.7" fill="none" opacity="0.5" strokeLinecap="round" />
+    <g style={s.body}>
 
       <g style={s.legL}>
         <rect x="7.5" y="29" width="6" height="8" rx="2" fill="#5A3F0C" />
@@ -2731,6 +1937,9 @@ function CharStormEagle({ s, m, id, blink }) {
       <path d="M 12 22 Q 15 21.5 18 22" stroke="#8B6914" strokeWidth="0.6" fill="none" opacity="0.7" />
 
       <g style={s.armL}>
+        {(m === 'clap' || m === 'surprise') ? (
+          <rect x="0" y="14" width="7.5" height="14" rx="2" fill="#8B6914" />
+        ) : (<>
         <rect x="0" y="14" width="7.5" height="14" rx="2" fill="#8B6914" />
         <polygon points="0.5,14 1.2,12.5 2,14" fill="#A0791B" />
         <polygon points="1.8,13.8 2.5,11.8 3.3,13.8" fill="#A0791B" />
@@ -2748,9 +1957,13 @@ function CharStormEagle({ s, m, id, blink }) {
         <polygon points="1,18 1.5,16 2,18" fill="#67e8f9" opacity="0.85" />
         <polygon points="3.5,18 4.2,15.5 5,18" fill="#67e8f9" opacity="0.8" />
         <polygon points="6,24 6.5,21 7.2,24" fill="#67e8f9" opacity="0.85" />
+        </>)}
       </g>
 
       <g style={s.armR}>
+        {(m === 'clap' || m === 'wave' || m === 'surprise') ? (
+          <rect x="22.5" y="14" width="7.5" height="14" rx="2" fill="#8B6914" />
+        ) : (<>
         <rect x="22.5" y="14" width="7.5" height="14" rx="2" fill="#8B6914" />
         <polygon points="29.5,14 28.8,12.5 28,14" fill="#A0791B" />
         <polygon points="28.2,13.8 27.5,11.8 26.7,13.8" fill="#A0791B" />
@@ -2768,6 +1981,7 @@ function CharStormEagle({ s, m, id, blink }) {
         <polygon points="29,18 28.5,16 28,18" fill="#67e8f9" opacity="0.85" />
         <polygon points="26.5,18 25.8,15.5 25,18" fill="#67e8f9" opacity="0.8" />
         <polygon points="24,24 23.5,21 22.8,24" fill="#67e8f9" opacity="0.85" />
+        </>)}
       </g>
 
       <ellipse cx="15" cy="10" rx="8" ry="9" fill="#8B6914" />
@@ -2813,12 +2027,20 @@ function CharStormEagle({ s, m, id, blink }) {
         </g>
       )}
 
-      {m === 'kiss' || m === 'surprise' ? (
-        <polygon points="15,12 13.5,13 15,14.5 16.5,13" fill="#FFB347" stroke="#FF8C00" strokeWidth="0.5" />
-      ) : (
-        <polygon points="15,12 13,13.5 17,13.5" fill="#FFB347" stroke="#FF8C00" strokeWidth="0.5" />
+      <polygon points="15,12 13,13.5 17,13.5" fill="#FFB347" stroke="#FF8C00" strokeWidth="0.5" />
+      {m === 'surprise' && (
+        <g style={{
+          transform: 'translateY(2.75px) scale(1.3)',
+          transformOrigin: '15px 13.5px'
+        }}>
+          <polygon points="15,12 13.5,13 15,14.5 16.5,13" fill="#FFB347" stroke="#FF8C00" strokeWidth="0.5" />
+        </g>
+      )}
+      {m === 'kiss' && (
+        <KissLips id={id} cx={15} cy={15.5} r={1.4}/>
       )}
     </g>
+    </>
   );
 }
 
@@ -2902,14 +2124,24 @@ function CharSharkNinja({ s, m, id, blink }) {
         <path d="M 22.5 24.5 Q 24 25 23.8 26" stroke="#333" strokeWidth="1" fill="none" strokeLinecap="round"/>
 
         {/* Sleeve fins (arms) — pivot at body attachment */}
-        <g style={{ ...s.armL, transformOrigin: '8px 22px',
-          ...(m === 'clap' && { animation: `${id}SharkClapL 0.4s ease-in-out infinite` }) }}>
-          <path d="M 8 22 L 3 23 L 6 27 Z" fill="#1a1a1a" stroke="#000" strokeWidth="1"/>
-        </g>
-        <g style={{ ...s.armR, transformOrigin: '22px 22px',
-          ...(m === 'clap' && { animation: `${id}SharkClapR 0.4s ease-in-out infinite` }) }}>
-          <path d="M 22 22 L 27 23 L 24 27 Z" fill="#1a1a1a" stroke="#000" strokeWidth="1"/>
-        </g>
+        {(m === 'wave' || m === 'surprise') ? (<>
+          {/* Petites nageoires repositionnées au pivot standard (4,18 / 26,18) pour suivre les rotations wave/surprise */}
+          <g style={s.armL}>
+            <path d="M 4 18 L 0 20 L 2 24 Z" fill="#cbd5e1" stroke="#475569" strokeWidth="1"/>
+          </g>
+          <g style={s.armR}>
+            <path d="M 26 18 L 30 20 L 28 24 Z" fill="#cbd5e1" stroke="#475569" strokeWidth="1"/>
+          </g>
+        </>) : (<>
+          <g style={{ ...s.armL, transformOrigin: '8px 22px',
+            ...(m === 'clap' && { animation: `${id}SharkClapL 0.4s ease-in-out infinite` }) }}>
+            <path d="M 8 22 L 3 23 L 6 27 Z" fill="#cbd5e1" stroke="#475569" strokeWidth="1"/>
+          </g>
+          <g style={{ ...s.armR, transformOrigin: '22px 22px',
+            ...(m === 'clap' && { animation: `${id}SharkClapR 0.4s ease-in-out infinite` }) }}>
+            <path d="M 22 22 L 27 23 L 24 27 Z" fill="#cbd5e1" stroke="#475569" strokeWidth="1"/>
+          </g>
+        </>)}
 
         {/* Body dorsal fin */}
         <path d="M 15 17.5 L 12.5 10 L 17.5 10 Z" fill="#1a1a1a" stroke="#000" strokeWidth="0.9"/>
@@ -2918,14 +2150,13 @@ function CharSharkNinja({ s, m, id, blink }) {
         <ellipse cx="15" cy="17.5" rx="9.5" ry="7.5" fill="#607B8B" stroke="#2D4A5C" strokeWidth="1.2"/>
         <ellipse cx="15" cy="19.5" rx="8.5" ry="4.5" fill="#F0F8FF"/>
 
-        {/* Head fin */}
-        <path d="M 15 10 L 13 5 L 17 5 Z" fill="#2D4A5C" stroke="#1a1a1a" strokeWidth="0.8"/>
+        {/* Head fin — points up */}
+        <path d="M 15 4 L 13 10 L 17 10 Z" fill="#2D4A5C" stroke="#1a1a1a" strokeWidth="0.8"/>
 
         {/* Eyes */}
-        {m === 'sleep' ? (<>
-          <path d="M 8.5 14.5 Q 10.5 16 12.5 14.5" fill="none" stroke="#2D4A5C" strokeWidth="1.1" strokeLinecap="round"/>
-          <path d="M 17.5 14.5 Q 19.5 16 21.5 14.5" fill="none" stroke="#2D4A5C" strokeWidth="1.1" strokeLinecap="round"/>
-        </>) : m === 'surprise' ? (<>
+        {m === 'sleep' ? (
+          <SleepEyes lx={10.5} rx={19.5} y={14.5} color="#2D4A5C" strokeWidth={1.1} dx={2}/>
+        ) : m === 'surprise' ? (<>
           {/* Yeux ronds écarquillés */}
           <circle cx="10.5" cy="15.5" r="2.8" fill="white"/>
           <circle cx="19.5" cy="15.5" r="2.8" fill="white"/>
@@ -2933,7 +2164,7 @@ function CharSharkNinja({ s, m, id, blink }) {
           <circle cx="19.5" cy="15.2" r="1.6" fill="#1a1a1a"/>
           <circle cx="11.1" cy="14.7" r="0.55" fill="white"/>
           <circle cx="20.1" cy="14.7" r="0.55" fill="white"/>
-        </>) : m === 'victory' || m === 'cheer' || m === 'clap' ? (<>
+        </>) : m === 'clap' || m === 'victory' ? (<>
           {/* Yeux en arc — joie */}
           <path d="M 8.5 15.8 Q 10.5 13.5 12.5 15.8" fill="none" stroke="#2D4A5C" strokeWidth="1.3" strokeLinecap="round"/>
           <path d="M 17.5 15.8 Q 19.5 13.5 21.5 15.8" fill="none" stroke="#2D4A5C" strokeWidth="1.3" strokeLinecap="round"/>
@@ -2960,11 +2191,11 @@ function CharSharkNinja({ s, m, id, blink }) {
 
         {/* Mouth */}
         {m === 'kiss' ? (
-          <circle cx="15" cy="20.8" r="1.2" fill="#ff7eb3" stroke="#e05a9a" strokeWidth="0.5"/>
+          <KissLips id={id} cx={15} cy={20.8} r={1.2} fill="#ff7eb3" stroke="#e05a9a" strokeWidth={0.5}/>
         ) : m === 'surprise' ? (
           /* Bouche "O" arrondie — choc */
           <ellipse cx="15" cy="20.5" rx="2" ry="1.8" fill="#1a1a1a" stroke="#2D4A5C" strokeWidth="0.5"/>
-        ) : m === 'victory' || m === 'cheer' || m === 'clap' ? (
+        ) : m === 'clap' || m === 'victory' ? (
           /* Grand sourire arc */
           <path d="M 11.5 19.5 Q 15 22.5 18.5 19.5" fill="none" stroke="#1a1a1a" strokeWidth="1.3" strokeLinecap="round"/>
         ) : (
@@ -2985,14 +2216,15 @@ function CharSharkNinja({ s, m, id, blink }) {
 // ── Cosmonaute Intrépide ─────────────────────────────────────────────────────
 function CharCosmo({ s, m, id, blink }) {
   return (
-    <g style={s.body}>
-      {/* Traînée cométaire (halo) */}
+    <>
+      {/* Traînée cométaire (halo, FIXE hors body) */}
       <path d="M-3 44 Q4 33 13 21" fill="none" stroke="#0284c7" strokeWidth="4.5" opacity="0.12" strokeLinecap="round"/>
       <path d="M-3 44 Q4 33 13 21" fill="none" stroke="#38bdf8" strokeWidth="2.5" opacity="0.22" strokeLinecap="round"/>
       <path d="M-3 44 Q4 33 13 21" fill="none" stroke="#bae6fd" strokeWidth="1.2" opacity="0.45" strokeLinecap="round"/>
       <circle cx="2"  cy="40" r="0.8" fill="#7dd3fc" opacity="0.7"/>
       <circle cx="5"  cy="35" r="0.7" fill="#bae6fd" opacity="0.6"/>
       <circle cx="9"  cy="29" r="0.6" fill="#38bdf8" opacity="0.65"/>
+    <g style={s.body}>
       {/* Jambe gauche */}
       <g style={s.legL}>
         <rect x="7"   y="29" width="7.5" height="9"   rx="3"   fill="#f0f9ff"/>
@@ -3027,10 +2259,14 @@ function CharCosmo({ s, m, id, blink }) {
       {/* Bras droit + drapeau */}
       <g style={s.armR}>
         <rect x="24" y="17" width="6" height="10" rx="3" fill="#f0f9ff"/>
-        <rect x="26.3" y="10" width="1.6" height="16" rx="0.8" fill="#0284c7"/>
-        <rect x="27.9" y="10"  width="8"  height="5.5" rx="1"   fill="#0284c7"/>
-        <rect x="28.5" y="10.6" width="7" height="4.3" rx="0.6" fill="#38bdf8"/>
-        <circle cx="32" cy="12.7" r="1.4" fill="#f0faff"/>
+        {m !== 'clap' && m !== 'wave' && m !== 'surprise' && (
+          <g transform={m === 'think' ? 'rotate(52 27 22)' : undefined}>
+            <rect x="26.3" y="10" width="1.6" height="16" rx="0.8" fill="#0284c7"/>
+            <rect x="27.9" y="10"  width="8"  height="5.5" rx="1"   fill="#0284c7"/>
+            <rect x="28.5" y="10.6" width="7" height="4.3" rx="0.6" fill="#38bdf8"/>
+            <circle cx="32" cy="12.7" r="1.4" fill="#f0faff"/>
+          </g>
+        )}
         <rect x="24" y="23"   width="6" height="1.8" rx="0.8" fill="#0ea5e9" opacity="0.9"/>
         <rect x="24" y="24.5" width="6" height="3.5" rx="2.5" fill="#075985"/>
       </g>
@@ -3046,14 +2282,13 @@ function CharCosmo({ s, m, id, blink }) {
       <circle cx="10.5" cy="14.2" r="2" fill="#fca5a5" opacity="0.7"/>
       <circle cx="19.5" cy="14.2" r="2" fill="#fca5a5" opacity="0.7"/>
       {/* Yeux dans la visière */}
-      <Eyes m={m} id={id} blink={blink} lx={12} rx={18} y={11} r={1.8} color="#1a1a2e" bg="white"/>
+      <Eyes m={m} id={id} blink={blink} lx={12} rx={18} y={11} r={1.8} color="#1a1a2e" bg={m === 'sleep' ? '#111' : 'white'}/>
       {/* Bouche (repositionnée dans le casque) */}
-      {m === 'kiss'
-        ? <circle cx="15" cy="14.5" r="1.4" fill="#f472b6"/>
-        : m === 'surprise'
-          ? <ellipse cx="15" cy="14.8" rx="1.8" ry="2.1" fill="#1a1a2e"/>
-          : <path d="M12.5 14.5 Q15 16.5 17.5 14.5" fill="none" stroke="#b45309" strokeWidth="1" strokeLinecap="round"/>
-      }
+      <MoodMouth m={m} id={id} cx={15} cy={16.5}
+        smileColor="#b45309" smileWidth={2.5} smileDepth={2} smileStroke={1}
+        surpriseColor="#1a1a2e" surpriseRx={1.8} surpriseRy={2.1} surpriseDy={-1.7}
+        kissCy={14.5} kissR={1.4}
+      />
       {/* Antenne (avant-plan) */}
       <rect x="19" y="-8" width="1.3" height="9" rx="0.6" fill="#0284c7"/>
       <circle cx="19.6" cy="-8.5" r="1.3" fill="#7dd3fc"/>
@@ -3062,64 +2297,29 @@ function CharCosmo({ s, m, id, blink }) {
       <path d="M23 -4.5 Q25 -6.5 23 -8.5"  fill="none" stroke="#38bdf8" strokeWidth="0.8" opacity="0.4" strokeLinecap="round"/>
       <ellipse cx="13" cy="8" rx="2.2" ry="1.2" fill="white" opacity="0.4"/>
     </g>
+    </>
   );
 }
 
+// ─── CHARS MAP (17 production characters) ────────────────────────────────────
 const CHARS = {
-  panda:      CharPanda,
-  fox:        CharFox,
-  wolf:       CharWolf,
-  tiger:      CharTiger,
-  lion:       CharLion,
-  eagle:      CharEagle,
-  stormEagle: CharStormEagle,
-  bear:       CharBear,
-  shark:      CharSharkNinja,
-  owl:        CharOwl,
-  owlWitch:   CharOwlWitch,
-  catDetective: CharCatDetective,
-  frog:       CharFrog,
-  octopus:    CharOctopus,
-  cat:        CharCat,
-  dragon:     CharDragon,
-  sharkNinja: CharSharkNinja,
-  unicorn:    CharUnicorn,
-  phoenix:    CharPhoenix,
-  kraken:     CharKraken,
-  fairy:      CharFairy,
-  mermaid:    CharMermaid,
-  ghost:      CharGhost,
-  vampire:    CharVampire,
-  skeleton:   CharSkeleton,
-  witch:      CharWitch,
-  knight:     CharKnight,
-  archer:     CharArcher,
-  ninja:      CharNinja,
-  superhero:  CharSuperhero,
-  viking:     CharViking,
-  pirate:     CharPirate,
-  samurai:    CharSamurai,
-  robot:      CharRobot,
-  alien:      CharAlien,
-  astronaut:  CharAstronaut,
-  cyborg:     CharCyborg,
-  android:    CharAndroid,
-  fire:       CharFire,
-  water:      CharWater,
-  thunder:    CharThunder,
-  wind:       CharWind,
-  earth:      CharEarth,
-  gamer:      CharGamer,
-  rockstar:   CharRockstar,
-  surfer:     CharSurfer,
-  mushroom:   CharMushroom,
-  cosmo:      CharCosmo,
-  cactus:     CharCactus,
-  pizza:      CharPizza,
-  clown:      CharClown,
-  star:       CharStar,
-  moon:       CharMoon,
-  crystal:    CharCrystal,
+  panda:         CharPanda,
+  fox:           CharFox,
+  wolf:          CharWolf,
+  tiger:         CharTiger,
+  lion:          CharLion,
+  stormEagle:    CharStormEagle,
+  bear:          CharBear,
+  sharkNinja:    CharSharkNinja,
+  owlWitch:      CharOwlWitch,
+  catDetective:  CharCatDetective,
+  turtleNomad:   CharTurtleNomad,
+  raccoonHacker: CharRaccoonHacker,
+  spyPenguin:    CharSpyPenguin,
+  dragon:        CharDragon,
+  cosmo:         CharCosmo,
+  mushroom:      CharMushroom,
+  robot:         CharRobot,
 };
 
 // ─── MAIN EXPORT ─────────────────────────────────────────────────────────────

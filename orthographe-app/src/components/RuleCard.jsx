@@ -59,18 +59,11 @@ function getRuleLevel(ruleProgress) {
 function sessionSize() {
   try { return window.__ORTHO_SESSION_SIZE__ || 20; } catch { return 20; }
 }
-function scoreLabel(pct) {
-  const n = sessionSize();
-  return `${Math.ceil(n * pct / 100)}/${n}`;
-}
-
 function getLevelProgress(level, rp) {
   if (!rp) return { fraction: '0/1', pct: 0, desc: 'Complète 1 session guidée' };
 
   const guidedAbove80 = rp.guidedSessionsAbove80 || 0;
-  const guidedBest = rp.guidedBestScore || 0;
   const directAbove80 = rp.directSessionsAbove80 || 0;
-  const directBest = rp.directBestScore || 0;
   const directAbove90 = rp.directConsecutiveAbove90 || rp.directPerfectStreak || 0;
 
   const n = sessionSize();

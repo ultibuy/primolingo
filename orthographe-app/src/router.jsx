@@ -5,6 +5,7 @@ import LoginPage from './pages/LoginPage.jsx';
 import ParentDashboard from './pages/ParentDashboard.jsx';
 import ChildSetup from './pages/ChildSetup.jsx';
 import ChildApp from './pages/ChildApp.jsx';
+import LegalPage from './pages/LegalPage.jsx';
 
 // ProtectedRoute: redirects to /login if not authenticated
 function ProtectedRoute({ children }) {
@@ -22,6 +23,7 @@ function PublicOnlyRoute({ children }) {
 
 export { ProtectedRoute, PublicOnlyRoute };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -66,6 +68,10 @@ export const router = createBrowserRouter([
         <ChildApp />
       </ProtectedRoute>
     ),
+  },
+  {
+    path: '/legal',
+    element: <LegalPage />,
   },
   {
     path: '*',

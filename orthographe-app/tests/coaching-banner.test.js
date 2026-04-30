@@ -169,12 +169,12 @@ describe('7.3.1 getOwnedShopEmotions', () => {
 // ---------------------------------------------------------------------------
 // 7.3.1 — Daily cap check
 // ---------------------------------------------------------------------------
-describe('7.3.1 daily cap blocks at 4', () => {
+describe('7.3.1 daily cap removed — no longer blocks', () => {
   const coaching = createDefaultCoaching();
   coaching.dailyShownCount = { date: TODAY, count: 4 };
   const ctx = makeCtx({ coaching });
   const result = pickCoachingMessage(ctx);
-  assertEqual(result, null, 'returns null when cap reached');
+  assert(result !== null, 'cap removed — still returns a message');
 });
 
 // ---------------------------------------------------------------------------
@@ -317,7 +317,7 @@ describe('7.3.3 arc1.1 takes priority over arc5.1', () => {
 // ---------------------------------------------------------------------------
 // 7.3.4 — Recurring arc cooldown
 // ---------------------------------------------------------------------------
-describe('7.3.4 arc5.8 respects 24h cooldown', () => {
+describe('7.3.4 arc5.8 24h cooldown removed — can repeat same day', () => {
   const coaching = createDefaultCoaching();
   coaching.shown['arc1.1'] = TODAY;
   coaching.shown['arc1.3'] = TODAY;
@@ -329,7 +329,8 @@ describe('7.3.4 arc5.8 respects 24h cooldown', () => {
   });
   const ctx = { trigger: 'dashboard', progress, rules: makeRules(), todayStr: TODAY, hour: 18 };
   const result = pickCoachingMessage(ctx);
-  assert(result?.arcId !== 'arc5.8', 'arc5.8 blocked by 24h cooldown');
+  // 24h cooldown was removed — arc5.8 should still fire (or another arc takes priority)
+  assert(result !== null, 'cooldown removed — a message is returned');
 });
 
 // ---------------------------------------------------------------------------

@@ -1163,7 +1163,7 @@ export default function LandingPage() {
         <div style={css.sectionLabel}>Pour les parents</div>
         <h2 style={css.sectionTitle}>Suivez ses progrès sans regarder par-dessus son épaule</h2>
         <p style={css.sectionSubtitle}>
-          Un espace parent séparé, protégé par un code envoyé par email.
+          Un espace parent séparé, protégé par un code PIN à 4 chiffres.
           Votre enfant joue en autonomie, vous gardez un œil sur sa progression.
         </p>
 
@@ -1198,8 +1198,8 @@ export default function LandingPage() {
                 <div>
                   <div style={{ fontWeight: 700, fontSize: 16 }}>Accès sécurisé</div>
                   <div style={{ fontSize: 14, color: T.textLight }}>
-                    L'espace parent est protégé par un code temporaire envoyé sur votre email.
-                    Votre enfant ne peut pas modifier les réglages.
+                    L'espace parent est protégé par votre connexion Google.
+                    Un code PIN empêche votre enfant de tricher sur sa flamme.
                   </div>
                 </div>
               </div>
@@ -1297,6 +1297,11 @@ export default function LandingPage() {
       {/* ─── FOOTER ─── */}
       <footer style={css.footer}>
         <p>Fait avec ❤️ pour les enfants qui veulent dompter l'orthographe</p>
+        <p style={{ marginTop: 8 }}>
+          <a href="/legal" style={{ color: T.textSubtle, textDecoration: 'none', borderBottom: `1px solid ${T.glassBorder}` }}>
+            Mentions légales & Confidentialité
+          </a>
+        </p>
         <p style={{ marginTop: 4 }}>© 2026 GramHero</p>
       </footer>
     </div>

@@ -1,8 +1,13 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GoogleAuthProvider, reauthenticateWithPopup } from 'firebase/auth';
 import { useAuth } from '../contexts/AuthContext.jsx';
+import { auth } from '../firebase.js';
 import CoinIcon from '../components/CoinIcon.jsx';
-import { listChildren } from '../services/store.js';
+import PinInput from '../components/PinInput.jsx';
+import PopupModal from '../components/PopupModal.jsx';
+import { hashPin } from '../services/pin-crypto.js';
+import { listChildren, loadParentalPin, saveParentalPin } from '../services/store.js';
 import {
   loadParentImages,
   saveParentImages,
@@ -381,7 +386,8 @@ function ChildCard({ child, uid, parentImages }) {
 
       {/* Play button */}
       <button type="button" onClick={() => navigate(`/play/${child.id}`)} style={playBtnStyle}>
-        ▶ Jouer
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: 6, verticalAlign: '-2px' }}><path d="M6 4l15 8-15 8V4z"/></svg>
+        Jouer
       </button>
     </div>
   );
@@ -396,6 +402,13 @@ export default function ParentDashboard() {
   const [loading, setLoading] = useState(true);
   const [parentImages, setParentImages] = useState([]);
   const [libOpen, setLibOpen] = useState(false);
+  const [pin, setPin] = useState(undefined); // undefined = loading, null = not set, string = set
+  const [showPinSetup, setShowPinSetup] = useState(false);
+  const [showPinManage, setShowPinManage] = useState(false);
+  const [pinSetupStep, setPinSetupStep] = useState(1); // 1 = enter, 2 = confirm
+  const [pinDraft, setPinDraft] = useState('');
+  const [pinError, setPinError] = useState('');
+  const [reauthError, setReauthError] = useState('');
 
   useEffect(() => {
     if (!user?.uid) return;
@@ -412,9 +425,54 @@ export default function ParentDashboard() {
     loadParentImages(user.uid).then(setParentImages);
   }, [user?.uid]);
 
+  // Load parental PIN
+  useEffect(() => {
+    if (!user?.uid) return;
+    loadParentalPin(user.uid).then(p => {
+      setPin(p);
+      if (!p) setShowPinSetup(true);
+    });
+  }, [user?.uid]);
+
   // Refresh parent images after upload (passed as callback to ImageLibrary)
   const refreshParentImages = useCallback(() => {
     loadParentImages(user?.uid).then(setParentImages);
+  }, [user?.uid]);
+
+  // eslint-disable-next-line react-hooks/preserve-manual-memoization
+  const handlePinSave = useCallback(async (newPin) => {
+    if (!user?.uid) return;
+    const pinData = await hashPin(newPin);
+    await saveParentalPin(user.uid, pinData);
+    setPin(pinData);
+    setShowPinSetup(false);
+    setShowPinManage(false);
+    setPinSetupStep(1);
+    setPinDraft('');
+    setPinError('');
+  }, [user?.uid]);
+
+  const handlePinManageClick = useCallback(async () => {
+    setReauthError('');
+    // On localhost dev, skip reauthentication
+    if (user?.uid === 'localhost-dev') {
+      setShowPinManage(true);
+      setPinSetupStep(1);
+      setPinDraft('');
+      setPinError('');
+      return;
+    }
+    try {
+      await reauthenticateWithPopup(auth.currentUser, new GoogleAuthProvider());
+      setShowPinManage(true);
+      setPinSetupStep(1);
+      setPinDraft('');
+      setPinError('');
+    } catch (err) {
+      if (err.code !== 'auth/popup-closed-by-user') {
+        setReauthError('Reconnexion échouée. Réessayez.');
+      }
+    }
   }, [user?.uid]);
 
   async function handleSignOut() {
@@ -422,8 +480,97 @@ export default function ParentDashboard() {
     navigate('/');
   }
 
+  // PIN setup/manage modal renderer
+  const renderPinModal = (isSetup) => {
+    const title = isSetup ? 'Définissez votre code parental' : 'Code parental';
+    const subtitle = isSetup
+      ? 'Ce code à 4 chiffres sera demandé à votre enfant pour récupérer sa flamme après une absence.'
+      : null;
+    const closePinModal = isSetup
+      ? undefined
+      : () => { setShowPinManage(false); setPinSetupStep(1); setPinDraft(''); setPinError(''); };
+    return (
+      <PopupModal
+        onClose={closePinModal}
+        closeOnBackdrop={!isSetup}
+        showClose={!isSetup}
+        panelStyle={{
+          background: 'linear-gradient(180deg, #1e1e2e, #2d2b55)',
+          borderRadius: 22,
+          padding: '2rem 1.8rem',
+          maxWidth: 360,
+          width: '90%',
+          border: '1px solid rgba(255,255,255,0.1)',
+          textAlign: 'center',
+        }}
+      >
+          <div style={{ fontSize: '2.2rem', marginBottom: '0.6rem' }}>🔒</div>
+          <h2 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#e2e2e2', marginBottom: '0.3rem' }}>{title}</h2>
+          {subtitle && <p style={{ fontSize: '0.85rem', color: '#9ca3af', marginBottom: '1.2rem', lineHeight: 1.5 }}>{subtitle}</p>}
+
+          {!isSetup && pinSetupStep === 1 && (
+            <div style={{ marginBottom: '1rem' }}>
+              <p style={{ fontSize: '0.85rem', color: '#9ca3af', marginBottom: '0.5rem' }}>Votre code est défini.</p>
+              <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#a78bfa', letterSpacing: '0.3em', marginBottom: '1rem' }}>• • • •</div>
+              <button
+                type="button"
+                onClick={() => { setPinSetupStep(2); setPinDraft(''); setPinError(''); }}
+                style={{ padding: '0.5rem 1.2rem', borderRadius: 10, border: '1px solid rgba(167,139,250,0.4)', background: 'rgba(167,139,250,0.12)', color: '#a78bfa', fontSize: '0.85rem', fontWeight: 700, cursor: 'pointer' }}
+              >
+                Modifier
+              </button>
+            </div>
+          )}
+
+          {(isSetup || pinSetupStep >= 2) && (
+            <>
+              <p style={{ fontSize: '0.88rem', color: '#cbd5e1', marginBottom: '0.8rem', fontWeight: 600 }}>
+                {pinSetupStep === 1 ? 'Choisissez un code à 4 chiffres' : pinSetupStep === 2 ? 'Choisissez un nouveau code' : 'Confirmez le code'}
+              </p>
+              <PinInput
+                key={pinSetupStep}
+                masked={false}
+                onComplete={(val) => {
+                  if (pinSetupStep <= 2) {
+                    setPinDraft(val);
+                    setPinSetupStep(3);
+                    setPinError('');
+                  } else {
+                    if (val === pinDraft) {
+                      handlePinSave(val);
+                    } else {
+                      setPinError('Les codes ne correspondent pas.');
+                      setPinSetupStep(isSetup ? 1 : 2);
+                      setPinDraft('');
+                    }
+                  }
+                }}
+                error={pinError}
+              />
+            </>
+          )}
+
+          {!isSetup && (
+            <button
+              type="button"
+              onClick={() => { setShowPinManage(false); setPinSetupStep(1); setPinDraft(''); setPinError(''); }}
+              style={{ marginTop: '1rem', padding: '0.5rem 1.2rem', borderRadius: 10, border: '1px solid rgba(255,255,255,0.12)', background: 'transparent', color: '#9ca3af', fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer' }}
+            >
+              Fermer
+            </button>
+          )}
+      </PopupModal>
+    );
+  };
+
   return (
     <div style={containerStyle}>
+      {/* PIN setup modal (blocking) */}
+      {showPinSetup && renderPinModal(true)}
+
+      {/* PIN manage modal (after re-auth) */}
+      {showPinManage && renderPinModal(false)}
+
       {/* Header */}
       <div style={headerStyle}>
         <div>
@@ -433,7 +580,15 @@ export default function ParentDashboard() {
           </div>
           <p style={welcomeStyle}>Bonjour, {user?.displayName?.split(' ')[0] || 'parent'} 👋</p>
         </div>
-        <button type="button" onClick={handleSignOut} style={logoutBtnStyle}>Déconnexion</button>
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          {pin && (
+            <button type="button" onClick={handlePinManageClick} style={{ ...logoutBtnStyle, color: '#a78bfa', borderColor: 'rgba(167,139,250,0.3)' }}>
+              🔒 Code
+            </button>
+          )}
+          {reauthError && <span style={{ fontSize: '0.75rem', color: '#f87171' }}>{reauthError}</span>}
+          <button type="button" onClick={handleSignOut} style={logoutBtnStyle}>Déconnexion</button>
+        </div>
       </div>
 
       {/* Content */}
@@ -455,7 +610,7 @@ export default function ParentDashboard() {
         {/* Children section */}
         <div style={sectionHeaderStyle}>
           <h2 style={sectionTitleStyle}>Mes enfants</h2>
-          <button type="button" onClick={() => navigate('/parent/child/new')} style={addBtnStyle}>
+          <button type="button" onClick={() => pin ? navigate('/parent/child/new') : setShowPinSetup(true)} style={{ ...addBtnStyle, opacity: pin ? 1 : 0.5 }}>
             + Ajouter un enfant
           </button>
         </div>

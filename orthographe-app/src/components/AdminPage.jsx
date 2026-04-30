@@ -30,6 +30,7 @@ export default function AdminPage({
   const [mysteryDraft, setMysteryDraft] = useState(createEmptyDraft);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setForm({
       prodQuestionCount: String(settings?.prodQuestionCount || 20),
       customMysteryImages: settings?.customMysteryImages || [],
@@ -437,12 +438,6 @@ const backLinkStyle = {
   color: 'var(--color-accent)',
 };
 
-const debugLinkStyle = {
-  ...linkBaseStyle,
-  background: 'rgba(var(--color-accent-rgb),0.12)',
-  border: '1px solid rgba(var(--color-accent-rgb),0.2)',
-  color: 'var(--color-accent)',
-};
 
 const stepBoxStyle = {
   background: 'rgba(0,0,0,0.18)',

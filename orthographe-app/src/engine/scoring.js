@@ -493,6 +493,18 @@ export function processSessionResult(next, rp, {
     }
   }
 
+  // ── 4b. Daily activity counter ────────────────────────────────────────
+  if (!next.dailyActivity) next.dailyActivity = { date: null, count: 0, yesterdayCount: 0, bestDaily: 0 };
+  if (next.dailyActivity.date !== today) {
+    next.dailyActivity.yesterdayCount = next.dailyActivity.date ? next.dailyActivity.count : 0;
+    next.dailyActivity.date = today;
+    next.dailyActivity.count = 0;
+  }
+  next.dailyActivity.count += 1;
+  if (next.dailyActivity.count > next.dailyActivity.bestDaily) {
+    next.dailyActivity.bestDaily = next.dailyActivity.count;
+  }
+
   // ── 5. Milestones ───────────────────────────────────────────────────────
   if (!next.milestones) {
     next.milestones = {

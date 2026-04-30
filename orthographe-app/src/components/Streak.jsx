@@ -1,8 +1,6 @@
-import { getStreakInfo } from '../engine/scoring.js';
 import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 
 export default function Streak({ streak, shields, flameId = null }) {
-  const info = getStreakInfo(streak);
   if (!streak || streak.current === 0) return null;
 
   return (

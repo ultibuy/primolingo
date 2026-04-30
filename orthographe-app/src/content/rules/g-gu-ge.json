@@ -113,6 +113,582 @@
   },
   "questions": [
     {
+      "id": "r1-01",
+      "round": 1,
+      "syllable": "ga",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-02",
+      "round": 1,
+      "syllable": "gi",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-03",
+      "round": 1,
+      "syllable": "go",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-04",
+      "round": 1,
+      "syllable": "ge",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-05",
+      "round": 1,
+      "syllable": "gu",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-06",
+      "round": 1,
+      "syllable": "ge",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-07",
+      "round": 1,
+      "syllable": "ga",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-08",
+      "round": 1,
+      "syllable": "gi",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-09",
+      "round": 1,
+      "syllable": "go",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-10",
+      "round": 1,
+      "syllable": "gi",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-11",
+      "round": 1,
+      "syllable": "gu",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-12",
+      "round": 1,
+      "syllable": "ge",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-13",
+      "round": 1,
+      "syllable": "ga",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-14",
+      "round": 1,
+      "syllable": "gi",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-15",
+      "round": 1,
+      "syllable": "go",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-16",
+      "round": 1,
+      "syllable": "ge",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-17",
+      "round": 1,
+      "syllable": "gu",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-18",
+      "round": 1,
+      "syllable": "gi",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-19",
+      "round": 1,
+      "syllable": "ga",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-20",
+      "round": 1,
+      "syllable": "ge",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-21",
+      "round": 1,
+      "syllable": "go",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-22",
+      "round": 1,
+      "syllable": "gi",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-23",
+      "round": 1,
+      "syllable": "gu",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-24",
+      "round": 1,
+      "syllable": "ge",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-25",
+      "round": 1,
+      "syllable": "ga",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-26",
+      "round": 1,
+      "syllable": "gi",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-27",
+      "round": 1,
+      "syllable": "go",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-28",
+      "round": 1,
+      "syllable": "ge",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-29",
+      "round": 1,
+      "syllable": "gu",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-30",
+      "round": 1,
+      "syllable": "gi",
+      "answer": "doux",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-31",
+      "round": 1,
+      "syllable": "gra",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-32",
+      "round": 1,
+      "syllable": "gra",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-33",
+      "round": 1,
+      "syllable": "gra",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-34",
+      "round": 1,
+      "syllable": "gru",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-35",
+      "round": 1,
+      "syllable": "gru",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
+      "id": "r1-36",
+      "round": 1,
+      "syllable": "gru",
+      "answer": "dur",
+      "choices": [
+        {
+          "id": "dur",
+          "label": "Dur (gare)"
+        },
+        {
+          "id": "doux",
+          "label": "Doux (jardin)"
+        }
+      ]
+    },
+    {
       "id": "r2-01",
       "round": 2,
       "syllable": "ga",
@@ -593,9 +1169,9 @@
       ]
     },
     {
-      "id": "r1-01",
-      "round": 1,
-      "syllable": "ga",
+      "id": "r2-31",
+      "round": 2,
+      "syllable": "gra",
       "answer": "dur",
       "choices": [
         {
@@ -609,25 +1185,9 @@
       ]
     },
     {
-      "id": "r1-02",
-      "round": 1,
-      "syllable": "gi",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-03",
-      "round": 1,
-      "syllable": "go",
+      "id": "r2-32",
+      "round": 2,
+      "syllable": "gra",
       "answer": "dur",
       "choices": [
         {
@@ -641,25 +1201,9 @@
       ]
     },
     {
-      "id": "r1-04",
-      "round": 1,
-      "syllable": "ge",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-05",
-      "round": 1,
-      "syllable": "gu",
+      "id": "r2-33",
+      "round": 2,
+      "syllable": "gru",
       "answer": "dur",
       "choices": [
         {
@@ -673,394 +1217,10 @@
       ]
     },
     {
-      "id": "r1-06",
-      "round": 1,
-      "syllable": "ge",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-07",
-      "round": 1,
-      "syllable": "ga",
+      "id": "r2-34",
+      "round": 2,
+      "syllable": "gru",
       "answer": "dur",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-08",
-      "round": 1,
-      "syllable": "gi",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-09",
-      "round": 1,
-      "syllable": "go",
-      "answer": "dur",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-10",
-      "round": 1,
-      "syllable": "gi",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-11",
-      "round": 1,
-      "syllable": "gu",
-      "answer": "dur",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-12",
-      "round": 1,
-      "syllable": "ge",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-13",
-      "round": 1,
-      "syllable": "ga",
-      "answer": "dur",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-14",
-      "round": 1,
-      "syllable": "gi",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-15",
-      "round": 1,
-      "syllable": "go",
-      "answer": "dur",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-16",
-      "round": 1,
-      "syllable": "ge",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-17",
-      "round": 1,
-      "syllable": "gu",
-      "answer": "dur",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-18",
-      "round": 1,
-      "syllable": "gi",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-19",
-      "round": 1,
-      "syllable": "ga",
-      "answer": "dur",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-20",
-      "round": 1,
-      "syllable": "ge",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-21",
-      "round": 1,
-      "syllable": "go",
-      "answer": "dur",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-22",
-      "round": 1,
-      "syllable": "gi",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-23",
-      "round": 1,
-      "syllable": "gu",
-      "answer": "dur",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-24",
-      "round": 1,
-      "syllable": "ge",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-25",
-      "round": 1,
-      "syllable": "ga",
-      "answer": "dur",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-26",
-      "round": 1,
-      "syllable": "gi",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-27",
-      "round": 1,
-      "syllable": "go",
-      "answer": "dur",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-28",
-      "round": 1,
-      "syllable": "ge",
-      "answer": "doux",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-29",
-      "round": 1,
-      "syllable": "gu",
-      "answer": "dur",
-      "choices": [
-        {
-          "id": "dur",
-          "label": "Dur (gare)"
-        },
-        {
-          "id": "doux",
-          "label": "Doux (jardin)"
-        }
-      ]
-    },
-    {
-      "id": "r1-30",
-      "round": 1,
-      "syllable": "gi",
-      "answer": "doux",
       "choices": [
         {
           "id": "dur",

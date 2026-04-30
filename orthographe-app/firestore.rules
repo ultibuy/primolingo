@@ -4,19 +4,27 @@ service cloud.firestore {
 
     // Parents : accès uniquement à leur propre document
     match /users/{uid} {
-      allow read, write: if request.auth != null && request.auth.uid == uid;
+      allow read: if request.auth != null && request.auth.uid == uid;
+      // Writes: auth check + document size limit (1 MB max)
+      allow write: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.keys().size() < 20;
 
       match /children/{childId} {
-        allow read, write: if request.auth != null && request.auth.uid == uid;
+        allow read: if request.auth != null && request.auth.uid == uid;
+        // Progress writes: auth + size guard (progress blob < 800 KB)
+        allow write: if request.auth != null && request.auth.uid == uid
+          && request.resource.size() < 800 * 1024;
       }
 
       match /children/{childId}/backups/{date} {
-        allow read, write: if request.auth != null && request.auth.uid == uid;
-      }
-
-      // OTP sous-collection (utilisé pour le code parental)
-      match /otp/{otpId} {
-        allow read, write: if request.auth != null && request.auth.uid == uid;
+        allow read: if request.auth != null && request.auth.uid == uid;
+        // Backups: auth + date format YYYY-MM-DD or YYYY-MM-DD-restore
+        allow create: if request.auth != null && request.auth.uid == uid
+          && date.matches('^[0-9]{4}-[0-9]{2}-[0-9]{2}(-restore)?$')
+          && request.resource.size() < 800 * 1024;
+        allow update: if request.auth != null && request.auth.uid == uid
+          && request.resource.size() < 800 * 1024;
+        allow delete: if request.auth != null && request.auth.uid == uid;
       }
     }
   }

@@ -200,9 +200,6 @@ function getDiamondStatusContent(ruleProgress) {
 }
 
 export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, onClose }) {
-  const allData = buildLevelData();
-  const data = allData[level];
-  if (!data) return null;
   const [isMobile, setIsMobile] = useState(() => (
     typeof window !== 'undefined' ? window.innerWidth <= 640 : false
   ));
@@ -213,6 +210,10 @@ export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, onClose
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const allData = buildLevelData();
+  const data = allData[level];
+  if (!data) return null;
 
   // For diamond_status, inject dynamic content
   let headline = data.headline;
@@ -249,8 +250,6 @@ export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, onClose
         <PopupCloseButton
           onClick={onClose}
           ariaLabel="Fermer"
-          top={isMobile ? 8 : -12}
-          right={isMobile ? 8 : -12}
           size={isMobile ? 40 : 48}
         />
 

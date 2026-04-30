@@ -49,6 +49,18 @@ export async function saveAdminSettings(uid, settings) {
 }
 
 // ---------------------------------------------------------------------------
+// Parental PIN
+// ---------------------------------------------------------------------------
+
+export async function loadParentalPin(uid) {
+  return read(key(['parentalPin', uid]));
+}
+
+export async function saveParentalPin(uid, pinData) {
+  write(key(['parentalPin', uid]), pinData);
+}
+
+// ---------------------------------------------------------------------------
 // Per-child settings
 // ---------------------------------------------------------------------------
 

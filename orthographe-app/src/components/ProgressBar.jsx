@@ -16,6 +16,7 @@ export default function ProgressBar({ current, total, showResult, shopOwned = []
   useEffect(() => {
     if (!activeChar) return undefined;
     if (lastAnswer !== 'correct' && lastAnswer !== 'wrong') {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setMood('walk');
       return undefined;
     }

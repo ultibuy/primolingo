@@ -1,0 +1,58 @@
+[
+  {
+    "id": "shared-morceau",
+    "word": "morceau",
+    "displayPrefix": "un ",
+    "category": "nom",
+    "audioFile": "morceau.mp3",
+    "decompositionMode": "syllables",
+    "syllables": ["mor", "ceau"],
+    "syllableDistractors": ["mort", "ceaut", "saux", "so"],
+    "guidedChoices": ["morceau", "morsau", "morceaux"],
+    "answerIndex": 0,
+    "example": "Chaque morceau de céramique est unique.",
+    "appearsIn": ["dictee-23", "dictee-24"]
+  },
+  {
+    "id": "shared-comme",
+    "word": "comme",
+    "displayPrefix": "",
+    "category": "invariable",
+    "audioFile": "comme.mp3",
+    "decompositionMode": "letters",
+    "syllables": ["c", "o", "m", "m", "e"],
+    "syllableDistractors": ["k", "n", "a"],
+    "guidedChoices": ["comme", "come", "kom"],
+    "answerIndex": 0,
+    "example": "La façade ondule comme une vague.",
+    "appearsIn": ["dictee-23", "dictee-25"]
+  },
+  {
+    "id": "shared-long",
+    "word": "long",
+    "displayPrefix": "",
+    "category": "adjectif",
+    "audioFile": "long.mp3",
+    "decompositionMode": "letters",
+    "syllables": ["l", "o", "n", "g"],
+    "syllableDistractors": ["k", "que", "t"],
+    "guidedChoices": ["long", "lon", "longt"],
+    "answerIndex": 0,
+    "example": "Le balcon est long et incurvé.",
+    "appearsIn": ["dictee-23", "dictee-24"]
+  },
+  {
+    "id": "shared-gens",
+    "word": "gens",
+    "displayPrefix": "les ",
+    "category": "nom",
+    "audioFile": "gens.mp3",
+    "decompositionMode": "letters",
+    "syllables": ["g", "e", "n", "s"],
+    "syllableDistractors": ["j", "a", "t"],
+    "guidedChoices": ["gens", "gen", "jens"],
+    "answerIndex": 0,
+    "example": "Les gens admirent la maison depuis la rue.",
+    "appearsIn": ["dictee-23", "dictee-24"]
+  }
+]
