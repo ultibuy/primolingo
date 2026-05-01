@@ -27,6 +27,47 @@ function findNearestSection(x, y) {
   return nearest;
 }
 
+/**
+ * Capture meaningful DOM context under a click point.
+ * Walks up from the clicked element to find a meaningful container,
+ * then extracts its outer HTML (truncated) and text content.
+ */
+function captureDomContext(clientX, clientY) {
+  // Temporarily hide annotation bubbles so elementFromPoint hits the real content
+  const bubbles = document.querySelectorAll("[data-annotation-id]");
+  bubbles.forEach((b) => { b.style.pointerEvents = "none"; b.style.visibility = "hidden"; });
+
+  const el = document.elementFromPoint(clientX, clientY);
+
+  bubbles.forEach((b) => { b.style.pointerEvents = ""; b.style.visibility = ""; });
+
+  if (!el) return { tag: "unknown", text: "", html: "" };
+
+  // Walk up to find the nearest meaningful element (not a generic wrapper)
+  const meaningfulTags = new Set(["H1","H2","H3","H4","P","BUTTON","A","LI","SPAN","LABEL","STRONG","EM","DIV"]);
+  let target = el;
+  // If it's a very generic div, look for the closest parent with actual text
+  for (let i = 0; i < 5; i++) {
+    if (!target.parentElement) break;
+    const text = (target.textContent || "").trim();
+    if (text.length > 10 && text.length < 500) break;
+    if (text.length >= 500) break; // good enough
+    target = target.parentElement;
+  }
+
+  const text = (target.textContent || "").trim().slice(0, 300);
+  // Get a simplified outer HTML (strip long style attributes for readability)
+  let html = target.outerHTML || "";
+  // Truncate HTML to something reasonable
+  if (html.length > 600) html = html.slice(0, 600) + "...";
+
+  return {
+    tag: target.tagName || "unknown",
+    text,
+    html,
+  };
+}
+
 function formatAnnotationsForExport(annotations, variant) {
   const label = variant ? variant.toUpperCase() : "export";
   let output = `=== Annotations ${label} ===\n`;
@@ -36,9 +77,14 @@ function formatAnnotationsForExport(annotations, variant) {
     const section = ann.nearestSectionId
       ? `[Section: ${ann.nearestSectionId}]`
       : "[Section: unknown]";
+    output += `\n--- Commentaire ${i + 1} ---\n`;
     output += `${section} (x: ${Math.round(ann.x)}, y: ${Math.round(ann.y)})\n`;
     output += `> ${ann.text || "(vide)"}\n`;
-    if (i < sorted.length - 1) output += "\n";
+    if (ann.domContext) {
+      output += `\nElement sous le commentaire: <${ann.domContext.tag}>\n`;
+      output += `Texte: "${ann.domContext.text}"\n`;
+      output += `HTML:\n${ann.domContext.html}\n`;
+    }
   });
 
   return output;
@@ -231,7 +277,13 @@ export default function AnnotationOverlay({ variant, children }) {
   // Persist to localStorage
   useEffect(() => {
     try {
-      const toSave = annotations.map(({ _isNew, ...rest }) => rest);
+      const toSave = annotations.map(({ _isNew, ...rest }) => {
+        // Truncate domContext.html for storage (keep it reasonable)
+        if (rest.domContext && rest.domContext.html && rest.domContext.html.length > 800) {
+          rest = { ...rest, domContext: { ...rest.domContext, html: rest.domContext.html.slice(0, 800) + "..." } };
+        }
+        return rest;
+      });
       localStorage.setItem(storageKey, JSON.stringify(toSave));
     } catch {
       // storage full or unavailable
@@ -259,6 +311,7 @@ export default function AnnotationOverlay({ variant, children }) {
       const y = e.clientY - rect.top + container.scrollTop;
 
       const sectionId = findNearestSection(e.clientX, e.clientY);
+      const domContext = captureDomContext(e.clientX, e.clientY);
 
       const newAnnotation = {
         id: generateId(),
@@ -267,6 +320,7 @@ export default function AnnotationOverlay({ variant, children }) {
         text: "",
         timestamp: Date.now(),
         nearestSectionId: sectionId,
+        domContext,
         _isNew: true,
       };
 
