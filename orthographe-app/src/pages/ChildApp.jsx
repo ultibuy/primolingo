@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 import '../index.css';
 
@@ -9,10 +9,11 @@ import { verifyPin } from '../services/pin-crypto.js';
 
 // Content
 import { allRules } from '../content/loader.js';
-import { allDictees, getDicteeWordsForLevel } from '../content/dicteesLoader.js';
+import { allDictees, getDicteeWordsForLevel, LEVELS } from '../content/dicteesLoader.js';
 import { getCharacterForRule } from '../data/shopCharacters.js';
 
 // Engine
+import { updateStatsHistory } from '../engine/stats.js';
 import { selectSessionQuestions } from '../engine/session.js';
 import { calculateDiamondHealth, getToday, parseLocalDate } from '../engine/sm2.js';
 import { createDefaultCoaching, pickCoachingMessage } from '../engine/coaching.js';
@@ -39,6 +40,7 @@ import {
   getDailyBackups,
   restoreDailyBackup,
   loadAdminSettings,
+  clearCurrentStoredProgress,
 } from '../store/persistence.js';
 
 // Components
@@ -49,7 +51,6 @@ import InfernoEntranceEffect from '../components/InfernoEntranceEffect.jsx';
 import FreezeEntranceEffect from '../components/FreezeEntranceEffect.jsx';
 import QuizGuided from '../components/QuizGuided.jsx';
 import QuizDirect from '../components/QuizDirect.jsx';
-import Shop from '../components/Shop.jsx';
 import ReturnScreen from '../components/ReturnScreen.jsx';
 import DicteesPage from '../pages/DicteesPage.jsx';
 import DicteeQuizGuided from '../components/DicteeQuizGuided.jsx';
@@ -61,9 +62,12 @@ import PopupModal from '../components/PopupModal.jsx';
 // Constants
 // ---------------------------------------------------------------------------
 const DEFAULT_SESSION_SIZE = 20;
+const GRAMMAR_IDS = new Set(allRules.map(r => r.id));
+const DICTEE_IDS  = new Set(allDictees.flatMap(d => LEVELS.map(l => `${d.id}-${l}`)));
 const INACTIVITY_DAYS = 2;
 const PIN_LENGTH = 4;
 const PIN_BASE_LOCK_MS = 15000;
+const Shop = lazy(() => import('../components/Shop.jsx'));
 
 function getFirstQuizBonusDismissKey(childId) {
   return `ortho_first_quiz_bonus_dismissed:${childId || 'unknown'}`;
@@ -209,6 +213,13 @@ function migrateProgress(p, mysteryImageDefinitions) {
 
   if (!next.coaching) {
     next.coaching = createDefaultCoaching();
+    migrated = true;
+  }
+
+  // Bootstrap statsHistory for existing accounts that don't have it yet.
+  // Creates one initial snapshot from the current (all-time) progress data.
+  if (!Array.isArray(next.statsHistory)) {
+    updateStatsHistory(next, GRAMMAR_IDS, DICTEE_IDS);
     migrated = true;
   }
 
@@ -484,6 +495,15 @@ export default function ChildApp() {
     }
   }, [uid, childId, refreshDailyBackups]);
 
+  const handleDebugClearProgress = useCallback(async () => {
+    const result = await clearCurrentStoredProgress(uid, childId);
+    if (result?.success) {
+      setProgress(createDefaultProgress());
+      await refreshDailyBackups();
+    }
+    return result;
+  }, [uid, childId, refreshDailyBackups]);
+
   // Load progress on mount
   useEffect(() => {
     if (!uid || !childId) return;
@@ -630,6 +650,7 @@ export default function ChildApp() {
       events.push(...result.events);
       if (result.hasNewTrophy) needsTrophyClear = true;
 
+      updateStatsHistory(next, GRAMMAR_IDS, DICTEE_IDS);
       persistProgress(next);
       return next;
     });
@@ -691,6 +712,7 @@ export default function ChildApp() {
       events.push(...result.events);
       if (result.hasNewTrophy) needsTrophyClear = true;
 
+      updateStatsHistory(next, GRAMMAR_IDS, DICTEE_IDS);
       persistProgress(next);
       return next;
     });
@@ -944,9 +966,9 @@ export default function ChildApp() {
       <div style={{
         minHeight: '100vh',
         backgroundColor: 'var(--color-bg1)',
-        backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
-        backgroundSize: 'cover, cover',
-        backgroundPosition: 'center, center',
+        backgroundImage: 'var(--app-page-overlay)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         fontFamily: 'var(--font-body)',
       }}>
@@ -985,9 +1007,9 @@ export default function ChildApp() {
       <div style={{
         minHeight: '100vh',
         backgroundColor: 'var(--color-bg1)',
-        backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
-        backgroundSize: 'cover, cover',
-        backgroundPosition: 'center, center',
+        backgroundImage: 'var(--app-page-overlay)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         color: 'var(--color-accent)', fontSize: '1.2rem', fontWeight: 600,
         fontFamily: 'var(--font-body)',
@@ -1110,16 +1132,18 @@ export default function ChildApp() {
   // Shop screen
   if (screen === 'shop') {
     return renderWithSaveError(
-      <Shop
-        progress={progress}
-        adminSettings={adminSettings}
-        childName={childName}
-        onPurchase={handlePurchase}
-        onEquip={handleEquip}
-        onClose={() => setScreen('dashboard')}
-        initialTab={shopInitialTab}
-        initialSection={shopInitialSection}
-      />
+      <Suspense fallback={<div style={screenLoadingStyle}>Chargement de la boutique...</div>}>
+        <Shop
+          progress={progress}
+          adminSettings={adminSettings}
+          childName={childName}
+          onPurchase={handlePurchase}
+          onEquip={handleEquip}
+          onClose={() => setScreen('dashboard')}
+          initialTab={shopInitialTab}
+          initialSection={shopInitialSection}
+        />
+      </Suspense>
     );
   }
 
@@ -1138,6 +1162,7 @@ export default function ChildApp() {
       onEventsSeen={handleEventsSeen}
       onDebugUpdateStreak={handleDebugUpdateStreak}
       onDebugSetCoins={handleDebugSetCoins}
+      onDebugClearProgress={handleDebugClearProgress}
       dailyBackups={dailyBackups}
       onDebugRestoreBackup={handleDebugRestoreBackup}
       onTriggerEntranceAnim={triggerEntranceAnim}
@@ -1161,6 +1186,16 @@ const saveErrorStyle = {
   border: '1px solid rgba(248,113,113,0.4)', background: 'rgba(127,29,29,0.95)',
   color: '#fee2e2', boxShadow: '0 8px 30px rgba(0,0,0,0.35)',
   textAlign: 'center', fontSize: '0.9rem', fontWeight: 600,
+};
+
+const screenLoadingStyle = {
+  minHeight: '100vh',
+  display: 'grid',
+  placeItems: 'center',
+  background: 'linear-gradient(180deg, var(--color-bg1), var(--color-bg2))',
+  color: '#e5e7eb',
+  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  fontWeight: 900,
 };
 
 const firstQuizModalBackdropStyle = {

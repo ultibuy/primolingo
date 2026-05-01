@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleAuthProvider, reauthenticateWithPopup } from 'firebase/auth';
 import { useAuth } from '../contexts/AuthContext.jsx';
@@ -6,6 +6,8 @@ import { auth } from '../firebase.js';
 import CoinIcon from '../components/CoinIcon.jsx';
 import PinInput from '../components/PinInput.jsx';
 import PopupModal from '../components/PopupModal.jsx';
+import { allRules } from '../content/loader.js';
+import { allDictees, LEVELS } from '../content/dicteesLoader.js';
 import { hashPin } from '../services/pin-crypto.js';
 import { listChildren, loadParentalPin, saveParentalPin } from '../services/store.js';
 import {
@@ -19,6 +21,10 @@ import {
   getDailyBackups,
   restoreDailyBackup,
 } from '../store/persistence.js';
+
+const TOTAL_GRAMMAR_RULES = allRules.length;
+const TOTAL_DICTEE_RULES  = allDictees.length * LEVELS.length;
+const ProgressCharts = lazy(() => import('../components/ProgressCharts.jsx'));
 
 // ─── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -171,12 +177,12 @@ function BackupRestorePanel({ uid, childId }) {
   const [backups, setBackups] = useState(null); // null = not loaded yet
   const [restoring, setRestoring] = useState(null);
   const [msg, setMsg] = useState('');
-
   async function handleLoad() {
     setMsg('');
     const list = await getDailyBackups(uid, childId);
     setBackups(list);
   }
+
 
   async function handleRestore(backup) {
     if (!confirm(`Restaurer la sauvegarde du ${backup.date} ?\nLa progression actuelle sera remplacée.`)) return;
@@ -197,7 +203,7 @@ function BackupRestorePanel({ uid, childId }) {
         Sauvegardes quotidiennes
       </div>
 
-      {backups === null ? (
+{backups === null ? (
         <button type="button" onClick={handleLoad} style={{
           padding: '0.35rem 0.9rem', borderRadius: 8,
           border: '1px solid rgba(248,113,113,0.25)', background: 'rgba(248,113,113,0.08)',
@@ -359,7 +365,7 @@ function ChildCard({ child, uid, parentImages }) {
           <span style={statLabelStyle}>Série</span>
         </div>
         <div style={statItemStyle}>
-          <span style={statValueStyle}>👑 {rulesDone}/10</span>
+          <span style={statValueStyle}>👑 {rulesDone}/{TOTAL_GRAMMAR_RULES}</span>
           <span style={statLabelStyle}>Règles</span>
         </div>
         <div style={statItemStyle}>
@@ -383,6 +389,11 @@ function ChildCard({ child, uid, parentImages }) {
           <BackupRestorePanel uid={uid} childId={child.id} />
         </div>
       )}
+
+      {/* Progress charts */}
+      <Suspense fallback={<div style={chartsLoadingStyle}>Chargement des graphiques...</div>}>
+        <ProgressCharts statsHistory={progress.statsHistory || []} totalGrammarRules={TOTAL_GRAMMAR_RULES} totalDicteeRules={TOTAL_DICTEE_RULES} />
+      </Suspense>
 
       {/* Play button */}
       <button type="button" onClick={() => navigate(`/play/${child.id}`)} style={playBtnStyle}>
@@ -846,6 +857,16 @@ const settingsPanelStyle = {
   background: 'rgba(167,139,250,0.05)',
   border: '1px solid rgba(167,139,250,0.15)',
   borderRadius: 12, padding: '0.9rem',
+};
+const chartsLoadingStyle = {
+  marginTop: 12,
+  padding: '1rem',
+  borderRadius: 12,
+  background: 'rgba(255,255,255,0.04)',
+  border: '1px solid rgba(255,255,255,0.08)',
+  color: '#94a3b8',
+  fontSize: '0.82rem',
+  textAlign: 'center',
 };
 const playBtnStyle = {
   width: '100%', padding: '0.75rem', borderRadius: 14, border: 'none',
