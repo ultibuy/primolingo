@@ -10,6 +10,15 @@ Sentry.init({
   enabled: !import.meta.env.DEV,
 })
 
+// When a new service worker takes control (autoUpdate + skipWaiting), the
+// currently loaded index.html still references old chunk hashes that are no
+// longer in the new precache. Reload so the page gets the fresh bundle.
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    window.location.reload()
+  })
+}
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />
