@@ -10,7 +10,7 @@
  * Requires: npm run dev running on port 5173 (or set BASE_URL)
  */
 
-import puppeteer from 'puppeteer';
+import { chromium } from 'playwright';
 import { mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -44,11 +44,11 @@ async function test(name, fn) {
   process.stdout.write(`  ${name} … `);
   try {
     await fn();
-    console.log('\u2705');
+    console.log('✅');
     passed++;
     results.push({ name, status: 'pass' });
   } catch (err) {
-    console.log(`\u274C  ${err.message}`);
+    console.log(`❌  ${err.message}`);
     failed++;
     results.push({ name, status: 'fail', error: err.message });
   }
@@ -58,7 +58,6 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
-function todayStr() { return new Date().toISOString().slice(0, 10); }
 function todayMinus(days) {
   const d = new Date();
   d.setDate(d.getDate() - days);
@@ -71,15 +70,15 @@ async function screenshot(page, name) {
 
 async function newPage() {
   const page = await browser.newPage();
-  await page.setViewport({ width: 390, height: 844 });
+  await page.setViewportSize({ width: 390, height: 844 });
   return page;
 }
 
 async function waitForText(page, text, timeout = 8000) {
   await page.waitForFunction(
     (t) => document.body.innerText.toLowerCase().includes(t.toLowerCase()),
-    { timeout },
-    text
+    text,
+    { timeout }
   );
 }
 
@@ -111,18 +110,18 @@ function makeProgress(overrides = {}) {
 // ── Test: PinInput component renders ─────────────────────────────────────────
 
 async function testPinOnReturnScreen() {
-  console.log('\n\U0001F510 PIN on ReturnScreen (child inactive 3+ days)');
+  console.log('\n🔐 PIN on ReturnScreen (child inactive 3+ days)');
 
   await test('ReturnScreen shows "Demander à Papa" when PIN is set', async () => {
     const page = await newPage();
     const progress = makeProgress();
-    // Inject progress + PIN into localStorage
-    await page.evaluateOnNewDocument((uid, childId, prog, pin) => {
+    const pin = hashPinForTest('1234');
+    await page.addInitScript(({ uid, childId, prog, pin }) => {
       localStorage.setItem(`local:progress:${uid}:${childId}`, JSON.stringify(prog));
       localStorage.setItem(`local:parentalPin:${uid}`, JSON.stringify(pin));
-    }, UID, CHILD_ID, progress, hashPinForTest('1234'));
+    }, { uid: UID, childId: CHILD_ID, prog: progress, pin });
 
-    await page.goto(`${BASE_URL}/play/${CHILD_ID}`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/play/${CHILD_ID}`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
     await screenshot(page, '01-return-screen');
 
@@ -134,12 +133,12 @@ async function testPinOnReturnScreen() {
   await test('ReturnScreen hides "Demander à Papa" when no PIN set', async () => {
     const page = await newPage();
     const progress = makeProgress();
-    await page.evaluateOnNewDocument((uid, childId, prog) => {
+    await page.addInitScript(({ uid, childId, prog }) => {
       localStorage.setItem(`local:progress:${uid}:${childId}`, JSON.stringify(prog));
       localStorage.removeItem(`local:parentalPin:${uid}`);
-    }, UID, CHILD_ID, progress);
+    }, { uid: UID, childId: CHILD_ID, prog: progress });
 
-    await page.goto(`${BASE_URL}/play/${CHILD_ID}`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/play/${CHILD_ID}`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
 
     const bodyText = await page.$eval('body', el => el.textContent);
@@ -150,12 +149,13 @@ async function testPinOnReturnScreen() {
   await test('Clicking "Demander à Papa" shows PIN input with 4 fields', async () => {
     const page = await newPage();
     const progress = makeProgress();
-    await page.evaluateOnNewDocument((uid, childId, prog, pin) => {
+    const pin = hashPinForTest('5678');
+    await page.addInitScript(({ uid, childId, prog, pin }) => {
       localStorage.setItem(`local:progress:${uid}:${childId}`, JSON.stringify(prog));
       localStorage.setItem(`local:parentalPin:${uid}`, JSON.stringify(pin));
-    }, UID, CHILD_ID, progress, hashPinForTest('5678'));
+    }, { uid: UID, childId: CHILD_ID, prog: progress, pin });
 
-    await page.goto(`${BASE_URL}/play/${CHILD_ID}`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/play/${CHILD_ID}`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
 
     // Click "Demander à Papa"
@@ -179,12 +179,12 @@ async function testPinOnReturnScreen() {
   await test('Correct PIN saves streak and goes to dashboard', async () => {
     const page = await newPage();
     const progress = makeProgress();
-    await page.evaluateOnNewDocument((uid, childId, prog, pin) => {
+    await page.addInitScript(({ uid, childId, prog, pin }) => {
       localStorage.setItem(`local:progress:${uid}:${childId}`, JSON.stringify(prog));
       localStorage.setItem(`local:parentalPin:${uid}`, JSON.stringify(pin));
-    }, UID, CHILD_ID, progress, '1234');
+    }, { uid: UID, childId: CHILD_ID, prog: progress, pin: '1234' });
 
-    await page.goto(`${BASE_URL}/play/${CHILD_ID}`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/play/${CHILD_ID}`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
 
     // Click "Demander à Papa"
@@ -203,9 +203,8 @@ async function testPinOnReturnScreen() {
     await sleep(1500);
     await screenshot(page, '03-pin-correct');
 
-    // Should be on dashboard (streak saved)
+    // Should be on dashboard
     const bodyText = await page.$eval('body', el => el.textContent);
-    // Dashboard shows rules or "Grammaire" tab
     const onDashboard = bodyText.includes('Grammaire') || bodyText.includes('Vocabulaire');
     assert(onDashboard, 'Should be on dashboard after correct PIN');
     await page.close();
@@ -214,12 +213,13 @@ async function testPinOnReturnScreen() {
   await test('Wrong PIN shows error message', async () => {
     const page = await newPage();
     const progress = makeProgress();
-    await page.evaluateOnNewDocument((uid, childId, prog, pin) => {
+    const pin = hashPinForTest('9999');
+    await page.addInitScript(({ uid, childId, prog, pin }) => {
       localStorage.setItem(`local:progress:${uid}:${childId}`, JSON.stringify(prog));
       localStorage.setItem(`local:parentalPin:${uid}`, JSON.stringify(pin));
-    }, UID, CHILD_ID, progress, hashPinForTest('9999'));
+    }, { uid: UID, childId: CHILD_ID, prog: progress, pin });
 
-    await page.goto(`${BASE_URL}/play/${CHILD_ID}`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/play/${CHILD_ID}`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
 
     await page.evaluate(() => {
@@ -248,12 +248,12 @@ async function testPinOnReturnScreen() {
   await test('Cancel button returns to ReturnScreen intro', async () => {
     const page = await newPage();
     const progress = makeProgress();
-    await page.evaluateOnNewDocument((uid, childId, prog, pin) => {
+    await page.addInitScript(({ uid, childId, prog, pin }) => {
       localStorage.setItem(`local:progress:${uid}:${childId}`, JSON.stringify(prog));
       localStorage.setItem(`local:parentalPin:${uid}`, JSON.stringify(pin));
-    }, UID, CHILD_ID, progress, '1234');
+    }, { uid: UID, childId: CHILD_ID, prog: progress, pin: '1234' });
 
-    await page.goto(`${BASE_URL}/play/${CHILD_ID}`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/play/${CHILD_ID}`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
 
     await page.evaluate(() => {
@@ -279,17 +279,16 @@ async function testPinOnReturnScreen() {
 // ── Test: PIN setup on ParentDashboard ───────────────────────────────────────
 
 async function testPinSetupParent() {
-  console.log('\n\U0001F468\u200D\U0001F469\u200D\U0001F466 PIN Setup on ParentDashboard');
+  console.log('\n👨‍👩‍👦 PIN Setup on ParentDashboard');
 
   await test('ParentDashboard shows PIN setup modal when no PIN', async () => {
     const page = await newPage();
-    await page.setViewport({ width: 1280, height: 800 });
-    // Clear any existing PIN
-    await page.evaluateOnNewDocument((uid) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript((uid) => {
       localStorage.removeItem(`local:parentalPin:${uid}`);
     }, UID);
 
-    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
     await screenshot(page, '06-parent-pin-setup-modal');
 
@@ -303,12 +302,12 @@ async function testPinSetupParent() {
 
   await test('PIN setup modal has 4 digit inputs', async () => {
     const page = await newPage();
-    await page.setViewport({ width: 1280, height: 800 });
-    await page.evaluateOnNewDocument((uid) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript((uid) => {
       localStorage.removeItem(`local:parentalPin:${uid}`);
     }, UID);
 
-    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
 
     const inputCount = await page.$$eval('input[type="tel"]', els => els.length);
@@ -318,12 +317,12 @@ async function testPinSetupParent() {
 
   await test('PIN setup requires confirmation (enter twice)', async () => {
     const page = await newPage();
-    await page.setViewport({ width: 1280, height: 800 });
-    await page.evaluateOnNewDocument((uid) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript((uid) => {
       localStorage.removeItem(`local:parentalPin:${uid}`);
     }, UID);
 
-    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
 
     // Type first PIN: 4-5-6-7
@@ -343,12 +342,12 @@ async function testPinSetupParent() {
 
   await test('Mismatched confirmation shows error', async () => {
     const page = await newPage();
-    await page.setViewport({ width: 1280, height: 800 });
-    await page.evaluateOnNewDocument((uid) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript((uid) => {
       localStorage.removeItem(`local:parentalPin:${uid}`);
     }, UID);
 
-    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
 
     // Enter PIN: 1-2-3-4
@@ -375,12 +374,12 @@ async function testPinSetupParent() {
 
   await test('Correct confirmation saves PIN and shows dashboard', async () => {
     const page = await newPage();
-    await page.setViewport({ width: 1280, height: 800 });
-    await page.evaluateOnNewDocument((uid) => {
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.addInitScript((uid) => {
       localStorage.removeItem(`local:parentalPin:${uid}`);
     }, UID);
 
-    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
 
     // Enter PIN: 3-3-3-3
@@ -414,13 +413,13 @@ async function testPinSetupParent() {
 
   await test('Code button visible in header when PIN exists', async () => {
     const page = await newPage();
-    await page.setViewport({ width: 1280, height: 800 });
+    await page.setViewportSize({ width: 1280, height: 800 });
     const hashed = hashPinForTest('4444');
-    await page.evaluateOnNewDocument((uid, pinData) => {
+    await page.addInitScript(({ uid, pinData }) => {
       localStorage.setItem(`local:parentalPin:${uid}`, JSON.stringify(pinData));
-    }, UID, hashed);
+    }, { uid: UID, pinData: hashed });
 
-    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
     await screenshot(page, '10-parent-code-button');
 
@@ -433,14 +432,11 @@ async function testPinSetupParent() {
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
-  console.log(`\n\U0001F9EA PIN Parental Tests`);
+  console.log(`\n🧪 PIN Parental Tests`);
   console.log(`   Target: ${BASE_URL}`);
   console.log(`   Screenshots: ${SCREENSHOTS_DIR}\n`);
 
-  browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-  });
+  browser = await chromium.launch({ headless: true });
 
   try {
     await testPinOnReturnScreen();
@@ -450,24 +446,24 @@ async function main() {
   }
 
   const total = passed + failed;
-  console.log('\n' + '\u2500'.repeat(50));
+  console.log('\n' + '─'.repeat(50));
   console.log(`Results: ${passed}/${total} passed`);
 
   if (failed > 0) {
     console.log('\nFailed tests:');
     results.filter(r => r.status === 'fail').forEach(r => {
-      console.log(`  \u274C ${r.name}`);
+      console.log(`  ❌ ${r.name}`);
       console.log(`     ${r.error}`);
     });
     process.exit(1);
   } else {
-    console.log(`\n\u2705 All tests passed!`);
-    console.log(`\U0001F4F8 Screenshots saved to: ${SCREENSHOTS_DIR}`);
+    console.log(`\n✅ All tests passed!`);
+    console.log(`📸 Screenshots saved to: ${SCREENSHOTS_DIR}`);
   }
 }
 
 main().catch(err => {
-  console.error('\n\U0001F4A5 Fatal error:', err.message);
+  console.error('\n💥 Fatal error:', err.message);
   if (browser) browser.close();
   process.exit(1);
 });

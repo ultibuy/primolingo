@@ -1,7 +1,6 @@
 /**
  * Economy system — shop catalog, purchasing, equipping, and weekly chest.
  */
-import mhaTransparent from '../assets/mha-transparent.png';
 import { formatLocalDate, getToday, parseLocalDate } from './sm2.js';
 
 export const DOUBLE_COINS_PRICE = 100;
@@ -199,7 +198,7 @@ export const SHOP_CATALOG = {
     id: 'theme-my-hero-academy',
     category: 'themes',
     name: 'Manga',
-    description: 'Palette héroïque vert olive et or doux avec ambiance manga.',
+    description: 'Palette héroïque vert olive et or doux.',
     price: 200,
     type: 'permanent',
     tier: 'premium',
@@ -398,22 +397,18 @@ export const SHOP_CATALOG = {
  * Theme definitions for the app color palette.
  */
 export const THEMES = {
-  default: { primary: '#a78bfa', accent: '#c4b5fd', bg1: '#1e1e2e', bg2: '#2d2b55', pageOverlay: 'linear-gradient(135deg, #1e1e2e 0%, #2d2b55 100%)', pageImage: 'none', pageImageSize: 'cover', pageImagePosition: 'center center', pageImageRepeat: 'no-repeat' },
-  'theme-dark-blue': { primary: '#60a5fa', accent: '#93c5fd', bg1: '#0f172a', bg2: '#1e293b', pageOverlay: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)', pageImage: 'none', pageImageSize: 'cover', pageImagePosition: 'center center', pageImageRepeat: 'no-repeat' },
-  'theme-forest-green': { primary: '#4ade80', accent: '#86efac', bg1: '#14261c', bg2: '#1a3a2a', pageOverlay: 'linear-gradient(135deg, #14261c 0%, #1a3a2a 100%)', pageImage: 'none', pageImageSize: 'cover', pageImagePosition: 'center center', pageImageRepeat: 'no-repeat' },
-  'theme-warm-amber': { primary: '#fbbf24', accent: '#fde68a', bg1: '#27200f', bg2: '#3d3112', pageOverlay: 'linear-gradient(135deg, #27200f 0%, #3d3112 100%)', pageImage: 'none', pageImageSize: 'cover', pageImagePosition: 'center center', pageImageRepeat: 'no-repeat' },
-  'theme-aurora': { primary: '#34d399', accent: '#a78bfa', bg1: '#0f1729', bg2: '#162033', pageOverlay: 'linear-gradient(135deg, #0f1729 0%, #162033 100%)', pageImage: 'none', pageImageSize: 'cover', pageImagePosition: 'center center', pageImageRepeat: 'no-repeat' },
-  'theme-midnight-purple': { primary: '#c084fc', accent: '#e879f9', bg1: '#1a0a2e', bg2: '#2d1452', pageOverlay: 'linear-gradient(135deg, #1a0a2e 0%, #2d1452 100%)', pageImage: 'none', pageImageSize: 'cover', pageImagePosition: 'center center', pageImageRepeat: 'no-repeat' },
+  default: { primary: '#a78bfa', accent: '#c4b5fd', bg1: '#1e1e2e', bg2: '#2d2b55', pageOverlay: 'linear-gradient(135deg, #1e1e2e 0%, #2d2b55 100%)' },
+  'theme-dark-blue': { primary: '#60a5fa', accent: '#93c5fd', bg1: '#0f172a', bg2: '#1e293b', pageOverlay: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' },
+  'theme-forest-green': { primary: '#4ade80', accent: '#86efac', bg1: '#14261c', bg2: '#1a3a2a', pageOverlay: 'linear-gradient(135deg, #14261c 0%, #1a3a2a 100%)' },
+  'theme-warm-amber': { primary: '#fbbf24', accent: '#fde68a', bg1: '#27200f', bg2: '#3d3112', pageOverlay: 'linear-gradient(135deg, #27200f 0%, #3d3112 100%)' },
+  'theme-aurora': { primary: '#34d399', accent: '#a78bfa', bg1: '#0f1729', bg2: '#162033', pageOverlay: 'linear-gradient(135deg, #0f1729 0%, #162033 100%)' },
+  'theme-midnight-purple': { primary: '#c084fc', accent: '#e879f9', bg1: '#1a0a2e', bg2: '#2d1452', pageOverlay: 'linear-gradient(135deg, #1a0a2e 0%, #2d1452 100%)' },
   'theme-my-hero-academy': {
     primary: '#b7d94c',
     accent: '#f0d36a',
     bg1: '#111b11',
     bg2: '#23361b',
     pageOverlay: 'linear-gradient(145deg, rgba(10,18,10,0.9) 0%, rgba(25,42,19,0.78) 48%, rgba(12,18,10,0.94) 100%)',
-    pageImage: `url(${mhaTransparent})`,
-    pageImageSize: 'min(78vw, 540px) auto',
-    pageImagePosition: 'center center',
-    pageImageRepeat: 'no-repeat',
   },
 };
 
@@ -445,10 +440,6 @@ export function applyTheme(themeId) {
   root.style.setProperty('--color-bg2', theme.bg2);
   root.style.setProperty('--color-bg2-rgb', hexToRgb(theme.bg2));
   root.style.setProperty('--app-page-overlay', theme.pageOverlay || THEMES.default.pageOverlay);
-  root.style.setProperty('--app-page-image', theme.pageImage || 'none');
-  root.style.setProperty('--app-page-image-size', theme.pageImageSize || 'cover');
-  root.style.setProperty('--app-page-image-position', theme.pageImagePosition || 'center center');
-  root.style.setProperty('--app-page-image-repeat', theme.pageImageRepeat || 'no-repeat');
 }
 
 /**

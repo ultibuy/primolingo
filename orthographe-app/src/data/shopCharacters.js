@@ -1,3 +1,5 @@
+import { getToday } from '../engine/sm2.js';
+
 export const SHOP_CHARACTERS = [
   { id: 'panda',        emoji: '🐼',    name: 'Panda Samouraï',       tag: "Guerrier de l'ombre",        color: '#67e8f9', price: 250 },
   { id: 'fox',          emoji: '🦊',    name: 'Renard Espion',         tag: 'Rusé comme le vent',          color: '#fb923c', price: 500 },
@@ -66,7 +68,7 @@ export function getCharacterForRule(ruleId, allRuleIds, shopOwned = []) {
   if (owned.length === 0) return null;
   if (owned.length === 1) return owned[0];
 
-  const today = new Date().toISOString().slice(0, 10);
+  const today = getToday();
   const cacheKey = `char_assign:${today}`;
 
   try {

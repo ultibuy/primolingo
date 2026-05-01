@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import CoinIcon from "../components/CoinIcon.jsx";
 
 // ─── Design tokens (from the real app) ───
 const T = {
@@ -445,7 +446,7 @@ function MockDashboard() {
           <div style={{ fontSize: 10, color: T.textMuted }}>Série : 12 jours 🔥</div>
         </div>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-          <span style={{ fontSize: 11, color: T.gold }}>🪙 340</span>
+          <span style={{ fontSize: 11, color: T.gold, display: 'inline-flex', alignItems: 'center', gap: 2 }}><CoinIcon size={11} /> 340</span>
           <span style={{ fontSize: 11, color: T.primary }}>🛡️ 2</span>
         </div>
       </div>
@@ -773,8 +774,8 @@ export default function LandingPage() {
       {/* ─── NAV ─── */}
       <nav style={css.nav} className="oq-nav">
         <div style={css.navLogo}>
-          <div style={css.navLogoIcon}>GH</div>
-          GramHero
+          <div style={css.navLogoIcon}>PL</div>
+          PrimoLinguo
         </div>
         <button style={css.navCta}
           onClick={() => navigate('/login')}
@@ -794,7 +795,7 @@ export default function LandingPage() {
           </h1>
           <p style={css.heroDesc}>
             C'est normal. Les dictées et les exercices classiques ne suffisent pas à ancrer les règles
-            dans la mémoire à long terme. <strong>GramHero</strong> utilise une méthode scientifique
+            dans la mémoire à long terme. <strong>PrimoLinguo</strong> utilise une méthode scientifique
             de révision adaptative pour que chaque règle soit réellement acquise — pas juste « vue en classe ».
           </p>
           <button style={css.heroCta} onClick={() => navigate('/login')}>
@@ -856,7 +857,7 @@ export default function LandingPage() {
         <div style={css.sectionLabel}>La solution</div>
         <h2 style={css.sectionTitle}>5 minutes par jour qui changent tout</h2>
         <p style={css.sectionSubtitle}>
-          GramHero transforme chaque règle d'orthographe en une aventure.
+          PrimoLinguo transforme chaque règle d'orthographe en une aventure.
           L'enfant joue, le cerveau mémorise.
         </p>
 
@@ -939,12 +940,12 @@ export default function LandingPage() {
               padding: "12px", borderRadius: 12, background: "rgba(255,255,255,0.03)",
             }}>
               {[
-                { icon: "🪙", label: "+20", color: T.gold },
+                { icon: "coin", label: "+20", color: T.gold },
                 { icon: "🔥", label: "Série 12j", color: T.orange },
                 { icon: "⭐", label: "Niv. 3 !", color: T.primary },
               ].map((r, i) => (
                 <div key={i} style={{ textAlign: "center" }}>
-                  <div style={{ fontSize: 22 }}>{r.icon}</div>
+                  <div style={{ fontSize: 22 }}>{r.icon === 'coin' ? <CoinIcon size={22} /> : r.icon}</div>
                   <div style={{ fontSize: 10, fontWeight: 700, color: r.color, marginTop: 2 }}>{r.label}</div>
                 </div>
               ))}
@@ -1275,7 +1276,7 @@ export default function LandingPage() {
           <p style={{ fontSize: 16, lineHeight: 1.7, color: T.textLight, marginBottom: 0 }}>
             Pas de pub. Pas d'achats in-app. Pas de données revendues. Pas de version premium cachée.
             <br /><br />
-            GramHero est un projet indépendant, créé par un parent pour son enfant,
+            PrimoLinguo est un projet indépendant, créé par un parent pour son enfant,
             et partagé gratuitement avec tous ceux qui en ont besoin.
           </p>
         </div>
@@ -1287,7 +1288,7 @@ export default function LandingPage() {
           Prêt à transformer l'orthographe en aventure ?
         </h2>
         <p style={{ fontSize: 16, color: T.textLight, marginBottom: 28 }}>
-          Créez un compte en 10 secondes et laissez votre enfant découvrir GramHero.
+          Créez un compte en 10 secondes et laissez votre enfant découvrir PrimoLinguo.
         </p>
         <button style={css.heroCta} onClick={() => navigate('/login')}>
           Commencer gratuitement →
@@ -1302,7 +1303,7 @@ export default function LandingPage() {
             Mentions légales & Confidentialité
           </a>
         </p>
-        <p style={{ marginTop: 4 }}>© 2026 GramHero</p>
+        <p style={{ marginTop: 4 }}>© 2026 PrimoLinguo</p>
       </footer>
     </div>
   );

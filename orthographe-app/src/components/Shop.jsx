@@ -6,15 +6,15 @@ import ShieldIcon from './ShieldIcon.jsx';
 import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
 import CharacterSprite from './CharacterSprite.jsx';
-import mangaImage from '../assets/manga.png';
-import ryuImage from '../assets/ryu.png';
-import brasierImage from '../assets/brasier.png';
-import fleauImage from '../assets/fleau.png';
-import gardienCimesImage from '../assets/gardien-cimes.png';
-import gardienSeuilImage from '../assets/gardien-seuil.png';
-import regardImage from '../assets/regard.png';
-import seigneurImage from '../assets/seigneur.png';
-import eclatImage from '../assets/eclat.png';
+import mangaImage from '../assets/manga.webp';
+import ryuImage from '../assets/ryu.webp';
+import brasierImage from '../assets/brasier.webp';
+import fleauImage from '../assets/fleau.webp';
+import gardienCimesImage from '../assets/gardien-cimes.webp';
+import gardienSeuilImage from '../assets/gardien-seuil.webp';
+import regardImage from '../assets/regard.webp';
+import seigneurImage from '../assets/seigneur.webp';
+import eclatImage from '../assets/eclat.webp';
 import { SHOP_CHARACTERS, SHOP_EMOTIONS, BASE_EMOTIONS } from '../data/shopCharacters.js';
 import { isLocalhost } from '../debug.js';
 import {
@@ -1685,9 +1685,9 @@ function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEqu
 const pageStyle = {
   minHeight: '100vh',
   backgroundColor: 'var(--color-bg1)',
-  backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
-  backgroundSize: 'cover, cover',
-  backgroundPosition: 'center, center',
+  backgroundImage: 'var(--app-page-overlay)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center center',
   display: 'flex',
   alignItems: 'flex-start',
   justifyContent: 'center',

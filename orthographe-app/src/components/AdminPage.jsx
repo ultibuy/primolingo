@@ -271,9 +271,9 @@ function MysteryTileSelector({ imageDataUrl, selectedTileIndex, onSelect }) {
 const pageStyle = {
   minHeight: '100vh',
   backgroundColor: 'var(--color-bg1)',
-  backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
-  backgroundSize: 'cover, cover',
-  backgroundPosition: 'center, center',
+  backgroundImage: 'var(--app-page-overlay)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center center',
   display: 'flex',
   alignItems: 'flex-start',
   justifyContent: 'center',

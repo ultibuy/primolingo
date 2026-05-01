@@ -588,8 +588,8 @@ export default function ParentDashboard() {
       <div style={headerStyle}>
         <div>
           <div style={logoRowStyle}>
-            <div style={logoIconStyle}>GH</div>
-            <span style={logoTitleStyle}>GramHero</span>
+            <div style={logoIconStyle}>PL</div>
+            <span style={logoTitleStyle}>PrimoLinguo</span>
           </div>
           <p style={welcomeStyle}>Bonjour, {user?.displayName?.split(' ')[0] || 'parent'} 👋</p>
         </div>

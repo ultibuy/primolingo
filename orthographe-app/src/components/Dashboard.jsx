@@ -18,6 +18,7 @@ import { getStreakInfo } from '../engine/scoring.js';
 import { getToday } from '../engine/sm2.js';
 import { getDoubleCoinsBonusEarned, getDoubleCoinsRemainingSessions, getEquipped, SHOP_CATALOG } from '../engine/economy.js';
 import { exportProgress } from '../store/persistence.js';
+import { computeMaxDailyRecord } from '../engine/stats.js';
 import CharacterSprite from './CharacterSprite.jsx';
 import { resolveCharacterMood, resolveShopCharacter, getCharacterForRule, SHOP_CHARACTERS, SHOP_EMOTIONS, BASE_EMOTIONS } from '../data/shopCharacters.js';
 import { allDictees, getDicteeWordsForLevel } from '../content/dicteesLoader.js';
@@ -102,19 +103,6 @@ function getGreeting() {
   if (h < 12) return 'Bonjour';
   if (h < 18) return 'Bon après-midi';
   return 'Bonsoir';
-}
-
-function computeMaxDailyRecord(statsHistory, days) {
-  if (!Array.isArray(statsHistory) || statsHistory.length < 2) return 0;
-  const slice = statsHistory.slice(-(days + 1));
-  let max = 0;
-  for (let i = 1; i < slice.length; i++) {
-    const delta =
-      Math.max(0, (slice[i].gTotal || 0) - (slice[i - 1].gTotal || 0)) +
-      Math.max(0, (slice[i].dTotal || 0) - (slice[i - 1].dTotal || 0));
-    if (delta > max) max = delta;
-  }
-  return max;
 }
 
 
@@ -531,6 +519,7 @@ export default function Dashboard({
       rules,
       todayStr,
       hour: new Date().getHours(),
+      statsHistory: progress.statsHistory,
     });
   }
   const coachingMsg = coachingMsgRef.current;
@@ -1744,7 +1733,7 @@ export default function Dashboard({
           {/* ── Tests fonctionnels ── */}
           <div style={{ marginTop: '1rem', paddingTop: '0.9rem', borderTop: '1px dashed rgba(74,222,128,0.18)' }}>
             <div style={{ fontSize: '0.65rem', color: '#4ade80', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.6rem' }}>
-              ✅ Tests fonctionnels — 11 suites · 105 tests
+              ✅ Tests fonctionnels — 11 suites · 111 tests
             </div>
             <div style={{ maxHeight: '55vh', overflowY: 'auto' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.72rem', lineHeight: 1.6 }}>
@@ -1834,13 +1823,17 @@ export default function Dashboard({
                     ['N07', 'SM-2 : planification de la prochaine révision', 'Succès → intervalle doublé · Fragile → intervalle réduit · Échec → réinitialisation'],
                     ['N08', 'SM-2 : échec de révision → retour couronne', 'Un score <80 % en mode révision redescend la règle au niveau Couronne'],
                     ['N09', 'Streak : incrémentation et reset après 2 jours', 'Jouer hier → +1 · Jouer aujourd\'hui → identique · 2 jours d\'écart → reset à 1'],
-                    ['N11', 'Streak milestones (7 j → +100 pièces)', 'Atteindre 7 j déclenche exactement +100 pièces et marque le milestone'],
+                    ['N10', 'Streak : bouclier non auto-consommé', 'updateStreak ne consomme pas le bouclier (c\'est ReturnScreen qui le gère manuellement)'],
+                    ['N11', 'Streak milestones (7/14/30/60/100 j)', 'Chaque palier déclenche le bon montant de pièces (100/200/350/500/1000)'],
                     ['N16', 'Double pièces : ×2 pendant 5 sessions', 'L\'achat crédite 5 sessions bonus ; le compteur décrémente à chaque session'],
                     ['N17', 'Double pièces : verrouillé 1 semaine', 'Acheter deux fois la même semaine est bloqué jusqu\'au lundi suivant'],
                     ['N18', 'Images mystère : 2 morceaux par jour max', 'Le 3e achat de la journée est refusé même si les pièces suffisent'],
                     ['N19', 'Images mystère : révélation progressive 6 tuiles', 'Les tuiles se révèlent dans l\'ordre ; la dernière (fixe) n\'est jamais en premier'],
                     ['N22', 'Question Mystery : remplace la prochaine question', 'L\'item consommable pioche dans une règle différente de la règle courante'],
                     ['N32', 'Sélection de questions : pas de répétition', 'Les questions récemment vues sont évitées si le pool le permet'],
+                    ['N12d', 'ProgressBar : resolveCharacterMood fallback', 'Si l\'émotion demandée n\'est pas possédée, le mood retombe sur walk'],
+                    ['N13', 'Coaching arc14.0 : nudge matin', 'Le matin sans session et avec un streak actif, un message arc14.0 est retourné'],
+                    ['N33', 'Assignation personnage/règle stable par jour', 'Le même personnage est retourné pour la même règle le même jour'],
 
                     [null, '📈 PROGRESSION — ReturnScreen, Dictée, EndScreen (E2E)', '', true],
                     ['N14', 'ReturnScreen : apparaît après 2+ jours d\'inactivité', 'L\'écran "Retour après une pause" s\'affiche quand le joueur revient après ≥2 jours'],
@@ -1854,6 +1847,8 @@ export default function Dashboard({
                     [null, '👪 PARENT — Multi-enfant, réglages, PIN (E2E + unit)', '', true],
                     ['N26', 'Multi-enfant : données isolées par enfant', 'Le progress d\'un enfant ne peut pas écraser celui d\'un autre (clés localStorage distinctes)'],
                     ['N28', 'Admin : réglage du nombre de questions', 'La valeur saisie par le parent est enregistrée et persistée dans les paramètres enfant'],
+                    ['N29', 'Backup quotidien : créé automatiquement', 'Après une session, un snapshot progress est sauvé sous la clé du jour'],
+                    ['N30', 'Backup restauration : snapshot lisible', 'Un backup écrit puis relu retourne les mêmes coins et streak'],
                     ['N31b', 'PIN : formule de verrouillage progressif (unit)', '1 échec → 15 s · 2 → 30 s · le plafond est fixé à 3 600 s (1 heure)'],
                     ['N31', 'PIN : compteur d\'échecs incrémenté après mauvais code', 'Après une saisie incorrecte, failedAttempts = 1 et lockedUntil est dans le futur'],
                   ].map(([id, rule, criteria, isHeader], i) => (

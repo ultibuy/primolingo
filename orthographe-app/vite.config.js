@@ -42,8 +42,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'icons/*.png'],
       manifest: {
-        name: "GramHero — L'aventure de l'orthographe",
-        short_name: 'GramHero',
+        name: "PrimoLinguo — L'aventure de l'orthographe",
+        short_name: 'PrimoLinguo',
         description: "Apprendre l'orthographe en s'amusant",
         theme_color: '#1e1e2e',
         background_color: '#1e1e2e',
@@ -63,9 +63,26 @@ export default defineConfig({
         ],
       },
       workbox: {
-        maximumFileSizeToCacheInBytes: 15 * 1024 * 1024, // 15MB for mystery images
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff2}'],
+        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024,
+        globPatterns: ['**/*.{js,css,html,ico,svg,json,woff2,webmanifest}'],
         runtimeCaching: [
+          {
+            urlPattern: ({ request, url }) =>
+              request.destination === 'image' && !url.pathname.startsWith('/icons/'),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'runtime-images',
+              expiration: { maxEntries: 80, maxAgeSeconds: 30 * 24 * 60 * 60 },
+            },
+          },
+          {
+            urlPattern: ({ request }) => request.destination === 'audio',
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'runtime-audio',
+              expiration: { maxEntries: 200, maxAgeSeconds: 30 * 24 * 60 * 60 },
+            },
+          },
           {
             urlPattern: /^https:\/\/fonts\.(googleapis|gstatic)\.com\/.*/i,
             handler: 'CacheFirst',

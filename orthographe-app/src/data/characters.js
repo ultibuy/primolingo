@@ -1,4 +1,4 @@
-// Ménagerie de 50 personnages — GramHero
+// Ménagerie de 50 personnages — PrimoLinguo
 // Chaque personnage est prévu pour des enfants de 10-12 ans, filles et garçons
 
 export const CHARACTERS = [

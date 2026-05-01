@@ -168,6 +168,7 @@ export default function QuizDirect({
 
             return (
               <button key={choice.id}
+                data-answer-choice="true"
                 onClick={() => handleSelect(choice.id)}
                 disabled={showResult}
                 style={{

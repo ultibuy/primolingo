@@ -12,9 +12,9 @@ const LEVELS = [
 const pageStyle = {
   minHeight: '100vh',
   backgroundColor: 'var(--color-bg1)',
-  backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
-  backgroundSize: 'cover, cover',
-  backgroundPosition: 'center, center',
+  backgroundImage: 'var(--app-page-overlay)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center center',
   fontFamily: 'var(--font-body)',
   padding: '1.5rem',
   color: '#e2e2e2',

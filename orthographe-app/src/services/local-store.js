@@ -3,6 +3,8 @@
  * All data lives in localStorage, keyed by uid/childId.
  */
 
+import { getToday } from '../engine/sm2.js';
+
 function key(parts) {
   return `local:${parts.join(':')}`;
 }
@@ -28,7 +30,7 @@ export async function loadProgress(uid, childId) {
 
 export async function saveProgress(uid, childId, progress) {
   write(key(['progress', uid, childId]), progress);
-  const today = new Date().toISOString().slice(0, 10);
+  const today = getToday();
   const backups = read(key(['backups', uid, childId])) || {};
   if (!backups[today]) {
     backups[today] = { snapshot: progress, savedAt: new Date().toISOString() };

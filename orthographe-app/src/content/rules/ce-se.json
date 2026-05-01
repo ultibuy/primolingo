@@ -65,7 +65,7 @@
     {
       "id": "q002",
       "before": "",
-      "after": "sera une longue journée.",
+      "after": " sera une longue journée.",
       "answer": "ce",
       "difficulty": 1,
       "explanation": "« Je me sera » est impossible → c'est 'ce' (déterminant démonstratif)."
@@ -105,7 +105,7 @@
     {
       "id": "q007",
       "before": "",
-      "after": "professeur explique la leçon très bien.",
+      "after": " professeur explique la leçon très bien.",
       "answer": "ce",
       "difficulty": 2,
       "explanation": "« Je me professeur » est impossible → c'est 'ce' (déterminant démonstratif)."
@@ -121,7 +121,7 @@
     {
       "id": "q009",
       "before": "",
-      "after": "livre est vraiment passionnant.",
+      "after": " livre est vraiment passionnant.",
       "answer": "ce",
       "difficulty": 1,
       "explanation": "« Je me livre » ne donne pas de sens ici → c'est 'ce' (déterminant démonstratif)."
@@ -137,7 +137,7 @@
     {
       "id": "q011",
       "before": "",
-      "after": "que tu dis m'étonne beaucoup.",
+      "after": " que tu dis m'étonne beaucoup.",
       "answer": "ce",
       "difficulty": 1,
       "explanation": "« Je me que tu dis » est impossible → c'est 'ce' (pronom démonstratif neutre)."
@@ -184,11 +184,11 @@
     },
     {
       "id": "q017",
-      "before": "",
-      "after": "'est-il vraiment souvenu de notre rendez-vous ?",
+      "before": "Il",
+      "after": " souvient toujours de nos rendez-vous.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "« Je me suis souvenu » fonctionne → c'est 'se' (pronom réfléchi). Forme inversée : se + est-il → s'est-il."
+      "explanation": "Test : 'je me souviens' fonctionne → pronom réfléchi 'se'. Le verbe 'se souvenir' est toujours pronominal."
     },
     {
       "id": "q018",
@@ -225,7 +225,7 @@
     {
       "id": "q022",
       "before": "",
-      "after": "jour, les vacances arrivent enfin.",
+      "after": " jour, les vacances arrivent enfin.",
       "answer": "ce",
       "difficulty": 1,
       "explanation": "« Je me jour » est impossible → c'est 'ce' (pronom démonstratif neutre)."
@@ -345,10 +345,10 @@
     {
       "id": "q037",
       "before": "Les enfants",
-      "after": " amusent dans la cour de récréation.",
+      "after": " retrouvent dans la cour de récréation.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "« Je m'amuse » fonctionne avec 'je' → c'est 'se' (pronom réfléchi)."
+      "explanation": "On peut dire 'ils se retrouvent' → pronom réfléchi 'se'. Test : 'ils me retrouvent' → même structure → c'est 'se'."
     },
     {
       "id": "q038",
@@ -545,7 +545,7 @@
     {
       "id": "q062",
       "before": "",
-      "after": "garçon dort profondément.",
+      "after": " garçon dort profondément.",
       "answer": "ce",
       "difficulty": 1,
       "explanation": "Test : 'je me garçon' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)"
@@ -561,7 +561,7 @@
     {
       "id": "q064",
       "before": "",
-      "after": "livre est très intéressant.",
+      "after": " livre est très intéressant.",
       "answer": "ce",
       "difficulty": 1,
       "explanation": "Test : 'je me livre' ne fonctionne pas ici → c'est 'ce' (déterminant démonstratif)"
@@ -577,7 +577,7 @@
     {
       "id": "q066",
       "before": "",
-      "after": "paysage montagneux offrait une belle vue.",
+      "after": " paysage montagneux offrait une belle vue.",
       "answer": "ce",
       "difficulty": 1,
       "explanation": "Test : 'je me paysage' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)"
@@ -609,7 +609,7 @@
     {
       "id": "q070",
       "before": "",
-      "after": "restaurant propose une cuisine excellente.",
+      "after": " restaurant propose une cuisine excellente.",
       "answer": "ce",
       "difficulty": 1,
       "explanation": "Test : 'je me restaurant' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)"
@@ -641,7 +641,7 @@
     {
       "id": "q074",
       "before": "",
-      "after": "moment était parfait pour voyager.",
+      "after": " moment était parfait pour voyager.",
       "answer": "ce",
       "difficulty": 1,
       "explanation": "Test : 'je me moment' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)"
@@ -1401,10 +1401,10 @@
     {
       "id": "q171",
       "before": "Regarde",
-      "after": " instant précis où le soleil touche l'horizon.",
+      "after": " paysage magnifique au coucher du soleil.",
       "answer": "ce",
       "difficulty": 2,
-      "explanation": "Test : 'Je me instant' ✗ → Déterminant démonstratif, donc 'ce'."
+      "explanation": "Test : 'je me paysage' est impossible → c'est 'ce' (déterminant démonstratif). 'Ce paysage' = this landscape."
     },
     {
       "id": "q172",
@@ -1521,7 +1521,7 @@
     {
       "id": "q187",
       "before": "",
-      "after": "matin, il faisait beau dehors.",
+      "after": " matin, il faisait beau dehors.",
       "answer": "ce",
       "difficulty": 1,
       "explanation": "Test : 'je me matin' ✗ → Démonstratif temporel. Réponse : ce"
@@ -1561,7 +1561,7 @@
     {
       "id": "q192",
       "before": "",
-      "after": "film que tu veux regarder est excellent.",
+      "after": " film que tu veux regarder est excellent.",
       "answer": "ce",
       "difficulty": 1,
       "explanation": "Test : 'je me film' ✗ → Déterminant démonstratif. Réponse : ce"
@@ -1641,7 +1641,7 @@
     {
       "id": "q202",
       "before": "",
-      "after": "résultat dépasse toutes nos espérances.",
+      "after": " résultat dépasse toutes nos espérances.",
       "answer": "ce",
       "difficulty": 1,
       "explanation": "« Je me résultat » est impossible → c'est 'ce' (déterminant démonstratif)."

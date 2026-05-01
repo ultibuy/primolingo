@@ -76,8 +76,8 @@ export default function LegalPage() {
 
           <h3 style={h3Style}>Éditeur du site</h3>
           <p style={pStyle}>
-            GramHero est un projet personnel et gratuit, édité par Luc Behar.<br />
-            Contact : gramhero.app@gmail.com
+            PrimoLinguo est un projet personnel et gratuit, édité par Luc Behar.<br />
+            Contact : primolinguo.app@gmail.com
           </p>
 
           <h3 style={h3Style}>Hébergement</h3>
@@ -88,7 +88,7 @@ export default function LegalPage() {
 
           <h3 style={h3Style}>Propriété intellectuelle</h3>
           <p style={pStyle}>
-            L'ensemble du contenu de GramHero (textes, exercices, illustrations, code source) est la propriété
+            L'ensemble du contenu de PrimoLinguo (textes, exercices, illustrations, code source) est la propriété
             de l'éditeur sauf mention contraire. Toute reproduction non autorisée est interdite.
           </p>
         </div>
@@ -100,7 +100,7 @@ export default function LegalPage() {
 
           <h3 style={h3Style}>1. Données collectées</h3>
           <p style={pStyle}>
-            GramHero collecte uniquement les données nécessaires au fonctionnement du service :
+            PrimoLinguo collecte uniquement les données nécessaires au fonctionnement du service :
           </p>
           <ul style={{ ...pStyle, paddingLeft: '1.5rem' }}>
             <li><strong>Compte parent</strong> : adresse email et nom (fournis par Google lors de la connexion)</li>
@@ -111,7 +111,7 @@ export default function LegalPage() {
 
           <h3 style={h3Style}>2. Données NON collectées</h3>
           <p style={pStyle}>
-            GramHero ne collecte <strong>aucune</strong> donnée de tracking, publicité, géolocalisation, cookie tiers,
+            PrimoLinguo ne collecte <strong>aucune</strong> donnée de tracking, publicité, géolocalisation, cookie tiers,
             ni aucune donnée biométrique. Aucun SDK publicitaire n'est intégré. Aucune donnée n'est revendue à des tiers.
           </p>
 
@@ -141,19 +141,19 @@ export default function LegalPage() {
           <h3 style={h3Style}>6. Droits des utilisateurs</h3>
           <p style={pStyle}>
             Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression
-            et de portabilité de vos données. Pour exercer ces droits, contactez : gramhero.app@gmail.com
+            et de portabilité de vos données. Pour exercer ces droits, contactez : primolinguo.app@gmail.com
           </p>
 
           <h3 style={h3Style}>7. Monitoring des erreurs</h3>
           <p style={pStyle}>
-            GramHero utilise Sentry pour détecter et corriger les bugs techniques. Sentry peut recevoir
+            PrimoLinguo utilise Sentry pour détecter et corriger les bugs techniques. Sentry peut recevoir
             des informations techniques anonymisées (type de navigateur, stack trace d'erreurs). Aucune donnée
             personnelle identifiante n'est transmise à Sentry.
           </p>
 
           <h3 style={h3Style}>8. Mineurs</h3>
           <p style={pStyle}>
-            GramHero est destiné aux enfants sous la supervision d'un parent. Le compte est créé par le parent,
+            PrimoLinguo est destiné aux enfants sous la supervision d'un parent. Le compte est créé par le parent,
             et l'enfant n'a pas besoin de fournir de données personnelles pour utiliser l'application.
             Le parent reste responsable de l'utilisation du service par son enfant.
           </p>
@@ -164,7 +164,7 @@ export default function LegalPage() {
           textAlign: 'center', padding: '1.5rem 0', borderTop: `1px solid ${T.glassBorder}`,
           fontSize: '0.8rem', color: T.textMuted,
         }}>
-          © 2026 GramHero — gramhero.app@gmail.com
+          © 2026 PrimoLinguo — primolinguo.app@gmail.com
         </div>
       </div>
     </div>

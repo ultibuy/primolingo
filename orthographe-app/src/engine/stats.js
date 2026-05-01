@@ -1,5 +1,5 @@
 /**
- * stats.js — Centralized stats aggregation for GramHero.
+ * stats.js — Centralized stats aggregation for PrimoLinguo.
  *
  * Pure JS module. No React imports. All functions are side-effect-free
  * except updateStatsHistory which mutates progress in-place.

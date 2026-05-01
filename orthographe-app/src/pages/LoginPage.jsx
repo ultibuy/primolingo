@@ -26,8 +26,8 @@ export default function LoginPage() {
       <div style={cardStyle}>
         {/* Logo */}
         <div style={logoStyle}>
-          <div style={logoIconStyle}>GH</div>
-          <h1 style={logoTitleStyle}>GramHero</h1>
+          <div style={logoIconStyle}>PL</div>
+          <h1 style={logoTitleStyle}>PrimoLinguo</h1>
           <p style={logoSubStyle}>L'aventure de l'orthographe</p>
         </div>
 

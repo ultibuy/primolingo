@@ -307,6 +307,7 @@ export default function QuizGuided({
 
             return (
               <button key={choice.id}
+                data-answer-choice="true"
                 onClick={() => handleSelect(choice.id)}
                 disabled={showResult || isEliminated}
                 style={{

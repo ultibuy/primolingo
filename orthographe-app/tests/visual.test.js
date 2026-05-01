@@ -1,5 +1,5 @@
 /**
- * Visual tests — GramHero
+ * Visual tests — PrimoLinguo
  *
  * Tests les pages publiques, les redirections d'auth et les interactions de base.
  * Tourne contre la prod par défaut (BASE_URL) ou localhost si disponible.
@@ -9,7 +9,7 @@
  *   BASE_URL=http://localhost:5173 npm run test:visual
  */
 
-import puppeteer from 'puppeteer';
+import { chromium } from 'playwright';
 import { mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -23,7 +23,7 @@ const DAMIEN_CHILD_ID = 'x4DVX8Th7AG1UpRzc8Br';
 
 const VIEWPORTS = {
   desktop: { width: 1280, height: 800 },
-  mobile:  { width: 390,  height: 844, isMobile: true, hasTouch: true },
+  mobile:  { width: 390,  height: 844 },
 };
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
@@ -48,15 +48,14 @@ async function waitForURL(page, urlFragment, timeout = 8000) {
 
 async function newPage(viewport = VIEWPORTS.desktop) {
   const page = await browser.newPage();
-  await page.setViewport(viewport);
+  await page.setViewportSize({ width: viewport.width, height: viewport.height });
   // Block analytics & tracking to speed up tests
-  await page.setRequestInterception(true);
-  page.on('request', (req) => {
-    const url = req.url();
+  await page.route('**', (route) => {
+    const url = route.request().url();
     if (url.includes('google-analytics') || url.includes('googletagmanager') || url.includes('firebaselogging')) {
-      req.abort();
+      route.abort();
     } else {
-      req.continue();
+      route.continue();
     }
   });
   return page;
@@ -99,10 +98,10 @@ async function testLandingPage() {
 
   await test('Desktop — renders hero title', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     await page.waitForSelector('h1', { timeout: 10000 });
     const title = await page.$eval('h1', el => el.textContent.trim());
-    assert(title.includes('GramHero'), `h1 expected "GramHero", got "${title}"`);
+    assert(title.includes('PrimoLinguo'), `h1 expected "PrimoLinguo", got "${title}"`);
     await screenshotFull(page, '01-landing-desktop');
     await screenshot(page, '01-landing-desktop-viewport');
     await page.close();
@@ -110,7 +109,7 @@ async function testLandingPage() {
 
   await test('Desktop — "Se connecter" nav button links to /login', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     const href = await page.$eval('a[href="/login"]', el => el.getAttribute('href'));
     assert(href === '/login', `Expected href="/login", got "${href}"`);
     await page.close();
@@ -118,7 +117,7 @@ async function testLandingPage() {
 
   await test('Desktop — CTA button "Commencer" is visible', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     const ctaBtns = await page.$$eval('a[href="/login"]', els => els.map(el => el.textContent.trim()));
     const hasCta = ctaBtns.some(t => t.includes('Commencer'));
     assert(hasCta, `No CTA "Commencer" button found. Buttons: ${JSON.stringify(ctaBtns)}`);
@@ -127,8 +126,7 @@ async function testLandingPage() {
 
   await test('Desktop — 4 feature cards rendered', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
-    // Feature cards contain an emoji + title; look for the "Pourquoi" section
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     const h2s = await page.$$eval('h2', els => els.map(el => el.textContent.trim()));
     const hasFeaturesSection = h2s.some(t => t.includes('Pourquoi'));
     assert(hasFeaturesSection, `"Pourquoi" section not found. h2s: ${JSON.stringify(h2s)}`);
@@ -137,7 +135,7 @@ async function testLandingPage() {
 
   await test('Desktop — "Comment ça marche" section with 3 steps', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     const h2s = await page.$$eval('h2', els => els.map(el => el.textContent.trim()));
     const hasHowItWorks = h2s.some(t => t.includes('Comment'));
     assert(hasHowItWorks, `"Comment" section not found. h2s: ${JSON.stringify(h2s)}`);
@@ -146,7 +144,7 @@ async function testLandingPage() {
 
   await test('Desktop — "100% gratuit" section visible', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     const bodyText = await page.$eval('body', el => el.textContent);
     assert(bodyText.includes('100% gratuit'), '"100% gratuit" text not found on page');
     await page.close();
@@ -154,26 +152,26 @@ async function testLandingPage() {
 
   await test('Desktop — footer copyright present', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     const footerText = await page.$eval('footer', el => el.textContent);
-    assert(footerText.includes('GramHero'), 'Footer missing "GramHero"');
+    assert(footerText.includes('PrimoLinguo'), 'Footer missing "PrimoLinguo"');
     await page.close();
   });
 
   await test('Mobile — renders correctly at 390px', async () => {
     const page = await newPage(VIEWPORTS.mobile);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     await page.waitForSelector('h1', { timeout: 10000 });
     await screenshot(page, '02-landing-mobile');
     await screenshotFull(page, '02-landing-mobile');
     const title = await page.$eval('h1', el => el.textContent.trim());
-    assert(title.includes('GramHero'), `Mobile h1: "${title}"`);
+    assert(title.includes('PrimoLinguo'), `Mobile h1: "${title}"`);
     await page.close();
   });
 
   await test('Mobile — no horizontal overflow', async () => {
     const page = await newPage(VIEWPORTS.mobile);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
     assert(scrollWidth <= 390, `Horizontal overflow detected: scrollWidth=${scrollWidth}px (expected ≤390)`);
     await page.close();
@@ -183,19 +181,19 @@ async function testLandingPage() {
 async function testLoginPage() {
   console.log('\n🔐 Login Page (/login)');
 
-  await test('Desktop — renders GramHero logo', async () => {
+  await test('Desktop — renders PrimoLinguo logo', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle', timeout: 30000 });
     await page.waitForSelector('button', { timeout: 10000 });
     await screenshot(page, '03-login-desktop');
     const bodyText = await page.$eval('body', el => el.textContent);
-    assert(bodyText.includes('GramHero'), '"GramHero" not found on login page');
+    assert(bodyText.includes('PrimoLinguo'), '"PrimoLinguo" not found on login page');
     await page.close();
   });
 
   await test('Desktop — Google Sign-In button present', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle', timeout: 30000 });
     const btns = await page.$$eval('button', els => els.map(el => el.textContent.trim()));
     const hasGoogle = btns.some(t => t.includes('Google'));
     assert(hasGoogle, `No Google button found. Buttons: ${JSON.stringify(btns)}`);
@@ -204,7 +202,7 @@ async function testLoginPage() {
 
   await test('Desktop — "Retour à l\'accueil" back link present', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle', timeout: 30000 });
     const links = await page.$$eval('a', els => els.map(el => el.textContent.trim()));
     const hasBack = links.some(t => t.includes('accueil') || t.includes('Retour'));
     assert(hasBack, `No back link found. Links: ${JSON.stringify(links)}`);
@@ -213,7 +211,7 @@ async function testLoginPage() {
 
   await test('Desktop — back link navigates to /', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle', timeout: 30000 });
     const backHref = await page.$eval('a[href="/"]', el => el.getAttribute('href'));
     assert(backHref === '/', `Back link href: "${backHref}"`);
     await page.close();
@@ -221,7 +219,7 @@ async function testLoginPage() {
 
   await test('Mobile — login page renders at 390px', async () => {
     const page = await newPage(VIEWPORTS.mobile);
-    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle', timeout: 30000 });
     await page.waitForSelector('button', { timeout: 10000 });
     await screenshot(page, '04-login-mobile');
     const btns = await page.$$eval('button', els => els.map(el => el.textContent.trim()));
@@ -232,7 +230,7 @@ async function testLoginPage() {
 
   await test('Mobile — no horizontal overflow on login', async () => {
     const page = await newPage(VIEWPORTS.mobile);
-    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle', timeout: 30000 });
     const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
     assert(scrollWidth <= 390, `Overflow on login: scrollWidth=${scrollWidth}px`);
     await page.close();
@@ -244,9 +242,7 @@ async function testAuthRedirects() {
 
   await test('/parent redirects to /login when not authenticated', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle2', timeout: 30000 });
-    const url = page.url();
-    // The AuthProvider has a loading state — wait briefly then check
+    await page.goto(`${BASE_URL}/parent`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
     const finalUrl = page.url();
     assert(
@@ -259,7 +255,7 @@ async function testAuthRedirects() {
 
   await test('/parent/child/new redirects to /login when not authenticated', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/parent/child/new`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/parent/child/new`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
     const finalUrl = page.url();
     assert(
@@ -271,7 +267,7 @@ async function testAuthRedirects() {
 
   await test('/play/:childId redirects to /login when not authenticated', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/play/${DAMIEN_CHILD_ID}`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/play/${DAMIEN_CHILD_ID}`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(2000);
     const finalUrl = page.url();
     assert(
@@ -284,10 +280,9 @@ async function testAuthRedirects() {
 
   await test('Unknown route redirects to /', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/this-route-does-not-exist`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/this-route-does-not-exist`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(1000);
     const finalUrl = page.url();
-    // Should land on / (LandingPage)
     const path = new URL(finalUrl).pathname;
     assert(path === '/', `Expected redirect to /, got: ${path}`);
     await page.close();
@@ -299,8 +294,7 @@ async function testNavigation() {
 
   await test('Landing → Login: CTA button navigates to /login', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
-    // React Router uses client-side navigation — waitForURL instead of waitForNavigation
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     await page.click('a[href="/login"]');
     await waitForURL(page, '/login');
     const url = new URL(page.url()).pathname;
@@ -310,7 +304,7 @@ async function testNavigation() {
 
   await test('Login → Landing: back link navigates to /', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle', timeout: 30000 });
     await page.click('a[href="/"]');
     await waitForURL(page, `${BASE_URL}/`);
     const url = new URL(page.url()).pathname;
@@ -318,17 +312,17 @@ async function testNavigation() {
     await page.close();
   });
 
-  await test('Page title is "GramHero" on landing', async () => {
+  await test('Page title is "PrimoLinguo" on landing', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     const title = await page.title();
-    assert(title.includes('GramHero'), `Page title: "${title}"`);
+    assert(title.includes('PrimoLinguo'), `Page title: "${title}"`);
     await page.close();
   });
 
   await test('Meta description is present on landing', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     const desc = await page.$eval('meta[name="description"]', el => el.getAttribute('content'));
     assert(desc && desc.length > 10, `Meta description missing or too short: "${desc}"`);
     await page.close();
@@ -336,7 +330,7 @@ async function testNavigation() {
 
   await test('PWA manifest is linked', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     const manifest = await page.$('link[rel="manifest"]');
     assert(manifest !== null, 'No <link rel="manifest"> found — PWA manifest missing');
     await page.close();
@@ -344,7 +338,7 @@ async function testNavigation() {
 
   await test('Apple touch icon is linked', async () => {
     const page = await newPage(VIEWPORTS.desktop);
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     const icon = await page.$('link[rel="apple-touch-icon"]');
     assert(icon !== null, 'No apple-touch-icon link found');
     await page.close();
@@ -372,9 +366,8 @@ async function testPerformance() {
       if (msg.type() === 'error') errors.push(msg.text());
     });
     page.on('pageerror', err => errors.push(err.message));
-    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(1000);
-    // Filter out known/ignorable errors (e.g. SW registration pending)
     const realErrors = errors.filter(e =>
       !e.includes('ResizeObserver') &&
       !e.includes('non-passive') &&
@@ -392,7 +385,7 @@ async function testPerformance() {
       if (msg.type() === 'error') errors.push(msg.text());
     });
     page.on('pageerror', err => errors.push(err.message));
-    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle2', timeout: 30000 });
+    await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle', timeout: 30000 });
     await sleep(1000);
     const realErrors = errors.filter(e =>
       !e.includes('ResizeObserver') &&
@@ -408,14 +401,11 @@ async function testPerformance() {
 // ── Main ───────────────────────────────────────────────────────────────────────
 
 async function main() {
-  console.log(`\n🧪 GramHero Visual Tests`);
+  console.log(`\n🧪 PrimoLinguo Visual Tests`);
   console.log(`   Target: ${BASE_URL}`);
   console.log(`   Screenshots: ${SCREENSHOTS_DIR}\n`);
 
-  browser = await puppeteer.launch({
-    headless: true,
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-  });
+  browser = await chromium.launch({ headless: true });
 
   try {
     await testLandingPage();

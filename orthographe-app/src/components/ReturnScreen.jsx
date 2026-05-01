@@ -523,9 +523,9 @@ export default function ReturnScreen({
     <div style={{
       position: 'fixed', inset: 0,
       backgroundColor: 'rgba(var(--color-bg1-rgb),0.97)',
-      backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
-      backgroundSize: 'cover, cover',
-      backgroundPosition: 'center, center',
+      backgroundImage: 'var(--app-page-overlay)',
+      backgroundSize: 'cover',
+      backgroundPosition: 'center center',
       backdropFilter: 'blur(16px)',
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       zIndex: 1000,

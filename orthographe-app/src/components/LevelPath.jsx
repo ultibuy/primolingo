@@ -83,21 +83,26 @@ export default function LevelPath({ currentLevel, progress = 0, onNodeClick, onC
         }} />
       )}
 
-      {/* Active character — walks along the path, sits on diamond node at max level */}
-      {characterId && fillFraction > 0.02 && (() => {
+      {/* Active character — walks along the path, or rests on the first node before progress starts */}
+      {characterId && (fillFraction > 0.02 || lvl > 0 || pandaMood) && (() => {
         const activeMood = pandaMood != null
           ? pandaMood
           : fillFraction >= 0.99
             ? 'sit'
-            : (partialSegment < 0.05 && completedSegments > 0 && completedSegments < segments ? 'sit' : 'walk');
+            : fillFraction <= 0.02
+              ? 'sit'
+              : (partialSegment < 0.05 && completedSegments > 0 && completedSegments < segments ? 'sit' : 'walk');
+        const characterLeft = fillFraction >= 0.99
+          ? lastCenter
+          : fillFraction <= 0.02
+            ? firstCenter
+            : firstCenter + fillFraction * trackWidth;
         return (
           <div
             onClick={(e) => { e.stopPropagation(); onCharacterClick?.({ characterId, mood: activeMood }); }}
             style={{
               position: 'absolute',
-              left: fillFraction >= 0.99
-                ? `${lastCenter}%`
-                : `${firstCenter + fillFraction * trackWidth}%`,
+              left: `${characterLeft}%`,
               top: fillFraction >= 0.99
                 ? NODE_ACTIVE / 2 - 36
                 : NODE_ACTIVE / 2 - 40,

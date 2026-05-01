@@ -58,7 +58,7 @@ export default function ChildSetup() {
         <div style={cardStyle}>
           <div style={{ fontSize: 64, textAlign: 'center' }}>🚀</div>
           <h2 style={doneTitle}>Le profil de {name} est prêt !</h2>
-          <p style={doneSub}>C'est parti pour l'aventure GramHero</p>
+          <p style={doneSub}>C'est parti pour l'aventure PrimoLinguo</p>
           <button type="button" onClick={() => navigate(`/play/${newChildId}`)} style={primaryBtnStyle}>
             Commencer à jouer
           </button>

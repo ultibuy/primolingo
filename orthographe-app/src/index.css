@@ -12,10 +12,6 @@
   --color-bg2: #2d2b55;
   --color-bg2-rgb: 45, 43, 85;
   --app-page-overlay: linear-gradient(135deg, #1e1e2e 0%, #2d2b55 100%);
-  --app-page-image: none;
-  --app-page-image-size: cover;
-  --app-page-image-position: center center;
-  --app-page-image-repeat: no-repeat;
 }
 
 * {
@@ -27,10 +23,10 @@
 html, body {
   min-height: 100vh;
   background-color: var(--color-bg1);
-  background-image: var(--app-page-overlay), var(--app-page-image);
-  background-size: cover, var(--app-page-image-size);
-  background-position: center center, var(--app-page-image-position);
-  background-repeat: no-repeat, var(--app-page-image-repeat);
+  background-image: var(--app-page-overlay);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
   font-family: var(--font-body);
   color: #e2e2e2;
 }

@@ -3,6 +3,7 @@ import DiamondStatus from './DiamondStatus.jsx';
 import { DiamondReviewBadge, DiamondHealthSection } from './DiamondSection.jsx';
 import { calculateDiamondHealth, getToday } from '../engine/sm2.js';
 import { computeCardStyle, computeButtonStyle, formatDate } from '../engine/cardStyles.js';
+import ProgressListCard from './ui/ProgressListCard.jsx';
 
 const LEVEL_LABELS = {
   level1: { label: 'Aventurier', color: '#FFC107' },
@@ -97,69 +98,35 @@ export default function DicteeCard({
   // ── Variante compacte "À découvrir" (non commencée) ──────────────────────
   if (ruleLevel === 0) {
     return (
-      <div style={{
-        display: 'flex', alignItems: 'center',
-        background: isFirst ? 'rgba(var(--color-primary-rgb),0.08)' : 'rgba(255,255,255,0.04)',
-        border: isFirst ? '1px solid rgba(var(--color-primary-rgb),0.3)' : '1px solid rgba(255,255,255,0.08)',
-        borderRadius: 14, padding: '0.7rem 1rem',
-        gap: '0.7rem',
-        opacity: locked ? 0.45 : 1,
-        filter: locked ? 'grayscale(0.7)' : 'none',
-        cursor: locked ? 'default' : 'pointer',
-        flexWrap: 'wrap', position: 'relative',
-      }}>
-        {onBugReport && (
-          <button type="button" title="Signaler un problème"
+      <ProgressListCard
+        title={dictee.title}
+        statusLabel={subtitle}
+        recommended={isFirst}
+        recommendedLabel="Prochaine dictée recommandée"
+        locked={locked}
+        actionLabel={locked ? null : 'Commencer'}
+        onAction={locked ? null : () => onPlay?.(dictee, level)}
+        trailing={onBugReport && (
+          <button
+            type="button"
+            title="Signaler un problème"
             onClick={(e) => { e.stopPropagation(); onBugReport({ type: 'dictee', title: dictee.title, id: dictee.id, level }); }}
             style={{
-              position: 'absolute', top: 8, right: 8,
               background: 'rgba(255,255,255,0.07)',
               border: '1px solid rgba(255,255,255,0.12)',
-              borderRadius: 8, padding: '2px 6px',
-              fontSize: '0.75rem', cursor: 'pointer',
-              lineHeight: 1.5, zIndex: 2, opacity: 0.55,
-            }}>🐛</button>
+              borderRadius: 8,
+              padding: '2px 6px',
+              fontSize: '0.75rem',
+              cursor: 'pointer',
+              lineHeight: 1.5,
+              opacity: 0.55,
+              flexShrink: 0,
+            }}
+          >
+            🐛
+          </button>
         )}
-        <span style={{ fontSize: '1rem', opacity: 0.4 }}>🔒</span>
-        <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.7rem', flexWrap: 'nowrap' }}>
-            <span style={{
-              color: 'var(--color-accent)', fontSize: '0.88rem', fontWeight: 700,
-              flex: 1, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-            }}>
-              {dictee.title}
-            </span>
-            {!locked && (
-              <button type="button" onClick={() => onPlay?.(dictee, level)} style={{
-                padding: '0.45rem 0.9rem', borderRadius: 10, border: 'none',
-                background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
-                color: '#fff', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 700, flexShrink: 0,
-                boxShadow: isFirst ? '0 2px 12px rgba(124,58,237,0.35)' : '0 2px 8px rgba(124,58,237,0.25)',
-              }}>
-                Commencer
-              </button>
-            )}
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
-            {isFirst && (
-              <span style={{
-                display: 'inline-flex', alignSelf: 'flex-start', whiteSpace: 'nowrap',
-                fontSize: '0.6rem',
-                background: 'rgba(var(--color-primary-rgb),0.2)', color: 'var(--color-accent)',
-                padding: '0.1rem 0.45rem', borderRadius: 4, fontWeight: 700, letterSpacing: '0.02em',
-              }}>
-                Prochaine dictée recommandée
-              </span>
-            )}
-            <span style={{
-              fontSize: '0.62rem', color: '#6b7280', fontWeight: 700,
-              background: 'rgba(107,114,128,0.15)', padding: '0.1rem 0.4rem', borderRadius: 4,
-            }}>
-              {subtitle}
-            </span>
-          </div>
-        </div>
-      </div>
+      />
     );
   }
 

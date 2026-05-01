@@ -6,7 +6,15 @@ function clampPct(value) {
   return Math.max(0, Math.min(value, 100));
 }
 
-export default function ProgressBar({ current, total, showResult, shopOwned = [], lastAnswer = null, characterId: charIdProp }) {
+export default function ProgressBar({
+  current,
+  total,
+  showResult,
+  shopOwned = [],
+  lastAnswer = null,
+  characterId: charIdProp,
+  isFirstEverSession = false,
+}) {
   const pct = ((current + (showResult ? 1 : 0)) / total) * 100;
   const valuenow = current + (showResult ? 1 : 0);
   const ownedChars = useMemo(() => getOwnedChars(shopOwned), [shopOwned]);
@@ -16,15 +24,23 @@ export default function ProgressBar({ current, total, showResult, shopOwned = []
   useEffect(() => {
     if (!activeChar) return undefined;
     if (lastAnswer !== 'correct' && lastAnswer !== 'wrong') {
+      const idleMood = isFirstEverSession
+        ? 'sleep'
+        : current === 0
+          ? 'wave'
+          : 'walk';
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setMood('walk');
+      setMood(resolveCharacterMood(idleMood, activeChar, shopOwned));
       return undefined;
     }
-    const nextMood = lastAnswer === 'correct' ? 'victory' : 'surprise';
+    const nextMood = lastAnswer === 'correct' ? 'clap' : 'surprise';
     setMood(resolveCharacterMood(nextMood, activeChar, shopOwned));
-    const timeoutId = setTimeout(() => setMood('walk'), 1500);
+    const timeoutId = setTimeout(() => {
+      const idleMood = isFirstEverSession ? 'sleep' : 'walk';
+      setMood(resolveCharacterMood(idleMood, activeChar, shopOwned));
+    }, 1500);
     return () => clearTimeout(timeoutId);
-  }, [activeChar, lastAnswer, shopOwned]);
+  }, [activeChar, current, isFirstEverSession, lastAnswer, shopOwned]);
 
   return (
     <div style={{ position: 'relative', marginBottom: '0.5rem', paddingTop: activeChar ? 26 : 0 }}>

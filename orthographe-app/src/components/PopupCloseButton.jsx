@@ -6,7 +6,7 @@ export default function PopupCloseButton({
   size = 48,
   style,
 }) {
-  const cornerOffset = -Math.round(size / 2);
+  const cornerOffset = -Math.round(size / 4);
   return (
     <button
       type="button"

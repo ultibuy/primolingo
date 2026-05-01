@@ -1,10 +1,12 @@
 /**
- * coaching.js — Narrative arcs coaching engine for GramHero.
+ * coaching.js — Narrative arcs coaching engine for PrimoLinguo.
  *
  * Pure JS module. No React imports. All arc logic lives here.
  */
 
 import { SHOP_EMOTIONS } from '../data/shopCharacters.js';
+import { parseLocalDate } from './sm2.js';
+import { computeMaxDailyRecord } from './stats.js';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -101,7 +103,7 @@ function isCapReached() {
  * @returns {CoachingMessage | null}
  */
 export function pickCoachingMessage(ctx) {
-  const { trigger, progress, todayStr, hour, rules } = ctx;
+  const { trigger, progress, todayStr, hour, rules, statsHistory } = ctx;
   const coaching = progress.coaching || createDefaultCoaching();
 
   // Cap check
@@ -125,7 +127,10 @@ export function pickCoachingMessage(ctx) {
   const daily = progress.dailyActivity || { date: null, count: 0, yesterdayCount: 0, bestDaily: 0 };
   const sessionsToday = daily.date === todayStr ? daily.count : 0;
   const yesterdaySessions = daily.yesterdayCount || 0;
-  const bestDaily = daily.bestDaily || 0;
+  const history = statsHistory || progress.statsHistory;
+  const record3j = computeMaxDailyRecord(history, 3);
+  const record7j = computeMaxDailyRecord(history, 7);
+  const record30j = computeMaxDailyRecord(history, 30);
 
   // SM2 reviews due today
   const revisionsDueToday = rules.some(rule => {
@@ -186,63 +191,146 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
-  // --- arc14: daily engagement (recurring, dashboard only) ---
-  if (trigger === 'dashboard' && todayDone && sessionsToday > 0) {
+  function pickDailyEngagementMessage() {
+    if (trigger !== 'dashboard') return null;
 
-    // arc14.5: new daily record
-    if (allowed('arc14.5') && sessionsToday >= 4 && sessionsToday === bestDaily) {
-      return msg('arc14.5', 'flamme',
-        `${sessionsToday} quiz aujourd'hui — c'est ton record ! 🏆`,
-        'ton record',
-        '🏆',
-        null,
-        { oneShot: false, recurring: true }
-      );
+    // --- arc14.0: morning nudge — not played yet today (recurring, alternates) ---
+    if (!todayDone) {
+      const last = coaching.lastBannerArc;
+
+      // arc14.0a: flame nudge (only if streak active)
+      if (streak.current >= 1 && last !== 'arc14.0a') {
+        return msg('arc14.0a', 'flamme',
+          `${streak.current} jours d'affilée 🔥 ! Un seul quiz pour garder ta flamme et passer à ${streak.current + 1}.`,
+          `${streak.current} jours`, '🔥', null,
+          { oneShot: false, recurring: true });
+      }
+
+      // arc14.0b: daily bonus nudge
+      if (last !== 'arc14.0b') {
+        return msg('arc14.0b', 'pieces',
+          'Fais ton quiz aujourd\'hui pour débloquer le bonus du jour de 10 pièces d\'or !',
+          '10 pièces d\'or', '🪙', null,
+          { oneShot: false, recurring: true });
+      }
+
+      // Fallback: back to flame if streak, otherwise bonus
+      if (streak.current >= 1) {
+        return msg('arc14.0a', 'flamme',
+          `${streak.current} jours d'affilée 🔥 ! Un seul quiz pour garder ta flamme et passer à ${streak.current + 1}.`,
+          `${streak.current} jours`, '🔥', null,
+          { oneShot: false, recurring: true });
+      }
+      return msg('arc14.0b', 'pieces',
+        'Fais ton quiz aujourd\'hui pour débloquer le bonus du jour de 10 pièces d\'or !',
+        '10 pièces d\'or', '🪙', null,
+        { oneShot: false, recurring: true });
     }
 
-    // arc14.4: doing better than yesterday
-    if (allowed('arc14.4') && sessionsToday >= 3 && yesterdaySessions > 0 && sessionsToday > yesterdaySessions) {
-      return msg('arc14.4', 'flamme',
-        `${sessionsToday} quiz aujourd'hui, c'est plus qu'hier (${yesterdaySessions}). Belle progression !`,
-        `plus qu'hier`,
-        '📈',
-        null,
-        { oneShot: false, recurring: true }
-      );
+    // --- arc14: daily engagement — already played today ---
+    if (todayDone && sessionsToday > 0) {
+      // arc14.5: new daily record — pick the hardest record that was beaten
+      if (allowed('arc14.5') && sessionsToday >= 4) {
+        const beatenPeriod = (record30j > 0 && sessionsToday >= record30j) ? 30
+          : (record7j > 0 && sessionsToday >= record7j) ? 7
+          : (record3j > 0 && sessionsToday >= record3j) ? 3
+          : 0;
+        if (beatenPeriod > 0) {
+          return msg('arc14.5', 'flamme',
+            `${sessionsToday} quiz aujourd'hui — nouveau record sur ${beatenPeriod} jours ! 🏆`,
+            'nouveau record',
+            '🏆',
+            null,
+            { oneShot: false, recurring: true }
+          );
+        }
+      }
+
+      // arc14.6: close to beating a record (1 or 2 away)
+      if (allowed('arc14.6') && sessionsToday >= 3) {
+        const candidates = [
+          { period: 3, record: record3j },
+          { period: 7, record: record7j },
+          { period: 30, record: record30j },
+        ].filter(c => c.record > 0);
+        let bestTarget = null;
+        for (const c of candidates) {
+          const gap = c.record - sessionsToday;
+          if (gap >= 1 && gap <= 2) {
+            if (!bestTarget || gap < bestTarget.gap || (gap === bestTarget.gap && c.period > bestTarget.period)) {
+              bestTarget = { ...c, gap };
+            }
+          }
+        }
+        if (bestTarget) {
+          const { gap, record, period } = bestTarget;
+          if (gap === 1) {
+            return msg('arc14.6', 'flamme',
+              `Plus qu'1 quiz pour battre ton record de ${record} sur ${period} jours ! 💪`,
+              '1 quiz',
+              '💪',
+              null,
+              { oneShot: false, recurring: true }
+            );
+          }
+          if (gap === 2) {
+            return msg('arc14.6', 'flamme',
+              `Plus que 2 quiz pour battre ton record de ${record} sur ${period} jours !`,
+              '2 quiz',
+              '🎯',
+              null,
+              { oneShot: false, recurring: true }
+            );
+          }
+        }
+      }
+
+      // arc14.4: doing better than yesterday
+      if (allowed('arc14.4') && sessionsToday >= 3 && yesterdaySessions > 0 && sessionsToday > yesterdaySessions) {
+        return msg('arc14.4', 'flamme',
+          `${sessionsToday} quiz aujourd'hui, c'est plus qu'hier (${yesterdaySessions}). Belle progression !`,
+          `plus qu'hier`,
+          '📈',
+          null,
+          { oneShot: false, recurring: true }
+        );
+      }
+
+      // arc14.3: third session
+      if (allowed('arc14.3') && sessionsToday === 3) {
+        return msg('arc14.3', 'panda',
+          '3e quiz aujourd\'hui, tu es en feu ! 🔥 Continue comme ça.',
+          '3e quiz',
+          '🔥',
+          null,
+          { oneShot: false, recurring: true }
+        );
+      }
+
+      // arc14.2: second session
+      if (allowed('arc14.2') && sessionsToday === 2) {
+        return msg('arc14.2', 'panda',
+          'Bravo pour ce 2e quiz ! Chaque session renforce ta mémoire.',
+          '2e quiz',
+          '💪',
+          null,
+          { oneShot: false, recurring: true }
+        );
+      }
+
+      // arc14.1: first session of the day — flame grew
+      if (allowed('arc14.1') && sessionsToday === 1 && streak.current >= 2) {
+        return msg('arc14.1', 'flamme',
+          `+1 jour ! Ta flamme est à ${streak.current} jours 🔥. Bien joué !`,
+          `${streak.current} jours`,
+          '🔥',
+          null,
+          { oneShot: false, recurring: true }
+        );
+      }
     }
 
-    // arc14.3: third session
-    if (allowed('arc14.3') && sessionsToday === 3) {
-      return msg('arc14.3', 'panda',
-        '3e quiz aujourd\'hui, tu es en feu ! 🔥 Continue comme ça.',
-        '3e quiz',
-        '🔥',
-        null,
-        { oneShot: false, recurring: true }
-      );
-    }
-
-    // arc14.2: second session
-    if (allowed('arc14.2') && sessionsToday === 2) {
-      return msg('arc14.2', 'panda',
-        'Bravo pour ce 2e quiz ! Chaque session renforce ta mémoire.',
-        '2e quiz',
-        '💪',
-        null,
-        { oneShot: false, recurring: true }
-      );
-    }
-
-    // arc14.1: first session of the day — flame grew
-    if (allowed('arc14.1') && sessionsToday === 1 && streak.current >= 2) {
-      return msg('arc14.1', 'flamme',
-        `+1 jour ! Ta flamme est à ${streak.current} jours 🔥. Bien joué !`,
-        `${streak.current} jours`,
-        '🔥',
-        null,
-        { oneShot: false, recurring: true }
-      );
-    }
+    return null;
   }
 
   // --- arc5.8: flame at risk (16h+, streak active, not played today) ---
@@ -819,7 +907,7 @@ export function pickCoachingMessage(ctx) {
 
   // --- arc7.1: double coins available (Monday, ≥100 coins) ---
   if (allowed('arc7.1') && !isAlreadyShown(coaching, 'arc7.1')) {
-    const dayOfWeek = new Date(todayStr).getDay(); // 0=Sun, 1=Mon
+    const dayOfWeek = parseLocalDate(todayStr).getDay(); // 0=Sun, 1=Mon
     const activeBoosts = progress.shop?.activeBoosts || {};
     const hasActiveDoubleCoins = activeBoosts.doubleCoins && (activeBoosts.doubleCoinsRemainingSessions || 0) > 0;
     if (dayOfWeek === 1 && coins >= 100 && !hasActiveDoubleCoins) {
@@ -1003,6 +1091,9 @@ export function pickCoachingMessage(ctx) {
       );
     }
   }
+
+  const dailyEngagementMessage = pickDailyEngagementMessage();
+  if (dailyEngagementMessage) return dailyEngagementMessage;
 
   return null;
 }

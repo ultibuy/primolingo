@@ -1,5 +1,5 @@
 /**
- * Firestore CRUD operations for GramHero.
+ * Firestore CRUD operations for PrimoLinguo.
  * All data lives under: users/{uid}/children/{childId}
  */
 
@@ -17,6 +17,7 @@ import {
   onSnapshot,
 } from 'firebase/firestore';
 import { db } from '../firebase.js';
+import { getToday } from '../engine/sm2.js';
 
 // ---------------------------------------------------------------------------
 // Progress
@@ -105,7 +106,7 @@ export async function saveParentImages(uid, images) {
 // ---------------------------------------------------------------------------
 
 async function createDailyBackup(uid, childId, progress) {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = getToday();
   const backupRef = doc(db, 'users', uid, 'children', childId, 'backups', today);
   const backupSnap = await getDoc(backupRef);
 
@@ -135,7 +136,7 @@ export async function restoreDailyBackup(uid, childId, date) {
   const childRef = doc(db, 'users', uid, 'children', childId);
   await updateDoc(childRef, { progress });
 
-  const restoreDate = `${new Date().toISOString().slice(0, 10)}-restore`;
+  const restoreDate = `${getToday()}-restore`;
   await setDoc(doc(db, 'users', uid, 'children', childId, 'backups', restoreDate), {
     snapshot: progress,
     savedAt: serverTimestamp(),
@@ -149,9 +150,7 @@ async function pruneOldBackups(uid, childId, maxDays) {
   const ref = collection(db, 'users', uid, 'children', childId, 'backups');
   const snap = await getDocs(ref);
 
-  const cutoffDate = new Date();
-  cutoffDate.setDate(cutoffDate.getDate() - maxDays);
-  const cutoffStr = cutoffDate.toISOString().slice(0, 10);
+  const cutoffStr = getToday(-maxDays);
 
   const toDelete = snap.docs.filter(d => {
     const dateId = d.id.slice(0, 10);

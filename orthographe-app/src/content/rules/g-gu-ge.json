@@ -2619,10 +2619,10 @@
     {
       "id": "q174",
       "before": "Elle admirait le beau paysa",
-      "after": " devant sa fenêtre.",
+      "after": "e devant sa fenêtre.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "PAYSAGE : le 'g' devant 'e' muet final se prononce [ʒ] doux. Ici, 'g' + 'e' muet = son doux en fin de mot."
+      "explanation": "PAYSAGE : devant 'e' final, le son [ʒ] doux s'écrit simplement 'g' (paysa+g+e). Le 'ge' n'est utile que pour adoucir un g devant a/o/u."
     },
     {
       "id": "q175",
@@ -2642,11 +2642,11 @@
     },
     {
       "id": "q177",
-      "before": "Les enfants ont construit un ima",
-      "after": "inaire palais de sable.",
+      "before": "Les enfants ont construit un palais de sable ima",
+      "after": "inaire.",
       "answer": "g",
       "difficulty": 3,
-      "explanation": "Son [ʒ] doux + 'i' → g simple (imaginaire : ima+g+inaire)."
+      "explanation": "IMAGINAIRE : devant 'i', le son [ʒ] doux s'écrit 'g' seul (ima+g+inaire). Pas besoin de 'e'."
     },
     {
       "id": "q178",
@@ -2763,10 +2763,10 @@
     {
       "id": "q192",
       "before": "Le petit villa",
-      "after": " était animé le jour du marché.",
+      "after": "e était animé le jour du marché.",
       "answer": "g",
       "difficulty": 1,
-      "explanation": "VILLAGE : le 'g' devant 'e' muet final se prononce [ʒ] doux. Ici, 'g' + 'e' muet = son doux en fin de mot."
+      "explanation": "VILLAGE : devant 'e' final, le son [ʒ] doux s'écrit simplement 'g' (villa+g+e). Le 'ge' n'est utile que pour adoucir un g devant a/o/u."
     },
     {
       "id": "q193",
