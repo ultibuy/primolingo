@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import CoinIcon from "../components/CoinIcon.jsx";
 import CharacterSprite from "../components/CharacterSprite.jsx";
+import LightningEntranceEffect from "../components/LightningEntranceEffect.jsx";
+import StarsEntranceEffect from "../components/StarsEntranceEffect.jsx";
+import InfernoEntranceEffect from "../components/InfernoEntranceEffect.jsx";
+import FreezeEntranceEffect from "../components/FreezeEntranceEffect.jsx";
 import AnnotationOverlay from "../components/AnnotationOverlay.jsx";
 
 // ─── Design tokens (from the real app) ───
@@ -808,12 +812,12 @@ function MockPandaAnimations() {
 }
 
 // ─── NEW V4 MOCKUP: Victory Animations (from V2 + additions) ───
-function MockVictoryAnims({ onTriggerAnimation }) {
+function MockCelebrationAnims({ onTriggerAnimation }) {
   const anims = [
-    { name: "Frappe de foudre", icon: "⚡", badge: "Actif", badgeColor: T.green, price: null },
-    { name: "Explosion d'étoiles", icon: "✨", badge: null, badgeColor: null, price: "300" },
-    { name: "Inferno", icon: "🔥", badge: null, badgeColor: null, price: "300" },
-    { name: "Freeze", icon: "🧊", badge: null, badgeColor: null, price: "300" },
+    { icon: "⚡", name: "Frappe de foudre", price: null, badge: "Actif", badgeColor: T.green },
+    { icon: "✨", name: "Explosion d'étoiles", price: "300", badge: null, badgeColor: null },
+    { icon: "🔥", name: "Inferno", price: "300", badge: null, badgeColor: null },
+    { icon: "❄️", name: "Freeze", price: "300", badge: null, badgeColor: null },
   ];
 
   return (
@@ -1049,71 +1053,14 @@ function RevisionTimeline() {
 }
 
 // ─── Lightning Animation Overlay ───
-function CelebrationOverlay({ animType }) {
+// Uses the real entrance animation components from the app
+function CelebrationOverlay({ animType, onDone }) {
   if (!animType) return null;
-
-  return (
-    <>
-      <style>{`
-        @keyframes celebFlash { 0%{opacity:0} 15%{opacity:0.7} 30%{opacity:0.15} 45%{opacity:0.5} 60%{opacity:0.1} 100%{opacity:0} }
-        @keyframes celebFade { 0%{opacity:0} 20%{opacity:1} 50%{opacity:0.8} 100%{opacity:0} }
-        @keyframes celebFloat { 0%{transform:translateY(0) scale(0.5);opacity:0} 30%{opacity:1} 100%{transform:translateY(-120px) scale(1.2);opacity:0} }
-        @keyframes celebSpin { 0%{transform:rotate(0deg) scale(0.6);opacity:0} 30%{opacity:1} 100%{transform:rotate(360deg) scale(0) translateY(-80px);opacity:0} }
-        @keyframes freezeGrow { 0%{transform:scale(0);opacity:0} 40%{transform:scale(1.2);opacity:0.6} 100%{transform:scale(2);opacity:0} }
-      `}</style>
-      {/* Flash overlay */}
-      <div style={{
-        position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
-        background: animType === "lightning" ? "#fff"
-          : animType === "stars" ? "#fbbf24"
-          : animType === "inferno" ? "#ef4444"
-          : "#60a5fa",
-        zIndex: 10000, animation: "celebFlash 0.6s ease-out forwards",
-        pointerEvents: "none",
-      }} />
-      {/* Particles */}
-      {animType === "lightning" && [
-        { top: "5%", left: "20%", w: 80, h: 200, delay: 0.3, pts: "40,0 25,60 45,65 20,130 50,135 10,200", stroke: "#a78bfa" },
-        { top: "8%", right: "25%", w: 60, h: 180, delay: 0.45, pts: "30,0 40,50 20,55 35,110 15,115 40,180", stroke: "#c4b5fd" },
-        { top: "2%", left: "48%", w: 70, h: 160, delay: 0.5, pts: "35,0 20,45 40,50 15,100 45,105 25,160", stroke: "#7c3aed" },
-      ].map((b, i) => (
-        <svg key={i} style={{
-          position: "fixed", top: b.top, left: b.left, right: b.right, width: b.w, height: b.h,
-          zIndex: 10001, animation: `celebFade 0.8s ease-out ${b.delay}s forwards`, opacity: 0,
-        }} viewBox={`0 0 ${b.w} ${b.h}`}>
-          <polyline points={b.pts} fill="none" stroke={b.stroke} strokeWidth="3" strokeLinecap="round" />
-          <polyline points={b.pts} fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
-      ))}
-      {animType === "stars" && Array.from({ length: 8 }).map((_, i) => (
-        <div key={i} style={{
-          position: "fixed", zIndex: 10001, fontSize: 28, pointerEvents: "none",
-          left: `${10 + Math.random() * 80}%`, top: `${30 + Math.random() * 40}%`,
-          animation: `celebFloat ${0.8 + Math.random() * 0.5}s ease-out ${i * 0.08}s forwards`, opacity: 0,
-        }}>
-          {["✨", "⭐", "🌟"][i % 3]}
-        </div>
-      ))}
-      {animType === "inferno" && Array.from({ length: 10 }).map((_, i) => (
-        <div key={i} style={{
-          position: "fixed", zIndex: 10001, fontSize: 24, pointerEvents: "none",
-          left: `${5 + Math.random() * 90}%`, bottom: `${-5 + Math.random() * 30}%`,
-          animation: `celebFloat ${0.7 + Math.random() * 0.6}s ease-out ${i * 0.06}s forwards`, opacity: 0,
-        }}>
-          {["🔥", "💥", "🔥"][i % 3]}
-        </div>
-      ))}
-      {animType === "freeze" && Array.from({ length: 6 }).map((_, i) => (
-        <div key={i} style={{
-          position: "fixed", zIndex: 10001, fontSize: 32, pointerEvents: "none",
-          left: `${15 + Math.random() * 70}%`, top: `${20 + Math.random() * 60}%`,
-          animation: `celebSpin ${0.9 + Math.random() * 0.4}s ease-out ${i * 0.1}s forwards`, opacity: 0,
-        }}>
-          {["🧊", "❄️", "💎"][i % 3]}
-        </div>
-      ))}
-    </>
-  );
+  if (animType === "lightning") return <LightningEntranceEffect onDone={onDone} />;
+  if (animType === "stars") return <StarsEntranceEffect onDone={onDone} />;
+  if (animType === "inferno") return <InfernoEntranceEffect onDone={onDone} />;
+  if (animType === "freeze") return <FreezeEntranceEffect onDone={onDone} />;
+  return null;
 }
 
 // ═══════════════════════════════════════
@@ -1129,7 +1076,6 @@ export default function LandingPageV4() {
     const types = ["lightning", "stars", "inferno", "freeze"];
     const pick = types[Math.floor(Math.random() * types.length)];
     setCelebAnim(pick);
-    setTimeout(() => setCelebAnim(null), 1200);
   };
 
   const rules = [
@@ -1171,7 +1117,7 @@ export default function LandingPageV4() {
         `}</style>
 
         {/* Lightning animation overlay */}
-        <CelebrationOverlay animType={celebAnim} />
+        <CelebrationOverlay animType={celebAnim} onDone={() => setCelebAnim(null)} />
 
         {/* ─── NAV ─── */}
         <nav style={css.nav} className="oq-nav" data-section="nav">
@@ -1574,10 +1520,10 @@ export default function LandingPageV4() {
               </div>
             </div>
 
-            {/* Card 3: Victory Animations (MockVictoryAnims) */}
+            {/* Card 3: Victory Animations (MockCelebrationAnims) */}
             <div style={{ ...css.problemCard, padding: 0, overflow: "hidden" }}>
               <div style={{ padding: "24px 24px 0" }}>
-                <MockVictoryAnims onTriggerAnimation={triggerRandomAnimation} />
+                <MockCelebrationAnims onTriggerAnimation={triggerRandomAnimation} />
               </div>
               <div style={{ padding: "16px 24px 24px" }}>
                 <div style={css.problemTitle}>Animations de célébration</div>
