@@ -114,7 +114,7 @@ function QuizzChart({ statsHistory }) {
   if (statsHistory.length === 0) {
     return (
       <div style={cardStyle}>
-        <div style={headerStyle}>QUIZZ TERMINÉS</div>
+        <div style={headerStyle}>QUIZZ · 30 DERNIERS JOURS</div>
         <div style={emptyStyle}>Pas encore de données</div>
       </div>
     );
@@ -123,7 +123,7 @@ function QuizzChart({ statsHistory }) {
   return (
     <div style={cardStyle}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
-        <div style={headerStyle}>QUIZZ TERMINÉS</div>
+        <div style={headerStyle}>QUIZZ · 30 DERNIERS JOURS</div>
         <div style={headerSubStyle}>{totalAll}</div>
       </div>
       <div style={deltaStyle}>+{thisWeek} ces 7 derniers jours</div>
@@ -143,8 +143,8 @@ function QuizzChart({ statsHistory }) {
           <XAxis dataKey="label" tick={{ fill: '#94a3b8', fontSize: 10 }} tickLine={false} axisLine={false} interval="preserveStartEnd" />
           <YAxis tick={{ fill: '#94a3b8', fontSize: 10 }} tickLine={false} axisLine={false} allowDecimals={false} />
           <Tooltip content={<CustomTooltip />} />
-          <Area type="monotone" dataKey="grammaire" name="Grammaire" stackId="1" stroke={C_GRAMMAR} fill="url(#gradGrammar)" strokeWidth={1.5} />
           <Area type="monotone" dataKey="dictee"    name="Dictée"    stackId="1" stroke={C_DICTEE}  fill="url(#gradDictee)"  strokeWidth={1.5} />
+          <Area type="monotone" dataKey="grammaire" name="Grammaire" stackId="1" stroke={C_GRAMMAR} fill="url(#gradGrammar)" strokeWidth={1.5} />
           <Legend wrapperStyle={{ fontSize: 11, paddingTop: 4 }} formatter={(value, entry) => <span style={{ color: entry.color }}>{value}</span>} />
         </AreaChart>
       </ResponsiveContainer>
