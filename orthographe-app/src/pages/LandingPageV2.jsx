@@ -403,14 +403,6 @@ const css = {
     fontSize: 15,
     lineHeight: 1.5,
   },
-
-  // ─── ILLUSTRATION ───
-  illustration: {
-    width: "100%",
-    borderRadius: T.radius,
-    border: `1px solid ${T.glassBorder}`,
-    boxShadow: "0 12px 40px rgba(0,0,0,0.3)",
-  },
 };
 
 // ─── Mini App Mockups (embedded in the page) ───
@@ -419,7 +411,7 @@ function MockDashboard() {
   const rules = [
     { name: "a / à / as", level: 4, icon: "💎", color: T.primary, pct: 100 },
     { name: "ces / ses", level: 3, icon: "👑", color: T.gold, pct: 85 },
-    { name: "on / ont / on n'", level: 2, icon: "\u26A1", color: T.orange, pct: 60 },
+    { name: "on / ont / on n'", level: 2, icon: "⚡", color: T.orange, pct: 60 },
     { name: "ou / où", level: 1, icon: "🌱", color: T.green, pct: 30 },
     { name: "leur / leurs", level: 0, icon: "🔒", color: T.textSubtle, pct: 0 },
   ];
@@ -493,7 +485,7 @@ function MockQuiz() {
 
   const choices = [
     { id: 0, label: "a", correct: false },
-    { id: 1, label: "à", correct: true },
+    { id: 1, label: "\u00e0", correct: true },
     { id: 2, label: "as", correct: false },
   ];
 
@@ -501,7 +493,7 @@ function MockQuiz() {
     <div style={{ fontSize: 11, textAlign: "center", padding: "8px 0" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
         <span style={{ fontSize: 10, color: T.textMuted }}>Question 7/20</span>
-        <span style={{ fontSize: 10, color: T.green }}>6 ✓</span>
+        <span style={{ fontSize: 10, color: T.green }}>6 \u2713</span>
       </div>
       <div style={{ height: 4, borderRadius: 2, background: "rgba(255,255,255,0.08)", marginBottom: 20 }}>
         <div style={{ width: "35%", height: "100%", background: T.primary, borderRadius: 2 }} />
@@ -511,7 +503,7 @@ function MockQuiz() {
         background: `${T.primary}22`, color: T.primary,
         fontSize: 10, fontWeight: 600, marginBottom: 16,
       }}>
-        a · à · as
+        a \u00b7 \u00e0 \u00b7 as
       </div>
       <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 24, lineHeight: 1.4 }}>
         Il va <span style={{
@@ -551,7 +543,7 @@ function MockQuiz() {
           background: `${T.green}11`, border: `1px solid ${T.green}33`,
           fontSize: 10, color: T.green, textAlign: "left", lineHeight: 1.5,
         }}>
-          ✓ Correct ! On ne peut pas remplacer par « avait », c'est donc <strong>à</strong> (préposition).
+          \u2713 Correct ! On ne peut pas remplacer par « avait », c'est donc <strong>\u00e0</strong> (préposition).
         </div>
       )}
     </div>
@@ -580,7 +572,7 @@ function MockParentView() {
           <div style={{ flex: 1 }}>
             <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 2 }}>{c.name}</div>
             <div style={{ fontSize: 10, color: T.textMuted }}>
-              🔥 {c.streak}j · {c.rules} règles · {c.lastActive}
+              🔥 {c.streak}j \u00b7 {c.rules} règles \u00b7 {c.lastActive}
             </div>
           </div>
           <div style={{
@@ -620,6 +612,180 @@ function MockParentView() {
           ))}
         </div>
       </div>
+    </div>
+  );
+}
+
+// ─── NEW V2 Mockup: Dictée ───
+function MockDictee() {
+  return (
+    <div style={{
+      background: T.glass, border: `1px solid ${T.glassBorder}`,
+      borderRadius: T.radius, padding: 24, minHeight: 220,
+    }}>
+      <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 14, fontWeight: 600 }}>
+        DICTÉE — La chouette enchantée
+      </div>
+      {/* Character + speech bubble */}
+      <div style={{ display: "flex", alignItems: "flex-start", gap: 12, marginBottom: 16 }}>
+        <div style={{
+          width: 44, height: 44, borderRadius: 14,
+          background: `linear-gradient(135deg, ${T.primaryDark}, ${T.primary})`,
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontSize: 22, flexShrink: 0,
+        }}>
+          🦉
+        </div>
+        <div style={{
+          padding: "10px 14px", borderRadius: "14px 14px 14px 4px",
+          background: "rgba(255,255,255,0.05)", border: `1px solid ${T.glassBorder}`,
+          fontSize: 13, color: T.textLight, lineHeight: 1.5, flex: 1,
+        }}>
+          « L'artiste utilise de l'encre dorée. »
+        </div>
+      </div>
+      {/* Choice buttons */}
+      {[
+        { label: "parfois", selected: false, wrong: false },
+        { label: "parfoix", selected: true, wrong: true },
+        { label: "parfoit", selected: false, wrong: false },
+      ].map((c, i) => (
+        <div key={i} style={{
+          padding: "12px 16px", borderRadius: 12, marginBottom: 8,
+          background: c.selected
+            ? `${T.red}15`
+            : "rgba(255,255,255,0.04)",
+          border: c.selected
+            ? `1.5px solid ${T.red}`
+            : `1px solid ${T.glassBorder}`,
+          color: c.selected ? T.red : T.textLight,
+          fontSize: 14, fontWeight: c.selected ? 700 : 500,
+          textAlign: "center",
+          cursor: "pointer",
+        }}>
+          {c.label}
+          {c.wrong && <span style={{ marginLeft: 8, fontSize: 12 }}>\u2717</span>}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─── NEW V2 Mockup: Victory Animations ───
+function MockVictoryAnims() {
+  const anims = [
+    { name: "Frappe de foudre", icon: "⚡", badge: "Actif", badgeColor: T.green, price: null },
+    { name: "Explosion d'étoiles", icon: "\u2728", badge: null, badgeColor: null, price: "300" },
+    { name: "Inferno", icon: "🔥", badge: null, badgeColor: null, price: "300" },
+  ];
+
+  return (
+    <div style={{
+      background: T.glass, border: `1px solid ${T.glassBorder}`,
+      borderRadius: T.radius, padding: 24, minHeight: 220,
+    }}>
+      <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 14, fontWeight: 600 }}>
+        ANIMATIONS DE CÉLÉBRATION
+      </div>
+      {anims.map((a, i) => (
+        <div key={i} style={{
+          display: "flex", alignItems: "center", gap: 12,
+          padding: "12px 14px", marginBottom: 8,
+          background: "rgba(255,255,255,0.03)", borderRadius: 12,
+          border: `1px solid rgba(255,255,255,0.06)`,
+        }}>
+          <div style={{
+            width: 36, height: 36, borderRadius: 10,
+            background: `${T.primary}15`,
+            display: "flex", alignItems: "center", justifyContent: "center",
+            fontSize: 18,
+          }}>
+            {a.icon}
+          </div>
+          <div style={{ flex: 1 }}>
+            <div style={{ fontSize: 13, fontWeight: 600 }}>{a.name}</div>
+          </div>
+          {a.badge && (
+            <div style={{
+              padding: "4px 10px", borderRadius: 8,
+              background: `${a.badgeColor}22`, color: a.badgeColor,
+              fontSize: 10, fontWeight: 700,
+            }}>
+              {a.badge}
+            </div>
+          )}
+          {a.price && (
+            <div style={{
+              padding: "4px 10px", borderRadius: 8,
+              background: `${T.gold}15`, color: T.gold,
+              fontSize: 10, fontWeight: 700,
+              display: "flex", alignItems: "center", gap: 4,
+            }}>
+              <CoinIcon size={10} /> {a.price}
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ─── NEW V2 Mockup: Themes List ───
+function MockThemesList() {
+  const themes = [
+    { name: "Dark Blue", badge: "Défaut", badgeColor: T.textMuted, price: null },
+    { name: "Aurora", badge: "ACTIF", badgeColor: T.green, price: null },
+    { name: "Midnight Purple", badge: null, badgeColor: null, price: "80" },
+  ];
+
+  return (
+    <div style={{
+      background: T.glass, border: `1px solid ${T.glassBorder}`,
+      borderRadius: T.radius, padding: 24, minHeight: 180,
+    }}>
+      <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 14, fontWeight: 600 }}>
+        THÈMES
+      </div>
+      {themes.map((t, i) => (
+        <div key={i} style={{
+          display: "flex", alignItems: "center", gap: 12,
+          padding: "12px 14px", marginBottom: 8,
+          background: t.badge === "ACTIF"
+            ? `${T.green}08`
+            : "rgba(255,255,255,0.03)",
+          borderRadius: 12,
+          border: t.badge === "ACTIF"
+            ? `1px solid ${T.green}33`
+            : `1px solid rgba(255,255,255,0.06)`,
+        }}>
+          <div style={{
+            width: 32, height: 32, borderRadius: 8,
+            background: i === 0 ? `linear-gradient(135deg, #1e3a5f, #2d5a8e)`
+              : i === 1 ? `linear-gradient(135deg, #0f4c3a, #1a7a5e)`
+              : `linear-gradient(135deg, #3d1e6d, #6b3fa0)`,
+          }} />
+          <div style={{ flex: 1, fontSize: 13, fontWeight: 600 }}>{t.name}</div>
+          {t.badge && (
+            <div style={{
+              padding: "4px 10px", borderRadius: 8,
+              background: `${t.badgeColor}22`, color: t.badgeColor,
+              fontSize: 10, fontWeight: 700,
+            }}>
+              {t.badge}
+            </div>
+          )}
+          {t.price && (
+            <div style={{
+              padding: "4px 10px", borderRadius: 8,
+              background: `${T.gold}15`, color: T.gold,
+              fontSize: 10, fontWeight: 700,
+              display: "flex", alignItems: "center", gap: 4,
+            }}>
+              <CoinIcon size={10} /> {t.price}
+            </div>
+          )}
+        </div>
+      ))}
     </div>
   );
 }
@@ -685,7 +851,7 @@ function RevisionTimeline() {
               }} />
             ))}
             {s.dots === 0 && (
-              <div style={{ fontSize: 20 }}>✨</div>
+              <div style={{ fontSize: 20 }}>\u2728</div>
             )}
           </div>
           <div style={{
@@ -742,10 +908,10 @@ export default function LandingPageV2() {
         `}</style>
 
         {/* ─── NAV ─── */}
-        <nav style={css.nav} className="oq-nav">
+        <nav data-section="nav" style={css.nav} className="oq-nav">
           <div style={css.navLogo}>
-            <div style={css.navLogoIcon}>GH</div>
-            GramHero
+            <div style={css.navLogoIcon}>PL</div>
+            PrimoLinguo
           </div>
           <button style={css.navCta}
             onClick={() => navigate('/login')}
@@ -764,22 +930,20 @@ export default function LandingPageV2() {
               L'orthographe, <span style={css.heroHighlight}>enfin ludique</span> et efficace
             </h1>
             <p style={css.heroDesc}>
-              Fini les listes de mots recopiés 10 fois. <strong>GramHero</strong> utilise la répétition
+              Fini les listes de mots recopiés 10 fois. <strong>PrimoLinguo</strong> utilise la répétition
               espacée et la gamification pour ancrer les règles dans la mémoire à long terme
               — en 10 minutes par jour.
             </p>
             <button style={css.heroCta} onClick={() => navigate('/login')}>
-              Créer un compte gratuit →
+              Créer un compte gratuit \u2192
             </button>
-            <span style={css.heroCtaSub}>Connexion avec Google · Prêt en 10 secondes</span>
+            <span style={css.heroCtaSub}>Connexion avec Google \u00b7 Prêt en 10 secondes</span>
           </div>
 
           <div style={css.heroVisual}>
-            <img
-              src="/illustrations/ludique.png"
-              alt="GramHero - interface ludique"
-              style={{ ...css.illustration, maxWidth: 420 }}
-            />
+            <PhoneFrame label="L'app de votre enfant">
+              <MockDashboard />
+            </PhoneFrame>
           </div>
         </section>
 
@@ -790,8 +954,7 @@ export default function LandingPageV2() {
           <div style={css.sectionLabel}>Le problème</div>
           <h2 style={css.sectionTitle}>Le problème avec les méthodes classiques</h2>
           <p style={css.sectionSubtitle}>
-            Votre enfant connaît la règle. Il l'a comprise, il a fait les exercices.
-            Et pourtant, à la dictée suivante, la même faute revient. Pourquoi ?
+            L'intention est bonne. Mais les méthodes classiques ne sont pas conçues pour ancrer les règles dans la mémoire à long terme.
           </p>
 
           <div style={css.problemGrid}>
@@ -825,7 +988,7 @@ export default function LandingPageV2() {
         <div style={css.sectionDivider} />
 
         {/* ─── BEFORE / AFTER COMPARISON ─── */}
-        <section data-section="solution" style={css.section} className="oq-section">
+        <section data-section="comparison" style={css.section} className="oq-section">
           <div style={css.sectionLabel}>La solution</div>
           <h2 style={css.sectionTitle}>Un jeu vidéo déguisé en exercice d'orthographe</h2>
           <p style={css.sectionSubtitle}>
@@ -833,18 +996,9 @@ export default function LandingPageV2() {
             Votre enfant s'amuse — et sans s'en rendre compte, il mémorise.
           </p>
 
-          {/* Illustration: collectibles */}
-          <div style={{ textAlign: "center", marginBottom: 48 }}>
-            <img
-              src="/illustrations/collectibles.png"
-              alt="Personnages collectionnables GramHero"
-              style={{ ...css.illustration, maxWidth: 700 }}
-            />
-          </div>
-
           {/* Before / After comparison */}
           <div style={css.comparisonGrid} className="oq-comparison">
-            {/* BEFORE */}
+            {/* BEFORE — red-tinted */}
             <div style={{
               ...css.comparisonCard,
               background: `linear-gradient(135deg, rgba(248,113,113,0.08), rgba(248,113,113,0.03))`,
@@ -864,13 +1018,13 @@ export default function LandingPageV2() {
                 "L'enfant décroche après 5 minutes",
               ].map((item, i) => (
                 <div key={i} style={css.comparisonItem}>
-                  <span style={{ color: T.red, fontSize: 18, lineHeight: 1, flexShrink: 0 }}>✗</span>
+                  <span style={{ color: T.red, fontSize: 18, lineHeight: 1, flexShrink: 0 }}>\u2717</span>
                   <span style={{ color: T.textLight }}>{item}</span>
                 </div>
               ))}
             </div>
 
-            {/* AFTER */}
+            {/* AFTER — green-tinted */}
             <div style={{
               ...css.comparisonCard,
               background: `linear-gradient(135deg, rgba(52,211,153,0.08), rgba(52,211,153,0.03))`,
@@ -881,7 +1035,7 @@ export default function LandingPageV2() {
                 textTransform: "uppercase", letterSpacing: 2,
                 color: T.green, marginBottom: 20,
               }}>
-                Avec GramHero
+                Avec PrimoLinguo
               </div>
               {[
                 "Répétition espacée scientifique",
@@ -890,31 +1044,22 @@ export default function LandingPageV2() {
                 "L'enfant réclame sa session quotidienne",
               ].map((item, i) => (
                 <div key={i} style={css.comparisonItem}>
-                  <span style={{ color: T.green, fontSize: 18, lineHeight: 1, flexShrink: 0 }}>✓</span>
+                  <span style={{ color: T.green, fontSize: 18, lineHeight: 1, flexShrink: 0 }}>\u2713</span>
                   <span style={{ color: T.textLight }}>{item}</span>
                 </div>
               ))}
             </div>
-          </div>
-
-          {/* Illustration: themes */}
-          <div style={{ textAlign: "center", marginTop: 48 }}>
-            <img
-              src="/illustrations/themes.png"
-              alt="Thèmes et personnalisation GramHero"
-              style={{ ...css.illustration, maxWidth: 700 }}
-            />
           </div>
         </section>
 
         <div style={css.sectionDivider} />
 
         {/* ─── HOW IT WORKS ─── */}
-        <section style={css.section} className="oq-section">
+        <section data-section="how" style={css.section} className="oq-section">
           <div style={css.sectionLabel}>Comment ça marche</div>
           <h2 style={css.sectionTitle}>10 minutes par jour qui changent tout</h2>
           <p style={css.sectionSubtitle}>
-            GramHero transforme chaque règle d'orthographe en une aventure.
+            PrimoLinguo transforme chaque règle d'orthographe en une aventure.
             L'enfant joue, le cerveau mémorise.
           </p>
 
@@ -931,23 +1076,55 @@ export default function LandingPageV2() {
                 « Est-ce qu'on peut remplacer par <em>avait</em> ? Si oui, c'est <em>a</em>. »
               </div>
             </div>
-            <div>
-              <img
-                src="/illustrations/learning-schemas.png"
-                alt="Arbre de décision interactif"
-                style={css.illustration}
-              />
+            <div style={{
+              background: T.glass, border: `1px solid ${T.glassBorder}`,
+              borderRadius: T.radius, padding: 24, minHeight: 220,
+            }}>
+              {/* Mini guided mode mockup */}
+              <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 10, fontWeight: 600 }}>MODE GUIDÉ — a / à / as</div>
+              <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 16 }}>
+                Il ___ un chat depuis 3 ans.
+              </div>
+              <div style={{
+                padding: "14px 16px", borderRadius: 14, marginBottom: 10,
+                background: `${T.primary}15`, border: `1.5px solid ${T.primary}44`,
+              }}>
+                <div style={{ fontSize: 12, fontWeight: 700, color: T.primary, marginBottom: 4 }}>
+                  🤔 Est-ce qu'on peut remplacer par « avait » ?
+                </div>
+                <div style={{ fontSize: 11, color: T.textMuted }}>
+                  « Il <em>avait</em> un chat depuis 3 ans » — ça marche !
+                </div>
+              </div>
+              <div style={{ display: "flex", gap: 8 }}>
+                <div style={{
+                  flex: 1, padding: "10px", borderRadius: 10, textAlign: "center",
+                  background: `${T.green}22`, border: `1.5px solid ${T.green}`,
+                  fontSize: 13, fontWeight: 700, color: T.green,
+                }}>
+                  \u2713 Oui \u2192 c'est « a »
+                </div>
+                <div style={{
+                  flex: 1, padding: "10px", borderRadius: 10, textAlign: "center",
+                  background: "rgba(255,255,255,0.04)", border: `1.5px solid ${T.glassBorder}`,
+                  fontSize: 13, fontWeight: 600, color: T.textMuted,
+                }}>
+                  Non \u2192 c'est « à »
+                </div>
+              </div>
+              <div style={{
+                marginTop: 12, padding: "8px 12px", borderRadius: 8,
+                background: `${T.green}11`, fontSize: 11, color: T.green,
+              }}>
+                \u2713 Bonne réponse ! C'est le verbe avoir \u2192 <strong>a</strong>
+              </div>
             </div>
           </div>
 
-          {/* Step 2 — Game mode */}
+          {/* Step 2 — Game mode with collectibles */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center", marginBottom: 64 }} className="oq-two-col oq-reverse">
             <div style={{ order: 0 }}>
-              <img
-                src="/illustrations/victory-anims.png"
-                alt="Animations de victoire"
-                style={css.illustration}
-              />
+              <MockVictoryAnims />
             </div>
             <div style={{ order: 1 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 12 }}>
@@ -976,23 +1153,60 @@ export default function LandingPageV2() {
                 dans la mémoire à long terme.
               </div>
             </div>
-            <div>
-              <img
-                src="/illustrations/revision-dates.png"
-                alt="Dates de révision adaptatives"
-                style={css.illustration}
-              />
+            <div style={{
+              background: T.glass, border: `1px solid ${T.glassBorder}`,
+              borderRadius: T.radius, padding: 24, minHeight: 220,
+            }}>
+              {/* Spaced repetition visualization */}
+              <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 14, fontWeight: 600 }}>RYTHME DE RÉVISION ADAPTATIF</div>
+              {[
+                { rule: "a / à / as", status: "Acquis", next: "dans 45 jours", color: T.green, bars: 5 },
+                { rule: "ces / ses", status: "En progression", next: "dans 6 jours", color: T.gold, bars: 3 },
+                { rule: "leur / leurs", status: "Fragile", next: "demain", color: T.red, bars: 1 },
+              ].map((r, i) => (
+                <div key={i} style={{
+                  display: "flex", alignItems: "center", gap: 10,
+                  padding: "10px 12px", marginBottom: 8,
+                  background: "rgba(255,255,255,0.03)", borderRadius: 10,
+                  border: `1px solid rgba(255,255,255,0.05)`,
+                }}>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: 12, fontWeight: 600, marginBottom: 2 }}>{r.rule}</div>
+                    <div style={{ fontSize: 10, color: T.textMuted }}>Prochaine révision : {r.next}</div>
+                  </div>
+                  <div style={{ display: "flex", gap: 3, alignItems: "center" }}>
+                    {Array.from({ length: 5 }).map((_, j) => (
+                      <div key={j} style={{
+                        width: 6, height: j < r.bars ? 14 + j * 4 : 10,
+                        borderRadius: 3,
+                        background: j < r.bars ? r.color : "rgba(255,255,255,0.08)",
+                        transition: "all 0.3s",
+                      }} />
+                    ))}
+                  </div>
+                  <div style={{
+                    padding: "3px 8px", borderRadius: 6,
+                    background: `${r.color}22`, color: r.color,
+                    fontSize: 9, fontWeight: 700, whiteSpace: "nowrap",
+                  }}>
+                    {r.status}
+                  </div>
+                </div>
+              ))}
+              <div style={{
+                marginTop: 10, padding: "10px 12px", borderRadius: 8,
+                background: `${T.primary}11`, border: `1px dashed ${T.primary}33`,
+                fontSize: 11, color: T.primaryLight, textAlign: "center", lineHeight: 1.5,
+              }}>
+                💡 Plus votre enfant maîtrise une règle, moins elle revient — jusqu'à ce qu'elle soit ancrée définitivement.
+              </div>
             </div>
           </div>
 
           {/* Step 4 — Dictée mode */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center" }} className="oq-two-col oq-reverse">
             <div style={{ order: 0 }}>
-              <img
-                src="/illustrations/dictee-mode.png"
-                alt="Mode dictée"
-                style={css.illustration}
-              />
+              <MockDictee />
             </div>
             <div style={{ order: 1 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 12 }}>
@@ -1111,6 +1325,23 @@ export default function LandingPageV2() {
 
         <div style={css.sectionDivider} />
 
+        {/* ─── CUSTOMIZATION SHOWCASE ─── */}
+        <section data-section="customization" style={css.section} className="oq-section">
+          <div style={css.sectionLabel}>Personnalisation</div>
+          <h2 style={css.sectionTitle}>Son app, à son image</h2>
+          <p style={css.sectionSubtitle}>
+            Thèmes visuels, animations de victoire, personnages à collectionner : votre enfant
+            personnalise son expérience et gagne des récompenses à chaque session.
+          </p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 32, maxWidth: 900, margin: "0 auto" }} className="oq-two-col">
+            <MockThemesList />
+            <MockVictoryAnims />
+          </div>
+        </section>
+
+        <div style={css.sectionDivider} />
+
         {/* ─── RULES COVERED ─── */}
         <section data-section="program" style={css.section} className="oq-section">
           <div style={css.sectionLabel}>Le programme</div>
@@ -1130,7 +1361,7 @@ export default function LandingPageV2() {
           </div>
 
           <p style={{ textAlign: "center", marginTop: 20, fontSize: 14, color: T.textMuted }}>
-            Plus de <Counter end={3300} suffix="" /> questions · 13 dictées · 600+ mots · Nouvelles règles ajoutées régulièrement
+            Plus de <Counter end={3300} suffix="" /> questions \u00b7 13 dictées \u00b7 600+ mots \u00b7 Nouvelles règles ajoutées régulièrement
           </p>
         </section>
 
@@ -1164,14 +1395,14 @@ export default function LandingPageV2() {
         {/* ─── GRATUIT ─── */}
         <section data-section="free" style={css.section} className="oq-section">
           <div style={css.freeCard}>
-            <div style={{ fontSize: 40, marginBottom: 16 }}>✨</div>
+            <div style={{ fontSize: 40, marginBottom: 16 }}>\u2728</div>
             <h2 style={{ fontFamily: T.fontDisplay, fontSize: 28, fontWeight: 800, marginBottom: 12 }}>
               100% gratuit, sans piège
             </h2>
             <p style={{ fontSize: 16, lineHeight: 1.7, color: T.textLight, marginBottom: 0 }}>
               Pas de pub. Pas d'achats in-app. Pas de données revendues. Pas de version premium cachée.
               <br /><br />
-              GramHero est un projet indépendant, créé par un parent pour son enfant,
+              PrimoLinguo est un projet indépendant, créé par un parent pour son enfant,
               et partagé gratuitement avec tous ceux qui en ont besoin.
             </p>
           </div>
@@ -1183,22 +1414,22 @@ export default function LandingPageV2() {
             Prêt à remplacer le cahier par une vraie méthode ?
           </h2>
           <p style={{ fontSize: 16, color: T.textLight, marginBottom: 28 }}>
-            Créez un compte en 10 secondes et laissez votre enfant découvrir GramHero.
+            Créez un compte en 10 secondes et laissez votre enfant découvrir PrimoLinguo.
           </p>
           <button style={css.heroCta} onClick={() => navigate('/login')}>
-            Commencer gratuitement →
+            Commencer gratuitement \u2192
           </button>
         </section>
 
         {/* ─── FOOTER ─── */}
-        <footer style={css.footer}>
-          <p>Fait avec ❤️ pour les enfants qui veulent dompter l'orthographe</p>
+        <footer data-section="footer" style={css.footer}>
+          <p>Fait avec \u2764\uFE0F pour les enfants qui veulent dompter l'orthographe</p>
           <p style={{ marginTop: 8 }}>
             <a href="/legal" style={{ color: T.textSubtle, textDecoration: 'none', borderBottom: `1px solid ${T.glassBorder}` }}>
               Mentions légales & Confidentialité
             </a>
           </p>
-          <p style={{ marginTop: 4 }}>© 2026 GramHero</p>
+          <p style={{ marginTop: 4 }}>\u00a9 2026 PrimoLinguo</p>
         </footer>
       </div>
     </AnnotationOverlay>
