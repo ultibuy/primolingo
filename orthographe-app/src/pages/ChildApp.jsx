@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef, lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
+import * as Sentry from '@sentry/react';
 import '../index.css';
 
 // Context
@@ -545,7 +546,7 @@ export default function ChildApp() {
       if (equippedTheme) applyTheme(equippedTheme);
     }).catch((error) => {
       if (cancelled) return;
-      console.error('Failed to load progress:', error);
+      Sentry.captureException(error);
       setLoadError(error?.message || 'Impossible de charger la progression.');
       setLoading(false);
     });
@@ -569,7 +570,7 @@ export default function ChildApp() {
         setChildName(String(child.name || '').trim());
       })
       .catch((error) => {
-        console.error('Failed to load child profile:', error);
+        Sentry.captureException(error);
       });
   }, [uid, childId]);
 

@@ -3,6 +3,7 @@
  * error handling on top of the raw store (Firestore or localStorage).
  */
 
+import * as Sentry from '@sentry/react';
 import { getToday } from '../engine/sm2.js';
 import { createDefaultMysteryImagesState } from '../engine/economy.js';
 import { createDefaultCoaching } from '../engine/coaching.js';
@@ -50,6 +51,7 @@ export function createDefaultProgress() {
     pinLockout: { failedAttempts: 0, lockedUntil: 0 },
     rules: {},
     coaching: createDefaultCoaching(),
+    statsHistory: [],
   };
 }
 
@@ -114,7 +116,7 @@ export async function saveProgress(progress, uid, childId) {
     await storeSaveProgress(uid, childId, progress);
     return { success: true };
   } catch (error) {
-    console.error('Failed to save progress:', error);
+    Sentry.captureException(error);
     return { success: false, error: "La progression n'a pas pu être sauvegardée." };
   }
 }
@@ -144,7 +146,7 @@ export async function loadAdminSettings(uid, childId) {
       customMysteryImages,
     };
   } catch (error) {
-    console.error('Failed to load admin settings from Firestore:', error);
+    Sentry.captureException(error);
     return createDefaultAdminSettings();
   }
 }
@@ -162,7 +164,7 @@ export async function saveAdminSettings(settings, uid, childId) {
     await storeSaveChildSettings(uid, childId, payload);
     return { success: true, settings: { ...createDefaultAdminSettings(), prodQuestionCount } };
   } catch (error) {
-    console.error('Failed to save admin settings to Firestore:', error);
+    Sentry.captureException(error);
     return { success: false, error: "Les paramètres admin n'ont pas pu être sauvegardés." };
   }
 }
@@ -175,7 +177,7 @@ export async function loadParentImages(uid) {
   try {
     return normalizeCustomMysteryImages(await storeLoadParentImages(uid));
   } catch (error) {
-    console.error('Failed to load parent images:', error);
+    Sentry.captureException(error);
     return [];
   }
 }
@@ -189,7 +191,7 @@ export async function saveParentImages(uid, images) {
     await storeSaveParentImages(uid, normalizeCustomMysteryImages(images));
     return { success: true };
   } catch (error) {
-    console.error('Failed to save parent images:', error);
+    Sentry.captureException(error);
     return { success: false, error: "Les images n'ont pas pu être sauvegardées." };
   }
 }
@@ -204,7 +206,7 @@ export async function saveChildImageSettings(uid, childId, enabledMysteryImageId
     await storeSaveChildSettings(uid, childId, { ...current, enabledMysteryImageIds });
     return { success: true };
   } catch (error) {
-    console.error('Failed to save child image settings:', error);
+    Sentry.captureException(error);
     return { success: false, error: "Les paramètres n'ont pas pu être sauvegardés." };
   }
 }
@@ -220,7 +222,7 @@ export async function saveChildQuestionCount(uid, childId, prodQuestionCount) {
     await storeSaveChildSettings(uid, childId, { ...current, prodQuestionCount: count });
     return { success: true };
   } catch (error) {
-    console.error('Failed to save question count:', error);
+    Sentry.captureException(error);
     return { success: false, error: "Le paramètre n'a pas pu être sauvegardé." };
   }
 }
@@ -237,7 +239,7 @@ export async function loadChildSettings(uid, childId) {
       enabledMysteryImageIds: Array.isArray(s?.enabledMysteryImageIds) ? s.enabledMysteryImageIds : [],
     };
   } catch (error) {
-    console.error('Failed to load child settings:', error);
+    Sentry.captureException(error);
     return { prodQuestionCount: 20, enabledMysteryImageIds: [] };
   }
 }
@@ -251,7 +253,7 @@ export async function getDailyBackups(uid, childId) {
   try {
     return await storeGetDailyBackups(uid, childId);
   } catch (error) {
-    console.error('Failed to load daily backups:', error);
+    Sentry.captureException(error);
     return [];
   }
 }
@@ -263,7 +265,7 @@ export async function restoreDailyBackup(backup, uid, childId) {
     const progress = await storeRestoreDailyBackup(uid, childId, date);
     return { success: true, progress };
   } catch (error) {
-    console.error('Failed to restore backup:', error);
+    Sentry.captureException(error);
     return { success: false, error: "La sauvegarde n'a pas pu être restaurée." };
   }
 }
@@ -276,7 +278,7 @@ export async function clearCurrentStoredProgress(uid, childId) {
     await storeSaveProgress(uid, childId, empty);
     return { success: true };
   } catch (error) {
-    console.error('Failed to clear progress:', error);
+    Sentry.captureException(error);
     return { success: false, error: "La progression n'a pas pu être réinitialisée." };
   }
 }

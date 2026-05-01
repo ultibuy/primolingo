@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import * as Sentry from '@sentry/react';
 import { useAuth } from '../contexts/AuthContext.jsx';
 import { getChild, createChild, updateChild } from '../services/store.js';
 
@@ -45,7 +46,7 @@ export default function ChildSetup() {
         setDone(true);
       }
     } catch (err) {
-      console.error('Error saving child:', err);
+      Sentry.captureException(err);
     } finally {
       setSaving(false);
     }

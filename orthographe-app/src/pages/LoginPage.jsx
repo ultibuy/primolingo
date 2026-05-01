@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import * as Sentry from '@sentry/react';
 import { signInWithGoogle } from '../services/auth.js';
 
 export default function LoginPage() {
@@ -14,7 +15,7 @@ export default function LoginPage() {
       await signInWithGoogle();
       navigate('/parent');
     } catch (err) {
-      console.error('Google sign-in error:', err);
+      Sentry.captureException(err);
       setError('La connexion a échoué. Réessaie.');
       setLoading(false);
     }

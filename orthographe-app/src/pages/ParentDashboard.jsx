@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
+import * as Sentry from '@sentry/react';
 import { GoogleAuthProvider, reauthenticateWithPopup } from 'firebase/auth';
 import { useAuth } from '../contexts/AuthContext.jsx';
 import { auth } from '../firebase.js';
@@ -289,7 +290,7 @@ function FlaggedQuestionsPanel({ uid, childId, flaggedQuestions }) {
       await saveProgress(next, uid, childId);
       setCleared(true);
     } catch (e) {
-      console.error('Failed to clear flagged questions:', e);
+      Sentry.captureException(e);
     }
     setClearing(false);
   }
@@ -481,6 +482,7 @@ export default function ParentDashboard() {
       setPinError('');
     } catch (err) {
       if (err.code !== 'auth/popup-closed-by-user') {
+        Sentry.captureException(err);
         setReauthError('Reconnexion échouée. Réessayez.');
       }
     }

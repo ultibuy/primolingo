@@ -8,6 +8,20 @@ Sentry.init({
   integrations: [Sentry.browserTracingIntegration()],
   tracesSampleRate: 0.2,
   enabled: !import.meta.env.DEV,
+  environment: import.meta.env.DEV ? 'development' : 'production',
+  beforeSend(event) {
+    // Strip child IDs and emails from error messages (RGPD / child safety)
+    if (event.message) {
+      event.message = event.message
+        .replace(/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g, '[EMAIL]');
+    }
+    return event;
+  },
+})
+
+// Catch unhandled promise rejections (async errors outside try/catch)
+window.addEventListener('unhandledrejection', (event) => {
+  Sentry.captureException(event.reason);
 })
 
 // When a new service worker takes control (autoUpdate + skipWaiting), the
