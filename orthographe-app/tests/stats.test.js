@@ -276,6 +276,73 @@ describe('10. computeChartDeltas — première entrée = 0 (pas le cumulatif)', 
 });
 
 // ---------------------------------------------------------------------------
+// 11. computeChartDeltas — gDay/dDay prioritaire sur delta cumulatif
+// ---------------------------------------------------------------------------
+describe('11. computeChartDeltas — gDay/dDay prioritaire sur delta cumulatif', () => {
+  // Simulates the bug: rule deleted causes gTotal shift between snapshots.
+  // Yesterday: gTotal=85 (includes deleted rule sessions), dTotal=10
+  // Today: gTotal=80 (deleted rule gone from grammar), dTotal=20 (shifted to dictée)
+  // Real quizzes today: 4 grammar + 2 dictée = 6
+  // Without gDay/dDay fix: grammaire = max(0, 80-85) = 0, dictée = 20-10 = 10 → total 10 (wrong)
+  // With gDay/dDay fix: grammaire = 4, dictée = 2 → total 6 (correct)
+  const history = [
+    { date: '2026-04-30', gTotal: 85, dTotal: 10 },
+    { date: '2026-05-01', gTotal: 80, dTotal: 20, gDay: 4, dDay: 2 },
+  ];
+  const deltas = computeChartDeltas(history);
+
+  assertEqual(deltas[1].grammaire, 4, 'uses gDay (not cumulative delta)');
+  assertEqual(deltas[1].dictee, 2, 'uses dDay (not cumulative delta)');
+  assertEqual(deltas[1].grammaire + deltas[1].dictee, 6, 'total = 6 (matches dailyActivity.count)');
+});
+
+// ---------------------------------------------------------------------------
+// 12. computeChartDeltas — fallback sur cumulatif si gDay absent (legacy)
+// ---------------------------------------------------------------------------
+describe('12. computeChartDeltas — fallback sur cumulatif pour entrées legacy', () => {
+  const history = [
+    { date: '2026-04-28', gTotal: 100, dTotal: 20 },
+    { date: '2026-04-29', gTotal: 103, dTotal: 21 },         // legacy (no gDay)
+    { date: '2026-04-30', gTotal: 106, dTotal: 23, gDay: 3, dDay: 2 }, // new format
+  ];
+  const deltas = computeChartDeltas(history);
+
+  assertEqual(deltas[1].grammaire, 3, 'legacy entry: fallback delta 103-100');
+  assertEqual(deltas[1].dictee, 1, 'legacy entry: fallback delta 21-20');
+  assertEqual(deltas[2].grammaire, 3, 'new entry: uses gDay');
+  assertEqual(deltas[2].dictee, 2, 'new entry: uses dDay');
+});
+
+// ---------------------------------------------------------------------------
+// 13. computeStatsSnapshot — includes gDay/dDay from dailyActivity
+// ---------------------------------------------------------------------------
+describe('13. computeStatsSnapshot — includes gDay/dDay from dailyActivity', () => {
+  const today = new Date().toISOString().slice(0, 10);
+  const progress = makeProgress({
+    rules: { 'a-a-as': makeRuleProgress(1, 3, 0) },
+    dailyActivity: { date: today, count: 5, grammarCount: 3, dicteeCount: 2 },
+  });
+  const snap = computeStatsSnapshot(progress, GRAMMAR_IDS);
+
+  assertEqual(snap.gDay, 3, 'gDay from dailyActivity.grammarCount');
+  assertEqual(snap.dDay, 2, 'dDay from dailyActivity.dicteeCount');
+});
+
+// ---------------------------------------------------------------------------
+// 14. computeStatsSnapshot — gDay/dDay = 0 if dailyActivity is another day
+// ---------------------------------------------------------------------------
+describe('14. computeStatsSnapshot — gDay/dDay = 0 if not today', () => {
+  const progress = makeProgress({
+    rules: { 'a-a-as': makeRuleProgress(1, 3, 0) },
+    dailyActivity: { date: '2020-01-01', count: 5, grammarCount: 3, dicteeCount: 2 },
+  });
+  const snap = computeStatsSnapshot(progress, GRAMMAR_IDS);
+
+  assertEqual(snap.gDay, 0, 'gDay = 0 (dailyActivity is from another day)');
+  assertEqual(snap.dDay, 0, 'dDay = 0 (dailyActivity is from another day)');
+});
+
+// ---------------------------------------------------------------------------
 // Summary
 // ---------------------------------------------------------------------------
 console.log(`\n${'─'.repeat(50)}`);

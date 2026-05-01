@@ -84,10 +84,18 @@ export function computeStatsSnapshot(progress, grammarRuleIds, dicteeRuleIds = n
     }
   }
 
+  // Per-day counts from dailyActivity (reliable, not derived from cumulative deltas)
+  const da = progress.dailyActivity || {};
+  const isToday = da.date === todayISO();
+  const gDay = isToday ? (da.grammarCount || 0) : 0;
+  const dDay = isToday ? (da.dicteeCount || 0) : 0;
+
   return {
     date: todayISO(),
     gTotal,
     dTotal,
+    gDay,
+    dDay,
     l0, l1, l2, l3, l4,
     ol0, ol1, ol2, ol3,
   };
@@ -134,11 +142,46 @@ export function updateStatsHistory(progress, grammarRuleIds, dicteeRuleIds = nul
 }
 
 // ---------------------------------------------------------------------------
+// computeMaxDailyRecord
+// ---------------------------------------------------------------------------
+
+/**
+ * Compute the max number of sessions done in a single day over the last N days.
+ * Uses statsHistory deltas (gTotal + dTotal) — the same source of truth as the
+ * dashboard's "🥇 7j" and "🏆 30j" counters.
+ *
+ * @param {Array} statsHistory - progress.statsHistory
+ * @param {number} days - look-back window (7, 30, etc.)
+ * @returns {number}
+ */
+export function computeMaxDailyRecord(statsHistory, days) {
+  if (!Array.isArray(statsHistory) || statsHistory.length < 2) return 0;
+  const slice = statsHistory.slice(-(days + 1));
+  let max = 0;
+  for (let i = 1; i < slice.length; i++) {
+    const entry = slice[i];
+    let delta;
+    if (entry.gDay !== undefined || entry.dDay !== undefined) {
+      delta = (entry.gDay || 0) + (entry.dDay || 0);
+    } else {
+      delta =
+        Math.max(0, (entry.gTotal || 0) - (slice[i - 1].gTotal || 0)) +
+        Math.max(0, (entry.dTotal || 0) - (slice[i - 1].dTotal || 0));
+    }
+    if (delta > max) max = delta;
+  }
+  return max;
+}
+
+// ---------------------------------------------------------------------------
 // computeChartDeltas
 // ---------------------------------------------------------------------------
 
 /**
  * Convert a cumulative statsHistory into per-day deltas suitable for charting.
+ *
+ * Uses per-day counts (gDay/dDay) when available (new snapshots). Falls back
+ * to cumulative deltas for legacy entries that don't have per-day fields.
  *
  * The first entry has no previous point to compare with, so its delta is 0 —
  * we can't know how many sessions happened "on that day" vs. before it.
@@ -148,6 +191,11 @@ export function updateStatsHistory(progress, grammarRuleIds, dicteeRuleIds = nul
  */
 export function computeChartDeltas(statsHistory) {
   return statsHistory.map((entry, i) => {
+    // Prefer per-day counts (accurate, not affected by rule categorization changes)
+    if (entry.gDay !== undefined || entry.dDay !== undefined) {
+      return { date: entry.date, grammaire: entry.gDay || 0, dictee: entry.dDay || 0 };
+    }
+    // Fallback: compute from cumulative totals (legacy entries)
     const prev = i > 0 ? statsHistory[i - 1] : null;
     const grammaire = prev ? Math.max(0, (entry.gTotal || 0) - (prev.gTotal || 0)) : 0;
     const dictee    = prev ? Math.max(0, (entry.dTotal || 0) - (prev.dTotal || 0)) : 0;

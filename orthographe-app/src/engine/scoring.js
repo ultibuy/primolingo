@@ -494,11 +494,13 @@ export function processSessionResult(next, rp, {
   }
 
   // ── 4b. Daily activity counter ────────────────────────────────────────
-  if (!next.dailyActivity) next.dailyActivity = { date: null, count: 0, yesterdayCount: 0, bestDaily: 0 };
+  if (!next.dailyActivity) next.dailyActivity = { date: null, count: 0, yesterdayCount: 0, bestDaily: 0, grammarCount: 0, dicteeCount: 0 };
   if (next.dailyActivity.date !== today) {
     next.dailyActivity.yesterdayCount = next.dailyActivity.date ? next.dailyActivity.count : 0;
     next.dailyActivity.date = today;
     next.dailyActivity.count = 0;
+    next.dailyActivity.grammarCount = 0;
+    next.dailyActivity.dicteeCount = 0;
   }
   next.dailyActivity.count += 1;
   if (next.dailyActivity.count > next.dailyActivity.bestDaily) {

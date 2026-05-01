@@ -651,6 +651,9 @@ export default function ChildApp() {
       events.push(...result.events);
       if (result.hasNewTrophy) needsTrophyClear = true;
 
+      // Track grammar vs dictée per-day (used by chart instead of cumulative deltas)
+      next.dailyActivity.grammarCount = (next.dailyActivity.grammarCount || 0) + 1;
+
       updateStatsHistory(next, GRAMMAR_IDS, DICTEE_IDS);
       persistProgress(next);
       return next;
@@ -712,6 +715,9 @@ export default function ChildApp() {
 
       events.push(...result.events);
       if (result.hasNewTrophy) needsTrophyClear = true;
+
+      // Track grammar vs dictée per-day (used by chart instead of cumulative deltas)
+      next.dailyActivity.dicteeCount = (next.dailyActivity.dicteeCount || 0) + 1;
 
       updateStatsHistory(next, GRAMMAR_IDS, DICTEE_IDS);
       persistProgress(next);
