@@ -812,12 +812,12 @@ function MockPandaAnimations() {
 }
 
 // ─── NEW V4 MOCKUP: Victory Animations (from V2 + additions) ───
-function MockCelebrationAnims({ onTriggerAnimation }) {
+function MockCelebrationAnims({ onTriggerAnimation, activeAnim }) {
   const anims = [
-    { icon: "⚡", name: "Frappe de foudre", price: null, badge: "Actif", badgeColor: T.green },
-    { icon: "✨", name: "Explosion d'étoiles", price: "300", badge: null, badgeColor: null },
-    { icon: "🔥", name: "Inferno", price: "300", badge: null, badgeColor: null },
-    { icon: "❄️", name: "Freeze", price: "300", badge: null, badgeColor: null },
+    { key: "lightning", icon: "⚡", name: "Frappe de foudre", price: null, badge: "Actif", badgeColor: T.green },
+    { key: "stars", icon: "✨", name: "Explosion d'étoiles", price: "300", badge: null, badgeColor: null },
+    { key: "inferno", icon: "🔥", name: "Inferno", price: "300", badge: null, badgeColor: null },
+    { key: "freeze", icon: "❄️", name: "Freeze", price: "300", badge: null, badgeColor: null },
   ];
 
   return (
@@ -828,57 +828,72 @@ function MockCelebrationAnims({ onTriggerAnimation }) {
       <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 14, fontWeight: 600 }}>
         ANIMATIONS DE CÉLÉBRATION
       </div>
-      {anims.map((a, i) => (
-        <div key={i} style={{
-          display: "flex", alignItems: "center", gap: 12,
-          padding: "12px 14px", marginBottom: 8,
-          background: "rgba(255,255,255,0.03)", borderRadius: 12,
-          border: `1px solid rgba(255,255,255,0.06)`,
-        }}>
-          <div style={{
-            width: 36, height: 36, borderRadius: 10,
-            background: `${T.primary}15`,
-            display: "flex", alignItems: "center", justifyContent: "center",
-            fontSize: 18,
+      {anims.map((a, i) => {
+        const isActive = activeAnim === a.key;
+        return (
+          <div key={i} style={{
+            display: "flex", alignItems: "center", gap: 12,
+            padding: "12px 14px", marginBottom: 8,
+            background: isActive ? `${T.primary}22` : "rgba(255,255,255,0.03)",
+            borderRadius: 12,
+            border: `1px solid ${isActive ? T.primary : "rgba(255,255,255,0.06)"}`,
+            transition: "all 0.3s",
           }}>
-            {a.icon}
-          </div>
-          <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 13, fontWeight: 600 }}>{a.name}</div>
-          </div>
-          {a.badge && (
             <div style={{
-              padding: "4px 10px", borderRadius: 8,
-              background: `${a.badgeColor}22`, color: a.badgeColor,
-              fontSize: 10, fontWeight: 700,
+              width: 36, height: 36, borderRadius: 10,
+              background: isActive ? `${T.primary}33` : `${T.primary}15`,
+              display: "flex", alignItems: "center", justifyContent: "center",
+              fontSize: 18,
             }}>
-              {a.badge}
+              {a.icon}
             </div>
-          )}
-          {a.price && (
-            <div style={{
-              padding: "4px 10px", borderRadius: 8,
-              background: `${T.gold}15`, color: T.gold,
-              fontSize: 10, fontWeight: 700,
-              display: "flex", alignItems: "center", gap: 4,
-            }}>
-              <CoinIcon size={10} /> {a.price}
+            <div style={{ flex: 1 }}>
+              <div style={{ fontSize: 13, fontWeight: 600, color: isActive ? T.primary : T.textWhite }}>{a.name}</div>
             </div>
-          )}
-        </div>
-      ))}
-      {/* Tester button — triggers a random animation */}
+            {a.badge && !isActive && (
+              <div style={{
+                padding: "4px 10px", borderRadius: 8,
+                background: `${a.badgeColor}22`, color: a.badgeColor,
+                fontSize: 10, fontWeight: 700,
+              }}>
+                {a.badge}
+              </div>
+            )}
+            {isActive && (
+              <div style={{
+                padding: "4px 10px", borderRadius: 8,
+                background: `${T.primary}33`, color: T.primary,
+                fontSize: 10, fontWeight: 700,
+              }}>
+                En cours
+              </div>
+            )}
+            {a.price && !isActive && (
+              <div style={{
+                padding: "4px 10px", borderRadius: 8,
+                background: `${T.gold}15`, color: T.gold,
+                fontSize: 10, fontWeight: 700,
+                display: "flex", alignItems: "center", gap: 4,
+              }}>
+                <CoinIcon size={10} /> {a.price}
+              </div>
+            )}
+          </div>
+        );
+      })}
+      {/* Tester button */}
       <button
         onClick={onTriggerAnimation}
+        disabled={!!activeAnim}
         style={{
           width: "100%", marginTop: 12, padding: "10px 0", borderRadius: 10,
-          background: `linear-gradient(135deg, ${T.primaryDark}, ${T.primary})`,
-          color: "#fff", fontSize: 13, fontWeight: 700, cursor: "pointer",
+          background: activeAnim ? `${T.primary}44` : `linear-gradient(135deg, ${T.primaryDark}, ${T.primary})`,
+          color: "#fff", fontSize: 13, fontWeight: 700, cursor: activeAnim ? "default" : "pointer",
           border: "none", fontFamily: T.font,
-          boxShadow: `0 4px 16px rgba(167,139,250,0.3)`,
+          boxShadow: activeAnim ? "none" : `0 4px 16px rgba(167,139,250,0.3)`,
         }}
       >
-        Tester une animation
+        {activeAnim ? "Animation en cours..." : "Tester une animation"}
       </button>
     </div>
   );
@@ -925,13 +940,13 @@ function MockLevelPath() {
         {levels.map((l, i) => (
           <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", position: "relative" }}>
             {/* (connector removed — single background line instead) */}
-            {/* Level dot */}
+            {/* Level dot — opaque bg so the line stays behind */}
             <div style={{
               width: 34, height: 34, borderRadius: "50%",
-              background: l.reached ? `${l.color}33` : "rgba(255,255,255,0.04)",
-              border: `2px solid ${l.reached ? l.color : T.glassBorder}`,
+              background: l.reached ? T.bg1 : T.bg1,
+              border: `2.5px solid ${l.reached ? l.color : T.glassBorder}`,
               display: "flex", alignItems: "center", justifyContent: "center",
-              fontSize: 16, zIndex: 1,
+              fontSize: 16, zIndex: 2, position: "relative",
               boxShadow: l.reached ? `0 0 12px ${l.color}44` : "none",
             }}>
               {l.icon}
@@ -1142,10 +1157,7 @@ export default function LandingPageV4() {
               Votre enfant fait toujours les <span style={css.heroHighlight}>mêmes fautes</span> d'orthographe ?
             </h1>
             <p style={css.heroDesc}>
-              10 minutes par jour suffisent pour ancrer les règles dans la mémoire à long terme.
-              Mais ne soyez pas surpris s'il en redemande. <strong>PrimoLinguo</strong> utilise une méthode
-              scientifique de révision adaptative qui transforme l'orthographe en aventure — et chaque
-              règle en défi à relever.
+              Les devoirs de Français, c'est souvent recopier 10 fois le même mot ou la même règle — pénible, et oublié dès le contrôle passé. <strong>PrimoLinguo</strong> remplace cette répétition mécanique par un système de révision adaptative : l'app détecte ce que votre enfant oublie et le lui repropose au bon moment. Résultat : les règles restent, durablement.
             </p>
             <button style={css.heroCta} onClick={() => navigate('/login')}>
               Créer un compte gratuit →
@@ -1173,7 +1185,7 @@ export default function LandingPageV4() {
 
           <div style={css.problemGrid}>
             <div style={css.problemCard}>
-              <div style={css.problemEmoji}>📝</div>
+              <div style={css.problemEmoji}><svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l2 2" stroke="#a78bfa" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="12" r="9" stroke="#a78bfa" strokeWidth="2"/><path d="M12 6v1" stroke="#c4b5fd" strokeWidth="2" strokeLinecap="round"/></svg></div>
               <div style={css.problemTitle}>On apprend, puis on oublie</div>
               <div style={css.problemDesc}>
                 Sans révision régulière, une règle comprise s'efface de la mémoire
@@ -1181,7 +1193,7 @@ export default function LandingPageV4() {
               </div>
             </div>
             <div style={css.problemCard}>
-              <div style={css.problemEmoji}>😴</div>
+              <div style={css.problemEmoji}><svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M4 20h16M8 16h8M6 12h12" stroke="#a78bfa" strokeWidth="2" strokeLinecap="round"/><path d="M12 4l-1 4h2l-1 4" stroke="#c4b5fd" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
               <div style={css.problemTitle}>Les exercices classiques ne motivent pas</div>
               <div style={css.problemDesc}>
                 Recopier 10 fois un mot dans un cahier, ça ne donne pas envie d'y revenir demain.
@@ -1189,7 +1201,7 @@ export default function LandingPageV4() {
               </div>
             </div>
             <div style={css.problemCard}>
-              <div style={css.problemEmoji}>🎯</div>
+              <div style={css.problemEmoji}><svg width="32" height="32" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#a78bfa" strokeWidth="2"/><circle cx="12" cy="12" r="5" stroke="#c4b5fd" strokeWidth="2"/><circle cx="12" cy="12" r="1.5" fill="#a78bfa"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
               <div style={css.problemTitle}>Chaque enfant a son propre rythme</div>
               <div style={css.problemDesc}>
                 Votre enfant a du mal avec « a/à » mais maîtrise « ou/où » ?
@@ -1404,7 +1416,7 @@ export default function LandingPageV4() {
                 <div style={css.howStepTitle}>Il s'entraîne avec de vraies dictées</div>
               </div>
               <div style={css.howStepDesc}>
-                13 listes de mots avec audio intégrées, plus de 600 mots au total.
+                13 listes de mots, chacune avec 3 niveaux de difficulté et audio intégrée — plus de 600 mots au total.
                 L'enfant écoute, il écrit, il progresse — à son rythme
                 et avec un retour immédiat sur chaque mot. Les dictées complètent les quiz
                 pour ancrer l'orthographe dans un contexte réel.
@@ -1420,8 +1432,8 @@ export default function LandingPageV4() {
                 <div style={css.howStepTitle}>Vous suivez ses progrès</div>
               </div>
               <div style={css.howStepDesc}>
-                Un espace parent avec un tableau de bord clair : quelles règles sont acquises,
-                lesquelles posent encore problème, combien de jours d'affilée il a joué.
+                Un espace parent avec un tableau de bord clair : combien de règles sont maîtrisées,
+                combien sont encore à revoir, quelle assiduité au quotidien.
                 Ajoutez autant de profils enfants que nécessaire — chacun a son propre parcours.
               </div>
             </div>
@@ -1523,7 +1535,7 @@ export default function LandingPageV4() {
             {/* Card 3: Victory Animations (MockCelebrationAnims) */}
             <div style={{ ...css.problemCard, padding: 0, overflow: "hidden" }}>
               <div style={{ padding: "24px 24px 0" }}>
-                <MockCelebrationAnims onTriggerAnimation={triggerRandomAnimation} />
+                <MockCelebrationAnims onTriggerAnimation={triggerRandomAnimation} activeAnim={celebAnim} />
               </div>
               <div style={{ padding: "16px 24px 24px" }}>
                 <div style={css.problemTitle}>Animations de célébration</div>
@@ -1601,7 +1613,7 @@ export default function LandingPageV4() {
             <div>
               <div style={{ marginBottom: 32 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-                  <span style={{ fontSize: 24 }}>👶</span>
+                  <span style={{ display: "inline-flex" }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="9" cy="10" r="3" stroke="#a78bfa" strokeWidth="2"/><circle cx="17" cy="10" r="3" stroke="#c4b5fd" strokeWidth="2"/><path d="M3 20c0-3 3-5 6-5s6 2 6 5" stroke="#a78bfa" strokeWidth="2" strokeLinecap="round"/><path d="M15 15c2 0 4 1.5 4 3.5" stroke="#c4b5fd" strokeWidth="2" strokeLinecap="round"/></svg></span>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: 16 }}>Multi-enfants</div>
                     <div style={{ fontSize: 14, color: T.textLight }}>
@@ -1612,7 +1624,7 @@ export default function LandingPageV4() {
               </div>
               <div style={{ marginBottom: 32 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-                  <span style={{ fontSize: 24 }}>📊</span>
+                  <span style={{ display: "inline-flex" }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="4" y="13" width="4" height="7" rx="1" stroke="#a78bfa" strokeWidth="2"/><rect x="10" y="9" width="4" height="11" rx="1" stroke="#c4b5fd" strokeWidth="2"/><rect x="16" y="5" width="4" height="15" rx="1" stroke="#a78bfa" strokeWidth="2"/></svg></span>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: 16 }}>Tableau de bord</div>
                     <div style={{ fontSize: 14, color: T.textLight }}>
@@ -1624,7 +1636,7 @@ export default function LandingPageV4() {
               </div>
               <div style={{ marginBottom: 32 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-                  <span style={{ fontSize: 24 }}>🔒</span>
+                  <span style={{ display: "inline-flex" }}><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="10" rx="2" stroke="#a78bfa" strokeWidth="2"/><path d="M8 11V7a4 4 0 118 0v4" stroke="#c4b5fd" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="16" r="1.5" fill="#a78bfa"/></svg></span>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: 16 }}>Accès sécurisé</div>
                     <div style={{ fontSize: 14, color: T.textLight }}>
@@ -1649,9 +1661,9 @@ export default function LandingPageV4() {
         {/* ─── RULES COVERED ─── */}
         <section style={css.section} className="oq-section" data-section="program">
           <div style={css.sectionLabel}>Le programme</div>
-          <h2 style={css.sectionTitle}>Tout le programme de CM2 : 17 règles qui couvrent 80% des fautes courantes</h2>
+          <h2 style={css.sectionTitle}>Tout le programme de CM2 : 17 règles qui couvrent l'essentiel des fautes courantes</h2>
           <p style={css.sectionSubtitle}>
-            Chaque règle contient entre 20 et 300 questions, des fiches mémo,
+            Chaque règle contient un pool de 200 questions qui tournent pour éviter la répétition, des fiches mémo,
             et un arbre de décision pour apprendre à raisonner.
           </p>
 
@@ -1705,7 +1717,7 @@ export default function LandingPageV4() {
             <p style={{ fontSize: 16, lineHeight: 1.7, color: T.textLight, marginBottom: 0 }}>
               Pas de pub. Pas d'achats in-app. Pas de données revendues. Pas de version premium cachée.
               <br /><br />
-              PrimoLinguo est un projet indépendant, créé par un parent pour son enfant,
+              PrimoLinguo est un projet indépendant, créé par un papa pour son enfant,
               et partagé gratuitement avec tous ceux qui en ont besoin.
             </p>
           </div>
@@ -1718,7 +1730,7 @@ export default function LandingPageV4() {
           </h2>
           <p style={{ fontSize: 16, color: T.textLight, marginBottom: 28 }}>
             Créez un compte en 10 secondes et laissez votre enfant découvrir PrimoLinguo.
-            10 minutes par jour suffisent — mais il voudra en faire plus.
+            10 minutes par jour suffisent — mais il voudra en faire plus 😉
           </p>
           <button style={css.heroCta} onClick={() => navigate('/login')}>
             Commencer gratuitement →
