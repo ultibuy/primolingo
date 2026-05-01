@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MotivationBanner from './MotivationBanner.jsx';
 import { pickCoachingMessage, markCoachingShown, createDefaultCoaching } from '../engine/coaching.js';
 import RuleCard from './RuleCard.jsx';
@@ -13,7 +14,6 @@ import LevelHelpPopup from './LevelHelpPopup.jsx';
 import RuleEditor from './RuleEditor.jsx';
 import { isLocalhost } from '../debug.js';
 import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
-import { clearCurrentStoredProgress } from '../store/persistence.js';
 import { getStreakInfo } from '../engine/scoring.js';
 import { getToday } from '../engine/sm2.js';
 import { getDoubleCoinsBonusEarned, getDoubleCoinsRemainingSessions, getEquipped, SHOP_CATALOG } from '../engine/economy.js';
@@ -22,6 +22,12 @@ import CharacterSprite from './CharacterSprite.jsx';
 import { resolveCharacterMood, resolveShopCharacter, getCharacterForRule, SHOP_CHARACTERS, SHOP_EMOTIONS, BASE_EMOTIONS } from '../data/shopCharacters.js';
 import { allDictees, getDicteeWordsForLevel } from '../content/dicteesLoader.js';
 import DicteeCard from './DicteeCard.jsx';
+import ActionButton from './ui/ActionButton.jsx';
+import PageShell from './ui/PageShell.jsx';
+import Panel from './ui/Panel.jsx';
+import ProgressListCard from './ui/ProgressListCard.jsx';
+import SegmentedTabs from './ui/SegmentedTabs.jsx';
+import StatBadge from './ui/StatBadge.jsx';
 
 // ---------------------------------------------------------------------------
 // FIX 1 & FIX 3 — Corrected milestone messages with proper French accents
@@ -98,38 +104,19 @@ function getGreeting() {
   return 'Bonsoir';
 }
 
-// ---------------------------------------------------------------------------
-// A8 — Fix motivation logic: accept todayDone parameter
-// ---------------------------------------------------------------------------
-function getMotivation(progress, rules, todayDone) {
-  // If today's session is done, short congratulation
-  if (todayDone) return 'Bien joué pour aujourd\'hui.';
-
-  const streak = progress.streak?.current || 0;
-  const rulesObj = progress.rules || {};
-  const totalDiamonds = Object.values(rulesObj).filter(r => (r.level || 0) >= 4).length;
-  const totalCrowns = Object.values(rulesObj).filter(r => (r.level || 0) >= 3).length;
-  const totalRules = rules.length;
-  const rulesStarted = Object.values(rulesObj).filter(r => (r.level || 0) >= 1).length;
-
-  // Check firstQuizDone: after migration it lives in milestones.firstSession,
-  // but old progress may still have progress.firstQuizDone
-  const firstQuizDone = progress.milestones?.firstSession || progress.firstQuizDone;
-
-  if (!firstQuizDone) return "Ta première session t'attend. C'est tout.";
-  if (streak === 0 && progress.streak?.longest > 2) return 'Un nouveau départ, ça se prend maintenant.';
-  if (totalDiamonds > 0) {
-    const r = totalRules - totalDiamonds;
-    if (r > 0) return `${totalDiamonds} diamant${totalDiamonds > 1 ? 's' : ''} en poche. Encore ${r} à aller chercher.`;
-    return 'Tous les diamants sont à toi. Légende.';
+function computeMaxDailyRecord(statsHistory, days) {
+  if (!Array.isArray(statsHistory) || statsHistory.length < 2) return 0;
+  const slice = statsHistory.slice(-(days + 1));
+  let max = 0;
+  for (let i = 1; i < slice.length; i++) {
+    const delta =
+      Math.max(0, (slice[i].gTotal || 0) - (slice[i - 1].gTotal || 0)) +
+      Math.max(0, (slice[i].dTotal || 0) - (slice[i - 1].dTotal || 0));
+    if (delta > max) max = delta;
   }
-  if (totalCrowns > 0) return `${totalCrowns} couronne${totalCrowns > 1 ? 's' : ''}. Le diamant est à portée.`;
-  if (streak >= 14) return 'Série incroyable. Ne lâche rien.';
-  if (streak >= 7) return 'Une semaine d\'affilée. L\'habitude se construit.';
-  if (streak >= 3) return 'Beau rythme. Le prochain palier approche.';
-  if (rulesStarted > 0) return 'Chaque session te rapproche de ta première couronne.';
-  return 'Choisis une règle et montre ce que tu sais faire.';
+  return max;
 }
+
 
 function getFlameIntensity(streak) {
   if (streak >= 30) return 2;
@@ -277,7 +264,7 @@ function buildOverlayData(evt) {
     const s80 = `${Math.ceil(n * 0.8)}/${n}`;
     const s90 = `${Math.ceil(n * 0.9)}/${n}`;
 
-    const coinStr = evt.coins > 0 ? ` · +${evt.coins} 🪙` : '';
+    const coinStr = evt.coins > 0 ? ` · +${evt.coins}` : '';
     if (lvl === 1) {
       msg = `Bronze sur ${ruleName}`;
       sub = `Prochain niveau : Argent. Fais 3 sessions guid\u00e9es avec ${s80} ou mieux.${coinStr}`;
@@ -345,6 +332,7 @@ export default function Dashboard({
   onEventsSeen,
   onDebugUpdateStreak,
   onDebugSetCoins,
+  onDebugClearProgress,
   dailyBackups = [],
   onDebugRestoreBackup,
   onTriggerEntranceAnim,
@@ -355,6 +343,7 @@ export default function Dashboard({
   onTabChange,
   onProgressChange,
 }) {
+  const navigate = useNavigate();
   const [overlay, setOverlay] = useState(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -383,6 +372,7 @@ export default function Dashboard({
   const [streakAlert, setStreakAlert] = useState(null); // { nextMilestone, reward }
   const [moodTooltip, setMoodTooltip] = useState(false); // show character mood popup
   const [pandaMood, setPandaMood] = useState(null); // null = default walk
+  const [statPopup, setStatPopup] = useState(null); // 'today' | '7j' | '30j'
   const shopOwnedRef = useRef(progress.shop?.owned || []);
 
   const triggerRandomEntranceAnim = useCallback((ownedAnims) => {
@@ -528,6 +518,11 @@ export default function Dashboard({
   // disappear by re-evaluating against already-marked coaching state.
   // ---------------------------------------------------------------------------
   const todayStr = getToday();
+  const dailyActivity = progress.dailyActivity || {};
+  const sessionsToday = dailyActivity.date === todayStr ? (dailyActivity.count || 0) : 0;
+  const record7j = computeMaxDailyRecord(progress.statsHistory, 7);
+  const record30j = computeMaxDailyRecord(progress.statsHistory, 30);
+
   const coachingMsgRef = useRef(undefined);
   if (coachingMsgRef.current === undefined) {
     coachingMsgRef.current = pickCoachingMessage({
@@ -603,7 +598,7 @@ export default function Dashboard({
     },
     summary.nouveau > 0 && {
       key: 'nouveau',
-      icon: <span style={{ fontSize: isCompactLayout ? '0.64rem' : '0.7rem' }}>{'🔒'}</span>,
+      icon: <LockIcon size={isCompactLayout ? 12 : 14} />,
       count: summary.nouveau,
       color: '#4b5563',
       label: 'Nouvelle',
@@ -614,6 +609,10 @@ export default function Dashboard({
   const streakHeadline = streak > 0
     ? `${streak} jour${streak > 1 ? 's' : ''} d'affilée`
     : 'Allume la première flamme';
+  const dashboardTabs = [
+    { key: 'grammaire', label: 'Grammaire', icon: <PencilIcon /> },
+    { key: 'dictee', label: 'Vocabulaire', icon: <BookIcon /> },
+  ];
   const streakSupportText = streak > 0
     ? 'Ta flamme te donne des pièces aux paliers 7, 14, 30, 60 et 100 jours. Il faut au moins 60% de bonnes réponses pour valider un jour.'
     : 'Lance ta première session (60% minimum) pour démarrer ta flamme.';
@@ -768,27 +767,18 @@ export default function Dashboard({
         </div>
       )}
 
-      <div style={{
-        maxWidth: 640, width: '100%', padding: isCompactLayout ? '0 0.9rem 2rem' : '0 1.5rem 3rem',
-        opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(12px)',
-        transition: 'all 0.6s ease',
-        position: 'relative',
-        zIndex: 1,
-      }}>
+      <PageShell compact={isCompactLayout} mounted={mounted}>
         {/* =====================================================================
           A1 + A2 + A3 + A7 — Sticky header with merged streak, shop button, shields
         ===================================================================== */}
-        <div style={{
+        <Panel variant="elevated" style={{
           position: 'sticky',
           top: 0,
           zIndex: 100,
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
-          background: 'linear-gradient(180deg, rgba(var(--color-bg1-rgb),0.96), rgba(var(--color-bg2-rgb),0.82))',
-          border: '1px solid rgba(var(--color-primary-rgb),0.16)',
-          boxShadow: '0 12px 30px rgba(0,0,0,0.24), inset 0 1px 0 rgba(255,255,255,0.03)',
           borderRadius: 20,
-          padding: '0.7rem 0.9rem',
+          padding: isCompactLayout ? '0.6rem 0.75rem' : '0.7rem 0.9rem',
           marginTop: '0.35rem',
           marginBottom: '0.5rem',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
@@ -908,10 +898,10 @@ export default function Dashboard({
               <span style={{ fontSize: '0.88rem', fontWeight: 800, color: 'var(--color-accent)' }}>
                 <AnimatedNumber value={coins} />
               </span>
-              <span style={{ fontSize: '0.9rem', marginLeft: '0.15rem' }}>{'🛒'}</span>
+              <CartIcon />
             </button>
           </div>
-        </div>
+        </Panel>
 
         {doubleCoinsRemaining > 0 && (
           <div style={{
@@ -967,17 +957,81 @@ export default function Dashboard({
         )}
 
         {/* =====================================================================
-          A5 — Conditional greeting: only show if !todayDone
+          A5 — Greeting + daily stats line (always visible)
         ===================================================================== */}
-        {!todayDone && (
-          <div style={{ textAlign: 'center', padding: '0.5rem 1rem 0.8rem' }}>
-            <h1 style={{ fontSize: '1.7rem', fontWeight: 800, color: '#fff', margin: '0 0 0.3rem', letterSpacing: '-0.02em' }}>
-              {getGreeting()}{childName ? `, ${childName}` : ''}
-            </h1>
-            <p style={{ fontSize: '0.9rem', color: '#9ca3af', fontStyle: 'italic', lineHeight: 1.5, maxWidth: 400, margin: '0 auto' }}>
-              {getMotivation(progress, rules, todayDone)}
-            </p>
+        <div style={{ textAlign: 'center', padding: '0.5rem 1rem 0.8rem' }}>
+          <h1 style={{ fontSize: '1.7rem', fontWeight: 800, color: '#fff', margin: '0 0 0.5rem', letterSpacing: '-0.02em' }}>
+            {getGreeting()}{childName ? `, ${childName}` : ''}
+          </h1>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', flexWrap: 'nowrap' }}>
+            {[
+              {
+                key: 'today',
+                label: `${sessionsToday} quiz aujourd'hui`,
+              },
+              {
+                key: '7j',
+                label: `🥇 7j\u00a0: ${record7j}`,
+              },
+              {
+                key: '30j',
+                label: `🏆 30j\u00a0: ${record30j}`,
+              },
+            ].map((stat, idx, arr) => (
+              <span key={stat.key} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
+                <button
+                  onClick={() => setStatPopup(stat.key)}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    cursor: 'pointer',
+                    fontSize: '0.82rem',
+                    color: '#9ca3af',
+                    fontStyle: 'italic',
+                    whiteSpace: 'nowrap',
+                    textDecoration: 'underline dotted',
+                    textUnderlineOffset: '3px',
+                  }}
+                >
+                  {stat.label}
+                </button>
+                {idx < arr.length - 1 && (
+                  <span style={{ color: '#4b5563', fontSize: '0.75rem', userSelect: 'none' }}>·</span>
+                )}
+              </span>
+            ))}
           </div>
+        </div>
+
+        {/* Stat explanation popup */}
+        {statPopup && (
+          <PopupModal onClose={() => setStatPopup(null)} ariaLabel="Explication de la stat">
+            {statPopup === 'today' && (
+              <>
+                <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#fff', marginTop: 0 }}>Quiz aujourd'hui</h2>
+                <p style={{ color: '#9ca3af', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                  Nombre de sessions terminées aujourd'hui, toutes règles et dictées confondues.
+                </p>
+              </>
+            )}
+            {statPopup === '7j' && (
+              <>
+                <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#fff', marginTop: 0 }}>🥇 Record sur 7 jours</h2>
+                <p style={{ color: '#9ca3af', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                  Le meilleur jour des 7 derniers jours : le nombre maximum de quiz réalisés en une seule journée sur cette période.
+                </p>
+              </>
+            )}
+            {statPopup === '30j' && (
+              <>
+                <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#fff', marginTop: 0 }}>🏆 Record sur 30 jours</h2>
+                <p style={{ color: '#9ca3af', fontSize: '0.9rem', lineHeight: 1.6 }}>
+                  Le meilleur jour des 30 derniers jours : le nombre maximum de quiz réalisés en une seule journée sur cette période.
+                </p>
+              </>
+            )}
+          </PopupModal>
         )}
 
         {/* =====================================================================
@@ -1029,57 +1083,12 @@ export default function Dashboard({
         {/* =====================================================================
           Grammaire / Dictée switcher
         ===================================================================== */}
-        <div style={{
-          display: 'flex',
-          background: 'rgba(0,0,0,0.32)',
-          border: '1px solid rgba(255,255,255,0.06)',
-          borderRadius: 13,
-          padding: 3,
-          marginTop: '1.25rem',
-          gap: 2,
-        }}>
-          {[
-            { key: 'grammaire', label: 'Grammaire', icon: (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 20h9" />
-                <path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4z" />
-              </svg>
-            )},
-            { key: 'dictee', label: 'Vocabulaire', icon: (
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-              </svg>
-            )},
-          ].map(tab => (
-            <button
-              key={tab.key}
-              type="button"
-              onClick={() => handleTabChange(tab.key)}
-              style={{
-                flex: 1,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: 6,
-                padding: '10px 6px',
-                borderRadius: 10,
-                border: 'none',
-                cursor: 'pointer',
-                background: activeTab === tab.key ? 'rgba(255,255,255,0.08)' : 'transparent',
-                color: activeTab === tab.key ? '#fff' : 'rgba(255,255,255,0.55)',
-                fontSize: '0.78rem',
-                fontWeight: 700,
-                transition: 'background 0.18s ease, color 0.18s ease',
-              }}
-            >
-              <span style={{ width: 14, height: 14, display: 'inline-flex', flexShrink: 0 }}>
-                {tab.icon}
-              </span>
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        <SegmentedTabs
+          tabs={dashboardTabs}
+          activeKey={activeTab}
+          onChange={handleTabChange}
+          style={{ marginTop: '1.25rem' }}
+        />
 
         {/* =====================================================================
           Grammaire tab — RÉVISIONS DU JOUR + groupes AVENTURIER/HÉROS/LÉGENDE
@@ -1166,39 +1175,40 @@ export default function Dashboard({
                       {/* Not-started rules: compact row */}
                       {notStarted.map((rule) => {
                         const isRecommended = rule.id === firstNotStartedId;
+                        const characterId = getCharacterForRule(rule.id, allRuleIds, shopOwned);
                         const idx = animIdx++;
                         return (
                           <div key={rule.id} style={{ opacity: mounted ? 1 : 0, transform: mounted ? 'translateY(0)' : 'translateY(15px)', transition: `all 0.5s ease ${0.15 + idx * 0.08}s` }}>
-                            <div style={{
-                              display: 'flex', alignItems: 'center',
-                              background: isRecommended ? 'rgba(var(--color-primary-rgb),0.08)' : 'rgba(255,255,255,0.04)',
-                              border: isRecommended ? '1px solid rgba(var(--color-primary-rgb),0.3)' : '1px solid rgba(255,255,255,0.08)',
-                              borderRadius: 14, padding: '0.7rem 1rem', gap: '0.7rem', flexWrap: 'wrap',
-                            }}>
-                              <span style={{ fontSize: '1rem', opacity: 0.4 }}>🔒</span>
-                              <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.7rem', flexWrap: 'nowrap' }}>
-                                  <button type="button" onClick={() => setMemoRule(rule)} style={{ padding: 0, border: 'none', background: 'transparent', color: 'var(--color-accent)', cursor: 'pointer', fontSize: '0.88rem', fontWeight: 700, textAlign: 'left', flex: 1, minWidth: 0 }} title="Ouvrir la fiche mémo">
-                                    {rule.title}
-                                  </button>
-                                  <button onClick={() => onPlay(rule.id, 'guided')} style={{ padding: '0.45rem 0.9rem', borderRadius: 10, border: 'none', background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))', color: '#fff', cursor: 'pointer', fontSize: '0.78rem', fontWeight: 700, flexShrink: 0, boxShadow: isRecommended ? '0 2px 12px rgba(124,58,237,0.35)' : '0 2px 8px rgba(124,58,237,0.25)' }}>
-                                    Découvrir
-                                  </button>
-                                </div>
-                                {isRecommended ? (
-                                  <span style={{ display: 'inline-flex', alignSelf: 'flex-start', whiteSpace: 'nowrap', fontSize: '0.6rem', background: 'rgba(var(--color-primary-rgb),0.2)', color: 'var(--color-accent)', padding: '0.1rem 0.45rem', borderRadius: 4, fontWeight: 700, letterSpacing: '0.02em' }}>
-                                    Prochaine règle recommandée
-                                  </span>
-                                ) : (
-                                  <span style={{ display: 'inline-flex', alignSelf: 'flex-start', whiteSpace: 'nowrap', fontSize: '0.62rem', background: 'rgba(107,114,128,0.15)', color: '#6b7280', padding: '0.1rem 0.4rem', borderRadius: 4, fontWeight: 700 }}>
-                                    Nouvelle
-                                  </span>
-                                )}
-                              </div>
-                              {isDebug && (
+                            <ProgressListCard
+                              title={rule.title}
+                              onTitleClick={() => setMemoRule(rule)}
+                              titleTitle="Ouvrir la fiche mémo"
+                              actionLabel="Découvrir"
+                              onAction={() => onPlay(rule.id, 'guided')}
+                              recommended={isRecommended}
+                              recommendedLabel="Prochaine règle recommandée"
+                              statusLabel={isRecommended ? null : 'Nouvelle'}
+                              lockIcon={isRecommended && dashboardCharMood && characterId ? (
+                                <button
+                                  type="button"
+                                  onClick={(e) => { e.stopPropagation(); setMoodTooltip({ characterId, mood: dashboardCharMood }); }}
+                                  style={{
+                                    border: 'none',
+                                    background: 'transparent',
+                                    padding: 0,
+                                    cursor: 'pointer',
+                                    lineHeight: 0,
+                                    flexShrink: 0,
+                                  }}
+                                  title="Voir l'humeur du personnage"
+                                >
+                                  <CharacterSprite id={characterId} mood={dashboardCharMood} size={34} glow={true} />
+                                </button>
+                              ) : undefined}
+                              trailing={isDebug && (
                                 <button onClick={(e) => { e.stopPropagation(); setEditingRule(rules.find(x => x.id === rule.id)); }} style={{ background: 'rgba(248,113,113,0.15)', border: '1px solid rgba(248,113,113,0.3)', borderRadius: 6, padding: '0.15rem 0.35rem', cursor: 'pointer', fontSize: '0.6rem', color: '#f87171', fontWeight: 700, flexShrink: 0 }} title="Debug: éditer la règle">✏️</button>
                               )}
-                            </div>
+                            />
                           </div>
                         );
                       })}
@@ -1287,29 +1297,26 @@ export default function Dashboard({
 
         {/* Export + Debug reset */}
         <div style={{ marginTop: '2.5rem', textAlign: 'center', display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
-          <button onClick={() => exportProgress(progress)} style={{
-            padding: '0.5rem 1.2rem', borderRadius: 8,
-            border: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)',
-            color: '#4b5563', cursor: 'pointer', fontSize: '0.72rem',
-          }}>
-            Exporter
-          </button>
+          <ActionButton
+            variant="subtle"
+            size="sm"
+            onClick={() => navigate('/parent')}
+            style={{ color: '#4b5563', fontWeight: 700 }}
+          >
+            Retourner sur l'app parent
+          </ActionButton>
           {isDebug && (
-            <button onClick={async () => {
+            <ActionButton variant="danger" size="sm" onClick={async () => {
               if (confirm('Réinitialiser toute la progression, les pièces et les achats ?')) {
-                const result = await clearCurrentStoredProgress();
+                const result = await onDebugClearProgress?.();
                 if (result?.success) window.location.reload();
               }
-            }} style={{
-              padding: '0.5rem 1.2rem', borderRadius: 8,
-              border: '1px solid rgba(248,113,113,0.25)', background: 'rgba(248,113,113,0.08)',
-              color: '#f87171', cursor: 'pointer', fontSize: '0.72rem', fontWeight: 700,
             }}>
               Réinitialiser
-            </button>
+            </ActionButton>
           )}
         </div>
-      </div>
+      </PageShell>
 
       {/* ── Debug panel: fixed overlay ── */}
       {isDebug && (
@@ -1413,7 +1420,7 @@ export default function Dashboard({
                     </div>
                   </div>
                   <span style={{ fontSize: '0.58rem', fontWeight: 700, color: ch.color, textAlign: 'center', lineHeight: 1.2 }}>{ch.name}</span>
-                  <span style={{ fontSize: '0.5rem', color: '#9ca3af', textAlign: 'center', lineHeight: 1.2 }}>{ch.price ?? 500} 🪙</span>
+                  <span style={{ fontSize: '0.5rem', color: '#9ca3af', textAlign: 'center', lineHeight: 1.2, display: 'inline-flex', alignItems: 'center', gap: 2 }}>{ch.price ?? 500} <CoinIcon size={10} /></span>
                 </div>
               ))}
             </div>
@@ -1734,6 +1741,143 @@ export default function Dashboard({
               )}
             </div>
           )}
+          {/* ── Tests fonctionnels ── */}
+          <div style={{ marginTop: '1rem', paddingTop: '0.9rem', borderTop: '1px dashed rgba(74,222,128,0.18)' }}>
+            <div style={{ fontSize: '0.65rem', color: '#4ade80', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.6rem' }}>
+              ✅ Tests fonctionnels — 11 suites · 105 tests
+            </div>
+            <div style={{ maxHeight: '55vh', overflowY: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.72rem', lineHeight: 1.6 }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid rgba(74,222,128,0.25)', textAlign: 'left' }}>
+                    <th style={{ color: '#4ade80', padding: '5px 4px', width: '8%' }}>ID</th>
+                    <th style={{ color: '#4ade80', padding: '5px 8px', width: '40%' }}>Règle testée</th>
+                    <th style={{ color: '#4ade80', padding: '5px 8px', width: '52%' }}>Le test passe si…</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    [null, '🎯 COACHING — Messages de motivation', '', true],
+                    ['C01', 'Un nouvel utilisateur voit le message de bienvenue', 'Le message "premier quiz" s\'affiche quand le joueur n\'a fait aucune session'],
+                    ['C02', 'Un message déjà vu ne réapparaît pas', 'Après affichage, le même message ne revient plus (marqué comme vu)'],
+                    ['C03', 'La flamme en danger alerte après 16h', 'Le soir (à partir de 16h), si le joueur n\'a pas joué et a un streak actif, l\'alerte flamme apparaît'],
+                    ['C04', 'Pas d\'alerte flamme avant 16h', 'Avant 16h, l\'alerte flamme n\'apparaît pas même si le joueur n\'a pas joué'],
+                    ['C05', 'Les messages uniques sont marqués définitivement', 'Après affichage d\'un message unique, il est enregistré avec la date du jour et ne reviendra jamais'],
+                    ['C06', 'Les messages récurrents peuvent revenir', 'Un message récurrent est noté dans l\'historique mais n\'est pas bloqué définitivement'],
+                    ['C07', 'Le compteur de messages repart à zéro chaque jour', 'Le lendemain, le compteur repasse à 1 au lieu de cumuler avec la veille'],
+                    ['C08', 'L\'écran de fin ne montre que certains messages', 'Seuls les messages de progression (argent, couronne, diamant, flamme) apparaissent après un quiz'],
+                    ['C09', 'Le message de bienvenue est réservé au dashboard', 'Le message d\'onboarding n\'apparaît jamais sur l\'écran de fin de quiz'],
+                    ['C10', 'Le message le plus prioritaire gagne', 'Quand deux messages sont éligibles en même temps, celui de plus haute priorité est choisi'],
+                    ['C11', 'Assez de pièces sans personnage → suggestion d\'achat', 'Le joueur avec 250+ pièces et 0 personnage reçoit un message l\'invitant à en acheter un'],
+                    ['C12', 'Longue série sans bouclier → alerte urgente', 'Le joueur avec un streak de 7+ jours et 0 bouclier voit un message mentionnant son nombre de jours'],
+                    ['C13', 'Perte du streak → message de réconfort', 'Le joueur dont la série est tombée à 0 voit un encouragement pour repartir'],
+                    ['C14', 'Le total de sessions est bien calculé', 'La somme des sessions guidées et directes de toutes les règles donne le bon total'],
+                    ['C15', 'Seuls les personnages sont comptés', 'Les émotions et les thèmes achetés ne sont pas comptés comme des personnages'],
+                    ['C16', 'Les émotions sont filtrées par personnage', 'Les émotions achetées pour le dragon ne comptent pas dans celles du panda'],
+
+                    [null, '🎮 BOUTIQUE & QUIZ — Achat et jeu', '', true],
+                    ['S01', 'L\'achat déduit les pièces', 'Le solde diminue du prix exact après confirmation d\'achat du personnage'],
+                    ['S02', 'Un personnage acheté est marqué "Possédé"', 'La carte affiche "✓ Possédé" à la place du prix après achat'],
+                    ['S03', 'On peut équiper une émotion', 'Après achat de l\'émotion "Dodo", elle est sélectionnable et le personnage l\'adopte'],
+                    ['S04', 'Le personnage est visible pendant le quiz', 'Le sprite animé apparaît au-dessus de la barre de progression pendant les questions'],
+                    ['S05', 'Le feedback de réponse s\'affiche', '"Bravo !" ou "Raté !" apparaît clairement après chaque réponse'],
+                    ['S06', 'Le personnage reste visible après réponse', 'Le sprite ne disparaît pas quand le message de feedback s\'affiche'],
+                    ['S07', 'Le mode direct affiche le bonus du jour', 'Le bouton du mode direct indique "Bonus de 10" pour la première session du jour'],
+
+                    [null, '😊 ÉMOTIONS — Comportement du personnage', '', true],
+                    ['E01', 'Dashboard sans session → le personnage dort', 'Sur le dashboard, si aucun quiz n\'a été fait, le personnage est en mode dodo'],
+                    ['E02', 'Dashboard après quiz → le personnage marche', 'Sur le dashboard, après 2+ sessions, le personnage marche ou est assis'],
+                    ['E03', 'Première question → le personnage fait coucou', 'Au lancement d\'un quiz, le personnage salue le joueur avec un geste ou un bisou'],
+                    ['E04', 'Bonne réponse → le personnage applaudit', 'Après une réponse correcte, le personnage tape dans ses mains (pas la danse de victoire)'],
+                    ['E05', 'Tout premier quiz → le personnage dort', 'Si c\'est la toute première session du joueur, le personnage commence endormi dans le quiz'],
+                    ['E06', 'Score bas → personnage hésitant', 'Sur l\'écran de fin avec un mauvais score, le personnage montre de la surprise ou réfléchit'],
+
+                    [null, '🎵 DICTÉE — Flux audio', '', true],
+                    ['D01', 'L\'onglet Dictée est accessible', 'L\'onglet est visible et cliquable depuis le dashboard'],
+                    ['D02', '"Commencer" lance la dictée', 'Le quiz de dictée s\'ouvre quand on clique sur le bouton'],
+                    ['D03', '"Écouter" joue le mot', 'L\'animation de lecture démarre quand on appuie sur le bouton audio'],
+                    ['D04', 'La phrase de contexte s\'affiche', 'Le mot à écrire est présenté dans une phrase complète pour donner du sens'],
+                    ['D05', 'Fermer retourne au bon onglet', 'En fermant le quiz de dictée, on revient sur l\'onglet Dictée et pas sur Grammaire'],
+                    ['D06', 'Les fichiers audio se chargent', 'L\'app émet des requêtes réseau vers les bons fichiers audio'],
+
+                    [null, '📊 STATS — Calcul de progression', '', true],
+                    ['T01', 'Profil vierge → tout à zéro', 'Un nouveau profil a 0 session, 0 dictée et toutes les règles au niveau 0'],
+                    ['T02', 'Les sessions sont bien comptées', 'Le total affiché correspond à la somme réelle des sessions grammaire + dictée'],
+                    ['T03', 'Pas de doublon le même jour', 'Mettre à jour les stats deux fois le même jour ne crée qu\'une seule entrée'],
+                    ['T04', 'L\'historique est limité à 30 jours', 'Les entrées de plus de 30 jours sont automatiquement supprimées'],
+
+                    [null, '🔒 PIN PARENTAL — Sécurité', '', true],
+                    ['P01', '"Demander à Papa" visible si code actif', 'Le bouton n\'apparaît que quand un code parental a été configuré'],
+                    ['P02', 'Bon code → retour au jeu', 'La saisie du bon code sauvegarde le streak et ramène au dashboard'],
+                    ['P03', 'Mauvais code → erreur', 'Un message d\'erreur s\'affiche, avec verrouillage après plusieurs tentatives ratées'],
+                    ['P04', 'Le code doit être saisi deux fois', 'À la création, il faut confirmer en retapant le même code sinon erreur'],
+                    ['P05', 'Le code n\'est jamais stocké en clair', 'Seul un hash avec sel aléatoire est enregistré, pas les 4 chiffres'],
+
+                    [null, '🔊 AUDIO — Bouton écouter', '', true],
+                    ['A01', 'Les barres réagissent à la lecture', 'Les barres du waveform changent de hauteur pendant que l\'audio joue'],
+                    ['A02', 'Le bouton change de couleur', 'Le fond du bouton devient violet pendant la lecture audio'],
+                    ['A03', 'L\'animation s\'arrête toute seule', 'Au bout d\'environ 6 secondes, le bouton revient à son état de repos'],
+
+                    [null, '🐾 PERSONNAGES — Catalogue', '', true],
+                    ['K01', '17 personnages disponibles', 'Les 17 noms de personnages sont tous visibles dans la boutique'],
+                    ['K02', 'Les anciens personnages ont été retirés', 'Grenouille, Licorne et Phénix n\'apparaissent plus dans la boutique'],
+                    ['K03', '10 émotions par personnage', 'Marche, dodo, assis, coucou, bisou, applaudissement, victoire, danse, surprise et réflexion'],
+                    ['K04', 'Les sprites s\'affichent correctement', 'Chaque personnage a un sprite SVG qui se charge sans erreur'],
+
+                    [null, '⚙️ ENGINE — Calculs et algorithmes (unit)', '', true],
+                    ['N01', 'Calcul des pièces selon le score', '0 % → 0 pièces · 60-79 % → 5 · 80-99 % → 20 · 100 % → 30'],
+                    ['N02', 'Bonus bienvenue 200 pièces (1ère session ≥60 %)', 'Le bonus n\'est crédité qu\'une seule fois, jamais deux'],
+                    ['N03', 'Bonus du jour +10 pièces', 'La première session du jour rapporte 10 pièces supplémentaires'],
+                    ['N04', 'Progression de niveau Bronze→Argent→Couronne', 'Après 3 sessions ≥80 %, le niveau monte ; en dessous, il reste stable'],
+                    ['N05', 'Diamant : 3 sessions consécutives ≥90 % requis', 'Le compteur consécutif se remet à 0 si une session est <90 %'],
+                    ['N06', 'SM-2 : santé du diamant (0→1)', 'La santé diminue en fonction des jours de retard sur la révision planifiée'],
+                    ['N07', 'SM-2 : planification de la prochaine révision', 'Succès → intervalle doublé · Fragile → intervalle réduit · Échec → réinitialisation'],
+                    ['N08', 'SM-2 : échec de révision → retour couronne', 'Un score <80 % en mode révision redescend la règle au niveau Couronne'],
+                    ['N09', 'Streak : incrémentation et reset après 2 jours', 'Jouer hier → +1 · Jouer aujourd\'hui → identique · 2 jours d\'écart → reset à 1'],
+                    ['N11', 'Streak milestones (7 j → +100 pièces)', 'Atteindre 7 j déclenche exactement +100 pièces et marque le milestone'],
+                    ['N16', 'Double pièces : ×2 pendant 5 sessions', 'L\'achat crédite 5 sessions bonus ; le compteur décrémente à chaque session'],
+                    ['N17', 'Double pièces : verrouillé 1 semaine', 'Acheter deux fois la même semaine est bloqué jusqu\'au lundi suivant'],
+                    ['N18', 'Images mystère : 2 morceaux par jour max', 'Le 3e achat de la journée est refusé même si les pièces suffisent'],
+                    ['N19', 'Images mystère : révélation progressive 6 tuiles', 'Les tuiles se révèlent dans l\'ordre ; la dernière (fixe) n\'est jamais en premier'],
+                    ['N22', 'Question Mystery : remplace la prochaine question', 'L\'item consommable pioche dans une règle différente de la règle courante'],
+                    ['N32', 'Sélection de questions : pas de répétition', 'Les questions récemment vues sont évitées si le pool le permet'],
+
+                    [null, '📈 PROGRESSION — ReturnScreen, Dictée, EndScreen (E2E)', '', true],
+                    ['N14', 'ReturnScreen : apparaît après 2+ jours d\'inactivité', 'L\'écran "Retour après une pause" s\'affiche quand le joueur revient après ≥2 jours'],
+                    ['N14b', 'ReturnScreen : absent si joué hier', 'Si la dernière session date d\'hier, l\'écran de retour ne s\'affiche pas'],
+                    ['N15', 'ReturnScreen : "Sauver la flamme" → retour dashboard', 'Le bouton déduit les pièces du bouclier et ramène au dashboard'],
+                    ['N23', 'Dictée : niveau HÉROS verrouillé sans Aventurier', 'Le cadenas et le message "Débloque quand tous Aventurier en couronne" sont visibles'],
+                    ['N23b', 'Dictée : niveau AVENTURIER toujours accessible', 'L\'onglet Aventurier est cliquable quel que soit le profil du joueur'],
+                    ['N24', 'EndScreen : section pièces visible après quiz', 'Le total de pièces (ex : "30") apparaît sur l\'écran de fin'],
+                    ['N25', 'EndScreen : "Prochain objectif" visible', 'La barre de niveau et le texte "Prochain objectif" s\'affichent si pas de level-up'],
+
+                    [null, '👪 PARENT — Multi-enfant, réglages, PIN (E2E + unit)', '', true],
+                    ['N26', 'Multi-enfant : données isolées par enfant', 'Le progress d\'un enfant ne peut pas écraser celui d\'un autre (clés localStorage distinctes)'],
+                    ['N28', 'Admin : réglage du nombre de questions', 'La valeur saisie par le parent est enregistrée et persistée dans les paramètres enfant'],
+                    ['N31b', 'PIN : formule de verrouillage progressif (unit)', '1 échec → 15 s · 2 → 30 s · le plafond est fixé à 3 600 s (1 heure)'],
+                    ['N31', 'PIN : compteur d\'échecs incrémenté après mauvais code', 'Après une saisie incorrecte, failedAttempts = 1 et lockedUntil est dans le futur'],
+                  ].map(([id, rule, criteria, isHeader], i) => (
+                    isHeader ? (
+                      <tr key={i} style={{ borderTop: i > 0 ? '1px solid rgba(255,255,255,0.08)' : 'none' }}>
+                        <td colSpan={3} style={{ color: '#4ade80', fontWeight: 700, padding: '10px 8px 5px', fontSize: '0.78rem' }}>{rule}</td>
+                      </tr>
+                    ) : (
+                      <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+                        <td style={{ color: '#6ee7b7', padding: '4px 4px', verticalAlign: 'top', fontFamily: 'monospace', fontWeight: 700, fontSize: '0.65rem' }}>{id}</td>
+                        <td style={{ color: '#e2e2e2', padding: '4px 8px', verticalAlign: 'top' }}>{rule}</td>
+                        <td style={{ color: '#a1a1aa', padding: '4px 8px', verticalAlign: 'top' }}>{criteria}</td>
+                      </tr>
+                    )
+                  ))}
+                </tbody>
+              </table>
+
+              <div style={{ color: '#6b7280', fontWeight: 600, marginTop: '0.7rem', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '0.5rem', fontSize: '0.68rem' }}>
+                🖼 3 suites visuelles (layout uniquement) : visual · progress-charts · quiz-layout
+              </div>
+            </div>
+          </div>
+
         </div>
           )}
         </div>
@@ -2058,37 +2202,51 @@ function SectionLabel({ children }) {
 
 function LevelBadge({ icon, count, color, label, compact = false, onClick }) {
   return (
-    <div
+    <StatBadge
+      icon={icon}
+      value={count}
+      color={color}
+      label={label}
+      compact={compact}
       onClick={onClick}
-      style={{
-        minWidth: 0,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        gap: compact ? '0.16rem' : '0.3rem',
-        background: `${color}10`,
-        border: `1px solid ${color}25`,
-        borderRadius: 10,
-        padding: compact ? '0.28rem 0.22rem' : '0.3rem 0.6rem',
-        cursor: onClick ? 'pointer' : 'default',
-        transition: 'all 0.15s ease',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-      }}
-    >
-      {icon}
-      <span style={{ fontSize: compact ? '0.76rem' : '0.82rem', fontWeight: 800, color, flexShrink: 0 }}>
-        {count}
-      </span>
-      <span style={{
-        minWidth: 0,
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-        fontSize: compact ? '0.54rem' : '0.62rem',
-        color: '#6b7280',
-        fontWeight: 600,
-      }}>
-        {label}
-      </span>
-    </div>
+    />
+  );
+}
+
+function PencilIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 20h9" />
+      <path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4z" />
+    </svg>
+  );
+}
+
+function BookIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+    </svg>
+  );
+}
+
+function CartIcon() {
+  return (
+    <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '0.15rem', opacity: 0.55 }}>
+      <circle cx="9" cy="20" r="1.4" />
+      <circle cx="18" cy="20" r="1.4" />
+      <path d="M2.5 3h2.2l2.5 12.2a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 1.9-1.4L21.5 8H6" />
+    </svg>
+  );
+}
+
+function LockIcon({ size = 14 }) {
+  return (
+    <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="5" y="10" width="14" height="10" rx="2" />
+      <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+    </svg>
   );
 }
 
@@ -2111,9 +2269,9 @@ function DiamondSparkBadge() {
 const pageStyle = {
   minHeight: '100vh',
   backgroundColor: 'var(--color-bg1)',
-  backgroundImage: 'var(--app-page-overlay), var(--app-page-image)',
-  backgroundSize: 'cover, cover',
-  backgroundPosition: 'center, center',
+  backgroundImage: 'var(--app-page-overlay)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center center',
   display: 'flex', alignItems: 'flex-start', justifyContent: 'center',
   fontFamily: 'var(--font-body)',
   color: '#e2e2e2',

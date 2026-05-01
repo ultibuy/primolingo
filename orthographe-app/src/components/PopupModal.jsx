@@ -28,18 +28,23 @@ export default function PopupModal({
       }}
     >
       <div
-        role={role}
-        aria-modal="true"
-        aria-label={ariaLabel}
-        aria-labelledby={labelledBy}
-        aria-describedby={describedBy}
-        className={panelClassName}
         onClick={(event) => event.stopPropagation()}
-        style={{
-          ...panelBaseStyle,
-          ...panelStyle,
-        }}
+        style={modalShellBaseStyle}
       >
+        <div
+          role={role}
+          aria-modal="true"
+          aria-label={ariaLabel}
+          aria-labelledby={labelledBy}
+          aria-describedby={describedBy}
+          className={panelClassName}
+          style={{
+            ...panelBaseStyle,
+            ...panelStyle,
+          }}
+        >
+          {children}
+        </div>
         {showClose && onClose && (
           <PopupCloseButton
             onClick={onClose}
@@ -47,7 +52,6 @@ export default function PopupModal({
             {...closeButtonProps}
           />
         )}
-        {children}
       </div>
     </div>
   );
@@ -79,5 +83,11 @@ const panelBaseStyle = {
   background: 'linear-gradient(180deg, rgba(var(--color-bg1-rgb),0.97), rgba(var(--color-bg2-rgb),0.94))',
   border: '1px solid rgba(var(--color-accent-rgb),0.2)',
   boxShadow: '0 20px 70px rgba(0,0,0,0.52)',
+};
+
+const modalShellBaseStyle = {
+  position: 'relative',
+  width: 'fit-content',
+  maxWidth: '100%',
   animation: 'bounce-in 0.3s ease forwards',
 };
