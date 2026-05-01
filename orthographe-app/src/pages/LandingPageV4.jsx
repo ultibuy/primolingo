@@ -1142,15 +1142,10 @@ export default function LandingPageV4() {
             50%, 70% { transform: rotate(30deg); }
             80%, 100% { transform: rotate(0deg); }
           }
-          @keyframes targetPulse {
-            0%, 100% { transform: scale(1); opacity: 0.85; }
-            50% { transform: scale(1.15); opacity: 1; }
-          }
-          @keyframes targetDotMove {
-            0%, 100% { cx: 12; cy: 12; }
-            25% { cx: 9; cy: 10; }
-            50% { cx: 14; cy: 9; }
-            75% { cx: 10; cy: 14; }
+          @keyframes ringAppear {
+            0%, 5% { opacity: 0; transform: scale(0.7); }
+            15%, 65% { opacity: 1; transform: scale(1); }
+            80%, 100% { opacity: 0; transform: scale(1.05); }
           }
         `}</style>
 
@@ -1177,7 +1172,7 @@ export default function LandingPageV4() {
           <div style={css.heroText}>
             <div style={css.heroTagline}>Application gratuite</div>
             <h1 style={css.heroTitle}>
-              Votre enfant fait toujours les <span style={css.heroHighlight}>mêmes fautes</span> d'orthographe ?
+              Votre enfant fait toujours les <span style={css.heroHighlight}>mêmes fautes</span> de Français ?
             </h1>
             <p style={css.heroDesc}>
               Les devoirs de Français, c'est souvent recopier 10 fois le même mot ou la même règle — pénible, et oublié dès le contrôle passé. <strong>PrimoLinguo</strong> remplace cette répétition mécanique par un système de révision adaptative : l'app détecte ce que votre enfant oublie et le lui repropose au bon moment. Résultat : les règles restent, durablement.
@@ -1209,11 +1204,22 @@ export default function LandingPageV4() {
           <div style={css.problemGrid}>
             <div style={css.problemCard}>
               <div style={css.problemEmoji}>
-                {/* Brain half-full → drains → refills (loop) */}
+                {/* Brain with drain/refill animation */}
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                  <path d="M12 2C8.5 2 5 5 5 9c0 2 .8 3.5 2 4.5V22h10v-8.5c1.2-1 2-2.5 2-4.5 0-4-3.5-7-7-7z" stroke="#a78bfa" strokeWidth="1.8" strokeLinejoin="round"/>
-                  <path d="M9 22h6" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round"/>
-                  <rect x="7" y="9" width="10" height="9" rx="1" fill="#a78bfa" opacity="0.35" style={{ animation: "brainDrain 3s ease-in-out infinite" }}/>
+                  {/* Left hemisphere */}
+                  <path d="M12 2.5C10 2.5 8.2 3.5 7 5c-1.2 1.5-2 3.5-2 5.5 0 1.5.5 2.8 1.3 3.8.5.6.7 1.2.7 1.9V20h5V2.5z" stroke="#a78bfa" strokeWidth="1.6" strokeLinejoin="round"/>
+                  {/* Right hemisphere */}
+                  <path d="M12 2.5c2 0 3.8 1 5 2.5 1.2 1.5 2 3.5 2 5.5 0 1.5-.5 2.8-1.3 3.8-.5.6-.7 1.2-.7 1.9V20h-5V2.5z" stroke="#c4b5fd" strokeWidth="1.6" strokeLinejoin="round"/>
+                  {/* Brain folds */}
+                  <path d="M8 8c1.5.5 2.5 1.5 4 1.5M8 11.5c1 .3 2 .8 4 .3" stroke="#a78bfa" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
+                  <path d="M16 8c-1.5.5-2.5 1.5-4 1.5M16 11.5c-1 .3-2 .8-4 .3" stroke="#c4b5fd" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
+                  {/* Fill level that drains and refills */}
+                  <clipPath id="brainClip">
+                    <path d="M7 5c-1.2 1.5-2 3.5-2 5.5 0 1.5.5 2.8 1.3 3.8.5.6.7 1.2.7 1.9V20h10v-3.8c0-.7.2-1.3.7-1.9.8-1 1.3-2.3 1.3-3.8 0-2-0.8-4-2-5.5-1.2-1.5-3-2.5-5-2.5s-3.8 1-5 2.5z"/>
+                  </clipPath>
+                  <rect x="5" y="2" width="14" height="18" fill="#a78bfa" opacity="0.25" clipPath="url(#brainClip)" style={{ animation: "brainDrain 3s ease-in-out infinite" }}/>
+                  {/* Stem */}
+                  <path d="M10 20v1.5h4V20" stroke="#a78bfa" strokeWidth="1.4" strokeLinecap="round"/>
                 </svg>
               </div>
               <div style={css.problemTitle}>On apprend, puis on oublie</div>
@@ -1244,13 +1250,12 @@ export default function LandingPageV4() {
             </div>
             <div style={css.problemCard}>
               <div style={css.problemEmoji}>
-                {/* Target with moving dot */}
+                {/* Target — circles appear one by one then fade and restart */}
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="9" stroke="#a78bfa" strokeWidth="1.8" style={{ animation: "targetPulse 3s ease-in-out infinite" }}/>
-                  <circle cx="12" cy="12" r="5.5" stroke="#c4b5fd" strokeWidth="1.5" opacity="0.6"/>
-                  <circle cx="12" cy="12" r="2" stroke="#a78bfa" strokeWidth="1.5" opacity="0.8"/>
-                  <circle r="2" fill="#a78bfa" opacity="0.9" style={{ animation: "targetDotMove 4s ease-in-out infinite" }}/>
-                  <path d="M12 3v2M12 19v2M3 12h2M19 12h2" stroke="#a78bfa" strokeWidth="1.2" strokeLinecap="round" opacity="0.4"/>
+                  <circle cx="12" cy="12" r="10" stroke="#a78bfa" strokeWidth="1.8" style={{ animation: "ringAppear 3s ease-in-out infinite", animationDelay: "0s" }}/>
+                  <circle cx="12" cy="12" r="6.5" stroke="#c4b5fd" strokeWidth="1.5" style={{ animation: "ringAppear 3s ease-in-out infinite", animationDelay: "0.5s" }}/>
+                  <circle cx="12" cy="12" r="3" stroke="#a78bfa" strokeWidth="1.5" style={{ animation: "ringAppear 3s ease-in-out infinite", animationDelay: "1s" }}/>
+                  <circle cx="12" cy="12" r="1.2" fill="#a78bfa" style={{ animation: "ringAppear 3s ease-in-out infinite", animationDelay: "1.5s" }}/>
                 </svg>
               </div>
               <div style={css.problemTitle}>Chaque enfant a son propre rythme</div>
