@@ -485,7 +485,7 @@ function MockQuiz() {
 
   const choices = [
     { id: 0, label: "a", correct: false },
-    { id: 1, label: "\u00e0", correct: true },
+    { id: 1, label: "à", correct: true },
     { id: 2, label: "as", correct: false },
   ];
 
@@ -493,7 +493,7 @@ function MockQuiz() {
     <div style={{ fontSize: 11, textAlign: "center", padding: "8px 0" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
         <span style={{ fontSize: 10, color: T.textMuted }}>Question 7/20</span>
-        <span style={{ fontSize: 10, color: T.green }}>6 \u2713</span>
+        <span style={{ fontSize: 10, color: T.green }}>6 ✓</span>
       </div>
       <div style={{ height: 4, borderRadius: 2, background: "rgba(255,255,255,0.08)", marginBottom: 20 }}>
         <div style={{ width: "35%", height: "100%", background: T.primary, borderRadius: 2 }} />
@@ -503,14 +503,14 @@ function MockQuiz() {
         background: `${T.primary}22`, color: T.primary,
         fontSize: 10, fontWeight: 600, marginBottom: 16,
       }}>
-        a \u00b7 \u00e0 \u00b7 as
+        a · à · as
       </div>
       <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 24, lineHeight: 1.4 }}>
         Il va <span style={{
           display: "inline-block", width: 32, borderBottom: `2px solid ${T.primary}`,
           color: revealed ? (selected === 1 ? T.green : T.red) : T.primary,
           fontWeight: 700,
-        }}>{revealed && selected !== null ? choices[selected].label : "\u2026"}</span> la plage.
+        }}>{revealed && selected !== null ? choices[selected].label : "…"}</span> la plage.
       </div>
       <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
         {choices.map((c) => {
@@ -543,7 +543,7 @@ function MockQuiz() {
           background: `${T.green}11`, border: `1px solid ${T.green}33`,
           fontSize: 10, color: T.green, textAlign: "left", lineHeight: 1.5,
         }}>
-          \u2713 Correct ! On ne peut pas remplacer par « avait », c'est donc <strong>\u00e0</strong> (préposition).
+          ✓ Correct ! On ne peut pas remplacer par « avait », c'est donc <strong>à</strong> (préposition).
         </div>
       )}
     </div>
@@ -572,7 +572,7 @@ function MockParentView() {
           <div style={{ flex: 1 }}>
             <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 2 }}>{c.name}</div>
             <div style={{ fontSize: 10, color: T.textMuted }}>
-              🔥 {c.streak}j \u00b7 {c.rules} règles \u00b7 {c.lastActive}
+              🔥 {c.streak}j · {c.rules} règles · {c.lastActive}
             </div>
           </div>
           <div style={{
@@ -664,7 +664,7 @@ function MockDictee() {
           cursor: "pointer",
         }}>
           {c.label}
-          {c.wrong && <span style={{ marginLeft: 8, fontSize: 12 }}>\u2717</span>}
+          {c.wrong && <span style={{ marginLeft: 8, fontSize: 12 }}>✗</span>}
         </div>
       ))}
     </div>
@@ -675,7 +675,7 @@ function MockDictee() {
 function MockVictoryAnims() {
   const anims = [
     { name: "Frappe de foudre", icon: "⚡", badge: "Actif", badgeColor: T.green, price: null },
-    { name: "Explosion d'étoiles", icon: "\u2728", badge: null, badgeColor: null, price: "300" },
+    { name: "Explosion d'étoiles", icon: "✨", badge: null, badgeColor: null, price: "300" },
     { name: "Inferno", icon: "🔥", badge: null, badgeColor: null, price: "300" },
   ];
 
@@ -851,7 +851,7 @@ function RevisionTimeline() {
               }} />
             ))}
             {s.dots === 0 && (
-              <div style={{ fontSize: 20 }}>\u2728</div>
+              <div style={{ fontSize: 20 }}>✨</div>
             )}
           </div>
           <div style={{
@@ -935,9 +935,9 @@ export default function LandingPageV2() {
               — en 10 minutes par jour.
             </p>
             <button style={css.heroCta} onClick={() => navigate('/login')}>
-              Créer un compte gratuit \u2192
+              Créer un compte gratuit →
             </button>
-            <span style={css.heroCtaSub}>Connexion avec Google \u00b7 Prêt en 10 secondes</span>
+            <span style={css.heroCtaSub}>Connexion avec Google · Prêt en 10 secondes</span>
           </div>
 
           <div style={css.heroVisual}>
@@ -1018,7 +1018,7 @@ export default function LandingPageV2() {
                 "L'enfant décroche après 5 minutes",
               ].map((item, i) => (
                 <div key={i} style={css.comparisonItem}>
-                  <span style={{ color: T.red, fontSize: 18, lineHeight: 1, flexShrink: 0 }}>\u2717</span>
+                  <span style={{ color: T.red, fontSize: 18, lineHeight: 1, flexShrink: 0 }}>✗</span>
                   <span style={{ color: T.textLight }}>{item}</span>
                 </div>
               ))}
@@ -1044,7 +1044,7 @@ export default function LandingPageV2() {
                 "L'enfant réclame sa session quotidienne",
               ].map((item, i) => (
                 <div key={i} style={css.comparisonItem}>
-                  <span style={{ color: T.green, fontSize: 18, lineHeight: 1, flexShrink: 0 }}>\u2713</span>
+                  <span style={{ color: T.green, fontSize: 18, lineHeight: 1, flexShrink: 0 }}>✓</span>
                   <span style={{ color: T.textLight }}>{item}</span>
                 </div>
               ))}
@@ -1102,21 +1102,21 @@ export default function LandingPageV2() {
                   background: `${T.green}22`, border: `1.5px solid ${T.green}`,
                   fontSize: 13, fontWeight: 700, color: T.green,
                 }}>
-                  \u2713 Oui \u2192 c'est « a »
+                  ✓ Oui → c'est « a »
                 </div>
                 <div style={{
                   flex: 1, padding: "10px", borderRadius: 10, textAlign: "center",
                   background: "rgba(255,255,255,0.04)", border: `1.5px solid ${T.glassBorder}`,
                   fontSize: 13, fontWeight: 600, color: T.textMuted,
                 }}>
-                  Non \u2192 c'est « à »
+                  Non → c'est « à »
                 </div>
               </div>
               <div style={{
                 marginTop: 12, padding: "8px 12px", borderRadius: 8,
                 background: `${T.green}11`, fontSize: 11, color: T.green,
               }}>
-                \u2713 Bonne réponse ! C'est le verbe avoir \u2192 <strong>a</strong>
+                ✓ Bonne réponse ! C'est le verbe avoir → <strong>a</strong>
               </div>
             </div>
           </div>
@@ -1361,7 +1361,7 @@ export default function LandingPageV2() {
           </div>
 
           <p style={{ textAlign: "center", marginTop: 20, fontSize: 14, color: T.textMuted }}>
-            Plus de <Counter end={3300} suffix="" /> questions \u00b7 13 dictées \u00b7 600+ mots \u00b7 Nouvelles règles ajoutées régulièrement
+            Plus de <Counter end={3300} suffix="" /> questions · 13 dictées · 600+ mots · Nouvelles règles ajoutées régulièrement
           </p>
         </section>
 
@@ -1375,7 +1375,7 @@ export default function LandingPageV2() {
               { value: 3300, suffix: "+", label: "questions uniques" },
               { value: 13, suffix: "", label: "dictées" },
               { value: 10, suffix: " min", label: "par jour suffisent" },
-              { value: 0, suffix: " \u20AC", label: "pour toujours" },
+              { value: 0, suffix: " €", label: "pour toujours" },
             ].map((s, i) => (
               <div key={i}>
                 <div style={{
@@ -1395,7 +1395,7 @@ export default function LandingPageV2() {
         {/* ─── GRATUIT ─── */}
         <section data-section="free" style={css.section} className="oq-section">
           <div style={css.freeCard}>
-            <div style={{ fontSize: 40, marginBottom: 16 }}>\u2728</div>
+            <div style={{ fontSize: 40, marginBottom: 16 }}>✨</div>
             <h2 style={{ fontFamily: T.fontDisplay, fontSize: 28, fontWeight: 800, marginBottom: 12 }}>
               100% gratuit, sans piège
             </h2>
@@ -1417,19 +1417,19 @@ export default function LandingPageV2() {
             Créez un compte en 10 secondes et laissez votre enfant découvrir PrimoLinguo.
           </p>
           <button style={css.heroCta} onClick={() => navigate('/login')}>
-            Commencer gratuitement \u2192
+            Commencer gratuitement →
           </button>
         </section>
 
         {/* ─── FOOTER ─── */}
         <footer data-section="footer" style={css.footer}>
-          <p>Fait avec \u2764\uFE0F pour les enfants qui veulent dompter l'orthographe</p>
+          <p>Fait avec ❤ pour les enfants qui veulent dompter l'orthographe</p>
           <p style={{ marginTop: 8 }}>
             <a href="/legal" style={{ color: T.textSubtle, textDecoration: 'none', borderBottom: `1px solid ${T.glassBorder}` }}>
               Mentions légales & Confidentialité
             </a>
           </p>
-          <p style={{ marginTop: 4 }}>\u00a9 2026 PrimoLinguo</p>
+          <p style={{ marginTop: 4 }}>© 2026 PrimoLinguo</p>
         </footer>
       </div>
     </AnnotationOverlay>

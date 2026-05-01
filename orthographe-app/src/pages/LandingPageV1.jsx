@@ -445,11 +445,11 @@ const css = {
 
 function MockDashboard() {
   const rules = [
-    { name: "a / \u00e0 / as", level: 4, icon: "\uD83D\uDC8E", color: T.primary, pct: 100 },
-    { name: "ces / ses", level: 3, icon: "\uD83D\uDC51", color: T.gold, pct: 85 },
-    { name: "on / ont / on n'", level: 2, icon: "\u26A1", color: T.orange, pct: 60 },
-    { name: "ou / o\u00f9", level: 1, icon: "\uD83C\uDF31", color: T.green, pct: 30 },
-    { name: "leur / leurs", level: 0, icon: "\uD83D\uDD12", color: T.textSubtle, pct: 0 },
+    { name: "a / à / as", level: 4, icon: "💎", color: T.primary, pct: 100 },
+    { name: "ces / ses", level: 3, icon: "👑", color: T.gold, pct: 85 },
+    { name: "on / ont / on n'", level: 2, icon: "⚡", color: T.orange, pct: 60 },
+    { name: "ou / où", level: 1, icon: "🌱", color: T.green, pct: 30 },
+    { name: "leur / leurs", level: 0, icon: "🔒", color: T.textSubtle, pct: 0 },
   ];
 
   return (
@@ -457,12 +457,12 @@ function MockDashboard() {
       {/* Header */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, padding: "4px 0" }}>
         <div>
-          <div style={{ fontSize: 13, fontWeight: 700 }}>Bonjour Damien \uD83D\uDC4B</div>
-          <div style={{ fontSize: 10, color: T.textMuted }}>S\u00e9rie : 12 jours \uD83D\uDD25</div>
+          <div style={{ fontSize: 13, fontWeight: 700 }}>Bonjour Damien 👋</div>
+          <div style={{ fontSize: 10, color: T.textMuted }}>Série : 12 jours 🔥</div>
         </div>
         <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
           <span style={{ fontSize: 11, color: T.gold, display: 'inline-flex', alignItems: 'center', gap: 2 }}><CoinIcon size={11} /> 340</span>
-          <span style={{ fontSize: 11, color: T.primary }}>\uD83D\uDEE1\uFE0F 2</span>
+          <span style={{ fontSize: 11, color: T.primary }}>🛡️ 2</span>
         </div>
       </div>
 
@@ -524,7 +524,7 @@ function MockQuiz() {
 
   const choices = [
     { id: 0, label: "a", correct: false },
-    { id: 1, label: "\u00e0", correct: true },
+    { id: 1, label: "à", correct: true },
     { id: 2, label: "as", correct: false },
   ];
 
@@ -532,7 +532,7 @@ function MockQuiz() {
     <div style={{ fontSize: 11, textAlign: "center", padding: "8px 0" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
         <span style={{ fontSize: 10, color: T.textMuted }}>Question 7/20</span>
-        <span style={{ fontSize: 10, color: T.green }}>6 \u2713</span>
+        <span style={{ fontSize: 10, color: T.green }}>6 ✓</span>
       </div>
       <div style={{ height: 4, borderRadius: 2, background: "rgba(255,255,255,0.08)", marginBottom: 20 }}>
         <div style={{ width: "35%", height: "100%", background: T.primary, borderRadius: 2 }} />
@@ -542,14 +542,14 @@ function MockQuiz() {
         background: `${T.primary}22`, color: T.primary,
         fontSize: 10, fontWeight: 600, marginBottom: 16,
       }}>
-        a \u00b7 \u00e0 \u00b7 as
+        a · à · as
       </div>
       <div style={{ fontSize: 16, fontWeight: 600, marginBottom: 24, lineHeight: 1.4 }}>
         Il va <span style={{
           display: "inline-block", width: 32, borderBottom: `2px solid ${T.primary}`,
           color: revealed ? (selected === 1 ? T.green : T.red) : T.primary,
           fontWeight: 700,
-        }}>{revealed && selected !== null ? choices[selected].label : "\u2026"}</span> la plage.
+        }}>{revealed && selected !== null ? choices[selected].label : "…"}</span> la plage.
       </div>
       <div style={{ display: "flex", gap: 8, justifyContent: "center" }}>
         {choices.map((c) => {
@@ -582,7 +582,7 @@ function MockQuiz() {
           background: `${T.green}11`, border: `1px solid ${T.green}33`,
           fontSize: 10, color: T.green, textAlign: "left", lineHeight: 1.5,
         }}>
-          \u2713 Correct ! On ne peut pas remplacer par \u00ab avait \u00bb, c'est donc <strong>\u00e0</strong> (pr\u00e9position).
+          ✓ Correct ! On ne peut pas remplacer par « avait », c'est donc <strong>à</strong> (préposition).
         </div>
       )}
     </div>
@@ -591,8 +591,8 @@ function MockQuiz() {
 
 function MockParentView() {
   const children = [
-    { name: "Damien", avatar: "\uD83E\uDD8A", streak: 12, rules: "8/17", lastActive: "Aujourd'hui" },
-    { name: "L\u00e9a", avatar: "\uD83E\uDD84", streak: 3, rules: "2/17", lastActive: "Hier" },
+    { name: "Damien", avatar: "🦊", streak: 12, rules: "8/17", lastActive: "Aujourd'hui" },
+    { name: "Léa", avatar: "🦄", streak: 3, rules: "2/17", lastActive: "Hier" },
   ];
 
   return (
@@ -611,7 +611,7 @@ function MockParentView() {
           <div style={{ flex: 1 }}>
             <div style={{ fontWeight: 700, fontSize: 13, marginBottom: 2 }}>{c.name}</div>
             <div style={{ fontSize: 10, color: T.textMuted }}>
-              \uD83D\uDD25 {c.streak}j \u00b7 {c.rules} r\u00e8gles \u00b7 {c.lastActive}
+              🔥 {c.streak}j · {c.rules} règles · {c.lastActive}
             </div>
           </div>
           <div style={{
@@ -663,7 +663,7 @@ function MockDictee() {
       borderRadius: T.radius, padding: 24, minHeight: 220,
     }}>
       <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 12, fontWeight: 600 }}>
-        DICT\u00c9E \u2014 La chouette enchant\u00e9e
+        DICTÉE — La chouette enchantée
       </div>
 
       {/* Character + speech bubble */}
@@ -674,14 +674,14 @@ function MockDictee() {
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: 22, flexShrink: 0,
         }}>
-          \uD83E\uDD89
+          🦉
         </div>
         <div style={{
           flex: 1, padding: "10px 14px", borderRadius: "4px 14px 14px 14px",
           background: "rgba(255,255,255,0.05)", border: `1px solid ${T.glassBorder}`,
         }}>
           <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.5, color: T.textLight }}>
-            L'artiste utilise de l'encre dor\u00e9e.
+            L'artiste utilise de l'encre dorée.
           </div>
         </div>
       </div>
@@ -699,7 +699,7 @@ function MockDictee() {
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: 12, color: "#fff",
         }}>
-          \u25B6
+          ▶
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ height: 3, borderRadius: 2, background: "rgba(255,255,255,0.1)", overflow: "hidden" }}>
@@ -723,7 +723,7 @@ function MockDictee() {
           color: c.state === "wrong" ? T.red : T.textWhite,
         }}>
           {c.label}
-          {c.state === "wrong" && <span style={{ marginLeft: 8, fontSize: 12 }}>\u2717</span>}
+          {c.state === "wrong" && <span style={{ marginLeft: 8, fontSize: 12 }}>✗</span>}
         </div>
       ))}
     </div>
@@ -753,28 +753,28 @@ function MockShopCharacters() {
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: 32, border: `2px solid ${T.primary}44`,
         }}>
-          \uD83D\uDC3C
+          🐼
         </div>
         <div style={{ flex: 1 }}>
-          <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 2 }}>Panda Samoura\u00ef</div>
+          <div style={{ fontWeight: 700, fontSize: 14, marginBottom: 2 }}>Panda Samouraï</div>
           <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 6 }}>Guerrier de l'ombre</div>
           <div style={{
             display: "inline-block", padding: "3px 10px", borderRadius: 6,
             background: `${T.green}22`, color: T.green,
             fontSize: 10, fontWeight: 700,
           }}>
-            Poss\u00e9d\u00e9
+            Possédé
           </div>
         </div>
       </div>
 
       {/* Emotion thumbnails row — owned */}
-      <div style={{ fontSize: 10, color: T.textMuted, marginBottom: 8, fontWeight: 600 }}>\u00c9MOTIONS</div>
+      <div style={{ fontSize: 10, color: T.textMuted, marginBottom: 8, fontWeight: 600 }}>ÉMOTIONS</div>
       <div style={{ display: "flex", gap: 8, marginBottom: 12 }}>
         {[
-          { emoji: "\uD83D\uDEB6", label: "Marche" },
-          { emoji: "\uD83D\uDE34", label: "Dodo" },
-          { emoji: "\uD83E\uDDD8", label: "Assis" },
+          { emoji: "🚶", label: "Marche" },
+          { emoji: "😴", label: "Dodo" },
+          { emoji: "🧘", label: "Assis" },
         ].map((e, i) => (
           <div key={i} style={{
             flex: 1, textAlign: "center", padding: "8px 4px", borderRadius: 10,
@@ -796,8 +796,8 @@ function MockShopCharacters() {
       {/* Locked emotions row */}
       <div style={{ display: "flex", gap: 8 }}>
         {[
-          { emoji: "\uD83D\uDE18", label: "Bisou", price: 130 },
-          { emoji: "\uD83D\uDC4F", label: "Bravo", price: 130 },
+          { emoji: "😘", label: "Bisou", price: 130 },
+          { emoji: "👏", label: "Bravo", price: 130 },
         ].map((e, i) => (
           <div key={i} style={{
             flex: 1, textAlign: "center", padding: "8px 4px", borderRadius: 10,
@@ -836,7 +836,7 @@ function MockThemesList() {
       borderRadius: T.radius, padding: 24, minHeight: 220,
     }}>
       <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 14, fontWeight: 600 }}>
-        TH\u00c8MES
+        THÈMES
       </div>
 
       {themes.map((t, i) => (
@@ -854,7 +854,7 @@ function MockThemesList() {
           }} />
           <div style={{ flex: 1, fontSize: 13, fontWeight: 600 }}>{t.name}</div>
           {t.status === "default" && (
-            <span style={{ fontSize: 9, color: T.textSubtle, fontWeight: 600 }}>D\u00e9faut</span>
+            <span style={{ fontSize: 9, color: T.textSubtle, fontWeight: 600 }}>Défaut</span>
           )}
           {t.status === "install" && (
             <div style={{
@@ -893,10 +893,10 @@ function MockThemesList() {
 // ─── NEW MOCKUP: Level Path ───
 function MockLevelPath() {
   const levels = [
-    { name: "Bronze", icon: "\uD83E\uDD49", color: "#cd7f32", reached: true },
-    { name: "Argent", icon: "\uD83E\uDD48", color: "#c0c0c0", reached: true },
-    { name: "Couronne", icon: "\uD83D\uDC51", color: T.gold, reached: true },
-    { name: "Diamant", icon: "\uD83D\uDC8E", color: T.primary, reached: true },
+    { name: "Bronze", icon: "🥉", color: "#cd7f32", reached: true },
+    { name: "Argent", icon: "🥈", color: "#c0c0c0", reached: true },
+    { name: "Couronne", icon: "👑", color: T.gold, reached: true },
+    { name: "Diamant", icon: "💎", color: T.primary, reached: true },
   ];
 
   return (
@@ -912,11 +912,11 @@ function MockLevelPath() {
           display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: 16,
         }}>
-          \uD83D\uDC8E
+          💎
         </div>
         <div>
-          <div style={{ fontWeight: 700, fontSize: 15 }}>a / \u00e0 / as</div>
-          <div style={{ fontSize: 10, color: T.textMuted }}>R\u00e8gle ma\u00eetris\u00e9e</div>
+          <div style={{ fontWeight: 700, fontSize: 15 }}>a / à / as</div>
+          <div style={{ fontSize: 10, color: T.textMuted }}>Règle maîtrisée</div>
         </div>
       </div>
 
@@ -957,7 +957,7 @@ function MockLevelPath() {
         marginBottom: 10,
       }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-          <span style={{ fontSize: 11, color: T.textMuted }}>Prochaine r\u00e9vision : dans 6 jours</span>
+          <span style={{ fontSize: 11, color: T.textMuted }}>Prochaine révision : dans 6 jours</span>
           <span style={{ fontSize: 13, fontWeight: 800, color: T.green }}>100%</span>
         </div>
       </div>
@@ -968,7 +968,7 @@ function MockLevelPath() {
         background: `${T.green}15`, border: `1px solid ${T.green}33`,
       }}>
         <span style={{ fontSize: 12, fontWeight: 700, color: T.green }}>
-          \u2728 Ma\u00eetris\u00e9e \u2014 diamant brillant
+          ✨ Maîtrisée — diamant brillant
         </span>
       </div>
     </div>
@@ -1017,7 +1017,7 @@ function Counter({ end, suffix = "", duration = 2000 }) {
 // ─── Revision Timeline Visualization ───
 function RevisionTimeline() {
   const stages = [
-    { label: "Jour 1", desc: "D\u00e9couverte", dots: 5, color: T.primary, opacity: 1 },
+    { label: "Jour 1", desc: "Découverte", dots: 5, color: T.primary, opacity: 1 },
     { label: "Jour 3", desc: "Rappel rapide", dots: 3, color: T.primary, opacity: 0.8 },
     { label: "Semaine 2", desc: "Consolidation", dots: 2, color: T.green, opacity: 0.7 },
     { label: "Mois 1", desc: "Ancrage", dots: 1, color: T.green, opacity: 0.6 },
@@ -1036,7 +1036,7 @@ function RevisionTimeline() {
               }} />
             ))}
             {s.dots === 0 && (
-              <div style={{ fontSize: 20 }}>\u2728</div>
+              <div style={{ fontSize: 20 }}>✨</div>
             )}
           </div>
           <div style={{
@@ -1067,14 +1067,14 @@ export default function LandingPageV1() {
   const navigate = useNavigate();
 
   const rules = [
-    "a / \u00e0 / as",
+    "a / à / as",
     "ces / ses",
-    "terminaisons verbales (-er, -\u00e9, -ez, -ais, -ait)",
-    "-\u00e9 / -\u00e9e (f\u00e9minin)",
+    "terminaisons verbales (-er, -é, -ez, -ais, -ait)",
+    "-é / -ée (féminin)",
     "Groupes de verbes",
     "leur / leurs",
     "on / ont / on n'",
-    "ou / o\u00f9",
+    "ou / où",
     "son / sont",
     "ce / se",
     "pluriel des noms et adjectifs",
@@ -1082,8 +1082,8 @@ export default function LandingPageV1() {
     "adverbes en -ment",
     "-ant / -ent",
     "g / gu / ge",
-    "participe pass\u00e9 (\u00eatre)",
-    "participe pass\u00e9 (ir + groupes)",
+    "participe passé (être)",
+    "participe passé (ir + groupes)",
   ];
 
   return (
@@ -1124,18 +1124,18 @@ export default function LandingPageV1() {
           <div style={css.heroText}>
             <div style={css.heroTagline}>Application gratuite</div>
             <h1 style={css.heroTitle}>
-              Votre enfant fait toujours les <span style={css.heroHighlight}>m\u00eames fautes</span> d'orthographe ?
+              Votre enfant fait toujours les <span style={css.heroHighlight}>mêmes fautes</span> d'orthographe ?
             </h1>
             <p style={css.heroDesc}>
-              10 minutes par jour suffisent pour ancrer les r\u00e8gles dans la m\u00e9moire \u00e0 long terme.
-              Mais ne soyez pas surpris s'il en redemande. <strong>PrimoLinguo</strong> utilise une m\u00e9thode
-              scientifique de r\u00e9vision adaptative qui transforme l'orthographe en aventure — et chaque
-              r\u00e8gle en d\u00e9fi \u00e0 relever.
+              10 minutes par jour suffisent pour ancrer les règles dans la mémoire à long terme.
+              Mais ne soyez pas surpris s'il en redemande. <strong>PrimoLinguo</strong> utilise une méthode
+              scientifique de révision adaptative qui transforme l'orthographe en aventure — et chaque
+              règle en défi à relever.
             </p>
             <button style={css.heroCta} onClick={() => navigate('/login')}>
-              Cr\u00e9er un compte gratuit \u2192
+              Créer un compte gratuit →
             </button>
-            <span style={css.heroCtaSub}>Connexion avec Google \u00b7 Pr\u00eat en 10 secondes</span>
+            <span style={css.heroCtaSub}>Connexion avec Google · Prêt en 10 secondes</span>
           </div>
 
           <div style={css.heroVisual}>
@@ -1147,38 +1147,38 @@ export default function LandingPageV1() {
 
         <div style={css.sectionDivider} />
 
-        {/* ─── LE PROBL\u00c8ME ─── */}
+        {/* ─── LE PROBLÈME ─── */}
         <section style={css.section} className="oq-section" data-section="problem">
           <div style={css.sectionLabel}>Le constat</div>
           <h2 style={css.sectionTitle}>Pourquoi les fautes persistent</h2>
           <p style={css.sectionSubtitle}>
-            Votre enfant conna\u00eet la r\u00e8gle. Il l'a vue, il a fait l'exercice.
-            Et pourtant, \u00e0 la dict\u00e9e suivante, la m\u00eame faute revient. Pourquoi ?
+            Votre enfant connaît la règle. Il l'a vue, il a fait l'exercice.
+            Et pourtant, à la dictée suivante, la même faute revient. Pourquoi ?
           </p>
 
           <div style={css.problemGrid}>
             <div style={css.problemCard}>
-              <div style={css.problemEmoji}>\uD83D\uDCDD</div>
+              <div style={css.problemEmoji}>📝</div>
               <div style={css.problemTitle}>On apprend, puis on oublie</div>
               <div style={css.problemDesc}>
-                Sans r\u00e9vision r\u00e9guli\u00e8re, une r\u00e8gle comprise s'efface de la m\u00e9moire
+                Sans révision régulière, une règle comprise s'efface de la mémoire
                 en quelques semaines. C'est la courbe de l'oubli — et c'est parfaitement normal.
               </div>
             </div>
             <div style={css.problemCard}>
-              <div style={css.problemEmoji}>\uD83D\uDE34</div>
+              <div style={css.problemEmoji}>😴</div>
               <div style={css.problemTitle}>Les exercices classiques ne motivent pas</div>
               <div style={css.problemDesc}>
-                Recopier 10 fois un mot dans un cahier, \u00e7a ne donne pas envie d'y revenir demain.
-                Et sans r\u00e9gularit\u00e9, pas d'ancrage dans la m\u00e9moire.
+                Recopier 10 fois un mot dans un cahier, ça ne donne pas envie d'y revenir demain.
+                Et sans régularité, pas d'ancrage dans la mémoire.
               </div>
             </div>
             <div style={css.problemCard}>
-              <div style={css.problemEmoji}>\uD83C\uDFAF</div>
+              <div style={css.problemEmoji}>🎯</div>
               <div style={css.problemTitle}>Chaque enfant a son propre rythme</div>
               <div style={css.problemDesc}>
-                Votre enfant a du mal avec \u00ab a/\u00e0 \u00bb mais ma\u00eetrise \u00ab ou/o\u00f9 \u00bb ?
-                Il a besoin d'un programme qui s'adapte \u00e0 ses difficult\u00e9s, pas d'un parcours identique pour tous.
+                Votre enfant a du mal avec « a/à » mais maîtrise « ou/où » ?
+                Il a besoin d'un programme qui s'adapte à ses difficultés, pas d'un parcours identique pour tous.
               </div>
             </div>
           </div>
@@ -1191,7 +1191,7 @@ export default function LandingPageV1() {
           <div style={css.sectionLabel}>La solution</div>
           <h2 style={css.sectionTitle}>10 minutes par jour qui changent tout</h2>
           <p style={css.sectionSubtitle}>
-            PrimoLinguo transforme chaque r\u00e8gle en une aventure. 10 minutes suffisent — mais votre enfant aura envie d'y passer plus de temps.
+            PrimoLinguo transforme chaque règle en une aventure. 10 minutes suffisent — mais votre enfant aura envie d'y passer plus de temps.
           </p>
 
           {/* Step 1 — Guided mode */}
@@ -1199,12 +1199,12 @@ export default function LandingPageV1() {
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 12 }}>
                 <div style={css.howStepNum}>1</div>
-                <div style={css.howStepTitle}>Il d\u00e9couvre la r\u00e8gle, pas par c\u0153ur</div>
+                <div style={css.howStepTitle}>Il découvre la règle, pas par cœur</div>
               </div>
               <div style={css.howStepDesc}>
-                Chaque r\u00e8gle commence par un <strong>mode guid\u00e9</strong> : un arbre de d\u00e9cision interactif
-                qui apprend \u00e0 votre enfant <em>comment raisonner</em>, pas juste quoi r\u00e9pondre.
-                \u00ab Est-ce qu'on peut remplacer par <em>avait</em> ? Si oui, c'est <em>a</em>. \u00bb
+                Chaque règle commence par un <strong>mode guidé</strong> : un arbre de décision interactif
+                qui apprend à votre enfant <em>comment raisonner</em>, pas juste quoi répondre.
+                « Est-ce qu'on peut remplacer par <em>avait</em> ? Si oui, c'est <em>a</em>. »
               </div>
             </div>
             <div style={{
@@ -1212,7 +1212,7 @@ export default function LandingPageV1() {
               borderRadius: T.radius, padding: 24, minHeight: 220,
             }}>
               {/* Mini guided mode mockup */}
-              <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 10, fontWeight: 600 }}>MODE GUID\u00c9 — a / \u00e0 / as</div>
+              <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 10, fontWeight: 600 }}>MODE GUIDÉ — a / à / as</div>
               <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 16 }}>
                 Il ___ un chat depuis 3 ans.
               </div>
@@ -1221,10 +1221,10 @@ export default function LandingPageV1() {
                 background: `${T.primary}15`, border: `1.5px solid ${T.primary}44`,
               }}>
                 <div style={{ fontSize: 12, fontWeight: 700, color: T.primary, marginBottom: 4 }}>
-                  \uD83E\uDD14 Est-ce qu'on peut remplacer par \u00ab avait \u00bb ?
+                  🤔 Est-ce qu'on peut remplacer par « avait » ?
                 </div>
                 <div style={{ fontSize: 11, color: T.textMuted }}>
-                  \u00ab Il <em>avait</em> un chat depuis 3 ans \u00bb — \u00e7a marche !
+                  « Il <em>avait</em> un chat depuis 3 ans » — ça marche !
                 </div>
               </div>
               <div style={{ display: "flex", gap: 8 }}>
@@ -1233,21 +1233,21 @@ export default function LandingPageV1() {
                   background: `${T.green}22`, border: `1.5px solid ${T.green}`,
                   fontSize: 13, fontWeight: 700, color: T.green,
                 }}>
-                  \u2713 Oui \u2192 c'est \u00ab a \u00bb
+                  ✓ Oui → c'est « a »
                 </div>
                 <div style={{
                   flex: 1, padding: "10px", borderRadius: 10, textAlign: "center",
                   background: "rgba(255,255,255,0.04)", border: `1.5px solid ${T.glassBorder}`,
                   fontSize: 13, fontWeight: 600, color: T.textMuted,
                 }}>
-                  Non \u2192 c'est \u00ab \u00e0 \u00bb
+                  Non → c'est « à »
                 </div>
               </div>
               <div style={{
                 marginTop: 12, padding: "8px 12px", borderRadius: 8,
                 background: `${T.green}11`, fontSize: 11, color: T.green,
               }}>
-                \u2713 Bonne r\u00e9ponse ! C'est le verbe avoir \u2192 <strong>a</strong>
+                ✓ Bonne réponse ! C'est le verbe avoir → <strong>a</strong>
               </div>
             </div>
           </div>
@@ -1262,7 +1262,7 @@ export default function LandingPageV1() {
               <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 10, fontWeight: 600 }}>MODE LIBRE — Session en cours</div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
                 <span style={{ fontSize: 12, color: T.textLight }}>Question 18/20</span>
-                <span style={{ fontSize: 12, color: T.green }}>17 \u2713 \u00b7 1 \u2717</span>
+                <span style={{ fontSize: 12, color: T.green }}>17 ✓ · 1 ✗</span>
               </div>
               <div style={{ height: 6, borderRadius: 3, background: "rgba(255,255,255,0.08)", marginBottom: 16, overflow: "hidden" }}>
                 <div style={{ width: "90%", height: "100%", background: `linear-gradient(90deg, ${T.primary}, ${T.green})`, borderRadius: 3 }} />
@@ -1274,8 +1274,8 @@ export default function LandingPageV1() {
               }}>
                 {[
                   { icon: "coin", label: "+20", color: T.gold },
-                  { icon: "\uD83D\uDD25", label: "S\u00e9rie 12j", color: T.orange },
-                  { icon: "\u2B50", label: "Niv. 3 !", color: T.primary },
+                  { icon: "🔥", label: "Série 12j", color: T.orange },
+                  { icon: "⭐", label: "Niv. 3 !", color: T.primary },
                 ].map((r, i) => (
                   <div key={i} style={{ textAlign: "center" }}>
                     <div style={{ fontSize: 22 }}>{r.icon === 'coin' ? <CoinIcon size={22} /> : r.icon}</div>
@@ -1285,7 +1285,7 @@ export default function LandingPageV1() {
               </div>
               {/* Level progression */}
               <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-                {["\uD83C\uDF31", "\uD83D\uDCD6", "\u26A1", "\uD83D\uDC51", "\uD83D\uDC8E"].map((icon, i) => (
+                {["🌱", "📖", "⚡", "👑", "💎"].map((icon, i) => (
                   <div key={i} style={{
                     flex: 1, textAlign: "center", padding: "6px 0", borderRadius: 8,
                     background: i <= 2 ? `${T.primary}22` : "rgba(255,255,255,0.03)",
@@ -1297,18 +1297,18 @@ export default function LandingPageV1() {
                 ))}
               </div>
               <div style={{ fontSize: 10, color: T.textMuted, textAlign: "center", marginTop: 6 }}>
-                5 niveaux par r\u00e8gle : de la d\u00e9couverte \u00e0 la ma\u00eetrise totale
+                5 niveaux par règle : de la découverte à la maîtrise totale
               </div>
             </div>
             <div style={{ order: 1 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 12 }}>
                 <div style={css.howStepNum}>2</div>
-                <div style={css.howStepTitle}>Il s'entra\u00eene comme dans un jeu</div>
+                <div style={css.howStepTitle}>Il s'entraîne comme dans un jeu</div>
               </div>
               <div style={css.howStepDesc}>
-                20 questions par session. Des pi\u00e8ces \u00e0 gagner, une s\u00e9rie de jours \u00e0 maintenir,
-                des niveaux \u00e0 d\u00e9bloquer, une boutique de cosm\u00e9tiques.
-                La boucle de motivation d'un jeu vid\u00e9o, au service de l'orthographe.
+                20 questions par session. Des pièces à gagner, une série de jours à maintenir,
+                des niveaux à débloquer, une boutique de cosmétiques.
+                La boucle de motivation d'un jeu vidéo, au service de l'orthographe.
                 <strong> C'est addictif — dans le bon sens.</strong>
               </div>
             </div>
@@ -1319,13 +1319,13 @@ export default function LandingPageV1() {
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 12 }}>
                 <div style={css.howStepNum}>3</div>
-                <div style={css.howStepTitle}>L'app s'adapte \u00e0 son rythme</div>
+                <div style={css.howStepTitle}>L'app s'adapte à son rythme</div>
               </div>
               <div style={css.howStepDesc}>
-                Une r\u00e8gle o\u00f9 il se trompe souvent ? Elle revient le lendemain.
+                Une règle où il se trompe souvent ? Elle revient le lendemain.
                 20/20 trois fois de suite ? Elle ne reviendra que dans 2 semaines, puis 1 mois, puis 3 mois.
-                <strong> Le rythme de r\u00e9vision s'adapte automatiquement</strong> pour ancrer chaque r\u00e8gle
-                dans la m\u00e9moire \u00e0 long terme.
+                <strong> Le rythme de révision s'adapte automatiquement</strong> pour ancrer chaque règle
+                dans la mémoire à long terme.
               </div>
             </div>
             <div style={{
@@ -1333,9 +1333,9 @@ export default function LandingPageV1() {
               borderRadius: T.radius, padding: 24, minHeight: 220,
             }}>
               {/* Spaced repetition visualization */}
-              <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 14, fontWeight: 600 }}>RYTHME DE R\u00c9VISION ADAPTATIF</div>
+              <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 14, fontWeight: 600 }}>RYTHME DE RÉVISION ADAPTATIF</div>
               {[
-                { rule: "a / \u00e0 / as", status: "Acquis", next: "dans 45 jours", color: T.green, bars: 5 },
+                { rule: "a / à / as", status: "Acquis", next: "dans 45 jours", color: T.green, bars: 5 },
                 { rule: "ces / ses", status: "En progression", next: "dans 6 jours", color: T.gold, bars: 3 },
                 { rule: "leur / leurs", status: "Fragile", next: "demain", color: T.red, bars: 1 },
               ].map((r, i) => (
@@ -1347,7 +1347,7 @@ export default function LandingPageV1() {
                 }}>
                   <div style={{ flex: 1 }}>
                     <div style={{ fontSize: 12, fontWeight: 600, marginBottom: 2 }}>{r.rule}</div>
-                    <div style={{ fontSize: 10, color: T.textMuted }}>Prochaine r\u00e9vision : {r.next}</div>
+                    <div style={{ fontSize: 10, color: T.textMuted }}>Prochaine révision : {r.next}</div>
                   </div>
                   <div style={{ display: "flex", gap: 3, alignItems: "center" }}>
                     {Array.from({ length: 5 }).map((_, j) => (
@@ -1373,7 +1373,7 @@ export default function LandingPageV1() {
                 background: `${T.primary}11`, border: `1px dashed ${T.primary}33`,
                 fontSize: 11, color: T.primaryLight, textAlign: "center", lineHeight: 1.5,
               }}>
-                \uD83D\uDCA1 Plus votre enfant ma\u00eetrise une r\u00e8gle, moins elle revient — jusqu'\u00e0 ce qu'elle soit ancr\u00e9e d\u00e9finitivement.
+                💡 Plus votre enfant maîtrise une règle, moins elle revient — jusqu'à ce qu'elle soit ancrée définitivement.
               </div>
             </div>
           </div>
@@ -1386,13 +1386,13 @@ export default function LandingPageV1() {
             <div style={{ order: 1 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 12 }}>
                 <div style={{ ...css.howStepNum, background: `linear-gradient(135deg, ${T.gold}, ${T.orange})` }}>4</div>
-                <div style={css.howStepTitle}>Il s'entra\u00eene avec de vraies dict\u00e9es</div>
+                <div style={css.howStepTitle}>Il s'entraîne avec de vraies dictées</div>
               </div>
               <div style={css.howStepDesc}>
-                13 dict\u00e9es audio int\u00e9gr\u00e9es, avec plus de 600 mots.
-                L'enfant \u00e9coute, il \u00e9crit, il progresse — comme \u00e0 l'\u00e9cole, mais \u00e0 son rythme
-                et avec un retour imm\u00e9diat sur chaque mot. Les dict\u00e9es compl\u00e8tent les quiz
-                pour ancrer l'orthographe dans un contexte r\u00e9el.
+                13 dictées audio intégrées, avec plus de 600 mots.
+                L'enfant écoute, il écrit, il progresse — comme à l'école, mais à son rythme
+                et avec un retour immédiat sur chaque mot. Les dictées complètent les quiz
+                pour ancrer l'orthographe dans un contexte réel.
               </div>
             </div>
           </div>
@@ -1402,12 +1402,12 @@ export default function LandingPageV1() {
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 12 }}>
                 <div style={{ ...css.howStepNum, background: `linear-gradient(135deg, ${T.green}, #059669)` }}>5</div>
-                <div style={css.howStepTitle}>Vous suivez ses progr\u00e8s</div>
+                <div style={css.howStepTitle}>Vous suivez ses progrès</div>
               </div>
               <div style={css.howStepDesc}>
-                Un espace parent avec un tableau de bord clair : quelles r\u00e8gles sont acquises,
-                lesquelles posent encore probl\u00e8me, combien de jours d'affil\u00e9e il a jou\u00e9.
-                Ajoutez autant de profils enfants que n\u00e9cessaire — chacun a son propre parcours.
+                Un espace parent avec un tableau de bord clair : quelles règles sont acquises,
+                lesquelles posent encore problème, combien de jours d'affilée il a joué.
+                Ajoutez autant de profils enfants que nécessaire — chacun a son propre parcours.
               </div>
             </div>
             <div style={{
@@ -1418,8 +1418,8 @@ export default function LandingPageV1() {
               <div style={{ fontSize: 11, color: T.textMuted, marginBottom: 10, fontWeight: 600 }}>ESPACE PARENT</div>
               <div style={{ display: "flex", gap: 10, marginBottom: 14 }}>
                 {[
-                  { name: "Damien", avatar: "\uD83E\uDD8A", active: true },
-                  { name: "L\u00e9a", avatar: "\uD83E\uDD84", active: false },
+                  { name: "Damien", avatar: "🦊", active: true },
+                  { name: "Léa", avatar: "🦄", active: false },
                 ].map((c, i) => (
                   <div key={i} style={{
                     flex: 1, padding: "10px", borderRadius: 12, textAlign: "center",
@@ -1444,7 +1444,7 @@ export default function LandingPageV1() {
               <div style={{ padding: "10px 12px", borderRadius: 10, background: "rgba(255,255,255,0.03)", border: `1px solid rgba(255,255,255,0.05)` }}>
                 <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
                   <span style={{ fontSize: 10, fontWeight: 600 }}>Cette semaine</span>
-                  <span style={{ fontSize: 10, color: T.green }}>\uD83D\uDD25 12 jours</span>
+                  <span style={{ fontSize: 10, color: T.green }}>🔥 12 jours</span>
                 </div>
                 <div style={{ display: "flex", gap: 4, alignItems: "flex-end", height: 50 }}>
                   {[85, 90, 70, 95, 100, 80, 0].map((v, i) => (
@@ -1472,10 +1472,10 @@ export default function LandingPageV1() {
         {/* ─── GAMIFICATION — WHAT MAKES IT ADDICTIVE ─── */}
         <section style={css.section} className="oq-section" data-section="game">
           <div style={css.sectionLabel}>La boucle de jeu</div>
-          <h2 style={css.sectionTitle}>\u00ab Encore une session, maman ! \u00bb</h2>
+          <h2 style={css.sectionTitle}>« Encore une session, maman ! »</h2>
           <p style={css.sectionSubtitle}>
-            PrimoLinguo utilise les m\u00eames m\u00e9caniques que les jeux pr\u00e9f\u00e9r\u00e9s de votre enfant.
-            R\u00e9sultat : il <em>veut</em> r\u00e9viser, pas parce qu'on lui demande — parce que c'est fun.
+            PrimoLinguo utilise les mêmes mécaniques que les jeux préférés de votre enfant.
+            Résultat : il <em>veut</em> réviser, pas parce qu'on lui demande — parce que c'est fun.
           </p>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, marginTop: 40 }}>
@@ -1485,9 +1485,9 @@ export default function LandingPageV1() {
                 <MockShopCharacters />
               </div>
               <div style={{ padding: "16px 24px 24px" }}>
-                <div style={css.problemTitle}>Personnages \u00e0 collectionner</div>
+                <div style={css.problemTitle}>Personnages à collectionner</div>
                 <div style={css.problemDesc}>
-                  Des pi\u00e8ces gagn\u00e9es \u00e0 chaque session permettent de d\u00e9bloquer des personnages et accessoires dans la boutique.
+                  Des pièces gagnées à chaque session permettent de débloquer des personnages et accessoires dans la boutique.
                 </div>
               </div>
             </div>
@@ -1498,9 +1498,9 @@ export default function LandingPageV1() {
                 <MockLevelPath />
               </div>
               <div style={{ padding: "16px 24px 24px" }}>
-                <div style={css.problemTitle}>Niveaux \u00e0 d\u00e9bloquer</div>
+                <div style={css.problemTitle}>Niveaux à débloquer</div>
                 <div style={css.problemDesc}>
-                  Chaque r\u00e8gle a 4 niveaux de ma\u00eetrise. Le cerveau adore cette sensation de progression — et en redemande.
+                  Chaque règle a 4 niveaux de maîtrise. Le cerveau adore cette sensation de progression — et en redemande.
                 </div>
               </div>
             </div>
@@ -1511,9 +1511,9 @@ export default function LandingPageV1() {
                 <MockThemesList />
               </div>
               <div style={{ padding: "16px 24px 24px" }}>
-                <div style={css.problemTitle}>Th\u00e8mes \u00e0 d\u00e9bloquer</div>
+                <div style={css.problemTitle}>Thèmes à débloquer</div>
                 <div style={css.problemDesc}>
-                  Votre enfant personnalise son interface avec des th\u00e8mes color\u00e9s. Plus il joue, plus il d\u00e9bloque d'options.
+                  Votre enfant personnalise son interface avec des thèmes colorés. Plus il joue, plus il débloque d'options.
                 </div>
               </div>
             </div>
@@ -1526,37 +1526,37 @@ export default function LandingPageV1() {
         <section style={css.section} className="oq-section" data-section="smart">
           <div style={css.smartSection} className="oq-smart-section">
             <div style={css.sectionLabel}>Le secret</div>
-            <h2 style={{ ...css.sectionTitle, marginBottom: 8 }}>Un rythme de r\u00e9vision qui s'adapte</h2>
+            <h2 style={{ ...css.sectionTitle, marginBottom: 8 }}>Un rythme de révision qui s'adapte</h2>
             <p style={{ ...css.sectionSubtitle, marginBottom: 0 }}>
-              Pas la peine de tout r\u00e9viser tout le temps. L'app d\u00e9tecte automatiquement
-              ce que votre enfant ma\u00eetrise et ce qui a besoin de travail.
+              Pas la peine de tout réviser tout le temps. L'app détecte automatiquement
+              ce que votre enfant maîtrise et ce qui a besoin de travail.
             </p>
 
             <RevisionTimeline />
 
             <div style={css.smartGrid} className="oq-three-col">
               <div style={css.smartCard}>
-                <div style={css.smartIcon}>\uD83D\uDD34</div>
+                <div style={css.smartIcon}>🔴</div>
                 <div style={css.smartLabel}>Encore fragile</div>
                 <div style={css.smartDesc}>
                   Votre enfant se trompe souvent ?<br />
-                  La r\u00e8gle revient <strong>tous les jours</strong> jusqu'\u00e0 ce qu'il soit \u00e0 l'aise.
+                  La règle revient <strong>tous les jours</strong> jusqu'à ce qu'il soit à l'aise.
                 </div>
               </div>
               <div style={css.smartCard}>
-                <div style={css.smartIcon}>\uD83D\uDFE1</div>
+                <div style={css.smartIcon}>🟡</div>
                 <div style={css.smartLabel}>En progression</div>
                 <div style={css.smartDesc}>
-                  Il commence \u00e0 bien r\u00e9pondre ?<br />
-                  La r\u00e8gle revient <strong>toutes les 1-2 semaines</strong> pour consolider.
+                  Il commence à bien répondre ?<br />
+                  La règle revient <strong>toutes les 1-2 semaines</strong> pour consolider.
                 </div>
               </div>
               <div style={css.smartCard}>
-                <div style={css.smartIcon}>\uD83D\uDFE2</div>
+                <div style={css.smartIcon}>🟢</div>
                 <div style={css.smartLabel}>Acquis !</div>
                 <div style={css.smartDesc}>
                   20/20 plusieurs fois de suite ?<br />
-                  La r\u00e8gle ne revient que <strong>tous les 1-3 mois</strong>. C'est ancr\u00e9.
+                  La règle ne revient que <strong>tous les 1-3 mois</strong>. C'est ancré.
                 </div>
               </div>
             </div>
@@ -1568,45 +1568,45 @@ export default function LandingPageV1() {
         {/* ─── ESPACE PARENT ─── */}
         <section style={css.section} className="oq-section" data-section="parent">
           <div style={css.sectionLabel}>Pour les parents</div>
-          <h2 style={css.sectionTitle}>Suivez ses progr\u00e8s sans regarder par-dessus son \u00e9paule</h2>
+          <h2 style={css.sectionTitle}>Suivez ses progrès sans regarder par-dessus son épaule</h2>
           <p style={css.sectionSubtitle}>
-            Un espace parent s\u00e9par\u00e9, prot\u00e9g\u00e9 par un code PIN \u00e0 4 chiffres.
-            Votre enfant joue en autonomie, vous gardez un \u0153il sur sa progression.
+            Un espace parent séparé, protégé par un code PIN à 4 chiffres.
+            Votre enfant joue en autonomie, vous gardez un œil sur sa progression.
           </p>
 
           <div style={css.parentSection} className="oq-two-col">
             <div>
               <div style={{ marginBottom: 32 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-                  <span style={{ fontSize: 24 }}>\uD83D\uDC76</span>
+                  <span style={{ fontSize: 24 }}>👶</span>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: 16 }}>Multi-enfants</div>
                     <div style={{ fontSize: 14, color: T.textLight }}>
-                      Ajoutez autant de profils que n\u00e9cessaire. Chacun a son propre parcours, ses propres progr\u00e8s.
+                      Ajoutez autant de profils que nécessaire. Chacun a son propre parcours, ses propres progrès.
                     </div>
                   </div>
                 </div>
               </div>
               <div style={{ marginBottom: 32 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-                  <span style={{ fontSize: 24 }}>\uD83D\uDCCA</span>
+                  <span style={{ fontSize: 24 }}>📊</span>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: 16 }}>Tableau de bord</div>
                     <div style={{ fontSize: 14, color: T.textLight }}>
-                      Voyez en un coup d'\u0153il quelles r\u00e8gles sont ma\u00eetris\u00e9es, lesquelles n\u00e9cessitent du travail,
-                      et le nombre de jours cons\u00e9cutifs de pratique.
+                      Voyez en un coup d'œil quelles règles sont maîtrisées, lesquelles nécessitent du travail,
+                      et le nombre de jours consécutifs de pratique.
                     </div>
                   </div>
                 </div>
               </div>
               <div style={{ marginBottom: 32 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
-                  <span style={{ fontSize: 24 }}>\uD83D\uDD12</span>
+                  <span style={{ fontSize: 24 }}>🔒</span>
                   <div>
-                    <div style={{ fontWeight: 700, fontSize: 16 }}>Acc\u00e8s s\u00e9curis\u00e9</div>
+                    <div style={{ fontWeight: 700, fontSize: 16 }}>Accès sécurisé</div>
                     <div style={{ fontSize: 14, color: T.textLight }}>
-                      L'espace parent est prot\u00e9g\u00e9 par votre connexion Google.
-                      Un code PIN emp\u00eache votre enfant de tricher sur sa flamme.
+                      L'espace parent est protégé par votre connexion Google.
+                      Un code PIN empêche votre enfant de tricher sur sa flamme.
                     </div>
                   </div>
                 </div>
@@ -1626,10 +1626,10 @@ export default function LandingPageV1() {
         {/* ─── RULES COVERED ─── */}
         <section style={css.section} className="oq-section" data-section="program">
           <div style={css.sectionLabel}>Le programme</div>
-          <h2 style={css.sectionTitle}>17 r\u00e8gles qui couvrent 80% des fautes courantes</h2>
+          <h2 style={css.sectionTitle}>17 règles qui couvrent 80% des fautes courantes</h2>
           <p style={css.sectionSubtitle}>
-            Chaque r\u00e8gle contient entre 20 et 300 questions, des fiches m\u00e9mo,
-            et un arbre de d\u00e9cision pour apprendre \u00e0 raisonner.
+            Chaque règle contient entre 20 et 300 questions, des fiches mémo,
+            et un arbre de décision pour apprendre à raisonner.
           </p>
 
           <div style={css.rulesGrid}>
@@ -1642,7 +1642,7 @@ export default function LandingPageV1() {
           </div>
 
           <p style={{ textAlign: "center", marginTop: 20, fontSize: 14, color: T.textMuted }}>
-            Plus de <Counter end={3300} suffix="" /> questions \u00b7 13 dict\u00e9es \u00b7 600+ mots
+            Plus de <Counter end={3300} suffix="" /> questions · 13 dictées · 600+ mots
           </p>
         </section>
 
@@ -1652,10 +1652,10 @@ export default function LandingPageV1() {
         <section style={css.section} className="oq-section" data-section="stats">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24, textAlign: "center" }} className="oq-four-col">
             {[
-              { value: 17, suffix: "", label: "r\u00e8gles d'orthographe" },
+              { value: 17, suffix: "", label: "règles d'orthographe" },
               { value: 3300, suffix: "+", label: "questions uniques" },
               { value: 10, suffix: " min", label: "par jour suffisent" },
-              { value: 0, suffix: " \u20ac", label: "pour toujours" },
+              { value: 0, suffix: " €", label: "pour toujours" },
             ].map((s, i) => (
               <div key={i}>
                 <div style={{
@@ -1675,15 +1675,15 @@ export default function LandingPageV1() {
         {/* ─── GRATUIT ─── */}
         <section style={css.section} className="oq-section" data-section="free">
           <div style={css.freeCard}>
-            <div style={{ fontSize: 40, marginBottom: 16 }}>\u2728</div>
+            <div style={{ fontSize: 40, marginBottom: 16 }}>✨</div>
             <h2 style={{ fontFamily: T.fontDisplay, fontSize: 28, fontWeight: 800, marginBottom: 12 }}>
-              100% gratuit, sans pi\u00e8ge
+              100% gratuit, sans piège
             </h2>
             <p style={{ fontSize: 16, lineHeight: 1.7, color: T.textLight, marginBottom: 0 }}>
-              Pas de pub. Pas d'achats in-app. Pas de donn\u00e9es revendues. Pas de version premium cach\u00e9e.
+              Pas de pub. Pas d'achats in-app. Pas de données revendues. Pas de version premium cachée.
               <br /><br />
-              PrimoLinguo est un projet ind\u00e9pendant, cr\u00e9\u00e9 par un parent pour son enfant,
-              et partag\u00e9 gratuitement avec tous ceux qui en ont besoin.
+              PrimoLinguo est un projet indépendant, créé par un parent pour son enfant,
+              et partagé gratuitement avec tous ceux qui en ont besoin.
             </p>
           </div>
         </section>
@@ -1691,26 +1691,26 @@ export default function LandingPageV1() {
         {/* ─── FINAL CTA ─── */}
         <section style={css.finalCta} data-section="cta">
           <h2 style={{ fontFamily: T.fontDisplay, fontSize: 32, fontWeight: 800, marginBottom: 16 }}>
-            Pr\u00eat \u00e0 transformer l'orthographe en aventure ?
+            Prêt à transformer l'orthographe en aventure ?
           </h2>
           <p style={{ fontSize: 16, color: T.textLight, marginBottom: 28 }}>
-            Cr\u00e9ez un compte en 10 secondes et laissez votre enfant d\u00e9couvrir PrimoLinguo.
+            Créez un compte en 10 secondes et laissez votre enfant découvrir PrimoLinguo.
             10 minutes par jour suffisent — mais il voudra en faire plus.
           </p>
           <button style={css.heroCta} onClick={() => navigate('/login')}>
-            Commencer gratuitement \u2192
+            Commencer gratuitement →
           </button>
         </section>
 
         {/* ─── FOOTER ─── */}
         <footer style={css.footer} data-section="footer">
-          <p>Fait avec \u2764\uFE0F pour les enfants qui veulent dompter l'orthographe</p>
+          <p>Fait avec ❤ pour les enfants qui veulent dompter l'orthographe</p>
           <p style={{ marginTop: 8 }}>
             <a href="/legal" style={{ color: T.textSubtle, textDecoration: 'none', borderBottom: `1px solid ${T.glassBorder}` }}>
-              Mentions l\u00e9gales & Confidentialit\u00e9
+              Mentions légales & Confidentialité
             </a>
           </p>
-          <p style={{ marginTop: 4 }}>\u00a9 2026 PrimoLinguo</p>
+          <p style={{ marginTop: 4 }}>© 2026 PrimoLinguo</p>
         </footer>
       </div>
     </AnnotationOverlay>
