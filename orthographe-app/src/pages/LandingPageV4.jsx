@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import CoinIcon from "../components/CoinIcon.jsx";
+import CharacterSprite from "../components/CharacterSprite.jsx";
 import AnnotationOverlay from "../components/AnnotationOverlay.jsx";
 
 // ─── Design tokens (from the real app) ───
@@ -681,7 +682,7 @@ function MockDictee() {
           background: "rgba(255,255,255,0.05)", border: `1px solid ${T.glassBorder}`,
         }}>
           <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.5, color: T.textLight }}>
-            L'artiste utilise de l'encre dorée.
+            L'artiste utilise <span style={{ display: "inline-block", borderBottom: `2px solid ${T.primary}`, width: 60, textAlign: "center", color: T.primary, fontWeight: 700 }}>______</span> de l'encre dorée.
           </div>
         </div>
       </div>
@@ -732,6 +733,19 @@ function MockDictee() {
 
 // ─── NEW V4 MOCKUP: Panda Samouraï Animations ───
 function MockPandaAnimations() {
+  const baseEmotions = [
+    { mood: "walk", label: "Marche" },
+    { mood: "sleep", label: "Dodo" },
+    { mood: "sit", label: "Assis" },
+  ];
+  const specialEmotions = [
+    { mood: "kiss", label: "Bisou", price: 130 },
+    { mood: "clap", label: "Bravo", price: 130 },
+    { mood: "victory", label: "Victoire", price: 130 },
+    { mood: "dance", label: "Danse", price: 130 },
+    { mood: "surprise", label: "Surprise", price: 130 },
+  ];
+
   return (
     <div style={{
       background: T.glass, border: `1px solid ${T.glassBorder}`,
@@ -741,34 +755,17 @@ function MockPandaAnimations() {
         PANDA SAMOURAÏ — Animations
       </div>
 
-      {/* Central panda icon */}
-      <div style={{
-        textAlign: "center", marginBottom: 16,
-      }}>
-        <div style={{
-          display: "inline-flex", alignItems: "center", justifyContent: "center",
-          width: 72, height: 72, borderRadius: 20,
-          background: `linear-gradient(135deg, ${T.bg3}, ${T.bg2})`,
-          border: `2px solid ${T.primary}44`,
-          fontSize: 44,
-        }}>
-          🐼
-        </div>
-      </div>
-
       {/* Included animations row */}
       <div style={{ fontSize: 10, color: T.textMuted, marginBottom: 8, fontWeight: 600 }}>INCLUSES</div>
       <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
-        {[
-          { emoji: "🚶", label: "Marche" },
-          { emoji: "😴", label: "Dodo" },
-          { emoji: "🧘", label: "Assis" },
-        ].map((e, i) => (
+        {baseEmotions.map((e, i) => (
           <div key={i} style={{
-            flex: 1, textAlign: "center", padding: "8px 4px", borderRadius: 10,
+            flex: 1, textAlign: "center", padding: "10px 4px 6px", borderRadius: 10,
             background: "rgba(255,255,255,0.04)", border: `1px solid ${T.glassBorder}`,
           }}>
-            <div style={{ fontSize: 20, marginBottom: 4 }}>{e.emoji}</div>
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: 6 }}>
+              <CharacterSprite id="panda" mood={e.mood} size={48} glow={false} />
+            </div>
             <div style={{ fontSize: 9, color: T.textLight, marginBottom: 3 }}>{e.label}</div>
             <div style={{
               display: "inline-block", padding: "2px 6px", borderRadius: 4,
@@ -784,20 +781,16 @@ function MockPandaAnimations() {
       {/* Special animations row */}
       <div style={{ fontSize: 10, color: T.textMuted, marginBottom: 8, fontWeight: 600 }}>SPÉCIALES</div>
       <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-        {[
-          { emoji: "😘", label: "Bisou", price: 130 },
-          { emoji: "👏", label: "Bravo", price: 130 },
-          { emoji: "🏆", label: "Victoire", price: 130 },
-          { emoji: "💃", label: "Danse", price: 130 },
-          { emoji: "😲", label: "Surprise", price: 130 },
-        ].map((e, i) => (
+        {specialEmotions.map((e, i) => (
           <div key={i} style={{
             flex: "1 1 calc(33% - 6px)", minWidth: 56, textAlign: "center",
-            padding: "8px 4px", borderRadius: 10,
+            padding: "10px 4px 6px", borderRadius: 10,
             background: "rgba(255,255,255,0.02)", border: `1px dashed ${T.glassBorder}`,
-            opacity: 0.7,
+            opacity: 0.8,
           }}>
-            <div style={{ fontSize: 18, marginBottom: 3 }}>{e.emoji}</div>
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: 4 }}>
+              <CharacterSprite id="panda" mood={e.mood} size={38} glow={false} />
+            </div>
             <div style={{ fontSize: 8, color: T.textMuted, marginBottom: 3 }}>{e.label}</div>
             <div style={{
               display: "inline-flex", alignItems: "center", gap: 3,
@@ -815,9 +808,9 @@ function MockPandaAnimations() {
 }
 
 // ─── NEW V4 MOCKUP: Victory Animations (from V2 + additions) ───
-function MockVictoryAnims({ onTriggerLightning }) {
+function MockVictoryAnims({ onTriggerAnimation }) {
   const anims = [
-    { name: "Frappe de foudre", icon: "⚡", badge: "Actif", badgeColor: T.green, price: null, hasTester: true },
+    { name: "Frappe de foudre", icon: "⚡", badge: "Actif", badgeColor: T.green, price: null },
     { name: "Explosion d'étoiles", icon: "✨", badge: null, badgeColor: null, price: "300" },
     { name: "Inferno", icon: "🔥", badge: null, badgeColor: null, price: "300" },
     { name: "Freeze", icon: "🧊", badge: null, badgeColor: null, price: "300" },
@@ -858,20 +851,6 @@ function MockVictoryAnims({ onTriggerLightning }) {
               {a.badge}
             </div>
           )}
-          {a.hasTester && (
-            <button
-              onClick={onTriggerLightning}
-              style={{
-                padding: "4px 10px", borderRadius: 8,
-                background: `${T.primary}22`, color: T.primary,
-                fontSize: 10, fontWeight: 700, cursor: "pointer",
-                border: `1px solid ${T.primary}44`,
-                fontFamily: T.font,
-              }}
-            >
-              Tester
-            </button>
-          )}
           {a.price && (
             <div style={{
               padding: "4px 10px", borderRadius: 8,
@@ -884,6 +863,19 @@ function MockVictoryAnims({ onTriggerLightning }) {
           )}
         </div>
       ))}
+      {/* Tester button — triggers a random animation */}
+      <button
+        onClick={onTriggerAnimation}
+        style={{
+          width: "100%", marginTop: 12, padding: "10px 0", borderRadius: 10,
+          background: `linear-gradient(135deg, ${T.primaryDark}, ${T.primary})`,
+          color: "#fff", fontSize: 13, fontWeight: 700, cursor: "pointer",
+          border: "none", fontFamily: T.font,
+          boxShadow: `0 4px 16px rgba(167,139,250,0.3)`,
+        }}
+      >
+        Tester une animation
+      </button>
     </div>
   );
 }
@@ -920,16 +912,15 @@ function MockLevelPath() {
 
       {/* Horizontal level path */}
       <div style={{ display: "flex", alignItems: "center", gap: 0, marginBottom: 16, position: "relative" }}>
+        {/* Continuous background line */}
+        <div style={{
+          position: "absolute", top: 16, left: "12%", right: "12%", height: 3,
+          background: `linear-gradient(90deg, #cd7f32, #c0c0c0, ${T.gold}, ${T.primary})`,
+          borderRadius: 2, zIndex: 0,
+        }} />
         {levels.map((l, i) => (
           <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", position: "relative" }}>
-            {/* Connector line */}
-            {i > 0 && (
-              <div style={{
-                position: "absolute", top: 16, right: "50%", width: "100%", height: 3,
-                background: l.reached ? `linear-gradient(90deg, ${levels[i-1].color}, ${l.color})` : T.glassBorder,
-                zIndex: 0,
-              }} />
-            )}
+            {/* (connector removed — single background line instead) */}
             {/* Level dot */}
             <div style={{
               width: 34, height: 34, borderRadius: "50%",
@@ -1058,69 +1049,69 @@ function RevisionTimeline() {
 }
 
 // ─── Lightning Animation Overlay ───
-function LightningOverlay({ playing }) {
-  if (!playing) return null;
-
-  const lightningBolts = [
-    // Bolt 1 — left side
-    <svg key="bolt1" style={{
-      position: "fixed", top: "5%", left: "20%", width: 80, height: 200, zIndex: 10001,
-      animation: "lightningFade 0.8s ease-out 0.3s forwards", opacity: 0,
-    }} viewBox="0 0 80 200">
-      <polyline points="40,0 25,60 45,65 20,130 50,135 10,200"
-        fill="none" stroke="#a78bfa" strokeWidth="3" strokeLinecap="round" />
-      <polyline points="40,0 25,60 45,65 20,130 50,135 10,200"
-        fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>,
-    // Bolt 2 — right side
-    <svg key="bolt2" style={{
-      position: "fixed", top: "8%", right: "25%", width: 60, height: 180, zIndex: 10001,
-      animation: "lightningFade 0.7s ease-out 0.45s forwards", opacity: 0,
-    }} viewBox="0 0 60 180">
-      <polyline points="30,0 40,50 20,55 35,110 15,115 40,180"
-        fill="none" stroke="#c4b5fd" strokeWidth="2.5" strokeLinecap="round" />
-      <polyline points="30,0 40,50 20,55 35,110 15,115 40,180"
-        fill="none" stroke="#fff" strokeWidth="1" strokeLinecap="round" />
-    </svg>,
-    // Bolt 3 — center
-    <svg key="bolt3" style={{
-      position: "fixed", top: "2%", left: "50%", transform: "translateX(-50%)", width: 70, height: 160, zIndex: 10001,
-      animation: "lightningFade 0.6s ease-out 0.5s forwards", opacity: 0,
-    }} viewBox="0 0 70 160">
-      <polyline points="35,0 20,45 40,50 15,100 45,105 25,160"
-        fill="none" stroke="#7c3aed" strokeWidth="3" strokeLinecap="round" />
-      <polyline points="35,0 20,45 40,50 15,100 45,105 25,160"
-        fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
-    </svg>,
-  ];
+function CelebrationOverlay({ animType }) {
+  if (!animType) return null;
 
   return (
     <>
       <style>{`
-        @keyframes lightningFlash {
-          0% { opacity: 0; }
-          15% { opacity: 0.8; }
-          30% { opacity: 0.2; }
-          45% { opacity: 0.6; }
-          60% { opacity: 0.1; }
-          100% { opacity: 0; }
-        }
-        @keyframes lightningFade {
-          0% { opacity: 0; }
-          20% { opacity: 1; }
-          50% { opacity: 0.8; }
-          100% { opacity: 0; }
-        }
+        @keyframes celebFlash { 0%{opacity:0} 15%{opacity:0.7} 30%{opacity:0.15} 45%{opacity:0.5} 60%{opacity:0.1} 100%{opacity:0} }
+        @keyframes celebFade { 0%{opacity:0} 20%{opacity:1} 50%{opacity:0.8} 100%{opacity:0} }
+        @keyframes celebFloat { 0%{transform:translateY(0) scale(0.5);opacity:0} 30%{opacity:1} 100%{transform:translateY(-120px) scale(1.2);opacity:0} }
+        @keyframes celebSpin { 0%{transform:rotate(0deg) scale(0.6);opacity:0} 30%{opacity:1} 100%{transform:rotate(360deg) scale(0) translateY(-80px);opacity:0} }
+        @keyframes freezeGrow { 0%{transform:scale(0);opacity:0} 40%{transform:scale(1.2);opacity:0.6} 100%{transform:scale(2);opacity:0} }
       `}</style>
-      {/* White flash overlay */}
+      {/* Flash overlay */}
       <div style={{
         position: "fixed", top: 0, left: 0, right: 0, bottom: 0,
-        background: "#fff", zIndex: 10000,
-        animation: "lightningFlash 0.6s ease-out forwards",
+        background: animType === "lightning" ? "#fff"
+          : animType === "stars" ? "#fbbf24"
+          : animType === "inferno" ? "#ef4444"
+          : "#60a5fa",
+        zIndex: 10000, animation: "celebFlash 0.6s ease-out forwards",
         pointerEvents: "none",
       }} />
-      {/* Lightning bolts */}
-      {lightningBolts}
+      {/* Particles */}
+      {animType === "lightning" && [
+        { top: "5%", left: "20%", w: 80, h: 200, delay: 0.3, pts: "40,0 25,60 45,65 20,130 50,135 10,200", stroke: "#a78bfa" },
+        { top: "8%", right: "25%", w: 60, h: 180, delay: 0.45, pts: "30,0 40,50 20,55 35,110 15,115 40,180", stroke: "#c4b5fd" },
+        { top: "2%", left: "48%", w: 70, h: 160, delay: 0.5, pts: "35,0 20,45 40,50 15,100 45,105 25,160", stroke: "#7c3aed" },
+      ].map((b, i) => (
+        <svg key={i} style={{
+          position: "fixed", top: b.top, left: b.left, right: b.right, width: b.w, height: b.h,
+          zIndex: 10001, animation: `celebFade 0.8s ease-out ${b.delay}s forwards`, opacity: 0,
+        }} viewBox={`0 0 ${b.w} ${b.h}`}>
+          <polyline points={b.pts} fill="none" stroke={b.stroke} strokeWidth="3" strokeLinecap="round" />
+          <polyline points={b.pts} fill="none" stroke="#fff" strokeWidth="1.5" strokeLinecap="round" />
+        </svg>
+      ))}
+      {animType === "stars" && Array.from({ length: 8 }).map((_, i) => (
+        <div key={i} style={{
+          position: "fixed", zIndex: 10001, fontSize: 28, pointerEvents: "none",
+          left: `${10 + Math.random() * 80}%`, top: `${30 + Math.random() * 40}%`,
+          animation: `celebFloat ${0.8 + Math.random() * 0.5}s ease-out ${i * 0.08}s forwards`, opacity: 0,
+        }}>
+          {["✨", "⭐", "🌟"][i % 3]}
+        </div>
+      ))}
+      {animType === "inferno" && Array.from({ length: 10 }).map((_, i) => (
+        <div key={i} style={{
+          position: "fixed", zIndex: 10001, fontSize: 24, pointerEvents: "none",
+          left: `${5 + Math.random() * 90}%`, bottom: `${-5 + Math.random() * 30}%`,
+          animation: `celebFloat ${0.7 + Math.random() * 0.6}s ease-out ${i * 0.06}s forwards`, opacity: 0,
+        }}>
+          {["🔥", "💥", "🔥"][i % 3]}
+        </div>
+      ))}
+      {animType === "freeze" && Array.from({ length: 6 }).map((_, i) => (
+        <div key={i} style={{
+          position: "fixed", zIndex: 10001, fontSize: 32, pointerEvents: "none",
+          left: `${15 + Math.random() * 70}%`, top: `${20 + Math.random() * 60}%`,
+          animation: `celebSpin ${0.9 + Math.random() * 0.4}s ease-out ${i * 0.1}s forwards`, opacity: 0,
+        }}>
+          {["🧊", "❄️", "💎"][i % 3]}
+        </div>
+      ))}
     </>
   );
 }
@@ -1131,12 +1122,14 @@ function LightningOverlay({ playing }) {
 // ═══════════════════════════════════════
 export default function LandingPageV4() {
   const navigate = useNavigate();
-  const [lightningPlaying, setLightningPlaying] = useState(false);
+  const [celebAnim, setCelebAnim] = useState(null);
 
-  const triggerLightning = () => {
-    if (lightningPlaying) return;
-    setLightningPlaying(true);
-    setTimeout(() => setLightningPlaying(false), 1000);
+  const triggerRandomAnimation = () => {
+    if (celebAnim) return;
+    const types = ["lightning", "stars", "inferno", "freeze"];
+    const pick = types[Math.floor(Math.random() * types.length)];
+    setCelebAnim(pick);
+    setTimeout(() => setCelebAnim(null), 1200);
   };
 
   const rules = [
@@ -1178,7 +1171,7 @@ export default function LandingPageV4() {
         `}</style>
 
         {/* Lightning animation overlay */}
-        <LightningOverlay playing={lightningPlaying} />
+        <CelebrationOverlay animType={celebAnim} />
 
         {/* ─── NAV ─── */}
         <nav style={css.nav} className="oq-nav" data-section="nav">
@@ -1465,8 +1458,8 @@ export default function LandingPageV4() {
                 <div style={css.howStepTitle}>Il s'entraîne avec de vraies dictées</div>
               </div>
               <div style={css.howStepDesc}>
-                13 dictées audio intégrées, avec plus de 600 mots.
-                L'enfant écoute, il écrit, il progresse — comme à l'école, mais à son rythme
+                13 listes de mots avec audio intégrées, plus de 600 mots au total.
+                L'enfant écoute, il écrit, il progresse — à son rythme
                 et avec un retour immédiat sur chaque mot. Les dictées complètent les quiz
                 pour ancrer l'orthographe dans un contexte réel.
               </div>
@@ -1584,7 +1577,7 @@ export default function LandingPageV4() {
             {/* Card 3: Victory Animations (MockVictoryAnims) */}
             <div style={{ ...css.problemCard, padding: 0, overflow: "hidden" }}>
               <div style={{ padding: "24px 24px 0" }}>
-                <MockVictoryAnims onTriggerLightning={triggerLightning} />
+                <MockVictoryAnims onTriggerAnimation={triggerRandomAnimation} />
               </div>
               <div style={{ padding: "16px 24px 24px" }}>
                 <div style={css.problemTitle}>Animations de célébration</div>
@@ -1710,7 +1703,7 @@ export default function LandingPageV4() {
         {/* ─── RULES COVERED ─── */}
         <section style={css.section} className="oq-section" data-section="program">
           <div style={css.sectionLabel}>Le programme</div>
-          <h2 style={css.sectionTitle}>17 règles qui couvrent 80% des fautes courantes</h2>
+          <h2 style={css.sectionTitle}>Tout le programme de CM2 : 17 règles qui couvrent 80% des fautes courantes</h2>
           <p style={css.sectionSubtitle}>
             Chaque règle contient entre 20 et 300 questions, des fiches mémo,
             et un arbre de décision pour apprendre à raisonner.
@@ -1775,7 +1768,7 @@ export default function LandingPageV4() {
         {/* ─── FINAL CTA ─── */}
         <section style={css.finalCta} data-section="cta">
           <h2 style={{ fontFamily: T.fontDisplay, fontSize: 32, fontWeight: 800, marginBottom: 16 }}>
-            Prêt à transformer l'orthographe en aventure ?
+            Prêt à transformer le Français en aventure ?
           </h2>
           <p style={{ fontSize: 16, color: T.textLight, marginBottom: 28 }}>
             Créez un compte en 10 secondes et laissez votre enfant découvrir PrimoLinguo.
