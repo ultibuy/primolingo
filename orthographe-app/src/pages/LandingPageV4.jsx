@@ -221,6 +221,8 @@ const css = {
   problemEmoji: {
     fontSize: 32,
     marginBottom: 12,
+    display: "flex",
+    justifyContent: "center",
   },
   problemTitle: {
     fontFamily: T.fontDisplay,
@@ -1129,6 +1131,27 @@ export default function LandingPageV4() {
             .oq-section { padding: 56px 20px !important; }
             .oq-dictee-card { grid-template-columns: 1fr !important; }
           }
+          /* Problem card icon animations */
+          @keyframes brainDrain {
+            0%, 10% { clip-path: inset(50% 0 0 0); opacity: 0.9; }
+            50%, 60% { clip-path: inset(100% 0 0 0); opacity: 0.3; }
+            100% { clip-path: inset(50% 0 0 0); opacity: 0.9; }
+          }
+          @keyframes clockTick {
+            0%, 40% { transform: rotate(0deg); }
+            50%, 70% { transform: rotate(30deg); }
+            80%, 100% { transform: rotate(0deg); }
+          }
+          @keyframes targetPulse {
+            0%, 100% { transform: scale(1); opacity: 0.85; }
+            50% { transform: scale(1.15); opacity: 1; }
+          }
+          @keyframes targetDotMove {
+            0%, 100% { cx: 12; cy: 12; }
+            25% { cx: 9; cy: 10; }
+            50% { cx: 14; cy: 9; }
+            75% { cx: 10; cy: 14; }
+          }
         `}</style>
 
         {/* Lightning animation overlay */}
@@ -1185,7 +1208,14 @@ export default function LandingPageV4() {
 
           <div style={css.problemGrid}>
             <div style={css.problemCard}>
-              <div style={css.problemEmoji}><svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M12 8v4l2 2" stroke="#a78bfa" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="12" r="9" stroke="#a78bfa" strokeWidth="2"/><path d="M12 6v1" stroke="#c4b5fd" strokeWidth="2" strokeLinecap="round"/></svg></div>
+              <div style={css.problemEmoji}>
+                {/* Brain half-full → drains → refills (loop) */}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2C8.5 2 5 5 5 9c0 2 .8 3.5 2 4.5V22h10v-8.5c1.2-1 2-2.5 2-4.5 0-4-3.5-7-7-7z" stroke="#a78bfa" strokeWidth="1.8" strokeLinejoin="round"/>
+                  <path d="M9 22h6" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round"/>
+                  <rect x="7" y="9" width="10" height="9" rx="1" fill="#a78bfa" opacity="0.35" style={{ animation: "brainDrain 3s ease-in-out infinite" }}/>
+                </svg>
+              </div>
               <div style={css.problemTitle}>On apprend, puis on oublie</div>
               <div style={css.problemDesc}>
                 Sans révision régulière, une règle comprise s'efface de la mémoire
@@ -1193,7 +1223,19 @@ export default function LandingPageV4() {
               </div>
             </div>
             <div style={css.problemCard}>
-              <div style={css.problemEmoji}><svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M4 20h16M8 16h8M6 12h12" stroke="#a78bfa" strokeWidth="2" strokeLinecap="round"/><path d="M12 4l-1 4h2l-1 4" stroke="#c4b5fd" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></div>
+              <div style={css.problemEmoji}>
+                {/* Clock with ticking hand */}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="9" stroke="#a78bfa" strokeWidth="1.8"/>
+                  <circle cx="12" cy="12" r="1.2" fill="#c4b5fd"/>
+                  <line x1="12" y1="12" x2="12" y2="6.5" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round" style={{ transformOrigin: "12px 12px", animation: "clockTick 2.5s ease-in-out infinite" }}/>
+                  <line x1="12" y1="12" x2="16" y2="12" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round"/>
+                  {[1,2,3,4,5,6,7,8,9,10,11,12].map(h => {
+                    const a = (h * 30 - 90) * Math.PI / 180;
+                    return <circle key={h} cx={12 + Math.cos(a) * 7.8} cy={12 + Math.sin(a) * 7.8} r="0.6" fill="#a78bfa" opacity="0.4"/>;
+                  })}
+                </svg>
+              </div>
               <div style={css.problemTitle}>Les exercices classiques ne motivent pas</div>
               <div style={css.problemDesc}>
                 Recopier 10 fois un mot dans un cahier, ça ne donne pas envie d'y revenir demain.
@@ -1201,7 +1243,16 @@ export default function LandingPageV4() {
               </div>
             </div>
             <div style={css.problemCard}>
-              <div style={css.problemEmoji}><svg width="32" height="32" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#a78bfa" strokeWidth="2"/><circle cx="12" cy="12" r="5" stroke="#c4b5fd" strokeWidth="2"/><circle cx="12" cy="12" r="1.5" fill="#a78bfa"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round"/></svg></div>
+              <div style={css.problemEmoji}>
+                {/* Target with moving dot */}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="9" stroke="#a78bfa" strokeWidth="1.8" style={{ animation: "targetPulse 3s ease-in-out infinite" }}/>
+                  <circle cx="12" cy="12" r="5.5" stroke="#c4b5fd" strokeWidth="1.5" opacity="0.6"/>
+                  <circle cx="12" cy="12" r="2" stroke="#a78bfa" strokeWidth="1.5" opacity="0.8"/>
+                  <circle r="2" fill="#a78bfa" opacity="0.9" style={{ animation: "targetDotMove 4s ease-in-out infinite" }}/>
+                  <path d="M12 3v2M12 19v2M3 12h2M19 12h2" stroke="#a78bfa" strokeWidth="1.2" strokeLinecap="round" opacity="0.4"/>
+                </svg>
+              </div>
               <div style={css.problemTitle}>Chaque enfant a son propre rythme</div>
               <div style={css.problemDesc}>
                 Votre enfant a du mal avec « a/à » mais maîtrise « ou/où » ?
@@ -1506,42 +1557,42 @@ export default function LandingPageV4() {
           </p>
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 24, marginTop: 40 }}>
-            {/* Card 1: Panda Animations (MockPandaAnimations) */}
+            {/* Card 1: Level progression (MockLevelPath) — title first */}
             <div style={{ ...css.problemCard, padding: 0, overflow: "hidden" }}>
-              <div style={{ padding: "24px 24px 0" }}>
-                <MockPandaAnimations />
-              </div>
-              <div style={{ padding: "16px 24px 24px" }}>
-                <div style={css.problemTitle}>Personnages à collectionner</div>
-                <div style={css.problemDesc}>
-                  Des pièces gagnées à chaque session permettent de débloquer des personnages et accessoires dans la boutique.
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2: Level progression (MockLevelPath) */}
-            <div style={{ ...css.problemCard, padding: 0, overflow: "hidden" }}>
-              <div style={{ padding: "24px 24px 0" }}>
-                <MockLevelPath />
-              </div>
-              <div style={{ padding: "16px 24px 24px" }}>
+              <div style={{ padding: "24px 24px 12px" }}>
                 <div style={css.problemTitle}>Niveaux à débloquer</div>
                 <div style={css.problemDesc}>
                   Chaque règle a 4 niveaux de maîtrise. Le cerveau adore cette sensation de progression — et en redemande.
                 </div>
               </div>
+              <div style={{ padding: "0 24px 24px" }}>
+                <MockLevelPath />
+              </div>
             </div>
 
-            {/* Card 3: Victory Animations (MockCelebrationAnims) */}
+            {/* Card 2: Panda Animations (MockPandaAnimations) — title first */}
             <div style={{ ...css.problemCard, padding: 0, overflow: "hidden" }}>
-              <div style={{ padding: "24px 24px 0" }}>
-                <MockCelebrationAnims onTriggerAnimation={triggerRandomAnimation} activeAnim={celebAnim} />
+              <div style={{ padding: "24px 24px 12px" }}>
+                <div style={css.problemTitle}>Personnages à collectionner</div>
+                <div style={css.problemDesc}>
+                  Des pièces gagnées à chaque session permettent de débloquer des personnages et accessoires dans la boutique.
+                </div>
               </div>
-              <div style={{ padding: "16px 24px 24px" }}>
+              <div style={{ padding: "0 24px 24px" }}>
+                <MockPandaAnimations />
+              </div>
+            </div>
+
+            {/* Card 3: Victory Animations (MockCelebrationAnims) — title first */}
+            <div style={{ ...css.problemCard, padding: 0, overflow: "hidden" }}>
+              <div style={{ padding: "24px 24px 12px" }}>
                 <div style={css.problemTitle}>Animations de célébration</div>
                 <div style={css.problemDesc}>
                   Des animations spectaculaires récompensent chaque victoire. Votre enfant peut les collectionner et les personnaliser.
                 </div>
+              </div>
+              <div style={{ padding: "0 24px 24px" }}>
+                <MockCelebrationAnims onTriggerAnimation={triggerRandomAnimation} activeAnim={celebAnim} />
               </div>
             </div>
           </div>
