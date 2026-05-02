@@ -65,11 +65,17 @@
       "choices": [
         {
           "id": "voit",
-          "label": "voit"
+          "label": "voit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vois",
-          "label": "vois"
+          "label": "vois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "voix",
@@ -87,11 +93,17 @@
       "choices": [
         {
           "id": "voit",
-          "label": "voit"
+          "label": "voit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vois",
-          "label": "vois"
+          "label": "vois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "voie",
@@ -109,11 +121,17 @@
       "choices": [
         {
           "id": "voit",
-          "label": "voit"
+          "label": "voit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vois",
-          "label": "vois"
+          "label": "vois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "voie",
@@ -131,11 +149,17 @@
       "choices": [
         {
           "id": "voit",
-          "label": "voit"
+          "label": "voit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vois",
-          "label": "vois"
+          "label": "vois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "voix",
@@ -153,11 +177,17 @@
       "choices": [
         {
           "id": "voit",
-          "label": "voit"
+          "label": "voit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vois",
-          "label": "vois"
+          "label": "vois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "voix",
@@ -175,11 +205,17 @@
       "choices": [
         {
           "id": "peut",
-          "label": "peut"
+          "label": "peut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "peux",
-          "label": "peux"
+          "label": "peux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "peu",
@@ -197,11 +233,17 @@
       "choices": [
         {
           "id": "peut",
-          "label": "peut"
+          "label": "peut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "peux",
-          "label": "peux"
+          "label": "peux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "peu",
@@ -219,11 +261,17 @@
       "choices": [
         {
           "id": "peut",
-          "label": "peut"
+          "label": "peut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "peux",
-          "label": "peux"
+          "label": "peux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "peu",
@@ -241,11 +289,17 @@
       "choices": [
         {
           "id": "peut",
-          "label": "peut"
+          "label": "peut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "peux",
-          "label": "peux"
+          "label": "peux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "peu",
@@ -263,11 +317,17 @@
       "choices": [
         {
           "id": "peut",
-          "label": "peut"
+          "label": "peut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "peux",
-          "label": "peux"
+          "label": "peux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "peu",
@@ -285,11 +345,17 @@
       "choices": [
         {
           "id": "veut",
-          "label": "veut"
+          "label": "veut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "veux",
-          "label": "veux"
+          "label": "veux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "voeu",
@@ -307,11 +373,17 @@
       "choices": [
         {
           "id": "veux",
-          "label": "veux"
+          "label": "veux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "veut",
-          "label": "veut"
+          "label": "veut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "veu",
@@ -329,11 +401,17 @@
       "choices": [
         {
           "id": "veux",
-          "label": "veux"
+          "label": "veux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "veut",
-          "label": "veut"
+          "label": "veut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "veu",
@@ -351,11 +429,17 @@
       "choices": [
         {
           "id": "veut",
-          "label": "veut"
+          "label": "veut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "veux",
-          "label": "veux"
+          "label": "veux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "voeu",
@@ -373,11 +457,17 @@
       "choices": [
         {
           "id": "veut",
-          "label": "veut"
+          "label": "veut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "veux",
-          "label": "veux"
+          "label": "veux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "voeu",
@@ -395,7 +485,10 @@
       "choices": [
         {
           "id": "viens",
-          "label": "viens"
+          "label": "viens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vient",
@@ -417,7 +510,10 @@
       "choices": [
         {
           "id": "viens",
-          "label": "viens"
+          "label": "viens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vient",
@@ -439,7 +535,10 @@
       "choices": [
         {
           "id": "viens",
-          "label": "viens"
+          "label": "viens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vient",
@@ -461,7 +560,10 @@
       "choices": [
         {
           "id": "viens",
-          "label": "viens"
+          "label": "viens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vient",
@@ -483,7 +585,10 @@
       "choices": [
         {
           "id": "viens",
-          "label": "viens"
+          "label": "viens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vient",
@@ -505,11 +610,17 @@
       "choices": [
         {
           "id": "sait",
-          "label": "sait"
+          "label": "sait",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sais",
-          "label": "sais"
+          "label": "sais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "saie",
@@ -527,11 +638,17 @@
       "choices": [
         {
           "id": "sais",
-          "label": "sais"
+          "label": "sais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sait",
-          "label": "sait"
+          "label": "sait",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sé",
@@ -549,11 +666,17 @@
       "choices": [
         {
           "id": "sais",
-          "label": "sais"
+          "label": "sais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sait",
-          "label": "sait"
+          "label": "sait",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "saie",
@@ -571,11 +694,17 @@
       "choices": [
         {
           "id": "sait",
-          "label": "sait"
+          "label": "sait",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sais",
-          "label": "sais"
+          "label": "sais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "saie",
@@ -593,11 +722,17 @@
       "choices": [
         {
           "id": "sait",
-          "label": "sait"
+          "label": "sait",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sais",
-          "label": "sais"
+          "label": "sais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "saie",
@@ -615,11 +750,17 @@
       "choices": [
         {
           "id": "prend",
-          "label": "prend"
+          "label": "prend",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "prends",
-          "label": "prends"
+          "label": "prends",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "prens",
@@ -637,11 +778,17 @@
       "choices": [
         {
           "id": "prends",
-          "label": "prends"
+          "label": "prends",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "prend",
-          "label": "prend"
+          "label": "prend",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "prens",
@@ -659,11 +806,17 @@
       "choices": [
         {
           "id": "prends",
-          "label": "prends"
+          "label": "prends",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "prend",
-          "label": "prend"
+          "label": "prend",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "prens",
@@ -681,11 +834,17 @@
       "choices": [
         {
           "id": "prend",
-          "label": "prend"
+          "label": "prend",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "prends",
-          "label": "prends"
+          "label": "prends",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "prens",
@@ -703,11 +862,17 @@
       "choices": [
         {
           "id": "prend",
-          "label": "prend"
+          "label": "prend",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "prends",
-          "label": "prends"
+          "label": "prends",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "prens",
@@ -725,11 +890,17 @@
       "choices": [
         {
           "id": "fait",
-          "label": "fait"
+          "label": "fait",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "fais",
-          "label": "fais"
+          "label": "fais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "faie",
@@ -747,11 +918,17 @@
       "choices": [
         {
           "id": "fais",
-          "label": "fais"
+          "label": "fais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "fait",
-          "label": "fait"
+          "label": "fait",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "fai",
@@ -769,11 +946,17 @@
       "choices": [
         {
           "id": "fait",
-          "label": "fait"
+          "label": "fait",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "fais",
-          "label": "fais"
+          "label": "fais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "faie",
@@ -791,11 +974,17 @@
       "choices": [
         {
           "id": "fait",
-          "label": "fait"
+          "label": "fait",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "fais",
-          "label": "fais"
+          "label": "fais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "faie",
@@ -813,11 +1002,17 @@
       "choices": [
         {
           "id": "fais",
-          "label": "fais"
+          "label": "fais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "fait",
-          "label": "fait"
+          "label": "fait",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "faie",
@@ -835,11 +1030,17 @@
       "choices": [
         {
           "id": "va",
-          "label": "va"
+          "label": "va",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vas",
-          "label": "vas"
+          "label": "vas",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vat",
@@ -857,11 +1058,17 @@
       "choices": [
         {
           "id": "vas",
-          "label": "vas"
+          "label": "vas",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "va",
-          "label": "va"
+          "label": "va",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vad",
@@ -879,11 +1086,17 @@
       "choices": [
         {
           "id": "va",
-          "label": "va"
+          "label": "va",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vas",
-          "label": "vas"
+          "label": "vas",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vat",
@@ -901,11 +1114,17 @@
       "choices": [
         {
           "id": "vas",
-          "label": "vas"
+          "label": "vas",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "va",
-          "label": "va"
+          "label": "va",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vad",
@@ -923,11 +1142,17 @@
       "choices": [
         {
           "id": "vas",
-          "label": "vas"
+          "label": "vas",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "va",
-          "label": "va"
+          "label": "va",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vad",
@@ -945,11 +1170,17 @@
       "choices": [
         {
           "id": "met",
-          "label": "met"
+          "label": "met",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "mets",
-          "label": "mets"
+          "label": "mets",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "mais",
@@ -967,11 +1198,17 @@
       "choices": [
         {
           "id": "met",
-          "label": "met"
+          "label": "met",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "mets",
-          "label": "mets"
+          "label": "mets",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "mais",
@@ -989,11 +1226,17 @@
       "choices": [
         {
           "id": "met",
-          "label": "met"
+          "label": "met",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "mets",
-          "label": "mets"
+          "label": "mets",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "mais",
@@ -1011,11 +1254,17 @@
       "choices": [
         {
           "id": "met",
-          "label": "met"
+          "label": "met",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "mets",
-          "label": "mets"
+          "label": "mets",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "mais",
@@ -1033,11 +1282,17 @@
       "choices": [
         {
           "id": "met",
-          "label": "met"
+          "label": "met",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "mets",
-          "label": "mets"
+          "label": "mets",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "mais",
@@ -1059,7 +1314,10 @@
         },
         {
           "id": "tiens",
-          "label": "tiens"
+          "label": "tiens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "tiend",
@@ -1077,7 +1335,10 @@
       "choices": [
         {
           "id": "tiens",
-          "label": "tiens"
+          "label": "tiens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "tient",
@@ -1099,7 +1360,10 @@
       "choices": [
         {
           "id": "tiens",
-          "label": "tiens"
+          "label": "tiens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "tient",
@@ -1125,7 +1389,10 @@
         },
         {
           "id": "tiens",
-          "label": "tiens"
+          "label": "tiens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "tien",
@@ -1147,7 +1414,10 @@
         },
         {
           "id": "tiens",
-          "label": "tiens"
+          "label": "tiens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "tiend",
@@ -1165,11 +1435,17 @@
       "choices": [
         {
           "id": "part",
-          "label": "part"
+          "label": "part",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "pars",
-          "label": "pars"
+          "label": "pars",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "pare",
@@ -1187,11 +1463,17 @@
       "choices": [
         {
           "id": "pars",
-          "label": "pars"
+          "label": "pars",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "part",
-          "label": "part"
+          "label": "part",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "par",
@@ -1209,11 +1491,17 @@
       "choices": [
         {
           "id": "part",
-          "label": "part"
+          "label": "part",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "pars",
-          "label": "pars"
+          "label": "pars",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "pare",
@@ -1231,11 +1519,17 @@
       "choices": [
         {
           "id": "part",
-          "label": "part"
+          "label": "part",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "pars",
-          "label": "pars"
+          "label": "pars",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "pare",
@@ -1253,11 +1547,17 @@
       "choices": [
         {
           "id": "part",
-          "label": "part"
+          "label": "part",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "pars",
-          "label": "pars"
+          "label": "pars",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "par",
@@ -1275,11 +1575,17 @@
       "choices": [
         {
           "id": "sort",
-          "label": "sort"
+          "label": "sort",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sors",
-          "label": "sors"
+          "label": "sors",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sore",
@@ -1297,11 +1603,17 @@
       "choices": [
         {
           "id": "sors",
-          "label": "sors"
+          "label": "sors",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sort",
-          "label": "sort"
+          "label": "sort",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sor",
@@ -1319,11 +1631,17 @@
       "choices": [
         {
           "id": "sort",
-          "label": "sort"
+          "label": "sort",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sors",
-          "label": "sors"
+          "label": "sors",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sore",
@@ -1341,11 +1659,17 @@
       "choices": [
         {
           "id": "sort",
-          "label": "sort"
+          "label": "sort",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sors",
-          "label": "sors"
+          "label": "sors",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sor",
@@ -1363,11 +1687,17 @@
       "choices": [
         {
           "id": "sort",
-          "label": "sort"
+          "label": "sort",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sors",
-          "label": "sors"
+          "label": "sors",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sord",
@@ -1385,11 +1715,17 @@
       "choices": [
         {
           "id": "dort",
-          "label": "dort"
+          "label": "dort",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "dors",
-          "label": "dors"
+          "label": "dors",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "dord",
@@ -1407,11 +1743,17 @@
       "choices": [
         {
           "id": "dors",
-          "label": "dors"
+          "label": "dors",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "dort",
-          "label": "dort"
+          "label": "dort",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "dore",
@@ -1429,11 +1771,17 @@
       "choices": [
         {
           "id": "dort",
-          "label": "dort"
+          "label": "dort",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "dors",
-          "label": "dors"
+          "label": "dors",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "dor",
@@ -1451,11 +1799,17 @@
       "choices": [
         {
           "id": "dort",
-          "label": "dort"
+          "label": "dort",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "dors",
-          "label": "dors"
+          "label": "dors",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "dore",
@@ -1473,11 +1827,17 @@
       "choices": [
         {
           "id": "dort",
-          "label": "dort"
+          "label": "dort",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "dors",
-          "label": "dors"
+          "label": "dors",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "dor",
@@ -1495,11 +1855,17 @@
       "choices": [
         {
           "id": "lit",
-          "label": "lit"
+          "label": "lit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "lis",
-          "label": "lis"
+          "label": "lis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "lie",
@@ -1517,11 +1883,17 @@
       "choices": [
         {
           "id": "lis",
-          "label": "lis"
+          "label": "lis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "lit",
-          "label": "lit"
+          "label": "lit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "lie",
@@ -1539,11 +1911,17 @@
       "choices": [
         {
           "id": "lis",
-          "label": "lis"
+          "label": "lis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "lit",
-          "label": "lit"
+          "label": "lit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "lie",
@@ -1561,11 +1939,17 @@
       "choices": [
         {
           "id": "lit",
-          "label": "lit"
+          "label": "lit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "lis",
-          "label": "lis"
+          "label": "lis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "lî",
@@ -1583,11 +1967,17 @@
       "choices": [
         {
           "id": "lit",
-          "label": "lit"
+          "label": "lit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "lis",
-          "label": "lis"
+          "label": "lis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "lî",
@@ -1605,11 +1995,17 @@
       "choices": [
         {
           "id": "écrit",
-          "label": "écrit"
+          "label": "écrit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "écris",
-          "label": "écris"
+          "label": "écris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "écrie",
@@ -1627,11 +2023,17 @@
       "choices": [
         {
           "id": "écris",
-          "label": "écris"
+          "label": "écris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "écrit",
-          "label": "écrit"
+          "label": "écrit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "écry",
@@ -1649,11 +2051,17 @@
       "choices": [
         {
           "id": "écrit",
-          "label": "écrit"
+          "label": "écrit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "écris",
-          "label": "écris"
+          "label": "écris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "écri",
@@ -1671,11 +2079,17 @@
       "choices": [
         {
           "id": "écrit",
-          "label": "écrit"
+          "label": "écrit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "écris",
-          "label": "écris"
+          "label": "écris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "écri",
@@ -1693,11 +2107,17 @@
       "choices": [
         {
           "id": "écrit",
-          "label": "écrit"
+          "label": "écrit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "écris",
-          "label": "écris"
+          "label": "écris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "écrie",
@@ -1715,11 +2135,17 @@
       "choices": [
         {
           "id": "dit",
-          "label": "dit"
+          "label": "dit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "dis",
-          "label": "dis"
+          "label": "dis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "die",
@@ -1737,11 +2163,17 @@
       "choices": [
         {
           "id": "dis",
-          "label": "dis"
+          "label": "dis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "dit",
-          "label": "dit"
+          "label": "dit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "dî",
@@ -1759,11 +2191,17 @@
       "choices": [
         {
           "id": "dit",
-          "label": "dit"
+          "label": "dit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "dis",
-          "label": "dis"
+          "label": "dis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "die",
@@ -1781,11 +2219,17 @@
       "choices": [
         {
           "id": "dit",
-          "label": "dit"
+          "label": "dit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "dis",
-          "label": "dis"
+          "label": "dis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "dî",
@@ -1803,11 +2247,17 @@
       "choices": [
         {
           "id": "dit",
-          "label": "dit"
+          "label": "dit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "dis",
-          "label": "dis"
+          "label": "dis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "die",
@@ -1825,11 +2275,17 @@
       "choices": [
         {
           "id": "vis",
-          "label": "vis"
+          "label": "vis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vit",
-          "label": "vit"
+          "label": "vit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vî",
@@ -1847,11 +2303,17 @@
       "choices": [
         {
           "id": "vis",
-          "label": "vis"
+          "label": "vis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vit",
-          "label": "vit"
+          "label": "vit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vie",
@@ -1869,11 +2331,17 @@
       "choices": [
         {
           "id": "vit",
-          "label": "vit"
+          "label": "vit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vis",
-          "label": "vis"
+          "label": "vis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vie",
@@ -1891,11 +2359,17 @@
       "choices": [
         {
           "id": "vit",
-          "label": "vit"
+          "label": "vit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vis",
-          "label": "vis"
+          "label": "vis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vie",
@@ -1913,11 +2387,17 @@
       "choices": [
         {
           "id": "vit",
-          "label": "vit"
+          "label": "vit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vis",
-          "label": "vis"
+          "label": "vis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vie",
@@ -1935,11 +2415,17 @@
       "choices": [
         {
           "id": "crois",
-          "label": "crois"
+          "label": "crois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "croit",
-          "label": "croit"
+          "label": "croit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "croi",
@@ -1957,11 +2443,17 @@
       "choices": [
         {
           "id": "crois",
-          "label": "crois"
+          "label": "crois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "croit",
-          "label": "croit"
+          "label": "croit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "croie",
@@ -1979,11 +2471,17 @@
       "choices": [
         {
           "id": "croit",
-          "label": "croit"
+          "label": "croit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "crois",
-          "label": "crois"
+          "label": "crois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "croie",
@@ -2001,11 +2499,17 @@
       "choices": [
         {
           "id": "croit",
-          "label": "croit"
+          "label": "croit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "crois",
-          "label": "crois"
+          "label": "crois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "croie",
@@ -2023,11 +2527,17 @@
       "choices": [
         {
           "id": "croit",
-          "label": "croit"
+          "label": "croit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "crois",
-          "label": "crois"
+          "label": "crois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "croie",
@@ -2045,11 +2555,17 @@
       "choices": [
         {
           "id": "boit",
-          "label": "boit"
+          "label": "boit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "bois",
-          "label": "bois"
+          "label": "bois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "boie",
@@ -2067,11 +2583,17 @@
       "choices": [
         {
           "id": "bois",
-          "label": "bois"
+          "label": "bois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "boit",
-          "label": "boit"
+          "label": "boit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "boi",
@@ -2089,11 +2611,17 @@
       "choices": [
         {
           "id": "bois",
-          "label": "bois"
+          "label": "bois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "boit",
-          "label": "boit"
+          "label": "boit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "boie",
@@ -2111,11 +2639,17 @@
       "choices": [
         {
           "id": "boit",
-          "label": "boit"
+          "label": "boit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "bois",
-          "label": "bois"
+          "label": "bois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "boi",
@@ -2133,11 +2667,17 @@
       "choices": [
         {
           "id": "boit",
-          "label": "boit"
+          "label": "boit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "bois",
-          "label": "bois"
+          "label": "bois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "boie",
@@ -2155,11 +2695,17 @@
       "choices": [
         {
           "id": "reçoit",
-          "label": "reçoit"
+          "label": "reçoit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "reçois",
-          "label": "reçois"
+          "label": "reçois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "reçoie",
@@ -2177,11 +2723,17 @@
       "choices": [
         {
           "id": "reçois",
-          "label": "reçois"
+          "label": "reçois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "reçoit",
-          "label": "reçoit"
+          "label": "reçoit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "reçoi",
@@ -2199,11 +2751,17 @@
       "choices": [
         {
           "id": "reçois",
-          "label": "reçois"
+          "label": "reçois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "reçoit",
-          "label": "reçoit"
+          "label": "reçoit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "reçoie",
@@ -2221,11 +2779,17 @@
       "choices": [
         {
           "id": "reçoit",
-          "label": "reçoit"
+          "label": "reçoit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "reçois",
-          "label": "reçois"
+          "label": "reçois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "reçoi",
@@ -2243,11 +2807,17 @@
       "choices": [
         {
           "id": "reçoit",
-          "label": "reçoit"
+          "label": "reçoit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "reçois",
-          "label": "reçois"
+          "label": "reçois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "reçoie",
@@ -2265,11 +2835,17 @@
       "choices": [
         {
           "id": "sent",
-          "label": "sent"
+          "label": "sent",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sens",
-          "label": "sens"
+          "label": "sens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "san",
@@ -2287,11 +2863,17 @@
       "choices": [
         {
           "id": "sens",
-          "label": "sens"
+          "label": "sens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sent",
-          "label": "sent"
+          "label": "sent",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sands",
@@ -2309,11 +2891,17 @@
       "choices": [
         {
           "id": "sens",
-          "label": "sens"
+          "label": "sens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sent",
-          "label": "sent"
+          "label": "sent",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sands",
@@ -2331,11 +2919,17 @@
       "choices": [
         {
           "id": "sent",
-          "label": "sent"
+          "label": "sent",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sens",
-          "label": "sens"
+          "label": "sens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "san",
@@ -2353,11 +2947,17 @@
       "choices": [
         {
           "id": "sent",
-          "label": "sent"
+          "label": "sent",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sens",
-          "label": "sens"
+          "label": "sens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "san",
@@ -2375,11 +2975,17 @@
       "choices": [
         {
           "id": "ment",
-          "label": "ment"
+          "label": "ment",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "mens",
-          "label": "mens"
+          "label": "mens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "man",
@@ -2397,11 +3003,17 @@
       "choices": [
         {
           "id": "mens",
-          "label": "mens"
+          "label": "mens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "ment",
-          "label": "ment"
+          "label": "ment",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "mand",
@@ -2419,11 +3031,17 @@
       "choices": [
         {
           "id": "mens",
-          "label": "mens"
+          "label": "mens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "ment",
-          "label": "ment"
+          "label": "ment",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "man",
@@ -2441,11 +3059,17 @@
       "choices": [
         {
           "id": "ment",
-          "label": "ment"
+          "label": "ment",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "mens",
-          "label": "mens"
+          "label": "mens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "mend",
@@ -2463,11 +3087,17 @@
       "choices": [
         {
           "id": "ment",
-          "label": "ment"
+          "label": "ment",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "mens",
-          "label": "mens"
+          "label": "mens",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "mants",
@@ -2485,11 +3115,17 @@
       "choices": [
         {
           "id": "sert",
-          "label": "sert"
+          "label": "sert",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sers",
-          "label": "sers"
+          "label": "sers",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "ser",
@@ -2507,11 +3143,17 @@
       "choices": [
         {
           "id": "sers",
-          "label": "sers"
+          "label": "sers",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sert",
-          "label": "sert"
+          "label": "sert",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "serf",
@@ -2529,11 +3171,17 @@
       "choices": [
         {
           "id": "sers",
-          "label": "sers"
+          "label": "sers",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sert",
-          "label": "sert"
+          "label": "sert",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "serd",
@@ -2551,11 +3199,17 @@
       "choices": [
         {
           "id": "sert",
-          "label": "sert"
+          "label": "sert",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sers",
-          "label": "sers"
+          "label": "sers",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "ser",
@@ -2573,11 +3227,17 @@
       "choices": [
         {
           "id": "sert",
-          "label": "sert"
+          "label": "sert",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "sers",
-          "label": "sers"
+          "label": "sers",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "serf",
@@ -2595,11 +3255,17 @@
       "choices": [
         {
           "id": "suit",
-          "label": "suit"
+          "label": "suit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "suis",
-          "label": "suis"
+          "label": "suis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sui",
@@ -2617,11 +3283,17 @@
       "choices": [
         {
           "id": "suis",
-          "label": "suis"
+          "label": "suis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "suit",
-          "label": "suit"
+          "label": "suit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "suît",
@@ -2639,11 +3311,17 @@
       "choices": [
         {
           "id": "suis",
-          "label": "suis"
+          "label": "suis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "suit",
-          "label": "suit"
+          "label": "suit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "suît",
@@ -2661,11 +3339,17 @@
       "choices": [
         {
           "id": "suit",
-          "label": "suit"
+          "label": "suit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "suis",
-          "label": "suis"
+          "label": "suis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sui",
@@ -2683,11 +3367,17 @@
       "choices": [
         {
           "id": "suit",
-          "label": "suit"
+          "label": "suit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "suis",
-          "label": "suis"
+          "label": "suis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sui",
@@ -2705,11 +3395,17 @@
       "choices": [
         {
           "id": "conduit",
-          "label": "conduit"
+          "label": "conduit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "conduis",
-          "label": "conduis"
+          "label": "conduis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "conduie",
@@ -2727,11 +3423,17 @@
       "choices": [
         {
           "id": "conduis",
-          "label": "conduis"
+          "label": "conduis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "conduit",
-          "label": "conduit"
+          "label": "conduit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "condui",
@@ -2749,11 +3451,17 @@
       "choices": [
         {
           "id": "conduit",
-          "label": "conduit"
+          "label": "conduit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "conduis",
-          "label": "conduis"
+          "label": "conduis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "conduie",
@@ -2771,11 +3479,17 @@
       "choices": [
         {
           "id": "conduis",
-          "label": "conduis"
+          "label": "conduis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "conduit",
-          "label": "conduit"
+          "label": "conduit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "conduie",
@@ -2793,11 +3507,17 @@
       "choices": [
         {
           "id": "conduit",
-          "label": "conduit"
+          "label": "conduit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "conduis",
-          "label": "conduis"
+          "label": "conduis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "condui",
@@ -2815,11 +3535,17 @@
       "choices": [
         {
           "id": "sourit",
-          "label": "sourit"
+          "label": "sourit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "souris",
-          "label": "souris"
+          "label": "souris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "souries",
@@ -2837,11 +3563,17 @@
       "choices": [
         {
           "id": "souris",
-          "label": "souris"
+          "label": "souris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sourit",
-          "label": "sourit"
+          "label": "sourit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "souries",
@@ -2859,11 +3591,17 @@
       "choices": [
         {
           "id": "sourit",
-          "label": "sourit"
+          "label": "sourit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "souris",
-          "label": "souris"
+          "label": "souris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "souri",
@@ -2881,11 +3619,17 @@
       "choices": [
         {
           "id": "souris",
-          "label": "souris"
+          "label": "souris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "sourit",
-          "label": "sourit"
+          "label": "sourit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "souries",
@@ -2903,11 +3647,17 @@
       "choices": [
         {
           "id": "sourit",
-          "label": "sourit"
+          "label": "sourit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "souris",
-          "label": "souris"
+          "label": "souris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "souri",
@@ -2925,11 +3675,17 @@
       "choices": [
         {
           "id": "connaît",
-          "label": "connaît"
+          "label": "connaît",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "connais",
-          "label": "connais"
+          "label": "connais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "connaie",
@@ -2947,11 +3703,17 @@
       "choices": [
         {
           "id": "connais",
-          "label": "connais"
+          "label": "connais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "connaît",
-          "label": "connaît"
+          "label": "connaît",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "connai",
@@ -2969,11 +3731,17 @@
       "choices": [
         {
           "id": "connaît",
-          "label": "connaît"
+          "label": "connaît",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "connais",
-          "label": "connais"
+          "label": "connais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "connaie",
@@ -2991,11 +3759,17 @@
       "choices": [
         {
           "id": "connais",
-          "label": "connais"
+          "label": "connais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "connaît",
-          "label": "connaît"
+          "label": "connaît",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "connai",
@@ -3013,11 +3787,17 @@
       "choices": [
         {
           "id": "connaît",
-          "label": "connaît"
+          "label": "connaît",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "connais",
-          "label": "connais"
+          "label": "connais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "connai",
@@ -3035,11 +3815,17 @@
       "choices": [
         {
           "id": "court",
-          "label": "court"
+          "label": "court",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "cours",
-          "label": "cours"
+          "label": "cours",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "coure",
@@ -3057,11 +3843,17 @@
       "choices": [
         {
           "id": "cours",
-          "label": "cours"
+          "label": "cours",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "court",
-          "label": "court"
+          "label": "court",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "coure",
@@ -3079,11 +3871,17 @@
       "choices": [
         {
           "id": "court",
-          "label": "court"
+          "label": "court",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "cours",
-          "label": "cours"
+          "label": "cours",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "courd",
@@ -3101,11 +3899,17 @@
       "choices": [
         {
           "id": "cours",
-          "label": "cours"
+          "label": "cours",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "court",
-          "label": "court"
+          "label": "court",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "coure",
@@ -3123,11 +3927,17 @@
       "choices": [
         {
           "id": "court",
-          "label": "court"
+          "label": "court",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "cours",
-          "label": "cours"
+          "label": "cours",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "courd",
@@ -3145,11 +3955,17 @@
       "choices": [
         {
           "id": "meurt",
-          "label": "meurt"
+          "label": "meurt",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "meurs",
-          "label": "meurs"
+          "label": "meurs",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "meur",
@@ -3167,11 +3983,17 @@
       "choices": [
         {
           "id": "meurs",
-          "label": "meurs"
+          "label": "meurs",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "meurt",
-          "label": "meurt"
+          "label": "meurt",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "meurd",
@@ -3189,11 +4011,17 @@
       "choices": [
         {
           "id": "meurt",
-          "label": "meurt"
+          "label": "meurt",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "meurs",
-          "label": "meurs"
+          "label": "meurs",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "meurre",
@@ -3211,11 +4039,17 @@
       "choices": [
         {
           "id": "meurs",
-          "label": "meurs"
+          "label": "meurs",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "meurt",
-          "label": "meurt"
+          "label": "meurt",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "meur",
@@ -3233,11 +4067,17 @@
       "choices": [
         {
           "id": "meurt",
-          "label": "meurt"
+          "label": "meurt",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "meurs",
-          "label": "meurs"
+          "label": "meurs",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "meurd",
@@ -3255,11 +4095,17 @@
       "choices": [
         {
           "id": "bat",
-          "label": "bat"
+          "label": "bat",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "bats",
-          "label": "bats"
+          "label": "bats",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "bad",
@@ -3277,11 +4123,17 @@
       "choices": [
         {
           "id": "bats",
-          "label": "bats"
+          "label": "bats",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "bat",
-          "label": "bat"
+          "label": "bat",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "bate",
@@ -3299,11 +4151,17 @@
       "choices": [
         {
           "id": "bats",
-          "label": "bats"
+          "label": "bats",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "bat",
-          "label": "bat"
+          "label": "bat",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "batt",
@@ -3321,11 +4179,17 @@
       "choices": [
         {
           "id": "bat",
-          "label": "bat"
+          "label": "bat",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "bats",
-          "label": "bats"
+          "label": "bats",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "batt",
@@ -3343,11 +4207,17 @@
       "choices": [
         {
           "id": "bat",
-          "label": "bat"
+          "label": "bat",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "bats",
-          "label": "bats"
+          "label": "bats",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "bad",
@@ -3365,11 +4235,17 @@
       "choices": [
         {
           "id": "plaît",
-          "label": "plaît"
+          "label": "plaît",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "plais",
-          "label": "plais"
+          "label": "plais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "plait",
@@ -3387,11 +4263,17 @@
       "choices": [
         {
           "id": "plais",
-          "label": "plais"
+          "label": "plais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "plaît",
-          "label": "plaît"
+          "label": "plaît",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "plaie",
@@ -3409,11 +4291,17 @@
       "choices": [
         {
           "id": "plais",
-          "label": "plais"
+          "label": "plais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "plaît",
-          "label": "plaît"
+          "label": "plaît",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "plai",
@@ -3431,11 +4319,17 @@
       "choices": [
         {
           "id": "plaît",
-          "label": "plaît"
+          "label": "plaît",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "plais",
-          "label": "plais"
+          "label": "plais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "plait",
@@ -3453,11 +4347,17 @@
       "choices": [
         {
           "id": "plaît",
-          "label": "plaît"
+          "label": "plaît",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "plais",
-          "label": "plais"
+          "label": "plais",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "plaie",
@@ -3475,11 +4375,17 @@
       "choices": [
         {
           "id": "craint",
-          "label": "craint"
+          "label": "craint",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "crains",
-          "label": "crains"
+          "label": "crains",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "crain",
@@ -3497,11 +4403,17 @@
       "choices": [
         {
           "id": "crains",
-          "label": "crains"
+          "label": "crains",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "craint",
-          "label": "craint"
+          "label": "craint",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "craind",
@@ -3519,11 +4431,17 @@
       "choices": [
         {
           "id": "crains",
-          "label": "crains"
+          "label": "crains",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "craint",
-          "label": "craint"
+          "label": "craint",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "crain",
@@ -3541,11 +4459,17 @@
       "choices": [
         {
           "id": "craint",
-          "label": "craint"
+          "label": "craint",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "crains",
-          "label": "crains"
+          "label": "crains",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "crain",
@@ -3563,11 +4487,17 @@
       "choices": [
         {
           "id": "craint",
-          "label": "craint"
+          "label": "craint",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "crains",
-          "label": "crains"
+          "label": "crains",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "craind",
@@ -3585,11 +4515,17 @@
       "choices": [
         {
           "id": "peint",
-          "label": "peint"
+          "label": "peint",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "peins",
-          "label": "peins"
+          "label": "peins",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "pein",
@@ -3607,11 +4543,17 @@
       "choices": [
         {
           "id": "peins",
-          "label": "peins"
+          "label": "peins",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "peint",
-          "label": "peint"
+          "label": "peint",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "peind",
@@ -3629,11 +4571,17 @@
       "choices": [
         {
           "id": "peint",
-          "label": "peint"
+          "label": "peint",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "peins",
-          "label": "peins"
+          "label": "peins",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "peinds",
@@ -3651,11 +4599,17 @@
       "choices": [
         {
           "id": "peins",
-          "label": "peins"
+          "label": "peins",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "peint",
-          "label": "peint"
+          "label": "peint",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "pein",
@@ -3673,11 +4627,17 @@
       "choices": [
         {
           "id": "peint",
-          "label": "peint"
+          "label": "peint",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "peins",
-          "label": "peins"
+          "label": "peins",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "peind",
@@ -3695,11 +4655,17 @@
       "choices": [
         {
           "id": "vaut",
-          "label": "vaut"
+          "label": "vaut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vaux",
-          "label": "vaux"
+          "label": "vaux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vau",
@@ -3717,11 +4683,17 @@
       "choices": [
         {
           "id": "vaux",
-          "label": "vaux"
+          "label": "vaux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vaut",
-          "label": "vaut"
+          "label": "vaut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vaud",
@@ -3739,11 +4711,17 @@
       "choices": [
         {
           "id": "vaut",
-          "label": "vaut"
+          "label": "vaut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vaux",
-          "label": "vaux"
+          "label": "vaux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vauts",
@@ -3761,11 +4739,17 @@
       "choices": [
         {
           "id": "vaux",
-          "label": "vaux"
+          "label": "vaux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vaut",
-          "label": "vaut"
+          "label": "vaut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vau",
@@ -3783,11 +4767,17 @@
       "choices": [
         {
           "id": "vaut",
-          "label": "vaut"
+          "label": "vaut",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "vaux",
-          "label": "vaux"
+          "label": "vaux",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "vaud",
@@ -3805,11 +4795,17 @@
       "choices": [
         {
           "id": "doit",
-          "label": "doit"
+          "label": "doit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "dois",
-          "label": "dois"
+          "label": "dois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "doie",
@@ -3827,11 +4823,17 @@
       "choices": [
         {
           "id": "dois",
-          "label": "dois"
+          "label": "dois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "doit",
-          "label": "doit"
+          "label": "doit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "doid",
@@ -3849,11 +4851,17 @@
       "choices": [
         {
           "id": "doit",
-          "label": "doit"
+          "label": "doit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "dois",
-          "label": "dois"
+          "label": "dois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "doie",
@@ -3871,11 +4879,17 @@
       "choices": [
         {
           "id": "dois",
-          "label": "dois"
+          "label": "dois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "doit",
-          "label": "doit"
+          "label": "doit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "doid",
@@ -3893,11 +4907,17 @@
       "choices": [
         {
           "id": "doit",
-          "label": "doit"
+          "label": "doit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "dois",
-          "label": "dois"
+          "label": "dois",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "doie",
@@ -3915,11 +4935,17 @@
       "choices": [
         {
           "id": "fuit",
-          "label": "fuit"
+          "label": "fuit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "fuis",
-          "label": "fuis"
+          "label": "fuis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "fuie",
@@ -3937,11 +4963,17 @@
       "choices": [
         {
           "id": "fuis",
-          "label": "fuis"
+          "label": "fuis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "fuit",
-          "label": "fuit"
+          "label": "fuit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "fuî",
@@ -3959,11 +4991,17 @@
       "choices": [
         {
           "id": "fuit",
-          "label": "fuit"
+          "label": "fuit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "fuis",
-          "label": "fuis"
+          "label": "fuis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "fui",
@@ -3981,11 +5019,17 @@
       "choices": [
         {
           "id": "fuis",
-          "label": "fuis"
+          "label": "fuis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "fuit",
-          "label": "fuit"
+          "label": "fuit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "fui",
@@ -4003,11 +5047,17 @@
       "choices": [
         {
           "id": "fuit",
-          "label": "fuit"
+          "label": "fuit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "fuis",
-          "label": "fuis"
+          "label": "fuis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "fuie",
@@ -4025,11 +5075,17 @@
       "choices": [
         {
           "id": "nuit",
-          "label": "nuit"
+          "label": "nuit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "nuis",
-          "label": "nuis"
+          "label": "nuis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "nuie",
@@ -4047,11 +5103,17 @@
       "choices": [
         {
           "id": "nuis",
-          "label": "nuis"
+          "label": "nuis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "nuit",
-          "label": "nuit"
+          "label": "nuit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "nui",
@@ -4069,11 +5131,17 @@
       "choices": [
         {
           "id": "nuis",
-          "label": "nuis"
+          "label": "nuis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "nuit",
-          "label": "nuit"
+          "label": "nuit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "nuît",
@@ -4091,11 +5159,17 @@
       "choices": [
         {
           "id": "nuit",
-          "label": "nuit"
+          "label": "nuit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "nuis",
-          "label": "nuis"
+          "label": "nuis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "nuie",
@@ -4113,11 +5187,17 @@
       "choices": [
         {
           "id": "nuit",
-          "label": "nuit"
+          "label": "nuit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "nuis",
-          "label": "nuis"
+          "label": "nuis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "nui",
@@ -4135,11 +5215,17 @@
       "choices": [
         {
           "id": "rit",
-          "label": "rit"
+          "label": "rit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "ris",
-          "label": "ris"
+          "label": "ris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "rie",
@@ -4157,11 +5243,17 @@
       "choices": [
         {
           "id": "ris",
-          "label": "ris"
+          "label": "ris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "rit",
-          "label": "rit"
+          "label": "rit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "ri",
@@ -4179,11 +5271,17 @@
       "choices": [
         {
           "id": "ris",
-          "label": "ris"
+          "label": "ris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "rit",
-          "label": "rit"
+          "label": "rit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "rît",
@@ -4201,11 +5299,17 @@
       "choices": [
         {
           "id": "rit",
-          "label": "rit"
+          "label": "rit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "ris",
-          "label": "ris"
+          "label": "ris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "rie",
@@ -4223,11 +5327,17 @@
       "choices": [
         {
           "id": "rit",
-          "label": "rit"
+          "label": "rit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "ris",
-          "label": "ris"
+          "label": "ris",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "ri",
@@ -4245,11 +5355,17 @@
       "choices": [
         {
           "id": "suffit",
-          "label": "suffit"
+          "label": "suffit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "suffis",
-          "label": "suffis"
+          "label": "suffis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "suffie",
@@ -4267,11 +5383,17 @@
       "choices": [
         {
           "id": "suffis",
-          "label": "suffis"
+          "label": "suffis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "suffit",
-          "label": "suffit"
+          "label": "suffit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "suffi",
@@ -4289,11 +5411,17 @@
       "choices": [
         {
           "id": "suffis",
-          "label": "suffis"
+          "label": "suffis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "suffit",
-          "label": "suffit"
+          "label": "suffit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "suffît",
@@ -4311,11 +5439,17 @@
       "choices": [
         {
           "id": "suffit",
-          "label": "suffit"
+          "label": "suffit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "suffis",
-          "label": "suffis"
+          "label": "suffis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "suffie",
@@ -4333,11 +5467,17 @@
       "choices": [
         {
           "id": "suffit",
-          "label": "suffit"
+          "label": "suffit",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "suffis",
-          "label": "suffis"
+          "label": "suffis",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "suffi",
@@ -4355,11 +5495,17 @@
       "choices": [
         {
           "id": "résout",
-          "label": "résout"
+          "label": "résout",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "résous",
-          "label": "résous"
+          "label": "résous",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "résoue",
@@ -4377,11 +5523,17 @@
       "choices": [
         {
           "id": "résous",
-          "label": "résous"
+          "label": "résous",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "résout",
-          "label": "résout"
+          "label": "résout",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "résou",
@@ -4399,11 +5551,17 @@
       "choices": [
         {
           "id": "résous",
-          "label": "résous"
+          "label": "résous",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "résout",
-          "label": "résout"
+          "label": "résout",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "résoud",
@@ -4421,11 +5579,17 @@
       "choices": [
         {
           "id": "résout",
-          "label": "résout"
+          "label": "résout",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "résous",
-          "label": "résous"
+          "label": "résous",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "résoue",
@@ -4443,11 +5607,17 @@
       "choices": [
         {
           "id": "résout",
-          "label": "résout"
+          "label": "résout",
+          "forAxis": {
+            "personne": "3-sg"
+          }
         },
         {
           "id": "résous",
-          "label": "résous"
+          "label": "résous",
+          "forAxis": {
+            "personne": "1-2-sg"
+          }
         },
         {
           "id": "résou",
