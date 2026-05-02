@@ -1136,13 +1136,13 @@ export default function LandingPageV4() {
             .oq-dictee-card { grid-template-columns: 1fr !important; }
           }
           /* Problem card icon animations */
-          /* Brain fill: starts half-visible (y=320), drains down (y=640), refills (y=0), drains to half (y=320) */
+          /* Brain fill drains from top: inset(X% 0 0 0) hides from top.
+             Starts full (0%), empties (100%), refills (0%) */
           @keyframes brainDrain {
-            0% { transform: translateY(320px); }
-            40% { transform: translateY(640px); }
-            50% { transform: translateY(640px); }
-            70% { transform: translateY(0px); }
-            100% { transform: translateY(320px); }
+            0%   { clip-path: inset(0% 0 0 0); }
+            45%  { clip-path: inset(100% 0 0 0); }
+            55%  { clip-path: inset(100% 0 0 0); }
+            100% { clip-path: inset(0% 0 0 0); }
           }
           @keyframes clockTick {
             from { transform: rotate(0deg); }
@@ -1237,8 +1237,10 @@ export default function LandingPageV4() {
                   </defs>
                   {/* Brain outline (stroke only) */}
                   <path d="M184 120C184 89.1 209.1 64 240 64L264 64C281.7 64 296 78.3 296 96L296 544C296 561.7 281.7 576 264 576L232 576C202.2 576 177.1 555.6 170 528C169.3 528 168.7 528 168 528C123.8 528 88 492.2 88 448C88 430 94 413.4 104 400C84.6 385.4 72 362.2 72 336C72 305.1 89.6 278.2 115.2 264.9C108.1 252.9 104 238.9 104 224C104 179.8 139.8 144 184 144L184 120zM456 120L456 144C500.2 144 536 179.8 536 224C536 239 531.9 253 524.8 264.9C550.5 278.2 568 305 568 336C568 362.2 555.4 385.4 536 400C546 413.4 552 430 552 448C552 492.2 516.2 528 472 528C471.3 528 470.7 528 470 528C462.9 555.6 437.8 576 408 576L376 576C358.3 576 344 561.7 344 544L344 96C344 78.3 358.3 64 376 64L400 64C430.9 64 456 89.1 456 120z" stroke="#a78bfa" strokeWidth="14" fill="none"/>
-                  {/* Fill inside brain shape — drains from bottom */}
-                  <rect x="0" width="640" height="640" fill="#a78bfa" opacity="0.25" clipPath="url(#brainClip)" style={{ animation: "brainDrain 5s ease-in-out infinite" }}/>
+                  {/* Fill inside brain shape — starts full, drains down */}
+                  <g clipPath="url(#brainClip)">
+                    <rect x="0" y="0" width="640" height="640" fill="#a78bfa" opacity="0.25" style={{ animation: "brainDrain 5s ease-in-out infinite" }}/>
+                  </g>
                 </svg>
               </div>
               <div style={css.problemTitle}>On apprend, puis on oublie</div>
