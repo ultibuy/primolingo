@@ -1766,7 +1766,7 @@ export default function LandingPageV4() {
               { value: 17, suffix: "", label: "règles d'orthographe" },
               { value: 3300, suffix: "+", label: "questions uniques" },
               { value: 10, suffix: " min", label: "par jour suffisent" },
-              { value: 0, suffix: " €", label: "pour toujours" },
+              { value: 100, suffix: "%", label: "gratuit" },
             ].map((s, i) => (
               <div key={i}>
                 <div style={{
