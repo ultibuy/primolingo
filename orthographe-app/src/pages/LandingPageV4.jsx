@@ -1142,10 +1142,28 @@ export default function LandingPageV4() {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
           }
-          @keyframes ringAppear {
-            0%, 5% { opacity: 0; }
-            10%, 65% { opacity: 1; }
-            80%, 100% { opacity: 0; }
+          /* Ring 1 (outer): visible from 0% to 90%, off briefly, then back */
+          @keyframes ring1 {
+            0%, 100% { opacity: 1; }
+            92%, 99% { opacity: 0; }
+          }
+          /* Ring 2: appears at 25%, gone at 90% */
+          @keyframes ring2 {
+            0%, 24% { opacity: 0; }
+            25%, 89% { opacity: 1; }
+            90%, 100% { opacity: 0; }
+          }
+          /* Ring 3: appears at 50%, gone at 90% */
+          @keyframes ring3 {
+            0%, 49% { opacity: 0; }
+            50%, 89% { opacity: 1; }
+            90%, 100% { opacity: 0; }
+          }
+          /* Dot (center): appears at 70%, gone at 90% */
+          @keyframes ring4 {
+            0%, 69% { opacity: 0; }
+            70%, 89% { opacity: 1; }
+            90%, 100% { opacity: 0; }
           }
         `}</style>
 
@@ -1204,22 +1222,22 @@ export default function LandingPageV4() {
           <div style={css.problemGrid}>
             <div style={css.problemCard}>
               <div style={css.problemEmoji}>
-                {/* Child head silhouette with brain — fill drains and refills */}
-                <svg width="42" height="42" viewBox="0 0 40 40" fill="none">
-                  {/* Head silhouette */}
-                  <path d="M20 3c-7 0-12 5-12 11.5 0 3 1 5.5 2.5 7.5l-0.5 3c0 1 .5 2 1.5 2.5l1.5.8v3.2c0 1.5 1.2 2.5 2.5 2.5h9c1.3 0 2.5-1 2.5-2.5v-3.2l1.5-.8c1-.5 1.5-1.5 1.5-2.5l-0.5-3C30 19 31 16.5 31 14 31 8 26.5 3 20 3z" stroke="#a78bfa" strokeWidth="1.5" fill="none"/>
-                  {/* Brain bumps (inside head, upper area) */}
-                  <path d="M14 11c0-2 1.5-4 3.5-4 1 0 1.8.5 2.5 1.2.7-.7 1.5-1.2 2.5-1.2 2 0 3.5 2 3.5 4" stroke="#c4b5fd" strokeWidth="1.3" strokeLinecap="round" fill="none"/>
-                  <path d="M13 13.5c0-1.5 1.2-3 3-3s3 1 3 2.5" stroke="#c4b5fd" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
-                  <path d="M21 13c0-1.5 1.2-2.5 3-2.5s3 1.5 3 3" stroke="#c4b5fd" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
-                  <path d="M15 16c.5-1 1.5-1.5 2.5-1.5 1.2 0 2 .8 2.5 1.5.5-.7 1.3-1.5 2.5-1.5 1 0 2 .5 2.5 1.5" stroke="#c4b5fd" strokeWidth="1.1" strokeLinecap="round" fill="none"/>
-                  {/* Center line */}
-                  <line x1="20" y1="7" x2="20" y2="18" stroke="#a78bfa" strokeWidth="0.8" opacity="0.4"/>
-                  {/* Fill that drains (clipped to head shape) */}
-                  <clipPath id="headClip">
-                    <path d="M20 3c-7 0-12 5-12 11.5 0 3 1 5.5 2.5 7.5l-0.5 3c0 1 .5 2 1.5 2.5l1.5.8v3.2c0 1.5 1.2 2.5 2.5 2.5h9c1.3 0 2.5-1 2.5-2.5v-3.2l1.5-.8c1-.5 1.5-1.5 1.5-2.5l-0.5-3C30 19 31 16.5 31 14 31 8 26.5 3 20 3z"/>
+                {/* Brain icon (line art, side view) with fill that drains/refills */}
+                <svg width="44" height="38" viewBox="0 0 56 46" fill="none">
+                  {/* Brain outline — side view with lobes and brain stem */}
+                  <path d="M44 28c2-1 4-4 4-7 0-3-1.5-5.5-4-7 0.5-1.5 0.5-3.5-0.5-5-1.5-2.5-4-3.5-6.5-3-1.5-3-4.5-5-8-5-2.5 0-4.5 1-6 2.5C21.5 3 19 2 16.5 2.5c-3 0.5-5 3-5.5 5.5-3 0.5-5.5 3-6 6-0.5 2 0 4 1 5.5C4 21 3 23.5 3 26c0 3 1.5 5.5 4 7 0 3.5 2.5 6.5 6 7l2 0.5 1 2.5h4l2-2c2 0.5 4 0 5.5-1 1.5 1.5 4 2.5 6.5 2 3-0.5 5-2.5 6-5 3-0.5 5.5-3 6-6z" stroke="#a78bfa" strokeWidth="2.2" strokeLinejoin="round"/>
+                  {/* Brain folds — sulci curves */}
+                  <path d="M16 12c2 3 2 6-1 9" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+                  <path d="M24 8c-1 3.5-1 7 2 10" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+                  <path d="M34 10c-2 2.5-2 6 0 9" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+                  <path d="M11 22c3-1 6-0.5 8 1.5" stroke="#c4b5fd" strokeWidth="1.6" strokeLinecap="round" fill="none"/>
+                  <path d="M26 21c2.5-1 5.5-0.5 7.5 1" stroke="#c4b5fd" strokeWidth="1.6" strokeLinecap="round" fill="none"/>
+                  <path d="M40 22c-1.5 2-1 4 0.5 5.5" stroke="#c4b5fd" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+                  {/* Fill level that drains and refills (clipped to brain) */}
+                  <clipPath id="brainOutline">
+                    <path d="M44 28c2-1 4-4 4-7 0-3-1.5-5.5-4-7 0.5-1.5 0.5-3.5-0.5-5-1.5-2.5-4-3.5-6.5-3-1.5-3-4.5-5-8-5-2.5 0-4.5 1-6 2.5C21.5 3 19 2 16.5 2.5c-3 0.5-5 3-5.5 5.5-3 0.5-5.5 3-6 6-0.5 2 0 4 1 5.5C4 21 3 23.5 3 26c0 3 1.5 5.5 4 7 0 3.5 2.5 6.5 6 7l2 0.5 1 2.5h4l2-2c2 0.5 4 0 5.5-1 1.5 1.5 4 2.5 6.5 2 3-0.5 5-2.5 6-5 3-0.5 5.5-3 6-6z"/>
                   </clipPath>
-                  <rect x="8" y="0" width="24" height="40" fill="#a78bfa" opacity="0.2" clipPath="url(#headClip)" style={{ animation: "brainDrain 4s ease-in-out infinite" }}/>
+                  <rect x="2" y="0" width="50" height="46" fill="#a78bfa" opacity="0.18" clipPath="url(#brainOutline)" style={{ animation: "brainDrain 4s ease-in-out infinite" }}/>
                 </svg>
               </div>
               <div style={css.problemTitle}>On apprend, puis on oublie</div>
@@ -1234,7 +1252,7 @@ export default function LandingPageV4() {
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
                   <circle cx="12" cy="12" r="9" stroke="#a78bfa" strokeWidth="1.8"/>
                   <circle cx="12" cy="12" r="1.2" fill="#c4b5fd"/>
-                  <line x1="12" y1="12" x2="12" y2="6.5" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round" style={{ transformOrigin: "12px 12px", animation: "clockTick 4s linear infinite" }}/>
+                  <line x1="12" y1="12" x2="12" y2="6.5" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round" style={{ transformOrigin: "12px 12px", animation: "clockTick 10s linear infinite" }}/>
                   <line x1="12" y1="12" x2="16" y2="12" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round"/>
                   {[1,2,3,4,5,6,7,8,9,10,11,12].map(h => {
                     const a = (h * 30 - 90) * Math.PI / 180;
@@ -1250,12 +1268,12 @@ export default function LandingPageV4() {
             </div>
             <div style={css.problemCard}>
               <div style={css.problemEmoji}>
-                {/* Target — circles pop in one by one (instant, no movement) then fade */}
+                {/* Target — outer ring always first, inner rings pop in, then all reset */}
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="10" stroke="#a78bfa" strokeWidth="1.8" style={{ animation: "ringAppear 3.5s steps(1) infinite", animationDelay: "0s" }}/>
-                  <circle cx="12" cy="12" r="6.5" stroke="#c4b5fd" strokeWidth="1.5" style={{ animation: "ringAppear 3.5s steps(1) infinite", animationDelay: "0.4s" }}/>
-                  <circle cx="12" cy="12" r="3" stroke="#a78bfa" strokeWidth="1.5" style={{ animation: "ringAppear 3.5s steps(1) infinite", animationDelay: "0.8s" }}/>
-                  <circle cx="12" cy="12" r="1.2" fill="#a78bfa" style={{ animation: "ringAppear 3.5s steps(1) infinite", animationDelay: "1.2s" }}/>
+                  <circle cx="12" cy="12" r="10" stroke="#a78bfa" strokeWidth="1.8" style={{ animation: "ring1 3.5s steps(1) infinite" }}/>
+                  <circle cx="12" cy="12" r="6.5" stroke="#c4b5fd" strokeWidth="1.5" style={{ animation: "ring2 3.5s steps(1) infinite" }}/>
+                  <circle cx="12" cy="12" r="3" stroke="#a78bfa" strokeWidth="1.5" style={{ animation: "ring3 3.5s steps(1) infinite" }}/>
+                  <circle cx="12" cy="12" r="1.2" fill="#a78bfa" style={{ animation: "ring4 3.5s steps(1) infinite" }}/>
                 </svg>
               </div>
               <div style={css.problemTitle}>Chaque enfant a son propre rythme</div>
