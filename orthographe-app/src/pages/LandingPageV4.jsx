@@ -1132,11 +1132,13 @@ export default function LandingPageV4() {
             .oq-dictee-card { grid-template-columns: 1fr !important; }
           }
           /* Problem card icon animations */
+          /* Brain fill: starts half-visible (y=320), drains down (y=640), refills (y=0), drains to half (y=320) */
           @keyframes brainDrain {
-            0% { clip-path: inset(50% 0 0 0); }
-            45% { clip-path: inset(100% 0 0 0); }
-            55% { clip-path: inset(0% 0 0 0); }
-            100% { clip-path: inset(50% 0 0 0); }
+            0% { transform: translateY(320px); }
+            40% { transform: translateY(640px); }
+            50% { transform: translateY(640px); }
+            70% { transform: translateY(0px); }
+            100% { transform: translateY(320px); }
           }
           @keyframes clockTick {
             from { transform: rotate(0deg); }
@@ -1222,22 +1224,17 @@ export default function LandingPageV4() {
           <div style={css.problemGrid}>
             <div style={css.problemCard}>
               <div style={css.problemEmoji}>
-                {/* Brain icon (line art, side view) with fill that drains/refills */}
-                <svg width="44" height="38" viewBox="0 0 56 46" fill="none">
-                  {/* Brain outline — side view with lobes and brain stem */}
-                  <path d="M44 28c2-1 4-4 4-7 0-3-1.5-5.5-4-7 0.5-1.5 0.5-3.5-0.5-5-1.5-2.5-4-3.5-6.5-3-1.5-3-4.5-5-8-5-2.5 0-4.5 1-6 2.5C21.5 3 19 2 16.5 2.5c-3 0.5-5 3-5.5 5.5-3 0.5-5.5 3-6 6-0.5 2 0 4 1 5.5C4 21 3 23.5 3 26c0 3 1.5 5.5 4 7 0 3.5 2.5 6.5 6 7l2 0.5 1 2.5h4l2-2c2 0.5 4 0 5.5-1 1.5 1.5 4 2.5 6.5 2 3-0.5 5-2.5 6-5 3-0.5 5.5-3 6-6z" stroke="#a78bfa" strokeWidth="2.2" strokeLinejoin="round"/>
-                  {/* Brain folds — sulci curves */}
-                  <path d="M16 12c2 3 2 6-1 9" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-                  <path d="M24 8c-1 3.5-1 7 2 10" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-                  <path d="M34 10c-2 2.5-2 6 0 9" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-                  <path d="M11 22c3-1 6-0.5 8 1.5" stroke="#c4b5fd" strokeWidth="1.6" strokeLinecap="round" fill="none"/>
-                  <path d="M26 21c2.5-1 5.5-0.5 7.5 1" stroke="#c4b5fd" strokeWidth="1.6" strokeLinecap="round" fill="none"/>
-                  <path d="M40 22c-1.5 2-1 4 0.5 5.5" stroke="#c4b5fd" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
-                  {/* Fill level that drains and refills (clipped to brain) */}
-                  <clipPath id="brainOutline">
-                    <path d="M44 28c2-1 4-4 4-7 0-3-1.5-5.5-4-7 0.5-1.5 0.5-3.5-0.5-5-1.5-2.5-4-3.5-6.5-3-1.5-3-4.5-5-8-5-2.5 0-4.5 1-6 2.5C21.5 3 19 2 16.5 2.5c-3 0.5-5 3-5.5 5.5-3 0.5-5.5 3-6 6-0.5 2 0 4 1 5.5C4 21 3 23.5 3 26c0 3 1.5 5.5 4 7 0 3.5 2.5 6.5 6 7l2 0.5 1 2.5h4l2-2c2 0.5 4 0 5.5-1 1.5 1.5 4 2.5 6.5 2 3-0.5 5-2.5 6-5 3-0.5 5.5-3 6-6z"/>
-                  </clipPath>
-                  <rect x="2" y="0" width="50" height="46" fill="#a78bfa" opacity="0.18" clipPath="url(#brainOutline)" style={{ animation: "brainDrain 4s ease-in-out infinite" }}/>
+                {/* FontAwesome brain outline + fill that drains inside the brain shape */}
+                <svg width="42" height="42" viewBox="0 0 640 640" fill="none">
+                  <defs>
+                    <clipPath id="brainClip">
+                      <path d="M184 120C184 89.1 209.1 64 240 64L264 64C281.7 64 296 78.3 296 96L296 544C296 561.7 281.7 576 264 576L232 576C202.2 576 177.1 555.6 170 528C169.3 528 168.7 528 168 528C123.8 528 88 492.2 88 448C88 430 94 413.4 104 400C84.6 385.4 72 362.2 72 336C72 305.1 89.6 278.2 115.2 264.9C108.1 252.9 104 238.9 104 224C104 179.8 139.8 144 184 144L184 120zM456 120L456 144C500.2 144 536 179.8 536 224C536 239 531.9 253 524.8 264.9C550.5 278.2 568 305 568 336C568 362.2 555.4 385.4 536 400C546 413.4 552 430 552 448C552 492.2 516.2 528 472 528C471.3 528 470.7 528 470 528C462.9 555.6 437.8 576 408 576L376 576C358.3 576 344 561.7 344 544L344 96C344 78.3 358.3 64 376 64L400 64C430.9 64 456 89.1 456 120z"/>
+                    </clipPath>
+                  </defs>
+                  {/* Brain outline (stroke only) */}
+                  <path d="M184 120C184 89.1 209.1 64 240 64L264 64C281.7 64 296 78.3 296 96L296 544C296 561.7 281.7 576 264 576L232 576C202.2 576 177.1 555.6 170 528C169.3 528 168.7 528 168 528C123.8 528 88 492.2 88 448C88 430 94 413.4 104 400C84.6 385.4 72 362.2 72 336C72 305.1 89.6 278.2 115.2 264.9C108.1 252.9 104 238.9 104 224C104 179.8 139.8 144 184 144L184 120zM456 120L456 144C500.2 144 536 179.8 536 224C536 239 531.9 253 524.8 264.9C550.5 278.2 568 305 568 336C568 362.2 555.4 385.4 536 400C546 413.4 552 430 552 448C552 492.2 516.2 528 472 528C471.3 528 470.7 528 470 528C462.9 555.6 437.8 576 408 576L376 576C358.3 576 344 561.7 344 544L344 96C344 78.3 358.3 64 376 64L400 64C430.9 64 456 89.1 456 120z" stroke="#a78bfa" strokeWidth="14" fill="none"/>
+                  {/* Fill inside brain shape — drains from bottom */}
+                  <rect x="0" width="640" height="640" fill="#a78bfa" opacity="0.25" clipPath="url(#brainClip)" style={{ animation: "brainDrain 5s ease-in-out infinite" }}/>
                 </svg>
               </div>
               <div style={css.problemTitle}>On apprend, puis on oublie</div>
@@ -1252,7 +1249,7 @@ export default function LandingPageV4() {
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
                   <circle cx="12" cy="12" r="9" stroke="#a78bfa" strokeWidth="1.8"/>
                   <circle cx="12" cy="12" r="1.2" fill="#c4b5fd"/>
-                  <line x1="12" y1="12" x2="12" y2="6.5" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round" style={{ transformOrigin: "12px 12px", animation: "clockTick 10s linear infinite" }}/>
+                  <line x1="12" y1="12" x2="12" y2="6.5" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round" style={{ transformOrigin: "12px 12px", animation: "clockTick 20s linear infinite" }}/>
                   <line x1="12" y1="12" x2="16" y2="12" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round"/>
                   {[1,2,3,4,5,6,7,8,9,10,11,12].map(h => {
                     const a = (h * 30 - 90) * Math.PI / 180;
@@ -1270,10 +1267,10 @@ export default function LandingPageV4() {
               <div style={css.problemEmoji}>
                 {/* Target — outer ring always first, inner rings pop in, then all reset */}
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="10" stroke="#a78bfa" strokeWidth="1.8" style={{ animation: "ring1 3.5s steps(1) infinite" }}/>
-                  <circle cx="12" cy="12" r="6.5" stroke="#c4b5fd" strokeWidth="1.5" style={{ animation: "ring2 3.5s steps(1) infinite" }}/>
-                  <circle cx="12" cy="12" r="3" stroke="#a78bfa" strokeWidth="1.5" style={{ animation: "ring3 3.5s steps(1) infinite" }}/>
-                  <circle cx="12" cy="12" r="1.2" fill="#a78bfa" style={{ animation: "ring4 3.5s steps(1) infinite" }}/>
+                  <circle cx="12" cy="12" r="10" stroke="#a78bfa" strokeWidth="1.8" style={{ animation: "ring1 6s steps(1) infinite" }}/>
+                  <circle cx="12" cy="12" r="6.5" stroke="#c4b5fd" strokeWidth="1.5" style={{ animation: "ring2 6s steps(1) infinite" }}/>
+                  <circle cx="12" cy="12" r="3" stroke="#a78bfa" strokeWidth="1.5" style={{ animation: "ring3 6s steps(1) infinite" }}/>
+                  <circle cx="12" cy="12" r="1.2" fill="#a78bfa" style={{ animation: "ring4 6s steps(1) infinite" }}/>
                 </svg>
               </div>
               <div style={css.problemTitle}>Chaque enfant a son propre rythme</div>
