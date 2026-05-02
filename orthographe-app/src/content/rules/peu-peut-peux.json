@@ -3306,13 +3306,16 @@
       "explanation": "Adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q147"
@@ -3325,13 +3328,16 @@
       "explanation": "Adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q148"
@@ -3344,13 +3350,16 @@
       "explanation": "Adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q149"
@@ -3363,13 +3372,16 @@
       "explanation": "'peu d'espoir' : adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q150"
@@ -3382,13 +3394,16 @@
       "explanation": "Adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q151"
@@ -3401,13 +3416,16 @@
       "explanation": "Adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q152"
@@ -3420,13 +3438,16 @@
       "explanation": "Adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q153"
@@ -3439,13 +3460,16 @@
       "explanation": "Adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q154"
@@ -3458,13 +3482,16 @@
       "explanation": "'peu de chances' → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q155"
@@ -3477,13 +3504,16 @@
       "explanation": "Adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q156"
@@ -3496,13 +3526,16 @@
       "explanation": "Adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q157"
@@ -3515,13 +3548,16 @@
       "explanation": "'peu d'amis' : adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q158"
@@ -3534,13 +3570,16 @@
       "explanation": "Sujet 'il' impersonnel → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q159"
@@ -3553,13 +3592,16 @@
       "explanation": "Sujet 'mon frère' (3e pers. sing.) → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q160"
@@ -3572,13 +3614,16 @@
       "explanation": "Sujet 'ma sœur' (3e pers. sing.) → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q161"
@@ -3591,13 +3636,16 @@
       "explanation": "Sujet 'le vent' (3e pers. sing.) → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q162"
@@ -3610,13 +3658,16 @@
       "explanation": "Sujet 'ce livre' (3e pers. sing.) → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q163"
@@ -3629,13 +3680,16 @@
       "explanation": "Sujet 'il' → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q164"
@@ -3648,13 +3702,16 @@
       "explanation": "Sujet 'chaque enfant' (3e pers. sing.) → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q165"
@@ -3667,13 +3724,16 @@
       "explanation": "Sujet 'la science' (3e pers. sing.) → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q166"
@@ -3686,13 +3746,16 @@
       "explanation": "Sujet 'une petite erreur' (3e pers. sing.) → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q167"
@@ -3705,13 +3768,16 @@
       "explanation": "Sujet 'le résultat' (3e pers. sing.) → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q168"
@@ -3724,13 +3790,16 @@
       "explanation": "Sujet 'ce silence' (3e pers. sing.) → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q169"
@@ -3743,13 +3812,16 @@
       "explanation": "'peut-on' : inversion sujet → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q170"
@@ -3762,13 +3834,16 @@
       "explanation": "Sujet 'je' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q171"
@@ -3781,13 +3856,16 @@
       "explanation": "Sujet 'tu' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q172"
@@ -3800,13 +3878,16 @@
       "explanation": "Sujet 'je' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q173"
@@ -3819,13 +3900,16 @@
       "explanation": "Sujet 'tu' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q174"
@@ -3838,13 +3922,16 @@
       "explanation": "Sujet 'je' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q175"
@@ -3857,13 +3944,16 @@
       "explanation": "Sujet 'tu' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q176"
@@ -3876,13 +3966,16 @@
       "explanation": "Sujet 'je' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q177"
@@ -3895,13 +3988,16 @@
       "explanation": "Sujet 'tu' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q178"
@@ -3914,13 +4010,16 @@
       "explanation": "Sujet 'je' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q179"
@@ -3933,13 +4032,16 @@
       "explanation": "Sujet 'tu' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q180"
@@ -3952,13 +4054,16 @@
       "explanation": "Sujet 'je' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q181"
@@ -3971,13 +4076,16 @@
       "explanation": "Inversion : 'comment peux-tu' → sujet 'tu' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q182"
@@ -3990,13 +4098,16 @@
       "explanation": "'que puis-je' → registre courant : sujet 'je' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q183"
@@ -4009,13 +4120,16 @@
       "explanation": "Sujet 'je' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q184"
@@ -4028,13 +4142,16 @@
       "explanation": "Sujet 'tu' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q185"
@@ -4047,13 +4164,16 @@
       "explanation": "'il ne s'en faut de peu' : expression figée → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q186"
@@ -4066,13 +4186,16 @@
       "explanation": "'à peu de choses près' : expression figée → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q187"
@@ -4085,13 +4208,16 @@
       "explanation": "Adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q188"
@@ -4104,13 +4230,16 @@
       "explanation": "Adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q189"
@@ -4123,13 +4252,16 @@
       "explanation": "'peu d'eau' : adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q190"
@@ -4142,13 +4274,16 @@
       "explanation": "Adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q191"
@@ -4161,13 +4296,16 @@
       "explanation": "'dans peu de temps' : expression → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q192"
@@ -4180,13 +4318,16 @@
       "explanation": "Adverbe de quantité → peu.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q193"
@@ -4199,13 +4340,16 @@
       "explanation": "Sujet 'cet enfant' → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q194"
@@ -4218,13 +4362,16 @@
       "explanation": "Sujet 'le professeur' → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q195"
@@ -4237,13 +4384,16 @@
       "explanation": "Sujet 'l'ordinateur' → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q196"
@@ -4256,13 +4406,16 @@
       "explanation": "Sujet 'elle' → peut.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q197"
@@ -4275,13 +4428,16 @@
       "explanation": "Sujet 'je' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q198"
@@ -4294,13 +4450,16 @@
       "explanation": "Sujet 'tu' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q199"
@@ -4313,13 +4472,16 @@
       "explanation": "Sujet 'je' → peux.",
       "choices": [
         {
-          "id": "peu"
+          "id": "peu",
+          "label": "peu"
         },
         {
-          "id": "peut"
+          "id": "peut",
+          "label": "peut"
         },
         {
-          "id": "peux"
+          "id": "peux",
+          "label": "peux"
         }
       ],
       "id": "q200"

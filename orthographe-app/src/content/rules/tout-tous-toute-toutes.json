@@ -3607,16 +3607,20 @@
       "explanation": "'tout l'immeuble' : adj. masc. sing. → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q135"
@@ -3629,16 +3633,20 @@
       "explanation": "'tout l'été' : adj. masc. sing. → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q136"
@@ -3651,16 +3659,20 @@
       "explanation": "'tout son charme' : adj. masc. sing. → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q137"
@@ -3673,16 +3685,20 @@
       "explanation": "'tout le secteur' : adj. masc. sing. → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q138"
@@ -3695,16 +3711,20 @@
       "explanation": "'tout son génie' : adj. masc. sing. → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q139"
@@ -3717,16 +3737,20 @@
       "explanation": "'tout le quartier' : adj. masc. sing. → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q140"
@@ -3739,16 +3763,20 @@
       "explanation": "'tout son courage' : adj. masc. sing. → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q141"
@@ -3761,16 +3789,20 @@
       "explanation": "'tout ce travail' : adj. masc. sing. → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q142"
@@ -3783,16 +3815,20 @@
       "explanation": "'tout l'après-midi' : adj. masc. sing. → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q143"
@@ -3805,16 +3841,20 @@
       "explanation": "'tout l'art' : adj. masc. sing. → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q144"
@@ -3827,16 +3867,20 @@
       "explanation": "'tout de même' : locution adverbiale → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q145"
@@ -3849,16 +3893,20 @@
       "explanation": "'tout à l'heure' : locution adverbiale → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q146"
@@ -3871,16 +3919,20 @@
       "explanation": "'tout à coup' : locution adverbiale → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q147"
@@ -3893,16 +3945,20 @@
       "explanation": "'tout à fait' : locution adverbiale → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q148"
@@ -3915,16 +3971,20 @@
       "explanation": "'tout un chacun' : expression figée → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q149"
@@ -3937,16 +3997,20 @@
       "explanation": "'tous les soirs' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q150"
@@ -3959,16 +4023,20 @@
       "explanation": "'tous les mardis' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q151"
@@ -3981,16 +4049,20 @@
       "explanation": "Pronom masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q152"
@@ -4003,16 +4075,20 @@
       "explanation": "'tous ses efforts' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q153"
@@ -4025,16 +4101,20 @@
       "explanation": "'tous les spectateurs' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q154"
@@ -4047,16 +4127,20 @@
       "explanation": "Pronom masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q155"
@@ -4069,16 +4153,20 @@
       "explanation": "'tous les présidents' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q156"
@@ -4091,16 +4179,20 @@
       "explanation": "'tous les quartiers' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q157"
@@ -4113,16 +4205,20 @@
       "explanation": "'tous les artistes' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q158"
@@ -4135,16 +4231,20 @@
       "explanation": "'tous mes projets' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q159"
@@ -4157,16 +4257,20 @@
       "explanation": "'tous les hivers' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q160"
@@ -4179,16 +4283,20 @@
       "explanation": "'tous ces arguments' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q161"
@@ -4201,16 +4309,20 @@
       "explanation": "'tous les moyens' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q162"
@@ -4223,16 +4335,20 @@
       "explanation": "'tous les deux' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q163"
@@ -4245,16 +4361,20 @@
       "explanation": "'tous les repas' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q164"
@@ -4267,16 +4387,20 @@
       "explanation": "'toute l'histoire' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q165"
@@ -4289,16 +4413,20 @@
       "explanation": "'toute son énergie' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q166"
@@ -4311,16 +4439,20 @@
       "explanation": "'toute la soirée' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q167"
@@ -4333,16 +4465,20 @@
       "explanation": "'toute sa patience' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q168"
@@ -4355,16 +4491,20 @@
       "explanation": "'toute la forêt' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q169"
@@ -4377,16 +4517,20 @@
       "explanation": "'toute la troupe' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q170"
@@ -4399,16 +4543,20 @@
       "explanation": "'toute l'étendue' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q171"
@@ -4421,16 +4569,20 @@
       "explanation": "'toute sa carrière' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q172"
@@ -4443,16 +4595,20 @@
       "explanation": "'toute la planète' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q173"
@@ -4465,16 +4621,20 @@
       "explanation": "'toute la nation' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q174"
@@ -4487,16 +4647,20 @@
       "explanation": "'en toute logique' : locution → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q175"
@@ -4509,16 +4673,20 @@
       "explanation": "'toute la beauté' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q176"
@@ -4531,16 +4699,20 @@
       "explanation": "'toute la difficulté' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q177"
@@ -4553,16 +4725,20 @@
       "explanation": "'toute la communauté' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q178"
@@ -4575,16 +4751,20 @@
       "explanation": "'toute la durée' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q179"
@@ -4597,16 +4777,20 @@
       "explanation": "'toutes les nuits' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q180"
@@ -4619,16 +4803,20 @@
       "explanation": "'toutes ses affaires' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q181"
@@ -4641,16 +4829,20 @@
       "explanation": "'toutes les saisons' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q182"
@@ -4663,16 +4855,20 @@
       "explanation": "'toutes les équipes' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q183"
@@ -4685,16 +4881,20 @@
       "explanation": "Pronom fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q184"
@@ -4707,16 +4907,20 @@
       "explanation": "'toutes les pages' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q185"
@@ -4729,16 +4933,20 @@
       "explanation": "'toutes les décisions' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q186"
@@ -4751,16 +4959,20 @@
       "explanation": "'toutes ces années' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q187"
@@ -4773,16 +4985,20 @@
       "explanation": "'toutes les générations' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q188"
@@ -4795,16 +5011,20 @@
       "explanation": "'toutes ses propositions' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q189"
@@ -4817,16 +5037,20 @@
       "explanation": "'toutes les espèces' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q190"
@@ -4839,16 +5063,20 @@
       "explanation": "'toutes les villes' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q191"
@@ -4861,16 +5089,20 @@
       "explanation": "'toutes les matières' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q192"
@@ -4883,16 +5115,20 @@
       "explanation": "'tout son talent' : adj. masc. sing. → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q193"
@@ -4905,16 +5141,20 @@
       "explanation": "'tout le continent' : adj. masc. sing. → tout.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q194"
@@ -4927,16 +5167,20 @@
       "explanation": "'tous les deux' : adj. masc. plur. → tous.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q195"
@@ -4949,16 +5193,20 @@
       "explanation": "'toute son enfance' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q196"
@@ -4971,16 +5219,20 @@
       "explanation": "'toute l'œuvre' : adj. fém. sing. → toute.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q197"
@@ -4993,16 +5245,20 @@
       "explanation": "'toutes les disciplines' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q198"
@@ -5015,16 +5271,20 @@
       "explanation": "'toutes les révolutions' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q199"
@@ -5037,16 +5297,20 @@
       "explanation": "'toutes les semaines' : adj. fém. plur. → toutes.",
       "choices": [
         {
-          "id": "tout"
+          "id": "tout",
+          "label": "tout"
         },
         {
-          "id": "tous"
+          "id": "tous",
+          "label": "tous"
         },
         {
-          "id": "toute"
+          "id": "toute",
+          "label": "toute"
         },
         {
-          "id": "toutes"
+          "id": "toutes",
+          "label": "toutes"
         }
       ],
       "id": "q200"

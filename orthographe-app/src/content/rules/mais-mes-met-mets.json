@@ -3218,16 +3218,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q120"
@@ -3240,16 +3244,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q121"
@@ -3262,16 +3270,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q122"
@@ -3284,16 +3296,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q123"
@@ -3306,16 +3322,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q124"
@@ -3328,16 +3348,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q125"
@@ -3350,16 +3374,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q126"
@@ -3372,16 +3400,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q127"
@@ -3394,16 +3426,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q128"
@@ -3416,16 +3452,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q129"
@@ -3438,16 +3478,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q130"
@@ -3460,16 +3504,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q131"
@@ -3482,16 +3530,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q132"
@@ -3504,16 +3556,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q133"
@@ -3526,16 +3582,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q134"
@@ -3548,16 +3608,20 @@
       "explanation": "'non seulement... mais' → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q135"
@@ -3570,16 +3634,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q136"
@@ -3592,16 +3660,20 @@
       "explanation": "'certes... mais' : structure corrélative → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q137"
@@ -3614,16 +3686,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q138"
@@ -3636,16 +3712,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q139"
@@ -3658,16 +3738,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q140"
@@ -3680,16 +3764,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q141"
@@ -3702,16 +3790,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q142"
@@ -3724,16 +3816,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q143"
@@ -3746,16 +3842,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q144"
@@ -3768,16 +3868,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q145"
@@ -3790,16 +3894,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q146"
@@ -3812,16 +3920,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q147"
@@ -3834,16 +3946,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q148"
@@ -3856,16 +3972,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q149"
@@ -3878,16 +3998,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q150"
@@ -3900,16 +4024,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q151"
@@ -3922,16 +4050,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q152"
@@ -3944,16 +4076,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q153"
@@ -3966,16 +4102,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q154"
@@ -3988,16 +4128,20 @@
       "explanation": "Verbe mettre, sujet 'il' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q155"
@@ -4010,16 +4154,20 @@
       "explanation": "Verbe mettre, sujet 'le boulanger' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q156"
@@ -4032,16 +4180,20 @@
       "explanation": "Verbe mettre, sujet 'elle' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q157"
@@ -4054,16 +4206,20 @@
       "explanation": "'mettre en scène' : sujet 'il' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q158"
@@ -4076,16 +4232,20 @@
       "explanation": "Verbe mettre, sujet 'on' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q159"
@@ -4098,16 +4258,20 @@
       "explanation": "'mettre en place' : sujet 'le directeur' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q160"
@@ -4120,16 +4284,20 @@
       "explanation": "'mettre les formes' : sujet 'elle' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q161"
@@ -4142,16 +4310,20 @@
       "explanation": "Verbe mettre, sujet 'il' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q162"
@@ -4164,16 +4336,20 @@
       "explanation": "'mettre fin à' : sujet 'l'arbitre' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q163"
@@ -4186,16 +4362,20 @@
       "explanation": "Verbe mettre, sujet 'le soleil' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q164"
@@ -4208,16 +4388,20 @@
       "explanation": "Verbe mettre, sujet 'il' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q165"
@@ -4230,16 +4414,20 @@
       "explanation": "Verbe mettre, sujet 'elle' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q166"
@@ -4252,16 +4440,20 @@
       "explanation": "Verbe mettre, sujet 'le compositeur' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q167"
@@ -4274,16 +4466,20 @@
       "explanation": "Verbe mettre, sujet 'tu' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q168"
@@ -4296,16 +4492,20 @@
       "explanation": "'mettre en avant' : sujet 'je' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q169"
@@ -4318,16 +4518,20 @@
       "explanation": "Verbe mettre, sujet 'tu' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q170"
@@ -4340,16 +4544,20 @@
       "explanation": "Verbe mettre, sujet 'je' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q171"
@@ -4362,16 +4570,20 @@
       "explanation": "Verbe mettre, sujet 'tu' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q172"
@@ -4384,16 +4596,20 @@
       "explanation": "'mettre en pratique' : sujet 'je' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q173"
@@ -4406,16 +4622,20 @@
       "explanation": "Nom masculin pluriel (mets = plats) → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q174"
@@ -4428,16 +4648,20 @@
       "explanation": "Verbe mettre, sujet 'je' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q175"
@@ -4450,16 +4674,20 @@
       "explanation": "Verbe mettre, sujet 'tu' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q176"
@@ -4472,16 +4700,20 @@
       "explanation": "Verbe mettre, sujet 'je' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q177"
@@ -4494,16 +4726,20 @@
       "explanation": "'mettre en relief' : sujet 'tu' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q178"
@@ -4516,16 +4752,20 @@
       "explanation": "'mettre en œuvre' : sujet 'je' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q179"
@@ -4538,16 +4778,20 @@
       "explanation": "Verbe mettre, sujet 'tu' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q180"
@@ -4560,16 +4804,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q181"
@@ -4582,16 +4830,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q182"
@@ -4604,16 +4856,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q183"
@@ -4626,16 +4882,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q184"
@@ -4648,16 +4908,20 @@
       "explanation": "Conjonction d'opposition → mais.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q185"
@@ -4670,16 +4934,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q186"
@@ -4692,16 +4960,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q187"
@@ -4714,16 +4986,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q188"
@@ -4736,16 +5012,20 @@
       "explanation": "Déterminant possessif pluriel → mes.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q189"
@@ -4758,16 +5038,20 @@
       "explanation": "Verbe mettre, sujet 'l'entraîneur' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q190"
@@ -4780,16 +5064,20 @@
       "explanation": "Verbe mettre, sujet 'elle' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q191"
@@ -4802,16 +5090,20 @@
       "explanation": "Verbe mettre, sujet 'il' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q192"
@@ -4824,16 +5116,20 @@
       "explanation": "Verbe mettre, sujet 'le serveur' → met.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q193"
@@ -4846,16 +5142,20 @@
       "explanation": "Verbe mettre, sujet 'tu' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q194"
@@ -4868,16 +5168,20 @@
       "explanation": "'mettre un point d'honneur à' : sujet 'je' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q195"
@@ -4890,16 +5194,20 @@
       "explanation": "Verbe mettre, sujet 'je' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q196"
@@ -4912,16 +5220,20 @@
       "explanation": "Expression 'mettre les pieds dans le plat' : sujet 'tu' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q197"
@@ -4934,16 +5246,20 @@
       "explanation": "'mettre un bémol' : sujet 'je' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q198"
@@ -4956,16 +5272,20 @@
       "explanation": "Verbe mettre, sujet 'tu' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q199"
@@ -4978,16 +5298,20 @@
       "explanation": "Expression figée : sujet 'je' → mets.",
       "choices": [
         {
-          "id": "mais"
+          "id": "mais",
+          "label": "mais"
         },
         {
-          "id": "mes"
+          "id": "mes",
+          "label": "mes"
         },
         {
-          "id": "met"
+          "id": "met",
+          "label": "met"
         },
         {
-          "id": "mets"
+          "id": "mets",
+          "label": "mets"
         }
       ],
       "id": "q200"

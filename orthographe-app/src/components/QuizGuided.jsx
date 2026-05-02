@@ -180,7 +180,7 @@ export default function QuizGuided({
                     color: showResult ? (isCorrect ? '#4ade80' : '#f87171') : 'var(--color-accent)',
                     fontWeight: 700, padding: '0 4px',
                   }}>
-                    {selected ? choices.find(c => c.id === selected)?.label.replace('-', '') : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
+                    {selected ? (choices.find(c => c.id === selected)?.label || selected).replace('-', '') : '\u00a0\u00a0\u00a0\u00a0\u00a0\u00a0'}
                   </span>
                 </span>{question.after}</>
               : <><span style={{
