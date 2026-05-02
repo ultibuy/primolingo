@@ -1198,7 +1198,7 @@ export default function LandingPageV4() {
               Votre enfant fait toujours les <span style={css.heroHighlight}>mêmes fautes</span> de Français ?
             </h1>
             <p style={css.heroDesc}>
-              Les devoirs de Français, c'est souvent recopier 10 fois le même mot ou la même règle — pénible, et oublié dès le contrôle passé. <strong>PrimoLinguo</strong> remplace cette répétition mécanique par un système de révision adaptative : l'app détecte ce que votre enfant oublie et le lui repropose au bon moment. Résultat : les règles restent, durablement.
+              Les devoirs de Français, c'est souvent recopier 10 fois le même mot ou la même règle — pénible, et oublié dès le contrôle passé. <strong style={{ color: "#a78bfa" }}>PrimoLinguo</strong> remplace cette répétition mécanique par un système de révision adaptative : l'app détecte ce que votre enfant oublie et le lui repropose au bon moment. Résultat : les règles restent, durablement.
             </p>
             <button style={css.heroCta} onClick={() => navigate('/login')}>
               Créer un compte gratuit →
