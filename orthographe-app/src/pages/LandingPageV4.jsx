@@ -1136,13 +1136,12 @@ export default function LandingPageV4() {
             .oq-dictee-card { grid-template-columns: 1fr !important; }
           }
           /* Problem card icon animations */
-          /* Brain fill drains from top: inset(X% 0 0 0) hides from top.
-             Starts full (0%), empties (100%), refills (0%) */
+          /* Brain: full → drains slowly → instant refill → drains again */
           @keyframes brainDrain {
-            0%   { clip-path: inset(0% 0 0 0); }
-            45%  { clip-path: inset(100% 0 0 0); }
-            55%  { clip-path: inset(100% 0 0 0); }
-            100% { clip-path: inset(0% 0 0 0); }
+            0%        { clip-path: inset(0% 0 0 0); }
+            80%       { clip-path: inset(100% 0 0 0); }
+            80.01%    { clip-path: inset(0% 0 0 0); }
+            100%      { clip-path: inset(0% 0 0 0); }
           }
           @keyframes clockTick {
             from { transform: rotate(0deg); }
