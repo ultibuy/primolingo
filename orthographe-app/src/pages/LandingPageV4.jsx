@@ -1133,19 +1133,19 @@ export default function LandingPageV4() {
           }
           /* Problem card icon animations */
           @keyframes brainDrain {
-            0%, 10% { clip-path: inset(50% 0 0 0); opacity: 0.9; }
-            50%, 60% { clip-path: inset(100% 0 0 0); opacity: 0.3; }
-            100% { clip-path: inset(50% 0 0 0); opacity: 0.9; }
+            0% { clip-path: inset(50% 0 0 0); }
+            45% { clip-path: inset(100% 0 0 0); }
+            55% { clip-path: inset(0% 0 0 0); }
+            100% { clip-path: inset(50% 0 0 0); }
           }
           @keyframes clockTick {
-            0%, 40% { transform: rotate(0deg); }
-            50%, 70% { transform: rotate(30deg); }
-            80%, 100% { transform: rotate(0deg); }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
           }
           @keyframes ringAppear {
-            0%, 5% { opacity: 0; transform: scale(0.7); }
-            15%, 65% { opacity: 1; transform: scale(1); }
-            80%, 100% { opacity: 0; transform: scale(1.05); }
+            0%, 5% { opacity: 0; }
+            10%, 65% { opacity: 1; }
+            80%, 100% { opacity: 0; }
           }
         `}</style>
 
@@ -1204,22 +1204,22 @@ export default function LandingPageV4() {
           <div style={css.problemGrid}>
             <div style={css.problemCard}>
               <div style={css.problemEmoji}>
-                {/* Brain with drain/refill animation */}
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                  {/* Left hemisphere */}
-                  <path d="M12 2.5C10 2.5 8.2 3.5 7 5c-1.2 1.5-2 3.5-2 5.5 0 1.5.5 2.8 1.3 3.8.5.6.7 1.2.7 1.9V20h5V2.5z" stroke="#a78bfa" strokeWidth="1.6" strokeLinejoin="round"/>
-                  {/* Right hemisphere */}
-                  <path d="M12 2.5c2 0 3.8 1 5 2.5 1.2 1.5 2 3.5 2 5.5 0 1.5-.5 2.8-1.3 3.8-.5.6-.7 1.2-.7 1.9V20h-5V2.5z" stroke="#c4b5fd" strokeWidth="1.6" strokeLinejoin="round"/>
-                  {/* Brain folds */}
-                  <path d="M8 8c1.5.5 2.5 1.5 4 1.5M8 11.5c1 .3 2 .8 4 .3" stroke="#a78bfa" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
-                  <path d="M16 8c-1.5.5-2.5 1.5-4 1.5M16 11.5c-1 .3-2 .8-4 .3" stroke="#c4b5fd" strokeWidth="1" strokeLinecap="round" opacity="0.6"/>
-                  {/* Fill level that drains and refills */}
-                  <clipPath id="brainClip">
-                    <path d="M7 5c-1.2 1.5-2 3.5-2 5.5 0 1.5.5 2.8 1.3 3.8.5.6.7 1.2.7 1.9V20h10v-3.8c0-.7.2-1.3.7-1.9.8-1 1.3-2.3 1.3-3.8 0-2-0.8-4-2-5.5-1.2-1.5-3-2.5-5-2.5s-3.8 1-5 2.5z"/>
+                {/* Child head silhouette with brain — fill drains and refills */}
+                <svg width="42" height="42" viewBox="0 0 40 40" fill="none">
+                  {/* Head silhouette */}
+                  <path d="M20 3c-7 0-12 5-12 11.5 0 3 1 5.5 2.5 7.5l-0.5 3c0 1 .5 2 1.5 2.5l1.5.8v3.2c0 1.5 1.2 2.5 2.5 2.5h9c1.3 0 2.5-1 2.5-2.5v-3.2l1.5-.8c1-.5 1.5-1.5 1.5-2.5l-0.5-3C30 19 31 16.5 31 14 31 8 26.5 3 20 3z" stroke="#a78bfa" strokeWidth="1.5" fill="none"/>
+                  {/* Brain bumps (inside head, upper area) */}
+                  <path d="M14 11c0-2 1.5-4 3.5-4 1 0 1.8.5 2.5 1.2.7-.7 1.5-1.2 2.5-1.2 2 0 3.5 2 3.5 4" stroke="#c4b5fd" strokeWidth="1.3" strokeLinecap="round" fill="none"/>
+                  <path d="M13 13.5c0-1.5 1.2-3 3-3s3 1 3 2.5" stroke="#c4b5fd" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
+                  <path d="M21 13c0-1.5 1.2-2.5 3-2.5s3 1.5 3 3" stroke="#c4b5fd" strokeWidth="1.2" strokeLinecap="round" fill="none"/>
+                  <path d="M15 16c.5-1 1.5-1.5 2.5-1.5 1.2 0 2 .8 2.5 1.5.5-.7 1.3-1.5 2.5-1.5 1 0 2 .5 2.5 1.5" stroke="#c4b5fd" strokeWidth="1.1" strokeLinecap="round" fill="none"/>
+                  {/* Center line */}
+                  <line x1="20" y1="7" x2="20" y2="18" stroke="#a78bfa" strokeWidth="0.8" opacity="0.4"/>
+                  {/* Fill that drains (clipped to head shape) */}
+                  <clipPath id="headClip">
+                    <path d="M20 3c-7 0-12 5-12 11.5 0 3 1 5.5 2.5 7.5l-0.5 3c0 1 .5 2 1.5 2.5l1.5.8v3.2c0 1.5 1.2 2.5 2.5 2.5h9c1.3 0 2.5-1 2.5-2.5v-3.2l1.5-.8c1-.5 1.5-1.5 1.5-2.5l-0.5-3C30 19 31 16.5 31 14 31 8 26.5 3 20 3z"/>
                   </clipPath>
-                  <rect x="5" y="2" width="14" height="18" fill="#a78bfa" opacity="0.25" clipPath="url(#brainClip)" style={{ animation: "brainDrain 3s ease-in-out infinite" }}/>
-                  {/* Stem */}
-                  <path d="M10 20v1.5h4V20" stroke="#a78bfa" strokeWidth="1.4" strokeLinecap="round"/>
+                  <rect x="8" y="0" width="24" height="40" fill="#a78bfa" opacity="0.2" clipPath="url(#headClip)" style={{ animation: "brainDrain 4s ease-in-out infinite" }}/>
                 </svg>
               </div>
               <div style={css.problemTitle}>On apprend, puis on oublie</div>
@@ -1234,7 +1234,7 @@ export default function LandingPageV4() {
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
                   <circle cx="12" cy="12" r="9" stroke="#a78bfa" strokeWidth="1.8"/>
                   <circle cx="12" cy="12" r="1.2" fill="#c4b5fd"/>
-                  <line x1="12" y1="12" x2="12" y2="6.5" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round" style={{ transformOrigin: "12px 12px", animation: "clockTick 2.5s ease-in-out infinite" }}/>
+                  <line x1="12" y1="12" x2="12" y2="6.5" stroke="#c4b5fd" strokeWidth="1.8" strokeLinecap="round" style={{ transformOrigin: "12px 12px", animation: "clockTick 4s linear infinite" }}/>
                   <line x1="12" y1="12" x2="16" y2="12" stroke="#a78bfa" strokeWidth="1.5" strokeLinecap="round"/>
                   {[1,2,3,4,5,6,7,8,9,10,11,12].map(h => {
                     const a = (h * 30 - 90) * Math.PI / 180;
@@ -1250,12 +1250,12 @@ export default function LandingPageV4() {
             </div>
             <div style={css.problemCard}>
               <div style={css.problemEmoji}>
-                {/* Target — circles appear one by one then fade and restart */}
+                {/* Target — circles pop in one by one (instant, no movement) then fade */}
                 <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
-                  <circle cx="12" cy="12" r="10" stroke="#a78bfa" strokeWidth="1.8" style={{ animation: "ringAppear 3s ease-in-out infinite", animationDelay: "0s" }}/>
-                  <circle cx="12" cy="12" r="6.5" stroke="#c4b5fd" strokeWidth="1.5" style={{ animation: "ringAppear 3s ease-in-out infinite", animationDelay: "0.5s" }}/>
-                  <circle cx="12" cy="12" r="3" stroke="#a78bfa" strokeWidth="1.5" style={{ animation: "ringAppear 3s ease-in-out infinite", animationDelay: "1s" }}/>
-                  <circle cx="12" cy="12" r="1.2" fill="#a78bfa" style={{ animation: "ringAppear 3s ease-in-out infinite", animationDelay: "1.5s" }}/>
+                  <circle cx="12" cy="12" r="10" stroke="#a78bfa" strokeWidth="1.8" style={{ animation: "ringAppear 3.5s steps(1) infinite", animationDelay: "0s" }}/>
+                  <circle cx="12" cy="12" r="6.5" stroke="#c4b5fd" strokeWidth="1.5" style={{ animation: "ringAppear 3.5s steps(1) infinite", animationDelay: "0.4s" }}/>
+                  <circle cx="12" cy="12" r="3" stroke="#a78bfa" strokeWidth="1.5" style={{ animation: "ringAppear 3.5s steps(1) infinite", animationDelay: "0.8s" }}/>
+                  <circle cx="12" cy="12" r="1.2" fill="#a78bfa" style={{ animation: "ringAppear 3.5s steps(1) infinite", animationDelay: "1.2s" }}/>
                 </svg>
               </div>
               <div style={css.problemTitle}>Chaque enfant a son propre rythme</div>
