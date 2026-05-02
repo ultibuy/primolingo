@@ -1104,6 +1104,9 @@ export default function LandingPageV4() {
     "son / sont",
     "on / ont / on n'",
     "leur / leurs",
+    "tout / tous / toute / toutes",
+    "peu / peut / peux",
+    "mais / mes / met / mets",
     // Pluriels
     "pluriel des noms et adjectifs",
     "pluriel en -al / -ou",
@@ -1736,7 +1739,7 @@ export default function LandingPageV4() {
         {/* ─── RULES COVERED ─── */}
         <section style={css.section} className="oq-section" data-section="program">
           <div style={css.sectionLabel}>Le programme</div>
-          <h2 style={css.sectionTitle}>17 règles qui couvrent l'essentiel des fautes courantes</h2>
+          <h2 style={css.sectionTitle}>20 règles qui couvrent l'essentiel des fautes courantes</h2>
           <p style={css.sectionSubtitle}>
             Chaque règle contient un pool de 200 questions qui tournent pour éviter la répétition, des fiches mémo,
             et un arbre de décision pour apprendre à raisonner.
@@ -1752,7 +1755,7 @@ export default function LandingPageV4() {
           </div>
 
           <p style={{ textAlign: "center", marginTop: 20, fontSize: 14, color: T.textMuted }}>
-            Plus de <Counter end={3300} suffix="" /> questions · 13 dictées · 600+ mots
+            Plus de <Counter end={4100} suffix="" /> questions · 13 dictées · 600+ mots
           </p>
         </section>
 
@@ -1762,8 +1765,8 @@ export default function LandingPageV4() {
         <section style={css.section} className="oq-section" data-section="stats">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 24, textAlign: "center" }} className="oq-four-col">
             {[
-              { value: 17, suffix: "", label: "règles d'orthographe" },
-              { value: 3300, suffix: "+", label: "questions uniques" },
+              { value: 20, suffix: "", label: "règles d'orthographe" },
+              { value: 4100, suffix: "+", label: "questions uniques" },
               { value: 10, suffix: " min", label: "par jour suffisent" },
               { value: 100, suffix: "%", label: "gratuit" },
             ].map((s, i) => (

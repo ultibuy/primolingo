@@ -1,0 +1,4996 @@
+{
+  "id": "mais-mes-met-mets",
+  "title": "mais · mes · met · mets",
+  "shortTitle": "mais / mes / met / mets",
+  "description": "Distinguer la conjonction 'mais', le possessif 'mes' et les formes du verbe 'mettre' (met, mets).",
+  "choices": [
+    {
+      "id": "mais",
+      "label": "mais"
+    },
+    {
+      "id": "mes",
+      "label": "mes"
+    },
+    {
+      "id": "met",
+      "label": "met"
+    },
+    {
+      "id": "mets",
+      "label": "mets"
+    }
+  ],
+  "decisionAxes": [
+    {
+      "id": "opposition",
+      "question": "Peut-on remplacer par 'cependant' ou 'pourtant' ?",
+      "options": [
+        {
+          "value": true,
+          "label": "Oui",
+          "eliminates": [
+            "mes",
+            "met",
+            "mets"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non",
+          "eliminates": [
+            "mais"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "possessif",
+      "question": "Peut-on remplacer par 'tes' ?",
+      "dependsOn": "opposition",
+      "showWhen": false,
+      "options": [
+        {
+          "value": true,
+          "label": "Oui",
+          "eliminates": [
+            "met",
+            "mets"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non",
+          "eliminates": [
+            "mes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sujet-verbe",
+      "question": "Le sujet est-il 'je' ou 'tu' ?",
+      "dependsOn": "possessif",
+      "showWhen": false,
+      "options": [
+        {
+          "value": true,
+          "label": "Oui (je / tu)",
+          "eliminates": [
+            "met"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non (il / elle / on…)",
+          "eliminates": [
+            "mets"
+          ]
+        }
+      ]
+    }
+  ],
+  "memoCard": {
+    "title": "mais · mes · met · mets",
+    "rows": [
+      {
+        "form": "mais",
+        "test": "Remplaçable par 'cependant'",
+        "example": "Il est fatigué, mais il continue."
+      },
+      {
+        "form": "mes",
+        "test": "Remplaçable par 'tes'",
+        "example": "Mes amis sont là."
+      },
+      {
+        "form": "met",
+        "test": "Verbe mettre, sujet il/elle/on",
+        "example": "Elle met la table."
+      },
+      {
+        "form": "mets",
+        "test": "Verbe mettre, sujet je/tu — ou nom pluriel (les mets)",
+        "example": "Je mets du sel. / Ces mets sont délicieux."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "before": "Le trek en montagne était difficile,",
+      "after": "vraiment inoubliable.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition : l'effort (difficile) s'oppose au résultat positif (inoubliable).",
+      "id": "q001",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "J'ai préparé",
+      "after": "affaires depuis deux jours pour ce voyage.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel : les affaires qui m'appartiennent. Peut se remplacer par 'tes'.",
+      "id": "q002",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Elle",
+      "after": "son sac à dos avant de partir en randonnée.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "Verbe mettre à la 3e personne du singulier : elle effectue l'action de mettre.",
+      "id": "q003",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": "toujours ma boussole dans ma poche lors des expéditions.",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre à la 1ère personne du singulier : je effectue l'action habituelle.",
+      "id": "q004",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "La découverte de cette île était spectaculaire,",
+      "after": "accessible seulement en bateau.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Opposition entre la beauté du lieu (spectaculaire) et la difficulté d'accès (accessible seulement).",
+      "id": "q005",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Pendant",
+      "after": "vacances, j'ai visité trois pays différents.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Possessif pluriel : les vacances qui m'appartiennent. Remplaçable par 'tes'.",
+      "id": "q006",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Le guide",
+      "after": "en évidence les constellations dans le ciel désertique.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre à la 3e personne : le guide effectue cette action de montrer.",
+      "id": "q007",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Nous",
+      "after": "régulièrement nos tentes dans les endroits les plus reculés.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "Verbe mettre à la 1ère personne du pluriel inclus : action qu'on fait ensemble.",
+      "id": "q008",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "L'aventure en jungle était périlleuse,",
+      "after": "riche d'apprentissages.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Opposition entre le danger (périlleuse) et la valeur pédagogique (riche d'apprentissages).",
+      "id": "q009",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Tous",
+      "after": "souvenirs de voyage dans cet album photo.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Possessif pluriel : les souvenirs qui m'appartiennent.",
+      "id": "q010",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "L'archéologue",
+      "after": "en lumière les artefacts découverts dans les ruines.",
+      "answer": "met",
+      "difficulty": 3,
+      "explanation": "Verbe mettre à la 3e personne, sens figuré : révéler, exposer l'importance des artefacts.",
+      "id": "q011",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Lors de chaque expédition, je",
+      "after": "un soin particulier à documenter chaque moment.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "Verbe mettre à la 1ère personne : apporter du soin à la documentation.",
+      "id": "q012",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "La traversée du désert était harassante,",
+      "after": "elle nous a forgés en tant que groupe.",
+      "answer": "mais",
+      "difficulty": 3,
+      "explanation": "Opposition forte : l'épreuve (harassante) crée une cohésion (groupe uni).",
+      "id": "q013",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Pendant",
+      "after": "expéditions, j'oublie toujours quelque chose.",
+      "answer": "mes",
+      "difficulty": 3,
+      "explanation": "Possessif pluriel pour les expéditions multiples qui m'appartiennent.",
+      "id": "q014",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Le cartographe",
+      "after": "en évidence les chemins secrets entre les montagnes.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre 3e personne : rendre visible, montrer l'importance de ces chemins.",
+      "id": "q015",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Chaque matin, tu",
+      "after": "ton casque d'exploration pour continuer l'aventure.",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre à la 2e personne du singulier : tu effectues cette action.",
+      "id": "q016",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "La route côtière était sinueuse,",
+      "after": "elle offrait des vues panoramiques extraordinaires.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Opposition entre la difficulté du trajet (sinueuse) et sa beauté (vues extraordinaires).",
+      "id": "q017",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Rangez bien",
+      "after": "passeports à la douane.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Possessif pluriel : les passeports qui m'appartiennent. Peut être remplacé par 'tes'.",
+      "id": "q018",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Le voyageur expérimenté",
+      "after": "toujours sa priorité sur la sécurité de l'équipe.",
+      "answer": "met",
+      "difficulty": 3,
+      "explanation": "Verbe mettre à la 3e personne, sens figuré : établir comme priorité.",
+      "id": "q019",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Au début du voyage, tu",
+      "after": "en ordre tous tes documents de voyage.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "Verbe mettre à la 2e personne : tu organises tes papiers avant de partir.",
+      "id": "q020",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q021",
+      "before": "Il",
+      "after": " fin à cette discussion une fois pour toutes.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Sujet 'il' (3e pers. sing.) → 'met' (verbe mettre au présent).",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q022",
+      "before": "Parmi",
+      "after": " souvenirs, celui-là est le plus précieux.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Déterminant possessif pluriel pour 'souvenirs' → 'mes'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q023",
+      "before": "Je",
+      "after": " de côté des économies pour le voyage.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "Sujet 'je' (1ère pers.) → 'mets' (verbe mettre au présent).",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q024",
+      "before": "Il ne sourit pas,",
+      "after": " sa voix est douce et rassurante.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition reliant deux propositions → 'mais'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q025",
+      "before": "Tu",
+      "after": " en avant tes talents lors de l'entretien.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "Sujet 'tu' (2e pers.) → 'mets' (verbe mettre au présent).",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q026",
+      "before": "Elle",
+      "after": " en place une nouvelle stratégie pour l'équipe.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Sujet 'elle' (3e pers. sing.) → 'met' (locution 'met en place').",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q027",
+      "before": "Tous",
+      "after": " amis sont venus à la fête samedi.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Possessif pluriel avant 'amis' → 'mes'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q028",
+      "before": "Il rêvait d'aventure,",
+      "after": " il avait trop peur de partir.",
+      "answer": "mais",
+      "difficulty": 3,
+      "explanation": "Conjonction exprimant un contraste entre le rêve et la réalité → 'mais'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q029",
+      "before": "Je",
+      "after": " en doute tout ce qu'on me dit.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "Sujet 'je' (1ère pers.) + locution 'mets en doute' → 'mets'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q030",
+      "before": "Il",
+      "after": " en avant ses compétences sans arrogance.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Sujet 'il' (3e pers.) + locution 'met en avant' → 'met'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q031",
+      "before": "Non",
+      "after": " encore, ce n'est pas fini !",
+      "answer": "mais",
+      "difficulty": 3,
+      "explanation": "Locution figée 'non mais' pour exprimer l'étonnement ou l'objection → 'mais'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q032",
+      "before": "Parmi",
+      "after": " affaires, je n'ai rien trouvé d'important.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Possessif pluriel pour 'affaires' → 'mes'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q033",
+      "before": "Tu",
+      "after": " fin à cette mauvaise habitude aujourd'hui.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "Sujet 'tu' (2e pers.) + locution 'mets fin à' → 'mets'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q034",
+      "before": "C'est difficile,",
+      "after": " c'est possible avec de la volonté.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction de concession reliant deux idées opposées → 'mais'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q035",
+      "before": "Elle",
+      "after": " du temps avant de prendre sa décision.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Sujet 'elle' (3e pers. sing.) + locution 'met du temps' → 'met'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q036",
+      "before": "Tous",
+      "after": " projets ont échoué, bel et bien",
+      "answer": "mes",
+      "difficulty": 3,
+      "explanation": "Possessif pluriel pour 'projets' → 'mes' (avant une locution figée).",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q037",
+      "before": "Il y a beaucoup de travail,",
+      "after": " on avance peu à peu.",
+      "answer": "mais",
+      "difficulty": 3,
+      "explanation": "Conjonction marquant un contraste entre l'obstacle et la persévérance → 'mais'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q038",
+      "before": "Je",
+      "after": " tout en jeu pour cette opportunité.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "Sujet 'je' (1ère pers.) + locution 'mets tout en jeu' → 'mets'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q039",
+      "before": "L'erreur était grave,",
+      "after": " c'était une vraie leçon.",
+      "answer": "mais",
+      "difficulty": 3,
+      "explanation": "Conjonction d'opposition pour exprimer une nuance positive malgré le problème → 'mais'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "id": "q040",
+      "before": "Tous",
+      "after": " efforts ont porté leurs fruits.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Possessif pluriel pour 'efforts' → 'mes'.",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il est fatigué,",
+      "after": " il continue à travailler.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition (remplaçable par 'cependant') → mais.",
+      "id": "q041",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "C'est loin,",
+      "after": " ça vaut le détour.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q042",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il pleut,",
+      "after": " je sors quand même.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q043",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Elle est sévère,",
+      "after": " juste.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q044",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "C'est cher,",
+      "after": " de bonne qualité.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q045",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Non seulement il chante,",
+      "after": " il joue aussi.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "'non seulement... mais' : locution corrélative → mais.",
+      "id": "q046",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il n'est pas grand,",
+      "after": " il est fort.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q047",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il a essayé,",
+      "after": " n'a pas réussi cette fois.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q048",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "C'est un rêve,",
+      "after": " il faut y croire.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q049",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il sait conduire,",
+      "after": " n'a pas le permis.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q050",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "La recette est simple,",
+      "after": " longue à préparer.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q051",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Non",
+      "after": " si, je te jure !",
+      "answer": "mais",
+      "difficulty": 3,
+      "explanation": "'non mais' : expression d'indignation → mais.",
+      "id": "q052",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "C'est beau,",
+      "after": " je n'ai pas les moyens.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q053",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je voulais venir,",
+      "after": " j'étais malade.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q054",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il est intelligent,",
+      "after": " paresseux.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q055",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " amis sont venus me rendre visite.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel (remplaçable par 'tes') → mes.",
+      "id": "q056",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "J'ai perdu",
+      "after": " clés ce matin.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q057",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " parents habitent à Lyon.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q058",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "J'ai rangé",
+      "after": " affaires dans l'armoire.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q059",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " vacances se passent très bien.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q060",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je prépare",
+      "after": " bagages pour demain.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q061",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " collègues sont très sympathiques.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q062",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " efforts ont finalement payé.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q063",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je présente",
+      "after": " excuses pour ce retard.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q064",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " chaussures sont trempées.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q065",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "J'ai oublié",
+      "after": " lunettes chez moi.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q066",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " projets avancent bien.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q067",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je note",
+      "after": " idées dans un carnet.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q068",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Tous",
+      "after": " amis étaient là pour fêter ça.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q069",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il",
+      "after": " son manteau avant de sortir.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, 3e pers. sing. (sujet 'il') → met.",
+      "id": "q070",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Elle",
+      "after": " la table pour six personnes.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'elle' → met.",
+      "id": "q071",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il",
+      "after": " du sel dans la soupe.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'il' → met.",
+      "id": "q072",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "On",
+      "after": " du temps à comprendre parfois.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'on' → met.",
+      "id": "q073",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Le professeur",
+      "after": " les élèves en groupe.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'le professeur' → met.",
+      "id": "q074",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Elle",
+      "after": " en doute tout ce qu'on lui dit.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "'mettre en doute' : verbe mettre, sujet 'elle' → met.",
+      "id": "q075",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il",
+      "after": " fin à la réunion à dix-huit heures.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "'mettre fin à' : verbe mettre, sujet 'il' → met.",
+      "id": "q076",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Le soleil",
+      "after": " longtemps à se coucher l'été.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'le soleil' → met.",
+      "id": "q077",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il",
+      "after": " tout en œuvre pour réussir.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "'mettre en œuvre' : verbe mettre, sujet 'il' → met.",
+      "id": "q078",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Le cuisinier",
+      "after": " le plat au four.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'le cuisinier' → met.",
+      "id": "q079",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Elle",
+      "after": " de la musique pour se détendre.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'elle' → met.",
+      "id": "q080",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il",
+      "after": " son téléphone en mode silencieux.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'il' → met.",
+      "id": "q081",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Le jardinier",
+      "after": " les graines en terre au printemps.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'le jardinier' → met.",
+      "id": "q082",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "La directrice",
+      "after": " en avant les compétences de son équipe.",
+      "answer": "met",
+      "difficulty": 3,
+      "explanation": "'mettre en avant' : verbe mettre, sujet 'la directrice' → met.",
+      "id": "q083",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il",
+      "after": " en place un nouveau système.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "'mettre en place' : verbe mettre, sujet 'il' → met.",
+      "id": "q084",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " la table chaque soir.",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, 1ère pers. sing. (sujet 'je') → mets.",
+      "id": "q085",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " ton casque quand tu fais du vélo ?",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, 2ème pers. sing. (sujet 'tu') → mets.",
+      "id": "q086",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " du beurre sur les tartines du matin.",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'je' → mets.",
+      "id": "q087",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " trop de sel dans les plats.",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'tu' → mets.",
+      "id": "q088",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " toujours mon réveil la veille.",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'je' → mets.",
+      "id": "q089",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " du temps à te décider.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'tu' → mets.",
+      "id": "q090",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " mon manteau, il fait froid.",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'je' → mets.",
+      "id": "q091",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " souvent en cause les décisions de l'équipe.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "'mettre en cause' : verbe mettre, sujet 'tu' → mets.",
+      "id": "q092",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " tout en jeu pour réussir ce projet.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "'mettre en jeu' : verbe mettre, sujet 'je' → mets.",
+      "id": "q093",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Ces",
+      "after": " raffinés sont servis à chaque repas.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "Nom masculin pluriel (mets = plats) → mets.",
+      "id": "q094",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Les",
+      "after": " de la cuisine française sont réputés dans le monde entier.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "Nom masculin pluriel → mets.",
+      "id": "q095",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " en copie ma responsable pour ce mail.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "'mettre en copie' : verbe mettre, sujet 'je' → mets.",
+      "id": "q096",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " de côté une partie de tes économies ?",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "'mettre de côté' : verbe mettre, sujet 'tu' → mets.",
+      "id": "q097",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " les chaussures de sport avant de sortir.",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'je' → mets.",
+      "id": "q098",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " la voiture au garage ce soir ?",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'tu' → mets.",
+      "id": "q099",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Ce tissu est beau,",
+      "after": " fragile.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q100",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " en avant la créativité de chacun.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "'mettre en avant' : verbe mettre, sujet 'je' → mets.",
+      "id": "q101",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " résultats m'ont surpris.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q102",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Le chef",
+      "after": " les herbes aromatiques en fin de cuisson.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'le chef' → met.",
+      "id": "q103",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Tu veux bien,",
+      "after": " tu sembles hésiter.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q104",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " en garde contre ce genre de situation.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "'mettre en garde' : verbe mettre, sujet 'je' → mets.",
+      "id": "q105",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " enfants adorent jouer dehors.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q106",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il",
+      "after": " fin aux rumeurs par un communiqué.",
+      "answer": "met",
+      "difficulty": 3,
+      "explanation": "'mettre fin à' : sujet 'il' → met.",
+      "id": "q107",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je suis occupé,",
+      "after": " je peux t'aider brièvement.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q108",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " les petits plats dans les grands pour cette fête.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "Expression 'mettre les petits plats dans les grands' : sujet 'tu' → mets.",
+      "id": "q109",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " notes sont bonnes ce trimestre.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q110",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Le mécanicien",
+      "after": " la voiture sur le pont.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'le mécanicien' → met.",
+      "id": "q111",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "C'est difficile,",
+      "after": " pas impossible.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q112",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " en doute ses paroles.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "'mettre en doute' : sujet 'je' → mets.",
+      "id": "q113",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " livres sont tous lus.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q114",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Elle",
+      "after": " ses lunettes pour lire.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'elle' → met.",
+      "id": "q115",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Je voulais rester,",
+      "after": " le temps me manquait.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition → mais.",
+      "id": "q116",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " combien de temps pour aller au bureau ?",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'tu' → mets.",
+      "id": "q117",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " pieds me font mal après cette randonnée.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "id": "q118",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Le médecin",
+      "after": " en place un suivi régulier.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "'mettre en place' : sujet 'le médecin' → met.",
+      "id": "q119",
+      "choices": [
+        {
+          "id": "mais",
+          "label": "mais"
+        },
+        {
+          "id": "mes",
+          "label": "mes"
+        },
+        {
+          "id": "met",
+          "label": "met"
+        },
+        {
+          "id": "mets",
+          "label": "mets"
+        }
+      ]
+    },
+    {
+      "before": "Il est pressé,",
+      "after": " prend le temps de dire bonjour.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q120"
+    },
+    {
+      "before": "La tâche est difficile,",
+      "after": " possible.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q121"
+    },
+    {
+      "before": "Il fait froid,",
+      "after": " le soleil brille.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q122"
+    },
+    {
+      "before": "Elle est timide,",
+      "after": " très courageuse.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q123"
+    },
+    {
+      "before": "Je voulais appeler,",
+      "after": " j'ai oublié.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q124"
+    },
+    {
+      "before": "Ce n'est pas facile,",
+      "after": " tu y arriveras.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q125"
+    },
+    {
+      "before": "Le film est long,",
+      "after": " captivant.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q126"
+    },
+    {
+      "before": "Elle mange peu,",
+      "after": " mange bien.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q127"
+    },
+    {
+      "before": "Il ne parle pas fort,",
+      "after": " s'exprime clairement.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q128"
+    },
+    {
+      "before": "C'est risqué,",
+      "after": " ça vaut le coup.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q129"
+    },
+    {
+      "before": "Elle est lente,",
+      "after": " fiable.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q130"
+    },
+    {
+      "before": "Il a peu d'expérience,",
+      "after": " beaucoup de motivation.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q131"
+    },
+    {
+      "before": "Le trajet est court,",
+      "after": " agréable.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q132"
+    },
+    {
+      "before": "Ce n'est pas ce que je voulais,",
+      "after": " ça ira.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q133"
+    },
+    {
+      "before": "Je suis fatigué,",
+      "after": " je continue.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q134"
+    },
+    {
+      "before": "Non seulement c'est beau,",
+      "after": " c'est aussi utile.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "'non seulement... mais' → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q135"
+    },
+    {
+      "before": "La solution est simple,",
+      "after": " efficace.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q136"
+    },
+    {
+      "before": "Certes c'est long,",
+      "after": " nécessaire.",
+      "answer": "mais",
+      "difficulty": 3,
+      "explanation": "'certes... mais' : structure corrélative → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q137"
+    },
+    {
+      "before": "Il est absent,",
+      "after": " joignable par téléphone.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q138"
+    },
+    {
+      "before": "C'est une bonne idée,",
+      "after": " coûteuse.",
+      "answer": "mais",
+      "difficulty": 2,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q139"
+    },
+    {
+      "before": "J'ai oublié",
+      "after": " papiers à la maison.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q140"
+    },
+    {
+      "before": "",
+      "after": " enfants jouent dans le jardin.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q141"
+    },
+    {
+      "before": "Je lis",
+      "after": " messages du matin.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q142"
+    },
+    {
+      "before": "",
+      "after": " cours commencent à huit heures.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q143"
+    },
+    {
+      "before": "J'ai pris",
+      "after": " médicaments ce matin.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q144"
+    },
+    {
+      "before": "",
+      "after": " voisins font beaucoup de bruit.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q145"
+    },
+    {
+      "before": "Je range",
+      "after": " outils dans la remise.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q146"
+    },
+    {
+      "before": "",
+      "after": " mots ne suffisent pas à exprimer ma gratitude.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q147"
+    },
+    {
+      "before": "Je consulte",
+      "after": " notes avant la réunion.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q148"
+    },
+    {
+      "before": "",
+      "after": " journées sont bien remplies.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q149"
+    },
+    {
+      "before": "Je prends",
+      "after": " responsabilités au sérieux.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q150"
+    },
+    {
+      "before": "",
+      "after": " craintes se sont révélées infondées.",
+      "answer": "mes",
+      "difficulty": 3,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q151"
+    },
+    {
+      "before": "Je porte",
+      "after": " valises sans aide.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q152"
+    },
+    {
+      "before": "",
+      "after": " habitudes ont changé depuis peu.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q153"
+    },
+    {
+      "before": "J'ai relu",
+      "after": " copies avant de les rendre.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q154"
+    },
+    {
+      "before": "Il",
+      "after": " ses clés dans sa poche.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'il' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q155"
+    },
+    {
+      "before": "Le boulanger",
+      "after": " le pain au four à cinq heures.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'le boulanger' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q156"
+    },
+    {
+      "before": "Elle",
+      "after": " son réveil pour sept heures.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'elle' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q157"
+    },
+    {
+      "before": "Il",
+      "after": " en scène cette pièce avec talent.",
+      "answer": "met",
+      "difficulty": 3,
+      "explanation": "'mettre en scène' : sujet 'il' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q158"
+    },
+    {
+      "before": "On",
+      "after": " rarement deux heures pour ce trajet.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'on' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q159"
+    },
+    {
+      "before": "Le directeur",
+      "after": " en place de nouvelles procédures.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "'mettre en place' : sujet 'le directeur' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q160"
+    },
+    {
+      "before": "Elle",
+      "after": " toujours les formes pour critiquer.",
+      "answer": "met",
+      "difficulty": 3,
+      "explanation": "'mettre les formes' : sujet 'elle' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q161"
+    },
+    {
+      "before": "Il",
+      "after": " la clé dans la serrure.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'il' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q162"
+    },
+    {
+      "before": "L'arbitre",
+      "after": " fin au match.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "'mettre fin à' : sujet 'l'arbitre' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q163"
+    },
+    {
+      "before": "Le soleil",
+      "after": " longtemps à se lever en hiver.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'le soleil' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q164"
+    },
+    {
+      "before": "Il",
+      "after": " ses talents au service de l'équipe.",
+      "answer": "met",
+      "difficulty": 3,
+      "explanation": "Verbe mettre, sujet 'il' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q165"
+    },
+    {
+      "before": "Elle",
+      "after": " la viande à mariner la veille.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'elle' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q166"
+    },
+    {
+      "before": "Le compositeur",
+      "after": " des mots sur une mélodie.",
+      "answer": "met",
+      "difficulty": 3,
+      "explanation": "Verbe mettre, sujet 'le compositeur' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q167"
+    },
+    {
+      "before": "Tu",
+      "after": " toujours tout en désordre.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'tu' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q168"
+    },
+    {
+      "before": "Je",
+      "after": " en avant l'importance du dialogue.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "'mettre en avant' : sujet 'je' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q169"
+    },
+    {
+      "before": "Tu",
+      "after": " combien de sucre dans ton café ?",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'tu' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q170"
+    },
+    {
+      "before": "Je",
+      "after": " ma veste et j'arrive.",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'je' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q171"
+    },
+    {
+      "before": "Tu",
+      "after": " toujours trop de pression sur toi.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'tu' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q172"
+    },
+    {
+      "before": "Je",
+      "after": " en pratique ce que j'ai appris.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "'mettre en pratique' : sujet 'je' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q173"
+    },
+    {
+      "before": "Ces",
+      "after": " gastronomiques sont servis lors des grandes occasions.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "Nom masculin pluriel (mets = plats) → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q174"
+    },
+    {
+      "before": "Je",
+      "after": " les couverts en attendant les invités.",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'je' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q175"
+    },
+    {
+      "before": "Tu",
+      "after": " de la bonne volonté dans tout ce que tu fais.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'tu' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q176"
+    },
+    {
+      "before": "Je",
+      "after": " souvent de la musique en cuisinant.",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'je' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q177"
+    },
+    {
+      "before": "Tu",
+      "after": " en relief les points importants.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "'mettre en relief' : sujet 'tu' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q178"
+    },
+    {
+      "before": "Je",
+      "after": " tout en œuvre pour avancer.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "'mettre en œuvre' : sujet 'je' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q179"
+    },
+    {
+      "before": "Tu",
+      "after": " trop longtemps à te décider.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'tu' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q180"
+    },
+    {
+      "before": "Il est débutant,",
+      "after": " doué.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q181"
+    },
+    {
+      "before": "Ce n'est pas parfait,",
+      "after": " c'est acceptable.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q182"
+    },
+    {
+      "before": "Il a peur,",
+      "after": " il avance.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q183"
+    },
+    {
+      "before": "La voiture est vieille,",
+      "after": " fonctionne bien.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q184"
+    },
+    {
+      "before": "C'est court,",
+      "after": " dense.",
+      "answer": "mais",
+      "difficulty": 1,
+      "explanation": "Conjonction d'opposition → mais.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q185"
+    },
+    {
+      "before": "",
+      "after": " recettes sont dans ce carnet.",
+      "answer": "mes",
+      "difficulty": 1,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q186"
+    },
+    {
+      "before": "J'ai relu",
+      "after": " travaux avant de les soumettre.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q187"
+    },
+    {
+      "before": "",
+      "after": " économies commencent à fondre.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q188"
+    },
+    {
+      "before": "",
+      "after": " rêves se réalisent peu à peu.",
+      "answer": "mes",
+      "difficulty": 2,
+      "explanation": "Déterminant possessif pluriel → mes.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q189"
+    },
+    {
+      "before": "L'entraîneur",
+      "after": " les joueurs en position.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'l'entraîneur' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q190"
+    },
+    {
+      "before": "Elle",
+      "after": " ses meilleures tenues pour les grandes occasions.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'elle' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q191"
+    },
+    {
+      "before": "Il",
+      "after": " toujours un mot gentil.",
+      "answer": "met",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'il' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q192"
+    },
+    {
+      "before": "Le serveur",
+      "after": " le couvert avec soin.",
+      "answer": "met",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'le serveur' → met.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q193"
+    },
+    {
+      "before": "Tu",
+      "after": " la pression sans t'en rendre compte.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "Verbe mettre, sujet 'tu' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q194"
+    },
+    {
+      "before": "Je",
+      "after": " un point d'honneur à être ponctuel.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "'mettre un point d'honneur à' : sujet 'je' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q195"
+    },
+    {
+      "before": "Je",
+      "after": " les enfants au lit à vingt heures.",
+      "answer": "mets",
+      "difficulty": 1,
+      "explanation": "Verbe mettre, sujet 'je' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q196"
+    },
+    {
+      "before": "Tu",
+      "after": " les pieds dans le plat parfois.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "Expression 'mettre les pieds dans le plat' : sujet 'tu' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q197"
+    },
+    {
+      "before": "Je",
+      "after": " un bémol à cet enthousiasme.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "'mettre un bémol' : sujet 'je' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q198"
+    },
+    {
+      "before": "Tu",
+      "after": " beaucoup de soin dans ton travail.",
+      "answer": "mets",
+      "difficulty": 2,
+      "explanation": "Verbe mettre, sujet 'tu' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q199"
+    },
+    {
+      "before": "Je",
+      "after": " les petits plats dans les grands pour cet anniversaire.",
+      "answer": "mets",
+      "difficulty": 3,
+      "explanation": "Expression figée : sujet 'je' → mets.",
+      "choices": [
+        {
+          "id": "mais"
+        },
+        {
+          "id": "mes"
+        },
+        {
+          "id": "met"
+        },
+        {
+          "id": "mets"
+        }
+      ],
+      "id": "q200"
+    }
+  ]
+}

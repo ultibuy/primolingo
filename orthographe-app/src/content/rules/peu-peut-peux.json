@@ -1,0 +1,4328 @@
+{
+  "id": "peu-peut-peux",
+  "title": "peu · peut · peux",
+  "shortTitle": "peu / peut / peux",
+  "description": "Distinguer l'adverbe de quantité 'peu', la 3e personne de 'pouvoir' (peut) et la 1ère/2e personne (peux).",
+  "choices": [
+    {
+      "id": "peu",
+      "label": "peu"
+    },
+    {
+      "id": "peut",
+      "label": "peut"
+    },
+    {
+      "id": "peux",
+      "label": "peux"
+    }
+  ],
+  "decisionAxes": [
+    {
+      "id": "est-verbe",
+      "question": "Peut-on remplacer par une forme du verbe 'pouvoir' ?",
+      "sub": "Essaie : 'être capable de'",
+      "options": [
+        {
+          "value": true,
+          "label": "Oui",
+          "sub": "C'est le verbe pouvoir",
+          "eliminates": [
+            "peu"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non",
+          "sub": "C'est l'adverbe de quantité",
+          "eliminates": [
+            "peut",
+            "peux"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "quel-sujet",
+      "question": "Le sujet est-il 'je' ou 'tu' ?",
+      "dependsOn": "est-verbe",
+      "showWhen": true,
+      "options": [
+        {
+          "value": true,
+          "label": "Oui (je / tu)",
+          "eliminates": [
+            "peut"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non (il / elle / on…)",
+          "eliminates": [
+            "peux"
+          ]
+        }
+      ]
+    }
+  ],
+  "memoCard": {
+    "title": "peu · peut · peux",
+    "rows": [
+      {
+        "form": "peu",
+        "test": "Remplaçable par 'pas beaucoup'",
+        "example": "Il mange peu."
+      },
+      {
+        "form": "peut",
+        "test": "Sujet = il/elle/on + verbe pouvoir",
+        "example": "Elle peut venir."
+      },
+      {
+        "form": "peux",
+        "test": "Sujet = je/tu + verbe pouvoir",
+        "example": "Je peux t'aider."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "before": "Tu",
+      "after": " nager très loin sans te fatiguer.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Tu (2e pers. sing.) → 'peux' (verbe pouvoir).",
+      "id": "q001",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Elle court",
+      "after": " pendant l'entraînement de cross.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité modifiant le verbe → 'peu' (elle court PEU).",
+      "id": "q002",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "On",
+      "after": " participer à la course de demain.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "On (3e pers. sing.) → 'peut' (verbe pouvoir).",
+      "id": "q003",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " faire du vélo tous les jours.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Je (1ère pers. sing.) → 'peux' (verbe pouvoir).",
+      "id": "q004",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Les athlètes s'entraînent",
+      "after": " pour améliorer leurs performances.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe quantifiant l'amélioration → 'peu' (ils s'entraînent PEU).",
+      "id": "q005",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Il",
+      "after": " escalader cette montagne en une journée.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Il (3e pers. sing.) → 'peut' (verbe pouvoir).",
+      "id": "q006",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " marcher longtemps sans pause.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Tu (2e pers. sing.) → 'peux' (verbe pouvoir).",
+      "id": "q007",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Les nageurs dorment",
+      "after": " avant une compétition importante.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → 'peu' (ils dorment PEU).",
+      "id": "q008",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Elle",
+      "after": " surfer sur les vagues ce week-end.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Elle (3e pers. sing.) → 'peut' (verbe pouvoir).",
+      "id": "q009",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " tirer à l'arc avec précision.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Je (1ère pers. sing.) → 'peux' (verbe pouvoir).",
+      "id": "q010",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "On a",
+      "after": " de chance quand on joue au football.",
+      "answer": "peu",
+      "difficulty": 3,
+      "explanation": "Adverbe quantifiant la chance → 'peu' (on a PEU de chance).",
+      "id": "q011",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Ça",
+      "after": " sembler difficile au début du terrain.",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "Ça (3e pers. sing., sujet neutre) → 'peut' (verbe pouvoir).",
+      "id": "q012",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " courir 10 kilomètres aujourd'hui ?",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Tu (2e pers. sing.) → 'peux' (verbe pouvoir).",
+      "id": "q013",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Les cyclocroisseurs pédalent",
+      "after": " dans la boue.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe modifiant le verbe → 'peu' (ils pédalent PEU).",
+      "id": "q014",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Il",
+      "after": " grimper rapidement aux rochers.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Il (3e pers. sing.) → 'peut' (verbe pouvoir).",
+      "id": "q015",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " tenir très longtemps sous l'eau.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Je (1ère pers. sing.) → 'peux' (verbe pouvoir).",
+      "id": "q016",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Les skieurs descendent",
+      "after": " les pentes raides.",
+      "answer": "peu",
+      "difficulty": 3,
+      "explanation": "Adverbe quantifiant la descente → 'peu' (ils descendent PEU).",
+      "id": "q017",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Elle",
+      "after": " sauter plus haut que tous les autres.",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "Elle (3e pers. sing.) → 'peut' (verbe pouvoir).",
+      "id": "q018",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " respirer correctement en faisant du sport.",
+      "answer": "peux",
+      "difficulty": 3,
+      "explanation": "Tu (2e pers. sing.) → 'peux' (verbe pouvoir).",
+      "id": "q019",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "On",
+      "after": " jouer au tennis sans équipement spécial.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "On (3e pers. sing.) → 'peut' (verbe pouvoir).",
+      "id": "q020",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Un patient",
+      "after": "dormir que 5 heures par nuit à cause du stress.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "3e personne du singulier du verbe 'pouvoir'. Le patient a la possibilité/capacité de dormir peu.",
+      "id": "q021",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": "améliorer ta digestion en mangeant lentement.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "2e personne du singulier du verbe 'pouvoir'. Adressé directement à quelqu'un.",
+      "id": "q022",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Une alimentation équilibrée apporte",
+      "after": "de calories vides à l'organisme.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité. Signifie une faible quantité de calories vides.",
+      "id": "q023",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Le médecin",
+      "after": "prescrire des antibiotiques si nécessaire.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "3e personne du singulier. Le médecin a l'autorité/la capacité de prescrire.",
+      "id": "q024",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": "consulter un nutritionniste pour équilibrer mon régime.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "1ère personne du singulier du verbe 'pouvoir'. Exprime la possibilité personnelle.",
+      "id": "q025",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Les fruits frais contiennent",
+      "after": "de sucres naturels mais beaucoup de vitamines.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité. Petite quantité de sucres.",
+      "id": "q026",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Un enfant",
+      "after": "souffrir de malnutrition s'il ne mange pas équilibré.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "3e personne du singulier. L'enfant risque/a la possibilité de souffrir.",
+      "id": "q027",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": "réduire ton insomnie en établissant une routine de sommeil.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "2e personne du singulier. Tu as la capacité de réduire l'insomnie.",
+      "id": "q028",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Un régime restrictif fournit",
+      "after": "de nutriments essentiels au corps.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité. Faible quantité de nutriments.",
+      "id": "q029",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Le sommeil",
+      "after": "être perturbé par la consommation de caféine le soir.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "3e personne du singulier. Le sommeil a la possibilité d'être perturbé.",
+      "id": "q030",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": "contrôler mon poids en pratiquant une activité physique régulière.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "1ère personne du singulier. Capacité personnelle à contrôler le poids.",
+      "id": "q031",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Un médecin expérimenté",
+      "after": "diagnostiquer une carence en fer par simple examen.",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "3e personne du singulier. Le médecin a la compétence de diagnostiquer.",
+      "id": "q032",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Les personnes qui dorment",
+      "after": "ont souvent des problèmes de concentration.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité. Petite quantité d'heures de sommeil.",
+      "id": "q033",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": "prévenir les maladies cardiovasculaires par une bonne hygiène de vie.",
+      "answer": "peux",
+      "difficulty": 3,
+      "explanation": "2e personne du singulier. Capacité à prévenir les maladies.",
+      "id": "q034",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Cette plante médicinale renferme",
+      "after": "de propriétés anti-inflammatoires scientifiquement prouvées.",
+      "answer": "peu",
+      "difficulty": 3,
+      "explanation": "Adverbe de quantité. Petite quantité de propriétés utiles.",
+      "id": "q035",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Un sportif",
+      "after": "améliorer ses performances en optimisant son sommeil.",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "3e personne du singulier. Le sportif a la possibilité d'améliorer ses performances.",
+      "id": "q036",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": "fonctionner correctement si je ne dors pas assez.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "1ère personne du singulier. Capacité réduite à fonctionner (sans assez de sommeil).",
+      "id": "q037",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Une personne anxieuse",
+      "after": "bénéficier d'une méditation quotidienne pour réduire son stress.",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "3e personne du singulier. La personne a la possibilité de bénéficier.",
+      "id": "q038",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Un régime comprenant",
+      "after": "de protéines risque de fatiguer les muscles.",
+      "answer": "peu",
+      "difficulty": 3,
+      "explanation": "Adverbe de quantité. Faible quantité de protéines.",
+      "id": "q039",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": "guérir rapidement d'une infection bactérienne avec les antibiotiques appropriés.",
+      "answer": "peux",
+      "difficulty": 3,
+      "explanation": "2e personne du singulier. Tu as la possibilité/capacité de guérir.",
+      "id": "q040",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q041",
+      "before": "Elle s'en soucie",
+      "after": ".",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "On ne peut pas dire 'elle s'en soucie peut' → adverbe 'peu' (quantité minime).",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q042",
+      "before": "Tu ne",
+      "after": " pas tout savoir dans la vie.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'tu', verbe pouvoir → 'peux' (2e pers. sing.). Négation : 'tu ne peux pas'.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q043",
+      "before": "Qui",
+      "after": " le plus",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "Proverbe : 'qui peut le plus peut le moins' → 3e pers. sing. du verbe pouvoir.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q044",
+      "before": "À",
+      "after": " près, la distance est de 2 km.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Expression figée 'à peu près' (adverbe) = approximativement. Pas de verbe pouvoir.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q045",
+      "before": "Je ne",
+      "after": " guère vous aider davantage.",
+      "answer": "peux",
+      "difficulty": 3,
+      "explanation": "Sujet 'je', verbe pouvoir → 'peux'. Avec négation 'ne...guère'.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q046",
+      "before": "Un",
+      "after": " à la fois suffit.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Expression 'un peu à la fois' (adverbe) → graduellement, légèrement.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q047",
+      "before": "Il",
+      "after": " faire ce qu'il veut.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'il', verbe pouvoir → 'peut' (3e pers. sing.). Sens : avoir la possibilité.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q048",
+      "before": "Ce problème m'intéresse",
+      "after": ".",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe 'peu' (quantité minime) → 'm'intéresse peu'.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q049",
+      "before": "Ce projet avance",
+      "after": " mais progresse sûrement.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q050",
+      "before": "Est-ce que tu",
+      "after": " m'écouter ?",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Question avec sujet 'tu', verbe pouvoir → 'peux' (2e pers. sing.).",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q051",
+      "before": "Il est",
+      "after": " versé en mathématiques.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe 'peu' (quantité minime) → 'peu versé'.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q052",
+      "before": "Si tu",
+      "after": " l'aider, c'est le bon moment.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'tu' (2ème pers. sing.) → peux.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q053",
+      "before": "Cela m'amuse",
+      "after": ".",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe 'peu' (quantité minime) → 'm'amuse peu'.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q054",
+      "before": "Je",
+      "after": " comprendre son raisonnement.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'je', verbe pouvoir → 'peux' (1ère pers. sing.).",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q055",
+      "before": "Cet article me plaît",
+      "after": ".",
+      "answer": "peu",
+      "difficulty": 3,
+      "explanation": "Adverbe 'peu' (quantité minime) → sentiment d'indifférence.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q056",
+      "before": "Combien de temps",
+      "after": "-il rester sans manger ?",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "Inversion 'peut-il' : sujet 'il' → peut.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q057",
+      "before": "Un",
+      "after": " d'eau seulement.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Expression 'un peu' (adverbe quantitatif) → faible quantité.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q058",
+      "before": "Tu",
+      "after": " venir demain ?",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Question, sujet 'tu', verbe pouvoir → 'peux' (2e pers. sing.).",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q059",
+      "before": "Cela me convient",
+      "after": ".",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe 'peu' (quantité minime) → quasi-insatisfaction.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "id": "q060",
+      "before": "Il ne",
+      "after": " rien y changer, la décision est prise.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'il' (3ème pers. sing.) → peut.",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Il mange",
+      "after": " le soir, ce qui le garde en forme.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité : remplaçable par 'pas beaucoup' → peu.",
+      "id": "q061",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Elle dort",
+      "after": " en ce moment à cause du stress.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q062",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu parles",
+      "after": " mais tu observes beaucoup.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q063",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "On voyage",
+      "after": " quand on manque de temps.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q064",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Elle rit",
+      "after": ", pourtant elle est de bonne humeur.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q065",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Il lit",
+      "after": " mais comprend vite.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q066",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Ils s'entraînent",
+      "after": " mais progressent régulièrement.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q067",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Ce médicament coûte",
+      "after": " et reste efficace.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q068",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Il pleut",
+      "after": " en juillet dans cette région.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q069",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Le bébé pleure",
+      "after": " la nuit désormais.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q070",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Ce roman est",
+      "after": " connu du grand public.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité (modifie adjectif) → peu.",
+      "id": "q071",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Elle chante",
+      "after": " mais avec une voix magnifique.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q072",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "On sait",
+      "after": " de choses sur ce mystère.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "'peu de choses' : adverbe de quantité → peu.",
+      "id": "q073",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Il reste",
+      "after": " de temps avant la fin.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "'peu de temps' : adverbe de quantité → peu.",
+      "id": "q074",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Elle s'intéresse",
+      "after": " à la politique.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q075",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Il",
+      "after": " venir demain si tu veux.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'il' (3e pers. sing.) + verbe pouvoir → peut.",
+      "id": "q076",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Elle",
+      "after": " t'expliquer la règle.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'elle' (3e pers. sing.) → peut.",
+      "id": "q077",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "On",
+      "after": " toujours apprendre de ses erreurs.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'on' (3e pers. sing.) → peut.",
+      "id": "q078",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Le chien",
+      "after": " courir très vite.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'le chien' (3e pers. sing.) → peut.",
+      "id": "q079",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Ça",
+      "after": " arriver à n'importe qui.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'ça' (3e pers. sing.) → peut.",
+      "id": "q080",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Ce médicament",
+      "after": " provoquer des effets secondaires.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'ce médicament' (3e pers. sing.) → peut.",
+      "id": "q081",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "La situation",
+      "after": " évoluer rapidement.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'la situation' (3e pers. sing.) → peut.",
+      "id": "q082",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Chacun",
+      "after": " progresser à son rythme.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'chacun' (3e pers. sing.) → peut.",
+      "id": "q083",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tout",
+      "after": " changer en un instant.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'tout' (3e pers. sing.) → peut.",
+      "id": "q084",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Ce projet",
+      "after": " aboutir si on s'en donne les moyens.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'ce projet' (3e pers. sing.) → peut.",
+      "id": "q085",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Personne ne",
+      "after": " tout savoir.",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "Sujet 'personne' (3e pers. sing.) → peut.",
+      "id": "q086",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "N'importe qui",
+      "after": " se tromper.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'n'importe qui' (3e pers. sing.) → peut.",
+      "id": "q087",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Il ne",
+      "after": " pas partir sans prévenir.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Négation : 'il ne peut pas' → sujet 'il' → peut.",
+      "id": "q088",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Elle ne",
+      "after": " s'empêcher de sourire.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'elle' (3e pers. sing.) → peut.",
+      "id": "q089",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Le train",
+      "after": " avoir du retard par mauvais temps.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'le train' (3e pers. sing.) → peut.",
+      "id": "q090",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " t'aider si tu le souhaites.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' (1ère pers. sing.) + verbe pouvoir → peux.",
+      "id": "q091",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " compter sur moi en toutes circonstances.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' (2ème pers. sing.) → peux.",
+      "id": "q092",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je ne",
+      "after": " pas rester indifférent à ça.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Négation : 'je ne peux pas' → peux.",
+      "id": "q093",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu ne",
+      "after": " pas tout prévoir.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'tu' → peux.",
+      "id": "q094",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " te prêter mon vélo si tu veux.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' (1ère pers. sing.) → peux.",
+      "id": "q095",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Est-ce que tu",
+      "after": " garder un secret ?",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'tu' (2ème pers. sing.) → peux.",
+      "id": "q096",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " partir dès que j'aurai fini.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' → peux.",
+      "id": "q097",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " réessayer autant de fois que nécessaire.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "id": "q098",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " vous assurer que tout est en ordre.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'je' → peux.",
+      "id": "q099",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu ne",
+      "after": " pas y aller si tu ne te sens pas bien.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'tu' → peux.",
+      "id": "q100",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Si tu veux, je",
+      "after": " m'occuper de ça.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'je' dans une subordonnée → peux.",
+      "id": "q101",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " me tromper, bien sûr.",
+      "answer": "peux",
+      "difficulty": 3,
+      "explanation": "Sujet 'je' → peux.",
+      "id": "q102",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " tout accomplir si tu travailles sérieusement.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "id": "q103",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " difficilement accepter cette décision.",
+      "answer": "peux",
+      "difficulty": 3,
+      "explanation": "Sujet 'je' → peux.",
+      "id": "q104",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " lui faire confiance, c'est quelqu'un de fiable.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "id": "q105",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Qui ne",
+      "after": " risque rien, n'a rien.",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "Reformulation : sujet 'qui' (3e pers. sing.) → peut.",
+      "id": "q106",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "À peine",
+      "after": "-il parler qu'il éclata en sanglots.",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "Inversion après 'à peine' → sujet inversé 'il' → peut.",
+      "id": "q107",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Jamais je ne",
+      "after": " oublier ce moment.",
+      "answer": "peux",
+      "difficulty": 3,
+      "explanation": "Sujet 'je' avec adverbe de négation → peux.",
+      "id": "q108",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Ce tableau vaut",
+      "after": " : il est presque inconnu.",
+      "answer": "peu",
+      "difficulty": 3,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q109",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Sait-on jamais ce qui",
+      "after": " se passer ?",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "Sujet 'ce qui' (3e pers. sing.) → peut.",
+      "id": "q110",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je fais",
+      "after": " de cas de son opinion.",
+      "answer": "peu",
+      "difficulty": 3,
+      "explanation": "'faire peu de cas' : adverbe de quantité → peu.",
+      "id": "q111",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Il s'en faut de",
+      "after": " qu'elle réussisse.",
+      "answer": "peu",
+      "difficulty": 3,
+      "explanation": "'il s'en faut de peu' : expression figée → peu.",
+      "id": "q112",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu ne",
+      "after": " t'empêcher de tout commenter.",
+      "answer": "peux",
+      "difficulty": 3,
+      "explanation": "Sujet 'tu' → peux.",
+      "id": "q113",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Ce genre d'erreur",
+      "after": " coûter cher.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'ce genre d'erreur' (3e pers. sing.) → peut.",
+      "id": "q114",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Quand",
+      "after": "-on espérer une réponse ?",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "Question avec inversion 'peut-on' → sujet 'on' → peut.",
+      "id": "q115",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " à peine croire ce que j'entends.",
+      "answer": "peux",
+      "difficulty": 3,
+      "explanation": "Sujet 'je' → peux.",
+      "id": "q116",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Cela",
+      "after": " sembler paradoxal, mais c'est la réalité.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'cela' (3e pers. sing.) → peut.",
+      "id": "q117",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "C'est",
+      "after": " dire si elle est douée.",
+      "answer": "peu",
+      "difficulty": 3,
+      "explanation": "'c'est peu dire' : expression figée → peu.",
+      "id": "q118",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Elle ne",
+      "after": " s'expliquer cette coïncidence.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'elle' → peut.",
+      "id": "q119",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " tout lire en un week-end si tu te concentres.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'tu' → peux.",
+      "id": "q120",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " ouvrir le bocal, il est trop serré.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' → peux.",
+      "id": "q121",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Il",
+      "after": " ranger sa chambre plus souvent.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'il' → peut.",
+      "id": "q122",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " mettre la table pendant que je cuisine ?",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "id": "q123",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Elle",
+      "after": " s'occuper des courses ce soir.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'elle' → peut.",
+      "id": "q124",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "On",
+      "after": " faire la vaisselle à tour de rôle.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'on' → peut.",
+      "id": "q125",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " finir ce devoir avant minuit.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' → peux.",
+      "id": "q126",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Le professeur",
+      "after": " répéter l'explication si besoin.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'le professeur' → peut.",
+      "id": "q127",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " réviser avec moi si tu veux.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "id": "q128",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Cette règle s'apprend",
+      "after": " en deux minutes.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q129",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "L'équipe travaille",
+      "after": " mais les résultats sont bons.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "id": "q130",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "La forêt",
+      "after": " brûler rapidement par temps sec.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'la forêt' → peut.",
+      "id": "q131",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Cette fleur",
+      "after": " pousser même dans les terrains arides.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'cette fleur' → peut.",
+      "id": "q132",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " recycler davantage au quotidien.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' → peux.",
+      "id": "q133",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " te reposer quelques jours sans culpabiliser.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "id": "q134",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Ce traitement",
+      "after": " durer plusieurs semaines.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'ce traitement' → peut.",
+      "id": "q135",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " comprendre ta réaction, c'est difficile.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' → peux.",
+      "id": "q136",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Il ne",
+      "after": " pas faire semblant indéfiniment.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'il' → peut.",
+      "id": "q137",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " lui dire la vérité, elle le prendra bien.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "id": "q138",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Elle",
+      "after": " compter sur ses amis en cas de besoin.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'elle' → peut.",
+      "id": "q139",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " conduire si tu es fatigué.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' → peux.",
+      "id": "q140",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Ce vol",
+      "after": " partir avec du retard.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'ce vol' → peut.",
+      "id": "q141",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " t'inscrire en ligne avant de partir.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "id": "q142",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "La musique",
+      "after": " adoucir les mœurs.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'la musique' → peut.",
+      "id": "q143",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Je",
+      "after": " te prêter ce roman, il est excellent.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' → peux.",
+      "id": "q144",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Ce film",
+      "after": " déplaire aux plus jeunes.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'ce film' → peut.",
+      "id": "q145",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Tu",
+      "after": " apprécier cet auteur si tu lui donnes sa chance.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'tu' → peux.",
+      "id": "q146",
+      "choices": [
+        {
+          "id": "peu",
+          "label": "peu"
+        },
+        {
+          "id": "peut",
+          "label": "peut"
+        },
+        {
+          "id": "peux",
+          "label": "peux"
+        }
+      ]
+    },
+    {
+      "before": "Elle travaille",
+      "after": " mais produit beaucoup.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q147"
+    },
+    {
+      "before": "Il comprend",
+      "after": " du premier coup.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q148"
+    },
+    {
+      "before": "Cela coûte",
+      "after": " mais c'est précieux.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q149"
+    },
+    {
+      "before": "Il reste",
+      "after": " d'espoir.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "'peu d'espoir' : adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q150"
+    },
+    {
+      "before": "Elle mange",
+      "after": " mais ne grossit pas.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q151"
+    },
+    {
+      "before": "Il dort",
+      "after": " depuis son opération.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q152"
+    },
+    {
+      "before": "On voit",
+      "after": " de neige ici.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q153"
+    },
+    {
+      "before": "Ce sujet est",
+      "after": " abordé en classe.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q154"
+    },
+    {
+      "before": "Il y a",
+      "after": " de chances.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "'peu de chances' → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q155"
+    },
+    {
+      "before": "Elle téléphone",
+      "after": " à ses parents.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q156"
+    },
+    {
+      "before": "On entend",
+      "after": " parler de lui depuis.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q157"
+    },
+    {
+      "before": "Il a",
+      "after": " d'amis mais ils sont sincères.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "'peu d'amis' : adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q158"
+    },
+    {
+      "before": "Dans cette ville, il",
+      "after": " beaucoup pleuvoir.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'il' impersonnel → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q159"
+    },
+    {
+      "before": "Mon frère",
+      "after": " jouer de la guitare.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'mon frère' (3e pers. sing.) → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q160"
+    },
+    {
+      "before": "Ma sœur",
+      "after": " venir nous rejoindre.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'ma sœur' (3e pers. sing.) → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q161"
+    },
+    {
+      "before": "Le vent",
+      "after": " souffler fort cette nuit.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'le vent' (3e pers. sing.) → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q162"
+    },
+    {
+      "before": "Ce livre",
+      "after": " plaire à tout le monde.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'ce livre' (3e pers. sing.) → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q163"
+    },
+    {
+      "before": "Il ne",
+      "after": " pas rater cette occasion.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'il' → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q164"
+    },
+    {
+      "before": "Chaque enfant",
+      "after": " progresser à son rythme.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'chaque enfant' (3e pers. sing.) → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q165"
+    },
+    {
+      "before": "La science",
+      "after": " apporter des réponses.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'la science' (3e pers. sing.) → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q166"
+    },
+    {
+      "before": "Une petite erreur",
+      "after": " tout changer.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'une petite erreur' (3e pers. sing.) → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q167"
+    },
+    {
+      "before": "Le résultat",
+      "after": " surprendre.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'le résultat' (3e pers. sing.) → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q168"
+    },
+    {
+      "before": "Ce silence",
+      "after": " vouloir dire beaucoup.",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "Sujet 'ce silence' (3e pers. sing.) → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q169"
+    },
+    {
+      "before": "Quand",
+      "after": "-on espérer une amélioration ?",
+      "answer": "peut",
+      "difficulty": 3,
+      "explanation": "'peut-on' : inversion sujet → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q170"
+    },
+    {
+      "before": "Je",
+      "after": " te rappeler dans une heure ?",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q171"
+    },
+    {
+      "before": "Tu",
+      "after": " fermer la fenêtre, s'il te plaît ?",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q172"
+    },
+    {
+      "before": "Je",
+      "after": " arriver plus tôt si nécessaire.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q173"
+    },
+    {
+      "before": "Tu",
+      "after": " venir avec nous si tu veux.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q174"
+    },
+    {
+      "before": "Je",
+      "after": " te donner un coup de main.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q175"
+    },
+    {
+      "before": "Tu",
+      "after": " choisir l'option qui te convient.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q176"
+    },
+    {
+      "before": "Je",
+      "after": " pas croire qu'il ait dit ça.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'je' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q177"
+    },
+    {
+      "before": "Tu",
+      "after": " rentrer quand tu veux.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q178"
+    },
+    {
+      "before": "Je",
+      "after": " affirmer que c'est vrai.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'je' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q179"
+    },
+    {
+      "before": "Tu",
+      "after": " me faire confiance.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q180"
+    },
+    {
+      "before": "Je ne",
+      "after": " pas promettre que ça marchera.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'je' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q181"
+    },
+    {
+      "before": "Comment",
+      "after": "-tu dire ça ?",
+      "answer": "peux",
+      "difficulty": 3,
+      "explanation": "Inversion : 'comment peux-tu' → sujet 'tu' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q182"
+    },
+    {
+      "before": "Que",
+      "after": "-je faire pour toi ?",
+      "answer": "peux",
+      "difficulty": 3,
+      "explanation": "'que puis-je' → registre courant : sujet 'je' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q183"
+    },
+    {
+      "before": "Je",
+      "after": " témoigner de sa bonne foi.",
+      "answer": "peux",
+      "difficulty": 2,
+      "explanation": "Sujet 'je' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q184"
+    },
+    {
+      "before": "Tu",
+      "after": " t'entraîner chaque jour.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q185"
+    },
+    {
+      "before": "Il ne s'en faut de",
+      "after": " que tout s'effondre.",
+      "answer": "peu",
+      "difficulty": 3,
+      "explanation": "'il ne s'en faut de peu' : expression figée → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q186"
+    },
+    {
+      "before": "À",
+      "after": " de choses près, c'était parfait.",
+      "answer": "peu",
+      "difficulty": 3,
+      "explanation": "'à peu de choses près' : expression figée → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q187"
+    },
+    {
+      "before": "La pluie tombe",
+      "after": " ces derniers jours.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q188"
+    },
+    {
+      "before": "Il parle",
+      "after": " en public mais s'exprime bien.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q189"
+    },
+    {
+      "before": "Cette plante a besoin de",
+      "after": " d'eau.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "'peu d'eau' : adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q190"
+    },
+    {
+      "before": "Le projet avance",
+      "after": ", mais sûrement.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q191"
+    },
+    {
+      "before": "Dans",
+      "after": " de temps, tout sera réglé.",
+      "answer": "peu",
+      "difficulty": 2,
+      "explanation": "'dans peu de temps' : expression → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q192"
+    },
+    {
+      "before": "Elle s'absente",
+      "after": " souvent.",
+      "answer": "peu",
+      "difficulty": 1,
+      "explanation": "Adverbe de quantité → peu.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q193"
+    },
+    {
+      "before": "Cet enfant",
+      "after": " encore apprendre à lire.",
+      "answer": "peut",
+      "difficulty": 2,
+      "explanation": "Sujet 'cet enfant' → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q194"
+    },
+    {
+      "before": "Le professeur",
+      "after": " t'aider après les cours.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'le professeur' → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q195"
+    },
+    {
+      "before": "L'ordinateur",
+      "after": " tomber en panne.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'l'ordinateur' → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q196"
+    },
+    {
+      "before": "Elle",
+      "after": " s'absenter quelques jours.",
+      "answer": "peut",
+      "difficulty": 1,
+      "explanation": "Sujet 'elle' → peut.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q197"
+    },
+    {
+      "before": "Je",
+      "after": " travailler jusqu'à minuit.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q198"
+    },
+    {
+      "before": "Tu",
+      "after": " rester ici aussi longtemps que tu veux.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'tu' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q199"
+    },
+    {
+      "before": "Je",
+      "after": " traduire ce texte pour toi.",
+      "answer": "peux",
+      "difficulty": 1,
+      "explanation": "Sujet 'je' → peux.",
+      "choices": [
+        {
+          "id": "peu"
+        },
+        {
+          "id": "peut"
+        },
+        {
+          "id": "peux"
+        }
+      ],
+      "id": "q200"
+    }
+  ]
+}

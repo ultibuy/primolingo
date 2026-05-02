@@ -1,0 +1,5055 @@
+{
+  "id": "tout-tous-toute-toutes",
+  "title": "tout · tous · toute · toutes",
+  "shortTitle": "tout / tous / toute / toutes",
+  "description": "Accorder 'tout' en genre et en nombre avec le nom ou l'adjectif qu'il accompagne.",
+  "choices": [
+    {
+      "id": "tout",
+      "label": "tout"
+    },
+    {
+      "id": "tous",
+      "label": "tous"
+    },
+    {
+      "id": "toute",
+      "label": "toute"
+    },
+    {
+      "id": "toutes",
+      "label": "toutes"
+    }
+  ],
+  "decisionAxes": [
+    {
+      "id": "nombre",
+      "question": "Le nom (ou le pronom) est-il au pluriel ?",
+      "options": [
+        {
+          "value": true,
+          "label": "Oui (pluriel)",
+          "eliminates": [
+            "tout",
+            "toute"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non (singulier ou adverbe)",
+          "eliminates": [
+            "tous",
+            "toutes"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "genre-sing",
+      "question": "Le nom est-il féminin ?",
+      "dependsOn": "nombre",
+      "showWhen": false,
+      "options": [
+        {
+          "value": true,
+          "label": "Oui (féminin singulier)",
+          "eliminates": [
+            "tout"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non (masculin singulier)",
+          "eliminates": [
+            "toute"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "genre-plur",
+      "question": "Le nom est-il féminin ?",
+      "dependsOn": "nombre",
+      "showWhen": true,
+      "options": [
+        {
+          "value": true,
+          "label": "Oui (féminin pluriel)",
+          "eliminates": [
+            "tous"
+          ]
+        },
+        {
+          "value": false,
+          "label": "Non (masculin pluriel)",
+          "eliminates": [
+            "toutes"
+          ]
+        }
+      ]
+    }
+  ],
+  "memoCard": {
+    "title": "tout · tous · toute · toutes",
+    "rows": [
+      {
+        "form": "tout",
+        "test": "Masc. sing. ou adverbe invariable",
+        "example": "Tout le monde. / Tout va bien."
+      },
+      {
+        "form": "tous",
+        "test": "Masc. plur.",
+        "example": "Tous les jours. / Ils sont tous là."
+      },
+      {
+        "form": "toute",
+        "test": "Fém. sing.",
+        "example": "Toute la journée."
+      },
+      {
+        "form": "toutes",
+        "test": "Fém. plur.",
+        "example": "Toutes les filles."
+      }
+    ]
+  },
+  "questions": [
+    {
+      "id": "q001",
+      "before": "",
+      "after": " la journée, elle a travaillé sans relâche.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "Le nom 'journée' est féminin singulier → on utilise 'toute'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q002",
+      "before": "Pendant",
+      "after": " la nuit, le silence règne sur la ville.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "Le nom 'nuit' est féminin singulier → on utilise 'toute'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q003",
+      "before": "",
+      "after": " la famille s'est réunie pour les vacances.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "Le nom 'famille' est féminin singulier → on utilise 'toute'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q004",
+      "before": "Il a visité",
+      "after": " la ville en une journée.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "Le nom 'ville' est féminin singulier → on utilise 'toute'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q005",
+      "before": "",
+      "after": " la maison était décorée de fleurs fraîches.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "Le nom 'maison' est féminin singulier → on utilise 'toute'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q006",
+      "before": "Au cours de",
+      "after": " la semaine, elle n'a pas eu une minute de repos.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "Le nom 'semaine' est féminin singulier → on utilise 'toute'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q007",
+      "before": "",
+      "after": " la vie, on apprend de ses erreurs.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "Le nom 'vie' est féminin singulier → on utilise 'toute'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q008",
+      "before": "Les enfants ont joué",
+      "after": " la journée sous le soleil.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "Le nom 'journée' est féminin singulier → on utilise 'toute'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q009",
+      "before": "",
+      "after": " les nuits de ce mois ont été étoilées.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "Le nom 'nuits' est féminin pluriel → on utilise 'toutes'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q010",
+      "before": "Les grands voyageurs visitent",
+      "after": " les villes du monde.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "Le nom 'villes' est féminin pluriel → on utilise 'toutes'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q011",
+      "before": "",
+      "after": " les familles de la région se connaissent.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "Le nom 'familles' est féminin pluriel → on utilise 'toutes'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q012",
+      "before": "Elle a peint",
+      "after": " les maisons de la rue en blanc.",
+      "answer": "toutes",
+      "difficulty": 3,
+      "explanation": "Le nom 'maisons' est féminin pluriel → on utilise 'toutes'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q013",
+      "before": "",
+      "after": " les semaines de l'année, elle se rend au marché.",
+      "answer": "toutes",
+      "difficulty": 3,
+      "explanation": "Le nom 'semaines' est féminin pluriel → on utilise 'toutes'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q014",
+      "before": "Les philosophes réfléchissent sur",
+      "after": " les vies humaines.",
+      "answer": "toutes",
+      "difficulty": 3,
+      "explanation": "Le nom 'vies' est féminin pluriel → on utilise 'toutes'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q015",
+      "before": "",
+      "after": " va bien quand on aime son travail.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "'Tout' invariable en position de pronom-sujet avant le verbe → on utilise 'tout'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q016",
+      "before": "Les enfants sont arrivés, c'est",
+      "after": ".",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'Tout' invariable comme pronom après le verbe → on utilise 'tout'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q017",
+      "before": "Ils ont mangé",
+      "after": " le gâteau pendant la fête.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "Le nom 'gâteau' est masculin singulier → on utilise 'tout'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q018",
+      "before": "Les réparations ont coûté",
+      "after": " les économies du couple.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "Le nom 'économies' est pluriel, mais c'est aussi 'tous' au sens de 'chacun' → on utilise 'tous'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q019",
+      "before": "",
+      "after": " les hommes et femmes ont apprécié ce film.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "Le nom 'hommes et femmes' est pluriel masculin dominé → on utilise 'tous'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "id": "q020",
+      "before": "Au fil de",
+      "after": " la journée, les nuages ont changé de forme.",
+      "answer": "toute",
+      "difficulty": 3,
+      "explanation": "Le nom 'journée' est féminin singulier → on utilise 'toute'.",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Il était ___ surpris par la nouvelle.",
+      "after": "Il était surpris par la nouvelle.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "Adverbe modifiant l'adjectif 'surpris'. Invariable même si l'adjectif est au féminin/pluriel.",
+      "id": "q021",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "C'est ___ simple à comprendre.",
+      "after": "C'est simple à comprendre.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "Adverbe modifiant l'adjectif 'simple'. Reste invariable.",
+      "id": "q022",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Elle a ___ compris l'exercice.",
+      "after": "Elle a compris l'exercice.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "Pronom neutre signifiant 'la totalité'. Sujet ou objet, reste invariable.",
+      "id": "q023",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "___ va bien pour toi?",
+      "after": "Va bien pour toi?",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "Pronom neutre sujet. Invariable.",
+      "id": "q024",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Les femmes étaient ___ émues par ce discours.",
+      "after": "Les femmes étaient émues par ce discours.",
+      "answer": "tout",
+      "difficulty": 3,
+      "explanation": "Adverbe devant adjectif féminin pluriel. L'adverbe reste invariable même devant 'émues'.",
+      "id": "q025",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Ils ont ___ gagné le prix.",
+      "after": "Ils ont gagné le prix.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "Pronom masc. pluriel signifiant 'chacun d'entre eux'. Accord avec le groupe masculin.",
+      "id": "q026",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Elle parlait ___ doucement.",
+      "after": "Elle parlait doucement.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "Adverbe modifiant un autre adverbe ('doucement'). Invariable.",
+      "id": "q027",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "C'est ___ nouveau pour nous.",
+      "after": "C'est nouveau pour nous.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "Adverbe intensifiant l'adjectif 'nouveau'. Invariable.",
+      "id": "q028",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Les filles sont ___ ravies de la surprise.",
+      "after": "Les filles sont ravies de la surprise.",
+      "answer": "tout",
+      "difficulty": 3,
+      "explanation": "Adverbe devant adjectif féminin pluriel 'ravies'. L'adverbe 'tout' reste invariable.",
+      "id": "q029",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "___ le monde était présent.",
+      "after": "Le monde était présent.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "Pronom/déterminant. Dans l'expression 'tout le monde', 'tout' est invariable.",
+      "id": "q030",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Il avait ___ oublié ses clés.",
+      "after": "Il avait oublié ses clés.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "Adverbe modifiant le participe passé 'oublié'. Invariable.",
+      "id": "q031",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Elles sont revenues ___ ensemble.",
+      "after": "Elles sont revenues ensemble.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "Adverbe modifiant l'adverbe 'ensemble'. Invariable.",
+      "id": "q032",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "C'est ___ ce qui compte.",
+      "after": "C'est ce qui compte.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "Pronom neutre. 'Tout ce qui' est une construction figée avec l'adverbe/pronom invariable.",
+      "id": "q033",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Les enfants étaient ___ émerveillés par le spectacle.",
+      "after": "Les enfants étaient émerveillés par le spectacle.",
+      "answer": "tous",
+      "difficulty": 3,
+      "explanation": "Ici 'tous' est pronom masc. pluriel en apposition, non adverbe. Accord obligatoire avec le groupe.",
+      "id": "q034",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Elle était ___ tremblante de froid.",
+      "after": "Elle était tremblante de froid.",
+      "answer": "tout",
+      "difficulty": 3,
+      "explanation": "Adverbe intensifiant l'adjectif 'tremblante'. Reste invariable malgré le féminin singulier.",
+      "id": "q035",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Ils comprenaient ___ parfaitement.",
+      "after": "Ils comprenaient parfaitement.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "Pronom masc. pluriel signifiant 'tous, sans exception'. Accord avec le groupe.",
+      "id": "q036",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "C'est ___ à fait correct.",
+      "after": "C'est à fait correct.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "Dans l'expression 'tout à fait', 'tout' est adverbe invariable.",
+      "id": "q037",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Les femmes étaient ___ honteuses après cet incident.",
+      "after": "Les femmes étaient honteuses après cet incident.",
+      "answer": "tout",
+      "difficulty": 3,
+      "explanation": "Adverbe modifiant l'adjectif féminin pluriel 'honteuses'. Invariable.",
+      "id": "q038",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "___ était possible avec un peu de volonté.",
+      "after": "Était possible avec un peu de volonté.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "Pronom neutre sujet. Invariable.",
+      "id": "q039",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Elles ont gagné ___ les trois prix de la compétition.",
+      "after": "Elles ont gagné les trois prix de la compétition.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "Pronom féminin pluriel signifiant 'chacune d'entre elles'. Accord avec le groupe féminin.",
+      "id": "q040",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " l'art baroque repose sur le contraste et l'émotion.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "Le nom 'art' est singulier et masculin → 'tout l'art'.",
+      "id": "q041",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les civilisations antiques ont produit des œuvres remarquables.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "Le nom 'civilisations' est pluriel → 'tous les civilisations'.",
+      "id": "q042",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Au Moyen Âge,",
+      "after": " l'Europe médiévale était dominée par l'Église.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "Le nom 'Europe' est singulier et féminin → 'toute l'Europe'.",
+      "id": "q043",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Proust a consacré",
+      "after": " sa vie à l'écriture de 'La Recherche du temps perdu'.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "Le nom 'vie' est singulier et féminin → 'toute sa vie'.",
+      "id": "q044",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les grandes cultures ont des mythologies fondatrices.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "Le nom 'cultures' est pluriel et féminin → 'toutes les grandes cultures'.",
+      "id": "q045",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Les surréalistes ont rejeté",
+      "after": " les conventions artistiques de leur époque.",
+      "answer": "toutes",
+      "difficulty": 3,
+      "explanation": "Le nom 'conventions' est pluriel et féminin → 'toutes les conventions'.",
+      "id": "q046",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Shakespeare a écrit",
+      "after": " ses pièces avec un génie inégalé.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "Le nom 'pièces' est pluriel et féminin → 'toutes ses pièces'.",
+      "id": "q047",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "La Renaissance italienne a transformé",
+      "after": " la culture européenne.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "Le nom 'culture' est singulier et féminin → 'toute la culture'.",
+      "id": "q048",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les architectures gothiques expriment une spiritualité transcendante.",
+      "answer": "toutes",
+      "difficulty": 3,
+      "explanation": "Le nom 'architectures' est pluriel et féminin → 'toutes les architectures'.",
+      "id": "q049",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Molière a dominé",
+      "after": " le théâtre français du XVIIe siècle.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "Le nom 'théâtre' est singulier et masculin → 'tout le théâtre'.",
+      "id": "q050",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Les Lumières ont insufflé",
+      "after": " leur esprit critique dans la littérature européenne.",
+      "answer": "tout",
+      "difficulty": 3,
+      "explanation": "Le nom 'esprit' est singulier et masculin → 'tout leur esprit'.",
+      "id": "q051",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Dante Alighieri a incarné",
+      "after": " la pensée médiévale et humaniste.",
+      "answer": "toute",
+      "difficulty": 3,
+      "explanation": "Le nom 'pensée' est singulier et féminin → 'toute la pensée'.",
+      "id": "q052",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les grandes tragédies grecques explorent la condition humaine.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "Le nom 'tragédies' est pluriel et féminin → 'toutes les grandes tragédies'.",
+      "id": "q053",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Montaigne a consacré",
+      "after": " son énergie à l'examen de lui-même.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "Le nom 'énergie' est singulier et féminin → 'toute son énergie'.",
+      "id": "q054",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Homère a conservé dans l'Iliade",
+      "after": " les légendes de la Grèce antique.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "Le nom 'légendes' est pluriel et féminin → 'toutes les légendes'.",
+      "id": "q055",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Le Romantisme a exalté",
+      "after": " l'imagination et l'émotion du créateur.",
+      "answer": "toute",
+      "difficulty": 3,
+      "explanation": "Le nom 'imagination' est singulier et féminin → 'toute l'imagination'.",
+      "id": "q056",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " l'histoire de la peinture occidentale témoigne des évolutions de la vision.",
+      "answer": "toute",
+      "difficulty": 3,
+      "explanation": "Le nom 'histoire' est singulier et féminin → 'toute l'histoire'.",
+      "id": "q057",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Cervantès a rassemblé dans le Quichotte",
+      "after": " les genres littéraires de son temps.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "Le nom 'genres' est pluriel et masculin → 'tous les genres'.",
+      "id": "q058",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Les humanistes de la Renaissance ont redécouvert",
+      "after": " les textes antiques oubliés.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "Le nom 'textes' est pluriel et masculin → 'tous les textes'.",
+      "id": "q059",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Virgile a légué à",
+      "after": " les générations futures un modèle incontournable.",
+      "answer": "toutes",
+      "difficulty": 3,
+      "explanation": "Le nom 'générations' est pluriel et féminin → 'toutes les générations'.",
+      "id": "q060",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " le monde était réuni pour l'occasion.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "'tout le monde' : adj. masc. sing. → tout.",
+      "id": "q061",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " le temps passe trop vite.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "'tout le temps' : adj. masc. sing. → tout.",
+      "id": "q062",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Il a",
+      "after": " compris en quelques minutes.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout compris' : adverbe invariable → tout.",
+      "id": "q063",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " le pays était en fête.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "'tout le pays' : adj. masc. sing. → tout.",
+      "id": "q064",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "J'ai mangé",
+      "after": " le gâteau.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "'tout le gâteau' : adj. masc. sing. → tout.",
+      "id": "q065",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " le village était endormi.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "'tout le village' : adj. masc. sing. → tout.",
+      "id": "q066",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " le groupe a participé.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "'tout le groupe' : adj. masc. sing. → tout.",
+      "id": "q067",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " son travail est impressionnant.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout son travail' : adj. masc. sing. → tout.",
+      "id": "q068",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "C'est",
+      "after": ".",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "'c'est tout' : pronom neutre → tout.",
+      "id": "q069",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " va bien.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "'tout va bien' : pronom sujet neutre → tout.",
+      "id": "q070",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Il a",
+      "after": " à fait raison.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout à fait' : locution adverbiale → tout.",
+      "id": "q071",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " le mérite lui revient.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout le mérite' : adj. masc. sing. → tout.",
+      "id": "q072",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " le trajet s'est passé en silence.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout le trajet' : adj. masc. sing. → tout.",
+      "id": "q073",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Il était",
+      "after": " à coup là.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout à coup' : locution adverbiale → tout.",
+      "id": "q074",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " un chacun doit respecter les règles.",
+      "answer": "tout",
+      "difficulty": 3,
+      "explanation": "'tout un chacun' : expression figée → tout.",
+      "id": "q075",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les jours, il se lève à six heures.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous les jours' : adj. masc. plur. → tous.",
+      "id": "q076",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les élèves ont bien réussi.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous les élèves' : adj. masc. plur. → tous.",
+      "id": "q077",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " mes amis étaient présents.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous mes amis' : adj. masc. plur. → tous.",
+      "id": "q078",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Ils sont arrivés",
+      "after": " à l'heure.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "Pronom masc. plur. : 'ils sont tous arrivés' → tous.",
+      "id": "q079",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Je les connais",
+      "after": ".",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "Pronom masc. plur. : 'je les connais tous' → tous.",
+      "id": "q080",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les pays ont signé l'accord.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous les pays' : adj. masc. plur. → tous.",
+      "id": "q081",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les matins, il lit le journal.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous les matins' : adj. masc. plur. → tous.",
+      "id": "q082",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Venez",
+      "after": " !",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "Pronom masc. plur. à l'impératif → tous.",
+      "id": "q083",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les garçons de la classe ont participé.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous les garçons' : adj. masc. plur. → tous.",
+      "id": "q084",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les chemins mènent à Rome.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "'tous les chemins' : adj. masc. plur. (proverbe) → tous.",
+      "id": "q085",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les hommes naissent libres et égaux.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "'tous les hommes' : adj. masc. plur. → tous.",
+      "id": "q086",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Il a répondu",
+      "after": " par écrit.",
+      "answer": "tous",
+      "difficulty": 3,
+      "explanation": "Pronom masc. plur. → tous (= à tous les messages).",
+      "id": "q087",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les niveaux de difficulté sont représentés.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "'tous les niveaux' : adj. masc. plur. → tous.",
+      "id": "q088",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les deux options semblent valables.",
+      "answer": "tous",
+      "difficulty": 3,
+      "explanation": "'tous les deux' : adj. masc. plur. → tous.",
+      "id": "q089",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " azimuts, il cherche des solutions.",
+      "answer": "tous",
+      "difficulty": 3,
+      "explanation": "'tous azimuts' : locution figée → tous.",
+      "id": "q090",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " la journée, il a travaillé sans pause.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "'toute la journée' : adj. fém. sing. → toute.",
+      "id": "q091",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " la nuit, elle a dormi profondément.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "'toute la nuit' : adj. fém. sing. → toute.",
+      "id": "q092",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " la ville était décorée pour la fête.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "'toute la ville' : adj. fém. sing. → toute.",
+      "id": "q093",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " la semaine, il pleut.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "'toute la semaine' : adj. fém. sing. → toute.",
+      "id": "q094",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " la classe a applaudi.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "'toute la classe' : adj. fém. sing. → toute.",
+      "id": "q095",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " la vérité est parfois difficile à entendre.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute la vérité' : adj. fém. sing. → toute.",
+      "id": "q096",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " sa vie, il a voyagé.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute sa vie' : adj. fém. sing. → toute.",
+      "id": "q097",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " la région est concernée par cette mesure.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute la région' : adj. fém. sing. → toute.",
+      "id": "q098",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " la matinée s'est passée en réunion.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "'toute la matinée' : adj. fém. sing. → toute.",
+      "id": "q099",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " son attention était tournée vers l'avenir.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute son attention' : adj. fém. sing. → toute.",
+      "id": "q100",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " l'équipe a contribué au succès.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute l'équipe' : adj. fém. sing. → toute.",
+      "id": "q101",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "En",
+      "after": " franchise, je dois te dire quelque chose.",
+      "answer": "toute",
+      "difficulty": 3,
+      "explanation": "'en toute franchise' : locution → toute.",
+      "id": "q102",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " honte bue, il a avoué son erreur.",
+      "answer": "toute",
+      "difficulty": 3,
+      "explanation": "'toute honte bue' : expression figée → toute.",
+      "id": "q103",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " la société doit s'adapter.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute la société' : adj. fém. sing. → toute.",
+      "id": "q104",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les filles ont réussi l'examen.",
+      "answer": "toutes",
+      "difficulty": 1,
+      "explanation": "'toutes les filles' : adj. fém. plur. → toutes.",
+      "id": "q105",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les femmes de la famille étaient là.",
+      "answer": "toutes",
+      "difficulty": 1,
+      "explanation": "'toutes les femmes' : adj. fém. plur. → toutes.",
+      "id": "q106",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les heures, il regarde son téléphone.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes les heures' : adj. fém. plur. → toutes.",
+      "id": "q107",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Elles sont",
+      "after": " parties avant midi.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "Pronom fém. plur. : 'elles sont toutes parties' → toutes.",
+      "id": "q108",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "Je les ai",
+      "after": " lues.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "Pronom fém. plur. (les lettres, les pages…) → toutes.",
+      "id": "q109",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les questions ont eu une réponse.",
+      "answer": "toutes",
+      "difficulty": 1,
+      "explanation": "'toutes les questions' : adj. fém. plur. → toutes.",
+      "id": "q110",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les nations ont leurs particularités.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes les nations' : adj. fém. plur. → toutes.",
+      "id": "q111",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " ces idées sont intéressantes.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes ces idées' : adj. fém. plur. → toutes.",
+      "id": "q112",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les fleurs du jardin ont fleuri en même temps.",
+      "answer": "toutes",
+      "difficulty": 1,
+      "explanation": "'toutes les fleurs' : adj. fém. plur. → toutes.",
+      "id": "q113",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les deux candidates étaient excellentes.",
+      "answer": "toutes",
+      "difficulty": 3,
+      "explanation": "'toutes les deux' : adj. fém. plur. → toutes.",
+      "id": "q114",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " proportions gardées, c'est comparable.",
+      "answer": "toutes",
+      "difficulty": 3,
+      "explanation": "'toutes proportions gardées' : locution figée → toutes.",
+      "id": "q115",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "De",
+      "after": " parts, des voix s'élevaient.",
+      "answer": "toutes",
+      "difficulty": 3,
+      "explanation": "'de toutes parts' : locution figée → toutes.",
+      "id": "q116",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "En",
+      "after": " lettres, écrivez votre nom.",
+      "answer": "toutes",
+      "difficulty": 3,
+      "explanation": "'en toutes lettres' : locution figée → toutes.",
+      "id": "q117",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " ces situations demandent du discernement.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes ces situations' : adj. fém. plur. → toutes.",
+      "id": "q118",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les cultures méritent d'être respectées.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes les cultures' : adj. fém. plur. → toutes.",
+      "id": "q119",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " le long du chemin, il chantait.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout le long de' : adj. masc. sing. → tout.",
+      "id": "q120",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les soirs, elle lit avant de dormir.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous les soirs' : adj. masc. plur. → tous.",
+      "id": "q121",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " la nuit, le vent a soufflé.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "'toute la nuit' : adj. fém. sing. → toute.",
+      "id": "q122",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les routes étaient bloquées par la neige.",
+      "answer": "toutes",
+      "difficulty": 1,
+      "explanation": "'toutes les routes' : adj. fém. plur. → toutes.",
+      "id": "q123",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " de même, je préfère vérifier.",
+      "answer": "tout",
+      "difficulty": 3,
+      "explanation": "'tout de même' : locution adverbiale → tout.",
+      "id": "q124",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les enfants adorent les histoires.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous les enfants' : adj. masc. plur. → tous.",
+      "id": "q125",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " l'œuvre de Zola est disponible en ligne.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute l'œuvre' : adj. fém. sing. → toute.",
+      "id": "q126",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les langues du monde sont précieuses.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes les langues' : adj. fém. plur. → toutes.",
+      "id": "q127",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " ce qui brille n'est pas or.",
+      "answer": "tout",
+      "difficulty": 3,
+      "explanation": "'tout ce qui' : pronom relatif neutre → tout.",
+      "id": "q128",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " un chacun est responsable de ses actes.",
+      "answer": "tout",
+      "difficulty": 3,
+      "explanation": "'tout un chacun' : expression figée → tout.",
+      "id": "q129",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les sports ont leurs règles propres.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous les sports' : adj. masc. plur. → tous.",
+      "id": "q130",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " la vague de froid a duré une semaine.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute la vague' : adj. fém. sing. → toute.",
+      "id": "q131",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les réponses étaient correctes.",
+      "answer": "toutes",
+      "difficulty": 1,
+      "explanation": "'toutes les réponses' : adj. fém. plur. → toutes.",
+      "id": "q132",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " le lycée a participé au projet.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout le lycée' : adj. masc. sing. → tout.",
+      "id": "q133",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " les mois, ils se retrouvent.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous les mois' : adj. masc. plur. → tous.",
+      "id": "q134",
+      "choices": [
+        {
+          "id": "tout",
+          "label": "tout"
+        },
+        {
+          "id": "tous",
+          "label": "tous"
+        },
+        {
+          "id": "toute",
+          "label": "toute"
+        },
+        {
+          "id": "toutes",
+          "label": "toutes"
+        }
+      ]
+    },
+    {
+      "before": "",
+      "after": " l'immeuble a été évacué.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout l'immeuble' : adj. masc. sing. → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q135"
+    },
+    {
+      "before": "",
+      "after": " l'été, il a travaillé.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "'tout l'été' : adj. masc. sing. → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q136"
+    },
+    {
+      "before": "",
+      "after": " son charme opère.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout son charme' : adj. masc. sing. → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q137"
+    },
+    {
+      "before": "",
+      "after": " le secteur est concerné.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout le secteur' : adj. masc. sing. → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q138"
+    },
+    {
+      "before": "",
+      "after": " son génie se révèle ici.",
+      "answer": "tout",
+      "difficulty": 3,
+      "explanation": "'tout son génie' : adj. masc. sing. → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q139"
+    },
+    {
+      "before": "",
+      "after": " le quartier était en émoi.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "'tout le quartier' : adj. masc. sing. → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q140"
+    },
+    {
+      "before": "",
+      "after": " son courage l'a porté.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout son courage' : adj. masc. sing. → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q141"
+    },
+    {
+      "before": "",
+      "after": " ce travail a payé.",
+      "answer": "tout",
+      "difficulty": 1,
+      "explanation": "'tout ce travail' : adj. masc. sing. → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q142"
+    },
+    {
+      "before": "",
+      "after": " l'après-midi, ils ont joué dehors.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout l'après-midi' : adj. masc. sing. → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q143"
+    },
+    {
+      "before": "",
+      "after": " l'art est dans la nuance.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout l'art' : adj. masc. sing. → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q144"
+    },
+    {
+      "before": "Il a",
+      "after": " de même accepté.",
+      "answer": "tout",
+      "difficulty": 3,
+      "explanation": "'tout de même' : locution adverbiale → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q145"
+    },
+    {
+      "before": "",
+      "after": " à l'heure, il rentrera.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout à l'heure' : locution adverbiale → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q146"
+    },
+    {
+      "before": "",
+      "after": " à coup, elle éclata de rire.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout à coup' : locution adverbiale → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q147"
+    },
+    {
+      "before": "C'était",
+      "after": " à fait inattendu.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout à fait' : locution adverbiale → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q148"
+    },
+    {
+      "before": "",
+      "after": " un chacun mérite le respect.",
+      "answer": "tout",
+      "difficulty": 3,
+      "explanation": "'tout un chacun' : expression figée → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q149"
+    },
+    {
+      "before": "",
+      "after": " les soirs, il regarde les étoiles.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous les soirs' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q150"
+    },
+    {
+      "before": "",
+      "after": " les mardis, il y a un marché.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous les mardis' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q151"
+    },
+    {
+      "before": "Ils ont",
+      "after": " participé avec enthousiasme.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "Pronom masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q152"
+    },
+    {
+      "before": "",
+      "after": " ses efforts n'ont pas suffi.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "'tous ses efforts' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q153"
+    },
+    {
+      "before": "",
+      "after": " les spectateurs ont applaudi.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous les spectateurs' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q154"
+    },
+    {
+      "before": "Je les ai appelés",
+      "after": ".",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "Pronom masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q155"
+    },
+    {
+      "before": "",
+      "after": " les présidents ont signé.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "'tous les présidents' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q156"
+    },
+    {
+      "before": "",
+      "after": " les quartiers sont concernés.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "'tous les quartiers' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q157"
+    },
+    {
+      "before": "",
+      "after": " les artistes présents ont signé.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "'tous les artistes' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q158"
+    },
+    {
+      "before": "",
+      "after": " mes projets ont abouti.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "'tous mes projets' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q159"
+    },
+    {
+      "before": "",
+      "after": " les hivers, la neige recouvre les montagnes.",
+      "answer": "tous",
+      "difficulty": 1,
+      "explanation": "'tous les hivers' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q160"
+    },
+    {
+      "before": "",
+      "after": " ces arguments sont valides.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "'tous ces arguments' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q161"
+    },
+    {
+      "before": "",
+      "after": " les moyens sont bons pour y parvenir.",
+      "answer": "tous",
+      "difficulty": 3,
+      "explanation": "'tous les moyens' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q162"
+    },
+    {
+      "before": "",
+      "after": " les deux garçons ont réussi.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "'tous les deux' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q163"
+    },
+    {
+      "before": "",
+      "after": " les repas de la semaine sont planifiés.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "'tous les repas' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q164"
+    },
+    {
+      "before": "",
+      "after": " l'histoire de France est là.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute l'histoire' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q165"
+    },
+    {
+      "before": "",
+      "after": " son énergie est consacrée à ce projet.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute son énergie' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q166"
+    },
+    {
+      "before": "",
+      "after": " la soirée s'est passée en musique.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "'toute la soirée' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q167"
+    },
+    {
+      "before": "",
+      "after": " sa patience a fini par payer.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute sa patience' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q168"
+    },
+    {
+      "before": "",
+      "after": " la forêt était silencieuse.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "'toute la forêt' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q169"
+    },
+    {
+      "before": "",
+      "after": " la troupe a répété pendant des semaines.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute la troupe' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q170"
+    },
+    {
+      "before": "",
+      "after": " l'étendue du problème apparaît maintenant.",
+      "answer": "toute",
+      "difficulty": 3,
+      "explanation": "'toute l'étendue' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q171"
+    },
+    {
+      "before": "",
+      "after": " sa carrière, il a défendu cette cause.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute sa carrière' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q172"
+    },
+    {
+      "before": "",
+      "after": " la planète est concernée.",
+      "answer": "toute",
+      "difficulty": 1,
+      "explanation": "'toute la planète' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q173"
+    },
+    {
+      "before": "",
+      "after": " la nation était en deuil.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute la nation' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q174"
+    },
+    {
+      "before": "En",
+      "after": " logique, il aurait dû gagner.",
+      "answer": "toute",
+      "difficulty": 3,
+      "explanation": "'en toute logique' : locution → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q175"
+    },
+    {
+      "before": "",
+      "after": " la beauté du paysage s'offrait à nous.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute la beauté' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q176"
+    },
+    {
+      "before": "",
+      "after": " la difficulté est là.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute la difficulté' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q177"
+    },
+    {
+      "before": "",
+      "after": " la communauté s'est mobilisée.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute la communauté' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q178"
+    },
+    {
+      "before": "",
+      "after": " la durée du spectacle, il n'a pas bougé.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute la durée' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q179"
+    },
+    {
+      "before": "",
+      "after": " les nuits, elle rêve.",
+      "answer": "toutes",
+      "difficulty": 1,
+      "explanation": "'toutes les nuits' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q180"
+    },
+    {
+      "before": "",
+      "after": " ses affaires étaient rangées.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes ses affaires' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q181"
+    },
+    {
+      "before": "",
+      "after": " les saisons ont leur charme.",
+      "answer": "toutes",
+      "difficulty": 1,
+      "explanation": "'toutes les saisons' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q182"
+    },
+    {
+      "before": "",
+      "after": " les équipes ont donné le meilleur.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes les équipes' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q183"
+    },
+    {
+      "before": "Elles ont",
+      "after": " accepté l'invitation.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "Pronom fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q184"
+    },
+    {
+      "before": "",
+      "after": " les pages sont annotées.",
+      "answer": "toutes",
+      "difficulty": 1,
+      "explanation": "'toutes les pages' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q185"
+    },
+    {
+      "before": "",
+      "after": " les décisions ont été prises à l'unanimité.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes les décisions' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q186"
+    },
+    {
+      "before": "",
+      "after": " ces années de travail ont porté leurs fruits.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes ces années' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q187"
+    },
+    {
+      "before": "",
+      "after": " les générations sont représentées.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes les générations' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q188"
+    },
+    {
+      "before": "",
+      "after": " ses propositions ont été retenues.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes ses propositions' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q189"
+    },
+    {
+      "before": "",
+      "after": " les espèces sont menacées dans cette zone.",
+      "answer": "toutes",
+      "difficulty": 3,
+      "explanation": "'toutes les espèces' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q190"
+    },
+    {
+      "before": "",
+      "after": " les villes de la région participent.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes les villes' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q191"
+    },
+    {
+      "before": "",
+      "after": " les matières l'intéressent.",
+      "answer": "toutes",
+      "difficulty": 1,
+      "explanation": "'toutes les matières' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q192"
+    },
+    {
+      "before": "",
+      "after": " son talent éclate dans cette œuvre.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout son talent' : adj. masc. sing. → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q193"
+    },
+    {
+      "before": "",
+      "after": " le continent est affecté.",
+      "answer": "tout",
+      "difficulty": 2,
+      "explanation": "'tout le continent' : adj. masc. sing. → tout.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q194"
+    },
+    {
+      "before": "",
+      "after": " les deux frères ont réussi.",
+      "answer": "tous",
+      "difficulty": 2,
+      "explanation": "'tous les deux' : adj. masc. plur. → tous.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q195"
+    },
+    {
+      "before": "",
+      "after": " son enfance, il a vécu à la campagne.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute son enfance' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q196"
+    },
+    {
+      "before": "",
+      "after": " l'œuvre est disponible en ligne.",
+      "answer": "toute",
+      "difficulty": 2,
+      "explanation": "'toute l'œuvre' : adj. fém. sing. → toute.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q197"
+    },
+    {
+      "before": "",
+      "after": " les disciplines sportives y sont représentées.",
+      "answer": "toutes",
+      "difficulty": 2,
+      "explanation": "'toutes les disciplines' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q198"
+    },
+    {
+      "before": "",
+      "after": " les révolutions ont leur lot de drames.",
+      "answer": "toutes",
+      "difficulty": 3,
+      "explanation": "'toutes les révolutions' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q199"
+    },
+    {
+      "before": "",
+      "after": " les semaines, il apporte des fleurs.",
+      "answer": "toutes",
+      "difficulty": 1,
+      "explanation": "'toutes les semaines' : adj. fém. plur. → toutes.",
+      "choices": [
+        {
+          "id": "tout"
+        },
+        {
+          "id": "tous"
+        },
+        {
+          "id": "toute"
+        },
+        {
+          "id": "toutes"
+        }
+      ],
+      "id": "q200"
+    }
+  ]
+}
