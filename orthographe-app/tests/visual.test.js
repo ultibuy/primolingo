@@ -1,5 +1,5 @@
 /**
- * Visual tests — PrimoLinguo
+ * Visual tests — PrimoLingo
  *
  * Tests les pages publiques, les redirections d'auth et les interactions de base.
  * Tourne contre la prod par défaut (BASE_URL) ou localhost si disponible.
@@ -101,7 +101,7 @@ async function testLandingPage() {
     await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     await page.waitForSelector('h1', { timeout: 10000 });
     const title = await page.$eval('h1', el => el.textContent.trim());
-    assert(title.includes('PrimoLinguo'), `h1 expected "PrimoLinguo", got "${title}"`);
+    assert(title.includes('PrimoLingo'), `h1 expected "PrimoLingo", got "${title}"`);
     await screenshotFull(page, '01-landing-desktop');
     await screenshot(page, '01-landing-desktop-viewport');
     await page.close();
@@ -154,7 +154,7 @@ async function testLandingPage() {
     const page = await newPage(VIEWPORTS.desktop);
     await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     const footerText = await page.$eval('footer', el => el.textContent);
-    assert(footerText.includes('PrimoLinguo'), 'Footer missing "PrimoLinguo"');
+    assert(footerText.includes('PrimoLingo'), 'Footer missing "PrimoLingo"');
     await page.close();
   });
 
@@ -165,7 +165,7 @@ async function testLandingPage() {
     await screenshot(page, '02-landing-mobile');
     await screenshotFull(page, '02-landing-mobile');
     const title = await page.$eval('h1', el => el.textContent.trim());
-    assert(title.includes('PrimoLinguo'), `Mobile h1: "${title}"`);
+    assert(title.includes('PrimoLingo'), `Mobile h1: "${title}"`);
     await page.close();
   });
 
@@ -181,13 +181,13 @@ async function testLandingPage() {
 async function testLoginPage() {
   console.log('\n🔐 Login Page (/login)');
 
-  await test('Desktop — renders PrimoLinguo logo', async () => {
+  await test('Desktop — renders PrimoLingo logo', async () => {
     const page = await newPage(VIEWPORTS.desktop);
     await page.goto(`${BASE_URL}/login`, { waitUntil: 'networkidle', timeout: 30000 });
     await page.waitForSelector('button', { timeout: 10000 });
     await screenshot(page, '03-login-desktop');
     const bodyText = await page.$eval('body', el => el.textContent);
-    assert(bodyText.includes('PrimoLinguo'), '"PrimoLinguo" not found on login page');
+    assert(bodyText.includes('PrimoLingo'), '"PrimoLingo" not found on login page');
     await page.close();
   });
 
@@ -312,11 +312,11 @@ async function testNavigation() {
     await page.close();
   });
 
-  await test('Page title is "PrimoLinguo" on landing', async () => {
+  await test('Page title is "PrimoLingo" on landing', async () => {
     const page = await newPage(VIEWPORTS.desktop);
     await page.goto(`${BASE_URL}/`, { waitUntil: 'networkidle', timeout: 30000 });
     const title = await page.title();
-    assert(title.includes('PrimoLinguo'), `Page title: "${title}"`);
+    assert(title.includes('PrimoLingo'), `Page title: "${title}"`);
     await page.close();
   });
 
@@ -401,7 +401,7 @@ async function testPerformance() {
 // ── Main ───────────────────────────────────────────────────────────────────────
 
 async function main() {
-  console.log(`\n🧪 PrimoLinguo Visual Tests`);
+  console.log(`\n🧪 PrimoLingo Visual Tests`);
   console.log(`   Target: ${BASE_URL}`);
   console.log(`   Screenshots: ${SCREENSHOTS_DIR}\n`);
 

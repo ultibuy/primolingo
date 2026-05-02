@@ -775,7 +775,7 @@ export default function LandingPage() {
       <nav style={css.nav} className="oq-nav">
         <div style={css.navLogo}>
           <div style={css.navLogoIcon}>PL</div>
-          PrimoLinguo
+          PrimoLingo
         </div>
         <button style={css.navCta}
           onClick={() => navigate('/login')}
@@ -795,7 +795,7 @@ export default function LandingPage() {
           </h1>
           <p style={css.heroDesc}>
             C'est normal. Les dictées et les exercices classiques ne suffisent pas à ancrer les règles
-            dans la mémoire à long terme. <strong>PrimoLinguo</strong> utilise une méthode scientifique
+            dans la mémoire à long terme. <strong>PrimoLingo</strong> utilise une méthode scientifique
             de révision adaptative pour que chaque règle soit réellement acquise — pas juste « vue en classe ».
           </p>
           <button style={css.heroCta} onClick={() => navigate('/login')}>
@@ -857,7 +857,7 @@ export default function LandingPage() {
         <div style={css.sectionLabel}>La solution</div>
         <h2 style={css.sectionTitle}>5 minutes par jour qui changent tout</h2>
         <p style={css.sectionSubtitle}>
-          PrimoLinguo transforme chaque règle d'orthographe en une aventure.
+          PrimoLingo transforme chaque règle d'orthographe en une aventure.
           L'enfant joue, le cerveau mémorise.
         </p>
 
@@ -1276,7 +1276,7 @@ export default function LandingPage() {
           <p style={{ fontSize: 16, lineHeight: 1.7, color: T.textLight, marginBottom: 0 }}>
             Pas de pub. Pas d'achats in-app. Pas de données revendues. Pas de version premium cachée.
             <br /><br />
-            PrimoLinguo est un projet indépendant, créé par un parent pour son enfant,
+            PrimoLingo est un projet indépendant, créé par un parent pour son enfant,
             et partagé gratuitement avec tous ceux qui en ont besoin.
           </p>
         </div>
@@ -1288,7 +1288,7 @@ export default function LandingPage() {
           Prêt à transformer l'orthographe en aventure ?
         </h2>
         <p style={{ fontSize: 16, color: T.textLight, marginBottom: 28 }}>
-          Créez un compte en 10 secondes et laissez votre enfant découvrir PrimoLinguo.
+          Créez un compte en 10 secondes et laissez votre enfant découvrir PrimoLingo.
         </p>
         <button style={css.heroCta} onClick={() => navigate('/login')}>
           Commencer gratuitement →
@@ -1303,7 +1303,7 @@ export default function LandingPage() {
             Mentions légales & Confidentialité
           </a>
         </p>
-        <p style={{ marginTop: 4 }}>© 2026 PrimoLinguo</p>
+        <p style={{ marginTop: 4 }}>© 2026 PrimoLingo</p>
       </footer>
     </div>
   );

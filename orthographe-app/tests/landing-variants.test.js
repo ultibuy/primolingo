@@ -55,7 +55,7 @@ for (const variant of ['v1', 'v2', 'v3']) {
 
     // Page title/nav visible
     const nav = await page.textContent('nav');
-    assert(nav.includes('PrimoLinguo'), `${variant}: nav contains PrimoLinguo`);
+    assert(nav.includes('PrimoLingo'), `${variant}: nav contains PrimoLingo`);
 
     // Hero section exists
     const heroSection = await page.$('[data-section="hero"]');

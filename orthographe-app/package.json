@@ -12,19 +12,24 @@
     "start": "node server/local-api.mjs",
     "test:visual": "node tests/visual.test.js",
     "test:visual:local": "BASE_URL=http://localhost:5173 node tests/visual.test.js",
-    "test:emotions": "BASE_URL=http://localhost:5173 node tests/emotion-rules.test.cjs",
-    "test:emotions:prod": "node tests/emotion-rules.test.cjs",
+    "test:emotions": "BASE_URL=http://localhost:5173 node tests/emotion-rules.test.js",
+    "test:characters": "BASE_URL=http://localhost:5173 node tests/characters-moods.test.js",
+    "test:personas": "BASE_URL=http://localhost:5173 node tests/personas-flow.test.js",
+    "test:pin": "BASE_URL=http://localhost:5173 node tests/pin-parental.test.js",
     "test:coaching": "node tests/coaching-banner.test.js",
-    "test:coaching:update": "node tests/coaching-banner.test.js --update-snapshots"
+    "test:coaching:update": "node tests/coaching-banner.test.js --update-snapshots",
+    "test:stats": "node tests/stats.test.js",
+    "test:stats:e2e": "BASE_URL=http://localhost:5173 node tests/progress-charts.test.js"
   },
   "dependencies": {
     "@sentry/react": "^10.51.0",
     "firebase": "^12.12.0",
     "firebase-admin": "^13.8.0",
-    "puppeteer": "^24.40.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "react-router-dom": "^7.14.1"
+    "react-is": "^19.2.5",
+    "react-router-dom": "^7.14.1",
+    "recharts": "^3.8.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",

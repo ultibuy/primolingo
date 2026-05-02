@@ -992,7 +992,7 @@ export default function LandingPageV3() {
         <nav style={css.nav} className="oq-nav">
           <div style={css.navLogo}>
             <div style={css.navLogoIcon}>PL</div>
-            PrimoLinguo
+            PrimoLingo
           </div>
           <button style={css.navCta}
             onClick={() => navigate('/login')}
@@ -1446,7 +1446,7 @@ export default function LandingPageV3() {
             <p style={{ fontSize: 16, lineHeight: 1.7, color: T.textLight, marginBottom: 0 }}>
               Pas de pub. Pas d'achats in-app. Pas de données revendues. Pas de version premium cachée.
               <br /><br />
-              PrimoLinguo est un projet indépendant, créé par un parent pour son enfant,
+              PrimoLingo est un projet indépendant, créé par un parent pour son enfant,
               et partagé gratuitement avec tous ceux qui en ont besoin.
             </p>
           </div>
@@ -1458,7 +1458,7 @@ export default function LandingPageV3() {
             Prêt à transformer l'orthographe en aventure ?
           </h2>
           <p style={{ fontSize: 16, color: T.textLight, marginBottom: 28 }}>
-            Créez un compte en 10 secondes et laissez votre enfant découvrir PrimoLinguo.
+            Créez un compte en 10 secondes et laissez votre enfant découvrir PrimoLingo.
           </p>
           <button style={css.heroCta} onClick={() => navigate('/login')}>
             Commencer gratuitement →
@@ -1473,7 +1473,7 @@ export default function LandingPageV3() {
               Mentions légales & Confidentialité
             </a>
           </p>
-          <p style={{ marginTop: 4 }}>© 2026 PrimoLinguo</p>
+          <p style={{ marginTop: 4 }}>© 2026 PrimoLingo</p>
         </footer>
       </div>
     </AnnotationOverlay>

@@ -589,7 +589,7 @@ export default function ParentDashboard() {
         <div>
           <div style={logoRowStyle}>
             <div style={logoIconStyle}>PL</div>
-            <span style={logoTitleStyle}>PrimoLinguo</span>
+            <span style={logoTitleStyle}>PrimoLingo</span>
           </div>
           <p style={welcomeStyle}>Bonjour, {user?.displayName?.split(' ')[0] || 'parent'} 👋</p>
         </div>

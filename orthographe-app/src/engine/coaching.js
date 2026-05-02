@@ -1,5 +1,5 @@
 /**
- * coaching.js — Narrative arcs coaching engine for PrimoLinguo.
+ * coaching.js — Narrative arcs coaching engine for PrimoLingo.
  *
  * Pure JS module. No React imports. All arc logic lives here.
  */

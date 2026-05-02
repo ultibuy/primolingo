@@ -1,5 +1,5 @@
 /**
- * Firestore CRUD operations for PrimoLinguo.
+ * Firestore CRUD operations for PrimoLingo.
  * All data lives under: users/{uid}/children/{childId}
  */
 

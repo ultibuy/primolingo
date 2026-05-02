@@ -1,4 +1,4 @@
-# PrimoLinguo
+# PrimoLingo
 
 App de grammaire/orthographe française pour enfants (CE1-CM2). React + Vite + Firebase Hosting + Firestore.
 

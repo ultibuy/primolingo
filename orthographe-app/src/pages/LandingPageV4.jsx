@@ -1179,7 +1179,7 @@ export default function LandingPageV4() {
         <nav style={css.nav} className="oq-nav" data-section="nav">
           <div style={css.navLogo}>
             <div style={css.navLogoIcon}>PL</div>
-            PrimoLinguo
+            PrimoLingo
           </div>
           <button style={css.navCta}
             onClick={() => navigate('/login')}
@@ -1198,7 +1198,7 @@ export default function LandingPageV4() {
               Votre enfant fait toujours les <span style={css.heroHighlight}>mêmes fautes</span> de Français ?
             </h1>
             <p style={css.heroDesc}>
-              Les devoirs de Français, c'est souvent recopier 10 fois le même mot ou la même règle — pénible, et oublié dès le contrôle passé. <strong style={{ color: "#a78bfa" }}>PrimoLinguo</strong> remplace cette répétition mécanique par un système de révision adaptative : l'app détecte ce que votre enfant oublie et le lui repropose au bon moment. Résultat : les règles restent, durablement.
+              Les devoirs de Français, c'est souvent recopier 10 fois le même mot ou la même règle — pénible, et oublié dès le contrôle passé. <strong style={{ color: "#a78bfa" }}>PrimoLingo</strong> remplace cette répétition mécanique par un système de révision adaptative : l'app détecte ce que votre enfant oublie et le lui repropose au bon moment. Résultat : les règles restent, durablement.
             </p>
             <button style={css.heroCta} onClick={() => navigate('/login')}>
               Créer un compte gratuit →
@@ -1294,7 +1294,7 @@ export default function LandingPageV4() {
           <div style={css.sectionLabel}>La solution</div>
           <h2 style={css.sectionTitle}>10 minutes par jour qui changent tout</h2>
           <p style={css.sectionSubtitle}>
-            PrimoLinguo transforme chaque règle en une aventure. 10 minutes suffisent — mais votre enfant aura envie d'y passer plus de temps.
+            <strong style={{ color: "#a78bfa" }}>PrimoLingo</strong> transforme chaque règle en une aventure. 10 minutes suffisent — mais votre enfant aura envie d'y passer plus de temps.
           </p>
 
           {/* Step 1 — Guided mode */}
@@ -1577,7 +1577,7 @@ export default function LandingPageV4() {
           <div style={css.sectionLabel}>La boucle de jeu</div>
           <h2 style={css.sectionTitle}>« Encore une session, maman ! »</h2>
           <p style={css.sectionSubtitle}>
-            PrimoLinguo utilise les mêmes mécaniques que les jeux préférés de votre enfant.
+            <strong style={{ color: "#a78bfa" }}>PrimoLingo</strong> utilise les mêmes mécaniques que les jeux préférés de votre enfant.
             Résultat : il <em>veut</em> réviser, pas parce qu'on lui demande — parce que c'est fun.
           </p>
 
@@ -1793,7 +1793,7 @@ export default function LandingPageV4() {
             <p style={{ fontSize: 16, lineHeight: 1.7, color: T.textLight, marginBottom: 0 }}>
               Pas de pub. Pas d'achats in-app. Pas de données revendues. Pas de version premium cachée.
               <br /><br />
-              PrimoLinguo est un projet indépendant, créé par un papa pour son enfant,
+              <strong style={{ color: "#a78bfa" }}>PrimoLingo</strong> est un projet indépendant, créé par un papa pour son enfant,
               et partagé gratuitement avec tous ceux qui en ont besoin.
             </p>
           </div>
@@ -1805,7 +1805,7 @@ export default function LandingPageV4() {
             Prêt à transformer le Français en aventure ?
           </h2>
           <p style={{ fontSize: 16, color: T.textLight, marginBottom: 28 }}>
-            Créez un compte en 10 secondes et laissez votre enfant découvrir PrimoLinguo.
+            Créez un compte en 10 secondes et laissez votre enfant découvrir <strong style={{ color: "#a78bfa" }}>PrimoLingo</strong>.
             10 minutes par jour suffisent — mais il voudra en faire plus 😉
           </p>
           <button style={css.heroCta} onClick={() => navigate('/login')}>
@@ -1821,7 +1821,7 @@ export default function LandingPageV4() {
               Mentions légales & Confidentialité
             </a>
           </p>
-          <p style={{ marginTop: 4 }}>© 2026 PrimoLinguo</p>
+          <p style={{ marginTop: 4 }}>© 2026 PrimoLingo</p>
         </footer>
       </div>
     </AnnotationOverlay>

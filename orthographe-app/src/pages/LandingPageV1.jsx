@@ -1108,7 +1108,7 @@ export default function LandingPageV1() {
         <nav style={css.nav} className="oq-nav" data-section="nav">
           <div style={css.navLogo}>
             <div style={css.navLogoIcon}>PL</div>
-            PrimoLinguo
+            PrimoLingo
           </div>
           <button style={css.navCta}
             onClick={() => navigate('/login')}
@@ -1128,7 +1128,7 @@ export default function LandingPageV1() {
             </h1>
             <p style={css.heroDesc}>
               10 minutes par jour suffisent pour ancrer les règles dans la mémoire à long terme.
-              Mais ne soyez pas surpris s'il en redemande. <strong>PrimoLinguo</strong> utilise une méthode
+              Mais ne soyez pas surpris s'il en redemande. <strong>PrimoLingo</strong> utilise une méthode
               scientifique de révision adaptative qui transforme l'orthographe en aventure — et chaque
               règle en défi à relever.
             </p>
@@ -1191,7 +1191,7 @@ export default function LandingPageV1() {
           <div style={css.sectionLabel}>La solution</div>
           <h2 style={css.sectionTitle}>10 minutes par jour qui changent tout</h2>
           <p style={css.sectionSubtitle}>
-            PrimoLinguo transforme chaque règle en une aventure. 10 minutes suffisent — mais votre enfant aura envie d'y passer plus de temps.
+            PrimoLingo transforme chaque règle en une aventure. 10 minutes suffisent — mais votre enfant aura envie d'y passer plus de temps.
           </p>
 
           {/* Step 1 — Guided mode */}
@@ -1474,7 +1474,7 @@ export default function LandingPageV1() {
           <div style={css.sectionLabel}>La boucle de jeu</div>
           <h2 style={css.sectionTitle}>« Encore une session, maman ! »</h2>
           <p style={css.sectionSubtitle}>
-            PrimoLinguo utilise les mêmes mécaniques que les jeux préférés de votre enfant.
+            PrimoLingo utilise les mêmes mécaniques que les jeux préférés de votre enfant.
             Résultat : il <em>veut</em> réviser, pas parce qu'on lui demande — parce que c'est fun.
           </p>
 
@@ -1682,7 +1682,7 @@ export default function LandingPageV1() {
             <p style={{ fontSize: 16, lineHeight: 1.7, color: T.textLight, marginBottom: 0 }}>
               Pas de pub. Pas d'achats in-app. Pas de données revendues. Pas de version premium cachée.
               <br /><br />
-              PrimoLinguo est un projet indépendant, créé par un parent pour son enfant,
+              PrimoLingo est un projet indépendant, créé par un parent pour son enfant,
               et partagé gratuitement avec tous ceux qui en ont besoin.
             </p>
           </div>
@@ -1694,7 +1694,7 @@ export default function LandingPageV1() {
             Prêt à transformer l'orthographe en aventure ?
           </h2>
           <p style={{ fontSize: 16, color: T.textLight, marginBottom: 28 }}>
-            Créez un compte en 10 secondes et laissez votre enfant découvrir PrimoLinguo.
+            Créez un compte en 10 secondes et laissez votre enfant découvrir PrimoLingo.
             10 minutes par jour suffisent — mais il voudra en faire plus.
           </p>
           <button style={css.heroCta} onClick={() => navigate('/login')}>
@@ -1710,7 +1710,7 @@ export default function LandingPageV1() {
               Mentions légales & Confidentialité
             </a>
           </p>
-          <p style={{ marginTop: 4 }}>© 2026 PrimoLinguo</p>
+          <p style={{ marginTop: 4 }}>© 2026 PrimoLingo</p>
         </footer>
       </div>
     </AnnotationOverlay>

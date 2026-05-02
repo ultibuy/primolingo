@@ -42,8 +42,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'icons/*.png'],
       manifest: {
-        name: "PrimoLinguo — L'aventure de l'orthographe",
-        short_name: 'PrimoLinguo',
+        name: "PrimoLingo — L'aventure de l'orthographe",
+        short_name: 'PrimoLingo',
         description: "Apprendre l'orthographe en s'amusant",
         theme_color: '#1e1e2e',
         background_color: '#1e1e2e',

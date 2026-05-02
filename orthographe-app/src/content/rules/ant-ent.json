@@ -249,6 +249,1566 @@
       "answer": "ant",
       "difficulty": 3,
       "explanation": "Vaillant vient du vieux français vaillir, dont le participe présent est valant. Forme ancienne figée en -ant — exception -ant à mémoriser."
+    },
+    {
+      "id": "q021",
+      "before": "Ce livre est très intéress",
+      "after": " pour les enfants.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Intéresser → intéressant. Cas standard."
+    },
+    {
+      "id": "q022",
+      "before": "Il a un comportement attir",
+      "after": " qui plaît à beaucoup.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Attirer → attirant. Cas standard."
+    },
+    {
+      "id": "q023",
+      "before": "Cette histoire est captiv",
+      "after": " du début à la fin.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Captiver → captivant. Cas standard."
+    },
+    {
+      "id": "q024",
+      "before": "Ce spectacle était fascin",
+      "after": " pour tous les spectateurs.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Fasciner → fascinant. Cas standard."
+    },
+    {
+      "id": "q025",
+      "before": "Le soleil est rayonn",
+      "after": " en cette belle journée.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Rayonner → rayonnant. Cas standard."
+    },
+    {
+      "id": "q026",
+      "before": "Cette nouvelle est rassur",
+      "after": "ante pour les habitants.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Rassurer → rassurant(e). Cas standard."
+    },
+    {
+      "id": "q027",
+      "before": "Ce défi est motiv",
+      "after": "ant pour toute l'équipe.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Motiver → motivant. Cas standard."
+    },
+    {
+      "id": "q028",
+      "before": "Ce silence est inquiét",
+      "after": "ant dans la maison vide.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Inquiéter → inquiétant. Cas standard."
+    },
+    {
+      "id": "q029",
+      "before": "Sa présence est réconfort",
+      "after": "ante dans les moments difficiles.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Réconforter → réconfortant(e). Cas standard."
+    },
+    {
+      "id": "q030",
+      "before": "Ce remède est apais",
+      "after": "ant pour les douleurs légères.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Apaiser → apaisant. Cas standard."
+    },
+    {
+      "id": "q031",
+      "before": "La solution est évid",
+      "after": "ente pour tout le monde.",
+      "answer": "ent",
+      "difficulty": 1,
+      "explanation": "Adjectif évident : origine latine → -ent."
+    },
+    {
+      "id": "q032",
+      "before": "C'est un élève très intellig",
+      "after": "ent.",
+      "answer": "ent",
+      "difficulty": 1,
+      "explanation": "Adjectif intelligent : origine latine → -ent."
+    },
+    {
+      "id": "q033",
+      "before": "Il faut être pati",
+      "after": "ent pour apprendre cet instrument.",
+      "answer": "ent",
+      "difficulty": 1,
+      "explanation": "Adjectif patient : origine latine → -ent."
+    },
+    {
+      "id": "q034",
+      "before": "Il était abs",
+      "after": "ent lors de la réunion.",
+      "answer": "ent",
+      "difficulty": 1,
+      "explanation": "Adjectif absent : origine latine → -ent."
+    },
+    {
+      "id": "q035",
+      "before": "Elle était prés",
+      "after": "ente à la cérémonie.",
+      "answer": "ent",
+      "difficulty": 1,
+      "explanation": "Adjectif présent : origine latine → -ent."
+    },
+    {
+      "id": "q036",
+      "before": "La situation est urg",
+      "after": "ente et nécessite une décision.",
+      "answer": "ent",
+      "difficulty": 1,
+      "explanation": "Adjectif urgent : origine latine → -ent."
+    },
+    {
+      "id": "q037",
+      "before": "Ce rapport est alarm",
+      "after": "ant pour la biodiversité.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Alarmer → alarmant. Cas standard."
+    },
+    {
+      "id": "q038",
+      "before": "Ce dénouement est surpren",
+      "after": "ant pour le lecteur.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Surprendre → surprenant. Cas standard."
+    },
+    {
+      "id": "q039",
+      "before": "Ce film est décev",
+      "after": "ant par rapport aux critiques.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Décevoir → décevant. Cas standard."
+    },
+    {
+      "id": "q040",
+      "before": "Ce discours était émouv",
+      "after": "ant et sincère.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Émouvoir → émouvant. Cas standard."
+    },
+    {
+      "id": "q041",
+      "before": "Cet artiste a un style flamboy",
+      "after": "ant et coloré.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Flamboyer → flamboyant. Cas standard."
+    },
+    {
+      "id": "q042",
+      "before": "Il avait un regard perç",
+      "after": "ant qui impressionnait.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Percer → perçant. Cas standard."
+    },
+    {
+      "id": "q043",
+      "before": "Ce témoignage est saisiss",
+      "after": "ant par son authenticité.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Saisir → saisissant. Cas standard."
+    },
+    {
+      "id": "q044",
+      "before": "Ce match est palpit",
+      "after": "ant jusqu'à la dernière seconde.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Palpiter → palpitant. Cas standard."
+    },
+    {
+      "id": "q045",
+      "before": "Ce film est déchir",
+      "after": "ant par son histoire vraie.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Déchirer → déchirant. Cas standard."
+    },
+    {
+      "id": "q046",
+      "before": "Ce travail est épuis",
+      "after": "ant mais gratifiant.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Épuiser → épuisant. Cas standard."
+    },
+    {
+      "id": "q047",
+      "before": "Ce bruit est envahiss",
+      "after": "ant et difficile à supporter.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Envahir → envahissant. Cas standard."
+    },
+    {
+      "id": "q048",
+      "before": "Cette peur est paralys",
+      "after": "ante et irrationnelle.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Paralyser → paralysant(e). Cas standard."
+    },
+    {
+      "id": "q049",
+      "before": "Ce sport est fortifi",
+      "after": "ant pour le corps.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Fortifier → fortifiant. Cas standard."
+    },
+    {
+      "id": "q050",
+      "before": "Ce jeu est stimul",
+      "after": "ant pour l'esprit des enfants.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Stimuler → stimulant. Cas standard."
+    },
+    {
+      "id": "q051",
+      "before": "Ce paysage est éblouiss",
+      "after": "ant au lever du soleil.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Éblouir → éblouissant. Cas standard."
+    },
+    {
+      "id": "q052",
+      "before": "La route est gliss",
+      "after": "ante après la pluie.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Glisser → glissant(e). Cas standard."
+    },
+    {
+      "id": "q053",
+      "before": "Il répondit d'une voix trembl",
+      "after": "ante.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Trembler → tremblant(e). Cas standard."
+    },
+    {
+      "id": "q054",
+      "before": "Ce concert est vibr",
+      "after": "ant et électrisant.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Vibrer → vibrant. Cas standard."
+    },
+    {
+      "id": "q055",
+      "before": "Sa réplique était cingl",
+      "after": "ante et directe.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Cingler → cinglant(e). Cas standard."
+    },
+    {
+      "id": "q056",
+      "before": "Cette chaleur est accabl",
+      "after": "ante en plein mois d'août.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Accabler → accablant(e). Cas standard."
+    },
+    {
+      "id": "q057",
+      "before": "Ce voyage est enrichiss",
+      "after": "ant culturellement.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Enrichir → enrichissant. Cas standard."
+    },
+    {
+      "id": "q058",
+      "before": "Il a tenu un discours éloqu",
+      "after": "ent devant le jury.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif éloquent : origine latine → -ent."
+    },
+    {
+      "id": "q059",
+      "before": "C'est un scientifique émin",
+      "after": "ent dans son domaine.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif éminent : origine latine → -ent."
+    },
+    {
+      "id": "q060",
+      "before": "Ce travail demande un effort perman",
+      "after": "ent et régulier.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif permanent : origine latine → -ent."
+    },
+    {
+      "id": "q061",
+      "before": "Sa remarque est pertin",
+      "after": "ente et bien argumentée.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif pertinent : origine latine → -ent."
+    },
+    {
+      "id": "q062",
+      "before": "Ce processus doit être transpar",
+      "after": "ent pour tous les citoyens.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif transparent : origine latine → -ent."
+    },
+    {
+      "id": "q063",
+      "before": "Cet élève est très dilig",
+      "after": "ent dans ses révisions.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif diligent : origine latine → -ent."
+    },
+    {
+      "id": "q064",
+      "before": "Ce technicien est très compét",
+      "after": "ent et sérieux.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif compétent : origine latine → -ent."
+    },
+    {
+      "id": "q065",
+      "before": "Son ton est impud",
+      "after": "ent et irrespectueux.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif impudent : origine latine → -ent."
+    },
+    {
+      "id": "q066",
+      "before": "Il paraît somnol",
+      "after": "ent après son repas.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif somnolent : origine latine → -ent."
+    },
+    {
+      "id": "q067",
+      "before": "Cette classe est turbul",
+      "after": "ente aujourd'hui.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif turbulent : origine latine → -ent."
+    },
+    {
+      "id": "q068",
+      "before": "Ce professeur est indulg",
+      "after": "ent envers les retards.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif indulgent : origine latine → -ent."
+    },
+    {
+      "id": "q069",
+      "before": "Ces deux formules sont équival",
+      "after": "entes en valeur.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif équivalent : origine latine → -ent."
+    },
+    {
+      "id": "q070",
+      "before": "Son discours est cohér",
+      "after": "ent et bien structuré.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif cohérent : origine latine → -ent."
+    },
+    {
+      "id": "q071",
+      "before": "Ses propos sont incohér",
+      "after": "ents et contradictoires.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif incohérent : origine latine → -ent."
+    },
+    {
+      "id": "q072",
+      "before": "Ce personnage est corpul",
+      "after": "ent et imposant.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif corpulent : origine latine → -ent."
+    },
+    {
+      "id": "q073",
+      "before": "Il est déterg",
+      "after": "ent et nettoie les surfaces en profondeur.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif détergent : origine latine → -ent."
+    },
+    {
+      "id": "q074",
+      "before": "Ce score est ahuriss",
+      "after": "ant pour un débutant.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Ahurir → ahurissant. Cas standard."
+    },
+    {
+      "id": "q075",
+      "before": "Sa vitesse est sidér",
+      "after": "ante pour son âge.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Sidérer → sidérant(e). Cas standard."
+    },
+    {
+      "id": "q076",
+      "before": "Ce coup de théâtre fut foudroy",
+      "after": "ant.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Foudroyer → foudroyant. Cas standard."
+    },
+    {
+      "id": "q077",
+      "before": "Ce retournement est dérout",
+      "after": "ant pour ses proches.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Dérouter → déroutant. Cas standard."
+    },
+    {
+      "id": "q078",
+      "before": "Ce témoignage est effar",
+      "after": "ant de précision.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Effarer → effarant. Cas standard."
+    },
+    {
+      "id": "q079",
+      "before": "C'est une ambition consum",
+      "after": "ante qui ne laisse aucun repos.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Consumer → consumant(e). Cas standard."
+    },
+    {
+      "id": "q080",
+      "before": "Ce résultat estomaqu",
+      "after": "ant a surpris tout le monde.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Estomaquer → estomaquant. Cas standard."
+    },
+    {
+      "id": "q081",
+      "before": "Cette nouvelle renvers",
+      "after": "ante a bouleversé les experts.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Renverser → renversant(e). Cas standard."
+    },
+    {
+      "id": "q082",
+      "before": "Sa performance stupéfi",
+      "after": "ante a établi un nouveau record.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Stupéfier → stupéfiant(e). Cas standard."
+    },
+    {
+      "id": "q083",
+      "before": "Son comportement déconcert",
+      "after": "ant a surpris ses collègues.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Déconcerter → déconcertant. Cas standard."
+    },
+    {
+      "id": "q084",
+      "before": "Son argument désarm",
+      "after": "ant a mis fin au débat.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Désarmer → désarmant. Cas standard."
+    },
+    {
+      "id": "q085",
+      "before": "Ce silence oppress",
+      "after": "ant régnait dans la pièce.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Opprimer → oppressant. Cas standard."
+    },
+    {
+      "id": "q086",
+      "before": "Cette chaleur accabl",
+      "after": "ante épuisait les travailleurs.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Accabler → accablant(e). Cas standard."
+    },
+    {
+      "id": "q087",
+      "before": "Ces deux théories sont converg",
+      "after": "entes sur ce point.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Exception : converger → convergeant (PP), mais l'adjectif est convergent → -ent."
+    },
+    {
+      "id": "q088",
+      "before": "Leurs opinions sont diverg",
+      "after": "entes sur ce sujet.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Exception : diverger → divergeant (PP), mais l'adjectif est divergent → -ent."
+    },
+    {
+      "id": "q089",
+      "before": "C'est un marché émerg",
+      "after": "ent très prometteur.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Exception : émerger → émergeant (PP), mais l'adjectif est émergent → -ent."
+    },
+    {
+      "id": "q090",
+      "before": "Il est un membre adhér",
+      "after": "ent depuis dix ans.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Exception : adhérer → adhérant (PP), mais l'adjectif est adhérent → -ent."
+    },
+    {
+      "id": "q091",
+      "before": "Il protesta d'un ton véhém",
+      "after": "ent.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif véhément : origine latine, pas de participe présent → -ent."
+    },
+    {
+      "id": "q092",
+      "before": "Il est résid",
+      "after": "ent à l'étranger depuis plusieurs années.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Exception : résider → résidant (PP), mais l'adjectif/nom est résident → -ent."
+    },
+    {
+      "id": "q093",
+      "before": "Il était impati",
+      "after": "ent de recevoir la réponse.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Exception : impatienter → impatientant (PP), mais l'adjectif est impatient → -ent."
+    },
+    {
+      "id": "q094",
+      "before": "Il est un défenseur ferv",
+      "after": "ent de cette cause.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif fervent : origine latine, pas de participe présent courant → -ent."
+    },
+    {
+      "id": "q095",
+      "before": "Elle est rétice",
+      "after": "nte à accepter ce compromis.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif réticent : origine latine, le verbe 'réticer' n'existe pas → -ent."
+    },
+    {
+      "id": "q096",
+      "before": "Il fut reconnu innoc",
+      "after": "ent par le jury.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif innocent : origine latine, le verbe 'innocer' n'existe pas → -ent."
+    },
+    {
+      "id": "q097",
+      "before": "Ce commentaire est impertin",
+      "after": "ent et déplacé.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif impertinent : origine latine → -ent."
+    },
+    {
+      "id": "q098",
+      "before": "Ce dirigeant se croyait omnipot",
+      "after": "ent.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif omnipotent : latin omnipotens, pas de participe présent → -ent."
+    },
+    {
+      "id": "q099",
+      "before": "Cette substance est fluoresc",
+      "after": "ente sous la lumière UV.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif fluorescent : origine scientifique latine → -ent."
+    },
+    {
+      "id": "q100",
+      "before": "Le cheval galop",
+      "after": " dans la prairie.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Galoper → galopant. Cas standard."
+    },
+    {
+      "id": "q101",
+      "before": "Un vent souffl",
+      "after": " à travers les arbres.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Souffler → soufflant. Cas standard."
+    },
+    {
+      "id": "q102",
+      "before": "Le serpent ramp",
+      "after": " sur le sol chaud.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Ramper → rampant. Cas standard."
+    },
+    {
+      "id": "q103",
+      "before": "Une flamme vacill",
+      "after": " dans l'obscurité.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Vaciller → vacillant. Cas standard."
+    },
+    {
+      "id": "q104",
+      "before": "Il marchait en chancel",
+      "after": " sous le poids du sac.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Chanceler → chancelant. Cas standard."
+    },
+    {
+      "id": "q105",
+      "before": "Le loup hurl",
+      "after": " à la lune.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Hurler → hurlant. Cas standard."
+    },
+    {
+      "id": "q106",
+      "before": "Un oiseau siffl",
+      "after": " joyeusement sur la branche.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Siffler → sifflant. Cas standard."
+    },
+    {
+      "id": "q107",
+      "before": "Une nouvelle déstabilis",
+      "after": " a bouleversé l'équipe.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Déstabiliser → déstabilisant. Cas standard."
+    },
+    {
+      "id": "q108",
+      "before": "Elle portait une robe raviss",
+      "after": "e.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Ravir → ravissant(e). Cas standard."
+    },
+    {
+      "id": "q109",
+      "before": "Son sourire était ensorcel",
+      "after": "ant.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Ensorceler → ensorcelant. Cas standard."
+    },
+    {
+      "id": "q110",
+      "before": "Une passion consum",
+      "after": "ante le dévorait entièrement.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Consumer → consumant(e). Cas standard."
+    },
+    {
+      "id": "q111",
+      "before": "Un désir dévor",
+      "after": "ant le tenaillait.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Dévorer → dévorant. Cas standard."
+    },
+    {
+      "id": "q112",
+      "before": "L'armée rentra triomph",
+      "after": "ante de la bataille.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Triompher → triomphant(e). Cas standard."
+    },
+    {
+      "id": "q113",
+      "before": "Un silence oppress",
+      "after": "ant régnait dans la salle.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Opprimer → oppressant. Cas standard."
+    },
+    {
+      "id": "q114",
+      "before": "Ce commentaire humili",
+      "after": "ant l'a profondément blessé.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Humilier → humiliant. Cas standard."
+    },
+    {
+      "id": "q115",
+      "before": "Une réussite glorifi",
+      "after": "ante récompensait ses efforts.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Glorifier → glorifiant(e). Cas standard."
+    },
+    {
+      "id": "q116",
+      "before": "C'est la tendance domin",
+      "after": "ante du marché.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Dominer → dominant(e). Cas standard."
+    },
+    {
+      "id": "q117",
+      "before": "Cette tâche accabl",
+      "after": "ante épuisait les travailleurs.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Accabler → accablant(e). Cas standard."
+    },
+    {
+      "id": "q118",
+      "before": "Ce coup foudroy",
+      "after": "ant l'adversaire lui valut la victoire.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Foudroyer → foudroyant. Cas standard."
+    },
+    {
+      "id": "q119",
+      "before": "Ce récit est effar",
+      "after": "ant de précision.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Effarer → effarant. Cas standard."
+    },
+    {
+      "id": "q120",
+      "before": "Un résultat estomaqu",
+      "after": "ant était présenté à la presse.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Estomaquer → estomaquant. Cas standard."
+    },
+    {
+      "id": "q121",
+      "before": "Cette nouvelle sidér",
+      "after": "ante a choqué l'assemblée.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Sidérer → sidérant(e). Cas standard."
+    },
+    {
+      "id": "q122",
+      "before": "Sa performance renvers",
+      "after": "ante défia tous les pronostics.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Renverser → renversant(e). Cas standard."
+    },
+    {
+      "id": "q123",
+      "before": "Cette découverte stupéfi",
+      "after": "ante révolutionne la science.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Stupéfier → stupéfiant(e). Cas standard."
+    },
+    {
+      "id": "q124",
+      "before": "Ce retournement de situation dérout",
+      "after": "ant déconcerta les enquêteurs.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "Dérouter → déroutant. Cas standard."
+    },
+    {
+      "id": "q125",
+      "before": "C'est une situation appar",
+      "after": "ente mais la réalité est plus complexe.",
+      "answer": "ent",
+      "difficulty": 1,
+      "explanation": "Adjectif apparent : origine latine, pas de participe présent → -ent."
+    },
+    {
+      "id": "q126",
+      "before": "Il est cont",
+      "after": "ent de son résultat.",
+      "answer": "ent",
+      "difficulty": 1,
+      "explanation": "Adjectif content : origine latine, pas de participe présent → -ent."
+    },
+    {
+      "id": "q127",
+      "before": "Ce cas est urg",
+      "after": "ent et nécessite une réponse rapide.",
+      "answer": "ent",
+      "difficulty": 1,
+      "explanation": "Adjectif urgent : origine latine, pas de participe présent → -ent."
+    },
+    {
+      "id": "q128",
+      "before": "L'incid",
+      "after": "ent de la route a bloqué la circulation.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Nom incident : origine latine → -ent."
+    },
+    {
+      "id": "q129",
+      "before": "L'Occid",
+      "after": "ent est riche de civilisations diverses.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Nom Occident : origine latine → -ent."
+    },
+    {
+      "id": "q130",
+      "before": "L'accid",
+      "after": "ent a eu lieu hier soir.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Nom accident : origine latine → -ent."
+    },
+    {
+      "id": "q131",
+      "before": "C'est une solution conting",
+      "after": "ente qui dépend du contexte.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif contingent : origine latine, pas de participe présent → -ent."
+    },
+    {
+      "id": "q132",
+      "before": "Un produit déterg",
+      "after": "ent nettoie efficacement les surfaces.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif détergent : origine latine → -ent."
+    },
+    {
+      "id": "q133",
+      "before": "Ce reportage est troubl",
+      "after": "ant pour le grand public.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Troubler → troublant. Cas standard."
+    },
+    {
+      "id": "q134",
+      "before": "Ce parfum est enivr",
+      "after": "ant et exotique.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Enivrer → enivrant. Cas standard."
+    },
+    {
+      "id": "q135",
+      "before": "Ce repas est nouriss",
+      "after": "ant et équilibré.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Nourrir → nourrissant. Cas standard."
+    },
+    {
+      "id": "q136",
+      "before": "Sa voix était frémiss",
+      "after": "ante d'émotion.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Frémir → frémissant(e). Cas standard."
+    },
+    {
+      "id": "q137",
+      "before": "Ce résultat est domin",
+      "after": "ant dans son secteur.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Dominer → dominant. Cas standard."
+    },
+    {
+      "id": "q138",
+      "before": "Il a une odeur repouss",
+      "after": "ante.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Repousser → repoussant(e). Cas standard."
+    },
+    {
+      "id": "q139",
+      "before": "Ce scénario est angoss",
+      "after": "ant pour les personnages.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Angoisser → angoissant. Cas standard."
+    },
+    {
+      "id": "q140",
+      "before": "Ce cours est enrichiss",
+      "after": "ant et bien structuré.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Enrichir → enrichissant. Cas standard."
+    },
+    {
+      "id": "q141",
+      "before": "Ce projet est galvanis",
+      "after": "ant pour les équipes.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Galvaniser → galvanisant. Cas standard."
+    },
+    {
+      "id": "q142",
+      "before": "Ce test est exige",
+      "after": " mais formateur.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Exiger → exigeant (g→ge devant -ant). Participe présent → -ant."
+    },
+    {
+      "id": "q143",
+      "before": "Le tonnerre est grond",
+      "after": "ant au loin.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Gronder → grondant. Cas standard."
+    },
+    {
+      "id": "q144",
+      "before": "Sa voix est perç",
+      "after": "ante dans la salle.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Percer → perçant(e). Cas standard."
+    },
+    {
+      "id": "q145",
+      "before": "Ce défi est stimul",
+      "after": "ant pour les étudiants.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Stimuler → stimulant. Cas standard."
+    },
+    {
+      "id": "q146",
+      "before": "Ce voyage est repos",
+      "after": "ant après une année chargée.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Reposer → reposant. Cas standard."
+    },
+    {
+      "id": "q147",
+      "before": "Cette musique est apais",
+      "after": "ante le soir.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Apaiser → apaisant(e). Cas standard."
+    },
+    {
+      "id": "q148",
+      "before": "Ce résultat est accabl",
+      "after": "ant pour l'équipe adverse.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Accabler → accablant. Cas standard."
+    },
+    {
+      "id": "q149",
+      "before": "Sa performance est éblouiss",
+      "after": "ante sur scène.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Éblouir → éblouissant(e). Cas standard."
+    },
+    {
+      "id": "q150",
+      "before": "Ce vin est enivr",
+      "after": "ant à petites doses.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Enivrer → enivrant. Cas standard."
+    },
+    {
+      "id": "q151",
+      "before": "Sa conclusion est convainc",
+      "after": "e pour le jury.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Convaincre → convaincant(e). Participe présent → -ant."
+    },
+    {
+      "id": "q152",
+      "before": "Ce style est décad",
+      "after": "ent et ostentatoire.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif décadent : origine latine → -ent."
+    },
+    {
+      "id": "q153",
+      "before": "Son attitude est insol",
+      "after": "ente et déplacée.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif insolent : origine latine → -ent."
+    },
+    {
+      "id": "q154",
+      "before": "Il se montre virul",
+      "after": " dans ses critiques.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Virulent : adjectif d'origine latine → -ent."
+    },
+    {
+      "id": "q155",
+      "before": "Ce verre est transluc",
+      "after": "ent et laisse passer la lumière.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif translucent : origine latine → -ent."
+    },
+    {
+      "id": "q156",
+      "before": "Ses sentiments sont ambival",
+      "after": "ents face à cette situation.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif ambivalent : origine latine → -ent."
+    },
+    {
+      "id": "q157",
+      "before": "Le patient est convalesc",
+      "after": "ent après son opération.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif convalescent : origine latine → -ent."
+    },
+    {
+      "id": "q158",
+      "before": "Ce comportement néglig",
+      "after": " était inacceptable.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Exception : négliger → négligeant (PP), mais l'adjectif qualificatif est négligent → -ent."
+    },
+    {
+      "id": "q159",
+      "before": "La solution précéd",
+      "after": "e est bien meilleure.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Exception : précéder → précédant (PP), mais l'adjectif qualificatif est précédent(e) → -ent."
+    },
+    {
+      "id": "q160",
+      "before": "Ce médicament est somnol",
+      "after": "ent à forte dose.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif somnolent : origine latine → -ent."
+    },
+    {
+      "id": "q161",
+      "before": "Ce composé est multival",
+      "after": "ent en chimie.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif multivalent : origine latine → -ent."
+    },
+    {
+      "id": "q162",
+      "before": "Ce spectacle est éblouiss",
+      "after": "ant de lumières.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Éblouir → éblouissant. Cas standard."
+    },
+    {
+      "id": "q163",
+      "before": "Ce projet est passionn",
+      "after": "ant à mener.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Passionner → passionnant. Cas standard."
+    },
+    {
+      "id": "q164",
+      "before": "Ce résultat est encour",
+      "after": "ageant pour la suite.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Encourager → encourageant. Cas standard (g → ge devant a)."
+    },
+    {
+      "id": "q165",
+      "before": "Ce problème est préoccup",
+      "after": "ant pour les autorités.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Préoccuper → préoccupant. Cas standard."
+    },
+    {
+      "id": "q166",
+      "before": "Ce talent est rayonn",
+      "after": " sur toute la troupe.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Rayonner → rayonnant. Participe présent → -ant."
+    },
+    {
+      "id": "q167",
+      "before": "Ce sujet est passionn",
+      "after": " à étudier.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Passionner → passionnant. Participe présent → -ant."
+    },
+    {
+      "id": "q168",
+      "before": "Ce film est touch",
+      "after": "ant par son humanité.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Toucher → touchant. Cas standard."
+    },
+    {
+      "id": "q169",
+      "before": "Ce scénario est étourdiss",
+      "after": "ant de complexité.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "Étourdir → étourdissant. Cas standard."
+    },
+    {
+      "id": "q170",
+      "before": "Cette proposition est intéress",
+      "after": "ante financièrement.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Intéresser → intéressant(e). Cas standard."
+    },
+    {
+      "id": "q171",
+      "before": "Ce médecin est résid",
+      "after": " dans ce pays depuis dix ans.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Exception : résider → résidant (PP), mais le nom/adjectif qualificatif est résident → -ent."
+    },
+    {
+      "id": "q172",
+      "before": "Cette loi est récurr",
+      "after": "ente dans nos textes.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif récurrent : origine latine → -ent."
+    },
+    {
+      "id": "q173",
+      "before": "Ce résultat est excell",
+      "after": "ent, bravo à toute l'équipe.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Exception excellent : exceller → excellant (PP), mais l'adjectif est excellent → -ent."
+    },
+    {
+      "id": "q174",
+      "before": "Sa décision est cohér",
+      "after": "ente avec ses valeurs.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif cohérent : origine latine → -ent."
+    },
+    {
+      "id": "q175",
+      "before": "Ce pays est émerg",
+      "after": "ent sur la scène internationale.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Exception émergent : émerger → émergeant (PP), mais l'adjectif est émergent → -ent."
+    },
+    {
+      "id": "q176",
+      "before": "Il est un fervent défenseur des droits... ferv",
+      "after": "ent défenseur des droits.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Adjectif fervent : origine latine, pas de verbe courant → -ent."
+    },
+    {
+      "id": "q177",
+      "before": "Ce produit est déterg",
+      "after": "ent et efficace.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif détergent : origine latine → -ent."
+    },
+    {
+      "id": "q178",
+      "before": "Il est corpul",
+      "after": "ent mais agile.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif corpulent : origine latine → -ent."
+    },
+    {
+      "id": "q179",
+      "before": "Ce projet est perman",
+      "after": "ent et bien établi.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif permanent : origine latine → -ent."
+    },
+    {
+      "id": "q180",
+      "before": "Ce raisonnement est pertin",
+      "after": "ent et bien fondé.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif pertinent : origine latine → -ent."
+    },
+    {
+      "id": "q181",
+      "before": "Ce comportement est turbul",
+      "after": "ent et difficile à gérer.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "Adjectif turbulent : origine latine → -ent."
+    },
+    {
+      "id": "q182",
+      "before": "Ce geste est touch",
+      "after": "ant et sincère.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Toucher → touchant. Cas standard."
+    },
+    {
+      "id": "q183",
+      "before": "Ce roman est passionn",
+      "after": "ant à lire.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "Passionner → passionnant. Cas standard."
+    },
+    {
+      "id": "q184",
+      "before": "Ce résultat est converg",
+      "after": "ent avec nos prévisions.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Exception convergent : converger → convergeant (PP), mais l'adjectif est convergent → -ent."
+    },
+    {
+      "id": "q185",
+      "before": "Cet ouvrage de référence est différ",
+      "after": "ent de ce qu'on attendait.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "Exception différent : différer → différant (PP), mais l'adjectif est différent → -ent."
+    },
+    {
+      "before": "Le résultat était vraiment décev",
+      "after": ".",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "décevant : participe présent de décevoir → -ant",
+      "id": "q186",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Un spectacle époustoufl",
+      "after": " qui laisse sans voix.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "époustouflant : participe présent d'époustoufler → -ant",
+      "id": "q187",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Un argument convainc",
+      "after": " et bien structuré.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "convaincant : participe présent de convaincre → -ant",
+      "id": "q188",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Un enfant obéiss",
+      "after": " et respectueux.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "obéissant : participe présent d'obéir → -ant",
+      "id": "q189",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Un sourire rayonn",
+      "after": " illuminait son visage.",
+      "answer": "ant",
+      "difficulty": 1,
+      "explanation": "rayonnant : participe présent de rayonner → -ant",
+      "id": "q190",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Un bruit assourdiss",
+      "after": " envahissait la salle.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "assourdissant : participe présent d'assourdir → -ant",
+      "id": "q191",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Un projet ambitieux et mobilis",
+      "after": " pour toute l'équipe.",
+      "answer": "ant",
+      "difficulty": 3,
+      "explanation": "mobilisant : participe présent de mobiliser → -ant",
+      "id": "q192",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Une chaleur accabl",
+      "after": " régnait en été.",
+      "answer": "ant",
+      "difficulty": 2,
+      "explanation": "accablant : participe présent d'accabler → -ant",
+      "id": "q193",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Un résultat différ",
+      "after": " de ce qu'on attendait.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "différent : adjectif d'origine latine → -ent (exception)",
+      "id": "q194",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Un comportement néglig",
+      "after": " peut avoir des conséquences graves.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "négligent : adjectif d'origine latine → -ent (exception)",
+      "id": "q195",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Un signe évid",
+      "after": " de sa bonne volonté.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "évident : adjectif d'origine latine → -ent",
+      "id": "q196",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Un argument pertin",
+      "after": " mérite d'être considéré.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "pertinent : adjectif d'origine latine → -ent",
+      "id": "q197",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Un phénomène cohér",
+      "after": " avec les observations précédentes.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "cohérent : adjectif d'origine latine → -ent",
+      "id": "q198",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Un phénomène récurr",
+      "after": " dans cette région.",
+      "answer": "ent",
+      "difficulty": 3,
+      "explanation": "récurrent : adjectif d'origine latine → -ent",
+      "id": "q199",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
+    },
+    {
+      "before": "Un problème urg",
+      "after": " demandant une réponse immédiate.",
+      "answer": "ent",
+      "difficulty": 2,
+      "explanation": "urgent : adjectif d'origine latine → -ent",
+      "id": "q200",
+      "choices": [
+        {
+          "id": "ant"
+        },
+        {
+          "id": "ent"
+        }
+      ]
     }
   ],
   "group": "heros"

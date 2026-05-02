@@ -898,6 +898,1906 @@
       "answer": "x",
       "difficulty": 3,
       "explanation": "« milieu » finit par -eu → pluriel en -x : « milieux »."
+    },
+    {
+      "before": "un manteau → des mante",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q101",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un chapeau → des chape",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q102",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un gâteau → des gâte",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q103",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un cadeau → des cade",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q104",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un tableau → des table",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q105",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un morceau → des morce",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q106",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un oiseau → des oise",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q107",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un couteau → des coute",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q108",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un anneau → des anne",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q109",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un château → des châte",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q110",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un carreau → des carre",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q111",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un hameau → des hame",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q112",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un rideau → des ride",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q113",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un flambeau → des flambe",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q114",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un berceau → des berce",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q115",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un agneau → des agne",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q116",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un veau → des ve",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q117",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un pinceau → des pince",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q118",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un bourreau → des bourre",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q119",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un troupeau → des troupe",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q120",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un niveau → des nive",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q121",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un moineau → des moine",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q122",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un cerveau → des cerve",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q123",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un rameau → des rame",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q124",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un créneau → des créne",
+      "after": "",
+      "answer": "x",
+      "difficulty": 3,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q125",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un sceau → des sce",
+      "after": "",
+      "answer": "x",
+      "difficulty": 3,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q126",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un bateau → des bate",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q127",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un peau → des pe",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eau → -eaux au pluriel",
+      "id": "q128",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un sabot → des sabot",
+      "after": "",
+      "answer": "s",
+      "difficulty": 2,
+      "explanation": "-ot → -ots (pluriel régulier)",
+      "id": "q129",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un jeu → des je",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eu → -eux au pluriel",
+      "id": "q130",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un feu → des fe",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eu → -eux au pluriel",
+      "id": "q131",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un cheveu → des cheve",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "-eu → -eux au pluriel",
+      "id": "q132",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un enjeu → des enje",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eu → -eux au pluriel",
+      "id": "q133",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un neveu → des neve",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eu → -eux au pluriel",
+      "id": "q134",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un aveu → des ave",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eu → -eux au pluriel",
+      "id": "q135",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un vœu → des vœ",
+      "after": "",
+      "answer": "x",
+      "difficulty": 3,
+      "explanation": "-eu → -eux au pluriel",
+      "id": "q136",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un pneu → des pne",
+      "after": "",
+      "answer": "x",
+      "difficulty": 3,
+      "explanation": "pneu : exception → pneus (mais accepté -x aussi). Ici on met -x selon la règle générale",
+      "id": "q137",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un lieu → des lie",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eu → -eux au pluriel",
+      "id": "q138",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un bleu → des ble",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-eu → -eux au pluriel",
+      "id": "q139",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un étau → des éte",
+      "after": "",
+      "answer": "x",
+      "difficulty": 3,
+      "explanation": "-au → -aux au pluriel",
+      "id": "q140",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un noyau → des noye",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-au → -aux au pluriel",
+      "id": "q141",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un tuyau → des tuye",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-au → -aux au pluriel",
+      "id": "q142",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un landau → des lande",
+      "after": "",
+      "answer": "x",
+      "difficulty": 3,
+      "explanation": "-au → -aux au pluriel",
+      "id": "q143",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un préau → des préa",
+      "after": "",
+      "answer": "x",
+      "difficulty": 3,
+      "explanation": "-au → -aux au pluriel",
+      "id": "q144",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une voix → des voi",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "voix se termine déjà par -x : invariable au pluriel",
+      "id": "q145",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un bras → des bra",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "bras se termine déjà par -s : invariable au pluriel",
+      "id": "q146",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un nez → des ne",
+      "after": "",
+      "answer": "z",
+      "difficulty": 1,
+      "explanation": "nez se termine déjà par -z : invariable au pluriel",
+      "id": "q147",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un pays → des pay",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "pays se termine déjà par -s : invariable au pluriel",
+      "id": "q148",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une croix → des croi",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "croix se termine déjà par -x : invariable au pluriel",
+      "id": "q149",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un choix → des choi",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "choix se termine déjà par -x : invariable au pluriel",
+      "id": "q150",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un repas → des repa",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "repas se termine déjà par -s : invariable au pluriel",
+      "id": "q151",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un bois → des boi",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "bois se termine déjà par -s : invariable au pluriel",
+      "id": "q152",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une noix → des noi",
+      "after": "",
+      "answer": "x",
+      "difficulty": 1,
+      "explanation": "noix se termine déjà par -x : invariable au pluriel",
+      "id": "q153",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un poids → des poi",
+      "after": "",
+      "answer": "s",
+      "difficulty": 2,
+      "explanation": "poids se termine déjà par -s : invariable au pluriel",
+      "id": "q154",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un temps → des temp",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "temps se termine déjà par -s : invariable au pluriel",
+      "id": "q155",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un corps → des corp",
+      "after": "",
+      "answer": "s",
+      "difficulty": 2,
+      "explanation": "corps se termine déjà par -s : invariable au pluriel",
+      "id": "q156",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un arbre → des arbre",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q157",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une fleur → des fleur",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q158",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un enfant → des enfant",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q159",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un parent → des parent",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q160",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une saison → des saison",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q161",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une langue → des langue",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q162",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un poème → des poème",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q163",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un chant → des chant",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q164",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un nuage → des nuage",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q165",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une étoile → des étoile",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q166",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une plume → des plume",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q167",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un chemin → des chemin",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q168",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un sentier → des sentier",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q169",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une avenue → des avenue",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q170",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une allée → des allée",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q171",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un passage → des passage",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q172",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un livre → des livre",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q173",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une voiture → des voiture",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q174",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une planète → des planète",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q175",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un couloir → des couloir",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q176",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une rivière → des rivière",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q177",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un quartier → des quartier",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q178",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une région → des région",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q179",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un métier → des métier",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q180",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une erreur → des erreur",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q181",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un sommet → des sommet",
+      "after": "",
+      "answer": "s",
+      "difficulty": 2,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q182",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une valeur → des valeur",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q183",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un effort → des effort",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q184",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une heure → des heure",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q185",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un début → des début",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q186",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une fin → des fin",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q187",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un résultat → des résultat",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q188",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un problème → des problème",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q189",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une solution → des solution",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q190",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un voyage → des voyage",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q191",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une image → des image",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q192",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un message → des message",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q193",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une question → des question",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q194",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un moment → des moment",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q195",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une chance → des chance",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q196",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un talent → des talent",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q197",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "une opinion → des opinion",
+      "after": "",
+      "answer": "s",
+      "difficulty": 1,
+      "explanation": "Pluriel régulier → -s",
+      "id": "q198",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ]
+    },
+    {
+      "before": "un signal → des signal",
+      "after": "",
+      "answer": "x",
+      "difficulty": 3,
+      "explanation": "-al → -aux au pluriel : signal → signaux",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ],
+      "id": "q199"
+    },
+    {
+      "before": "un animal → des animal",
+      "after": "",
+      "answer": "x",
+      "difficulty": 2,
+      "explanation": "-al → -aux au pluriel : animal → animaux",
+      "choices": [
+        {
+          "id": "s"
+        },
+        {
+          "id": "x"
+        },
+        {
+          "id": "z"
+        }
+      ],
+      "id": "q200"
     }
   ],
   "group": "aventurier"
