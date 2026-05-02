@@ -6,7 +6,7 @@ import LightningEntranceEffect from "../components/LightningEntranceEffect.jsx";
 import StarsEntranceEffect from "../components/StarsEntranceEffect.jsx";
 import InfernoEntranceEffect from "../components/InfernoEntranceEffect.jsx";
 import FreezeEntranceEffect from "../components/FreezeEntranceEffect.jsx";
-import AnnotationOverlay from "../components/AnnotationOverlay.jsx";
+
 
 // ─── Design tokens (from the real app) ───
 const T = {
@@ -1120,8 +1120,7 @@ export default function LandingPageV4() {
   ];
 
   return (
-    <AnnotationOverlay variant="v4">
-      <div style={css.page}>
+    <div style={css.page}>
         <style>{`
           @media (max-width: 768px) {
             .oq-nav { padding: 12px 16px !important; }
@@ -1824,6 +1823,5 @@ export default function LandingPageV4() {
           <p style={{ marginTop: 4 }}>© 2026 PrimoLingo</p>
         </footer>
       </div>
-    </AnnotationOverlay>
   );
 }

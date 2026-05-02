@@ -21,11 +21,7 @@ function lazyWithRetry(importFn) {
   );
 }
 
-const LandingPage = lazyWithRetry(() => import('./pages/LandingPage.jsx'));
-const LandingPageV1 = lazyWithRetry(() => import('./pages/LandingPageV1.jsx'));
-const LandingPageV2 = lazyWithRetry(() => import('./pages/LandingPageV2.jsx'));
-const LandingPageV3 = lazyWithRetry(() => import('./pages/LandingPageV3.jsx'));
-const LandingPageV4 = lazyWithRetry(() => import('./pages/LandingPageV4.jsx'));
+const LandingPage = lazyWithRetry(() => import('./pages/LandingPageV4.jsx'));
 const LoginPage = lazyWithRetry(() => import('./pages/LoginPage.jsx'));
 const ParentDashboard = lazyWithRetry(() => import('./pages/ParentDashboard.jsx'));
 const ChildSetup = lazyWithRetry(() => import('./pages/ChildSetup.jsx'));
@@ -91,26 +87,6 @@ export const router = createBrowserRouter([
   {
     path: '/',
     element: <LazyPage><LandingPage /></LazyPage>,
-    errorElement: <RouteErrorBoundary />,
-  },
-  {
-    path: '/v1',
-    element: <LazyPage><LandingPageV1 /></LazyPage>,
-    errorElement: <RouteErrorBoundary />,
-  },
-  {
-    path: '/v2',
-    element: <LazyPage><LandingPageV2 /></LazyPage>,
-    errorElement: <RouteErrorBoundary />,
-  },
-  {
-    path: '/v3',
-    element: <LazyPage><LandingPageV3 /></LazyPage>,
-    errorElement: <RouteErrorBoundary />,
-  },
-  {
-    path: '/v4',
-    element: <LazyPage><LandingPageV4 /></LazyPage>,
     errorElement: <RouteErrorBoundary />,
   },
   {
