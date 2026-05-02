@@ -1096,23 +1096,27 @@ export default function LandingPageV4() {
   };
 
   const rules = [
+    // Homonymes
     "a / à / as",
     "ces / ses",
-    "terminaisons verbales (-er, -é, -ez, -ais, -ait)",
-    "-é / -ée (féminin)",
-    "Groupes de verbes",
-    "leur / leurs",
-    "on / ont / on n'",
+    "ce / se",
     "ou / où",
     "son / sont",
-    "ce / se",
+    "on / ont / on n'",
+    "leur / leurs",
+    // Pluriels
     "pluriel des noms et adjectifs",
     "pluriel en -al / -ou",
+    // Conjugaison
+    "Groupes des verbes",
+    "terminaisons verbales (-er, -é, -ez, -ais, -ait)",
+    "participe passé (être vs avoir)",
+    "participe passé (verbes en -ir)",
+    // Orthographe
+    "-é / -ée (féminin)",
     "adverbes en -ment",
     "-ant / -ent",
     "g / gu / ge",
-    "participe passé (être)",
-    "participe passé (ir + groupes)",
   ];
 
   return (
@@ -1595,7 +1599,7 @@ export default function LandingPageV4() {
               <div style={{ padding: "24px 24px 12px" }}>
                 <div style={css.problemTitle}>Personnages à collectionner</div>
                 <div style={css.problemDesc}>
-                  Des pièces gagnées à chaque session permettent de débloquer des personnages et accessoires dans la boutique.
+                  Des pièces gagnées à chaque session permettent de débloquer des personnages et animations dans la boutique.
                 </div>
               </div>
               <div style={{ padding: "0 24px 24px" }}>
@@ -1608,7 +1612,7 @@ export default function LandingPageV4() {
               <div style={{ padding: "24px 24px 12px" }}>
                 <div style={css.problemTitle}>Animations de célébration</div>
                 <div style={css.problemDesc}>
-                  Des animations spectaculaires récompensent chaque victoire. Votre enfant peut les collectionner et les personnaliser.
+                  Des animations spectaculaires récompensent chaque victoire. Votre enfant peut les collectionner pour personnaliser son expérience en fonction de ses goûts.
                 </div>
               </div>
               <div style={{ padding: "0 24px 24px" }}>
@@ -1732,7 +1736,7 @@ export default function LandingPageV4() {
         {/* ─── RULES COVERED ─── */}
         <section style={css.section} className="oq-section" data-section="program">
           <div style={css.sectionLabel}>Le programme</div>
-          <h2 style={css.sectionTitle}>Tout le programme de CM2 : 17 règles qui couvrent l'essentiel des fautes courantes</h2>
+          <h2 style={css.sectionTitle}>17 règles qui couvrent l'essentiel des fautes courantes</h2>
           <p style={css.sectionSubtitle}>
             Chaque règle contient un pool de 200 questions qui tournent pour éviter la répétition, des fiches mémo,
             et un arbre de décision pour apprendre à raisonner.
