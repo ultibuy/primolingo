@@ -257,6 +257,7 @@ export default function EndScreen({
     <div style={pageStyle}>
       {/* Scrollable content area */}
       <div style={scrollAreaStyle}>
+        <div style={contentWrapperStyle}>
         {/* Header card */}
         <div style={headerCardStyle}>
           {/* Mascot + Title row */}
@@ -269,7 +270,7 @@ export default function EndScreen({
                     <button
                       type="button"
                       onClick={() => setShowEmotionPopup(true)}
-                      title="Debloquer cette emotion"
+                      title="Débloquer cette émotion"
                       style={lockedBubbleStyle}
                     >
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{verticalAlign:'middle',marginRight:3}}><rect x="5" y="10" width="14" height="11" rx="2.5" fill="currentColor"/><path d="M8 10V7a4 4 0 118 0v3" stroke="currentColor" strokeWidth="2.2" fill="none" strokeLinecap="round"/></svg>{MOOD_BUBBLE_WORDS[rawCharMood] || ''}
@@ -294,7 +295,7 @@ export default function EndScreen({
                   {displayedScore}/{total}
                 </span>
                 <span style={titleStyle}>
-                  Session terminee !
+                  Session terminée !
                 </span>
               </div>
               {/* Feedback subtitle */}
@@ -376,7 +377,7 @@ export default function EndScreen({
                   <BonusRow label="Bonus du jour" value={`+${displayedDailyBonus}`} />
                 )}
                 {streakBonus > 0 && (
-                  <BonusRow label={`Bonus serie ${streakMilestoneJustEarned.streak}j`} value={`+${displayedStreakBonus}`} />
+                  <BonusRow label={`Bonus série ${streakMilestoneJustEarned.streak}j`} value={`+${displayedStreakBonus}`} />
                 )}
                 {doubleCoinsBonus > 0 && (
                   <BonusRow label="Double x2" value={`+${doubleCoinsBonus}`} />
@@ -502,6 +503,7 @@ export default function EndScreen({
             })}
           </div>
         </div>
+        </div>
       </div>
 
       {/* Fixed CTA — always visible */}
@@ -564,9 +566,9 @@ function BonusRow({ label, value }) {
 
 function getFeedbackMessage(pct) {
   if (pct === 100) return 'Parfait ! Pas une seule erreur.';
-  if (pct >= 90) return 'Excellent. Tu maitrises cette regle.';
-  if (pct >= 80) return 'Tres bien. Continue comme ca.';
-  if (pct >= 60) return 'Pas mal. Quelques points a revoir.';
+  if (pct >= 90) return 'Excellent. Tu maîtrises cette règle.';
+  if (pct >= 80) return 'Très bien. Continue comme ça.';
+  if (pct >= 60) return 'Pas mal. Quelques points à revoir.';
   return 'Courage. La prochaine sera meilleure.';
 }
 
@@ -574,20 +576,20 @@ export function buildCoinTiers(total, t60, t80, t100, activeTier) {
   // For very small sessions, use simple labels instead of ranges
   if (total < 4) {
     return [
-      { range: 'Reussite partielle', coins: 5, active: activeTier === 0 },
+      { range: 'Réussite partielle', coins: 5, active: activeTier === 0 },
       { range: 'Bonne session', coins: 20, active: activeTier === 1 },
       { range: 'Parfait', coins: 30, active: activeTier === 2 },
     ];
   }
   // Build ranges, ensuring low <= high (no invalid ranges like 2-2 or 3-2)
   const buildRange = (lo, hi) => {
-    if (lo >= hi) return `${lo} reponses justes`;
-    return `${lo}\u2013${hi} reponses justes`;
+    if (lo >= hi) return `${lo} réponses justes`;
+    return `${lo}\u2013${hi} réponses justes`;
   };
   return [
     { range: buildRange(t60, t80 - 1), coins: 5, active: activeTier === 0 },
     { range: buildRange(t80, t100 - 1), coins: 20, active: activeTier === 1 },
-    { range: `${t100} reponses justes`, coins: 30, active: activeTier === 2 },
+    { range: `${t100} réponses justes`, coins: 30, active: activeTier === 2 },
   ];
 }
 
@@ -595,8 +597,8 @@ function generateLevelMessage(levelProgress) {
   if (!levelProgress) return null;
   const remaining = levelProgress.target - levelProgress.current;
   if (remaining <= 0) return null;
-  if (remaining === 1) return 'Plus qu\'une session avec 3 bonnes reponses !';
-  return `Plus que ${remaining} sessions avec 3 bonnes reponses !`;
+  if (remaining === 1) return 'Plus qu\'une session avec 3 bonnes réponses !';
+  return `Plus que ${remaining} sessions avec 3 bonnes réponses !`;
 }
 
 /* ── Styles ── */
@@ -623,9 +625,12 @@ const scrollAreaStyle = {
   WebkitOverflowScrolling: 'touch',
 };
 
-const headerCardStyle = {
+const contentWrapperStyle = {
   width: '100%',
   maxWidth: 480,
+};
+
+const headerCardStyle = {
   background: 'rgba(255,255,255,0.04)',
   border: '1px solid rgba(255,255,255,0.10)',
   borderRadius: 20,
@@ -710,8 +715,6 @@ const mutedCoinStyle = {
 };
 
 const objectiveCardStyle = {
-  width: '100%',
-  maxWidth: 480,
   background: 'rgba(255,255,255,0.04)',
   border: '1px solid rgba(255,255,255,0.10)',
   borderRadius: 16,
@@ -758,7 +761,7 @@ const ctaContainerStyle = {
 
 const ctaButtonStyle = {
   width: '100%',
-  maxWidth: 480,
+  maxWidth: 480, // matches contentWrapperStyle
   padding: '16px 24px',
   borderRadius: 9999,
   border: 'none',

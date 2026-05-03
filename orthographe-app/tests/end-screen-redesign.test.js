@@ -24,19 +24,19 @@ mkdirSync(SCREENSHOTS_DIR, { recursive: true });
 function buildCoinTiers(total, t60, t80, t100, activeTier) {
   if (total < 4) {
     return [
-      { range: 'Reussite partielle', coins: 5, active: activeTier === 0 },
+      { range: 'Réussite partielle', coins: 5, active: activeTier === 0 },
       { range: 'Bonne session', coins: 20, active: activeTier === 1 },
       { range: 'Parfait', coins: 30, active: activeTier === 2 },
     ];
   }
   const buildRange = (lo, hi) => {
-    if (lo >= hi) return `${lo} reponses justes`;
-    return `${lo}\u2013${hi} reponses justes`;
+    if (lo >= hi) return `${lo} réponses justes`;
+    return `${lo}\u2013${hi} réponses justes`;
   };
   return [
     { range: buildRange(t60, t80 - 1), coins: 5, active: activeTier === 0 },
     { range: buildRange(t80, t100 - 1), coins: 20, active: activeTier === 1 },
-    { range: `${t100} reponses justes`, coins: 30, active: activeTier === 2 },
+    { range: `${t100} réponses justes`, coins: 30, active: activeTier === 2 },
   ];
 }
 
@@ -77,7 +77,7 @@ function unitTests() {
     const tiers = buildCoinTiers(1, 1, 1, 1, 2);
     assertValidRanges(tiers, 'total=1');
     // Should use simple labels
-    assert(tiers[0].range === 'Reussite partielle', 'Expected simple label for small session');
+    assert(tiers[0].range === 'Réussite partielle', 'Expected simple label for small session');
   });
 
   runUnitTest('total=2: no invalid ranges', () => {
@@ -88,7 +88,7 @@ function unitTests() {
   runUnitTest('total=3: no invalid ranges', () => {
     const tiers = buildCoinTiers(3, 2, 3, 3, 2);
     assertValidRanges(tiers, 'total=3');
-    assert(tiers[0].range === 'Reussite partielle', 'Expected simple label for total < 4');
+    assert(tiers[0].range === 'Réussite partielle', 'Expected simple label for total < 4');
   });
 
   runUnitTest('total=10: valid ranges', () => {
@@ -282,7 +282,7 @@ async function answerOneQuestionAndAdvance(page) {
 
     // Check if we're on the EndScreen
     const onEnd = await page.evaluate(() =>
-      document.body.innerText.includes('Session terminee') || document.body.innerText.includes('Session terminée'));
+      document.body.innerText.includes('Session terminée') || document.body.innerText.includes('Session terminée'));
     if (onEnd) return true;
 
     // Click the LAST non-navigation visible button (answer choices are at the bottom)
@@ -317,7 +317,7 @@ async function answerAllQuestionsAndFinish(page, count) {
     if (!advanced) {
       // Check if we're already at the end screen
       const text = await bodyText(page);
-      if (text.includes('Session terminee') || text.includes('Session terminée')) break;
+      if (text.includes('Session terminée') || text.includes('Session terminée')) break;
       await screenshot(page, `debug-stuck-q${i + 1}`);
       const allBtns = await page.evaluate(() => [...document.querySelectorAll('button')].map((b) => b.innerText.trim().substring(0, 80)));
       assert(false, `Could not advance after question ${i + 1}. Buttons: ${JSON.stringify(allBtns)}`);
@@ -392,7 +392,7 @@ async function testMobilePerfectSmallSession(browser) {
 
   const text = await bodyText(page);
   // Core assertions
-  assert(text.includes('Session terminee'), 'Expected "Session terminee" visible');
+  assert(text.includes('Session terminée'), 'Expected "Session terminée" visible');
   assert(/\d+\/3/.test(text), 'Expected score x/3 visible');
   await assertNoVisibleEmoji(page, 'mobile perfect session');
 
@@ -470,7 +470,7 @@ async function testDesktopLayout(browser) {
   await screenshot(page, '03-desktop-layout');
 
   const text = await bodyText(page);
-  assert(text.includes('Session terminee'), 'Expected EndScreen on desktop');
+  assert(text.includes('Session terminée'), 'Expected EndScreen on desktop');
 
   // CTA visible
   const continuerVisible = await page.evaluate(() => {
