@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as Sentry from '@sentry/react';
+import AppLogo from '../components/AppLogo.jsx';
 import { signInWithGoogle } from '../services/auth.js';
+import { captureException } from '../services/sentry.js';
+import posthog from '../services/analytics.js';
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -9,13 +11,15 @@ export default function LoginPage() {
   const [error, setError] = useState(null);
 
   async function handleGoogleSignIn() {
+    posthog.capture('login_attempted');
     setLoading(true);
     setError(null);
     try {
       await signInWithGoogle();
       navigate('/parent');
     } catch (err) {
-      Sentry.captureException(err);
+      posthog.capture('login_failed', { error_code: err?.code });
+      captureException(err);
       setError('La connexion a échoué. Réessaie.');
       setLoading(false);
     }
@@ -24,16 +28,20 @@ export default function LoginPage() {
   return (
     <div style={containerStyle}>
       <div style={cardStyle}>
-        {/* Logo */}
-        <div style={logoStyle}>
-          <div style={logoIconStyle}>PL</div>
-          <h1 style={logoTitleStyle}>PrimoLingo</h1>
-          <p style={logoSubStyle}>L'aventure de l'orthographe</p>
+        {/* Brand */}
+        <div style={brandStyle}>
+          <div style={logoFrameStyle}>
+            <AppLogo size={58} style={{ boxShadow: '0 10px 28px rgba(124,58,237,0.32)' }} />
+          </div>
+          <div style={brandTextStyle}>
+            <h1 style={logoTitleStyle}>PrimoLingo</h1>
+            <p style={logoSubStyle}>L'aventure de l'orthographe</p>
+          </div>
         </div>
 
         {/* Message */}
         <p style={messageStyle}>
-          Créez votre espace parent pour suivre les progrès de votre enfant
+          Créez votre espace parent pour suivre les progrès de votre enfant.
         </p>
 
         {/* Error */}
@@ -61,6 +69,14 @@ export default function LoginPage() {
           )}
         </button>
 
+        {/* Privacy note */}
+        <div style={privacyNoteStyle}>
+          <ShieldCheckIcon />
+          <p style={privacyTextStyle}>
+            Utilisez le compte Google du <strong>parent</strong>. Google ne donne pas accès à vos e-mails.
+          </p>
+        </div>
+
         {/* Back link */}
         <a href="/" style={backLinkStyle}>← Retour à l'accueil</a>
       </div>
@@ -83,80 +99,112 @@ function GoogleIcon() {
   );
 }
 
+function ShieldCheckIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
+      <path
+        d="M12 3.5 19 6v5.2c0 4.6-2.6 8-7 9.8-4.4-1.8-7-5.2-7-9.8V6l7-2.5Z"
+        stroke="#a78bfa"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+        fill="rgba(167,139,250,0.12)"
+      />
+      <path
+        d="m8.6 12.1 2.1 2.1 4.7-5"
+        stroke="#fbbf24"
+        strokeWidth="1.9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
 const containerStyle = {
   minHeight: '100vh',
-  background: 'linear-gradient(135deg, #1e1e2e 0%, #2d2b55 100%)',
+  backgroundColor: 'var(--color-bg1)',
+  backgroundImage: 'var(--app-star-field)',
+  backgroundSize: '620px 620px, 680px 680px, 560px 560px, 720px 720px, 640px 640px, 760px 760px, 600px 600px, cover',
+  backgroundPosition: 'center center',
+  backgroundAttachment: 'fixed',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '1rem',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  padding: '1.25rem',
+  fontFamily: 'var(--font-body)',
 };
 
 const cardStyle = {
-  width: 'min(420px, 100%)',
-  background: 'rgba(255,255,255,0.05)',
-  backdropFilter: 'blur(20px)',
-  WebkitBackdropFilter: 'blur(20px)',
-  border: '1px solid rgba(167,139,250,0.2)',
+  width: 'min(390px, 100%)',
+  background: 'linear-gradient(180deg, rgba(255,255,255,0.088), rgba(255,255,255,0.045))',
+  backdropFilter: 'blur(22px)',
+  WebkitBackdropFilter: 'blur(22px)',
+  border: '1px solid rgba(255,255,255,0.13)',
+  borderRadius: 28,
+  padding: '2rem 1.75rem 1.55rem',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '1rem',
+  boxShadow: '0 28px 80px rgba(0,0,0,0.34), inset 0 1px 0 rgba(255,255,255,0.08)',
+};
+
+const brandStyle = {
+  display: 'flex',
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '0.9rem',
+  width: '100%',
+};
+
+const logoFrameStyle = {
+  width: 78,
+  height: 78,
   borderRadius: 24,
-  padding: '2.5rem 2rem',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: '1.25rem',
-  boxShadow: '0 24px 60px rgba(0,0,0,0.4)',
-};
-
-const logoStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  gap: '0.5rem',
-};
-
-const logoIconStyle = {
-  width: 72,
-  height: 72,
-  borderRadius: 20,
-  background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
+  background: 'linear-gradient(135deg, rgba(167,139,250,0.22), rgba(251,191,36,0.08))',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  fontSize: 28,
-  fontWeight: 900,
-  color: '#fff',
-  fontFamily: 'Outfit, sans-serif',
-  boxShadow: '0 8px 24px rgba(124,58,237,0.4)',
+  border: '1px solid rgba(167,139,250,0.24)',
+  boxShadow: '0 0 42px rgba(167,139,250,0.16)',
+  flexShrink: 0,
+};
+
+const brandTextStyle = {
+  minWidth: 0,
 };
 
 const logoTitleStyle = {
   margin: 0,
-  fontSize: '1.8rem',
+  fontSize: '2rem',
+  lineHeight: 1,
   fontWeight: 900,
-  color: '#fff',
-  fontFamily: 'Outfit, sans-serif',
+  color: 'var(--text-white)',
+  fontFamily: 'var(--font-display)',
+  letterSpacing: '-0.02em',
 };
 
 const logoSubStyle = {
-  margin: 0,
-  fontSize: '0.85rem',
-  color: '#a78bfa',
-  fontWeight: 500,
+  margin: '0.45rem 0 0',
+  fontSize: '0.86rem',
+  color: 'var(--color-primary)',
+  fontWeight: 700,
 };
 
 const messageStyle = {
-  margin: 0,
-  fontSize: '0.95rem',
-  color: '#cbd5e1',
+  margin: '0.55rem 0 0.2rem',
+  maxWidth: 310,
+  fontSize: '1rem',
+  color: 'var(--text-light)',
   textAlign: 'center',
-  lineHeight: 1.6,
+  lineHeight: 1.55,
 };
 
 const errorStyle = {
   width: '100%',
   padding: '0.75rem 1rem',
-  borderRadius: 12,
+  borderRadius: 'var(--radius-sm)',
   background: 'rgba(127,29,29,0.8)',
   border: '1px solid rgba(248,113,113,0.4)',
   color: '#fee2e2',
@@ -166,33 +214,53 @@ const errorStyle = {
 
 const googleBtnStyle = {
   width: '100%',
-  padding: '0.9rem 1.5rem',
-  borderRadius: 14,
-  border: '1px solid rgba(255,255,255,0.15)',
-  background: 'rgba(255,255,255,0.1)',
-  color: '#fff',
-  fontSize: '1rem',
-  fontWeight: 700,
+  padding: '13px 22px',
+  borderRadius: 'var(--radius-pill)',
+  border: '1px solid rgba(255,255,255,0.88)',
+  background: '#fff',
+  color: '#1f2937',
+  fontSize: '0.98rem',
+  fontWeight: 800,
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  transition: 'background 0.2s',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  transition: 'all var(--motion-base)',
+  fontFamily: 'var(--font-body)',
+  boxShadow: '0 12px 26px rgba(0,0,0,0.18)',
+};
+
+const privacyNoteStyle = {
+  width: '100%',
+  display: 'flex',
+  alignItems: 'flex-start',
+  gap: '0.65rem',
+  marginTop: '0.2rem',
+  padding: '0.95rem 0.1rem 0',
+  borderTop: '1px solid var(--glass-border)',
+};
+
+const privacyTextStyle = {
+  margin: 0,
+  fontSize: '0.78rem',
+  color: 'var(--text-muted)',
+  lineHeight: 1.45,
 };
 
 const backLinkStyle = {
-  color: '#64748b',
+  marginTop: '0.25rem',
+  color: 'rgba(255,255,255,0.62)',
   fontSize: '0.85rem',
   textDecoration: 'none',
+  fontWeight: 700,
 };
 
 const spinnerStyle = {
   display: 'inline-block',
   width: 18,
   height: 18,
-  border: '2px solid rgba(255,255,255,0.3)',
-  borderTopColor: '#fff',
+  border: '2px solid rgba(31,41,55,0.18)',
+  borderTopColor: '#1f2937',
   borderRadius: '50%',
   animation: 'spin 0.8s linear infinite',
 };
