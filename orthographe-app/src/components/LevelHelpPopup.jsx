@@ -270,6 +270,7 @@ export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, session
           onClick={onClose}
           ariaLabel="Fermer"
           size={isMobile ? 40 : 48}
+          color={data.color}
         />
 
         <div

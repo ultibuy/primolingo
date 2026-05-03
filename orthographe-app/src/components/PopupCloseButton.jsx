@@ -4,9 +4,15 @@ export default function PopupCloseButton({
   top,
   right,
   size = 48,
+  color,
   style,
 }) {
   const cornerOffset = -Math.round(size / 4);
+  const colorOverride = color ? {
+    background: color,
+    border: `1px solid ${color}`,
+    boxShadow: `0 10px 24px ${color}55`,
+  } : {};
   return (
     <button
       type="button"
@@ -14,6 +20,7 @@ export default function PopupCloseButton({
       aria-label={ariaLabel}
       style={{
         ...baseStyle,
+        ...colorOverride,
         top: top ?? cornerOffset,
         right: right ?? cornerOffset,
         width: size,
