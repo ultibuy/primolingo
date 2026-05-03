@@ -169,7 +169,7 @@ const HTML_TEMPLATE = (title, body, nav) => {
     function updateUI() {
       const n = annotations.length;
       document.getElementById('annotation-count').textContent = n + ' commentaire' + (n !== 1 ? 's' : '');
-      const pending = annotations.filter(a => !a.response || !a.response.trim()).length;
+      const pending = annotations.filter(a => (!a.response || !a.response.trim()) || (a.reply && a.reply.trim())).length;
       document.getElementById('btn-copy').style.opacity = n > 0 ? '1' : '0.35';
       document.getElementById('btn-copy-pending').style.opacity = pending > 0 ? '1' : '0.35';
       document.getElementById('btn-copy-pending').textContent = pending > 0 ? 'Copier sans reponse (' + pending + ')' : 'Tout traite';
@@ -219,10 +219,11 @@ const HTML_TEMPLATE = (title, body, nav) => {
       sidebar.innerHTML = '';
       annotations.forEach((ann, i) => {
         const hasResp = !!(ann.response && ann.response.trim());
+        const hasRep = !!(ann.reply && ann.reply.trim());
         const sidePin = document.createElement('div');
         sidePin.className = 'ann-sidebar-pin';
-        sidePin.style.background = hasResp ? '#22c55e' : '#7c3aed';
-        sidePin.textContent = hasResp ? '\\u2713' : (i + 1);
+        sidePin.style.background = (hasResp && !hasRep) ? '#22c55e' : '#7c3aed';
+        sidePin.textContent = (hasResp && !hasRep) ? '\\u2713' : (i + 1);
         sidePin.title = (ann.text || '').slice(0, 60) || 'Commentaire ' + (i + 1);
         sidePin.addEventListener('click', function() {
           window.scrollTo({ top: ann.y - 200, behavior: 'smooth' });
@@ -244,13 +245,14 @@ const HTML_TEMPLATE = (title, body, nav) => {
         pin.className = 'ann-pin';
         pin.style.cssText = 'position:absolute;left:' + ann.x + 'px;top:' + ann.y + 'px;z-index:500;';
 
-        // Pin circle — green if responded, purple if pending
+        // Pin circle — green if responded (and no pending reply), purple if pending
         const hasResponse = !!(ann.response && ann.response.trim());
-        const pinColor = hasResponse ? '#22c55e' : '#7c3aed';
-        const pinShadow = hasResponse ? 'rgba(34,197,94,0.4)' : 'rgba(124,58,237,0.4)';
+        const hasReply = !!(ann.reply && ann.reply.trim());
+        const pinColor = (hasResponse && !hasReply) ? '#22c55e' : '#7c3aed';
+        const pinShadow = (hasResponse && !hasReply) ? 'rgba(34,197,94,0.4)' : 'rgba(124,58,237,0.4)';
         const circle = document.createElement('div');
         circle.style.cssText = 'width:26px;height:26px;border-radius:50%;background:' + pinColor + ';color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px ' + pinShadow + ';cursor:pointer;transform:translate(-50%,-50%);user-select:none';
-        circle.textContent = hasResponse ? '\\u2713' : (i + 1);
+        circle.textContent = (hasResponse && !hasReply) ? '\\u2713' : (i + 1);
 
         // Bubble
         const bubble = document.createElement('div');
@@ -290,6 +292,26 @@ const HTML_TEMPLATE = (title, body, nav) => {
         });
         respInput.addEventListener('click', function(e) { e.stopPropagation(); });
         responseBlock.appendChild(respInput);
+
+        // Reply area — user's follow-up to Claude's response (turns pin back to mauve)
+        const replyBlock = document.createElement('div');
+        replyBlock.style.cssText = 'border-top:1px solid rgba(255,255,255,0.08)';
+        const replyLabel = document.createElement('div');
+        replyLabel.style.cssText = 'padding:4px 10px 0;font-size:9px;color:#a78bfa;font-weight:700;text-transform:uppercase;letter-spacing:0.05em';
+        replyLabel.textContent = 'Ma réponse';
+        replyBlock.appendChild(replyLabel);
+        const replyInput = document.createElement('textarea');
+        replyInput.style.cssText = 'width:100%;border:none;outline:none;resize:vertical;font-family:inherit;font-size:11px;line-height:1.4;padding:4px 10px 6px;min-height:32px;background:rgba(167,139,250,0.04);color:#a78bfa;box-sizing:border-box';
+        replyInput.value = ann.reply || '';
+        replyInput.placeholder = 'Ajouter un suivi...';
+        replyInput.addEventListener('input', function() {
+          annotations[i].reply = this.value;
+          saveAnnotations();
+          renderAnnotations();
+        });
+        replyInput.addEventListener('click', function(e) { e.stopPropagation(); });
+        replyBlock.appendChild(replyInput);
+        responseBlock.appendChild(replyBlock);
 
         // Footer
         const footer = document.createElement('div');
@@ -340,7 +362,7 @@ const HTML_TEMPLATE = (title, body, nav) => {
     }
 
     function buildPromptHeader() {
-      return 'Voici des annotations realisees sur les docs fonctionnelles de l\\'app. Traite chaque commentaire dans l\\'ordre en utilisant autant d\\'agents que necessaire.\\n\\nAttention !!!\\n1) Si le commentaire est une question, tu ne fais que repondre a la question du commentaire dans le champ reponse — tu ne lances aucun changement dans le code.\\n2) Si au contraire le commentaire est une demande "modifie ci ou ca" alors : a) modifie-le dans le code, b) mets a jour la doc, et c) reponds au commentaire dans le champ reponse.\\n\\nLes annotations sont stockees dans docs/annotations/' + ANN_SLUG + '.json. Apres avoir traite chaque commentaire, ecris ta reponse dans le champ "response" de l\\'annotation correspondante dans ce fichier JSON. Le pin passera au vert automatiquement au prochain chargement de la page.';
+      return 'Voici des annotations realisees sur les docs fonctionnelles de l\\'app. Traite chaque commentaire dans l\\'ordre en utilisant autant d\\'agents que necessaire.\\n\\nAttention !!!\\n1) Si le commentaire est une question, tu ne fais que repondre a la question du commentaire dans le champ reponse — tu ne lances aucun changement dans le code.\\n2) Si au contraire le commentaire est une demande "modifie ci ou ca" alors : a) modifie-le dans le code, b) mets a jour la doc, et c) reponds au commentaire dans le champ reponse. Ne me reponds pas des trucs du genre "ca fera l\\'objet d\\'un ticket separe" ou bien de dire que tu le feras plus tard. Fais-le directement.\\n\\nLes annotations sont stockees dans docs/annotations/' + ANN_SLUG + '.json. Apres avoir traite chaque commentaire, ecris ta reponse dans le champ "response" de l\\'annotation correspondante dans ce fichier JSON. Le pin passera au vert automatiquement au prochain chargement de la page.';
     }
 
     function formatAnnotation(a, i) {
@@ -350,6 +372,9 @@ const HTML_TEMPLATE = (title, body, nav) => {
       }
       if (a.response) {
         line += '\\n    Reponse: ' + a.response;
+      }
+      if (a.reply && a.reply.trim()) {
+        line += '\\n    Suivi: ' + a.reply;
       }
       return line;
     }
@@ -364,7 +389,7 @@ const HTML_TEMPLATE = (title, body, nav) => {
     }
 
     function copyPendingAnnotations() {
-      const pending = annotations.filter(a => !a.response || !a.response.trim());
+      const pending = annotations.filter(a => (!a.response || !a.response.trim()) || (a.reply && a.reply.trim()));
       if (pending.length === 0) return;
       const lines = pending.map((a) => formatAnnotation(a, annotations.indexOf(a)));
       const page = location.pathname;
@@ -384,6 +409,7 @@ const HTML_TEMPLATE = (title, body, nav) => {
     document.addEventListener('click', function(e) {
       if (!annotationMode) return;
       if (e.target.closest('.comment-banner') || e.target.closest('.ann-pin')) return;
+      if (e.target.closest('.ann-sidebar') || e.target.closest('.nav')) return;
 
       const x = e.pageX;
       const y = e.pageY;
