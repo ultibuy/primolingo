@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import CoinIcon from './CoinIcon.jsx';
 import CharacterSprite from './CharacterSprite.jsx';
 import EmotionPurchasePopup from './EmotionPurchasePopup.jsx';
+import { TrophyIcon, CheckIcon } from './icons/ProductIcons.jsx';
 import { resolveCharacterMood } from '../data/shopCharacters.js';
 import { calculateCoins } from '../engine/scoring.js';
 
@@ -284,7 +285,12 @@ export default function EndScreen({
                   <CharacterSprite id={characterId} mood={charMood} size={68} glow={false} />
                 )
               ) : (
-                <div style={mascotFallbackStyle} />
+                <div style={mascotFallbackStyle}>
+                {pct === 100
+                  ? <TrophyIcon size={32} color="#fbbf24" />
+                  : <CheckIcon size={32} color="#34d399" />
+                }
+              </div>
               )}
             </div>
 
@@ -442,8 +448,10 @@ export default function EndScreen({
           opacity: showRecap ? 1 : 0,
           transform: showRecap ? 'translateY(0)' : 'translateY(10px)',
           transition: 'all 0.4s ease',
+          marginBottom: 12,
         }}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, paddingBottom: 100 }}>
+          <div style={recapCardStyle}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
             {[...questions.map((q, i) => ({ q, a: answers[i], i }))].sort((x, y) => {
               const okX = x.a?.correct ? 1 : 0;
               const okY = y.a?.correct ? 1 : 0;
@@ -501,6 +509,7 @@ export default function EndScreen({
                 </div>
               );
             })}
+            </div>
           </div>
         </div>
         </div>
@@ -628,6 +637,7 @@ const scrollAreaStyle = {
 const contentWrapperStyle = {
   width: '100%',
   maxWidth: 480,
+  paddingBottom: 100,
 };
 
 const headerCardStyle = {
@@ -659,6 +669,9 @@ const mascotFallbackStyle = {
   height: 68,
   borderRadius: '50%',
   background: 'linear-gradient(145deg, #2d2b55, #1e1e2e)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 };
 
 const lockedBubbleStyle = {
@@ -712,6 +725,13 @@ const mutedCoinStyle = {
   width: 13, height: 13,
   borderRadius: '50%',
   background: 'rgba(255,255,255,0.18)',
+};
+
+const recapCardStyle = {
+  background: 'rgba(255,255,255,0.04)',
+  border: '1px solid rgba(255,255,255,0.10)',
+  borderRadius: 16,
+  padding: '14px 16px',
 };
 
 const objectiveCardStyle = {
