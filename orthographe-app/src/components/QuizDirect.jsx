@@ -18,12 +18,10 @@ export default function QuizDirect({
   ruleProgress,
   streak,
   milestones,
-  victoryAnimationId,
   shopOwned = [],
   onBuyEmotion = null,
   coins = 0,
   onFlagQuestion,
-  coachingLine = null,
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -75,13 +73,11 @@ export default function QuizDirect({
         levelProgress={levelProgress}
         streakInfo={streakInfo}
         streakMilestoneJustEarned={streakMilestone}
-        victoryAnimationId={victoryAnimationId}
         characterId={characterId}
         shopOwned={shopOwned}
         isFirstEverSession={isFirstEverSession}
         onBuyEmotion={onBuyEmotion}
         coins={coins}
-        coachingLine={coachingLine}
         onFinish={() => onFinish(score, questions.length, answers)}
       />
     );

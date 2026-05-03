@@ -25,7 +25,6 @@ export default function DicteeQuizGuided({
   ruleProgress,
   streak,
   milestones,
-  victoryAnimationId,
   shopOwned = [],
   onBuyEmotion = null,
   coins = 0,
@@ -117,7 +116,6 @@ export default function DicteeQuizGuided({
         levelProgress={levelProgress}
         streakInfo={streakInfo}
         streakMilestoneJustEarned={streakMilestone}
-        victoryAnimationId={victoryAnimationId}
         characterId={characterId}
         shopOwned={shopOwned}
         isFirstEverSession={isFirstEverSession}

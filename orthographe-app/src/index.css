@@ -1,17 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
-
 :root {
-  --font-body: 'Plus Jakarta Sans', 'Avenir Next', 'Trebuchet MS', sans-serif;
-  --font-display: 'Outfit', 'Avenir Next Condensed', 'Trebuchet MS', sans-serif;
+  /* PrimoLingo DS rollback point: this block centralizes the prio 1/2 visual update. */
+  --font-body: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-kid: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', monospace;
   --color-primary: #a78bfa;
   --color-primary-rgb: 167, 139, 250;
   --color-accent: #c4b5fd;
   --color-accent-rgb: 196, 181, 253;
+  --color-primary-dark: #7c3aed;
   --color-bg1: #1e1e2e;
   --color-bg1-rgb: 30, 30, 46;
   --color-bg2: #2d2b55;
   --color-bg2-rgb: 45, 43, 85;
-  --app-page-overlay: linear-gradient(135deg, #1e1e2e 0%, #2d2b55 100%);
+  --color-bg3: #1a1a2e;
+  --color-bg3-rgb: 26, 26, 46;
+  --color-gold: #fbbf24;
+  --color-orange: #fb923c;
+  --color-green: #34d399;
+  --color-red: #f87171;
+  --text-white: #ffffff;
+  --text-light: rgba(255,255,255,0.85);
+  --text-muted: rgba(255,255,255,0.5);
+  --text-subtle: rgba(255,255,255,0.35);
+  --glass-bg: rgba(255,255,255,0.06);
+  --glass-bg-hover: rgba(255,255,255,0.09);
+  --glass-border: rgba(255,255,255,0.1);
+  --gradient-sky-bg: linear-gradient(180deg, var(--color-bg1) 0%, var(--color-bg2) 50%, var(--color-bg3) 100%);
+  --gradient-brand: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+  --gradient-highlight: linear-gradient(135deg, var(--color-primary), var(--color-gold));
+  --gradient-flame: linear-gradient(180deg, var(--color-gold), var(--color-orange));
+  --app-star-field:
+    radial-gradient(circle at 8% 14%, rgba(255,255,255,0.78) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 18% 72%, rgba(196,181,253,0.7) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 30% 24%, rgba(251,191,36,0.82) 0 1.2px, transparent 1.7px),
+    radial-gradient(circle at 43% 86%, rgba(255,255,255,0.62) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 58% 18%, rgba(255,255,255,0.74) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 72% 66%, rgba(251,191,36,0.72) 0 1.2px, transparent 1.7px),
+    radial-gradient(circle at 88% 32%, rgba(196,181,253,0.72) 0 1px, transparent 1.5px),
+    var(--gradient-sky-bg);
+  --app-page-overlay: var(--app-star-field);
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+  --radius-pill: 9999px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.18);
+  --shadow-md: 0 8px 24px rgba(0,0,0,0.25);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,0.35);
+  --shadow-glow: 0 8px 30px rgba(167,139,250,0.35);
+  --shadow-glow-hover: 0 12px 36px rgba(167,139,250,0.45);
+  --shadow-glow-gold: 0 8px 30px rgba(251,191,36,0.3);
+  --blur-sm: 8px;
+  --blur-md: 20px;
+  --motion-base: 180ms ease-out;
 }
 
 * {
@@ -23,12 +65,13 @@
 html, body {
   min-height: 100vh;
   background-color: var(--color-bg1);
-  background-image: var(--app-page-overlay);
-  background-size: cover;
+  background-image: var(--app-star-field);
+  background-size: 620px 620px, 680px 680px, 560px 560px, 720px 720px, 640px 640px, 760px 760px, 600px 600px, cover;
   background-position: center center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   font-family: var(--font-body);
-  color: #e2e2e2;
+  color: var(--text-light);
 }
 
 body {
@@ -49,7 +92,7 @@ button:active:not(:disabled) {
 }
 
 button {
-  transition: all 0.15s ease;
+  transition: all var(--motion-base);
   font: inherit;
 }
 
@@ -80,6 +123,11 @@ input, textarea, select {
 @keyframes glow-gold {
   0%, 100% { filter: drop-shadow(0 0 6px rgba(251,191,36,0.3)); }
   50% { filter: drop-shadow(0 0 16px rgba(251,191,36,0.7)); }
+}
+
+@keyframes reward-pop {
+  0% { opacity: 0; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
 @keyframes glow-blue {
@@ -132,6 +180,16 @@ input, textarea, select {
 @keyframes fade-in {
   from { opacity: 0; }
   to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(18px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes count-up {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
 @keyframes flame-dance {

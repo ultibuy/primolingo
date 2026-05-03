@@ -3,8 +3,11 @@ import CoinIcon from './CoinIcon.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
 import PopupModal from './PopupModal.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
+import {
+  PaletteIcon, TagIcon, BurstIcon, IceShieldIcon,
+  CoinsIcon, QuestionMarkIcon, CharacterIcon, PuzzleIcon, GiftIcon,
+} from './icons/ProductIcons.jsx';
 import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
-import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
 import CharacterSprite from './CharacterSprite.jsx';
 import mangaImage from '../assets/manga.webp';
 import ryuImage from '../assets/ryu.webp';
@@ -37,42 +40,42 @@ import {
 } from '../engine/economy.js';
 
 const CATEGORIES = [
-  { key: 'cosmetique', label: 'Cosm\u00e9tique', filter: (item) => ['themes', 'flames', 'titles', 'victoryAnimations', 'entranceAnimations'].includes(item.category) },
+  { key: 'cosmetique', label: 'Cosm\u00e9tique', filter: (item) => ['themes', 'flames', 'titles', 'entranceAnimations'].includes(item.category) },
   { key: 'boost', label: 'Boost', filter: (item) => ['streakFreeze', 'doubleCoins'].includes(item.category) },
   { key: 'persos', label: 'Persos', filter: () => false },
   { key: 'mystere', label: 'Image mystère', filter: () => false },
 ];
 
-const CATEGORY_ICONS = {
-  themes: '\uD83C\uDFA8',
-  flames: '\uD83D\uDD25',
-  titles: '\uD83C\uDFF7\uFE0F',
-  victoryAnimations: '\uD83C\uDFAC',
-  entranceAnimations: '🎬',
-  streakFreeze: '\uD83D\uDEE1\uFE0F',
-  doubleCoins: '\uD83D\uDCB0',
-  questionMystery: '\u2753',
-  persos: '🧍',
-  mystere: '\uD83E\uDDE9',
-};
+function CategoryIcon({ category, size = 16 }) {
+  switch (category) {
+    case 'themes':              return <PaletteIcon size={size} />;
+    case 'flames':              return <CosmeticFlameIcon size={size} intensity={1} />;
+    case 'titles':              return <TagIcon size={size} />;
+    case 'entranceAnimations':  return <BurstIcon size={size} />;
+    case 'streakFreeze':        return <IceShieldIcon size={size} />;
+    case 'doubleCoins':         return <CoinsIcon size={size} />;
+    case 'questionMystery':     return <QuestionMarkIcon size={size} />;
+    case 'persos':              return <CharacterIcon size={size} />;
+    case 'mystere':             return <PuzzleIcon size={size} />;
+    default:                    return null;
+  }
+}
 
 const SUBCATEGORY_LABELS = {
   themes: 'Th\u00e8mes',
-  flames: 'Flamme de ton streak',
-  titles: 'Titre sous le streak',
-  victoryAnimations: 'Animations de victoire',
-  entranceAnimations: 'Animations de célébration 🎬',
-  streakFreeze: 'Bouclier de streak',
+  flames: 'Flamme personnalisée',
+  titles: 'Titre sous ta flamme',
+  entranceAnimations: 'Animations de célébration',
+  streakFreeze: 'Bouclier de flamme',
   doubleCoins: 'Double pièces',
 };
 
 const SUBCATEGORY_DESCRIPTIONS = {
   themes: "Change le fond d\u2019écran de ton tableau de bord",
-  flames: "Personnalise l\u2019icône de ta flamme de streak",
+  flames: "Personnalise l\u2019icône de ta flamme",
   titles: "Affiche un titre stylé sous ton compteur de jours",
-  victoryAnimations: "Joue une animation sur ton écran de fin de quiz",
   entranceAnimations: "Déclenche un effet visuel quand tu passes un niveau",
-  streakFreeze: "Protège ton streak si tu oublies une journée",
+  streakFreeze: "Protège ta flamme si tu oublies une journée",
   doubleCoins: "Double les pièces gagnées pendant 5 sessions",
 };
 
@@ -80,7 +83,6 @@ const EQUIP_SLOT_MAP = {
   themes: 'theme',
   flames: 'flame',
   titles: 'title',
-  victoryAnimations: 'victoryAnimation',
 };
 
 const MYSTERY_IMAGE_ASSETS = {
@@ -124,7 +126,6 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
   const [confirmItem, setConfirmItem] = useState(null);
   const [previewFlameItem, setPreviewFlameItem] = useState(null);
   const [previewTitleItem, setPreviewTitleItem] = useState(null);
-  const [previewVictoryItem, setPreviewVictoryItem] = useState(null);
   const [previewMysteryImageId, setPreviewMysteryImageId] = useState(null);
   const [emotionPopup, setEmotionPopup] = useState(null);
 
@@ -253,18 +254,6 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
     if (!previewTitleItem) return;
     handleEquip(previewTitleItem.id, previewTitleItem.category);
     setPreviewTitleItem(null);
-  };
-
-  const handlePreviewVictory = (itemId) => {
-    const item = SHOP_CATALOG[itemId];
-    if (!item) return;
-    setPreviewVictoryItem(item);
-  };
-
-  const handleConfirmVictoryPreview = () => {
-    if (!previewVictoryItem) return;
-    handleEquip(previewVictoryItem.id, previewVictoryItem.category);
-    setPreviewVictoryItem(null);
   };
 
   const handleEquip = (itemId, category, unequip = false) => {
@@ -592,78 +581,6 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
         </div>
       )}
 
-      {previewVictoryItem && (
-        <div style={{
-          position: 'fixed', inset: 0,
-          background: 'rgba(0,0,0,0.6)',
-          backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          zIndex: 1000,
-        }} onClick={() => setPreviewVictoryItem(null)}>
-          <div
-            style={{
-              background: 'rgba(var(--color-bg1-rgb),0.96)',
-              border: '1px solid rgba(var(--color-accent-rgb),0.2)',
-              borderRadius: 24, padding: '1.6rem 2rem',
-              maxWidth: 390, width: 'calc(100% - 2rem)', textAlign: 'center',
-              boxShadow: '0 8px 40px rgba(0,0,0,0.5)',
-              animation: 'bounce-in 0.3s ease forwards',
-              position: 'relative',
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <PopupCloseButton onClick={() => setPreviewVictoryItem(null)} />
-            <div style={{ marginBottom: '0.55rem', fontSize: '0.68rem', color: '#9ca3af', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em' }}>
-              Aperçu de la victoire
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem' }}>
-              <VictoryAnimationPreview animationId={previewVictoryItem.id} size={144} />
-            </div>
-            <div style={{ fontSize: '1.15rem', fontWeight: 800, color: '#fff', marginBottom: '0.25rem' }}>
-              {previewVictoryItem.name}
-            </div>
-            <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, marginBottom: '1.15rem' }}>
-              Voilà l'animation qui apparaîtra sur l'écran de fin après une session réussie.
-            </div>
-            <div style={{ display: 'flex', gap: '0.6rem', justifyContent: 'center' }}>
-              <button
-                onClick={() => setPreviewVictoryItem(null)}
-                style={{
-                  flex: 1,
-                  padding: '0.7rem 1rem',
-                  borderRadius: 12,
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  background: 'rgba(255,255,255,0.06)',
-                  color: '#9ca3af',
-                  cursor: 'pointer',
-                  fontSize: '0.88rem',
-                  fontWeight: 700,
-                }}
-              >
-                Fermer
-              </button>
-              <button
-                onClick={handleConfirmVictoryPreview}
-                style={{
-                  flex: 1,
-                  padding: '0.7rem 1rem',
-                  borderRadius: 12,
-                  border: 'none',
-                  background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
-                  color: '#fff',
-                  cursor: 'pointer',
-                  fontSize: '0.88rem',
-                  fontWeight: 700,
-                  boxShadow: '0 2px 10px rgba(var(--color-primary-rgb),0.25)',
-                }}
-              >
-                Installer
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {previewMysteryImageId && (
         <div style={{
           position: 'fixed', inset: 0,
@@ -850,7 +767,7 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
                     marginBottom: '0.4rem', paddingLeft: '0.2rem',
                     display: 'flex', alignItems: 'center', gap: '0.4rem',
                   }}>
-                    <span>{CATEGORY_ICONS.persos}</span>
+                    <CategoryIcon category="persos" />
                     À débloquer ({unownedChars.length})
                   </div>
                   <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, margin: '0 0 1rem 0.2rem' }}>
@@ -892,7 +809,7 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
               marginBottom: '0.6rem', paddingLeft: '0.2rem',
               display: 'flex', alignItems: 'center', gap: '0.4rem',
             }}>
-              <span>{CATEGORY_ICONS.mystere}</span>
+              <CategoryIcon category="mystere" />
               Image mystère
             </div>
             <div style={{ fontSize: '0.82rem', color: '#9ca3af', lineHeight: 1.5, margin: '0 0 1.2rem 0.2rem' }}>
@@ -950,7 +867,7 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
                     display: 'flex', alignItems: 'center', gap: '0.4rem',
                     marginBottom: '0.2rem',
                   }}>
-                    <span>{CATEGORY_ICONS[groupKey] || ''}</span>
+                    <CategoryIcon category={groupKey} />
                     {SUBCATEGORY_LABELS[groupKey]}
                   </div>
                   {SUBCATEGORY_DESCRIPTIONS[groupKey] && (
@@ -973,7 +890,6 @@ export default function Shop({ progress, adminSettings, childName = '', onPurcha
                     onEquip={handleEquip}
                     onPreviewFlame={handlePreviewFlame}
                     onPreviewTitle={handlePreviewTitle}
-                    onPreviewVictory={handlePreviewVictory}
                   />
                 ))}
               </div>
@@ -1268,13 +1184,15 @@ function EmotionCard({ emo, isBase, charId = null, isOwned = false, animateIn = 
         }}>Inclus</div>
       )}
 
-      {/* Visual — CharacterSprite for base, symbol emoji for paid */}
+      {/* Visual — CharacterSprite for all emotions when charId available */}
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 5 }}>
-        {isBase && charId ? (
-          <CharacterSprite id={charId} mood={emo.id} size={46} glow={false} />
+        {charId ? (
+          <div style={{ filter: (!isBase && !isOwned) ? 'grayscale(0.6) brightness(0.7)' : 'none' }}>
+            <CharacterSprite id={charId} mood={emo.id} size={46} glow={false} />
+          </div>
         ) : (
-          <div style={{ fontSize: 22, lineHeight: 1, filter: (!isBase && !isOwned) ? 'grayscale(0.7)' : 'none' }}>
-            {emo.symbol}
+          <div style={{ width: 46, height: 46, borderRadius: 12, background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', color: 'var(--text-muted)' }}>
+            {emo.name?.[0] || '?'}
           </div>
         )}
       </div>
@@ -1372,7 +1290,7 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim: _pu
             }}>
               {ownsCharacter
                 ? <CharacterSprite id={char.id} mood="walk" size={38} glow={false} />
-                : <span style={{ fontSize: '1.6rem' }}>{char.emoji}</span>}
+                : <div style={{ filter: 'grayscale(0.6) brightness(0.7)', opacity: 0.7 }}><CharacterSprite id={char.id} mood="walk" size={38} glow={false} /></div>}
             </div>
             <div style={{ minWidth: 0, overflowWrap: 'anywhere' }}>
               <div style={{ fontSize: '0.95rem', fontWeight: 800, color: ownsCharacter ? char.color : '#fff', marginBottom: '0.1rem' }}>
@@ -1431,7 +1349,7 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim: _pu
                   border: '1px solid rgba(72,187,120,0.32)', borderRadius: 12,
                   display: 'flex', alignItems: 'center', gap: 12,
                 }}>
-                  <div style={{ fontSize: 20, flexShrink: 0 }}>🎁</div>
+                  <div style={{ flexShrink: 0 }}><GiftIcon size={22} color="#86e2a8" /></div>
                   <div>
                     <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#86e2a8' }}>3 émotions de base offertes !</div>
                     <div style={{ fontSize: '0.73rem', color: '#cbd1e0', marginTop: 2 }}>Marche, Dodo et Assis sont incluses avec ton perso.</div>
@@ -1477,7 +1395,7 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim: _pu
   );
 }
 
-function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEquip, onPreviewFlame, onPreviewTitle, onPreviewVictory }) {
+function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEquip, onPreviewFlame, onPreviewTitle }) {
   const owned = item.type === 'permanent' && isOwned(progress, item.id);
   const affordable = canAfford(progress, item.id);
   const coins = progress.coins || 0;
@@ -1524,9 +1442,7 @@ function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEqu
       ? () => onPreviewFlame(item.id)
       : item.category === 'titles'
         ? () => onPreviewTitle(item.id)
-        : item.category === 'victoryAnimations'
-          ? () => onPreviewVictory(item.id)
-          : () => onEquip(item.id, item.category);
+        : () => onEquip(item.id, item.category);
     buttonStyle = {
       background: 'rgba(var(--color-accent-rgb),0.1)',
       border: '1px solid rgba(var(--color-accent-rgb),0.25)',
@@ -1570,7 +1486,8 @@ function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEqu
   }
 
   // Get display icon
-  const displayIcon = item.emoji || CATEGORY_ICONS[item.category] || '\uD83D\uDCE6';
+  const hasCustomEmoji = !!item.emoji;
+  const displayIcon = hasCustomEmoji ? item.emoji : null;
 
   return (
     <div style={{
@@ -1599,8 +1516,10 @@ function ShopItemCard({ item, progress, shields, purchaseAnim, onPurchase, onEqu
       }}>
         {isStreakFreeze ? (
           <ShieldIcon size={24} active={true} />
-        ) : (
+        ) : displayIcon ? (
           displayIcon
+        ) : (
+          <CategoryIcon category={item.category} size={22} />
         )}
       </div>
 

@@ -1,7 +1,8 @@
 import { useState, useEffect, useCallback, useRef, lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
-import * as Sentry from '@sentry/react';
 import '../index.css';
+import { captureException } from '../services/sentry.js';
+import posthog from '../services/analytics.js';
 
 // Context
 import { useAuth } from '../contexts/AuthContext.jsx';
@@ -17,7 +18,7 @@ import { getCharacterForRule } from '../data/shopCharacters.js';
 import { updateStatsHistory } from '../engine/stats.js';
 import { selectSessionQuestions } from '../engine/session.js';
 import { calculateDiamondHealth, getToday, parseLocalDate } from '../engine/sm2.js';
-import { createDefaultCoaching, pickCoachingMessage } from '../engine/coaching.js';
+import { createDefaultCoaching } from '../engine/coaching.js';
 import { processSessionResult } from '../engine/scoring.js';
 import {
   applyTheme,
@@ -57,7 +58,10 @@ import DicteesPage from '../pages/DicteesPage.jsx';
 import DicteeQuizGuided from '../components/DicteeQuizGuided.jsx';
 import DicteeQuizReconstruct from '../components/DicteeQuizReconstruct.jsx';
 import CoinIcon from '../components/CoinIcon.jsx';
+import { GiftIcon } from '../components/icons/ProductIcons.jsx';
+import RewardAmount from '../components/rewards/RewardAmount.jsx';
 import PopupModal from '../components/PopupModal.jsx';
+import AppLoadingScreen from '../components/AppLoadingScreen.jsx';
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -386,6 +390,12 @@ export default function ChildApp() {
     setSessionSize(adminSettings.prodQuestionCount || DEFAULT_SESSION_SIZE);
   }, [adminSettings]);
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    window.__ORTHO_SESSION_SIZE__ = sessionSize || DEFAULT_SESSION_SIZE;
+    return undefined;
+  }, [sessionSize]);
+
   const triggerEntranceAnim = useCallback((animId) => {
     if (animId === 'entrance-lightning') setShowLightning(true);
     else if (animId === 'entrance-stars') setShowStars(true);
@@ -514,7 +524,7 @@ export default function ChildApp() {
     setLoadError(null);
     loadSucceededRef.current = false;
 
-    refreshDailyBackups();
+    refreshDailyBackups().catch((error) => captureException(error));
     Promise.all([loadProgress(uid, childId), loadAdminSettings(uid, childId), loadParentalPin(uid)]).then(async ([raw, settings, pin]) => {
       if (cancelled) return;
       setAdminSettings(settings);
@@ -536,17 +546,18 @@ export default function ChildApp() {
       // Only persist on load if the document existed in Firestore (raw !== null).
       // If raw is null the store returned nothing — persisting would write a blank
       // profile and permanently erase any data that was there.
-      if (raw !== null) {
-        await persistProgress(p);
-      }
       setProgress(p);
       setLoading(false);
 
       const equippedTheme = p.shop?.equipped?.theme;
       if (equippedTheme) applyTheme(equippedTheme);
+
+      if (raw !== null) {
+        persistProgress(p).catch((error) => captureException(error));
+      }
     }).catch((error) => {
       if (cancelled) return;
-      Sentry.captureException(error);
+      captureException(error);
       setLoadError(error?.message || 'Impossible de charger la progression.');
       setLoading(false);
     });
@@ -570,7 +581,7 @@ export default function ChildApp() {
         setChildName(String(child.name || '').trim());
       })
       .catch((error) => {
-        Sentry.captureException(error);
+        captureException(error);
       });
   }, [uid, childId]);
 
@@ -586,6 +597,11 @@ export default function ChildApp() {
     const questions = selectSessionQuestions(rule, ruleProgress, sessionSize, quizMode);
     if (questions.length === 0) return;
 
+    posthog.capture('quiz_session_started', {
+      rule_id: ruleId,
+      rule_title: rule.shortTitle || rule.title,
+      mode: quizMode,
+    });
     launchQuizWithFirstSessionModal(() => {
       setActiveRule(rule);
       setActiveMode(quizMode);
@@ -661,6 +677,14 @@ export default function ChildApp() {
 
     if (needsTrophyClear) clearRecentTrophies();
 
+    posthog.capture('quiz_session_completed', {
+      rule_id: activeRule.id,
+      rule_title: activeRule.shortTitle || activeRule.title,
+      score,
+      total,
+      accuracy: total > 0 ? Math.round((score / total) * 100) : 0,
+      mode: activeMode,
+    });
     setPendingEvents(events);
     setScreen('dashboard');
     setActiveRule(null);
@@ -683,6 +707,7 @@ export default function ChildApp() {
     // SM-2 review: level 4+ with overdue review date → reconstruct mode
     const isReview = internalLevel >= 4 && ruleProgress?.sm2 &&
       ruleProgress.sm2.nextReviewDate <= getToday();
+    posthog.capture('dictee_session_started', { dictee_id: dictee.id, level });
     setActiveDictee(dictee);
     setActiveDicteeLevel(level);
     setDicteeWords(words);
@@ -727,6 +752,12 @@ export default function ChildApp() {
     if (needsTrophyClear) clearRecentTrophies();
     if (events.length > 0) setPendingEvents(events);
 
+    posthog.capture('dictee_session_completed', {
+      dictee_id: activeDictee.id,
+      level: activeDicteeLevel,
+      score,
+      total,
+    });
     setScreen('dashboard');
     setDashboardTab('dictee');
     setActiveDictee(null);
@@ -740,6 +771,7 @@ export default function ChildApp() {
   }, []);
 
   const handlePurchase = useCallback((itemId, cost) => {
+    posthog.capture('shop_item_purchased', { item_id: itemId, cost });
     setProgress(prev => {
       const next = JSON.parse(JSON.stringify(prev));
       if (next.coins < cost) return prev;
@@ -935,10 +967,10 @@ export default function ChildApp() {
             panelStyle={firstQuizModalCardStyle}
             closeButtonProps={{ size: 38 }}
           >
-              <div style={{ fontSize: '2.5rem', marginBottom: '0.3rem' }}>{isWelcome ? '🎉' : '👋'}</div>
+              <div style={{ marginBottom: '0.3rem', display: 'flex', justifyContent: 'center' }}><GiftIcon size={40} color="var(--color-primary)" /></div>
               <div style={firstQuizBonusKickerStyle}>{isWelcome ? 'Bienvenue !' : 'Bonus du jour'}</div>
               <div style={firstQuizBonusTitleStyle}>
-                {isWelcome ? 'Bonus de bienvenue : ' : 'Bonus de '}{bonusAmount} <span style={{ display: 'inline-flex', verticalAlign: 'middle', margin: '0 0.12em' }}><CoinIcon size={26} /></span> disponible !
+                {isWelcome ? 'Bonus de bienvenue : ' : 'Bonus de '}<RewardAmount value={bonusAmount} unit="coins" size="md" /> disponible !
               </div>
               <div style={{ fontSize: '0.9rem', lineHeight: 1.55, color: '#cbd5e1' }}>
                 {isWelcome
@@ -1011,18 +1043,7 @@ export default function ChildApp() {
   // Loading
   if (loading || !progress || !adminSettings) {
     return renderWithSaveError(
-      <div style={{
-        minHeight: '100vh',
-        backgroundColor: 'var(--color-bg1)',
-        backgroundImage: 'var(--app-page-overlay)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center center',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        color: 'var(--color-accent)', fontSize: '1.2rem', fontWeight: 600,
-        fontFamily: 'var(--font-body)',
-      }}>
-        Chargement…
-      </div>
+      <AppLoadingScreen />
     );
   }
 
@@ -1056,19 +1077,11 @@ export default function ChildApp() {
     const hasDoubleCoinsActiveNow = hasDoubleCoinsActive(progress);
     const isFirstSessionOfDay = progress.streak?.lastActiveDate !== getToday();
     const ruleProgress = progress.rules?.[activeRule.id];
-    const victoryAnimationId = progress.shop?.equipped?.victoryAnimation || null;
     const quizCharacterId = getCharacterForRule(activeRule.id, allRules.map(r => r.id), progress.shop?.owned || []);
     const totalSessionsCompleted = Object.values(progress.rules || {}).reduce(
       (sum, rp) => sum + (rp.guidedSessionsCompleted || 0) + (rp.directSessionsCompleted || 0), 0
     );
     const isFirstEverSession = totalSessionsCompleted === 0;
-    const endScreenCoachingMsg = pickCoachingMessage({
-      trigger: 'endScreen',
-      progress,
-      rules: allRules,
-      todayStr: getToday(),
-      hour: new Date().getHours(),
-    });
     return renderWithSaveError(
       <QuizComponent
         rule={activeRule}
@@ -1083,13 +1096,11 @@ export default function ChildApp() {
         ruleProgress={ruleProgress}
         streak={progress.streak}
         milestones={progress.milestones}
-        victoryAnimationId={victoryAnimationId}
         shopOwned={progress.shop?.owned || []}
         onBuyEmotion={handleBuyEmotion}
         coins={progress.coins || 0}
         onClose={handleCloseQuiz}
         onFlagQuestion={handleFlagQuestion}
-        coachingLine={endScreenCoachingMsg?.copy || null}
       />
     );
   }
@@ -1127,7 +1138,6 @@ export default function ChildApp() {
         ruleProgress={ruleProgress}
         streak={progress.streak}
         milestones={progress.milestones}
-        victoryAnimationId={progress.shop?.equipped?.victoryAnimation || null}
         shopOwned={progress.shop?.owned || []}
         onBuyEmotion={handleBuyEmotion}
         coins={progress.coins || 0}

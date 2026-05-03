@@ -6,7 +6,7 @@
   "scripts": {
     "backend": "node server/local-api.mjs",
     "dev": "vite",
-    "build": "vite build",
+    "build": "node scripts/generate-seo-data.mjs && node scripts/generate-sitemap.mjs && vite build && node scripts/generate-seo-pages.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "node server/local-api.mjs",
@@ -19,12 +19,21 @@
     "test:coaching": "node tests/coaching-banner.test.js",
     "test:coaching:update": "node tests/coaching-banner.test.js --update-snapshots",
     "test:stats": "node tests/stats.test.js",
-    "test:stats:e2e": "BASE_URL=http://localhost:5173 node tests/progress-charts.test.js"
+    "test:stats:e2e": "BASE_URL=http://localhost:5173 node tests/progress-charts.test.js",
+    "test:end-screen": "BASE_URL=http://localhost:5173 node tests/end-screen-redesign.test.js",
+    "test:unit": "node tests/runners/run-unit.js",
+    "test:e2e": "node tests/runners/run-e2e.js",
+    "test:all": "node tests/runners/run-unit.js && node tests/runners/run-e2e.js",
+    "test:predeploy": "node tests/runners/run-predeploy.js",
+    "deploy": "node tests/runners/run-predeploy.js && firebase deploy --only hosting",
+    "deploy:raw": "firebase deploy --only hosting"
   },
   "dependencies": {
+    "@posthog/react": "^1.9.0",
     "@sentry/react": "^10.51.0",
     "firebase": "^12.12.0",
     "firebase-admin": "^13.8.0",
+    "posthog-js": "^1.372.6",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-is": "^19.2.5",

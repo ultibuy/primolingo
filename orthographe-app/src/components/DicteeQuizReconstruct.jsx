@@ -214,7 +214,6 @@ export default function DicteeQuizReconstruct({
   ruleProgress,
   streak,
   milestones,
-  victoryAnimationId,
   shopOwned = [],
   onBuyEmotion = null,
   coins = 0,
@@ -328,7 +327,6 @@ export default function DicteeQuizReconstruct({
         levelProgress={levelProgress}
         streakInfo={streakInfo}
         streakMilestoneJustEarned={streakMilestone}
-        victoryAnimationId={victoryAnimationId}
         characterId={characterId}
         shopOwned={shopOwned}
         isFirstEverSession={isFirstEverSession}

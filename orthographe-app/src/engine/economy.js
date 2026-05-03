@@ -297,40 +297,6 @@ export const SHOP_CATALOG = {
     titleText: 'Cérébral',
   },
 
-  // ── Cosmetic: Victory Animations ──
-  'anim-neon': {
-    id: 'anim-neon',
-    category: 'victoryAnimations',
-    name: 'Glow Néon',
-    description: 'Halo néon clignotant autour du trophée',
-    price: 130,
-    type: 'permanent',
-  },
-  'anim-glitch': {
-    id: 'anim-glitch',
-    category: 'victoryAnimations',
-    name: 'Effet Glitch',
-    description: 'Distorsion numérique brève',
-    price: 130,
-    type: 'permanent',
-  },
-  'anim-shockwave': {
-    id: 'anim-shockwave',
-    category: 'victoryAnimations',
-    name: 'Onde de choc',
-    description: 'Cercle qui s\'expand depuis le centre',
-    price: 130,
-    type: 'permanent',
-  },
-  'anim-confetti': {
-    id: 'anim-confetti',
-    category: 'victoryAnimations',
-    name: 'Confettis sobres',
-    description: 'Quelques confettis dorés qui tombent',
-    price: 130,
-    type: 'permanent',
-  },
-
   // ── Cosmetic: Entrance Animations (celebrations) ──
   'entrance-lightning': {
     id: 'entrance-lightning',
@@ -734,7 +700,6 @@ export function equipItem(progress, itemId) {
     themes: 'theme',
     flames: 'flame',
     titles: 'title',
-    victoryAnimations: 'victoryAnimation',
   };
 
   const slot = categoryToSlot[item.category];

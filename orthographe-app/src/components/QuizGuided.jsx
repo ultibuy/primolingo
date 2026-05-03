@@ -49,12 +49,10 @@ export default function QuizGuided({
   ruleProgress,
   streak,
   milestones,
-  victoryAnimationId,
   shopOwned = [],
   onBuyEmotion = null,
   coins = 0,
   onFlagQuestion,
-  coachingLine = null,
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [axisSelections, setAxisSelections] = useState({});
@@ -121,13 +119,11 @@ export default function QuizGuided({
         levelProgress={levelProgress}
         streakInfo={streakInfo}
         streakMilestoneJustEarned={streakMilestone}
-        victoryAnimationId={victoryAnimationId}
         characterId={characterId}
         shopOwned={shopOwned}
         isFirstEverSession={isFirstEverSession}
         onBuyEmotion={onBuyEmotion}
         coins={coins}
-        coachingLine={coachingLine}
         onFinish={() => onFinish(score, questions.length, answers)}
       />
     );

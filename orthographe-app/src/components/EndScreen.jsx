@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import CoinIcon from './CoinIcon.jsx';
-import VictoryAnimationPreview from './VictoryAnimationPreview.jsx';
 import CharacterSprite from './CharacterSprite.jsx';
 import EmotionPurchasePopup from './EmotionPurchasePopup.jsx';
 import { resolveCharacterMood } from '../data/shopCharacters.js';
@@ -26,7 +25,7 @@ const MOOD_BUBBLE_WORDS = {
  *   hasDoubleCoinsActive (optional, boolean) — doubles the displayed quiz gains
  *   isFirstSessionOfDay (optional, boolean) — shows +10 bonus if first session >= 60%
  *   streakMilestoneJustEarned (optional, { streak, coins }) — if a streak milestone was just earned
- *   levelProgress, streakInfo, victoryAnimationId
+ *   levelProgress
  *   characterId (optional) — if provided, shows the character sprite in the header
  *   shopOwned (optional) — needed to resolve character emotions
  */
@@ -39,15 +38,12 @@ export default function EndScreen({
   hasDoubleCoinsActive,
   isFirstSessionOfDay,
   levelProgress,
-  streakInfo,
-  victoryAnimationId,
   streakMilestoneJustEarned,
   characterId = null,
   shopOwned = [],
   isFirstEverSession = false,
   onBuyEmotion = null,
   coins = 0,
-  coachingLine = null,
 }) {
   const total = questions.length;
   const pct = total > 0 ? Math.round((score / total) * 100) : 0;
@@ -58,7 +54,6 @@ export default function EndScreen({
   const coinsBeforeMultiplier = baseCoins + firstSessionBonus;
   const doubleCoinsBonus = hasDoubleCoinsActive ? coinsBeforeMultiplier : 0;
   const totalCoins = coinsBeforeMultiplier + doubleCoinsBonus;
-  const emoji = pct === 100 ? '\u{1F3C6}' : pct >= 70 ? '\u{1F44F}' : pct >= 50 ? '\u{1F4AA}' : '\u{1F4DA}';
 
   // Dynamic thresholds based on question count
   const threshold60 = Math.ceil(total * 0.6);
@@ -68,11 +63,7 @@ export default function EndScreen({
   // Which tier is active?
   const activeTier = pct === 100 ? 2 : pct >= 80 ? 1 : pct >= 60 ? 0 : -1;
 
-  const tiers = [
-    { range: `${threshold60}-${threshold80 - 1}`, coins: 5, active: activeTier === 0 },
-    { range: `${threshold80}-${threshold100 - 1}`, coins: 20, active: activeTier === 1 },
-    { range: `${threshold100}`, coins: 30, active: activeTier === 2 },
-  ];
+  const tiers = buildCoinTiers(total, threshold60, threshold80, threshold100, activeTier);
 
   const feedbackMessage = getFeedbackMessage(pct);
 
@@ -82,7 +73,7 @@ export default function EndScreen({
   ));
   const [showFeedback, setShowFeedback] = useState(false);
   const [showCoins, setShowCoins] = useState(false);
-  const [visibleTier, setVisibleTier] = useState(-1); // -1 = none, 0/1/2 = tiers
+  const [visibleTier, setVisibleTier] = useState(-1);
   const [animatingCoins, setAnimatingCoins] = useState(false);
   const [displayedCoins, setDisplayedCoins] = useState(0);
   const [showBonuses, setShowBonuses] = useState(false);
@@ -124,14 +115,13 @@ export default function EndScreen({
     }
   }, [showFeedback]);
 
-  // Step 4: Reveal tiers one by one (300ms apart)
+  // Step 4: Reveal tiers one by one
   useEffect(() => {
     if (!showCoins) return;
     const timers = [];
     for (let i = 0; i <= 2; i++) {
       timers.push(setTimeout(() => setVisibleTier(i), 200 + i * 300));
     }
-    // After all tiers visible, start coin animation on active tier
     timers.push(setTimeout(() => setAnimatingCoins(true), 200 + 3 * 300));
     return () => timers.forEach(clearTimeout);
   }, [showCoins]);
@@ -193,7 +183,7 @@ export default function EndScreen({
     return () => clearTimeout(t);
   }, [showBonuses, streakBonus, firstSessionBonus]);
 
-  // Step 7: Show total after bonuses are done (or after coin anim if no bonuses)
+  // Step 7: Show total after bonuses
   useEffect(() => {
     const hasBonuses = firstSessionBonus > 0 || streakBonus > 0 || doubleCoinsBonus > 0;
     if (hasBonuses && showBonuses) {
@@ -239,21 +229,7 @@ export default function EndScreen({
 
   const showLevelBar = levelProgress && !levelProgress.justLeveledUp;
 
-  // Next coin milestone for streak
-  const STREAK_COIN_MILESTONES = { 7: 100, 14: 200, 30: 350, 60: 500, 100: 1000 };
-  const currentStreak = streakInfo?.current || 0;
-  const nextMilestoneDays = [7, 14, 30, 60, 100].find(d => d > currentStreak) || null;
-  const nextMilestoneCoins = nextMilestoneDays ? STREAK_COIN_MILESTONES[nextMilestoneDays] : null;
-  const streakDaysLeft = nextMilestoneDays ? nextMilestoneDays - currentStreak : 0;
-  const showStreakNext = nextMilestoneDays && streakDaysLeft > 0;
-
-  // Emotion rules for the end screen character (stabilised with useRef so
-  // re-renders after emotion purchase don't re-randomise the pick):
-  //   isFirstEverSession → sleep
-  //   pct ≥ 90 (≥ 18/20) → dance | victory  (random, stable)
-  //   pct ≥ 80 (16-17/20) → clap (bravo)
-  //   pct ≥ 70 (14-15/20) → walk (neutral)
-  //   pct < 70 (< 14/20)  → think | surprise  (random, stable)
+  // Emotion rules for the end screen character
   const rawMoodRef = useRef(null);
   if (rawMoodRef.current === null) {
     rawMoodRef.current = (() => {
@@ -265,9 +241,7 @@ export default function EndScreen({
     })();
   }
   const rawCharMood = rawMoodRef.current;
-  // Derive actual mood from ownership — auto-updates when shopOwned changes
   const charMood = characterId ? resolveCharacterMood(rawCharMood, characterId, shopOwned) : 'walk';
-  // Is the intended emotion locked?
   const isCharLocked = !!(characterId && rawCharMood !== 'walk' && charMood === 'walk');
   const [showEmotionPopup, setShowEmotionPopup] = useState(false);
 
@@ -276,309 +250,199 @@ export default function EndScreen({
     setShowEmotionPopup(false);
   };
 
+  // Generate actionable level message if absent
+  const levelMessage = levelProgress?.message || (levelProgress ? generateLevelMessage(levelProgress) : null);
+
   return (
     <div style={pageStyle}>
-      <div style={cardStyle}>
-        {/* 1. Header — horizontal with character, or centered without */}
-        {characterId ? (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '0.6rem' }}>
-            {/* Character sprite — locked or normal */}
-            <div style={{
-              flexShrink: 0,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              animation: 'bounce-in 0.5s ease forwards',
-              position: 'relative',
-            }}>
-              {isCharLocked ? (
-                /* Locked emotion indicator (end screen — larger size) */
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                  {/* Speech bubble — clickable to open purchase popup */}
-                  <button
-                    type="button"
-                    onClick={() => setShowEmotionPopup(true)}
-                    title="Débloquer cette émotion"
-                    style={{
-                      background: 'rgba(255,255,255,0.96)',
-                      color: '#1a1a2e',
-                      borderRadius: 9,
-                      padding: '3px 10px',
-                      fontSize: '0.85rem',
-                      fontWeight: 800,
-                      whiteSpace: 'nowrap',
-                      lineHeight: 1.5,
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.25)',
-                      letterSpacing: '0.02em',
-                      border: 'none',
-                      cursor: 'pointer',
-                      fontFamily: 'inherit',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '4px',
-                    }}
-                  >
-                    🔒 {MOOD_BUBBLE_WORDS[rawCharMood] || ''}
-                  </button>
-                  {/* Tail */}
-                  <div style={{
-                    width: 0, height: 0,
-                    borderLeft: '5px solid transparent',
-                    borderRight: '5px solid transparent',
-                    borderTop: '6px solid rgba(255,255,255,0.96)',
-                    marginTop: -1,
-                  }} />
-                  {/* Character — also clickable */}
-                  <button
-                    type="button"
-                    onClick={() => setShowEmotionPopup(true)}
-                    style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', lineHeight: 0 }}
-                  >
-                    <CharacterSprite id={characterId} mood="walk" size={88} glow={false} />
-                  </button>
-                </div>
+      {/* Scrollable content area */}
+      <div style={scrollAreaStyle}>
+        {/* Header card */}
+        <div style={headerCardStyle}>
+          {/* Mascot + Title row */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            {/* Character mascot */}
+            <div style={mascotContainerStyle}>
+              {characterId ? (
+                isCharLocked ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <button
+                      type="button"
+                      onClick={() => setShowEmotionPopup(true)}
+                      title="Debloquer cette emotion"
+                      style={lockedBubbleStyle}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{verticalAlign:'middle',marginRight:3}}><rect x="5" y="10" width="14" height="11" rx="2.5" fill="currentColor"/><path d="M8 10V7a4 4 0 118 0v3" stroke="currentColor" strokeWidth="2.2" fill="none" strokeLinecap="round"/></svg>{MOOD_BUBBLE_WORDS[rawCharMood] || ''}
+                    </button>
+                    <div style={{ width: 0, height: 0, borderLeft: '5px solid transparent', borderRight: '5px solid transparent', borderTop: '6px solid rgba(255,255,255,0.96)', marginTop: -1 }} />
+                    <button type="button" onClick={() => setShowEmotionPopup(true)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', lineHeight: 0 }}>
+                      <CharacterSprite id={characterId} mood="walk" size={68} glow={false} />
+                    </button>
+                  </div>
+                ) : (
+                  <CharacterSprite id={characterId} mood={charMood} size={68} glow={false} />
+                )
               ) : (
-                <CharacterSprite id={characterId} mood={charMood} size={88} glow={false} />
+                <div style={mascotFallbackStyle} />
               )}
             </div>
-            {/* Score + title block */}
-            <div style={{ flex: 1, minWidth: 0 }}>
-              {victoryAnimationId && (
-                <div style={{ marginBottom: '0.4rem' }}>
-                  <VictoryAnimationPreview animationId={victoryAnimationId} size={80} showLabel={false} />
-                </div>
-              )}
-              {!victoryAnimationId && (
-                <div style={{ fontSize: '2rem', marginBottom: '0.2rem', lineHeight: 1 }}>{emoji}</div>
-              )}
-              <h1 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--color-accent)', marginBottom: '0.2rem', margin: '0 0 0.2rem 0' }}>
-                Session terminée !
-              </h1>
-              <p style={{ fontSize: '1.2rem', color: '#d1d5db', margin: 0 }}>
-                <strong style={{
-                  color: pct >= 70 ? '#4ade80' : pct >= 60 ? '#fbbf24' : '#9ca3af',
-                  fontSize: '1.7rem', transition: 'all 0.2s',
-                }}>
+
+            {/* Title + score column */}
+            <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                <span style={scoreDisplayStyle}>
                   {displayedScore}/{total}
-                </strong>
-              </p>
-            </div>
-          </div>
-        ) : (
-          <div style={{ textAlign: 'center', marginBottom: '0.6rem' }}>
-            <div style={{
-              display: 'flex', justifyContent: 'center',
-              marginBottom: victoryAnimationId ? '0.55rem' : '0.4rem',
-              animation: 'bounce-in 0.5s ease forwards',
-            }}>
-              {victoryAnimationId ? (
-                <VictoryAnimationPreview animationId={victoryAnimationId} size={126} showLabel={false} />
-              ) : (
-                <div style={{ fontSize: '3.5rem' }}>{emoji}</div>
-              )}
-            </div>
-            {victoryAnimationId && (
-              <div style={{ fontSize: '1.25rem', marginBottom: '0.15rem', lineHeight: 1 }}>{emoji}</div>
-            )}
-            <h1 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--color-accent)', marginBottom: '0.3rem' }}>
-              Session terminée !
-            </h1>
-            <p style={{ fontSize: '1.4rem', color: '#d1d5db', margin: 0 }}>
-              <strong style={{
-                color: pct >= 70 ? '#4ade80' : pct >= 60 ? '#fbbf24' : '#9ca3af',
-                fontSize: '2rem', transition: 'all 0.2s',
+                </span>
+                <span style={titleStyle}>
+                  Session terminee !
+                </span>
+              </div>
+              {/* Feedback subtitle */}
+              <div style={{
+                opacity: showFeedback ? 1 : 0,
+                transform: showFeedback ? 'translateY(0)' : 'translateY(4px)',
+                transition: 'all 0.4s ease',
               }}>
-                {displayedScore}/{total}
-              </strong>
-            </p>
-          </div>
-        )}
-
-        {/* 2. Feedback */}
-        <div style={{
-          textAlign: characterId ? 'left' : 'center', marginBottom: '1.2rem',
-          opacity: showFeedback ? 1 : 0,
-          transform: showFeedback ? 'translateY(0)' : 'translateY(6px)',
-          transition: 'all 0.4s ease',
-        }}>
-          <p style={{ fontSize: '0.92rem', fontStyle: 'italic', color: '#9ca3af', margin: 0, lineHeight: 1.5 }}>
-            {feedbackMessage}
-          </p>
-        </div>
-
-        {/* 3. Coin tiers — subtle, integrated */}
-        <div style={{
-          marginBottom: '1.2rem',
-          opacity: showCoins ? 1 : 0,
-          transform: showCoins ? 'translateY(0)' : 'translateY(8px)',
-          transition: 'all 0.5s ease',
-        }}>
-          {/* Tier rows */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem' }}>
-            {tiers.map((tier, i) => {
-              const visible = visibleTier >= i;
-              const isActive = tier.active;
-              const showCount = isActive && animatingCoins;
-              return (
-                <div key={i} style={{
-                  display: 'flex', alignItems: 'center', gap: '0.5rem',
-                  padding: '0.3rem 0.6rem',
-                  borderRadius: 10,
-                  background: isActive ? 'rgba(251,191,36,0.08)' : 'transparent',
-                  border: isActive ? '1px solid rgba(251,191,36,0.30)' : '1px solid transparent',
-                  opacity: visible ? 1 : 0,
-                  transform: visible ? 'translateX(0)' : 'translateX(-8px)',
-                  transition: 'all 0.35s ease',
-                }}>
-                  <span style={{
-                    width: 6, height: 6, borderRadius: '50%', flexShrink: 0,
-                    background: isActive ? '#fbbf24' : 'rgba(255,255,255,0.1)',
-                    boxShadow: isActive ? '0 0 6px rgba(251,191,36,0.4)' : 'none',
-                  }} />
-                  <span style={{
-                    flex: 1, fontSize: '0.78rem',
-                    fontWeight: isActive ? 700 : 500,
-                    color: isActive ? '#d1d5db' : '#4b5563',
-                  }}>
-                    {tier.range} réponses justes
-                  </span>
-                  <span style={{
-                    display: 'inline-flex', alignItems: 'center', gap: '0.2rem',
-                    fontSize: '0.8rem',
-                    fontWeight: isActive ? 800 : 600,
-                    color: isActive ? '#fbbf24' : '#4b5563',
-                  }}>
-                    {showCount ? displayedCoins : tier.coins}
-                    <CoinIcon size={isActive ? 14 : 12} animate={isActive && animatingCoins} variant={isActive ? 'gold' : 'silver'} />
-                  </span>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Bonuses */}
-          {(firstSessionBonus > 0 || streakBonus > 0 || doubleCoinsBonus > 0) && (
-            <div style={{
-              marginTop: '0.5rem', paddingTop: '0.4rem',
-              borderTop: '1px solid rgba(255,255,255,0.05)',
-              display: 'flex', flexDirection: 'column', gap: '0.1rem',
-              opacity: showBonuses ? 1 : 0,
-              transform: showBonuses ? 'translateY(0)' : 'translateY(4px)',
-              transition: 'all 0.4s ease',
-            }}>
-              {firstSessionBonus > 0 && (
-                <div style={bonusLineStyle}>
-                  <span>Bonus du jour</span>
-                  <span style={bonusValueStyle}>+{displayedDailyBonus} <CoinIcon size={12} /></span>
-                </div>
-              )}
-              {streakBonus > 0 && (
-                <div style={bonusLineStyle}>
-                  <span>Palier streak {streakMilestoneJustEarned.streak}j</span>
-                  <span style={{ ...bonusValueStyle, color: '#4ade80' }}>+{displayedStreakBonus} <CoinIcon size={12} /></span>
-                </div>
-              )}
-              {doubleCoinsBonus > 0 && (
-                <div style={bonusLineStyle}>
-                  <span>Double x2</span>
-                  <span style={bonusValueStyle}>+{doubleCoinsBonus} <CoinIcon size={12} /></span>
-                </div>
-              )}
+                <p style={feedbackStyle}>{feedbackMessage}</p>
+              </div>
             </div>
-          )}
-
-          {/* Total — only if there are bonus lines beyond base coins */}
-          {(firstSessionBonus > 0 || streakBonus > 0 || doubleCoinsBonus > 0) && (
-          <div style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'flex-end',
-            gap: '0.35rem', marginTop: '0.5rem',
-            opacity: showTotal ? 1 : 0,
-            transform: showTotal ? 'translateY(0)' : 'translateY(4px)',
-            transition: 'all 0.4s ease',
-          }}>
-            <span style={{
-              fontSize: '1.05rem', fontWeight: 900, color: '#fbbf24',
-            }}>
-              {totalCoins + streakBonus}
-            </span>
-            <CoinIcon size={18} animate={showTotal} />
           </div>
-          )}
+
+          {/* Score rows / coin tiers */}
+          <div style={{
+            marginTop: 12,
+            opacity: showCoins ? 1 : 0,
+            transform: showCoins ? 'translateY(0)' : 'translateY(8px)',
+            transition: 'all 0.5s ease',
+          }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              {tiers.map((tier, i) => {
+                const visible = visibleTier >= i;
+                const isActive = tier.active;
+                const showCount = isActive && animatingCoins;
+                return (
+                  <div key={i} style={{
+                    display: 'flex', alignItems: 'center', gap: 8,
+                    padding: isActive ? '10px 14px' : '7px 14px',
+                    borderRadius: 10,
+                    background: isActive ? 'rgba(251,191,36,0.10)' : 'transparent',
+                    border: isActive ? '1px solid rgba(251,191,36,0.22)' : '1px solid transparent',
+                    opacity: visible ? 1 : 0,
+                    transform: visible ? 'translateX(0)' : 'translateX(-10px)',
+                    transition: 'all 0.3s ease',
+                  }}>
+                    <span style={{
+                      width: isActive ? 8 : 6, height: isActive ? 8 : 6,
+                      borderRadius: '50%', flexShrink: 0,
+                      background: isActive ? '#fbbf24' : 'rgba(255,255,255,0.3)',
+                      boxShadow: isActive ? '0 0 8px rgba(251,191,36,0.5)' : 'none',
+                    }} />
+                    <span style={{
+                      flex: 1, fontSize: 13, fontFamily: 'var(--font-body)',
+                      fontWeight: isActive ? 700 : 500,
+                      color: isActive ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.5)',
+                    }}>
+                      {tier.range}
+                    </span>
+                    <span style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 4,
+                      fontFamily: 'var(--font-kid)', fontSize: 15,
+                      fontWeight: 700,
+                      color: isActive ? '#fbbf24' : 'rgba(255,255,255,0.3)',
+                    }}>
+                      {showCount ? displayedCoins : tier.coins}
+                      {isActive ? (
+                        <CoinIcon size={16} animate={animatingCoins} />
+                      ) : (
+                        <span style={mutedCoinStyle} />
+                      )}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Bonus rows */}
+            {(firstSessionBonus > 0 || streakBonus > 0 || doubleCoinsBonus > 0) && (
+              <div style={{
+                marginTop: 8, paddingTop: 8,
+                borderTop: '1px solid rgba(255,255,255,0.06)',
+                display: 'flex', flexDirection: 'column', gap: 2,
+                opacity: showBonuses ? 1 : 0,
+                transform: showBonuses ? 'translateY(0)' : 'translateY(4px)',
+                transition: 'all 0.4s ease',
+              }}>
+                {firstSessionBonus > 0 && (
+                  <BonusRow label="Bonus du jour" value={`+${displayedDailyBonus}`} />
+                )}
+                {streakBonus > 0 && (
+                  <BonusRow label={`Bonus serie ${streakMilestoneJustEarned.streak}j`} value={`+${displayedStreakBonus}`} />
+                )}
+                {doubleCoinsBonus > 0 && (
+                  <BonusRow label="Double x2" value={`+${doubleCoinsBonus}`} />
+                )}
+              </div>
+            )}
+
+            {/* Divider */}
+            <div style={{ height: 1, background: 'rgba(255,255,255,0.06)', margin: '4px 0' }} />
+
+            {/* Total */}
+            {(firstSessionBonus > 0 || streakBonus > 0 || doubleCoinsBonus > 0) && (
+              <div style={{
+                display: 'flex', alignItems: 'center', justifyContent: 'flex-end',
+                gap: 6, paddingRight: 14, marginTop: 4,
+                opacity: showTotal ? 1 : 0,
+                transform: showTotal ? 'translateY(0)' : 'translateY(4px)',
+                transition: 'all 0.4s ease',
+              }}>
+                <span style={{ fontFamily: 'var(--font-kid)', fontSize: 26, fontWeight: 700, color: '#fbbf24' }}>
+                  {totalCoins + streakBonus}
+                </span>
+                <CoinIcon size={22} />
+              </div>
+            )}
+          </div>
         </div>
 
-        {/* 4. Level progress */}
+        {/* Prochain objectif — conditional */}
         {showLevelBar && (
           <div style={{
-            marginBottom: '1rem',
             opacity: showProgression ? 1 : 0,
             transform: showProgression ? 'translateY(0)' : 'translateY(10px)',
             transition: 'all 0.5s ease',
           }}>
-            <div style={{
-              background: 'rgba(255,255,255,0.05)', borderRadius: 14,
-              padding: '0.9rem 1rem', border: '1px solid rgba(255,255,255,0.08)',
-            }}>
-              <p style={{
-                margin: '0 0 0.5rem 0', fontSize: '0.82rem',
-                color: 'var(--color-accent)', fontWeight: 600, textAlign: 'center',
-              }}>
+            <div style={objectiveCardStyle}>
+              <p style={objectiveTitleStyle}>
                 Prochain objectif : {levelProgress.nextLevelName}
               </p>
-              <div role="progressbar" style={{
-                width: '100%', height: 10, background: 'rgba(255,255,255,0.1)',
-                borderRadius: 5, overflow: 'hidden',
-              }}>
+              <div role="progressbar" style={progressTrackStyle}>
                 <div style={{
                   height: '100%',
                   width: progressBarAnimated
                     ? `${Math.min((levelProgress.current / levelProgress.target) * 100, 100)}%`
                     : '0%',
-                  background: 'linear-gradient(90deg, var(--color-primary), var(--color-accent))',
-                  borderRadius: 5, transition: 'width 0.8s ease-out',
-                  boxShadow: '0 0 8px rgba(124,58,237,0.4)',
+                  background: 'linear-gradient(90deg, #34d399, #a78bfa)',
+                  borderRadius: 999,
+                  transition: 'width 0.9s cubic-bezier(0.16, 1, 0.3, 1)',
                 }} />
               </div>
-              <p style={{ margin: '0.35rem 0 0 0', fontSize: '0.72rem', color: '#9ca3af', textAlign: 'center' }}>
-                {levelProgress.current}/{levelProgress.target} sessions qualifiantes
-              </p>
-              {levelProgress.message && (
-                <p style={{
-                  margin: '0.3rem 0 0 0', fontSize: '0.78rem',
-                  color: 'var(--color-accent)', textAlign: 'center', fontStyle: 'italic',
-                }}>
-                  {levelProgress.message}
+              {levelMessage && (
+                <p style={objectiveMessageStyle}>
+                  {levelMessage}
                 </p>
               )}
             </div>
           </div>
         )}
 
-        {/* 5. Next streak coin milestone */}
-        {showStreakNext && (
-          <div style={{
-            textAlign: 'center', marginBottom: '0.8rem',
-            opacity: showProgression ? 1 : 0,
-            transform: showProgression ? 'translateY(0)' : 'translateY(6px)',
-            transition: 'all 0.5s ease 0.15s',
-          }}>
-            <p style={{ margin: 0, fontSize: '0.78rem', color: '#6b7280', lineHeight: 1.5 }}>
-              {'🔥'} Encore {streakDaysLeft} jour{streakDaysLeft > 1 ? 's' : ''} de streak
-              pour gagner {nextMilestoneCoins} <span style={{ display: 'inline-flex', verticalAlign: 'middle' }}><CoinIcon size={13} /></span> au palier {nextMilestoneDays} jours
-            </p>
-          </div>
-        )}
-
-        {/* Separator */}
-        <div style={{
-          height: 1, background: 'rgba(255,255,255,0.08)', margin: '0 0 0.9rem 0',
-          opacity: showRecap ? 1 : 0, transition: 'opacity 0.4s ease',
-        }} />
-
-        {/* 6. Recap */}
+        {/* Answer recap */}
         <div style={{
           opacity: showRecap ? 1 : 0,
           transform: showRecap ? 'translateY(0)' : 'translateY(10px)',
           transition: 'all 0.4s ease',
         }}>
-          <div style={{ maxHeight: 220, overflowY: 'auto', marginBottom: '1rem', paddingRight: '0.3rem' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 6, paddingBottom: 100 }}>
             {[...questions.map((q, i) => ({ q, a: answers[i], i }))].sort((x, y) => {
               const okX = x.a?.correct ? 1 : 0;
               const okY = y.a?.correct ? 1 : 0;
@@ -592,35 +456,45 @@ export default function EndScreen({
               const isSyllable = !!q.syllable;
               return (
                 <div key={i} style={{
-                  display: 'flex', alignItems: 'center', gap: '0.6rem',
-                  padding: '0.5rem 0.7rem', borderRadius: 8, marginBottom: '0.35rem',
-                  background: ok ? 'rgba(74,222,128,0.07)' : 'rgba(248,113,113,0.07)',
-                  border: `1px solid ${ok ? 'rgba(74,222,128,0.2)' : 'rgba(248,113,113,0.2)'}`,
+                  display: 'flex', alignItems: 'center', gap: 10,
+                  padding: '11px 14px', borderRadius: 12,
+                  background: ok ? 'rgba(52,211,153,0.07)' : 'rgba(248,113,113,0.07)',
+                  border: `1px solid ${ok ? 'rgba(52,211,153,0.18)' : 'rgba(248,113,113,0.18)'}`,
+                  animation: `slide-up 0.28s ease ${i * 40}ms both`,
                 }}>
-                  <span style={{ fontSize: '0.85rem', width: 22, flexShrink: 0 }}>
-                    {ok ? '\u2713' : '\u2717'}
-                  </span>
+                  {/* Check / Cross SVG */}
+                  <div style={{
+                    width: 20, height: 20, borderRadius: '50%', flexShrink: 0,
+                    background: ok ? 'rgba(52,211,153,0.18)' : 'rgba(248,113,113,0.18)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}>
+                    {ok ? (
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                    ) : (
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#f87171" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+                    )}
+                  </div>
                   {isSyllable ? (
-                    <span style={{ fontSize: '0.82rem', color: '#d1d5db', flex: 1 }}>
-                      <strong style={{ color: '#c4b5fd', fontSize: '0.95rem' }}>{q.syllable}</strong>
+                    <span style={{ fontSize: 13, fontFamily: 'var(--font-body)', fontWeight: 500, color: 'rgba(255,255,255,0.85)', flex: 1 }}>
+                      <strong style={{ color: '#a78bfa', fontWeight: 700, textDecoration: 'underline', textDecorationColor: 'rgba(167,139,250,0.4)' }}>{q.syllable}</strong>
                       {' '}
-                      <strong style={{ color: ok ? '#4ade80' : '#f87171' }}>
+                      <strong style={{ color: ok ? '#34d399' : '#f87171' }}>
                         {chosenLabel}
                       </strong>
                     </span>
                   ) : (
-                    <span style={{ fontSize: '0.82rem', color: '#d1d5db', flex: 1 }}>
+                    <span style={{ fontSize: 13, fontFamily: 'var(--font-body)', fontWeight: 500, color: 'rgba(255,255,255,0.85)', flex: 1 }}>
                       {q.before}
                       {qHasVerb && q.verb}
-                      <strong style={{ color: ok ? '#4ade80' : '#f87171' }}>
+                      <strong style={{ color: ok ? '#34d399' : '#f87171', fontWeight: 700, textDecoration: 'underline', textDecorationColor: ok ? 'rgba(52,211,153,0.4)' : 'rgba(248,113,113,0.4)' }}>
                         {qHasVerb ? chosenLabel.replace('-', '') : chosenLabel}
                       </strong>
                       {q.after}
                     </span>
                   )}
                   {!ok && (
-                    <span style={{ fontSize: '0.75rem', color: '#9ca3af', flexShrink: 0 }}>
-                      {'→'} {answerLabel}
+                    <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', flexShrink: 0 }}>
+                      {'\u2192'} {answerLabel}
                     </span>
                   )}
                 </div>
@@ -628,37 +502,21 @@ export default function EndScreen({
             })}
           </div>
         </div>
+      </div>
 
-        {/* Coaching line */}
-        {coachingLine && (
-          <div style={{
-            fontSize: '0.82rem', color: '#94a3b8', textAlign: 'center',
-            padding: '0 1rem', marginTop: '0.25rem', lineHeight: 1.5,
+      {/* Fixed CTA — always visible */}
+      <div style={ctaContainerStyle}>
+        <button
+          onClick={onFinish}
+          style={{
+            ...ctaButtonStyle,
             opacity: showButton ? 1 : 0,
-            transition: 'opacity 0.4s ease',
-          }}>
-            {coachingLine}
-          </div>
-        )}
-
-        {/* 7. Continue button */}
-        <div style={{
-          opacity: showButton ? 1 : 0,
-          transform: showButton ? 'translateY(0)' : 'translateY(10px)',
-          transition: 'all 0.4s ease',
-        }}>
-          <button
-            onClick={onFinish}
-            style={{
-              width: '100%', padding: '0.85rem', borderRadius: 12, border: 'none',
-              background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
-              color: '#fff', cursor: 'pointer', fontSize: '1rem', fontWeight: 700,
-              boxShadow: '0 4px 15px rgba(124,58,237,0.3)',
-            }}
-          >
-            Continuer
-          </button>
-        </div>
+            transform: showButton ? 'translateY(0)' : 'translateY(10px)',
+            transition: 'all 0.4s ease',
+          }}
+        >
+          Continuer
+        </button>
       </div>
 
       {/* Locked emotion purchase popup */}
@@ -675,44 +533,241 @@ export default function EndScreen({
   );
 }
 
+/* ── Sub-components ── */
+
+function BonusRow({ label, value }) {
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 8,
+      padding: '7px 14px',
+    }}>
+      <span style={{
+        width: 8, height: 8, borderRadius: '50%', flexShrink: 0,
+        background: '#fbbf24',
+        boxShadow: '0 0 8px rgba(251,191,36,0.5)',
+      }} />
+      <span style={{ flex: 1, fontSize: 13, fontFamily: 'var(--font-body)', fontWeight: 500, color: '#ffffff' }}>
+        {label}
+      </span>
+      <span style={{
+        fontFamily: 'var(--font-kid)', fontSize: 15, fontWeight: 700, color: '#34d399',
+        display: 'inline-flex', alignItems: 'center', gap: 4,
+      }}>
+        {value}
+        <CoinIcon size={14} />
+      </span>
+    </div>
+  );
+}
+
 /* ── Helpers ── */
 
 function getFeedbackMessage(pct) {
   if (pct === 100) return 'Parfait ! Pas une seule erreur.';
-  if (pct >= 90) return 'Excellent. Tu maîtrises cette règle.';
-  if (pct >= 80) return 'Très bien. Continue comme ça.';
-  if (pct >= 60) return 'Pas mal. Quelques points à revoir.';
+  if (pct >= 90) return 'Excellent. Tu maitrises cette regle.';
+  if (pct >= 80) return 'Tres bien. Continue comme ca.';
+  if (pct >= 60) return 'Pas mal. Quelques points a revoir.';
   return 'Courage. La prochaine sera meilleure.';
+}
+
+export function buildCoinTiers(total, t60, t80, t100, activeTier) {
+  // For very small sessions, use simple labels instead of ranges
+  if (total < 4) {
+    return [
+      { range: 'Reussite partielle', coins: 5, active: activeTier === 0 },
+      { range: 'Bonne session', coins: 20, active: activeTier === 1 },
+      { range: 'Parfait', coins: 30, active: activeTier === 2 },
+    ];
+  }
+  // Build ranges, ensuring low <= high (no invalid ranges like 2-2 or 3-2)
+  const buildRange = (lo, hi) => {
+    if (lo >= hi) return `${lo} reponses justes`;
+    return `${lo}\u2013${hi} reponses justes`;
+  };
+  return [
+    { range: buildRange(t60, t80 - 1), coins: 5, active: activeTier === 0 },
+    { range: buildRange(t80, t100 - 1), coins: 20, active: activeTier === 1 },
+    { range: `${t100} reponses justes`, coins: 30, active: activeTier === 2 },
+  ];
+}
+
+function generateLevelMessage(levelProgress) {
+  if (!levelProgress) return null;
+  const remaining = levelProgress.target - levelProgress.current;
+  if (remaining <= 0) return null;
+  if (remaining === 1) return 'Plus qu\'une session avec 3 bonnes reponses !';
+  return `Plus que ${remaining} sessions avec 3 bonnes reponses !`;
 }
 
 /* ── Styles ── */
 
 const pageStyle = {
-  minHeight: '100vh',
-  backgroundColor: 'var(--color-bg1)',
-  backgroundImage: 'var(--app-page-overlay)',
-  backgroundSize: 'cover',
-  backgroundPosition: 'center center',
-  display: 'flex', alignItems: 'center', justifyContent: 'center',
+  position: 'fixed',
+  inset: 0,
+  background: 'linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%)',
   fontFamily: 'var(--font-body)',
-  padding: '1.5rem', color: '#e2e2e2',
+  color: '#e2e2e2',
+  display: 'flex',
+  flexDirection: 'column',
+  overflow: 'hidden',
 };
 
-const cardStyle = {
-  maxWidth: 620, width: '100%',
-  background: 'rgba(255,255,255,0.06)',
-  borderRadius: 20, padding: '1.5rem 1.8rem',
-  backdropFilter: 'blur(12px)',
-  border: '1px solid rgba(255,255,255,0.1)',
-  boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
+const scrollAreaStyle = {
+  flex: 1,
+  overflowY: 'auto',
+  overflowX: 'hidden',
+  padding: '16px 16px 0',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  WebkitOverflowScrolling: 'touch',
 };
 
-const bonusLineStyle = {
-  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-  padding: '0.2rem 0.6rem', fontSize: '0.74rem', color: '#6b7280',
+const headerCardStyle = {
+  width: '100%',
+  maxWidth: 480,
+  background: 'rgba(255,255,255,0.04)',
+  border: '1px solid rgba(255,255,255,0.10)',
+  borderRadius: 20,
+  padding: '18px 20px 14px',
+  marginBottom: 12,
+  animation: 'fade-in 0.4s ease both',
 };
 
-const bonusValueStyle = {
-  display: 'inline-flex', alignItems: 'center', gap: '0.15rem',
-  fontWeight: 700, fontSize: '0.76rem', color: '#fbbf24',
+const mascotContainerStyle = {
+  flexShrink: 0,
+  width: 68,
+  height: 68,
+  borderRadius: '50%',
+  background: 'linear-gradient(145deg, #2d2b55, #1e1e2e)',
+  border: '1px solid rgba(255,255,255,0.10)',
+  boxShadow: '0 8px 24px rgba(122,92,255,0.3)',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  overflow: 'hidden',
+  animation: 'count-up 0.4s cubic-bezier(0.34,1.56,0.64,1) both',
+};
+
+const mascotFallbackStyle = {
+  width: 68,
+  height: 68,
+  borderRadius: '50%',
+  background: 'linear-gradient(145deg, #2d2b55, #1e1e2e)',
+};
+
+const lockedBubbleStyle = {
+  background: 'rgba(255,255,255,0.96)',
+  color: '#1a1a2e',
+  borderRadius: 9,
+  padding: '3px 10px',
+  fontSize: '0.85rem',
+  fontWeight: 800,
+  whiteSpace: 'nowrap',
+  lineHeight: 1.5,
+  boxShadow: '0 2px 8px rgba(0,0,0,0.25)',
+  letterSpacing: '0.02em',
+  border: 'none',
+  cursor: 'pointer',
+  fontFamily: 'inherit',
+  display: 'flex',
+  alignItems: 'center',
+  gap: 4,
+};
+
+const scoreDisplayStyle = {
+  fontFamily: 'var(--font-kid)',
+  fontSize: 30,
+  fontWeight: 700,
+  color: '#34d399',
+  letterSpacing: '-0.02em',
+  animation: 'count-up 0.4s cubic-bezier(0.34,1.56,0.64,1) both',
+};
+
+const titleStyle = {
+  fontFamily: 'var(--font-display)',
+  fontSize: 17,
+  fontWeight: 800,
+  color: '#a78bfa',
+  letterSpacing: '-0.02em',
+  whiteSpace: 'nowrap',
+};
+
+const feedbackStyle = {
+  fontFamily: 'var(--font-body)',
+  fontSize: 12,
+  fontStyle: 'italic',
+  color: '#ffffff',
+  margin: '4px 0 0',
+  lineHeight: 1.4,
+};
+
+const mutedCoinStyle = {
+  display: 'inline-block',
+  width: 13, height: 13,
+  borderRadius: '50%',
+  background: 'rgba(255,255,255,0.18)',
+};
+
+const objectiveCardStyle = {
+  width: '100%',
+  maxWidth: 480,
+  background: 'rgba(255,255,255,0.04)',
+  border: '1px solid rgba(255,255,255,0.10)',
+  borderRadius: 16,
+  padding: '14px 16px',
+  marginBottom: 12,
+};
+
+const objectiveTitleStyle = {
+  margin: '0 0 8px 0',
+  fontFamily: 'var(--font-kid)',
+  fontSize: 13,
+  fontWeight: 600,
+  color: '#a78bfa',
+};
+
+const progressTrackStyle = {
+  width: '100%',
+  height: 7,
+  borderRadius: 999,
+  background: 'rgba(255,255,255,0.08)',
+  overflow: 'hidden',
+};
+
+const objectiveMessageStyle = {
+  margin: '8px 0 0 0',
+  fontSize: 12,
+  fontFamily: 'var(--font-body)',
+  color: '#a78bfa',
+  fontStyle: 'italic',
+};
+
+const ctaContainerStyle = {
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+  right: 0,
+  padding: '12px 16px 16px',
+  background: 'linear-gradient(to top, #1a1a2e 60%, transparent)',
+  display: 'flex',
+  justifyContent: 'center',
+  pointerEvents: 'none',
+  zIndex: 10,
+};
+
+const ctaButtonStyle = {
+  width: '100%',
+  maxWidth: 480,
+  padding: '16px 24px',
+  borderRadius: 9999,
+  border: 'none',
+  background: 'linear-gradient(135deg, #34d399 0%, #a78bfa 100%)',
+  color: '#ffffff',
+  fontFamily: 'var(--font-kid)',
+  fontSize: 18,
+  fontWeight: 700,
+  cursor: 'pointer',
+  boxShadow: '0 8px 30px rgba(52,211,153,0.35), 0 4px 12px rgba(0,0,0,0.3)',
+  pointerEvents: 'auto',
 };
