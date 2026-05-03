@@ -638,6 +638,8 @@ const contentWrapperStyle = {
   width: '100%',
   maxWidth: 480,
   paddingBottom: 100,
+  display: 'flex',
+  flexDirection: 'column',
 };
 
 const headerCardStyle = {
