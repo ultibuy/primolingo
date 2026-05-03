@@ -9,5 +9,49 @@
       "text": "Titre : « C'est quoi le Bronze ? »"
     },
     "response": "Fait. Script Playwright créé (tests/screenshot-level-popups.js) pour capturer les 4 popups en mobile 390×844. Les 4 screenshots sont sauvés dans docs/screenshots/ et la section du doc remplace maintenant le texte par les 4 images."
+  },
+  {
+    "x": 510,
+    "y": 2283,
+    "text": "change le texte. pour \"avec au moins 12/20\" dans le sous titre et la première carte puis refais le screenshot",
+    "time": "03/05 23:55",
+    "domContext": {
+      "tag": "P",
+      "text": ""
+    },
+    "response": "Fait. Dans LevelHelpPopup.jsx (bronze) : description → \"avec au moins 12/20\", première carte → \"1 session guidée avec au moins 12/20\" (dynamique via scoreFor). Screenshots régénérés."
+  },
+  {
+    "x": 1009,
+    "y": 2356,
+    "text": "rempalce \">= 16/20\" par \"à 16/20 ou plus\" et refais el screenshot",
+    "time": "03/05 23:55",
+    "domContext": {
+      "tag": "P",
+      "text": ""
+    },
+    "response": "Fait. Argent première carte : \"3 sessions guidées à 16/20 ou plus\". Screenshots régénérés."
+  },
+  {
+    "x": 577,
+    "y": 3255,
+    "text": "rempalce \">= 16/20\" par \"à 16/20 ou plus\" et refais el screenshot",
+    "time": "03/05 23:56",
+    "domContext": {
+      "tag": "P",
+      "text": ""
+    },
+    "response": "Fait. Couronne première carte : \"3 sessions directes à 16/20 ou plus\". Screenshots régénérés."
+  },
+  {
+    "x": 929,
+    "y": 3234,
+    "text": "replace \"3x >=18/20\" par \"3 session d'affilée à 18/20 ou plus\"",
+    "time": "03/05 23:56",
+    "domContext": {
+      "tag": "P",
+      "text": ""
+    },
+    "response": "Fait. Diamant première carte : \"3 sessions d'affilée à 18/20 ou plus\". Doc mise à jour. Screenshots régénérés."
   }
 ]

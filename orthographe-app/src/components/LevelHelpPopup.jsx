@@ -1,32 +1,39 @@
 import { useEffect, useState } from 'react';
 import PopupCloseButton from './PopupCloseButton.jsx';
+import CrownIcon from './CrownIcon.jsx';
+import DiamondIcon from './DiamondIcon.jsx';
+import { TrophyIcon, LockIcon } from './icons/ProductIcons.jsx';
+import RewardAmount from './rewards/RewardAmount.jsx';
 import { getToday, parseLocalDate } from '../engine/sm2.js';
 
-function getSessionSize() {
+function getSessionSize(sessionSize) {
+  const explicit = Number(sessionSize);
+  if (Number.isFinite(explicit) && explicit > 0) return explicit;
   try { return window.__ORTHO_SESSION_SIZE__ || 20; } catch { return 20; }
 }
-function scoreFor(pct) {
-  const n = getSessionSize();
+function scoreFor(pct, sessionSize) {
+  const n = getSessionSize(sessionSize);
   return `${Math.ceil(n * pct / 100)}/${n}`;
 }
 
-function buildLevelData() {
-  const s80 = scoreFor(80);
-  const s90 = scoreFor(90);
+function buildLevelData(sessionSize) {
+  const s60 = scoreFor(60, sessionSize);
+  const s80 = scoreFor(80, sessionSize);
+  const s90 = scoreFor(90, sessionSize);
 
   return {
     bronze: {
       color: '#cd7f32', colorLight: '#e6a860',
       colorBg: 'rgba(205,127,50,0.2)', colorBorder: 'rgba(205,127,50,0.18)',
       gradientFrom: 'rgba(80,45,15,0.96)', gradientTo: 'rgba(31,28,52,0.96)',
-      icon: '★', subtitle: 'Bronze', kicker: 'Niveau Bronze',
-      headline: "C'est quoi le niveau Bronze ?",
-      description: "C'est le premier palier. Tu l'obtiens en terminant une session guidée sur une règle. Le pavé de décision t'accompagne — pas de pression, pas de score minimum.",
+      iconType: 'bronze', subtitle: 'Bronze', kicker: 'Niveau Bronze',
+      headline: "C'est quoi le Bronze ?",
+      description: `Premier palier. Termine une session guidée avec au moins ${s60} et c'est validé.`,
       stats: [
-        { label: 'Comment obtenir', value: 'Terminer 1 session guidée', hint: "Peu importe le score. Finis la session et c'est validé." },
-        { label: 'Le mode guidé', value: "Un outil t'aide", hint: "Le pavé de décision élimine les mauvaises réponses une par une. Tu comprends la logique avant de répondre." },
-        { label: 'Pièces gagnées', value: '0 à 30 par session', hint: "60% → 5 pièces, 80% → 20, 100% → 30. En dessous de 60%, pas de pièces." },
-        { label: "Et après ?", value: 'Direction Argent', hint: `3 sessions guidées avec ${s80} ou mieux. Ça débloque le mode direct — sans aide.` },
+        { label: "Pour l'obtenir", value: `1 session guidée avec au moins ${s60}`, hint: "Minimum 60% pour valider. Le pavé de décision t'accompagne." },
+        { label: 'Mode guidé', value: "Le pavé t'accompagne", hint: "Il élimine les mauvaises réponses une par une." },
+        { label: 'Pièces', value: '0 à 30 par session', hint: "60% → 5, 80% → 20, 100% → 30." },
+        { label: "Ensuite", value: "Direction l'Argent", hint: `3 sessions guidées \u2265 ${s80}.` },
       ],
     },
 
@@ -34,14 +41,14 @@ function buildLevelData() {
       color: '#c0c0c0', colorLight: '#d4d4d4',
       colorBg: 'rgba(192,192,192,0.15)', colorBorder: 'rgba(192,192,192,0.18)',
       gradientFrom: 'rgba(50,50,60,0.96)', gradientTo: 'rgba(31,28,52,0.96)',
-      icon: '★★', subtitle: 'Argent', kicker: 'Niveau Argent',
-      headline: "C'est quoi le niveau Argent ?",
-      description: "Tu prouves que tu comprends la règle avec le mode guidé. Le mode direct se débloque à ce niveau — plus de pavé de décision, juste toi et les boutons de réponse.",
+      iconType: 'silver', subtitle: 'Argent', kicker: 'Niveau Argent',
+      headline: "C'est quoi l'Argent ?",
+      description: "Tu maîtrises le raisonnement guidé. Le mode direct se débloque.",
       stats: [
-        { label: 'Comment obtenir', value: `3 sessions guidées \u2265 ${s80}`, hint: `Score de ${s80} ou mieux sur 3 sessions distinctes en mode guidé.` },
-        { label: 'Ce qui se débloque', value: 'Le mode direct', hint: "Plus de pavé de décision. Tu réponds directement. C'est là que la vraie maîtrise commence." },
-        { label: 'Bonus', value: '+30 pièces', hint: "Prime unique quand tu atteins ce niveau." },
-        { label: "Et après ?", value: 'Direction Couronne', hint: `3 sessions directes avec ${s80} ou mieux. La couronne prouve que tu maîtrises sans aide.` },
+        { label: "Pour l'obtenir", value: `3 sessions guidées à ${s80} ou plus`, hint: '3 sessions distinctes en mode guidé.' },
+        { label: 'Ça débloque', value: 'Le mode direct', hint: "Plus de pavé. Tu réponds seul." },
+        { label: 'Bonus', value: '+30 pièces', hint: 'Prime unique à ce niveau.' },
+        { label: "Ensuite", value: 'Direction Couronne', hint: `3 sessions directes \u2265 ${s80}.` },
       ],
     },
 
@@ -49,14 +56,14 @@ function buildLevelData() {
       color: '#fbbf24', colorLight: '#fde68a',
       colorBg: 'rgba(251,191,36,0.15)', colorBorder: 'rgba(251,191,36,0.18)',
       gradientFrom: 'rgba(80,55,10,0.96)', gradientTo: 'rgba(31,28,52,0.96)',
-      icon: '👑', subtitle: 'Couronne', kicker: 'Niveau Couronne',
+      iconType: 'crown', subtitle: 'Couronne', kicker: 'Niveau Couronne',
       headline: "C'est quoi la Couronne ?",
-      description: "La couronne signifie que tu maîtrises cette règle sans aide. Tu as prouvé que tu sais répondre correctement en mode direct, sans le pavé de décision.",
+      description: "Tu maîtrises la règle sans aide. Mode direct, sans pavé de décision.",
       stats: [
-        { label: 'Comment obtenir', value: `3 sessions directes \u2265 ${s80}`, hint: `Score de ${s80} ou mieux sur 3 sessions en mode direct (sans aide).` },
-        { label: 'Ce que ça prouve', value: 'Maîtrise confirmée', hint: "Tu sais appliquer la règle sans outil. C'est un vrai accomplissement." },
-        { label: 'Bonus', value: '+100 pièces', hint: "Prime unique pour la couronne. Tu l'as bien méritée." },
-        { label: "Et après ?", value: 'Viser le Diamant', hint: `3 sessions directes consécutives avec ${s90} ou mieux. Le diamant, c'est la perfection.` },
+        { label: "Pour l'obtenir", value: `3 sessions directes à ${s80} ou plus`, hint: '3 sessions différentes, sans aide.' },
+        { label: 'Ça prouve', value: 'Maîtrise confirmée', hint: 'Tu sais appliquer la règle seul.' },
+        { label: 'Bonus', value: '+100 pièces', hint: 'Prime unique quand la couronne est gagnée.' },
+        { label: "Ensuite", value: 'Viser le Diamant', hint: `3 sessions directes d'affilée \u2265 ${s90}.` },
       ],
     },
 
@@ -64,14 +71,14 @@ function buildLevelData() {
       color: '#60a5fa', colorLight: '#93c5fd',
       colorBg: 'rgba(96,165,250,0.15)', colorBorder: 'rgba(96,165,250,0.18)',
       gradientFrom: 'rgba(15,30,70,0.96)', gradientTo: 'rgba(31,28,52,0.96)',
-      icon: '💎', subtitle: 'Diamant', kicker: 'Niveau Diamant',
+      iconType: 'diamond', subtitle: 'Diamant', kicker: 'Niveau Diamant',
       headline: "C'est quoi le Diamant ?",
-      description: "Le diamant est le trophée ultime. Il prouve une maîtrise quasi parfaite. Mais attention : le diamant est vivant. Il faut le maintenir en faisant des révisions régulières.",
+      description: "Trophée ultime. Le diamant est vivant : il faut le maintenir par des révisions.",
       stats: [
-        { label: 'Comment obtenir', value: `3\u00d7 \u2265 ${s90} direct d'affilée`, hint: `3 sessions directes consécutives avec ${s90} ou mieux. Une seule session en dessous remet le compteur à zéro.` },
-        { label: 'Diamant vivant', value: 'Il brille ou se ternit', hint: "Après obtention, le diamant entre en révision espacée. Si tu ne révises pas à temps, il perd son éclat — et peut se briser." },
-        { label: 'Bonus', value: '+200 pièces', hint: "Le plus gros bonus du jeu. Le diamant est rare et mérité." },
-        { label: 'Révisions', value: "L'espacement augmente", hint: `1 jour, puis 6, 15, 35, 80… Si tu fais ${s90} ou mieux, les révisions s'espacent. Sinon, elles reviennent vite.` },
+        { label: "Pour l'obtenir", value: `3 sessions d'affilée à ${s90} ou plus`, hint: "3 sessions directes consécutives. Un score en dessous remet le compteur à zéro." },
+        { label: 'Diamant vivant', value: 'Il brille ou se ternit', hint: "Sans révision à temps, il perd son éclat et peut se briser." },
+        { label: 'Bonus', value: '+200 pièces', hint: 'Le plus gros bonus du jeu.' },
+        { label: 'Révisions', value: "L'espacement augmente", hint: `1j, 6j, 15j, 35j, 80j… Score \u2265 ${s90} pour espacer.` },
       ],
     },
 
@@ -80,7 +87,7 @@ function buildLevelData() {
       color: '#60a5fa', colorLight: '#93c5fd',
       colorBg: 'rgba(96,165,250,0.15)', colorBorder: 'rgba(96,165,250,0.18)',
       gradientFrom: 'rgba(15,30,70,0.96)', gradientTo: 'rgba(31,28,52,0.96)',
-      icon: '💎', subtitle: 'Diamant', kicker: 'État du diamant',
+      iconType: 'diamond', subtitle: 'Diamant', kicker: 'État du diamant',
       // headline, description, stats are dynamic — built in the component
     },
 
@@ -89,11 +96,11 @@ function buildLevelData() {
       color: '#60a5fa', colorLight: '#93c5fd',
       colorBg: 'rgba(96,165,250,0.15)', colorBorder: 'rgba(96,165,250,0.18)',
       gradientFrom: 'rgba(15,30,70,0.96)', gradientTo: 'rgba(31,28,52,0.96)',
-      icon: '💎', subtitle: 'Diamant', kicker: 'Compteur Diamants',
+      iconType: 'diamond', subtitle: 'Diamant', kicker: 'Compteur Diamants',
       headline: "Tes règles au niveau Diamant",
       description: "Ce compteur montre combien de règles ont atteint le niveau diamant — et sont maintenues par des révisions régulières.",
       stats: [
-        { label: 'Comment obtenir', value: `Couronne puis 3\u00d7 \u2265 ${s90}`, hint: `D'abord la couronne (3 sessions directes \u2265 ${s80}), puis 3 sessions consécutives \u2265 ${s90}.` },
+        { label: "Pour l'obtenir", value: `Couronne puis 3\u00d7 \u2265 ${s90}`, hint: `D'abord la couronne (3 sessions directes \u2265 ${s80}), puis 3 sessions consécutives \u2265 ${s90}.` },
         { label: 'Diamant vivant', value: 'Brille si à jour', hint: "Le diamant brille tant que les révisions sont faites. Il se ternit et peut se briser si tu tardes." },
       ],
     },
@@ -102,11 +109,11 @@ function buildLevelData() {
       color: '#fbbf24', colorLight: '#fde68a',
       colorBg: 'rgba(251,191,36,0.12)', colorBorder: 'rgba(251,191,36,0.15)',
       gradientFrom: 'rgba(60,45,15,0.96)', gradientTo: 'rgba(31,28,52,0.96)',
-      icon: '⭐', subtitle: 'En cours', kicker: 'Règles en cours',
+      iconType: 'trophy', subtitle: 'En cours', kicker: 'Règles en cours',
       headline: "Tes règles en progression",
       description: "Ce compteur montre combien de règles sont en cours de travail. Chaque session te fait avancer vers le niveau suivant.",
       stats: [
-        { label: 'Bronze', value: '1 session guidée', hint: "Premier contact avec la règle. Le pavé de décision t'accompagne." },
+        { label: 'Bronze', value: '1 session guidée ≥ 60 %', hint: "Premier contact avec la règle. Score minimum 60 %." },
         { label: 'Argent', value: `3 guidées \u2265 ${s80}`, hint: "Tu maîtrises le raisonnement guidé. Le mode direct se débloque." },
         { label: 'Couronne', value: `3 directes \u2265 ${s80}`, hint: "Tu maîtrises sans aide. La couronne est gagnée." },
         { label: 'Diamant', value: `3\u00d7 \u2265 ${s90} d'affilée`, hint: "Perfection. Le diamant entre en révision espacée." },
@@ -117,7 +124,7 @@ function buildLevelData() {
       color: '#6b7280', colorLight: '#9ca3af',
       colorBg: 'rgba(107,114,128,0.12)', colorBorder: 'rgba(107,114,128,0.15)',
       gradientFrom: 'rgba(40,40,50,0.96)', gradientTo: 'rgba(31,28,52,0.96)',
-      icon: '🔒', subtitle: 'Nouvelle', kicker: 'Pas encore commencées',
+      iconType: 'lock', subtitle: 'Nouvelle', kicker: 'Pas encore commencées',
       headline: "Des règles t'attendent",
       description: "Ces règles n'ont pas encore été touchées. Clique sur « Découvrir » pour lancer ta première session guidée.",
       stats: [
@@ -128,9 +135,9 @@ function buildLevelData() {
   };
 }
 
-function getDiamondStatusContent(ruleProgress) {
+function getDiamondStatusContent(ruleProgress, sessionSize) {
   const sm2 = ruleProgress?.sm2;
-  const s90 = scoreFor(90);
+  const s90 = scoreFor(90, sessionSize);
 
   if (!sm2) {
     return {
@@ -193,13 +200,25 @@ function getDiamondStatusContent(ruleProgress) {
     stats: [
       { label: 'Santé', value: `${Math.round(health * 100)}%`, hint: stateLabel },
       { label: 'Prochaine révision', value: dateLabel, hint: `Intervalle actuel : ${interval} jour${interval > 1 ? 's' : ''}. ${repetitions} révision${repetitions > 1 ? 's' : ''} réussie${repetitions > 1 ? 's' : ''}.` },
-      { label: 'Seuil requis', value: `${s90} ou mieux`, hint: `En dessous, l'intervalle ne progresse pas. Sous ${scoreFor(80)}, il recule.` },
+      { label: 'Seuil requis', value: `${s90} ou mieux`, hint: `En dessous, l'intervalle ne progresse pas. Sous ${scoreFor(80, sessionSize)}, il recule.` },
       ...(lastScore !== null ? [{ label: 'Dernière révision', value: `${lastScore}%`, hint: lastScore >= 90 ? "Réussie — l'intervalle a augmenté." : lastScore >= 80 ? "Fragile — l'intervalle n'a pas bougé." : "Ratée — l'intervalle a reculé." }] : []),
     ],
   };
 }
 
-export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, onClose }) {
+function LevelIcon({ type, size = 40, color }) {
+  switch (type) {
+    case 'bronze':  return <TrophyIcon size={size} color={color || '#cd7f32'} />;
+    case 'silver':  return <TrophyIcon size={size} color={color || '#c0c0c0'} />;
+    case 'crown':   return <CrownIcon size={size} animate={false} />;
+    case 'diamond':  return <DiamondIcon size={size} animate />;
+    case 'trophy':  return <TrophyIcon size={size} color={color || 'var(--color-gold)'} />;
+    case 'lock':    return <LockIcon size={size} color={color || 'var(--text-muted)'} />;
+    default:        return <TrophyIcon size={size} color={color || 'var(--color-gold)'} />;
+  }
+}
+
+export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, sessionSize, onClose }) {
   const [isMobile, setIsMobile] = useState(() => (
     typeof window !== 'undefined' ? window.innerWidth <= 640 : false
   ));
@@ -211,7 +230,7 @@ export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, onClose
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const allData = buildLevelData();
+  const allData = buildLevelData(sessionSize);
   const data = allData[level];
   if (!data) return null;
 
@@ -221,7 +240,7 @@ export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, onClose
   let stats = data.stats;
 
   if (level === 'diamond_status') {
-    const dynamic = getDiamondStatusContent(ruleProgress);
+    const dynamic = getDiamondStatusContent(ruleProgress, sessionSize);
     headline = dynamic.headline;
     description = dynamic.description;
     stats = dynamic.stats;
@@ -259,7 +278,7 @@ export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, onClose
           style={{
             position: 'relative', width: '100%',
             maxHeight: isMobile ? 'calc(100vh - 1rem)' : 'calc(100vh - 2rem)', overflowY: 'auto',
-            padding: isMobile ? '1rem 0.95rem 1rem' : '1.6rem', borderRadius: isMobile ? 24 : 28,
+            padding: isMobile ? '0.9rem 0.95rem 1rem' : '1.6rem', borderRadius: isMobile ? 24 : 28,
             border: `1px solid ${data.colorBorder}`,
             background: `radial-gradient(circle at top left, ${data.colorBg}, transparent 34%), linear-gradient(160deg, ${data.gradientFrom}, ${data.gradientTo})`,
             boxShadow: '0 18px 80px rgba(0,0,0,0.52)',
@@ -289,12 +308,7 @@ export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, onClose
                   boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05)',
                   flexShrink: 0,
                 }}>
-                  <span style={{
-                    fontSize: '3.5rem',
-                    filter: `drop-shadow(0 0 12px ${data.color}80)`,
-                  }}>
-                    {data.icon}
-                  </span>
+                  <LevelIcon type={data.iconType} size={56} color={data.color} />
                 </div>
                 <div style={{
                   display: 'inline-flex', alignItems: 'baseline', gap: '0.4rem',
@@ -310,23 +324,48 @@ export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, onClose
 
             {/* Body */}
             <div style={{ flex: 1 }}>
-              <p style={{
-                margin: '0 0 0.4rem', textTransform: 'uppercase',
-                letterSpacing: '0.16em', fontSize: isMobile ? '0.64rem' : '0.68rem',
-                fontWeight: 800, color: data.colorLight,
-              }}>
-                {data.kicker}
-              </p>
+              {isMobile && (
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                  marginBottom: '0.3rem',
+                }}>
+                  <LevelIcon type={data.iconType} size={22} color={data.color} />
+                  <span style={{
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.16em', fontSize: '0.64rem',
+                    fontWeight: 800, color: data.colorLight,
+                  }}>
+                    {data.kicker}
+                  </span>
+                </div>
+              )}
+
+              {!isMobile && (
+                <p style={{
+                  margin: '0 0 0.4rem', textTransform: 'uppercase',
+                  letterSpacing: '0.16em', fontSize: '0.68rem',
+                  fontWeight: 800, color: data.colorLight,
+                }}>
+                  {data.kicker}
+                </p>
+              )}
               <h2 style={{
-                fontSize: isMobile ? '1.25rem' : '1.85rem', lineHeight: isMobile ? 1.08 : 1.05, fontWeight: 800,
-                color: '#fff7ed', margin: '0 0 0.35rem',
-                maxWidth: isMobile ? 'calc(100% - 2.6rem)' : 'none',
+                fontSize: isMobile ? '1.4rem' : '1.85rem', lineHeight: isMobile ? 1.12 : 1.05, fontWeight: 800,
+                color: '#fff7ed', margin: '0 0 0.25rem',
+                maxWidth: isMobile ? 'min(100%, 22rem)' : 'none',
+                textAlign: isMobile ? 'center' : 'left',
+                marginLeft: isMobile ? 'auto' : 0,
+                marginRight: isMobile ? 'auto' : 0,
               }}>
                 {typeof headline === 'function' ? headline(ruleTitle) : headline}
               </h2>
               <p style={{
-                fontSize: isMobile ? '0.88rem' : '0.98rem', color: '#d6d3d1', lineHeight: 1.5,
-                margin: '0 0 1rem', maxWidth: isMobile ? 'none' : 440,
+                fontSize: isMobile ? '0.86rem' : '0.98rem', color: '#d6d3d1', lineHeight: 1.45,
+                margin: '0 auto 0.75rem', maxWidth: isMobile ? '24rem' : 460,
+                textAlign: isMobile ? 'center' : 'left',
               }}>
                 {description}
               </p>
@@ -352,6 +391,7 @@ export default function LevelHelpPopup({ level, ruleTitle, ruleProgress, onClose
                     <strong style={{
                       fontSize: isMobile ? '0.94rem' : '1rem', lineHeight: 1.25,
                       color: '#fff7ed', fontWeight: 700,
+                      ...(stat.value.match?.(/^\+\d/) ? { fontFamily: 'var(--font-kid)', color: 'var(--color-gold)' } : {}),
                     }}>
                       {stat.value}
                     </strong>

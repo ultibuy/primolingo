@@ -21,7 +21,7 @@ Chaque règle suit la même progression :
 | **Bronze** | Terminer 1 session de quiz guidé avec au moins 60 % | — |
 | **Argent** | Réussir 3 sessions de quiz guidé avec au moins 80 % | +30 pièces, débloque le quiz direct |
 | **Couronne** | Réussir 3 sessions de quiz direct avec au moins 80 % | +100 pièces |
-| **Diamant** | Réussir 3 sessions de quiz direct consécutives avec au moins 90 % | +200 pièces, active les révisions espacées |
+| **Diamant** | Réussir 3 sessions de quiz direct d'affilée à 18/20 ou plus | +200 pièces, active les révisions espacées |
 
 Sur 20 questions, 80 % correspond à 16 bonnes réponses et 90 % à 18 bonnes réponses.
 
