@@ -314,9 +314,8 @@ const HTML_TEMPLATE = (title, body, nav) => {
         return line;
       });
       const page = location.pathname;
-      const text = '=== Annotations ' + page + ' ===\\n\\n'
-        + lines.join('\\n\\n')
-        + '\\n\\n---\\nLes annotations sont stockees dans docs/annotations/' + ANN_SLUG + '.json. Apres avoir traite chaque commentaire, ecris ta reponse dans le champ "response" de l\\'annotation correspondante dans ce fichier JSON. Le pin passera au vert automatiquement au prochain chargement de la page.';
+      const text = 'Voici des annotations realisees sur les docs fonctionnelles de l\\'app. Traite chaque commentaire dans l\\'ordre en utilisant autant d\\'agents que necessaire.\\n\\nAttention !!!\\n1) Si le commentaire est une question, tu ne fais que repondre a la question du commentaire dans le champ reponse — tu ne lances aucun changement dans le code.\\n2) Si au contraire le commentaire est une demande "modifie ci ou ca" alors : a) modifie-le dans le code, b) mets a jour la doc, et c) reponds au commentaire dans le champ reponse.\\n\\nLes annotations sont stockees dans docs/annotations/' + ANN_SLUG + '.json. Apres avoir traite chaque commentaire, ecris ta reponse dans le champ "response" de l\\'annotation correspondante dans ce fichier JSON. Le pin passera au vert automatiquement au prochain chargement de la page.\\n\\n=== Annotations ' + page + ' ===\\n\\n'
+        + lines.join('\\n\\n');
       navigator.clipboard.writeText(text).then(() => {
         const btn = document.getElementById('btn-copy');
         const old = btn.textContent;
@@ -392,6 +391,8 @@ function getBannerSvg(emoji, accent, secondary) {
       return `<svg ${cp}><path d="M8 29h24l2-15-8 6-6-10-6 10-8-6 2 15Z" fill="${accent}30" stroke="${accent}" stroke-width="2.4" stroke-linejoin="round"/><path d="M10 32h20" stroke="${secondary}" stroke-width="2.5" stroke-linecap="round"/></svg>`;
     case '🛡️': case '🛡':
       return `<svg ${cp}><path d="M20 6 31 10v8c0 7.3-4.2 12.8-11 16-6.8-3.2-11-8.7-11-16v-8l11-4Z" fill="${accent}24" stroke="${accent}" stroke-width="2.4" stroke-linejoin="round"/><path d="m14.5 20 3.8 3.8 7.6-8.1" stroke="${secondary}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    case '🛒':
+      return `<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="${accent}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>`;
     case '💪':
       return `<svg ${cp}><circle cx="20" cy="20" r="14" fill="${accent}20" stroke="${accent}" stroke-width="2"/><path d="M14 22l4-8h4l-2 5h6l-6 10h-4l2-5h-4Z" fill="${accent}"/></svg>`;
     case '🎯':
