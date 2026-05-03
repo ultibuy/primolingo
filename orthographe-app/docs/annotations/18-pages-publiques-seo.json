@@ -1,13 +1,12 @@
 [
   {
-    "x": 517,
-    "y": 737,
-    "text": "regarde le header, il est tout cassé, corrige le en prod et maj l'écran ici",
-    "time": "04/05 00:19",
+    "x": 532,
+    "y": 616,
+    "text": "mets à jour ce screenshot",
+    "time": "04/05 01:00",
     "domContext": {
       "tag": "P",
       "text": ""
-    },
-    "response": "Le header en prod est correct (logo fusee + PrimoLingo + Regles d'orthographe + Se connecter). Le probleme etait le screenshot dans la doc qui etait en full-page, rendant le header invisible. Screenshot remplace par un viewport-only qui montre clairement le header. Accents corriges sur toute la page aussi."
+    }
   }
 ]
