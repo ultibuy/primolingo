@@ -2,11 +2,29 @@
  * Vite plugin that serves /docs as rendered HTML from docs/*.md files.
  * Dev mode only — does nothing in production builds.
  */
-import { readFileSync, readdirSync, existsSync } from 'fs';
+import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from 'fs';
 import { join } from 'path';
 import { marked } from 'marked';
 
 const DOCS_DIR = join(import.meta.dirname, '..', 'docs');
+const ANNOTATIONS_DIR = join(DOCS_DIR, 'annotations');
+
+// Ensure annotations directory exists
+if (!existsSync(ANNOTATIONS_DIR)) mkdirSync(ANNOTATIONS_DIR, { recursive: true });
+
+function getAnnotationFile(slug) {
+  return join(ANNOTATIONS_DIR, `${slug}.json`);
+}
+
+function loadAnnotations(slug) {
+  const file = getAnnotationFile(slug);
+  try { return existsSync(file) ? JSON.parse(readFileSync(file, 'utf-8')) : []; }
+  catch { return []; }
+}
+
+function saveAnnotations(slug, annotations) {
+  writeFileSync(getAnnotationFile(slug), JSON.stringify(annotations, null, 2));
+}
 
 function getVersion() {
   try {
@@ -114,13 +132,22 @@ const HTML_TEMPLATE = (title, body, nav) => {
   </div>
 
   <script>
-    const ANN_KEY = 'docs-annotations-' + location.pathname;
+    const ANN_SLUG = location.pathname.replace('/docs/', '').replace(/\\/$/, '') || 'index';
     let annotationMode = false;
     let annotations = [];
-    try { annotations = JSON.parse(localStorage.getItem(ANN_KEY) || '[]'); } catch {}
+
+    // Load from server file
+    fetch('/docs/api/annotations?slug=' + encodeURIComponent(ANN_SLUG))
+      .then(r => r.json())
+      .then(data => { annotations = data; renderAnnotations(); })
+      .catch(() => {});
 
     function saveAnnotations() {
-      localStorage.setItem(ANN_KEY, JSON.stringify(annotations));
+      fetch('/docs/api/annotations?slug=' + encodeURIComponent(ANN_SLUG), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(annotations),
+      }).catch(() => {});
       updateUI();
     }
 
@@ -289,7 +316,7 @@ const HTML_TEMPLATE = (title, body, nav) => {
       const page = location.pathname;
       const text = '=== Annotations ' + page + ' ===\\n\\n'
         + lines.join('\\n\\n')
-        + '\\n\\n---\\nReponds a chaque commentaire au fur et a mesure que tu les traites en utilisant la fonction repondreAnnotation(index, reponse). Quand tu as fini de traiter un commentaire, marque-le comme traite.';
+        + '\\n\\n---\\nLes annotations sont stockees dans docs/annotations/' + ANN_SLUG + '.json. Apres avoir traite chaque commentaire, ecris ta reponse dans le champ "response" de l\\'annotation correspondante dans ce fichier JSON. Le pin passera au vert automatiquement au prochain chargement de la page.';
       navigator.clipboard.writeText(text).then(() => {
         const btn = document.getElementById('btn-copy');
         const old = btn.textContent;
@@ -433,6 +460,42 @@ export default function docsPlugin() {
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const url = req.url;
+
+        // ── Annotations API ──────────────────────────────────────────────
+        // GET  /docs/api/annotations?slug=XX  → load annotations for page
+        // POST /docs/api/annotations?slug=XX  → save annotations for page
+        if (url.startsWith('/docs/api/annotations')) {
+          const params = new URL(url, 'http://localhost').searchParams;
+          const slug = (params.get('slug') || '').replace(/[^a-zA-Z0-9_-]/g, '');
+          if (!slug) {
+            res.statusCode = 400;
+            res.end(JSON.stringify({ error: 'slug required' }));
+            return;
+          }
+
+          if (req.method === 'GET') {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(loadAnnotations(slug)));
+            return;
+          }
+
+          if (req.method === 'POST') {
+            let body = '';
+            req.on('data', chunk => { body += chunk; });
+            req.on('end', () => {
+              try {
+                const data = JSON.parse(body);
+                saveAnnotations(slug, data);
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ ok: true }));
+              } catch (e) {
+                res.statusCode = 400;
+                res.end(JSON.stringify({ error: 'invalid JSON' }));
+              }
+            });
+            return;
+          }
+        }
 
         // Serve screenshots as static files
         if (url.startsWith('/docs/screenshots/')) {
