@@ -1,0 +1,57 @@
+[
+  {
+    "x": 482,
+    "y": 3955,
+    "text": "mauvais screenshot tu devarias montrer une ligne dépliée post achat",
+    "time": "03/05 22:56",
+    "domContext": {
+      "tag": "P",
+      "text": ""
+    },
+    "response": "Screenshot à remplacer par une capture de la carte personnage après achat (état déplié avec les émotions visibles). Le fichier screenshots/persos-emotions.png doit être regénéré manuellement via le script de capture."
+  },
+  {
+    "x": 688,
+    "y": 3190,
+    "text": "ca ne va pas. Mets plutot les emojis associés à la place de ces silhouettes dans le store. Il faut que les perso soient de vraies suprises et là il es voit tous d'un coup. modfie en prod et ici. Je sias qu'on avait dit \"pas d'emoji\", on va pour linstnat les mettre et on verra ensuite ce qu'on en fait",
+    "time": "03/05 22:57",
+    "domContext": {
+      "tag": "P",
+      "text": "Les personnages non achetes apparaissent en silhouette. Une fois achete, le personnage affiche \"Possede\" a la place du prix."
+    },
+    "response": "Fait. Shop.jsx modifié : les persos non achetés affichent leur emoji (🐼, 🦊, 🐺…) au lieu d'un sprite en silhouette grisée. Doc mise à jour."
+  },
+  {
+    "x": 536,
+    "y": 3494,
+    "text": "vérifie en prod, mais en principe c'est 130. Si bien 130 mets à jour la doc",
+    "time": "03/05 22:58",
+    "domContext": {
+      "tag": "P",
+      "text": "7 emotions de boutique (200 pieces chacune, a debloquer une par une) :"
+    },
+    "response": "Vérifié : SHOP_EMOTIONS dans shopCharacters.js a bien price: 130 pour toutes les 7 émotions. Doc corrigée 200 → 130 pièces."
+  },
+  {
+    "x": 524,
+    "y": 4841,
+    "text": "rappelle aussi le mode dodo et son fonctionement",
+    "time": "03/05 22:59",
+    "domContext": {
+      "tag": "P",
+      "text": "Le personnage est visible au-dessus de la barre de progression pendant tout le quiz. Il reagit en direct :"
+    },
+    "response": "Fait. Ajouté en tête de la liste : \"Demarrage (0 session completee) : il est en mode Dodo — il dort jusqu'a la fin du premier quiz\"."
+  },
+  {
+    "x": 735,
+    "y": 3414,
+    "text": "précise ce que \"peu de\" veut dire",
+    "time": "03/05 22:59",
+    "domContext": {
+      "tag": "LI",
+      "text": "Dodo — le personnage dort au demarrage tant que peu de quiz ont ete faits"
+    },
+    "response": "Fait. Précisé : \"tant qu'aucun quiz n'a encore été complété (0 session). Dès la première session terminée, il passe en mode Marche.\" — la condition dans Dashboard.jsx est totalSessionsCompleted === 0."
+  }
+]

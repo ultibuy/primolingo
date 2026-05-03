@@ -1189,7 +1189,7 @@ function EmotionCard({ emo, isBase, charId = null, isOwned = false, animateIn = 
           : isOwned
             ? '1px solid rgba(74,222,128,0.28)'
             : '1px dashed rgba(255,255,255,0.10)',
-        opacity: (!isBase && !isOwned) ? 0.72 : 1,
+        opacity: 1,
         cursor: (!isBase && onClick) ? 'pointer' : 'default',
         animation: animateIn ? `pop 0.5s ${delay}ms cubic-bezier(0.34, 1.56, 0.64, 1) both` : 'none',
         textAlign: 'center',
@@ -1208,12 +1208,10 @@ function EmotionCard({ emo, isBase, charId = null, isOwned = false, animateIn = 
       {/* Visual — CharacterSprite for all emotions when charId available */}
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 5 }}>
         {charId ? (
-          <div style={{ filter: (!isBase && !isOwned) ? 'grayscale(0.6) brightness(0.7)' : 'none' }}>
-            <CharacterSprite id={charId} mood={emo.id} size={46} glow={false} />
-          </div>
+          <CharacterSprite id={charId} mood={emo.id} size={92} glow={false} />
         ) : (
-          <div style={{ width: 46, height: 46, borderRadius: 12, background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', filter: (!isBase && !isOwned) ? 'grayscale(0.6) brightness(0.7)' : 'none' }}>
-            <EmotionFallbackIcon emotionId={emo.id} size={38} />
+          <div style={{ width: 92, height: 92, borderRadius: 18, background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <EmotionFallbackIcon emotionId={emo.id} size={76} />
           </div>
         )}
       </div>
@@ -1311,7 +1309,7 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim: _pu
             }}>
               {ownsCharacter
                 ? <CharacterSprite id={char.id} mood="walk" size={38} glow={false} />
-                : <div style={{ filter: 'grayscale(0.6) brightness(0.7)', opacity: 0.7 }}><CharacterSprite id={char.id} mood="walk" size={38} glow={false} /></div>}
+                : <div style={{ fontSize: 28, lineHeight: 1, userSelect: 'none' }}>{char.emoji}</div>}
             </div>
             <div style={{ minWidth: 0, overflowWrap: 'anywhere' }}>
               <div style={{ fontSize: '0.95rem', fontWeight: 800, color: ownsCharacter ? char.color : '#fff', marginBottom: '0.1rem' }}>
@@ -1401,6 +1399,7 @@ function ShopCharacterCard({ char, progress, coins, childName, purchaseAnim: _pu
                     return (
                       <EmotionCard
                         key={emo.id} emo={emo} isBase={false} isOwned={owned}
+                        charId={char.id}
                         animateIn={justPurchased && step === 4} delay={i * 50}
                         onClick={() => onBuyEmotion(char, emo)}
                       />
