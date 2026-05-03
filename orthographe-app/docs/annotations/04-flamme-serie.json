@@ -19,18 +19,7 @@
       "tag": "P",
       "text": ""
     },
-    "response": "Note : les screenshots de l'ecran de retour avec les etapes bouclier ne sont pas encore captures. A ajouter quand les captures d'ecran seront disponibles (necessite un etat de progression avec bouclier + absence)."
-  },
-  {
-    "x": 637,
-    "y": 2200,
-    "text": "précise ici qu'un parent peut intervenir pour maintenir la falmme quand il y a une bonne raison. présente aussi cet écran. Précise qu'il doit alors rentrer son pin",
-    "time": "03/05 22:11",
-    "domContext": {
-      "tag": "LI",
-      "text": "Flamme : si l'enfant a un bouclier, il peut l'utiliser pour sauver sa flamme. S'il n'en a pas mais a assez de pièces, il"
-    },
-    "response": "Fait. Doc mise a jour : ajout de la mention que le parent peut intervenir avec son PIN pour maintenir la flamme (maladie, vacances, etc.)."
+    "response": "Fait. Deux screenshots capturés via tests/screenshot-return-screens.js : retour-absence-intro.png (step intro) et retour-absence-bouclier.png (step \"Flamme en danger\" avec le bouton \"Utiliser mes boucliers\"). Les deux sont maintenant affichés dans la section 4 de la doc."
   },
   {
     "x": 602,
@@ -41,6 +30,6 @@
       "tag": "TD",
       "text": "Une session en dessous de 60 % ne fait pas progresser la flamme"
     },
-    "response": "Non, il n'y a pas de message de coaching dedie a ce cas precis (session < 60% + flamme non protegee). Le systeme de coaching a des messages pour : la premiere session ratee (arc1.3), le retour apres absence (arc9.5), la flamme en danger (arc5.8), mais pas la combinaison 'session sous 60% + pas de bouclier'."
+    "response": "si tu as fait une session sous 60% et que la flamme n'est pas protégée, il y a un message de coaching associé à ca ou pas ?"
   }
 ]

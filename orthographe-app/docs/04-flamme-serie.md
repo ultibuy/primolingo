@@ -43,7 +43,9 @@ Si l'enfant n'a pas joué depuis au moins deux jours, un écran spécial s'affic
 3. **Diamants** : si des règles au niveau Diamant ont souffert de l'absence (perte de santé ou bris), chaque diamant impacté est présenté.
 4. **Retour au dashboard** : l'enfant reprend le jeu normalement.
 
-![Écran de retour après absence](screenshots/retour-absence.png)
+![Écran de retour après absence — introduction](screenshots/retour-absence-intro.png)
+
+![Écran de retour après absence — proposition bouclier](screenshots/retour-absence-bouclier.png)
 
 ### 5. Perte de la flamme
 
