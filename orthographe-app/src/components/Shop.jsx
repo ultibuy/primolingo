@@ -6,6 +6,9 @@ import ShieldIcon from './ShieldIcon.jsx';
 import {
   PaletteIcon, TagIcon, BurstIcon, IceShieldIcon,
   CoinsIcon, QuestionMarkIcon, CharacterIcon, PuzzleIcon, GiftIcon,
+  EmotionWalkIcon, EmotionSleepIcon, EmotionSitIcon,
+  EmotionWaveIcon, EmotionKissIcon, EmotionClapIcon,
+  EmotionVictoryIcon, EmotionDanceIcon, EmotionSurpriseIcon, EmotionThinkIcon,
 } from './icons/ProductIcons.jsx';
 import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 import CharacterSprite from './CharacterSprite.jsx';
@@ -1148,6 +1151,24 @@ function SectionLabel({ kicker, title, color, count }) {
   );
 }
 
+const EMOTION_ICON_MAP = {
+  walk: EmotionWalkIcon,
+  sleep: EmotionSleepIcon,
+  sit: EmotionSitIcon,
+  wave: EmotionWaveIcon,
+  kiss: EmotionKissIcon,
+  clap: EmotionClapIcon,
+  victory: EmotionVictoryIcon,
+  dance: EmotionDanceIcon,
+  surprise: EmotionSurpriseIcon,
+  think: EmotionThinkIcon,
+};
+
+function EmotionFallbackIcon({ emotionId, size = 38 }) {
+  const Icon = EMOTION_ICON_MAP[emotionId] || EmotionWalkIcon;
+  return <Icon size={size} />;
+}
+
 function EmotionCard({ emo, isBase, charId = null, isOwned = false, animateIn = false, delay = 0, onClick }) {
   return (
     <div
@@ -1191,8 +1212,8 @@ function EmotionCard({ emo, isBase, charId = null, isOwned = false, animateIn = 
             <CharacterSprite id={charId} mood={emo.id} size={46} glow={false} />
           </div>
         ) : (
-          <div style={{ width: 46, height: 46, borderRadius: 12, background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', color: 'var(--text-muted)' }}>
-            {emo.name?.[0] || '?'}
+          <div style={{ width: 46, height: 46, borderRadius: 12, background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center', filter: (!isBase && !isOwned) ? 'grayscale(0.6) brightness(0.7)' : 'none' }}>
+            <EmotionFallbackIcon emotionId={emo.id} size={38} />
           </div>
         )}
       </div>

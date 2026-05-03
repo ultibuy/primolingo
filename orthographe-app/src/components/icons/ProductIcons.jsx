@@ -1,0 +1,484 @@
+/**
+ * ProductIcons — SVG icon library for PrimoLingo.
+ * All icons: inline SVG, no emoji, configurable via `size` prop.
+ * Colors default to design system tokens.
+ */
+
+// ─── Trophy ──────────────────────────────────────────────────────────────────
+
+export function TrophyIcon({ size = 24, color = 'var(--color-gold)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7 4h10v2.5c0 2.76-2.24 5-5 5s-5-2.24-5-5V4z" fill={color} />
+      <path d="M5 4H7v2c0 1.1-.45 2.1-1.17 2.83A4 4 0 014 6V5a1 1 0 011-1z" fill={color} opacity="0.6" />
+      <path d="M19 4h-2v2c0 1.1.45 2.1 1.17 2.83A4 4 0 0020 6V5a1 1 0 00-1-1z" fill={color} opacity="0.6" />
+      <rect x="10" y="11" width="4" height="4" rx="0.5" fill={color} opacity="0.7" />
+      <rect x="8" y="15" width="8" height="2.5" rx="1" fill={color} />
+      <rect x="7" y="17.5" width="10" height="1.5" rx="0.75" fill={color} opacity="0.5" />
+    </svg>
+  );
+}
+
+// ─── Lock ────────────────────────────────────────────────────────────────────
+
+export function LockIcon({ size = 24, color = 'var(--text-muted)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="5" y="10" width="14" height="11" rx="2.5" fill={color} />
+      <path d="M8 10V7a4 4 0 118 0v3" stroke={color} strokeWidth="2.2" fill="none" strokeLinecap="round" />
+      <circle cx="12" cy="15" r="1.5" fill="var(--color-bg1)" />
+      <rect x="11.25" y="15.5" width="1.5" height="2.5" rx="0.75" fill="var(--color-bg1)" />
+    </svg>
+  );
+}
+
+// ─── Unlock ──────────────────────────────────────────────────────────────────
+
+export function UnlockIcon({ size = 24, color = 'var(--color-green)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="5" y="10" width="14" height="11" rx="2.5" fill={color} />
+      <path d="M8 10V7a4 4 0 017.87-.8" stroke={color} strokeWidth="2.2" fill="none" strokeLinecap="round" />
+      <circle cx="12" cy="15" r="1.5" fill="var(--color-bg1)" />
+    </svg>
+  );
+}
+
+// ─── Check ───────────────────────────────────────────────────────────────────
+
+export function CheckIcon({ size = 24, color = 'var(--color-green)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" fill={color} opacity="0.15" />
+      <path d="M7.5 12.5l3 3 6-6" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  );
+}
+
+// ─── Cross ───────────────────────────────────────────────────────────────────
+
+export function CrossIcon({ size = 24, color = 'var(--color-red)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" fill={color} opacity="0.15" />
+      <path d="M8.5 8.5l7 7M15.5 8.5l-7 7" stroke={color} strokeWidth="2.2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+// ─── Gift ────────────────────────────────────────────────────────────────────
+
+export function GiftIcon({ size = 24, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <rect x="3" y="8" width="18" height="4" rx="1.5" fill={color} />
+      <rect x="5" y="12" width="14" height="8" rx="1.5" fill={color} opacity="0.75" />
+      <rect x="11" y="8" width="2" height="12" fill="var(--color-bg1)" opacity="0.3" />
+      <path d="M12 8c-1-3-4-4-4-2s3 2 4 2z" fill={color} opacity="0.9" />
+      <path d="M12 8c1-3 4-4 4-2s-3 2-4 2z" fill={color} opacity="0.9" />
+    </svg>
+  );
+}
+
+// ─── Book ────────────────────────────────────────────────────────────────────
+
+export function BookIcon({ size = 24, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      {/* Spine */}
+      <rect x="4" y="3" width="3" height="18" rx="1.5" fill={color} opacity="0.6" />
+      {/* Cover */}
+      <rect x="6" y="3" width="14" height="18" rx="2" fill={color} opacity="0.2" stroke={color} strokeWidth="1.3" />
+      {/* Page edges */}
+      <rect x="7.5" y="5" width="11" height="14" rx="1" fill={color} opacity="0.08" />
+      {/* Text lines */}
+      <line x1="10" y1="8.5" x2="16" y2="8.5" stroke={color} strokeWidth="1.4" strokeLinecap="round" />
+      <line x1="10" y1="11.5" x2="15" y2="11.5" stroke={color} strokeWidth="1.4" strokeLinecap="round" opacity="0.6" />
+      <line x1="10" y1="14.5" x2="13.5" y2="14.5" stroke={color} strokeWidth="1.4" strokeLinecap="round" opacity="0.4" />
+    </svg>
+  );
+}
+
+// ─── Target ──────────────────────────────────────────────────────────────────
+
+export function TargetIcon({ size = 24, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9.5" stroke={color} strokeWidth="1.8" />
+      <circle cx="12" cy="12" r="6" stroke={color} strokeWidth="1.5" opacity="0.65" />
+      <circle cx="12" cy="12" r="2.5" stroke={color} strokeWidth="1.5" opacity="0.65" />
+      <circle cx="12" cy="12" r="1" fill={color} />
+    </svg>
+  );
+}
+
+// ─── Chart Medal (7j stats) ──────────────────────────────────────────────────
+
+export function ChartMedalIcon({ size = 24, color = 'var(--color-gold)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="9" r="6" fill={color} opacity="0.2" stroke={color} strokeWidth="1.5" />
+      <circle cx="12" cy="9" r="3" fill={color} opacity="0.5" />
+      <path d="M9 14l-2 7 5-2.5L17 21l-2-7" fill={color} opacity="0.65" />
+    </svg>
+  );
+}
+
+// ─── Chart Trophy (30j stats) ────────────────────────────────────────────────
+
+export function ChartTrophyIcon({ size = 24, color = 'var(--color-gold)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7 3h10v3c0 2.76-2.24 5-5 5s-5-2.24-5-5V3z" fill={color} opacity="0.3" stroke={color} strokeWidth="1.5" />
+      <path d="M5 3H7v2a3 3 0 01-3 3h0V5a2 2 0 012-2z" fill={color} opacity="0.5" />
+      <path d="M19 3h-2v2a3 3 0 003 3h0V5a2 2 0 00-2-2z" fill={color} opacity="0.5" />
+      <rect x="10.5" y="10.5" width="3" height="3.5" rx="0.5" fill={color} opacity="0.6" />
+      <rect x="8" y="14" width="8" height="2" rx="1" fill={color} />
+      <line x1="7" y1="19" x2="17" y2="19" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
+      <line x1="8" y1="21" x2="16" y2="21" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.25" />
+    </svg>
+  );
+}
+
+// ─── Warning ─────────────────────────────────────────────────────────────────
+
+export function WarningIcon({ size = 24, color = 'var(--color-orange)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 2L1.5 20.5h21L12 2z" fill={color} opacity="0.15" stroke={color} strokeWidth="1.5" strokeLinejoin="round" />
+      <line x1="12" y1="9" x2="12" y2="14" stroke={color} strokeWidth="2" strokeLinecap="round" />
+      <circle cx="12" cy="17" r="1" fill={color} />
+    </svg>
+  );
+}
+
+// ─── Explosion (diamondBroken, etc.) ─────────────────────────────────────────
+
+export function ExplosionIcon({ size = 24, color = 'var(--color-red)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 2l2.5 5.5 5.5.8-4 3.9 1 5.8L12 15l-5 3 1-5.8-4-3.9 5.5-.8z" fill={color} opacity="0.2" />
+      <path d="M12 5l1.5 3.3 3.3.5-2.4 2.3.6 3.5L12 12.8l-3 1.8.6-3.5-2.4-2.3 3.3-.5z" fill={color} />
+    </svg>
+  );
+}
+
+// ─── Muscle/Strength ─────────────────────────────────────────────────────────
+
+export function StrengthIcon({ size = 24, color = 'var(--color-orange)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 15l2-6h2l1 3h6l1-3h2l2 6" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <circle cx="4" cy="15" r="2" fill={color} opacity="0.6" />
+      <circle cx="20" cy="15" r="2" fill={color} opacity="0.6" />
+      <rect x="9" y="10" width="6" height="4" rx="1" fill={color} opacity="0.3" />
+    </svg>
+  );
+}
+
+// ─── Palette (themes) ────────────────────────────────────────────────────────
+
+export function PaletteIcon({ size = 24, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 2a10 10 0 00-1 19.95c.56.05 1-.4 1-.95v-2.2c0-.83.68-1.5 1.5-1.3a4 4 0 003.4-6.3A10 10 0 0012 2z" fill={color} opacity="0.15" stroke={color} strokeWidth="1.5" />
+      <circle cx="8" cy="10" r="1.5" fill="#f87171" />
+      <circle cx="12" cy="7" r="1.5" fill="#fbbf24" />
+      <circle cx="16" cy="10" r="1.5" fill="#34d399" />
+      <circle cx="9" cy="14" r="1.5" fill="#60a5fa" />
+    </svg>
+  );
+}
+
+// ─── Tag (titles) ────────────────────────────────────────────────────────────
+
+export function TagIcon({ size = 24, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M3 5.5A2.5 2.5 0 015.5 3h5.59a2 2 0 011.41.59l7.41 7.41a2 2 0 010 2.83l-5.59 5.59a2 2 0 01-2.83 0L4.09 12a2 2 0 01-.59-1.41V5.5z" fill={color} opacity="0.15" stroke={color} strokeWidth="1.5" />
+      <circle cx="7.5" cy="7.5" r="1.5" fill={color} />
+    </svg>
+  );
+}
+
+// ─── Play/Motion (victoryAnimations) ─────────────────────────────────────────
+
+export function MotionIcon({ size = 24, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" fill={color} opacity="0.12" stroke={color} strokeWidth="1.5" />
+      <path d="M10 8l6 4-6 4V8z" fill={color} />
+    </svg>
+  );
+}
+
+// ─── Burst (entranceAnimations) ──────────────────────────────────────────────
+
+export function BurstIcon({ size = 24, color = 'var(--color-orange)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 2l1.8 4.4 4.7.4-3.6 3.1 1.2 4.6L12 12l-4.1 2.5 1.2-4.6L5.5 6.8l4.7-.4z" fill={color} />
+      <line x1="12" y1="17" x2="12" y2="22" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+      <line x1="7" y1="18" x2="5" y2="21" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
+      <line x1="17" y1="18" x2="19" y2="21" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.4" />
+    </svg>
+  );
+}
+
+// ─── Puzzle (mystery image) ──────────────────────────────────────────────────
+
+export function PuzzleIcon({ size = 24, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M4 7a2 2 0 012-2h3a2 2 0 014 0h3a2 2 0 012 2v3a2 2 0 010 4v3a2 2 0 01-2 2h-3a2 2 0 01-4 0H6a2 2 0 01-2-2v-3a2 2 0 010-4V7z" fill={color} opacity="0.15" stroke={color} strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+// ─── Character (persos) ──────────────────────────────────────────────────────
+
+export function CharacterIcon({ size = 24, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="8" r="4" fill={color} opacity="0.3" stroke={color} strokeWidth="1.5" />
+      <path d="M5 20c0-3.87 3.13-7 7-7s7 3.13 7 7" fill={color} opacity="0.15" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+// ─── Coins (doubleCoins) ─────────────────────────────────────────────────────
+
+export function CoinsIcon({ size = 24, color = 'var(--color-gold)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <ellipse cx="10" cy="14" rx="6" ry="3" fill={color} opacity="0.5" />
+      <ellipse cx="10" cy="12" rx="6" ry="3" fill={color} opacity="0.7" />
+      <ellipse cx="10" cy="10" rx="6" ry="3" fill={color} />
+      <ellipse cx="15" cy="12" rx="5" ry="2.5" fill={color} opacity="0.35" />
+      <ellipse cx="15" cy="10.5" rx="5" ry="2.5" fill={color} opacity="0.55" />
+    </svg>
+  );
+}
+
+// ─── Handshake (mystere) ─────────────────────────────────────────────────────
+
+export function HandshakeIcon({ size = 24, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      {/* Left arm */}
+      <path d="M2 14l3-5h2.5" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Right arm */}
+      <path d="M22 14l-3-5h-2.5" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Clasped hands */}
+      <path d="M7.5 9l2.5 2 2-1.5 2 1.5 2.5-2" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Hand shape */}
+      <path d="M10 11c-1 1-1 2.5 0 3.5l2 1.5 2-1.5c1-1 1-2.5 0-3.5" fill={color} opacity="0.2" stroke={color} strokeWidth="1.3" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// ─── QuestionMark (questionMystery) ──────────────────────────────────────────
+
+export function QuestionMarkIcon({ size = 24, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" fill={color} opacity="0.12" stroke={color} strokeWidth="1.5" />
+      <path d="M9.5 9a3 3 0 015.5 1.5c0 1.5-2.5 2-2.5 3.5" stroke={color} strokeWidth="2" strokeLinecap="round" fill="none" />
+      <circle cx="12" cy="17" r="1" fill={color} />
+    </svg>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// Emotion placeholder SVGs — shown in shop when no character sprite is available
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ─── Walk (default) ─────────────────────────────────────────────────────────
+
+export function EmotionWalkIcon({ size = 46, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
+      <circle cx="23" cy="10" r="5" fill={color} opacity="0.7" />
+      <path d="M23 16v10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M23 26l-5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M23 26l5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M17 20l6 2 6-2" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// ─── Sleep ──────────────────────────────────────────────────────────────────
+
+export function EmotionSleepIcon({ size = 46, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
+      <circle cx="23" cy="10" r="5" fill={color} opacity="0.7" />
+      <path d="M23 16v6c0 2-2 4-4 5h8c-2-1-4-3-4-5z" fill={color} opacity="0.4" />
+      <ellipse cx="23" cy="30" rx="7" ry="3" fill={color} opacity="0.25" />
+      <text x="30" y="12" fontFamily="var(--font-kid)" fontSize="8" fontWeight="700" fill={color} opacity="0.8">Z</text>
+      <text x="34" y="7" fontFamily="var(--font-kid)" fontSize="6" fontWeight="700" fill={color} opacity="0.5">z</text>
+    </svg>
+  );
+}
+
+// ─── Sit ────────────────────────────────────────────────────────────────────
+
+export function EmotionSitIcon({ size = 46, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
+      <circle cx="23" cy="10" r="5" fill={color} opacity="0.7" />
+      <path d="M23 16v8" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M23 24h-6v8h12v-8z" fill={color} opacity="0.15" stroke={color} strokeWidth="1.5" rx="2" />
+      <path d="M17 20l6 2 6-2" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// ─── Wave (Salut) ───────────────────────────────────────────────────────────
+
+export function EmotionWaveIcon({ size = 46, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
+      <circle cx="23" cy="10" r="5" fill={color} opacity="0.7" />
+      <path d="M23 16v10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M23 26l-5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M23 26l5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Left arm down */}
+      <path d="M17 21l-3 5" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Right arm waving up */}
+      <path d="M29 20l4-6" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Wave lines */}
+      <path d="M35 11c1-1 2 0 1 1" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+      <path d="M37 14c1-1 2 0 1 1" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.3" />
+    </svg>
+  );
+}
+
+// ─── Kiss (Bisou) ───────────────────────────────────────────────────────────
+
+export function EmotionKissIcon({ size = 46, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
+      <circle cx="20" cy="12" r="5" fill={color} opacity="0.7" />
+      <path d="M20 18v8" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M20 26l-4 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M20 26l4 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M14 22l-2 3M26 21l3-2" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Heart */}
+      <path d="M33 10c-1-2-4-2-4 1 0 3 4 5 4 5s4-2 4-5c0-3-3-3-4-1z" fill="#f87171" opacity="0.7" />
+    </svg>
+  );
+}
+
+// ─── Clap (Bravo) ───────────────────────────────────────────────────────────
+
+export function EmotionClapIcon({ size = 46, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
+      <circle cx="23" cy="10" r="5" fill={color} opacity="0.7" />
+      <path d="M23 16v10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M23 26l-5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M23 26l5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Hands together */}
+      <path d="M16 19l7 4 7-4" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Clap lines */}
+      <line x1="19" y1="16" x2="17" y2="14" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+      <line x1="23" y1="18" x2="23" y2="15.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+      <line x1="27" y1="16" x2="29" y2="14" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+    </svg>
+  );
+}
+
+// ─── Victory (Victoire) ─────────────────────────────────────────────────────
+
+export function EmotionVictoryIcon({ size = 46, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
+      <circle cx="23" cy="10" r="5" fill={color} opacity="0.7" />
+      <path d="M23 16v10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M23 26l-5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M23 26l5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Arms raised in V */}
+      <path d="M17 20l-5-8" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M29 20l5-8" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Stars */}
+      <circle cx="10" cy="8" r="1.5" fill="#fbbf24" />
+      <circle cx="36" cy="8" r="1.5" fill="#fbbf24" />
+    </svg>
+  );
+}
+
+// ─── Dance (Danse) ──────────────────────────────────────────────────────────
+
+export function EmotionDanceIcon({ size = 46, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
+      <circle cx="23" cy="9" r="5" fill={color} opacity="0.7" />
+      <path d="M23 15v8" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Legs dynamic pose */}
+      <path d="M23 23l-7 8 3 5" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M23 23l5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Arms dynamic */}
+      <path d="M17 18l-5-2" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M29 18l5-4" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Music notes */}
+      <path d="M35 10v5l2-1" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" opacity="0.4" />
+      <circle cx="35" cy="15" r="1.5" fill={color} opacity="0.4" />
+    </svg>
+  );
+}
+
+// ─── Surprise ───────────────────────────────────────────────────────────────
+
+export function EmotionSurpriseIcon({ size = 46, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
+      <circle cx="23" cy="11" r="5" fill={color} opacity="0.7" />
+      {/* Mouth O */}
+      <circle cx="23" cy="13" r="1.5" stroke={color} strokeWidth="1" fill="none" opacity="0.6" />
+      <path d="M23 17v9" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M23 26l-5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M23 26l5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Arms startled */}
+      <path d="M17 20l-5-1" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M29 20l5-1" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Exclamation */}
+      <line x1="9" y1="7" x2="9" y2="12" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" />
+      <circle cx="9" cy="15" r="1" fill="#fbbf24" />
+    </svg>
+  );
+}
+
+// ─── Think (Hesitation) ─────────────────────────────────────────────────────
+
+export function EmotionThinkIcon({ size = 46, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
+      <circle cx="23" cy="11" r="5" fill={color} opacity="0.7" />
+      <path d="M23 17v9" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M23 26l-5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      <path d="M23 26l5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Left arm down */}
+      <path d="M17 21l-4 4" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
+      {/* Right arm to chin (thinking pose) */}
+      <path d="M29 20l2-4 -4-2" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Thought bubble */}
+      <circle cx="35" cy="7" r="3" fill={color} opacity="0.15" stroke={color} strokeWidth="1" />
+      <circle cx="32" cy="12" r="1.2" fill={color} opacity="0.2" />
+      <text x="33.5" y="9" fontFamily="var(--font-kid)" fontSize="5" fontWeight="700" fill={color} opacity="0.5">?</text>
+    </svg>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ─── IceShield (streakFreeze) ────────────────────────────────────────────────
+
+export function IceShieldIcon({ size = 24, color = '#93c5fd' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 2L4 6v5c0 5.25 3.4 10.15 8 11.4 4.6-1.25 8-6.15 8-11.4V6l-8-4z" fill={color} opacity="0.2" stroke={color} strokeWidth="1.5" />
+      <path d="M12 7v10M8 12h8M9.5 8.5l5 7M14.5 8.5l-5 7" stroke={color} strokeWidth="1.2" strokeLinecap="round" opacity="0.7" />
+    </svg>
+  );
+}
