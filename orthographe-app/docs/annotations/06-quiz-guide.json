@@ -7,7 +7,8 @@
     "domContext": {
       "tag": "P",
       "text": ""
-    }
+    },
+    "response": "Fait. La capture quiz-feedback.png a été retirée de la section 3 du guide quiz et ajoutée dans docs/04-flamme-serie.md, sous la section \"La flamme au quotidien\"."
   },
   {
     "x": 617,
@@ -17,7 +18,8 @@
     "domContext": {
       "tag": "P",
       "text": "Si l'enfant ne possède pas encore l'émotion déclenchée, le personnage reste neutre avec une bulle verrouillée qui invite à débloquer l'émotion en bout"
-    }
+    },
+    "response": "Fait. Ajouté ![Personnage avec émotion verrouillée](screenshots/quiz-perso-verouille.png) à la fin de la section 4, juste après la description de la bulle verrouillée."
   },
   {
     "x": 662,
@@ -27,6 +29,7 @@
     "domContext": {
       "tag": "A",
       "text": "Suivant →"
-    }
+    },
+    "response": "Pin vide, rien à faire."
   }
 ]

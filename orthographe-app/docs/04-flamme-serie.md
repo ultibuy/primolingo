@@ -12,6 +12,8 @@ Chaque jour, la première session qualifiante (score supérieur ou égal à 60 %
 
 ![Flamme active](screenshots/flamme-active.png)
 
+![Retour après réponse](screenshots/quiz-feedback.png)
+
 ### 2. Les paliers de flamme
 
 A certains seuils, la flamme change d'apparence et l'enfant reçoit une récompense en pièces :

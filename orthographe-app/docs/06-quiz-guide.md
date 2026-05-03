@@ -29,8 +29,6 @@ Après chaque question, l'enfant reçoit un retour immédiat :
 - **Bonne réponse** : un effet visuel positif, le personnage applaudit (s'il possède cette émotion). Le score progresse.
 - **Mauvaise réponse** : la bonne réponse est montrée avec une courte explication. Le personnage réagit avec une expression de surprise ou de réflexion.
 
-![Retour après réponse](screenshots/quiz-feedback.png)
-
 ### 4. Le personnage pendant le quiz
 
 Le personnage compagnon est visible dans la barre de progression en haut de l'écran. Il change d'expression à chaque événement :
@@ -41,6 +39,8 @@ Le personnage compagnon est visible dans la barre de progression en haut de l'é
 - Si le score final est excellent (90 % ou plus), il danse ou célèbre la victoire.
 
 Si l'enfant ne possède pas encore l'émotion déclenchée, le personnage reste neutre avec une bulle verrouillée qui invite à débloquer l'émotion en boutique.
+
+![Personnage avec émotion verrouillée](screenshots/quiz-perso-verouille.png)
 
 ### 5. La barre de progression
 
