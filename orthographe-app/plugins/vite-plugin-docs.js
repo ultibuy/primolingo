@@ -128,6 +128,7 @@ const HTML_TEMPLATE = (title, body, nav) => {
     <button id="toggle-annotations" onclick="toggleAnnotationMode()">Mode commentaire</button>
     <span id="annotation-count" style="margin-left:auto;color:rgba(255,255,255,0.3);font-size:0.72rem">0 commentaire</span>
     <button id="btn-copy" onclick="copyAllAnnotations()">Copier tout</button>
+    <button id="btn-copy-pending" onclick="copyPendingAnnotations()">Copier sans reponse</button>
     <button id="btn-clear" onclick="clearAllAnnotations()">Effacer tout</button>
   </div>
 
@@ -154,7 +155,10 @@ const HTML_TEMPLATE = (title, body, nav) => {
     function updateUI() {
       const n = annotations.length;
       document.getElementById('annotation-count').textContent = n + ' commentaire' + (n !== 1 ? 's' : '');
+      const pending = annotations.filter(a => !a.response || !a.response.trim()).length;
       document.getElementById('btn-copy').style.opacity = n > 0 ? '1' : '0.35';
+      document.getElementById('btn-copy-pending').style.opacity = pending > 0 ? '1' : '0.35';
+      document.getElementById('btn-copy-pending').textContent = pending > 0 ? 'Copier sans reponse (' + pending + ')' : 'Tout traite';
       document.getElementById('btn-clear').style.opacity = n > 0 ? '1' : '0.35';
     }
 
@@ -230,19 +234,17 @@ const HTML_TEMPLATE = (title, body, nav) => {
         ctx.style.cssText = 'padding:4px 10px;font-size:10px;color:#6b7280;border-top:1px solid rgba(255,255,255,0.08);line-height:1.4';
         ctx.textContent = ann.domContext ? '<' + ann.domContext.tag + '> ' + (ann.domContext.text || '').slice(0, 80) : '';
 
-        // Response area
+        // Response area — always visible and editable
         const responseBlock = document.createElement('div');
         responseBlock.style.cssText = 'border-top:1px solid rgba(255,255,255,0.08)';
-        if (ann.response) {
-          const respDisplay = document.createElement('div');
-          respDisplay.style.cssText = 'padding:6px 10px;font-size:11px;color:#4ade80;line-height:1.4;background:rgba(74,222,128,0.06)';
-          respDisplay.textContent = ann.response;
-          responseBlock.appendChild(respDisplay);
-        }
+        const respLabel = document.createElement('div');
+        respLabel.style.cssText = 'padding:4px 10px 0;font-size:9px;color:#4ade80;font-weight:700;text-transform:uppercase;letter-spacing:0.05em';
+        respLabel.textContent = 'Reponse';
+        responseBlock.appendChild(respLabel);
         const respInput = document.createElement('textarea');
-        respInput.style.cssText = 'width:100%;border:none;outline:none;resize:vertical;font-family:inherit;font-size:11px;line-height:1.4;padding:6px 10px;min-height:32px;background:rgba(74,222,128,0.04);color:#4ade80;box-sizing:border-box;display:none';
+        respInput.style.cssText = 'width:100%;border:none;outline:none;resize:vertical;font-family:inherit;font-size:11px;line-height:1.4;padding:4px 10px 6px;min-height:32px;background:rgba(74,222,128,0.04);color:#4ade80;box-sizing:border-box';
         respInput.value = ann.response || '';
-        respInput.placeholder = 'Reponse...';
+        respInput.placeholder = 'Ecrire une reponse...';
         respInput.addEventListener('input', function() {
           annotations[i].response = this.value;
           saveAnnotations();
@@ -250,23 +252,12 @@ const HTML_TEMPLATE = (title, body, nav) => {
         respInput.addEventListener('click', function(e) { e.stopPropagation(); });
         responseBlock.appendChild(respInput);
 
-        const respBtn = document.createElement('span');
-        respBtn.style.cssText = 'font-size:10px;color:#4ade80;cursor:pointer;padding:0 4px';
-        respBtn.textContent = ann.response ? 'modifier' : 'repondre';
-        respBtn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          const showing = respInput.style.display !== 'none';
-          respInput.style.display = showing ? 'none' : 'block';
-          if (!showing) respInput.focus();
-        });
-
         // Footer
         const footer = document.createElement('div');
         footer.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:4px 10px;border-top:1px solid rgba(255,255,255,0.08)';
         footer.innerHTML = '<span style="font-size:10px;color:rgba(255,255,255,0.2)">' + (ann.time || '') + '</span>';
         const footerRight = document.createElement('div');
         footerRight.style.cssText = 'display:flex;gap:8px';
-        footerRight.appendChild(respBtn);
         const del = document.createElement('span');
         del.style.cssText = 'font-size:10px;color:#f87171;cursor:pointer';
         del.textContent = 'supprimer';
@@ -303,27 +294,43 @@ const HTML_TEMPLATE = (title, body, nav) => {
 
     function copyAllAnnotations() {
       if (annotations.length === 0) return;
-      const lines = annotations.map((a, i) => {
-        let line = '(' + (i+1) + ') [x:' + a.x + ' y:' + a.y + '] ' + (a.text || '(vide)');
-        if (a.domContext && a.domContext.text) {
-          line += '\\n    Element: <' + a.domContext.tag + '> "' + a.domContext.text.slice(0, 120) + '"';
-        }
-        if (a.response) {
-          line += '\\n    Reponse: ' + a.response;
-        }
-        return line;
-      });
+      const lines = annotations.map((a, i) => formatAnnotation(a, i));
       const page = location.pathname;
-      const text = 'Voici des annotations realisees sur les docs fonctionnelles de l\\'app. Traite chaque commentaire dans l\\'ordre en utilisant autant d\\'agents que necessaire.\\n\\nAttention !!!\\n1) Si le commentaire est une question, tu ne fais que repondre a la question du commentaire dans le champ reponse — tu ne lances aucun changement dans le code.\\n2) Si au contraire le commentaire est une demande "modifie ci ou ca" alors : a) modifie-le dans le code, b) mets a jour la doc, et c) reponds au commentaire dans le champ reponse.\\n\\nLes annotations sont stockees dans docs/annotations/' + ANN_SLUG + '.json. Apres avoir traite chaque commentaire, ecris ta reponse dans le champ "response" de l\\'annotation correspondante dans ce fichier JSON. Le pin passera au vert automatiquement au prochain chargement de la page.\\n\\n=== Annotations ' + page + ' ===\\n\\n'
-        + lines.join('\\n\\n');
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = document.getElementById('btn-copy');
-        const old = btn.textContent;
-        btn.textContent = 'Copie !';
-        btn.style.background = '#4ade80';
-        btn.style.color = '#0a1410';
-        setTimeout(() => { btn.textContent = old; btn.style.background = ''; btn.style.color = ''; }, 1500);
-      }).catch(() => {});
+      const text = buildPromptHeader() + '\\n\\n=== Annotations ' + page + ' ===\\n\\n' + lines.join('\\n\\n');
+      navigator.clipboard.writeText(text).then(() => flashButton('btn-copy')).catch(() => {});
+    }
+
+    function buildPromptHeader() {
+      return 'Voici des annotations realisees sur les docs fonctionnelles de l\\'app. Traite chaque commentaire dans l\\'ordre en utilisant autant d\\'agents que necessaire.\\n\\nAttention !!!\\n1) Si le commentaire est une question, tu ne fais que repondre a la question du commentaire dans le champ reponse — tu ne lances aucun changement dans le code.\\n2) Si au contraire le commentaire est une demande "modifie ci ou ca" alors : a) modifie-le dans le code, b) mets a jour la doc, et c) reponds au commentaire dans le champ reponse.\\n\\nLes annotations sont stockees dans docs/annotations/' + ANN_SLUG + '.json. Apres avoir traite chaque commentaire, ecris ta reponse dans le champ "response" de l\\'annotation correspondante dans ce fichier JSON. Le pin passera au vert automatiquement au prochain chargement de la page.';
+    }
+
+    function formatAnnotation(a, i) {
+      let line = '(' + (i+1) + ') [x:' + a.x + ' y:' + a.y + '] ' + (a.text || '(vide)');
+      if (a.domContext && a.domContext.text) {
+        line += '\\n    Element: <' + a.domContext.tag + '> "' + a.domContext.text.slice(0, 120) + '"';
+      }
+      if (a.response) {
+        line += '\\n    Reponse: ' + a.response;
+      }
+      return line;
+    }
+
+    function flashButton(btnId) {
+      const btn = document.getElementById(btnId);
+      const old = btn.textContent;
+      btn.textContent = 'Copie !';
+      btn.style.background = '#4ade80';
+      btn.style.color = '#0a1410';
+      setTimeout(() => { btn.textContent = old; btn.style.background = ''; btn.style.color = ''; }, 1500);
+    }
+
+    function copyPendingAnnotations() {
+      const pending = annotations.filter(a => !a.response || !a.response.trim());
+      if (pending.length === 0) return;
+      const lines = pending.map((a) => formatAnnotation(a, annotations.indexOf(a)));
+      const page = location.pathname;
+      const text = buildPromptHeader() + '\\n\\n=== Annotations ' + page + ' (sans reponse) ===\\n\\n' + lines.join('\\n\\n');
+      navigator.clipboard.writeText(text).then(() => flashButton('btn-copy-pending')).catch(() => {});
     }
 
     function clearAllAnnotations() {
