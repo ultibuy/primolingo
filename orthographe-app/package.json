@@ -1,7 +1,7 @@
 {
   "name": "orthographe-app",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.001",
   "type": "module",
   "scripts": {
     "backend": "node server/local-api.mjs",
@@ -25,7 +25,7 @@
     "test:e2e": "node tests/runners/run-e2e.js",
     "test:all": "node tests/runners/run-unit.js && node tests/runners/run-e2e.js",
     "test:predeploy": "node tests/runners/run-predeploy.js",
-    "deploy": "node tests/runners/run-predeploy.js && firebase deploy --only hosting",
+    "deploy": "node scripts/bump-version.js && node tests/runners/run-predeploy.js && firebase deploy --only hosting",
     "deploy:raw": "firebase deploy --only hosting"
   },
   "dependencies": {
@@ -49,6 +49,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
+    "marked": "^18.0.3",
     "playwright": "^1.59.1",
     "vite": "^8.0.4",
     "vite-plugin-pwa": "^1.2.0"

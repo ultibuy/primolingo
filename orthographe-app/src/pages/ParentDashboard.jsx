@@ -1,10 +1,15 @@
 import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as Sentry from '@sentry/react';
+import { version as APP_VERSION } from '../../package.json';
 import { GoogleAuthProvider, reauthenticateWithPopup } from 'firebase/auth';
 import { useAuth } from '../contexts/AuthContext.jsx';
-import { auth } from '../firebase.js';
+import { auth } from '../services/firebase-auth.js';
+import { captureException } from '../services/sentry.js';
+import posthog from '../services/analytics.js';
 import CoinIcon from '../components/CoinIcon.jsx';
+import FlameIcon from '../components/FlameIcon.jsx';
+import CrownIcon from '../components/CrownIcon.jsx';
+import AppLogo from '../components/AppLogo.jsx';
 import PinInput from '../components/PinInput.jsx';
 import PopupModal from '../components/PopupModal.jsx';
 import { allRules } from '../content/loader.js';
@@ -290,7 +295,7 @@ function FlaggedQuestionsPanel({ uid, childId, flaggedQuestions }) {
       await saveProgress(next, uid, childId);
       setCleared(true);
     } catch (e) {
-      Sentry.captureException(e);
+      captureException(e);
     }
     setClearing(false);
   }
@@ -348,25 +353,25 @@ function ChildCard({ child, uid, parentImages }) {
           <div style={childNameStyle}>{child.name}</div>
           {lastActive && <div style={lastActiveStyle}>Dernière activité : {lastActive}</div>}
         </div>
-        <button type="button" onClick={() => navigate(`/parent/child/${child.id}/edit`)} style={iconBtnStyle} title="Modifier le profil">✏️</button>
+        <button type="button" onClick={() => navigate(`/parent/child/${child.id}/edit`)} style={iconBtnStyle} title="Modifier le profil"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15.23 3.77a3 3 0 014.24 4.24L7.68 19.8l-5.2 1.3 1.3-5.2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></button>
         <button
           type="button"
           onClick={() => setSettingsOpen(o => !o)}
           style={{ ...iconBtnStyle, color: settingsOpen ? '#a78bfa' : 'rgba(255,255,255,0.5)' }}
           title="Paramètres"
         >
-          ⚙️
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15a3 3 0 100-6 3 3 0 000 6z" stroke="currentColor" strokeWidth="2"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9c.2.56.77.93 1.37 1H21a2 2 0 010 4h-.09c-.6.07-1.17.44-1.37 1z" stroke="currentColor" strokeWidth="1.5"/></svg>
         </button>
       </div>
 
       {/* Stats */}
       <div style={statsRowStyle}>
         <div style={statItemStyle}>
-          <span style={statValueStyle}>🔥 {streak}</span>
+          <span style={statValueStyle}><FlameIcon size={16} intensity={1} /> {streak}</span>
           <span style={statLabelStyle}>Série</span>
         </div>
         <div style={statItemStyle}>
-          <span style={statValueStyle}>👑 {rulesDone}/{TOTAL_GRAMMAR_RULES}</span>
+          <span style={statValueStyle}><CrownIcon size={16} animate={false} /> {rulesDone}/{TOTAL_GRAMMAR_RULES}</span>
           <span style={statLabelStyle}>Règles</span>
         </div>
         <div style={statItemStyle}>
@@ -397,7 +402,7 @@ function ChildCard({ child, uid, parentImages }) {
       </Suspense>
 
       {/* Play button */}
-      <button type="button" onClick={() => navigate(`/play/${child.id}`)} style={playBtnStyle}>
+      <button type="button" onClick={() => { posthog.capture('child_play_launched', { child_id: child.id }); navigate(`/play/${child.id}`); }} style={playBtnStyle}>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: 6, verticalAlign: '-2px' }}><path d="M6 4l15 8-15 8V4z"/></svg>
         Jouer
       </button>
@@ -482,13 +487,14 @@ export default function ParentDashboard() {
       setPinError('');
     } catch (err) {
       if (err.code !== 'auth/popup-closed-by-user') {
-        Sentry.captureException(err);
+        captureException(err);
         setReauthError('Reconnexion échouée. Réessayez.');
       }
     }
   }, [user?.uid]);
 
   async function handleSignOut() {
+    posthog.capture('parent_signed_out');
     await signOut();
     navigate('/');
   }
@@ -588,7 +594,7 @@ export default function ParentDashboard() {
       <div style={headerStyle}>
         <div>
           <div style={logoRowStyle}>
-            <div style={logoIconStyle}>PL</div>
+            <AppLogo size={44} />
             <span style={logoTitleStyle}>PrimoLingo</span>
           </div>
           <p style={welcomeStyle}>Bonjour, {user?.displayName?.split(' ')[0] || 'parent'} 👋</p>
@@ -647,6 +653,9 @@ export default function ParentDashboard() {
             ))}
           </div>
         )}
+        <div style={{ textAlign: 'center', marginTop: '2rem', fontSize: '0.65rem', color: 'rgba(255,255,255,0.15)' }}>
+          v{APP_VERSION}
+        </div>
       </div>
     </div>
   );
@@ -757,9 +766,13 @@ function ImageLibraryWithRefresh({ uid, onSaved }) {
 
 const containerStyle = {
   minHeight: '100vh',
-  background: 'linear-gradient(135deg, #1e1e2e 0%, #2d2b55 100%)',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
-  color: '#fff',
+  backgroundColor: 'var(--color-bg1)',
+  backgroundImage: 'var(--app-star-field)',
+  backgroundSize: '620px 620px, 680px 680px, 560px 560px, 720px 720px, 640px 640px, 760px 760px, 600px 600px, cover',
+  backgroundPosition: 'center center',
+  backgroundAttachment: 'fixed',
+  fontFamily: 'var(--font-body)',
+  color: 'var(--text-white)',
 };
 
 const headerStyle = {
@@ -770,64 +783,61 @@ const headerStyle = {
 };
 
 const logoRowStyle = { display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.25rem' };
-const logoIconStyle = {
-  width: 36, height: 36, borderRadius: 10,
-  background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
-  display: 'flex', alignItems: 'center', justifyContent: 'center',
-  fontSize: 14, fontWeight: 900, color: '#fff', fontFamily: 'Outfit, sans-serif',
-};
-const logoTitleStyle = { fontSize: '1.2rem', fontWeight: 900, color: '#fff', fontFamily: 'Outfit, sans-serif' };
-const welcomeStyle = { margin: 0, fontSize: '0.85rem', color: '#94a3b8' };
+const logoTitleStyle = { fontSize: '1.2rem', fontWeight: 900, color: 'var(--text-white)', fontFamily: 'var(--font-display)' };
+const welcomeStyle = { margin: 0, fontSize: '0.85rem', color: 'var(--text-muted)' };
 const logoutBtnStyle = {
-  padding: '0.5rem 1rem', borderRadius: 10,
-  border: '1px solid rgba(255,255,255,0.12)',
-  background: 'rgba(255,255,255,0.05)', color: '#94a3b8',
-  fontSize: '0.85rem', cursor: 'pointer', fontFamily: 'Plus Jakarta Sans, sans-serif',
+  padding: '8px 16px', borderRadius: 'var(--radius-pill)',
+  border: '1px solid var(--glass-border)',
+  background: 'var(--glass-bg)', color: 'var(--text-light)',
+  fontSize: 13, cursor: 'pointer', fontFamily: 'var(--font-body)',
 };
 
 const contentStyle = { maxWidth: 900, margin: '0 auto', padding: '2rem 1.5rem' };
 
 const libToggleStyle = {
   width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-  padding: '0.9rem 1.1rem', borderRadius: 14,
+  padding: '12px 24px', borderRadius: 'var(--radius-md)',
   border: '1px solid rgba(167,139,250,0.2)',
   background: 'rgba(167,139,250,0.06)',
   color: '#c4b5fd', fontSize: '0.95rem', fontWeight: 700,
-  cursor: 'pointer', fontFamily: 'Plus Jakarta Sans, sans-serif',
+  cursor: 'pointer', fontFamily: 'var(--font-body)',
   marginBottom: 0,
 };
 
 const libShellStyle = {
-  background: 'rgba(255,255,255,0.04)',
-  border: '1px solid rgba(255,255,255,0.06)',
+  background: 'var(--glass-bg)',
+  border: '1px solid var(--glass-border)',
   borderTop: 'none',
-  borderRadius: '0 0 14px 14px',
+  borderRadius: '0 0 var(--radius-md) var(--radius-md)',
   padding: '1.25rem',
   display: 'grid', gap: '0.9rem',
+  backdropFilter: 'blur(var(--blur-md))',
+  WebkitBackdropFilter: 'blur(var(--blur-md))',
 };
 
 const sectionHeaderStyle = {
   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
   marginBottom: '1.5rem', flexWrap: 'wrap', gap: '0.75rem',
 };
-const sectionTitleStyle = { margin: 0, fontSize: '1.4rem', fontWeight: 800, fontFamily: 'Outfit, sans-serif' };
+const sectionTitleStyle = { margin: 0, fontSize: '1.4rem', fontWeight: 800, fontFamily: 'var(--font-display)' };
 const addBtnStyle = {
-  padding: '0.6rem 1.2rem', borderRadius: 12, border: 'none',
-  background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
-  color: '#fff', fontSize: '0.9rem', fontWeight: 700,
-  cursor: 'pointer', fontFamily: 'Plus Jakarta Sans, sans-serif',
+  padding: '12px 24px', borderRadius: 'var(--radius-pill)', border: 'none',
+  background: 'var(--gradient-brand)',
+  color: 'var(--text-white)', fontSize: 14, fontWeight: 700,
+  cursor: 'pointer', fontFamily: 'var(--font-body)', boxShadow: 'var(--shadow-glow)',
 };
 
-const loadingStyle = { textAlign: 'center', color: '#a78bfa', padding: '3rem 0' };
+const loadingStyle = { textAlign: 'center', color: 'var(--color-primary)', padding: '3rem 0' };
 const emptyStyle = {
   textAlign: 'center', padding: '3rem 1rem',
   display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem',
 };
 const createFirstBtnStyle = {
-  padding: '0.8rem 1.5rem', borderRadius: 14, border: 'none',
-  background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
-  color: '#fff', fontSize: '0.95rem', fontWeight: 800,
-  cursor: 'pointer', fontFamily: 'Plus Jakarta Sans, sans-serif', marginTop: '0.5rem',
+  padding: '12px 24px', borderRadius: 'var(--radius-pill)', border: 'none',
+  background: 'var(--gradient-brand)',
+  color: 'var(--text-white)', fontSize: 14, fontWeight: 700,
+  cursor: 'pointer', fontFamily: 'var(--font-body)', marginTop: '0.5rem',
+  boxShadow: 'var(--shadow-glow)',
 };
 const childrenGridStyle = {
   display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '1rem',
@@ -835,47 +845,48 @@ const childrenGridStyle = {
 
 // Card
 const cardStyle = {
-  background: 'rgba(255,255,255,0.06)',
-  backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-  border: '1px solid rgba(167,139,250,0.15)',
-  borderRadius: 20, padding: '1.25rem',
+  background: 'var(--glass-bg)',
+  backdropFilter: 'blur(var(--blur-md))', WebkitBackdropFilter: 'blur(var(--blur-md))',
+  border: '1px solid var(--glass-border)',
+  borderRadius: 'var(--radius-md)', padding: '1.25rem',
   display: 'flex', flexDirection: 'column', gap: '1rem',
+  boxShadow: 'var(--shadow-md)',
 };
 const cardTopStyle = { display: 'flex', alignItems: 'center', gap: '0.75rem' };
 const avatarStyle = { fontSize: 36, lineHeight: 1 };
-const childNameStyle = { fontSize: '1.1rem', fontWeight: 800, color: '#fff', fontFamily: 'Outfit, sans-serif' };
-const lastActiveStyle = { fontSize: '0.75rem', color: '#64748b', marginTop: 2 };
+const childNameStyle = { fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-white)', fontFamily: 'var(--font-display)' };
+const lastActiveStyle = { fontSize: '0.75rem', color: 'var(--text-subtle)', marginTop: 2 };
 const iconBtnStyle = {
   background: 'none', border: 'none', cursor: 'pointer', fontSize: 16, padding: 4,
 };
 const statsRowStyle = {
   display: 'flex', justifyContent: 'space-around',
-  background: 'rgba(255,255,255,0.04)', borderRadius: 12, padding: '0.75rem',
+  background: 'var(--glass-bg)', borderRadius: 'var(--radius-sm)', padding: '0.75rem',
 };
 const statItemStyle = { display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 };
-const statValueStyle = { fontSize: '0.95rem', fontWeight: 700, color: '#fff' };
-const statLabelStyle = { fontSize: '0.7rem', color: '#64748b' };
+const statValueStyle = { fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-white)' };
+const statLabelStyle = { fontSize: '0.7rem', color: 'var(--text-subtle)' };
 const settingsPanelStyle = {
   background: 'rgba(167,139,250,0.05)',
   border: '1px solid rgba(167,139,250,0.15)',
-  borderRadius: 12, padding: '0.9rem',
+  borderRadius: 'var(--radius-sm)', padding: '0.9rem',
 };
 const chartsLoadingStyle = {
   marginTop: 12,
   padding: '1rem',
-  borderRadius: 12,
-  background: 'rgba(255,255,255,0.04)',
-  border: '1px solid rgba(255,255,255,0.08)',
-  color: '#94a3b8',
+  borderRadius: 'var(--radius-sm)',
+  background: 'var(--glass-bg)',
+  border: '1px solid var(--glass-border)',
+  color: 'var(--text-muted)',
   fontSize: '0.82rem',
   textAlign: 'center',
 };
 const playBtnStyle = {
-  width: '100%', padding: '0.75rem', borderRadius: 14, border: 'none',
-  background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
-  color: '#fff', fontSize: '1rem', fontWeight: 800,
-  cursor: 'pointer', fontFamily: 'Plus Jakarta Sans, sans-serif',
-  boxShadow: '0 6px 20px rgba(124,58,237,0.3)',
+  width: '100%', padding: '12px 24px', borderRadius: 'var(--radius-pill)', border: 'none',
+  background: 'var(--gradient-brand)',
+  color: 'var(--text-white)', fontSize: 14, fontWeight: 700,
+  cursor: 'pointer', fontFamily: 'var(--font-body)',
+  boxShadow: 'var(--shadow-glow)',
 };
 
 // Settings
@@ -883,48 +894,48 @@ const settingRowStyle = {
   display: 'flex', alignItems: 'center', justifyContent: 'space-between',
   gap: '0.8rem', flexWrap: 'wrap',
 };
-const settingLabelStyle = { fontSize: '0.85rem', fontWeight: 700, color: '#c4b5fd', marginBottom: '0.2rem' };
+const settingLabelStyle = { fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-accent)', marginBottom: '0.2rem' };
 
 // Shared form styles
 const stepBoxStyle = {
-  background: 'rgba(0,0,0,0.18)', border: '1px solid rgba(255,255,255,0.05)',
-  borderRadius: 14, padding: '0.85rem', display: 'grid', gap: '0.65rem',
+  background: 'var(--glass-bg)', border: '1px solid var(--glass-border)',
+  borderRadius: 'var(--radius-sm)', padding: '0.85rem', display: 'grid', gap: '0.65rem',
 };
-const stepLabelStyle = { fontSize: '0.8rem', fontWeight: 800, color: '#fff' };
+const stepLabelStyle = { fontSize: '0.8rem', fontWeight: 800, color: 'var(--text-white)' };
 const uploadBtnStyle = {
   display: 'inline-flex', alignItems: 'center', width: 'fit-content',
-  borderRadius: 10, padding: '0.65rem 1rem',
+  borderRadius: 'var(--radius-pill)', padding: '8px 16px',
   background: 'rgba(167,139,250,0.12)', border: '1px solid rgba(167,139,250,0.2)',
-  color: '#a78bfa', fontSize: '0.84rem', fontWeight: 800, cursor: 'pointer',
+  color: 'var(--color-primary)', fontSize: 13, fontWeight: 700, cursor: 'pointer',
 };
 const inputStyle = {
-  width: '100%', borderRadius: 10,
-  border: '1px solid rgba(167,139,250,0.24)',
-  background: 'rgba(0,0,0,0.24)', color: '#fff',
+  width: '100%', borderRadius: 'var(--radius-sm)',
+  border: '1px solid var(--glass-border)',
+  background: 'var(--glass-bg)', color: 'var(--text-white)',
   padding: '0.7rem 0.9rem', fontSize: '0.95rem', fontWeight: 700,
-  outline: 'none', boxSizing: 'border-box', fontFamily: 'Plus Jakarta Sans, sans-serif',
+  outline: 'none', boxSizing: 'border-box', fontFamily: 'var(--font-body)',
 };
 const primaryBtnStyle = (disabled) => ({
-  border: 'none', borderRadius: 12, padding: '0.7rem 1.1rem',
-  background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
-  color: '#fff', fontSize: '0.88rem', fontWeight: 800,
+  border: 'none', borderRadius: 'var(--radius-pill)', padding: '8px 16px',
+  background: 'var(--gradient-brand)',
+  color: 'var(--text-white)', fontSize: 13, fontWeight: 700,
   cursor: disabled ? 'default' : 'pointer', opacity: disabled ? 0.55 : 1,
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  fontFamily: 'var(--font-body)', boxShadow: disabled ? 'none' : 'var(--shadow-glow)',
 });
 const secBtnStyle = {
-  border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, padding: '0.7rem 1.1rem',
-  background: 'rgba(255,255,255,0.04)', color: '#cbd5e1',
+  border: '1px solid var(--glass-border)', borderRadius: 'var(--radius-pill)', padding: '8px 16px',
+  background: 'var(--glass-bg)', color: 'var(--text-light)',
   fontSize: '0.88rem', fontWeight: 700, cursor: 'pointer',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  fontFamily: 'var(--font-body)',
 };
 const dangerBtnStyle = {
-  border: '1px solid rgba(248,113,113,0.2)', borderRadius: 10, padding: '0.55rem 0.8rem',
-  background: 'rgba(248,113,113,0.08)', color: '#fca5a5',
+  border: '1px solid rgba(248,113,113,0.2)', borderRadius: 'var(--radius-pill)', padding: '8px 16px',
+  background: 'rgba(248,113,113,0.08)', color: 'var(--color-red)',
   fontSize: '0.78rem', fontWeight: 800, cursor: 'pointer',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  fontFamily: 'var(--font-body)',
 };
 const imgCardStyle = {
   display: 'flex', gap: '0.8rem', alignItems: 'center',
-  background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)',
-  borderRadius: 12, padding: '0.6rem',
+  background: 'var(--glass-bg)', border: '1px solid var(--glass-border)',
+  borderRadius: 'var(--radius-sm)', padding: '0.6rem',
 };

@@ -1,14 +1,23 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { version as APP_VERSION } from '../../package.json';
 import MotivationBanner from './MotivationBanner.jsx';
 import { pickCoachingMessage, markCoachingShown, createDefaultCoaching } from '../engine/coaching.js';
 import RuleCard from './RuleCard.jsx';
 import CoinIcon from './CoinIcon.jsx';
+import FlameIcon from './FlameIcon.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
 import CrownIcon from './CrownIcon.jsx';
 import DiamondIcon from './DiamondIcon.jsx';
 import DiamondStatus from './DiamondStatus.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
+import {
+  TrophyIcon, UnlockIcon, CheckIcon, WarningIcon,
+  ExplosionIcon, StrengthIcon, TargetIcon,
+  ChartMedalIcon, ChartTrophyIcon,
+} from './icons/ProductIcons.jsx';
+import RewardAmount from './rewards/RewardAmount.jsx';
+import DebugTestPanel from './DebugTestPanel.jsx';
 import PopupModal from './PopupModal.jsx';
 import LevelHelpPopup from './LevelHelpPopup.jsx';
 import RuleEditor from './RuleEditor.jsx';
@@ -17,11 +26,11 @@ import CosmeticFlameIcon from './CosmeticFlameIcon.jsx';
 import { getStreakInfo } from '../engine/scoring.js';
 import { getToday } from '../engine/sm2.js';
 import { getDoubleCoinsBonusEarned, getDoubleCoinsRemainingSessions, getEquipped, SHOP_CATALOG } from '../engine/economy.js';
-import { exportProgress } from '../store/persistence.js';
 import { computeMaxDailyRecord } from '../engine/stats.js';
 import CharacterSprite from './CharacterSprite.jsx';
 import { resolveCharacterMood, resolveShopCharacter, getCharacterForRule, SHOP_CHARACTERS, SHOP_EMOTIONS, BASE_EMOTIONS } from '../data/shopCharacters.js';
 import { allDictees, getDicteeWordsForLevel } from '../content/dicteesLoader.js';
+import { computeDefaultTab } from '../engine/defaultTab.js';
 import DicteeCard from './DicteeCard.jsx';
 import ActionButton from './ui/ActionButton.jsx';
 import PageShell from './ui/PageShell.jsx';
@@ -46,32 +55,32 @@ const MILESTONE_MESSAGES = {
 // FIX 1 — Complete event type to message/icon mapping
 // ---------------------------------------------------------------------------
 const EVENT_CONFIG = {
-  firstQuiz:        { msg: "Premi\u00e8re session termin\u00e9e, ta flamme passe \u00e0 1 !\nReviens demain pour le faire grimper.", icon: '🔥' },
-  levelUp:          { msg: 'Niveau suivant atteint !', icon: '⭐' },
-  level_up_1:       { msg: 'Niveau Découverte atteint !', icon: '⭐' },
-  level_up_2:       { msg: 'Mode direct déverrouillé ! 🔓', icon: '🔓' },
-  direct_unlocked:  { msg: 'Mode direct déverrouillé ! 🔓', icon: '🔓', dedupOf: 'level_up_2' },
-  level_up_3:       { msg: 'Règle maîtrisée. Cette couronne, tu l\'as gagnée.', icon: '👑' },
-  crown_earned:     { msg: 'Règle maîtrisée. Cette couronne, tu l\'as gagnée.', icon: '👑', dedupOf: 'level_up_3' },
-  crown:            { msg: 'Règle maîtrisée. Cette couronne, tu l\'as gagnée.', icon: '👑' },
-  level_up_4:       { msg: 'Parfait, trois fois de suite. C\'est gravé.', icon: '💎' },
-  diamond_earned:   { msg: 'Parfait, trois fois de suite. C\'est gravé.', icon: '💎', dedupOf: 'level_up_4' },
-  diamond:          { msg: 'Parfait, trois fois de suite. C\'est gravé.', icon: '💎' },
-  sm2_activated:    { msg: 'Le diamant est vivant. Maintiens-le.', icon: '💎✨', dedupOf: 'level_up_4' },
-  directUnlocked:   { msg: 'Mode direct déverrouillé !', icon: '🔓', dedupOf: 'level_up_2' },
-  shieldUsed:       { icon: '🛡️' },
-  streakLost:       { msg: 'Raté hier. Ça arrive. Reprends aujourd\'hui.', icon: '💪' },
-  streakMilestone:  { icon: '🔥' },
-  sm2ReviewPassed:  { msg: 'Révision réussie ! Le diamant brille.', icon: '💎' },
-  sm2ReviewFragile: { msg: 'Presque ! Le diamant exige 90 %.', icon: '⚠️' },
-  sm2ReviewFailed:  { msg: 'Le diamant se fissure… Révise vite.', icon: '💥' },
-  diamondBroken:    { msg: 'Le diamant s\'est brisé.', icon: '💥' },
+  firstQuiz:        { msg: "Premi\u00e8re session termin\u00e9e, ta flamme passe \u00e0 1 !\nReviens demain pour le faire grimper.", iconType: 'flame' },
+  levelUp:          { msg: 'Niveau suivant atteint !', iconType: 'trophy' },
+  level_up_1:       { msg: 'Niveau Découverte atteint !', iconType: 'trophy', dedupOf: 'levelUp' },
+  level_up_2:       { msg: 'Mode direct déverrouillé !', iconType: 'unlock', dedupOf: 'levelUp' },
+  direct_unlocked:  { msg: 'Mode direct déverrouillé !', iconType: 'unlock', dedupOf: 'levelUp' },
+  level_up_3:       { msg: 'Règle maîtrisée. Cette couronne, tu l\'as gagnée.', iconType: 'crown', dedupOf: 'levelUp' },
+  crown_earned:     { msg: 'Règle maîtrisée. Cette couronne, tu l\'as gagnée.', iconType: 'crown', dedupOf: 'levelUp' },
+  crown:            { msg: 'Règle maîtrisée. Cette couronne, tu l\'as gagnée.', iconType: 'crown', dedupOf: 'levelUp' },
+  level_up_4:       { msg: 'Parfait, trois fois de suite. C\'est gravé.', iconType: 'diamond', dedupOf: 'levelUp' },
+  diamond_earned:   { msg: 'Parfait, trois fois de suite. C\'est gravé.', iconType: 'diamond', dedupOf: 'levelUp' },
+  diamond:          { msg: 'Parfait, trois fois de suite. C\'est gravé.', iconType: 'diamond', dedupOf: 'levelUp' },
+  sm2_activated:    { msg: 'Le diamant est vivant. Maintiens-le.', iconType: 'diamond', dedupOf: 'levelUp' },
+  directUnlocked:   { msg: 'Mode direct déverrouillé !', iconType: 'unlock', dedupOf: 'levelUp' },
+  shieldUsed:       { iconType: 'shield' },
+  streakLost:       { msg: 'Raté hier. Ça arrive. Reprends aujourd\'hui.', iconType: 'strength' },
+  streakMilestone:  { iconType: 'flame' },
+  sm2ReviewPassed:  { msg: 'Révision réussie ! Le diamant brille.', iconType: 'diamond' },
+  sm2ReviewFragile: { msg: 'Presque ! Le diamant exige 90 %.', iconType: 'warning' },
+  sm2ReviewFailed:  { msg: 'Le diamant se fissure… Révise vite.', iconType: 'explosion' },
+  diamondBroken:    { msg: 'Le diamant s\'est brisé.', iconType: 'explosion' },
   perfectSessionBonus: null, // silent — mood + entrance anim handled separately
   coinsEarned:      null, // skip — silent event
   firstSessionOfDay: null, // skip
   doubleCoins:      null, // skip
   levelMilestoneCoins: null, // skip
-  milestone:        { icon: '🎯' }, // dynamic — handled in buildOverlayData
+  milestone:        { iconType: 'flame' }, // dynamic — handled in buildOverlayData
 };
 
 const MOOD_DESCRIPTIONS = {
@@ -196,6 +205,11 @@ function deduplicateEvents(events) {
     seen.add(canonicalType);
     // Also mark the current type so its dedupOf targets skip
     seen.add(evt.type);
+    // For levelUp events, also mark the specific level_up_N as seen
+    // so that a separate crown_earned/diamond_earned event is deduped
+    if (evt.type === 'levelUp' && evt.value) {
+      seen.add(`level_up_${evt.value}`);
+    }
     result.push(evt);
   }
   return result;
@@ -206,23 +220,24 @@ function buildOverlayData(evt) {
   if (!cfg) return null;
 
   let msg = cfg.msg || '';
-  let icon = cfg.icon || '';
+  let iconType = cfg.iconType || 'trophy';
   let sub = '';
+  let coinAmount = null;
 
   // Special handling for events with dynamic messages
   if (evt.type === 'milestone') {
     if (typeof evt.streak === 'number') {
       msg = MILESTONE_MESSAGES[evt.streak] || `Flamme de ${evt.streak} jours !`;
-      icon = '🔥';
+      iconType = 'flame';
     } else {
       msg = MILESTONE_MESSAGES[evt.value] || `Flamme de ${evt.value} jours !`;
-      icon = '🔥';
+      iconType = 'flame';
     }
   } else if (evt.type === 'streakMilestone') {
     msg = MILESTONE_MESSAGES[evt.value] || `Flamme de ${evt.value} jours !`;
-    icon = '🔥';
+    iconType = 'flame';
   } else if (evt.type === 'shieldUsed') {
-    msg = 'Bouclier 🛡️ consommé, ta flamme tient. Pense à en racheter un avant la prochaine fois.';
+    msg = 'Bouclier consommé, ta flamme tient. Pense à en racheter un avant la prochaine fois.';
     sub = evt.value ? `Ta flamme de ${evt.value} jours est protégée.` : '';
   } else if (evt.type === 'directUnlocked') {
     sub = `« ${evt.value} » — plus d'aide, juste toi.`;
@@ -248,30 +263,30 @@ function buildOverlayData(evt) {
   } else if (evt.type === 'levelUp' && evt.value) {
     const lvl = evt.value;
     const ruleName = evt.ruleTitle || '';
-    const n = (typeof window !== 'undefined' && window.__ORTHO_SESSION_SIZE__) || 20;
+    const n = evt.total || (typeof window !== 'undefined' && window.__ORTHO_SESSION_SIZE__) || 20;
     const s80 = `${Math.ceil(n * 0.8)}/${n}`;
     const s90 = `${Math.ceil(n * 0.9)}/${n}`;
 
-    const coinStr = evt.coins > 0 ? ` · +${evt.coins}` : '';
+    coinAmount = evt.coins > 0 ? `+${evt.coins}` : null;
     if (lvl === 1) {
       msg = `Bronze sur ${ruleName}`;
-      sub = `Prochain niveau : Argent. Fais 3 sessions guid\u00e9es avec ${s80} ou mieux.${coinStr}`;
-      icon = '\u2B50';
+      sub = `Prochain niveau : Argent. Fais 3 sessions guid\u00e9es avec ${s80} ou mieux.`;
+      iconType = 'trophy';
     } else if (lvl === 2) {
       msg = `Argent sur ${ruleName}`;
-      sub = `Mode direct d\u00e9bloqu\u00e9 ! Prochain : Couronne. Fais 3 sessions directes avec ${s80} ou mieux.${coinStr}`;
-      icon = '\u2B50\u2B50';
+      sub = `Mode direct d\u00e9bloqu\u00e9 ! Prochain : Couronne. Fais 3 sessions directes avec ${s80} ou mieux.`;
+      iconType = 'trophy';
     } else if (lvl === 3) {
       msg = `Couronne sur ${ruleName}`;
-      sub = `Prochain : Diamant. Fais 3 sessions directes cons\u00e9cutives avec ${s90} ou mieux.${coinStr}`;
-      icon = '\uD83D\uDC51';
+      sub = `Prochain : Diamant. Fais 3 sessions directes cons\u00e9cutives avec ${s90} ou mieux.`;
+      iconType = 'crown';
     } else if (lvl === 4) {
       msg = `Diamant sur ${ruleName}`;
-      sub = `Le diamant est vivant. Maintiens-le avec des r\u00e9visions r\u00e9guli\u00e8res.${coinStr}`;
-      icon = '\uD83D\uDC8E';
+      sub = `Le diamant est vivant. Maintiens-le avec des r\u00e9visions r\u00e9guli\u00e8res.`;
+      iconType = 'diamond';
     } else {
       const levelCfg = EVENT_CONFIG[`level_up_${lvl}`];
-      if (levelCfg) { msg = levelCfg.msg; icon = levelCfg.icon; }
+      if (levelCfg) { msg = levelCfg.msg; iconType = levelCfg.iconType; }
     }
     if (!sub && evt.ruleTitle) {
       sub = `« ${evt.ruleTitle} »`;
@@ -279,7 +294,28 @@ function buildOverlayData(evt) {
   }
 
   if (!msg) return null;
-  return { msg, icon, sub };
+  return { msg, iconType, sub, amount: coinAmount || null };
+}
+
+// ---------------------------------------------------------------------------
+// Overlay icon renderer — maps iconType to SVG components
+// ---------------------------------------------------------------------------
+function OverlayIcon({ type }) {
+  const s = 64;
+  switch (type) {
+    case 'flame':     return <FlameIcon size={s} intensity={2} />;
+    case 'crown':     return <CrownIcon size={s} animate={false} />;
+    case 'diamond':   return <DiamondIcon size={s} animate />;
+    case 'shield':    return <ShieldIcon size={s} />;
+    case 'trophy':    return <TrophyIcon size={s} color="var(--color-gold)" />;
+    case 'unlock':    return <UnlockIcon size={s} color="var(--color-green)" />;
+    case 'check':     return <CheckIcon size={s} />;
+    case 'warning':   return <WarningIcon size={s} />;
+    case 'explosion': return <ExplosionIcon size={s} />;
+    case 'strength':  return <StrengthIcon size={s} />;
+    case 'target':    return <TargetIcon size={s} />;
+    default:          return <TrophyIcon size={s} color="var(--color-gold)" />;
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -337,10 +373,7 @@ export default function Dashboard({
   const [mounted, setMounted] = useState(false);
   const [activeTab, setActiveTab] = useState(() => {
     if (initialTab) return initialTab;
-    const rp = progress?.rules || {};
-    const grammarNotStarted = rules.filter(r => (rp[r.id]?.level || 0) === 0).length;
-    const dicteeNotStarted = allDictees.filter(d => (rp[`${d.id}-level1`]?.level || 0) === 0).length;
-    return dicteeNotStarted > grammarNotStarted ? 'dictee' : 'grammaire';
+    return computeDefaultTab(rules, allDictees, progress?.rules);
   });
   const handleTabChange = (tab) => { setActiveTab(tab); onTabChange?.(tab); };
   const [showStreakHelp, setShowStreakHelp] = useState(false);
@@ -696,7 +729,7 @@ export default function Dashboard({
             animation: 'bounce-in 0.4s ease forwards',
           }} onClick={(e) => e.stopPropagation()}>
             <PopupCloseButton onClick={() => setStreakAlert(null)} />
-            <div style={{ fontSize: '4rem', marginBottom: '0.6rem' }}>🔥</div>
+            <div style={{ marginBottom: '0.6rem', display: 'flex', justifyContent: 'center' }}><FlameIcon size={56} intensity={2} /></div>
             <div style={{ fontSize: '1.3rem', fontWeight: 800, color: '#fbbf24', marginBottom: '0.5rem' }}>
               Palier {streakAlert.nextMilestone} jours en vue !
             </div>
@@ -741,17 +774,30 @@ export default function Dashboard({
             animation: overlayVisible ? 'bounce-in 0.5s ease forwards' : 'none',
           }} onClick={(e) => e.stopPropagation()}>
             <PopupCloseButton onClick={dismissOverlay} />
-            <div style={{ fontSize: '5.5rem', marginBottom: '1rem', animation: 'glow-gold 2s ease-in-out infinite' }}>
-              {overlay.icon}
+            <div style={{ marginBottom: '0.8rem', display: 'flex', justifyContent: 'center' }}>
+              <div style={{
+                width: 72, height: 72, borderRadius: 'var(--radius-md)',
+                background: 'var(--glass-bg)', border: '1px solid var(--glass-border)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                animation: 'glow-gold 2s ease-in-out infinite',
+              }}>
+                <OverlayIcon type={overlay.iconType} />
+              </div>
             </div>
-            <div style={{ fontSize: '1.5rem', color: '#fff', fontWeight: 700, maxWidth: 420, lineHeight: 1.5, textShadow: '0 2px 15px rgba(0,0,0,0.5)', marginBottom: overlay.sub ? '0.5rem' : 0, textAlign: 'center' }}>
-              {overlay.msg.split('\n').map((line, i) => (
-                <div key={i} style={i > 0 ? { fontSize: '0.9rem', color: '#9ca3af', fontWeight: 500, marginTop: '0.4rem' } : undefined}>
-                  {line}
-                </div>
-              ))}
-            </div>
-            {overlay.sub && <p style={{ fontSize: '0.9rem', color: '#9ca3af', fontWeight: 500 }}>{overlay.sub}</p>}
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', fontWeight: 800, color: '#fff', margin: '0 0 0.3rem', textAlign: 'center' }}>
+              {overlay.msg.split('\n')[0]}
+            </h3>
+            {overlay.msg.split('\n').slice(1).map((line, i) => (
+              <p key={i} style={{ fontSize: '0.88rem', color: 'var(--text-light)', fontWeight: 500, margin: '0.2rem 0', textAlign: 'center', lineHeight: 1.5 }}>
+                {line}
+              </p>
+            ))}
+            {overlay.amount && (
+              <div style={{ display: 'flex', justifyContent: 'center', margin: '0.5rem 0' }}>
+                <RewardAmount value={overlay.amount} unit="coins" size="md" glow />
+              </div>
+            )}
+            {overlay.sub && <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', fontFamily: 'var(--font-body)', fontWeight: 500, textAlign: 'center', margin: '0.3rem 0 0', lineHeight: 1.5 }}>{overlay.sub}</p>}
           </div>
         </div>
       )}
@@ -960,11 +1006,13 @@ export default function Dashboard({
               },
               {
                 key: '7j',
-                label: `🥇 7j\u00a0: ${record7j}`,
+                label: `7j\u00a0: ${record7j}`,
+                iconType: 'medal',
               },
               {
                 key: '30j',
-                label: `🏆 30j\u00a0: ${record30j}`,
+                label: `30j\u00a0: ${record30j}`,
+                iconType: 'trophy',
               },
             ].map((stat, idx, arr) => (
               <span key={stat.key} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
@@ -983,6 +1031,11 @@ export default function Dashboard({
                     textUnderlineOffset: '3px',
                   }}
                 >
+                  {stat.iconType && (
+                    <span style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: '0.2rem' }}>
+                      {stat.iconType === 'medal' ? <ChartMedalIcon size={20} /> : <ChartTrophyIcon size={20} />}
+                    </span>
+                  )}
                   {stat.label}
                 </button>
                 {idx < arr.length - 1 && (
@@ -1006,7 +1059,7 @@ export default function Dashboard({
             )}
             {statPopup === '7j' && (
               <>
-                <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#fff', marginTop: 0 }}>🥇 Record sur 7 jours</h2>
+                <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#fff', marginTop: 0, display: 'flex', alignItems: 'center', gap: '0.4rem' }}><ChartMedalIcon size={22} /> Record sur 7 jours</h2>
                 <p style={{ color: '#9ca3af', fontSize: '0.9rem', lineHeight: 1.6 }}>
                   Le meilleur jour des 7 derniers jours : le nombre maximum de quiz réalisés en une seule journée sur cette période.
                 </p>
@@ -1014,7 +1067,7 @@ export default function Dashboard({
             )}
             {statPopup === '30j' && (
               <>
-                <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#fff', marginTop: 0 }}>🏆 Record sur 30 jours</h2>
+                <h2 style={{ fontSize: '1.1rem', fontWeight: 800, color: '#fff', marginTop: 0, display: 'flex', alignItems: 'center', gap: '0.4rem' }}><ChartTrophyIcon size={22} /> Record sur 30 jours</h2>
                 <p style={{ color: '#9ca3af', fontSize: '0.9rem', lineHeight: 1.6 }}>
                   Le meilleur jour des 30 derniers jours : le nombre maximum de quiz réalisés en une seule journée sur cette période.
                 </p>
@@ -1266,7 +1319,18 @@ export default function Dashboard({
                               progress={dicteeProgress}
                               locked={!unlocked}
                               onPlay={(d, lvl) => onPlayDictee?.(d, lvl)}
-                              onLevelHelp={(lvlKey) => setLevelHelp({ level: lvlKey, ruleTitle: dictee.title, ruleProgress: dicteeProgress })}
+                              onLevelHelp={(lvlKey) => {
+                                const reconstructHelp = ['crown', 'diamond', 'diamond_status', 'badge_diamond'].includes(lvlKey);
+                                const helpSize = reconstructHelp
+                                  ? Math.min(10, words?.length || 10)
+                                  : Math.min(40, words?.length || 40);
+                                setLevelHelp({
+                                  level: lvlKey,
+                                  ruleTitle: dictee.title,
+                                  ruleProgress: dicteeProgress,
+                                  sessionSize: helpSize,
+                                });
+                              }}
                               wordCount={words?.length || 0}
                               isFirst={isFirst}
                               pandaMood={dashboardCharMood}
@@ -1304,6 +1368,9 @@ export default function Dashboard({
               Réinitialiser
             </ActionButton>
           )}
+          <div style={{ textAlign: 'center', marginTop: '1.5rem', fontSize: '0.65rem', color: 'rgba(255,255,255,0.15)' }}>
+            v{APP_VERSION}
+          </div>
         </div>
       </PageShell>
 
@@ -1730,148 +1797,8 @@ export default function Dashboard({
               )}
             </div>
           )}
-          {/* ── Tests fonctionnels ── */}
-          <div style={{ marginTop: '1rem', paddingTop: '0.9rem', borderTop: '1px dashed rgba(74,222,128,0.18)' }}>
-            <div style={{ fontSize: '0.65rem', color: '#4ade80', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.6rem' }}>
-              ✅ Tests fonctionnels — 11 suites · 111 tests
-            </div>
-            <div style={{ maxHeight: '55vh', overflowY: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.72rem', lineHeight: 1.6 }}>
-                <thead>
-                  <tr style={{ borderBottom: '1px solid rgba(74,222,128,0.25)', textAlign: 'left' }}>
-                    <th style={{ color: '#4ade80', padding: '5px 4px', width: '8%' }}>ID</th>
-                    <th style={{ color: '#4ade80', padding: '5px 8px', width: '40%' }}>Règle testée</th>
-                    <th style={{ color: '#4ade80', padding: '5px 8px', width: '52%' }}>Le test passe si…</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    [null, '🎯 COACHING — Messages de motivation', '', true],
-                    ['C01', 'Un nouvel utilisateur voit le message de bienvenue', 'Le message "premier quiz" s\'affiche quand le joueur n\'a fait aucune session'],
-                    ['C02', 'Un message déjà vu ne réapparaît pas', 'Après affichage, le même message ne revient plus (marqué comme vu)'],
-                    ['C03', 'La flamme en danger alerte après 16h', 'Le soir (à partir de 16h), si le joueur n\'a pas joué et a un streak actif, l\'alerte flamme apparaît'],
-                    ['C04', 'Pas d\'alerte flamme avant 16h', 'Avant 16h, l\'alerte flamme n\'apparaît pas même si le joueur n\'a pas joué'],
-                    ['C05', 'Les messages uniques sont marqués définitivement', 'Après affichage d\'un message unique, il est enregistré avec la date du jour et ne reviendra jamais'],
-                    ['C06', 'Les messages récurrents peuvent revenir', 'Un message récurrent est noté dans l\'historique mais n\'est pas bloqué définitivement'],
-                    ['C07', 'Le compteur de messages repart à zéro chaque jour', 'Le lendemain, le compteur repasse à 1 au lieu de cumuler avec la veille'],
-                    ['C08', 'L\'écran de fin ne montre que certains messages', 'Seuls les messages de progression (argent, couronne, diamant, flamme) apparaissent après un quiz'],
-                    ['C09', 'Le message de bienvenue est réservé au dashboard', 'Le message d\'onboarding n\'apparaît jamais sur l\'écran de fin de quiz'],
-                    ['C10', 'Le message le plus prioritaire gagne', 'Quand deux messages sont éligibles en même temps, celui de plus haute priorité est choisi'],
-                    ['C11', 'Assez de pièces sans personnage → suggestion d\'achat', 'Le joueur avec 250+ pièces et 0 personnage reçoit un message l\'invitant à en acheter un'],
-                    ['C12', 'Longue série sans bouclier → alerte urgente', 'Le joueur avec un streak de 7+ jours et 0 bouclier voit un message mentionnant son nombre de jours'],
-                    ['C13', 'Perte du streak → message de réconfort', 'Le joueur dont la série est tombée à 0 voit un encouragement pour repartir'],
-                    ['C14', 'Le total de sessions est bien calculé', 'La somme des sessions guidées et directes de toutes les règles donne le bon total'],
-                    ['C15', 'Seuls les personnages sont comptés', 'Les émotions et les thèmes achetés ne sont pas comptés comme des personnages'],
-                    ['C16', 'Les émotions sont filtrées par personnage', 'Les émotions achetées pour le dragon ne comptent pas dans celles du panda'],
-
-                    [null, '🎮 BOUTIQUE & QUIZ — Achat et jeu', '', true],
-                    ['S01', 'L\'achat déduit les pièces', 'Le solde diminue du prix exact après confirmation d\'achat du personnage'],
-                    ['S02', 'Un personnage acheté est marqué "Possédé"', 'La carte affiche "✓ Possédé" à la place du prix après achat'],
-                    ['S03', 'On peut équiper une émotion', 'Après achat de l\'émotion "Dodo", elle est sélectionnable et le personnage l\'adopte'],
-                    ['S04', 'Le personnage est visible pendant le quiz', 'Le sprite animé apparaît au-dessus de la barre de progression pendant les questions'],
-                    ['S05', 'Le feedback de réponse s\'affiche', '"Bravo !" ou "Raté !" apparaît clairement après chaque réponse'],
-                    ['S06', 'Le personnage reste visible après réponse', 'Le sprite ne disparaît pas quand le message de feedback s\'affiche'],
-                    ['S07', 'Le mode direct affiche le bonus du jour', 'Le bouton du mode direct indique "Bonus de 10" pour la première session du jour'],
-
-                    [null, '😊 ÉMOTIONS — Comportement du personnage', '', true],
-                    ['E01', 'Dashboard sans session → le personnage dort', 'Sur le dashboard, si aucun quiz n\'a été fait, le personnage est en mode dodo'],
-                    ['E02', 'Dashboard après quiz → le personnage marche', 'Sur le dashboard, après 2+ sessions, le personnage marche ou est assis'],
-                    ['E03', 'Première question → le personnage fait coucou', 'Au lancement d\'un quiz, le personnage salue le joueur avec un geste ou un bisou'],
-                    ['E04', 'Bonne réponse → le personnage applaudit', 'Après une réponse correcte, le personnage tape dans ses mains (pas la danse de victoire)'],
-                    ['E05', 'Tout premier quiz → le personnage dort', 'Si c\'est la toute première session du joueur, le personnage commence endormi dans le quiz'],
-                    ['E06', 'Score bas → personnage hésitant', 'Sur l\'écran de fin avec un mauvais score, le personnage montre de la surprise ou réfléchit'],
-
-                    [null, '🎵 DICTÉE — Flux audio', '', true],
-                    ['D01', 'L\'onglet Dictée est accessible', 'L\'onglet est visible et cliquable depuis le dashboard'],
-                    ['D02', '"Commencer" lance la dictée', 'Le quiz de dictée s\'ouvre quand on clique sur le bouton'],
-                    ['D03', '"Écouter" joue le mot', 'L\'animation de lecture démarre quand on appuie sur le bouton audio'],
-                    ['D04', 'La phrase de contexte s\'affiche', 'Le mot à écrire est présenté dans une phrase complète pour donner du sens'],
-                    ['D05', 'Fermer retourne au bon onglet', 'En fermant le quiz de dictée, on revient sur l\'onglet Dictée et pas sur Grammaire'],
-                    ['D06', 'Les fichiers audio se chargent', 'L\'app émet des requêtes réseau vers les bons fichiers audio'],
-
-                    [null, '📊 STATS — Calcul de progression', '', true],
-                    ['T01', 'Profil vierge → tout à zéro', 'Un nouveau profil a 0 session, 0 dictée et toutes les règles au niveau 0'],
-                    ['T02', 'Les sessions sont bien comptées', 'Le total affiché correspond à la somme réelle des sessions grammaire + dictée'],
-                    ['T03', 'Pas de doublon le même jour', 'Mettre à jour les stats deux fois le même jour ne crée qu\'une seule entrée'],
-                    ['T04', 'L\'historique est limité à 30 jours', 'Les entrées de plus de 30 jours sont automatiquement supprimées'],
-
-                    [null, '🔒 PIN PARENTAL — Sécurité', '', true],
-                    ['P01', '"Demander à Papa" visible si code actif', 'Le bouton n\'apparaît que quand un code parental a été configuré'],
-                    ['P02', 'Bon code → retour au jeu', 'La saisie du bon code sauvegarde le streak et ramène au dashboard'],
-                    ['P03', 'Mauvais code → erreur', 'Un message d\'erreur s\'affiche, avec verrouillage après plusieurs tentatives ratées'],
-                    ['P04', 'Le code doit être saisi deux fois', 'À la création, il faut confirmer en retapant le même code sinon erreur'],
-                    ['P05', 'Le code n\'est jamais stocké en clair', 'Seul un hash avec sel aléatoire est enregistré, pas les 4 chiffres'],
-
-                    [null, '🔊 AUDIO — Bouton écouter', '', true],
-                    ['A01', 'Les barres réagissent à la lecture', 'Les barres du waveform changent de hauteur pendant que l\'audio joue'],
-                    ['A02', 'Le bouton change de couleur', 'Le fond du bouton devient violet pendant la lecture audio'],
-                    ['A03', 'L\'animation s\'arrête toute seule', 'Au bout d\'environ 6 secondes, le bouton revient à son état de repos'],
-
-                    [null, '🐾 PERSONNAGES — Catalogue', '', true],
-                    ['K01', '17 personnages disponibles', 'Les 17 noms de personnages sont tous visibles dans la boutique'],
-                    ['K02', 'Les anciens personnages ont été retirés', 'Grenouille, Licorne et Phénix n\'apparaissent plus dans la boutique'],
-                    ['K03', '10 émotions par personnage', 'Marche, dodo, assis, coucou, bisou, applaudissement, victoire, danse, surprise et réflexion'],
-                    ['K04', 'Les sprites s\'affichent correctement', 'Chaque personnage a un sprite SVG qui se charge sans erreur'],
-
-                    [null, '⚙️ ENGINE — Calculs et algorithmes (unit)', '', true],
-                    ['N01', 'Calcul des pièces selon le score', '0 % → 0 pièces · 60-79 % → 5 · 80-99 % → 20 · 100 % → 30'],
-                    ['N02', 'Bonus bienvenue 200 pièces (1ère session ≥60 %)', 'Le bonus n\'est crédité qu\'une seule fois, jamais deux'],
-                    ['N03', 'Bonus du jour +10 pièces', 'La première session du jour rapporte 10 pièces supplémentaires'],
-                    ['N04', 'Progression de niveau Bronze→Argent→Couronne', 'Après 3 sessions ≥80 %, le niveau monte ; en dessous, il reste stable'],
-                    ['N05', 'Diamant : 3 sessions consécutives ≥90 % requis', 'Le compteur consécutif se remet à 0 si une session est <90 %'],
-                    ['N06', 'SM-2 : santé du diamant (0→1)', 'La santé diminue en fonction des jours de retard sur la révision planifiée'],
-                    ['N07', 'SM-2 : planification de la prochaine révision', 'Succès → intervalle doublé · Fragile → intervalle réduit · Échec → réinitialisation'],
-                    ['N08', 'SM-2 : échec de révision → retour couronne', 'Un score <80 % en mode révision redescend la règle au niveau Couronne'],
-                    ['N09', 'Streak : incrémentation et reset après 2 jours', 'Jouer hier → +1 · Jouer aujourd\'hui → identique · 2 jours d\'écart → reset à 1'],
-                    ['N10', 'Streak : bouclier non auto-consommé', 'updateStreak ne consomme pas le bouclier (c\'est ReturnScreen qui le gère manuellement)'],
-                    ['N11', 'Streak milestones (7/14/30/60/100 j)', 'Chaque palier déclenche le bon montant de pièces (100/200/350/500/1000)'],
-                    ['N16', 'Double pièces : ×2 pendant 5 sessions', 'L\'achat crédite 5 sessions bonus ; le compteur décrémente à chaque session'],
-                    ['N17', 'Double pièces : verrouillé 1 semaine', 'Acheter deux fois la même semaine est bloqué jusqu\'au lundi suivant'],
-                    ['N18', 'Images mystère : 2 morceaux par jour max', 'Le 3e achat de la journée est refusé même si les pièces suffisent'],
-                    ['N19', 'Images mystère : révélation progressive 6 tuiles', 'Les tuiles se révèlent dans l\'ordre ; la dernière (fixe) n\'est jamais en premier'],
-                    ['N22', 'Question Mystery : remplace la prochaine question', 'L\'item consommable pioche dans une règle différente de la règle courante'],
-                    ['N32', 'Sélection de questions : pas de répétition', 'Les questions récemment vues sont évitées si le pool le permet'],
-                    ['N12d', 'ProgressBar : resolveCharacterMood fallback', 'Si l\'émotion demandée n\'est pas possédée, le mood retombe sur walk'],
-                    ['N13', 'Coaching arc14.0 : nudge matin', 'Le matin sans session et avec un streak actif, un message arc14.0 est retourné'],
-                    ['N33', 'Assignation personnage/règle stable par jour', 'Le même personnage est retourné pour la même règle le même jour'],
-
-                    [null, '📈 PROGRESSION — ReturnScreen, Dictée, EndScreen (E2E)', '', true],
-                    ['N14', 'ReturnScreen : apparaît après 2+ jours d\'inactivité', 'L\'écran "Retour après une pause" s\'affiche quand le joueur revient après ≥2 jours'],
-                    ['N14b', 'ReturnScreen : absent si joué hier', 'Si la dernière session date d\'hier, l\'écran de retour ne s\'affiche pas'],
-                    ['N15', 'ReturnScreen : "Sauver la flamme" → retour dashboard', 'Le bouton déduit les pièces du bouclier et ramène au dashboard'],
-                    ['N23', 'Dictée : niveau HÉROS verrouillé sans Aventurier', 'Le cadenas et le message "Débloque quand tous Aventurier en couronne" sont visibles'],
-                    ['N23b', 'Dictée : niveau AVENTURIER toujours accessible', 'L\'onglet Aventurier est cliquable quel que soit le profil du joueur'],
-                    ['N24', 'EndScreen : section pièces visible après quiz', 'Le total de pièces (ex : "30") apparaît sur l\'écran de fin'],
-                    ['N25', 'EndScreen : "Prochain objectif" visible', 'La barre de niveau et le texte "Prochain objectif" s\'affichent si pas de level-up'],
-
-                    [null, '👪 PARENT — Multi-enfant, réglages, PIN (E2E + unit)', '', true],
-                    ['N26', 'Multi-enfant : données isolées par enfant', 'Le progress d\'un enfant ne peut pas écraser celui d\'un autre (clés localStorage distinctes)'],
-                    ['N28', 'Admin : réglage du nombre de questions', 'La valeur saisie par le parent est enregistrée et persistée dans les paramètres enfant'],
-                    ['N29', 'Backup quotidien : créé automatiquement', 'Après une session, un snapshot progress est sauvé sous la clé du jour'],
-                    ['N30', 'Backup restauration : snapshot lisible', 'Un backup écrit puis relu retourne les mêmes coins et streak'],
-                    ['N31b', 'PIN : formule de verrouillage progressif (unit)', '1 échec → 15 s · 2 → 30 s · le plafond est fixé à 3 600 s (1 heure)'],
-                    ['N31', 'PIN : compteur d\'échecs incrémenté après mauvais code', 'Après une saisie incorrecte, failedAttempts = 1 et lockedUntil est dans le futur'],
-                  ].map(([id, rule, criteria, isHeader], i) => (
-                    isHeader ? (
-                      <tr key={i} style={{ borderTop: i > 0 ? '1px solid rgba(255,255,255,0.08)' : 'none' }}>
-                        <td colSpan={3} style={{ color: '#4ade80', fontWeight: 700, padding: '10px 8px 5px', fontSize: '0.78rem' }}>{rule}</td>
-                      </tr>
-                    ) : (
-                      <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
-                        <td style={{ color: '#6ee7b7', padding: '4px 4px', verticalAlign: 'top', fontFamily: 'monospace', fontWeight: 700, fontSize: '0.65rem' }}>{id}</td>
-                        <td style={{ color: '#e2e2e2', padding: '4px 8px', verticalAlign: 'top' }}>{rule}</td>
-                        <td style={{ color: '#a1a1aa', padding: '4px 8px', verticalAlign: 'top' }}>{criteria}</td>
-                      </tr>
-                    )
-                  ))}
-                </tbody>
-              </table>
-
-              <div style={{ color: '#6b7280', fontWeight: 600, marginTop: '0.7rem', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '0.5rem', fontSize: '0.68rem' }}>
-                🖼 3 suites visuelles (layout uniquement) : visual · progress-charts · quiz-layout
-              </div>
-            </div>
-          </div>
+          {/* ── Tests fonctionnels (dynamic from testRegistry) ── */}
+          <DebugTestPanel />
 
         </div>
           )}
@@ -1976,6 +1903,7 @@ export default function Dashboard({
         level={levelHelp.level}
         ruleTitle={levelHelp.ruleTitle}
         ruleProgress={levelHelp.ruleProgress}
+        sessionSize={levelHelp.sessionSize || sessionSize}
         onClose={() => setLevelHelp(null)}
       />
     )}
