@@ -168,7 +168,7 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc1.1') && !isAlreadyShown(coaching, 'arc1.1')) {
     if (!firstQuizDone && totalSessions === 0) {
       return msg('arc1.1', 'pieces',
-        'Fais ton premier quiz pour remporter 200 pièces de bienvenue 🎁.',
+        'Fais ton premier quiz pour remporter 200 pièces de bienvenue.',
         '200 pièces de bienvenue',
         '🎁',
         null,
@@ -182,9 +182,9 @@ export function pickCoachingMessage(ctx) {
     // Detect: first session ever done, but firstSession milestone not set (means score < 60%)
     if (totalSessions === 1 && !firstQuizDone) {
       return msg('arc1.3', 'plain',
-        'Pas grave, le bonus de 200 pièces 🎁 t\'attend dès que tu finis une session avec au moins 12/20.',
-        '12/20',
-        null,
+        'Zut il te fallait au moins 12/20 pour débloquer les 200 pièces. Elles t\'attendent toujours !',
+        '200 pièces',
+        '🪙',
         null,
         { oneShot: true }
       );
@@ -201,7 +201,7 @@ export function pickCoachingMessage(ctx) {
       // arc14.0a: flame nudge (only if streak active)
       if (streak.current >= 1 && last !== 'arc14.0a') {
         return msg('arc14.0a', 'flamme',
-          `${streak.current} jours d'affilée 🔥 ! Un seul quiz pour garder ta flamme et passer à ${streak.current + 1}.`,
+          `${streak.current} jours d'affilée ! Un seul quiz pour garder ta flamme et passer à ${streak.current + 1}.`,
           `${streak.current} jours`, '🔥', null,
           { oneShot: false, recurring: true });
       }
@@ -217,7 +217,7 @@ export function pickCoachingMessage(ctx) {
       // Fallback: back to flame if streak, otherwise bonus
       if (streak.current >= 1) {
         return msg('arc14.0a', 'flamme',
-          `${streak.current} jours d'affilée 🔥 ! Un seul quiz pour garder ta flamme et passer à ${streak.current + 1}.`,
+          `${streak.current} jours d'affilée ! Un seul quiz pour garder ta flamme et passer à ${streak.current + 1}.`,
           `${streak.current} jours`, '🔥', null,
           { oneShot: false, recurring: true });
       }
@@ -237,7 +237,7 @@ export function pickCoachingMessage(ctx) {
           : 0;
         if (beatenPeriod > 0) {
           return msg('arc14.5', 'flamme',
-            `${sessionsToday} quiz aujourd'hui — nouveau record sur ${beatenPeriod} jours ! 🏆`,
+            `${sessionsToday} quiz aujourd'hui — nouveau record sur ${beatenPeriod} jours !`,
             'nouveau record',
             '🏆',
             null,
@@ -266,7 +266,7 @@ export function pickCoachingMessage(ctx) {
           const { gap, record, period } = bestTarget;
           if (gap === 1) {
             return msg('arc14.6', 'flamme',
-              `Plus qu'1 quiz pour battre ton record de ${record} sur ${period} jours ! 💪`,
+              `Plus qu'1 quiz pour battre ton record de ${record} sur ${period} jours !`,
               '1 quiz',
               '💪',
               null,
@@ -299,7 +299,7 @@ export function pickCoachingMessage(ctx) {
       // arc14.3: third session
       if (allowed('arc14.3') && sessionsToday === 3) {
         return msg('arc14.3', 'panda',
-          '3e quiz aujourd\'hui, tu es en feu ! 🔥 Continue comme ça.',
+          '3e quiz aujourd\'hui, tu es en feu ! Continue comme ça.',
           '3e quiz',
           '🔥',
           null,
@@ -321,7 +321,7 @@ export function pickCoachingMessage(ctx) {
       // arc14.1: first session of the day — flame grew
       if (allowed('arc14.1') && sessionsToday === 1 && streak.current >= 2) {
         return msg('arc14.1', 'flamme',
-          `+1 jour ! Ta flamme est à ${streak.current} jours 🔥. Bien joué !`,
+          `+1 jour ! Ta flamme est à ${streak.current} jours. Bien joué !`,
           `${streak.current} jours`,
           '🔥',
           null,
@@ -339,7 +339,7 @@ export function pickCoachingMessage(ctx) {
     if (recurringOk && streak.current > 0 && streak.lastActiveDate !== todayStr && hour >= 16) {
       const hoursLeft = 23 - hour;
       return msg('arc5.8', 'flamme',
-        `Plus que ${hoursLeft} h pour sauver ta flamme de ${streak.current} jours 🔥. Une session de 5 minutes suffit.`,
+        `Plus que ${hoursLeft} h pour sauver ta flamme de ${streak.current} jours. Une session de 5 minutes suffit.`,
         `flamme de ${streak.current} jours`,
         '🔥',
         null,
@@ -357,7 +357,7 @@ export function pickCoachingMessage(ctx) {
     });
     if (degradingRule) {
       return msg('arc4.8', 'diamant',
-        `Ton diamant sur "${degradingRule.shortTitle || degradingRule.title}" se ternit — fais sa révision avant qu'il ne se brise 💎.`,
+        `Ton diamant sur "${degradingRule.shortTitle || degradingRule.title}" se ternit — fais sa révision avant qu'il ne se brise.`,
         'se ternit',
         '💎',
         null,
@@ -386,7 +386,7 @@ export function pickCoachingMessage(ctx) {
     });
     if (rule41) {
       return msg('arc4.1', 'diamant',
-        `18/20 en direct sur "${rule41.shortTitle || rule41.title}". 2 sessions consécutives encore à 18/20 minimum et c'est le diamant 💎.`,
+        `18/20 en direct sur "${rule41.shortTitle || rule41.title}". 2 sessions consécutives encore à 18/20 minimum et c'est le diamant.`,
         '2 sessions consécutives',
         '💎',
         null,
@@ -418,7 +418,7 @@ export function pickCoachingMessage(ctx) {
     });
     if (rule31) {
       return msg('arc3.1', 'couronnes',
-        `1 session directe validée sur "${rule31.shortTitle || rule31.title}". Plus que 2 pour décrocher ta couronne 👑 + 100 pièces.`,
+        `1 session directe validée sur "${rule31.shortTitle || rule31.title}". Plus que 2 pour décrocher ta couronne + 100 pièces.`,
         '2 pour décrocher ta couronne',
         '👑',
         null,
@@ -452,7 +452,7 @@ export function pickCoachingMessage(ctx) {
       return msg('arc2.1', 'plain',
         `Belle session sur "${rule21.shortTitle || rule21.title}". Plus que 2 sessions à 16/20 pour passer Argent.`,
         '2 sessions à 16/20',
-        null,
+        '📈',
         null,
         { oneShot: true }
       );
@@ -468,7 +468,7 @@ export function pickCoachingMessage(ctx) {
       return msg('arc2.2', 'plain',
         `Plus qu'une session à 16/20 et le mode direct est à toi sur "${rule22.shortTitle || rule22.title}".`,
         'une session à 16/20',
-        null,
+        '📈',
         null,
         { oneShot: true }
       );
@@ -490,7 +490,7 @@ export function pickCoachingMessage(ctx) {
       return msg('arc12.2', 'panda',
         `Émotion "${emoLabel}" débloquée pour ton ${getCharName(charId)}. Maintenant il t'applaudit à chaque bonne réponse.`,
         `"${emoLabel}"`,
-        '👏',
+        '✅',
         null,
         { oneShot: true }
       );
@@ -504,9 +504,9 @@ export function pickCoachingMessage(ctx) {
       const ownedEmos = getOwnedShopEmotions(shopOwned, charId);
       if (ownedEmos.length >= 1 && ownedEmos.length <= 2) {
         return msg('arc12.3', 'panda',
-          `Ton ${getCharName(charId)} a ${ownedEmos.length} émotion${ownedEmos.length > 1 ? 's' : ''} sur 7. Vise "victoire" 🏆 — il s'active sur tes scores ≥ 18/20.`,
+          `Ton ${getCharName(charId)} a ${ownedEmos.length} émotion${ownedEmos.length > 1 ? 's' : ''} sur 7. Vise "victoire" — il s'active sur tes scores ≥ 18/20.`,
           '"victoire"',
-          '🏆',
+          '📈',
           null,
           { oneShot: true }
         );
@@ -523,7 +523,7 @@ export function pickCoachingMessage(ctx) {
         return msg('arc12.4', 'panda',
           `Ton ${getCharName(charId)} a 4 émotions sur 7. Plus que 3 pour le compléter.`,
           '4 émotions sur 7',
-          null,
+          '📈',
           null,
           { oneShot: true }
         );
@@ -541,7 +541,7 @@ export function pickCoachingMessage(ctx) {
         return msg('arc12.5', 'panda',
           `${getCharName(charId)} complet — toutes ses émotions sont à toi. ${remaining} perso${remaining > 1 ? 's' : ''} restant${remaining > 1 ? 's' : ''} à collectionner.`,
           'toutes ses émotions',
-          null,
+          '✅',
           null,
           { oneShot: true }
         );
@@ -553,7 +553,7 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc13.3') && !isAlreadyShown(coaching, 'arc13.3')) {
     if (coins >= 160 && shields === 0 && streak.current >= 7) {
       return msg('arc13.3', 'flamme',
-        `${streak.current} jours sans bouclier 🛡️, c'est jouer avec le feu 🔥. 160 pièces et tu dors tranquille.`,
+        `${streak.current} jours sans bouclier, c'est jouer avec le feu. 160 pièces et tu dors tranquille.`,
         '160 pièces',
         '🛡️',
         { label: 'Acheter', action: 'openShop:boost' },
@@ -566,7 +566,7 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc13.2') && !isAlreadyShown(coaching, 'arc13.2')) {
     if (coins >= 160 && shields === 0 && streak.current >= 3 && streak.current < 7) {
       return msg('arc13.2', 'flamme',
-        `Ta flamme de ${streak.current} jours 🔥 vaut le coup d'être protégée — un bouclier 🛡️ pour 160 pièces.`,
+        `Ta flamme de ${streak.current} jours vaut le coup d'être protégée — un bouclier pour 160 pièces.`,
         `flamme de ${streak.current} jours`,
         '🔥',
         { label: 'Acheter', action: 'openShop:boost' },
@@ -579,7 +579,7 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc13.4') && !isAlreadyShown(coaching, 'arc13.4')) {
     if (coins >= 160 && shields === 1 && streak.current >= 14) {
       return msg('arc13.4', 'flamme',
-        `Tu as 1 bouclier 🛡️. À ta flamme de ${streak.current} jours, le second pour 160 pièces fait du bien.`,
+        `Tu as 1 bouclier. À ta flamme de ${streak.current} jours, le second pour 160 pièces fait du bien.`,
         '160 pièces',
         '🛡️',
         { label: 'Acheter', action: 'openShop:boost' },
@@ -592,7 +592,7 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc13.1') && !isAlreadyShown(coaching, 'arc13.1')) {
     if (coins >= 160 && shields === 0 && streak.current < 3) {
       return msg('arc13.1', 'flamme',
-        '160 pièces = 1 bouclier 🛡️. Si tu rates un jour, ta flamme est sauvée.',
+        '160 pièces = 1 bouclier. Si tu rates un jour, ta flamme est sauvée.',
         '1 bouclier',
         '🛡️',
         { label: 'Acheter', action: 'openShop:boost' },
@@ -605,9 +605,9 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc1.5') && !isAlreadyShown(coaching, 'arc1.5')) {
     if (coins >= 250 && ownedChars.length === 0) {
       return msg('arc1.5', 'panda',
-        'C\'est bon, tu peux débloquer le Panda 🐼 — va faire un tour dans la boutique.',
+        'C\'est bon, tu peux débloquer le Panda — va faire un tour dans la boutique.',
         'débloquer le Panda',
-        '🐼',
+        '🛒',
         { label: 'Boutique', action: 'openShop:persos' },
         { oneShot: true }
       );
@@ -619,9 +619,9 @@ export function pickCoachingMessage(ctx) {
     if (coins >= 200 && coins < 250 && ownedChars.length === 0) {
       const needed = 250 - coins;
       return msg('arc1.4', 'panda',
-        `Plus que ${needed} pièces pour débloquer le Panda Samouraï 🐼.`,
+        `Plus que ${needed} pièces pour débloquer le Panda Samouraï.`,
         `${needed} pièces`,
-        '🐼',
+        '🪙',
         null,
         { oneShot: true }
       );
@@ -632,9 +632,9 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc6.3') && !isAlreadyShown(coaching, 'arc6.3')) {
     if (coins >= 250 && ownedChars.length === 0) {
       return msg('arc6.3', 'panda',
-        '250 pièces — adopte le Panda Samouraï 🐼 dans la boutique, il vient avec ses 3 émotions de base.',
+        '250 pièces — adopte le Panda Samouraï dans la boutique, il vient avec ses 3 émotions de base.',
         'Panda Samouraï',
-        '🐼',
+        '🛒',
         { label: 'Boutique', action: 'openShop:persos' },
         { oneShot: true }
       );
@@ -659,9 +659,9 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc6.5') && !isAlreadyShown(coaching, 'arc6.5')) {
     if (coins >= 500 && ownedChars.length === 1) {
       return msg('arc6.5', 'pieces',
-        '500 pièces — choisis ton 2e perso parmi 14 (Dragon 🐉, Lion 🦁, Loup 🐺, Cosmonaute 🧑‍🚀…).',
+        '500 pièces — choisis ton 2e perso parmi 14 (Dragon, Lion, Loup, Cosmonaute…).',
         '2e perso',
-        '🪙',
+        '🛒',
         { label: 'Boutique', action: 'openShop:persos' },
         { oneShot: true }
       );
@@ -681,7 +681,7 @@ export function pickCoachingMessage(ctx) {
           return msg('arc6.7', 'pieces',
             `${emotionPrice} pièces = 1 nouvelle émotion pour ton ${getCharName(charId)}. Va dans la boutique → Persos.`,
             `1 nouvelle émotion`,
-            '🪙',
+            '🛒',
             { label: 'Boutique', action: 'openShop:persos' },
             { oneShot: true }
           );
@@ -696,7 +696,7 @@ export function pickCoachingMessage(ctx) {
       return msg('arc6.6', 'pieces',
         '500 pièces — un nouveau perso à ajouter à ta collection.',
         'un nouveau perso',
-        '🪙',
+        '🛒',
         { label: 'Boutique', action: 'openShop:persos' },
         { oneShot: true }
       );
@@ -723,7 +723,7 @@ export function pickCoachingMessage(ctx) {
       return msg('arc6.1', 'pieces',
         '80 pièces — tu peux changer le thème de ton dashboard dans la boutique.',
         'changer le thème',
-        '🪙',
+        '🛒',
         { label: 'Boutique', action: 'openShop:cosmetique:themes' },
         { oneShot: true }
       );
@@ -772,7 +772,7 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc5.1') && !isAlreadyShown(coaching, 'arc5.1')) {
     if (streak.current === 1) {
       return msg('arc5.1', 'flamme',
-        'Ta flamme est lancée 🔥. Reviens demain, c\'est tout.',
+        'Ta flamme est lancée. Reviens demain, c\'est tout.',
         'Reviens demain',
         '🔥',
         null,
@@ -785,7 +785,7 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc5.2') && !isAlreadyShown(coaching, 'arc5.2')) {
     if (streak.current === 2) {
       return msg('arc5.2', 'flamme',
-        'Deux jours d\'affilée. Demain, palier "Sur la lancée" 🔥🔥.',
+        'Deux jours d\'affilée. Demain, palier "Sur la lancée".',
         'palier "Sur la lancée"',
         '🔥',
         null,
@@ -798,7 +798,7 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc5.9') && !isAlreadyShown(coaching, 'arc5.9')) {
     if (streak.current === 0 || (streak.current === 1 && (streak.longest || 0) > 1)) {
       return msg('arc5.9', 'flamme',
-        'Flamme à 0. On redémarre aujourd\'hui — un quiz, et c\'est reparti 🔥.',
+        'Flamme à 0. On redémarre aujourd\'hui — un quiz, et c\'est reparti.',
         'On redémarre aujourd\'hui',
         '🔥',
         null,
@@ -815,7 +815,7 @@ export function pickCoachingMessage(ctx) {
     if (crownCount >= 2 && bronzeCount < Math.ceil(totalRules * 0.5)) {
       const remaining = totalRules - bronzeCount;
       return msg('arc3.4', 'couronnes',
-        `Tu as ${crownCount} couronnes 👑. Et si tu attaquais une nouvelle règle ? Il en reste ${remaining} à découvrir.`,
+        `Tu as ${crownCount} couronnes. Et si tu attaquais une nouvelle règle ? Il en reste ${remaining} à découvrir.`,
         'une nouvelle règle',
         '👑',
         null,
@@ -856,7 +856,7 @@ export function pickCoachingMessage(ctx) {
       return msg('arc6.8', 'pieces',
         '60 pièces = 1 morceau d\'image mystère. Découvre ton image cachée morceau par morceau.',
         '1 morceau d\'image mystère',
-        '🎁',
+        '🧩',
         { label: 'Boutique', action: 'openShop:mystere' },
         { oneShot: true }
       );
@@ -870,7 +870,7 @@ export function pickCoachingMessage(ctx) {
       return msg('arc6.10', 'pieces',
         '190 pièces — débloque une animation de victoire sur ton écran de fin de quiz.',
         'animation de victoire',
-        '🪙',
+        '🛒',
         { label: 'Boutique', action: 'openShop:cosmetique:victoryAnimations' },
         { oneShot: true }
       );
@@ -882,9 +882,9 @@ export function pickCoachingMessage(ctx) {
     const hasEntranceAnim = shopOwned.some(id => id.startsWith('entrance-'));
     if (!hasEntranceAnim && coins >= 300) {
       return msg('arc6.11', 'pieces',
-        '300 pièces — débloque un effet plein écran 💥 pour tes prochains paliers.',
+        '300 pièces — débloque un effet plein écran pour tes prochains paliers.',
         'effet plein écran',
-        '💥',
+        '🛒',
         { label: 'Boutique', action: 'openShop:cosmetique:entranceAnimations' },
         { oneShot: true }
       );
@@ -898,7 +898,7 @@ export function pickCoachingMessage(ctx) {
       return msg('arc6.12', 'pieces',
         '320 pièces — un thème premium est à ta portée (Aurora, Midnight Purple).',
         'thème premium',
-        '🪙',
+        '🛒',
         { label: 'Boutique', action: 'openShop:cosmetique:themes' },
         { oneShot: true }
       );
@@ -914,7 +914,7 @@ export function pickCoachingMessage(ctx) {
       return msg('arc7.1', 'pieces',
         'Lundi : tu peux relancer le boost Double coins ×2 pour 5 sessions.',
         'Double coins',
-        '🪙',
+        '🛒',
         { label: 'Boutique', action: 'openShop:boost' },
         { oneShot: true }
       );
@@ -944,9 +944,9 @@ export function pickCoachingMessage(ctx) {
     const bronzeCount = Object.values(ruleProgress).filter(rp => (rp?.level || 0) >= 1).length;
     if (bronzeCount >= 1) {
       return msg('arc8.1', 'plain',
-        'Tu maîtrises les règles ? Va apprendre de nouveaux mots dans le second onglet 🎧.',
-        'second onglet',
-        '🎧',
+        'Tu maîtrises les règles ? C\'est le moment d\'apprendre de nouveaux mots de vocabulaire.',
+        'mots de vocabulaire',
+        '📈',
         null,
         { oneShot: true }
       );
@@ -957,9 +957,9 @@ export function pickCoachingMessage(ctx) {
   if (allowed('arc9.5') && !isAlreadyShown(coaching, 'arc9.5')) {
     if (streak.current === 1 && (streak.longest || 0) > 1) {
       return msg('arc9.5', 'flamme',
-        'Tu es de retour 🔥. Demain, ta flamme passe à 2.',
-        'Demain, ta flamme passe à 2',
-        '🔥',
+        'Désolé pour ta flamme mais content de te revoir ! Ça fait plaisir.',
+        'content de te revoir',
+        '❤️',
         null,
         { oneShot: true }
       );
@@ -972,7 +972,7 @@ export function pickCoachingMessage(ctx) {
     const crownCount = Object.values(ruleProgress).filter(rp => (rp?.level || 0) >= 3).length;
     if (crownCount === totalRules && totalRules > 0) {
       return msg('arc10.1', 'couronnes',
-        'Toutes tes règles ont leur couronne 👑. Maintenant, vise les diamants un par un.',
+        'Toutes tes règles ont leur couronne. Maintenant, vise les diamants un par un.',
         'vise les diamants',
         '👑',
         null,
@@ -986,7 +986,7 @@ export function pickCoachingMessage(ctx) {
     const diamondCount = Object.values(ruleProgress).filter(rp => (rp?.level || 0) >= 4).length;
     if (diamondCount === totalRules && totalRules > 0) {
       return msg('arc10.2', 'diamant',
-        'Tous tes diamants sont en place 💎. Légende. À toi de les maintenir.',
+        'Tous tes diamants sont en place. Légende. À toi de les maintenir.',
         'Légende',
         '💎',
         null,
@@ -1002,7 +1002,7 @@ export function pickCoachingMessage(ctx) {
     }).length;
     if (diamondLiveCount >= 5 && !revisionsDueToday) {
       return msg('arc10.3', 'diamant',
-        '5 diamants vivants 💎. Aucune révision en retard. Tu es chez les meilleurs.',
+        '5 diamants vivants. Aucune révision en retard. Tu es chez les meilleurs.',
         '5 diamants vivants',
         '💎',
         null,
@@ -1015,9 +1015,9 @@ export function pickCoachingMessage(ctx) {
     const diamondCount = Object.values(ruleProgress).filter(rp => (rp?.level || 0) >= 4).length;
     if (diamondCount >= 1 && !revisionsDueToday) {
       return msg('arc10.4', 'diamant',
-        'Aucune révision aujourd\'hui. Profites-en pour apprendre de nouveaux mots dans le second onglet 🎧.',
-        'second onglet',
-        '🎧',
+        'Aucune révision aujourd\'hui. Profites-en pour apprendre de nouveaux mots de vocabulaire.',
+        'mots de vocabulaire',
+        '✅',
         null,
         { oneShot: true }
       );
@@ -1032,7 +1032,7 @@ export function pickCoachingMessage(ctx) {
     if (allowed('arc11.1') && !isAlreadyShown(coaching, `arc11.1.${colId}`)) {
       if (revealed === 1) {
         return msg(`arc11.1.${colId}`, 'pieces',
-          'Premier morceau dévoilé 🧩. Encore 5 morceaux pour voir l\'image complète.',
+          'Premier morceau dévoilé. Encore 5 morceaux pour voir l\'image complète.',
           '5 morceaux',
           '🧩',
           null,
@@ -1056,9 +1056,9 @@ export function pickCoachingMessage(ctx) {
     if (allowed('arc11.3') && !isAlreadyShown(coaching, `arc11.3.${colId}`)) {
       if (revealed === 5) {
         return msg(`arc11.3.${colId}`, 'pieces',
-          'Plus qu\'un morceau pour découvrir l\'image entière 🎁.',
+          'Plus qu\'un morceau pour découvrir l\'image entière.',
           'l\'image entière',
-          '🎁',
+          '🧩',
           null,
           { oneShot: true }
         );
@@ -1070,7 +1070,7 @@ export function pickCoachingMessage(ctx) {
         return msg(`arc11.4.${colId}`, 'pieces',
           'Image mystère complète. Bravo. Une nouvelle image t\'attend dans la boutique.',
           'Image mystère complète',
-          '🎁',
+          '✅',
           null,
           { oneShot: true }
         );
@@ -1083,7 +1083,7 @@ export function pickCoachingMessage(ctx) {
     const daily = progress.shop?.mysteryImages?.daily;
     if (daily?.date === todayStr && (daily?.count || 0) >= 2) {
       return msg('arc6.9', 'pieces',
-        '2 morceaux dévoilés aujourd\'hui ✅. Reviens demain pour 2 nouveaux morceaux.',
+        '2 morceaux dévoilés aujourd\'hui. Reviens demain pour 2 nouveaux morceaux.',
         'Reviens demain',
         '✅',
         null,
@@ -1111,6 +1111,11 @@ export function markCoachingShown(progress, msg, todayStr) {
 
   if (!next.coaching) {
     next.coaching = createDefaultCoaching();
+  } else {
+    // Defensive: coaching may exist but be partial (e.g. from old data)
+    if (!next.coaching.shown) next.coaching.shown = {};
+    if (!next.coaching.lastShownByArc) next.coaching.lastShownByArc = {};
+    if (!next.coaching.dailyShownCount) next.coaching.dailyShownCount = { date: null, count: 0 };
   }
 
   if (msg.oneShot) {

@@ -1,0 +1,436 @@
+[
+  {
+    "arcId": "arc1.1",
+    "variant": "pieces",
+    "message": "Fais ton premier quiz pour remporter 200 pièces de bienvenue.",
+    "emphasis": "200 pièces de bienvenue",
+    "emoji": "🎁"
+  },
+  {
+    "arcId": "arc1.3",
+    "variant": "plain",
+    "message": "Zut il te fallait au moins 12/20 pour débloquer les 200 pièces. Elles t'attendent toujours !",
+    "emphasis": "200 pièces",
+    "emoji": "🪙"
+  },
+  {
+    "arcId": "arc14.0a",
+    "variant": "flamme",
+    "message": "12 jours d'affilée ! Un seul quiz pour garder ta flamme et passer à 13.",
+    "emphasis": "12 jours",
+    "emoji": "🔥"
+  },
+  {
+    "arcId": "arc14.0b",
+    "variant": "pieces",
+    "message": "Fais ton quiz aujourd'hui pour débloquer le bonus du jour de 10 pièces d'or !",
+    "emphasis": "10 pièces d'or",
+    "emoji": "🪙"
+  },
+  {
+    "arcId": "arc14.5",
+    "variant": "flamme",
+    "message": "3 quiz aujourd'hui — nouveau record sur 7 jours !",
+    "emphasis": "nouveau record",
+    "emoji": "🏆"
+  },
+  {
+    "arcId": "arc14.6",
+    "variant": "flamme",
+    "message": "Plus qu'1 quiz pour battre ton record de 5 sur 7 jours !",
+    "emphasis": "1 quiz",
+    "emoji": "💪"
+  },
+  {
+    "arcId": "arc14.6",
+    "variant": "flamme",
+    "message": "Plus que 2 quiz pour battre ton record de 5 sur 7 jours !",
+    "emphasis": "2 quiz",
+    "emoji": "🎯"
+  },
+  {
+    "arcId": "arc14.4",
+    "variant": "flamme",
+    "message": "3 quiz aujourd'hui, c'est plus qu'hier (2). Belle progression !",
+    "emphasis": "plus qu'hier",
+    "emoji": "📈"
+  },
+  {
+    "arcId": "arc14.3",
+    "variant": "panda",
+    "message": "3e quiz aujourd'hui, tu es en feu ! Continue comme ça.",
+    "emphasis": "3e quiz",
+    "emoji": "🔥"
+  },
+  {
+    "arcId": "arc14.2",
+    "variant": "panda",
+    "message": "Bravo pour ce 2e quiz ! Chaque session renforce ta mémoire.",
+    "emphasis": "2e quiz",
+    "emoji": "💪"
+  },
+  {
+    "arcId": "arc14.1",
+    "variant": "flamme",
+    "message": "+1 jour ! Ta flamme est à 12 jours. Bien joué !",
+    "emphasis": "12 jours",
+    "emoji": "🔥"
+  },
+  {
+    "arcId": "arc5.8",
+    "variant": "flamme",
+    "message": "Plus que 7 h pour sauver ta flamme de 12 jours. Une session de 5 minutes suffit.",
+    "emphasis": "flamme de 12 jours",
+    "emoji": "🔥"
+  },
+  {
+    "arcId": "arc4.8",
+    "variant": "diamant",
+    "message": "Ton diamant sur \"a / à / as\" se ternit — fais sa révision avant qu'il ne se brise.",
+    "emphasis": "se ternit",
+    "emoji": "💎"
+  },
+  {
+    "arcId": "arc4.5",
+    "variant": "diamant",
+    "message": "Ta première révision diamant est prévue aujourd'hui — fais-la pour que le diamant brille.",
+    "emphasis": "révision diamant",
+    "emoji": "💎"
+  },
+  {
+    "arcId": "arc4.1",
+    "variant": "diamant",
+    "message": "18/20 en direct sur \"a / à / as\". 2 sessions consécutives encore à 18/20 minimum et c'est le diamant.",
+    "emphasis": "2 sessions consécutives",
+    "emoji": "💎"
+  },
+  {
+    "arcId": "arc4.2",
+    "variant": "diamant",
+    "message": "Plus qu'une session à 18/20 sur \"a / à / as\" et le diamant est à toi. Concentration.",
+    "emphasis": "une session à 18/20",
+    "emoji": "💎"
+  },
+  {
+    "arcId": "arc3.1",
+    "variant": "couronnes",
+    "message": "1 session directe validée sur \"a / à / as\". Plus que 2 pour décrocher ta couronne + 100 pièces.",
+    "emphasis": "2 pour décrocher ta couronne",
+    "emoji": "👑"
+  },
+  {
+    "arcId": "arc3.2",
+    "variant": "couronnes",
+    "message": "Plus qu'une session directe à 16/20 sur \"a / à / as\" et la couronne tombe.",
+    "emphasis": "une session directe à 16/20",
+    "emoji": "👑"
+  },
+  {
+    "arcId": "arc2.1",
+    "variant": "plain",
+    "message": "Belle session sur \"a / à / as\". Plus que 2 sessions à 16/20 pour passer Argent.",
+    "emphasis": "2 sessions à 16/20",
+    "emoji": "📈"
+  },
+  {
+    "arcId": "arc2.2",
+    "variant": "plain",
+    "message": "Plus qu'une session à 16/20 et le mode direct est à toi sur \"a / à / as\".",
+    "emphasis": "une session à 16/20",
+    "emoji": "📈"
+  },
+  {
+    "arcId": "arc12.2",
+    "variant": "panda",
+    "message": "Émotion \"bravo\" débloquée pour ton Panda Samouraï 🐼. Maintenant il t'applaudit à chaque bonne réponse.",
+    "emphasis": "\"bravo\"",
+    "emoji": "✅"
+  },
+  {
+    "arcId": "arc12.3",
+    "variant": "panda",
+    "message": "Ton Panda Samouraï 🐼 a 2 émotions sur 7. Vise \"victoire\" — il s'active sur tes scores ≥ 18/20.",
+    "emphasis": "\"victoire\"",
+    "emoji": "📈"
+  },
+  {
+    "arcId": "arc12.4",
+    "variant": "panda",
+    "message": "Ton Panda Samouraï 🐼 a 4 émotions sur 7. Plus que 3 pour le compléter.",
+    "emphasis": "4 émotions sur 7",
+    "emoji": "📈"
+  },
+  {
+    "arcId": "arc12.5",
+    "variant": "panda",
+    "message": "Panda Samouraï 🐼 complet — toutes ses émotions sont à toi. 14 persos restants à collectionner.",
+    "emphasis": "toutes ses émotions",
+    "emoji": "✅"
+  },
+  {
+    "arcId": "arc13.3",
+    "variant": "flamme",
+    "message": "12 jours sans bouclier, c'est jouer avec le feu. 160 pièces et tu dors tranquille.",
+    "emphasis": "160 pièces",
+    "emoji": "🛡️"
+  },
+  {
+    "arcId": "arc13.2",
+    "variant": "flamme",
+    "message": "Ta flamme de 5 jours vaut le coup d'être protégée — un bouclier pour 160 pièces.",
+    "emphasis": "flamme de 5 jours",
+    "emoji": "🔥"
+  },
+  {
+    "arcId": "arc13.4",
+    "variant": "flamme",
+    "message": "Tu as 1 bouclier. À ta flamme de 14 jours, le second pour 160 pièces fait du bien.",
+    "emphasis": "160 pièces",
+    "emoji": "🛡️"
+  },
+  {
+    "arcId": "arc13.1",
+    "variant": "flamme",
+    "message": "160 pièces = 1 bouclier. Si tu rates un jour, ta flamme est sauvée.",
+    "emphasis": "1 bouclier",
+    "emoji": "🛡️"
+  },
+  {
+    "arcId": "arc1.5",
+    "variant": "panda",
+    "message": "C'est bon, tu peux débloquer le Panda — va faire un tour dans la boutique.",
+    "emphasis": "débloquer le Panda",
+    "emoji": "🛒"
+  },
+  {
+    "arcId": "arc1.4",
+    "variant": "panda",
+    "message": "Plus que 50 pièces pour débloquer le Panda Samouraï.",
+    "emphasis": "50 pièces",
+    "emoji": "🪙"
+  },
+  {
+    "arcId": "arc6.3",
+    "variant": "panda",
+    "message": "250 pièces — adopte le Panda Samouraï dans la boutique, il vient avec ses 3 émotions de base.",
+    "emphasis": "Panda Samouraï",
+    "emoji": "🛒"
+  },
+  {
+    "arcId": "arc6.4",
+    "variant": "pieces",
+    "message": "Plus que 50 pièces pour adopter un 2e perso.",
+    "emphasis": "50 pièces",
+    "emoji": "🪙"
+  },
+  {
+    "arcId": "arc6.5",
+    "variant": "pieces",
+    "message": "500 pièces — choisis ton 2e perso parmi 14 (Dragon, Lion, Loup, Cosmonaute…).",
+    "emphasis": "2e perso",
+    "emoji": "🛒"
+  },
+  {
+    "arcId": "arc6.7",
+    "variant": "pieces",
+    "message": "130 pièces = 1 nouvelle émotion pour ton Panda Samouraï 🐼. Va dans la boutique → Persos.",
+    "emphasis": "1 nouvelle émotion",
+    "emoji": "🛒"
+  },
+  {
+    "arcId": "arc6.6",
+    "variant": "pieces",
+    "message": "500 pièces — un nouveau perso à ajouter à ta collection.",
+    "emphasis": "un nouveau perso",
+    "emoji": "🛒"
+  },
+  {
+    "arcId": "arc6.13",
+    "variant": "pieces",
+    "message": "Plus que 15 pièces. Une session à 16/20 = +20 pièces, vite !",
+    "emphasis": "+20 pièces",
+    "emoji": "🪙"
+  },
+  {
+    "arcId": "arc6.1",
+    "variant": "pieces",
+    "message": "80 pièces — tu peux changer le thème de ton dashboard dans la boutique.",
+    "emphasis": "changer le thème",
+    "emoji": "🛒"
+  },
+  {
+    "arcId": "arc1.7.streak5",
+    "variant": "flamme",
+    "message": "Plus que 2 jours pour atteindre 7 jours et empocher 100 pièces.",
+    "emphasis": "100 pièces",
+    "emoji": "🔥"
+  },
+  {
+    "arcId": "arc1.7.streak6",
+    "variant": "flamme",
+    "message": "Demain ta flamme passe à 7 jours — 100 pièces à la clé.",
+    "emphasis": "100 pièces",
+    "emoji": "🔥"
+  },
+  {
+    "arcId": "arc5.3",
+    "variant": "flamme",
+    "message": "Demain ta flamme passe à 7 jours — 100 pièces.",
+    "emphasis": "100 pièces",
+    "emoji": "🔥"
+  },
+  {
+    "arcId": "arc5.1",
+    "variant": "flamme",
+    "message": "Ta flamme est lancée. Reviens demain, c'est tout.",
+    "emphasis": "Reviens demain",
+    "emoji": "🔥"
+  },
+  {
+    "arcId": "arc5.2",
+    "variant": "flamme",
+    "message": "Deux jours d'affilée. Demain, palier \"Sur la lancée\".",
+    "emphasis": "palier \"Sur la lancée\"",
+    "emoji": "🔥"
+  },
+  {
+    "arcId": "arc5.9",
+    "variant": "flamme",
+    "message": "Flamme à 0. On redémarre aujourd'hui — un quiz, et c'est reparti.",
+    "emphasis": "On redémarre aujourd'hui",
+    "emoji": "🔥"
+  },
+  {
+    "arcId": "arc3.4",
+    "variant": "couronnes",
+    "message": "Tu as 2 couronnes. Et si tu attaquais une nouvelle règle ? Il en reste 18 à découvrir.",
+    "emphasis": "une nouvelle règle",
+    "emoji": "👑"
+  },
+  {
+    "arcId": "arc2.4",
+    "variant": "plain",
+    "message": "Le mode direct, c'est exigeant. Refais un guidé pour te remettre dedans, le mode direct t'attendra.",
+    "emphasis": "Refais un guidé",
+    "emoji": null
+  },
+  {
+    "arcId": "arc6.8",
+    "variant": "pieces",
+    "message": "60 pièces = 1 morceau d'image mystère. Découvre ton image cachée morceau par morceau.",
+    "emphasis": "1 morceau d'image mystère",
+    "emoji": "🧩"
+  },
+  {
+    "arcId": "arc6.10",
+    "variant": "pieces",
+    "message": "190 pièces — débloque une animation de victoire sur ton écran de fin de quiz.",
+    "emphasis": "animation de victoire",
+    "emoji": "🛒"
+  },
+  {
+    "arcId": "arc6.11",
+    "variant": "pieces",
+    "message": "300 pièces — débloque un effet plein écran pour tes prochains paliers.",
+    "emphasis": "effet plein écran",
+    "emoji": "🛒"
+  },
+  {
+    "arcId": "arc6.12",
+    "variant": "pieces",
+    "message": "320 pièces — un thème premium est à ta portée (Aurora, Midnight Purple).",
+    "emphasis": "thème premium",
+    "emoji": "🛒"
+  },
+  {
+    "arcId": "arc7.1",
+    "variant": "pieces",
+    "message": "Lundi : tu peux relancer le boost Double coins ×2 pour 5 sessions.",
+    "emphasis": "Double coins",
+    "emoji": "🛒"
+  },
+  {
+    "arcId": "arc7.2",
+    "variant": "pieces",
+    "message": "Double coins actif — encore 3 sessions ×2.",
+    "emphasis": "3 sessions",
+    "emoji": "🪙"
+  },
+  {
+    "arcId": "arc8.1",
+    "variant": "plain",
+    "message": "Tu maîtrises les règles ? C'est le moment d'apprendre de nouveaux mots de vocabulaire.",
+    "emphasis": "mots de vocabulaire",
+    "emoji": "📈"
+  },
+  {
+    "arcId": "arc9.5",
+    "variant": "flamme",
+    "message": "Désolé pour ta flamme mais content de te revoir ! Ça fait plaisir.",
+    "emphasis": "content de te revoir",
+    "emoji": "❤️"
+  },
+  {
+    "arcId": "arc10.1",
+    "variant": "couronnes",
+    "message": "Toutes tes règles ont leur couronne. Maintenant, vise les diamants un par un.",
+    "emphasis": "vise les diamants",
+    "emoji": "👑"
+  },
+  {
+    "arcId": "arc10.2",
+    "variant": "diamant",
+    "message": "Tous tes diamants sont en place. Légende. À toi de les maintenir.",
+    "emphasis": "Légende",
+    "emoji": "💎"
+  },
+  {
+    "arcId": "arc10.3",
+    "variant": "diamant",
+    "message": "5 diamants vivants. Aucune révision en retard. Tu es chez les meilleurs.",
+    "emphasis": "5 diamants vivants",
+    "emoji": "💎"
+  },
+  {
+    "arcId": "arc10.4",
+    "variant": "diamant",
+    "message": "Aucune révision aujourd'hui. Profites-en pour apprendre de nouveaux mots de vocabulaire.",
+    "emphasis": "mots de vocabulaire",
+    "emoji": "✅"
+  },
+  {
+    "arcId": "arc11.1",
+    "variant": "pieces",
+    "message": "Premier morceau dévoilé. Encore 5 morceaux pour voir l'image complète.",
+    "emphasis": "5 morceaux",
+    "emoji": "🧩"
+  },
+  {
+    "arcId": "arc11.2",
+    "variant": "pieces",
+    "message": "Moitié de l'image dévoilée. Plus que 3 morceaux et le mystère tombe.",
+    "emphasis": "3 morceaux",
+    "emoji": "🧩"
+  },
+  {
+    "arcId": "arc11.3",
+    "variant": "pieces",
+    "message": "Plus qu'un morceau pour découvrir l'image entière.",
+    "emphasis": "l'image entière",
+    "emoji": "🧩"
+  },
+  {
+    "arcId": "arc11.4",
+    "variant": "pieces",
+    "message": "Image mystère complète. Bravo. Une nouvelle image t'attend dans la boutique.",
+    "emphasis": "Image mystère complète",
+    "emoji": "✅"
+  },
+  {
+    "arcId": "arc6.9",
+    "variant": "pieces",
+    "message": "2 morceaux dévoilés aujourd'hui. Reviens demain pour 2 nouveaux morceaux.",
+    "emphasis": "Reviens demain",
+    "emoji": "✅"
+  }
+]

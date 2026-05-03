@@ -1,0 +1,126 @@
+[
+  {
+    "x": 736,
+    "y": 7077,
+    "text": "utilise le svg ux-designer/puzzle-piece-outline.svg pour 11.1, 11.,2, 11.3",
+    "time": "03/05 21:48",
+    "domContext": {
+      "tag": "DIV",
+      "text": "arc11.1\n\nPremier morceau dévoilé. Encore 5 morceaux pour voir l'image complète."
+    },
+    "response": "Fait. arc11.1, 11.2, 11.3 utilisent maintenant l'emoji 🧩 avec le SVG puzzle piece de ux-designer/puzzle-piece-outline.svg (viewBox 640×640 dans getBannerSvg, stroke couleur accent)."
+  },
+  {
+    "x": 685,
+    "y": 7455,
+    "text": "utilise plutot l'icone check mark",
+    "time": "03/05 21:49",
+    "domContext": {
+      "tag": "DIV",
+      "text": "Image mystère complète. Bravo. Une nouvelle image t'attend dans la boutique."
+    },
+    "response": "Fait. arc11.4 : emoji 🎁 → ✅ (check circle)."
+  },
+  {
+    "x": 368,
+    "y": 6867,
+    "text": "icone check mark",
+    "time": "03/05 21:50",
+    "domContext": {
+      "tag": "DIV",
+      "text": "arc10.4\n\nAucune révision aujourd'hui. Profites-en pour apprendre de nouveaux mots de vocabulaire."
+    },
+    "response": "Fait. arc10.4 : emoji 🎧 → ✅ (check circle)."
+  },
+  {
+    "x": 707,
+    "y": 1417,
+    "text": "icone piece ici",
+    "time": "03/05 21:53",
+    "domContext": {
+      "tag": "DIV",
+      "text": "Plus que 50 pièces pour débloquer le Panda Samouraï."
+    },
+    "response": "Fait. arc1.4 : emoji 🐼 → 🪙 (pièce)."
+  },
+  {
+    "x": 556,
+    "y": 432,
+    "text": "il manque l'emoji coeur dans cette liste ainsi que la piece de puzzle",
+    "time": "03/05 22:21",
+    "domContext": {
+      "tag": "P",
+      "text": "Chaque message de coaching utilise une icone SVG adaptee au contexte. Les icones sont definies dans MotivationBanner.jsx via le composant BannerSvgIco"
+    }
+  },
+  {
+    "x": 1441,
+    "y": 303,
+    "text": "",
+    "time": "03/05 22:21",
+    "domContext": {
+      "tag": "DIV",
+      "text": "✓✓✓✓✓✓✓✓✓✓1112"
+    }
+  },
+  {
+    "x": 1453,
+    "y": 6285,
+    "text": "",
+    "time": "03/05 22:21",
+    "domContext": {
+      "tag": "DIV",
+      "text": "✓✓✓✓✓✓✓✓✓101112"
+    }
+  },
+  {
+    "x": 359,
+    "y": 7081,
+    "text": "repars du fichier svg avec le point d'interrogation, la le point manque et utile ce nouveau svg partout à la palce de la pièece de puzzle",
+    "time": "03/05 22:22",
+    "domContext": {
+      "tag": "DIV",
+      "text": "arc11.1\n\nPremier morceau dévoilé. Encore 5 morceaux pour voir l'image complète."
+    }
+  },
+  {
+    "x": 456,
+    "y": 1171,
+    "text": "change le texte : \"Zut il te fallait au moins 12/20 pour débloquer les 200 pièces. Elles t'attendent toujours ! + svg pièces",
+    "time": "03/05 22:26",
+    "domContext": {
+      "tag": "DIV",
+      "text": "Pas grave, le bonus de 200 pièces t'attend dès que tu finis une session avec au moins 12/20."
+    }
+  },
+  {
+    "x": 375,
+    "y": 1883,
+    "text": "ca devrait être en vert. maj en prod et la doc",
+    "time": "03/05 22:27",
+    "domContext": {
+      "tag": "DIV",
+      "text": "arc2.1\n\nBelle session sur \"a / à / as\". Plus que 2 sessions à 16/20 pour passer Argent."
+    }
+  },
+  {
+    "x": 374,
+    "y": 5365,
+    "text": "un puzzle avec ? ici",
+    "time": "03/05 22:28",
+    "domContext": {
+      "tag": "DIV",
+      "text": "arc6.8\n\n60 pièces = 1 morceau d'image mystère. Découvre ton image cachée morceau par morceau."
+    }
+  },
+  {
+    "x": 368,
+    "y": 6410,
+    "text": "ca devrait être en vert ici et en prod",
+    "time": "03/05 22:29",
+    "domContext": {
+      "tag": "DIV",
+      "text": "arc8.1\n\nTu maîtrises les règles ? C'est le moment d'apprendre de nouveaux mots de vocabulaire."
+    }
+  }
+]

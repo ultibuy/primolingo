@@ -422,9 +422,9 @@ function getBannerSvg(emoji, accent, secondary) {
   const cp = `width="34" height="34" viewBox="0 0 40 40" fill="none"`;
   switch (emoji) {
     case '🪙':
-      return `<svg ${cp}><defs><radialGradient id="cO" cx="35%" cy="35%"><stop offset="0%" stop-color="#ffe066"/><stop offset="40%" stop-color="#fbbf24"/><stop offset="80%" stop-color="#d4940a"/><stop offset="100%" stop-color="#92650a"/></radialGradient><radialGradient id="cI" cx="40%" cy="40%"><stop offset="0%" stop-color="#ffe680"/><stop offset="60%" stop-color="#f5c842"/><stop offset="100%" stop-color="#c8920a"/></radialGradient></defs><circle cx="20" cy="20" r="18" fill="url(#cO)"/><circle cx="20" cy="20" r="14" fill="url(#cI)"/><circle cx="20" cy="20" r="17" fill="none" stroke="#ffe680" stroke-width="0.8" opacity="0.6"/><circle cx="20" cy="20" r="14" fill="none" stroke="#d4940a" stroke-width="0.6" opacity="0.5"/><text x="20" y="25.5" text-anchor="middle" font-size="16" font-weight="900" fill="#b8860b" opacity="0.4" font-family="serif">O</text><text x="20" y="25" text-anchor="middle" font-size="16" font-weight="900" fill="#ffe680" opacity="0.7" font-family="serif">O</text><ellipse cx="14" cy="12" rx="6" ry="3" fill="white" opacity="0.25" transform="rotate(-20 14 12)"/></svg>`;
+      return `<svg ${cp}><defs><radialGradient id="cO" cx="35%" cy="35%"><stop offset="0%" stop-color="#ffe066"/><stop offset="40%" stop-color="#fbbf24"/><stop offset="80%" stop-color="#d4940a"/><stop offset="100%" stop-color="#92650a"/></radialGradient><radialGradient id="cI" cx="40%" cy="40%"><stop offset="0%" stop-color="#ffe680"/><stop offset="60%" stop-color="#f5c842"/><stop offset="100%" stop-color="#c8920a"/></radialGradient></defs><circle cx="20" cy="20" r="14" fill="url(#cI)"/><circle cx="20" cy="20" r="14" fill="none" stroke="#d4940a" stroke-width="0.6" opacity="0.5"/><text x="20" y="25.5" text-anchor="middle" font-size="16" font-weight="900" fill="#b8860b" opacity="0.4" font-family="serif">O</text><text x="20" y="25" text-anchor="middle" font-size="16" font-weight="900" fill="#ffe680" opacity="0.7" font-family="serif">O</text><ellipse cx="14" cy="12" rx="6" ry="3" fill="white" opacity="0.25" transform="rotate(-20 14 12)"/></svg>`;
     case '📈':
-      return `<svg ${cp}><rect x="5" y="6" width="30" height="28" rx="7" fill="#f5b40022" stroke="#ff8a4788" stroke-width="1.2"/><path d="M11 27.5h18" stroke="#f5b40088" stroke-width="2" stroke-linecap="round"/><path d="M12 25l6-7 5 4 6-10" stroke="#ff8a47" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M27 12h3v3" stroke="#ff8a47" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+      return `<svg ${cp}><rect x="5" y="6" width="30" height="28" rx="7" fill="${accent}22" stroke="${accent}88" stroke-width="1.2"/><path d="M11 27.5h18" stroke="${accent}88" stroke-width="2" stroke-linecap="round"/><path d="M12 25l6-7 5 4 6-10" stroke="${accent}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M27 12h3v3" stroke="${accent}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     case '🏆':
       return `<svg ${cp}><path d="M14 10h12v5c0 6-2.7 10-6 10s-6-4-6-10v-5Z" fill="${accent}33" stroke="${accent}" stroke-width="2.4"/><path d="M14 13H9c0 4 2 7 5.7 7.8M26 13h5c0 4-2 7-5.7 7.8" stroke="${accent}" stroke-width="2.4" stroke-linecap="round"/><path d="M20 25v5M14 31h12" stroke="${secondary}" stroke-width="2.6" stroke-linecap="round"/></svg>`;
     case '🎁':
@@ -445,6 +445,10 @@ function getBannerSvg(emoji, accent, secondary) {
       return `<svg ${cp}><circle cx="20" cy="20" r="14" stroke="${accent}" stroke-width="2"/><circle cx="20" cy="20" r="9" stroke="${accent}" stroke-width="1.5" opacity="0.6"/><circle cx="20" cy="20" r="4" stroke="${accent}" stroke-width="1.5" opacity="0.6"/><circle cx="20" cy="20" r="1.5" fill="${accent}"/></svg>`;
     case '✅':
       return `<svg ${cp}><circle cx="20" cy="20" r="14" fill="${accent}20" stroke="${accent}" stroke-width="2"/><path d="m13 20 4.5 4.5 9-9" stroke="${accent}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    case '🧩':
+      return `<svg width="34" height="34" viewBox="0 0 640 640" fill="none"><path d="M288 64C323.3 64 352 85.5 352 112C352 122.4 347.6 132 340 139.9C333.4 146.8 328 155.2 328 164.8C328 179.8 340.2 192 355.2 192L400 192C426.5 192 448 213.5 448 240L448 284.8C448 299.8 460.2 312 475.2 312C484.7 312 493.2 306.6 500.1 300C508 292.5 517.6 288 528 288C554.5 288 576 316.7 576 352C576 387.3 554.5 416 528 416C517.6 416 507.9 411.6 500.1 404C493.2 397.4 484.8 392 475.2 392C460.2 392 448 404.2 448 419.2L448 528C448 554.5 426.5 576 400 576L343.2 576C330.4 576 320 565.6 320 552.8C320 543.6 325.8 535.5 333.2 530C344.8 521.3 352 509.3 352 496C352 469.5 323.3 448 288 448C252.7 448 224 469.5 224 496C224 509.3 231.2 521.3 242.8 530C250.2 535.5 256 543.5 256 552.8C256 565.6 245.6 576 232.8 576L112 576C85.5 576 64 554.5 64 528L64 407.2C64 394.4 74.4 384 87.2 384C96.4 384 104.5 389.8 110 397.2C118.7 408.8 130.7 416 144 416C170.5 416 192 387.3 192 352C192 316.7 170.5 288 144 288C130.7 288 118.7 295.2 110 306.8C104.5 314.2 96.5 320 87.2 320C74.4 320 64 309.6 64 296.8L64 240C64 213.5 85.5 192 112 192L220.8 192C235.8 192 248 179.8 248 164.8C248 155.3 242.6 146.8 236 139.9C228.5 132 224 122.4 224 112C224 85.5 252.7 64 288 64z" stroke="${accent}" stroke-width="32" stroke-linejoin="round"/><text x="300" y="410" text-anchor="middle" font-family="Fredoka, 'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="220" fill="${accent}">?</text></svg>`;
+    case '❤️':
+      return `<svg ${cp}><path d="M20 32C20 32 6 22 6 13.5C6 9.4 9.1 6 13 6C15.7 6 18 7.7 20 10C22 7.7 24.3 6 27 6C30.9 6 34 9.4 34 13.5C34 22 20 32 20 32Z" fill="${accent}30" stroke="${accent}" stroke-width="2.2" stroke-linejoin="round"/></svg>`;
     default:
       // Default: plus/cross icon
       return `<svg ${cp}><circle cx="20" cy="20" r="13" fill="${accent}24" stroke="${accent}" stroke-width="2.3"/><path d="M20 11v18M11 20h18" stroke="${secondary}" stroke-width="2.4" stroke-linecap="round"/></svg>`;
@@ -477,6 +481,35 @@ font-family:'Plus Jakarta Sans',sans-serif;position:relative">
 <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;flex-shrink:0">${svgIcon}</div>
 <div style="font-size:13px;font-weight:600;color:#fff;line-height:1.45;flex:1">${text}</div>
 </div>`;
+}
+
+const ICON_GALLERY_ITEMS = [
+  { emoji: '📈', label: 'Progression' },
+  { emoji: '🏆', label: 'Trophée' },
+  { emoji: '🎁', label: 'Cadeau' },
+  { emoji: '🔥', label: 'Flamme' },
+  { emoji: '💎', label: 'Diamant' },
+  { emoji: '👑', label: 'Couronne' },
+  { emoji: '🛡️', label: 'Bouclier' },
+  { emoji: '🛒', label: 'Panier' },
+  { emoji: '🪙', label: 'Pièce' },
+  { emoji: '💪', label: 'Force' },
+  { emoji: '🎯', label: 'Cible' },
+  { emoji: '✅', label: 'Valide' },
+  { emoji: '🧩', label: 'Puzzle' },
+  { emoji: '❤️', label: 'Cœur' },
+  { emoji: null, label: 'Défaut' },
+];
+
+function generateIconGallery() {
+  const accent = '#f5b400';
+  const secondary = '#b8a3ff';
+  const card = (svg, label) =>
+    `<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">${svg}<div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">${label}</div></div>`;
+  const cards = ICON_GALLERY_ITEMS
+    .map(({ emoji, label }) => card(getBannerSvg(emoji, accent, secondary), label))
+    .join('\n  ');
+  return `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin:1rem 0 2rem">\n  ${cards}\n</div>`;
 }
 
 function injectInlineBanners(html) {
@@ -618,9 +651,10 @@ display:flex;align-items:center;gap:12px;width:100%;max-width:390px}
               .replace(/\]\(\.\/(\d{2}-[^)]+)\.md\)/g, '](/docs/$1)')
               .replace(/\]\((\d{2}-[^)]+)\.md\)/g, '](/docs/$1)');
             let html = marked.parse(mdFixed);
-            // For coaching page, replace screenshot <img> with inline SVG banners
+            // For coaching page, replace screenshot <img> with inline SVG banners + icon gallery
             if (slug === '15-coaching-messages') {
               html = injectInlineBanners(html);
+              html = html.replace('<div data-icon-gallery></div>', generateIconGallery());
             }
             const title = md.match(/^# (.+)/m)?.[1] || slug;
 

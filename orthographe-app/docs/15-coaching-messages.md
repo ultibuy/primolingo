@@ -8,60 +8,7 @@ Un bandeau de motivation s'affiche sur le dashboard enfant avec un message perso
 
 Chaque message de coaching utilise une icone SVG adaptee au contexte. Les icones sont definies dans `MotivationBanner.jsx` via le composant `BannerSvgIcon`. Les couleurs (`accent`, `secondary`) varient selon le theme actif.
 
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px;margin:1rem 0 2rem">
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><rect x="5" y="6" width="30" height="28" rx="7" fill="#f5b40022" stroke="#ff8a4788" stroke-width="1.2"/><path d="M11 27.5h18" stroke="#f5b40088" stroke-width="2" stroke-linecap="round"/><path d="M12 25l6-7 5 4 6-10" stroke="#ff8a47" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M27 12h3v3" stroke="#ff8a47" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Progression</div>
-  </div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><path d="M14 10h12v5c0 6-2.7 10-6 10s-6-4-6-10v-5Z" fill="#fbbf2433" stroke="#fbbf24" stroke-width="2.4"/><path d="M14 13H9c0 4 2 7 5.7 7.8M26 13h5c0 4-2 7-5.7 7.8" stroke="#fbbf24" stroke-width="2.4" stroke-linecap="round"/><path d="M20 25v5M14 31h12" stroke="#fb923c" stroke-width="2.6" stroke-linecap="round"/></svg>
-    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Trophee</div>
-  </div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><rect x="9" y="17" width="22" height="15" rx="3" fill="#a78bfa24" stroke="#a78bfa" stroke-width="2.3"/><path d="M20 17v15M8 17h24" stroke="#c4b5fd" stroke-width="2.3" stroke-linecap="round"/><path d="M20 16c-5-1-7-3-6-5 1.3-2.5 5 0 6 5Zm0 0c5-1 7-3 6-5-1.3-2.5-5 0-6 5Z" stroke="#a78bfa" stroke-width="2.1" stroke-linejoin="round"/></svg>
-    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Cadeau</div>
-  </div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><path d="M22.5 5.5c1 6-4 8.3-1.4 12.5 1.9-2.2 3.9-4.4 4.2-7 4.2 4.4 6.1 8.3 6.1 13 0 6-4.9 10-11.1 10S9.2 30.1 9.2 24.1c0-4.8 2.9-8.2 6.3-11.5 2.1-2 4.2-4.1 7-7.1Z" fill="#fb923c28" stroke="#fb923c" stroke-width="2.2" stroke-linejoin="round"/><path d="M21 22c2.3 2.4 3.2 4.3 3.2 6.2 0 2.3-1.8 3.8-4.2 3.8s-4.2-1.5-4.2-3.8c0-2.2 1.4-3.8 3.5-6.2.5 1.6 1.1 2.7 1.7 3.5.4-.9.4-2 .1-3.5Z" fill="#fbbf24"/></svg>
-    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Flamme</div>
-  </div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><path d="M12 8h16l6 8-14 17L6 16l6-8Z" fill="#60a5fa30" stroke="#60a5fa" stroke-width="2.2" stroke-linejoin="round"/><path d="M6 16h28M12 8l4 8 4-8 4 8 4-8M16 16l4 17 4-17" stroke="#93c5fd" stroke-width="1.8" stroke-linejoin="round" opacity=".9"/></svg>
-    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Diamant</div>
-  </div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><path d="M8 29h24l2-15-8 6-6-10-6 10-8-6 2 15Z" fill="#fbbf2430" stroke="#fbbf24" stroke-width="2.4" stroke-linejoin="round"/><path d="M10 32h20" stroke="#fb923c" stroke-width="2.5" stroke-linecap="round"/></svg>
-    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Couronne</div>
-  </div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><path d="M20 6 31 10v8c0 7.3-4.2 12.8-11 16-6.8-3.2-11-8.7-11-16v-8l11-4Z" fill="#93c5fd24" stroke="#93c5fd" stroke-width="2.4" stroke-linejoin="round"/><path d="m14.5 20 3.8 3.8 7.6-8.1" stroke="#c4b5fd" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Bouclier</div>
-  </div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
-    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#f5b400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
-    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Panier</div>
-  </div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><defs><radialGradient id="cO" cx="35%" cy="35%"><stop offset="0%" stop-color="#ffe066"/><stop offset="40%" stop-color="#fbbf24"/><stop offset="80%" stop-color="#d4940a"/><stop offset="100%" stop-color="#92650a"/></radialGradient><radialGradient id="cI" cx="40%" cy="40%"><stop offset="0%" stop-color="#ffe680"/><stop offset="60%" stop-color="#f5c842"/><stop offset="100%" stop-color="#c8920a"/></radialGradient></defs><circle cx="20" cy="20" r="18" fill="url(#cO)"/><circle cx="20" cy="20" r="14" fill="url(#cI)"/><circle cx="20" cy="20" r="17" fill="none" stroke="#ffe680" stroke-width="0.8" opacity="0.6"/><circle cx="20" cy="20" r="14" fill="none" stroke="#d4940a" stroke-width="0.6" opacity="0.5"/><text x="20" y="25.5" text-anchor="middle" font-size="16" font-weight="900" fill="#b8860b" opacity="0.4" font-family="serif">O</text><text x="20" y="25" text-anchor="middle" font-size="16" font-weight="900" fill="#ffe680" opacity="0.7" font-family="serif">O</text><ellipse cx="14" cy="12" rx="6" ry="3" fill="white" opacity="0.25" transform="rotate(-20 14 12)"/></svg>
-    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Piece</div>
-  </div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" fill="#ff8a4720" stroke="#ff8a47" stroke-width="2"/><path d="M14 22l4-8h4l-2 5h6l-6 10h-4l2-5h-4Z" fill="#ff8a47"/></svg>
-    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Force</div>
-  </div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#ff8a47" stroke-width="2"/><circle cx="20" cy="20" r="9" stroke="#ff8a47" stroke-width="1.5" opacity="0.6"/><circle cx="20" cy="20" r="4" stroke="#ff8a47" stroke-width="1.5" opacity="0.6"/><circle cx="20" cy="20" r="1.5" fill="#ff8a47"/></svg>
-    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Cible</div>
-  </div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" fill="#f5b40020" stroke="#f5b400" stroke-width="2"/><path d="m13 20 4.5 4.5 9-9" stroke="#f5b400" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Valide</div>
-  </div>
-  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
-    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" fill="#a78bfa24" stroke="#a78bfa" stroke-width="2.3"/><path d="M20 11v18M11 20h18" stroke="#c4b5fd" stroke-width="2.4" stroke-linecap="round"/></svg>
-    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Default</div>
-  </div>
-</div>
+<div data-icon-gallery></div>
 
 ---
 
