@@ -38,8 +38,57 @@ Chaque message de coaching utilise une icone SVG adaptee au contexte. Les icones
     <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Bouclier</div>
   </div>
   <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#f5b400" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Panier</div>
+  </div>
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
+    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><defs><radialGradient id="cO" cx="35%" cy="35%"><stop offset="0%" stop-color="#ffe066"/><stop offset="40%" stop-color="#fbbf24"/><stop offset="80%" stop-color="#d4940a"/><stop offset="100%" stop-color="#92650a"/></radialGradient><radialGradient id="cI" cx="40%" cy="40%"><stop offset="0%" stop-color="#ffe680"/><stop offset="60%" stop-color="#f5c842"/><stop offset="100%" stop-color="#c8920a"/></radialGradient></defs><circle cx="20" cy="20" r="18" fill="url(#cO)"/><circle cx="20" cy="20" r="14" fill="url(#cI)"/><circle cx="20" cy="20" r="17" fill="none" stroke="#ffe680" stroke-width="0.8" opacity="0.6"/><circle cx="20" cy="20" r="14" fill="none" stroke="#d4940a" stroke-width="0.6" opacity="0.5"/><text x="20" y="25.5" text-anchor="middle" font-size="16" font-weight="900" fill="#b8860b" opacity="0.4" font-family="serif">O</text><text x="20" y="25" text-anchor="middle" font-size="16" font-weight="900" fill="#ffe680" opacity="0.7" font-family="serif">O</text><ellipse cx="14" cy="12" rx="6" ry="3" fill="white" opacity="0.25" transform="rotate(-20 14 12)"/></svg>
+    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Piece</div>
+  </div>
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
+    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" fill="#ff8a4720" stroke="#ff8a47" stroke-width="2"/><path d="M14 22l4-8h4l-2 5h6l-6 10h-4l2-5h-4Z" fill="#ff8a47"/></svg>
+    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Force</div>
+  </div>
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
+    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#ff8a47" stroke-width="2"/><circle cx="20" cy="20" r="9" stroke="#ff8a47" stroke-width="1.5" opacity="0.6"/><circle cx="20" cy="20" r="4" stroke="#ff8a47" stroke-width="1.5" opacity="0.6"/><circle cx="20" cy="20" r="1.5" fill="#ff8a47"/></svg>
+    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Cible</div>
+  </div>
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
+    <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" fill="#f5b40020" stroke="#f5b400" stroke-width="2"/><path d="m13 20 4.5 4.5 9-9" stroke="#f5b400" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Valide</div>
+  </div>
+  <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:12px;text-align:center">
     <svg width="34" height="34" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="13" fill="#a78bfa24" stroke="#a78bfa" stroke-width="2.3"/><path d="M20 11v18M11 20h18" stroke="#c4b5fd" stroke-width="2.4" stroke-linecap="round"/></svg>
     <div style="font-size:.72rem;color:#9ca3af;margin-top:6px;font-weight:700">Default</div>
+  </div>
+</div>
+
+---
+
+## Émotions chibi (boutique)
+
+Les 4 émotions débloquables affichées dans la boutique (section "À DÉBLOQUER"). Définies dans `ProductIcons.jsx`.
+
+<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:1rem 0 2rem">
+  <div style="background:rgba(167,139,250,.06);border:1.5px dashed rgba(255,255,255,.08);border-radius:14px;padding:16px;text-align:center">
+    <svg width="60" height="60" viewBox="0 0 96 96"><defs><linearGradient id="doc-vict" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs><circle cx="48" cy="58" r="22" fill="url(#doc-vict)"/><path d="M38 54 Q42 50 46 54" stroke="#1e1e2e" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M50 54 Q54 50 58 54" stroke="#1e1e2e" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M38 62 Q48 70 58 62" stroke="#1e1e2e" stroke-width="2.5" stroke-linecap="round" fill="none"/><circle cx="32" cy="62" r="3" fill="#fbbf24" opacity="0.55"/><circle cx="64" cy="62" r="3" fill="#fbbf24" opacity="0.55"/><g transform="translate(34 44) rotate(-25)"><rect x="-3.5" y="-18" width="7" height="20" rx="3" fill="url(#doc-vict)"/><circle cx="0" cy="-20" r="6" fill="url(#doc-vict)"/></g><g transform="translate(62 44) rotate(25)"><rect x="-3.5" y="-18" width="7" height="20" rx="3" fill="url(#doc-vict)"/><circle cx="0" cy="-20" r="6" fill="url(#doc-vict)"/></g><g transform="translate(16 22)"><path d="M0 -5 L1.2 -1.2 L5 -1 L1.5 1.2 L2.5 5 L0 2.5 L-2.5 5 L-1.5 1.2 L-5 -1 L-1.2 -1.2 Z" fill="#fbbf24"/></g><g transform="translate(80 24) scale(0.8)"><path d="M0 -5 L1.2 -1.2 L5 -1 L1.5 1.2 L2.5 5 L0 2.5 L-2.5 5 L-1.5 1.2 L-5 -1 L-1.2 -1.2 Z" fill="#fbbf24" opacity="0.9"/></g><g transform="translate(48 10) scale(0.6)"><path d="M0 -5 L1.2 -1.2 L5 -1 L1.5 1.2 L2.5 5 L0 2.5 L-2.5 5 L-1.5 1.2 L-5 -1 L-1.2 -1.2 Z" fill="#fbbf24" opacity="0.8"/></g></svg>
+    <div style="font-size:.75rem;color:#c4b5fd;margin-top:8px;font-weight:700">Victoire</div>
+    <div style="font-size:.65rem;color:#6b7280;margin-top:2px">130 pièces</div>
+  </div>
+  <div style="background:rgba(167,139,250,.06);border:1.5px dashed rgba(255,255,255,.08);border-radius:14px;padding:16px;text-align:center">
+    <svg width="60" height="60" viewBox="0 0 96 96"><defs><linearGradient id="doc-danse" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs><g transform="rotate(-15 42 50)"><circle cx="42" cy="50" r="22" fill="url(#doc-danse)"/><path d="M32 46 Q36 42 40 46" stroke="#1e1e2e" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M44 46 Q48 42 52 46" stroke="#1e1e2e" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M32 54 Q42 62 52 54" stroke="#1e1e2e" stroke-width="2.5" stroke-linecap="round" fill="none"/><circle cx="26" cy="54" r="3" fill="#fbbf24" opacity="0.55"/><circle cx="58" cy="54" r="3" fill="#fbbf24" opacity="0.55"/></g><g transform="translate(76 28)"><ellipse cx="0" cy="6" rx="5" ry="4" fill="#fbbf24" transform="rotate(-15)"/><rect x="3" y="-12" width="2.8" height="18" rx="0.5" fill="#fbbf24"/><path d="M5.8 -12 Q12 -10, 10 -3" stroke="#fbbf24" stroke-width="2.5" fill="none" stroke-linecap="round"/></g><g transform="translate(86 56) scale(0.65)"><ellipse cx="0" cy="6" rx="5" ry="4" fill="#fbbf24" transform="rotate(-15)" opacity="0.85"/><rect x="3" y="-12" width="2.8" height="18" rx="0.5" fill="#fbbf24" opacity="0.85"/></g><g transform="translate(14 28) scale(0.55)"><ellipse cx="0" cy="6" rx="5" ry="4" fill="#fbbf24" transform="rotate(-15)" opacity="0.7"/><rect x="3" y="-12" width="2.8" height="18" rx="0.5" fill="#fbbf24" opacity="0.7"/></g><path d="M16 82 Q22 78, 28 82 Q34 86, 40 82" stroke="#c4b5fd" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/><path d="M52 84 Q58 80, 64 84 Q70 88, 76 84" stroke="#c4b5fd" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.5"/></svg>
+    <div style="font-size:.75rem;color:#c4b5fd;margin-top:8px;font-weight:700">Danse</div>
+    <div style="font-size:.65rem;color:#6b7280;margin-top:2px">130 pièces</div>
+  </div>
+  <div style="background:rgba(167,139,250,.06);border:1.5px dashed rgba(255,255,255,.08);border-radius:14px;padding:16px;text-align:center">
+    <svg width="60" height="60" viewBox="0 0 96 96"><defs><linearGradient id="doc-surp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs><circle cx="42" cy="52" r="22" fill="url(#doc-surp)"/><circle cx="34" cy="48" r="4.5" fill="#1e1e2e"/><circle cx="50" cy="48" r="4.5" fill="#1e1e2e"/><circle cx="35.5" cy="46" r="1.5" fill="#fff"/><circle cx="51.5" cy="46" r="1.5" fill="#fff"/><ellipse cx="42" cy="60" rx="4" ry="5" fill="#1e1e2e"/><circle cx="26" cy="56" r="3" fill="#fbbf24" opacity="0.55"/><circle cx="58" cy="56" r="3" fill="#fbbf24" opacity="0.55"/><g transform="translate(78 32)"><rect x="-3" y="-14" width="6" height="14" rx="2.5" fill="#fbbf24"/><circle cx="0" cy="6" r="3" fill="#fbbf24"/></g><path d="M14 28 L8 22" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/><path d="M22 16 L24 8" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/><path d="M44 12 L44 4" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/><path d="M62 16 L66 8" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/></svg>
+    <div style="font-size:.75rem;color:#c4b5fd;margin-top:8px;font-weight:700">Surprise</div>
+    <div style="font-size:.65rem;color:#6b7280;margin-top:2px">130 pièces</div>
+  </div>
+  <div style="background:rgba(167,139,250,.06);border:1.5px dashed rgba(255,255,255,.08);border-radius:14px;padding:16px;text-align:center">
+    <svg width="60" height="60" viewBox="0 0 96 96"><defs><linearGradient id="doc-hes" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient></defs><circle cx="38" cy="50" r="22" fill="url(#doc-hes)"/><circle cx="30" cy="48" r="3" fill="#1e1e2e"/><circle cx="31" cy="46.5" r="1" fill="#fff"/><path d="M42 48 Q46 50 50 48" stroke="#1e1e2e" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M25 39 L34 36" stroke="#1e1e2e" stroke-width="2.2" stroke-linecap="round"/><path d="M30 60 Q34 58 38 60 Q42 62 46 60" stroke="#1e1e2e" stroke-width="2.5" stroke-linecap="round" fill="none"/><circle cx="22" cy="56" r="2.5" fill="#fbbf24" opacity="0.4"/><circle cx="54" cy="56" r="2.5" fill="#fbbf24" opacity="0.4"/><ellipse cx="74" cy="32" rx="14" ry="9" fill="#c4b5fd" fill-opacity="0.25" stroke="#c4b5fd" stroke-width="1.5"/><circle cx="69" cy="32" r="1.6" fill="#c4b5fd"/><circle cx="74" cy="32" r="1.6" fill="#c4b5fd"/><circle cx="79" cy="32" r="1.6" fill="#c4b5fd"/><circle cx="62" cy="44" r="2.5" fill="#c4b5fd" fill-opacity="0.25" stroke="#c4b5fd" stroke-width="1"/><circle cx="58" cy="50" r="1.5" fill="#c4b5fd" fill-opacity="0.25" stroke="#c4b5fd" stroke-width="0.8"/></svg>
+    <div style="font-size:.75rem;color:#c4b5fd;margin-top:8px;font-weight:700">Hésitation</div>
+    <div style="font-size:.65rem;color:#6b7280;margin-top:2px">130 pièces</div>
   </div>
 </div>
 

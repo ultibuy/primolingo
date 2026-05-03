@@ -391,81 +391,136 @@ export function EmotionClapIcon({ size = 46, color = 'var(--color-primary)' }) {
 
 // ─── Victory (Victoire) ─────────────────────────────────────────────────────
 
-export function EmotionVictoryIcon({ size = 46, color = 'var(--color-primary)' }) {
+export function EmotionVictoryIcon({ size = 46 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
-      <circle cx="23" cy="10" r="5" fill={color} opacity="0.7" />
-      <path d="M23 16v10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M23 26l-5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M23 26l5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Arms raised in V */}
-      <path d="M17 20l-5-8" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M29 20l5-8" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Stars */}
-      <circle cx="10" cy="8" r="1.5" fill="#fbbf24" />
-      <circle cx="36" cy="8" r="1.5" fill="#fbbf24" />
+    <svg width={size} height={size} viewBox="0 0 96 96" aria-hidden="true">
+      <defs>
+        <linearGradient id="emo-vict-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#c4b5fd"/>
+          <stop offset="1" stopColor="#a78bfa"/>
+        </linearGradient>
+      </defs>
+      <circle cx="48" cy="58" r="22" fill="url(#emo-vict-grad)"/>
+      <path d="M38 54 Q42 50 46 54" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+      <path d="M50 54 Q54 50 58 54" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+      <path d="M38 62 Q48 70 58 62" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+      <circle cx="32" cy="62" r="3" fill="#fbbf24" opacity="0.55"/>
+      <circle cx="64" cy="62" r="3" fill="#fbbf24" opacity="0.55"/>
+      <g transform="translate(34 44) rotate(-25)">
+        <rect x="-3.5" y="-18" width="7" height="20" rx="3" fill="url(#emo-vict-grad)"/>
+        <circle cx="0" cy="-20" r="6" fill="url(#emo-vict-grad)"/>
+      </g>
+      <g transform="translate(62 44) rotate(25)">
+        <rect x="-3.5" y="-18" width="7" height="20" rx="3" fill="url(#emo-vict-grad)"/>
+        <circle cx="0" cy="-20" r="6" fill="url(#emo-vict-grad)"/>
+      </g>
+      <g transform="translate(16 22)">
+        <path d="M0 -5 L1.2 -1.2 L5 -1 L1.5 1.2 L2.5 5 L0 2.5 L-2.5 5 L-1.5 1.2 L-5 -1 L-1.2 -1.2 Z" fill="#fbbf24"/>
+      </g>
+      <g transform="translate(80 24) scale(0.8)">
+        <path d="M0 -5 L1.2 -1.2 L5 -1 L1.5 1.2 L2.5 5 L0 2.5 L-2.5 5 L-1.5 1.2 L-5 -1 L-1.2 -1.2 Z" fill="#fbbf24" opacity="0.9"/>
+      </g>
+      <g transform="translate(48 10) scale(0.6)">
+        <path d="M0 -5 L1.2 -1.2 L5 -1 L1.5 1.2 L2.5 5 L0 2.5 L-2.5 5 L-1.5 1.2 L-5 -1 L-1.2 -1.2 Z" fill="#fbbf24" opacity="0.8"/>
+      </g>
     </svg>
   );
 }
 
 // ─── Dance (Danse) ──────────────────────────────────────────────────────────
 
-export function EmotionDanceIcon({ size = 46, color = 'var(--color-primary)' }) {
+export function EmotionDanceIcon({ size = 46 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
-      <circle cx="23" cy="9" r="5" fill={color} opacity="0.7" />
-      <path d="M23 15v8" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Legs dynamic pose */}
-      <path d="M23 23l-7 8 3 5" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M23 23l5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Arms dynamic */}
-      <path d="M17 18l-5-2" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M29 18l5-4" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Music notes */}
-      <path d="M35 10v5l2-1" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" opacity="0.4" />
-      <circle cx="35" cy="15" r="1.5" fill={color} opacity="0.4" />
+    <svg width={size} height={size} viewBox="0 0 96 96" aria-hidden="true">
+      <defs>
+        <linearGradient id="emo-danse-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#c4b5fd"/>
+          <stop offset="1" stopColor="#a78bfa"/>
+        </linearGradient>
+      </defs>
+      <g transform="rotate(-15 42 50)">
+        <circle cx="42" cy="50" r="22" fill="url(#emo-danse-grad)"/>
+        <path d="M32 46 Q36 42 40 46" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+        <path d="M44 46 Q48 42 52 46" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+        <path d="M32 54 Q42 62 52 54" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+        <circle cx="26" cy="54" r="3" fill="#fbbf24" opacity="0.55"/>
+        <circle cx="58" cy="54" r="3" fill="#fbbf24" opacity="0.55"/>
+      </g>
+      <g transform="translate(76 28)">
+        <ellipse cx="0" cy="6" rx="5" ry="4" fill="#fbbf24" transform="rotate(-15)"/>
+        <rect x="3" y="-12" width="2.8" height="18" rx="0.5" fill="#fbbf24"/>
+        <path d="M5.8 -12 Q12 -10, 10 -3" stroke="#fbbf24" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+      </g>
+      <g transform="translate(86 56) scale(0.65)">
+        <ellipse cx="0" cy="6" rx="5" ry="4" fill="#fbbf24" transform="rotate(-15)" opacity="0.85"/>
+        <rect x="3" y="-12" width="2.8" height="18" rx="0.5" fill="#fbbf24" opacity="0.85"/>
+      </g>
+      <g transform="translate(14 28) scale(0.55)">
+        <ellipse cx="0" cy="6" rx="5" ry="4" fill="#fbbf24" transform="rotate(-15)" opacity="0.7"/>
+        <rect x="3" y="-12" width="2.8" height="18" rx="0.5" fill="#fbbf24" opacity="0.7"/>
+      </g>
+      <path d="M16 82 Q22 78, 28 82 Q34 86, 40 82" stroke="#c4b5fd" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.5"/>
+      <path d="M52 84 Q58 80, 64 84 Q70 88, 76 84" stroke="#c4b5fd" strokeWidth="2" fill="none" strokeLinecap="round" opacity="0.5"/>
     </svg>
   );
 }
 
 // ─── Surprise ───────────────────────────────────────────────────────────────
 
-export function EmotionSurpriseIcon({ size = 46, color = 'var(--color-primary)' }) {
+export function EmotionSurpriseIcon({ size = 46 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
-      <circle cx="23" cy="11" r="5" fill={color} opacity="0.7" />
-      {/* Mouth O */}
-      <circle cx="23" cy="13" r="1.5" stroke={color} strokeWidth="1" fill="none" opacity="0.6" />
-      <path d="M23 17v9" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M23 26l-5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M23 26l5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Arms startled */}
-      <path d="M17 20l-5-1" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M29 20l5-1" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Exclamation */}
-      <line x1="9" y1="7" x2="9" y2="12" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" />
-      <circle cx="9" cy="15" r="1" fill="#fbbf24" />
+    <svg width={size} height={size} viewBox="0 0 96 96" aria-hidden="true">
+      <defs>
+        <linearGradient id="emo-surp-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#c4b5fd"/>
+          <stop offset="1" stopColor="#a78bfa"/>
+        </linearGradient>
+      </defs>
+      <circle cx="42" cy="52" r="22" fill="url(#emo-surp-grad)"/>
+      <circle cx="34" cy="48" r="4.5" fill="#1e1e2e"/>
+      <circle cx="50" cy="48" r="4.5" fill="#1e1e2e"/>
+      <circle cx="35.5" cy="46" r="1.5" fill="#fff"/>
+      <circle cx="51.5" cy="46" r="1.5" fill="#fff"/>
+      <ellipse cx="42" cy="60" rx="4" ry="5" fill="#1e1e2e"/>
+      <circle cx="26" cy="56" r="3" fill="#fbbf24" opacity="0.55"/>
+      <circle cx="58" cy="56" r="3" fill="#fbbf24" opacity="0.55"/>
+      <g transform="translate(78 32)">
+        <rect x="-3" y="-14" width="6" height="14" rx="2.5" fill="#fbbf24"/>
+        <circle cx="0" cy="6" r="3" fill="#fbbf24"/>
+      </g>
+      <path d="M14 28 L8 22" stroke="#fbbf24" strokeWidth="2.5" strokeLinecap="round" opacity="0.7"/>
+      <path d="M22 16 L24 8" stroke="#fbbf24" strokeWidth="2.5" strokeLinecap="round" opacity="0.7"/>
+      <path d="M44 12 L44 4" stroke="#fbbf24" strokeWidth="2.5" strokeLinecap="round" opacity="0.7"/>
+      <path d="M62 16 L66 8" stroke="#fbbf24" strokeWidth="2.5" strokeLinecap="round" opacity="0.7"/>
     </svg>
   );
 }
 
 // ─── Think (Hesitation) ─────────────────────────────────────────────────────
 
-export function EmotionThinkIcon({ size = 46, color = 'var(--color-primary)' }) {
+export function EmotionThinkIcon({ size = 46 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
-      <circle cx="23" cy="11" r="5" fill={color} opacity="0.7" />
-      <path d="M23 17v9" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M23 26l-5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M23 26l5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Left arm down */}
-      <path d="M17 21l-4 4" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Right arm to chin (thinking pose) */}
-      <path d="M29 20l2-4 -4-2" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      {/* Thought bubble */}
-      <circle cx="35" cy="7" r="3" fill={color} opacity="0.15" stroke={color} strokeWidth="1" />
-      <circle cx="32" cy="12" r="1.2" fill={color} opacity="0.2" />
-      <text x="33.5" y="9" fontFamily="var(--font-kid)" fontSize="5" fontWeight="700" fill={color} opacity="0.5">?</text>
+    <svg width={size} height={size} viewBox="0 0 96 96" aria-hidden="true">
+      <defs>
+        <linearGradient id="emo-hes-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#c4b5fd"/>
+          <stop offset="1" stopColor="#a78bfa"/>
+        </linearGradient>
+      </defs>
+      <circle cx="38" cy="50" r="22" fill="url(#emo-hes-grad)"/>
+      <circle cx="30" cy="48" r="3" fill="#1e1e2e"/>
+      <circle cx="31" cy="46.5" r="1" fill="#fff"/>
+      <path d="M42 48 Q46 50 50 48" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+      <path d="M25 39 L34 36" stroke="#1e1e2e" strokeWidth="2.2" strokeLinecap="round"/>
+      <path d="M30 60 Q34 58 38 60 Q42 62 46 60" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+      <circle cx="22" cy="56" r="2.5" fill="#fbbf24" opacity="0.4"/>
+      <circle cx="54" cy="56" r="2.5" fill="#fbbf24" opacity="0.4"/>
+      <ellipse cx="74" cy="32" rx="14" ry="9" fill="#c4b5fd" fillOpacity="0.25" stroke="#c4b5fd" strokeWidth="1.5"/>
+      <circle cx="69" cy="32" r="1.6" fill="#c4b5fd"/>
+      <circle cx="74" cy="32" r="1.6" fill="#c4b5fd"/>
+      <circle cx="79" cy="32" r="1.6" fill="#c4b5fd"/>
+      <circle cx="62" cy="44" r="2.5" fill="#c4b5fd" fillOpacity="0.25" stroke="#c4b5fd" strokeWidth="1"/>
+      <circle cx="58" cy="50" r="1.5" fill="#c4b5fd" fillOpacity="0.25" stroke="#c4b5fd" strokeWidth="0.8"/>
     </svg>
   );
 }
