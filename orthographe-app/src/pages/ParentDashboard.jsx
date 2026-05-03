@@ -20,7 +20,6 @@ import {
   loadParentImages,
   saveParentImages,
   loadChildSettings,
-  saveChildQuestionCount,
   saveChildImageSettings,
   loadProgress,
   saveProgress,
@@ -85,25 +84,14 @@ function MysteryTileSelector({ imageDataUrl, selectedTileIndex, onSelect }) {
 
 function ChildSettings({ uid, childId, parentImages }) {
   const [settings, setSettings] = useState(null);
-  const [qCount, setQCount] = useState('20');
-  const [savingQ, setSavingQ] = useState(false);
   const [savingImg, setSavingImg] = useState(false);
   const [msg, setMsg] = useState('');
 
   useEffect(() => {
     loadChildSettings(uid, childId).then(s => {
       setSettings(s);
-      setQCount(String(s.prodQuestionCount ?? 20));
     });
   }, [uid, childId]);
-
-  async function handleSaveQCount() {
-    setSavingQ(true);
-    const result = await saveChildQuestionCount(uid, childId, qCount);
-    setSavingQ(false);
-    if (result.success) { setMsg('Sauvegardé.'); setTimeout(() => setMsg(''), 2000); }
-    else setMsg(result.error || 'Erreur.');
-  }
 
   async function handleToggleImage(imageId, enabled) {
     const current = settings?.enabledMysteryImageIds || [];
@@ -122,25 +110,6 @@ function ChildSettings({ uid, childId, parentImages }) {
 
   return (
     <div style={{ display: 'grid', gap: '0.9rem', paddingTop: '0.25rem' }}>
-      {/* Question count */}
-      <div style={settingRowStyle}>
-        <div>
-          <div style={settingLabelStyle}>Questions par session</div>
-          <div style={{ fontSize: '0.76rem', color: '#64748b' }}>Entre 1 et 50</div>
-        </div>
-        <div style={{ display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
-          <input
-            type="number" min="1" max="50"
-            value={qCount}
-            onChange={e => setQCount(e.target.value)}
-            style={{ ...inputStyle, width: 60, padding: '0.45rem 0.6rem', textAlign: 'center' }}
-          />
-          <button type="button" onClick={handleSaveQCount} disabled={savingQ} style={primaryBtnStyle(savingQ)}>
-            {savingQ ? '…' : 'OK'}
-          </button>
-        </div>
-      </div>
-
       {/* Mystery images */}
       <div>
         <div style={settingLabelStyle}>Images mystère activées</div>
@@ -890,10 +859,6 @@ const playBtnStyle = {
 };
 
 // Settings
-const settingRowStyle = {
-  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-  gap: '0.8rem', flexWrap: 'wrap',
-};
 const settingLabelStyle = { fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-accent)', marginBottom: '0.2rem' };
 
 // Shared form styles
