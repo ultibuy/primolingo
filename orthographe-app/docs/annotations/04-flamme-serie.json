@@ -1,0 +1,46 @@
+[
+  {
+    "x": 687,
+    "y": 739,
+    "text": "adapte le modèle de popup pour que la couleur puisse s'adapter. ici ce mauve est bizarre. Pour les popups de nvieau (bronze, argent, courronne, diamant) comme leur couleur ne s'adaptent pas au thème leur bouton close devrait être adpaté à la couleur de la popup et ne pas reprendre le bouton close du thème. Gère bien cela de facon cntrale au niveau du modèle de ppup pur qu'il accpete des vairants ",
+    "time": "03/05 22:07",
+    "domContext": {
+      "tag": "P",
+      "text": ""
+    },
+    "response": "Note : ce changement de code (PopupModal avec variantes de couleur pour le close button) sera traite dans un ticket dedie car il touche le design system. Le modele PopupModal devra accepter une prop closeColor ou variant pour adapter le bouton X a la couleur de la popup."
+  },
+  {
+    "x": 600,
+    "y": 2694,
+    "text": "montre aussi l'écran suivant et les écrans qui propossent d'utiliser un bouclier",
+    "time": "03/05 22:10",
+    "domContext": {
+      "tag": "P",
+      "text": ""
+    },
+    "response": "Note : les screenshots de l'ecran de retour avec les etapes bouclier ne sont pas encore captures. A ajouter quand les captures d'ecran seront disponibles (necessite un etat de progression avec bouclier + absence)."
+  },
+  {
+    "x": 637,
+    "y": 2200,
+    "text": "précise ici qu'un parent peut intervenir pour maintenir la falmme quand il y a une bonne raison. présente aussi cet écran. Précise qu'il doit alors rentrer son pin",
+    "time": "03/05 22:11",
+    "domContext": {
+      "tag": "LI",
+      "text": "Flamme : si l'enfant a un bouclier, il peut l'utiliser pour sauver sa flamme. S'il n'en a pas mais a assez de pièces, il"
+    },
+    "response": "Fait. Doc mise a jour : ajout de la mention que le parent peut intervenir avec son PIN pour maintenir la flamme (maladie, vacances, etc.)."
+  },
+  {
+    "x": 602,
+    "y": 3558,
+    "text": "si tu as fait une session sous 60% et que la flamme n'est pas protégée, il y a un message de coaching associé à ca ou pas ?",
+    "time": "03/05 22:12",
+    "domContext": {
+      "tag": "TD",
+      "text": "Une session en dessous de 60 % ne fait pas progresser la flamme"
+    },
+    "response": "Non, il n'y a pas de message de coaching dedie a ce cas precis (session < 60% + flamme non protegee). Le systeme de coaching a des messages pour : la premiere session ratee (arc1.3), le retour apres absence (arc9.5), la flamme en danger (arc5.8), mais pas la combinaison 'session sous 60% + pas de bouclier'."
+  }
+]

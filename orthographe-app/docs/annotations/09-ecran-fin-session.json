@@ -1,0 +1,32 @@
+[
+  {
+    "x": 726,
+    "y": 1952,
+    "text": "ces bonus apparaissent bien dans cet écran de fin de quiz ?",
+    "time": "03/05 23:07",
+    "domContext": {
+      "tag": "LI",
+      "text": "Bonus de palier de flamme : les pièces du palier atteint (100, 200, 350, 500 ou 1 000 selon le palier)."
+    }
+  },
+  {
+    "x": 675,
+    "y": 3202,
+    "text": "ajoute des screenshots pour chacune de ces animations",
+    "time": "03/05 23:08",
+    "domContext": {
+      "tag": "P",
+      "text": "Si un changement de niveau a lieu, une animation de célébration s'affiche avec le nouveau badge et les pièces bonus du niveau."
+    }
+  },
+  {
+    "x": 663,
+    "y": 46,
+    "text": "",
+    "time": "03/05 23:08",
+    "domContext": {
+      "tag": "A",
+      "text": "Suivant →"
+    }
+  }
+]

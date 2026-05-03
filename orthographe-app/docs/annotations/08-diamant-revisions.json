@@ -1,0 +1,57 @@
+[
+  {
+    "x": 474,
+    "y": 543,
+    "text": "c quoi cette animation de célébration ?",
+    "time": "03/05 22:44",
+    "domContext": {
+      "tag": "P",
+      "text": "Quand l'enfant réussit sa troisième session consécutive à 90 % ou plus en quiz direct, le Diamant est décerné. Une animation de célébration s'affiche "
+    },
+    "response": "C'est une 'entrance animation' achetable en boutique (300 pieces). 4 variantes : Lightning (eclairs), Stars (350 etoiles dorees en burst), Inferno (flammes), Freeze (cristaux de glace). Elle se joue en plein ecran au moment du passage de niveau. Si l'enfant n'en a pas achete, aucune animation ne se joue — juste le popup de niveau."
+  },
+  {
+    "x": 572,
+    "y": 4191,
+    "text": "fais moi des copies d'écran pour chacun des diamants",
+    "time": "03/05 22:45",
+    "domContext": {
+      "tag": "TD",
+      "text": "Le Diamant brille : la prochaine révision est repoussée plus loin (1 jour, puis 6, puis 15, puis 35, puis 80 jours...)"
+    },
+    "response": "Les captures d'ecran des differents etats du diamant (sain, fatigue, fissure, critique) necessitent un script de capture dedie avec des etats de progression simules. A faire dans un prochain ticket capture."
+  },
+  {
+    "x": 819,
+    "y": 5445,
+    "text": "la santée baisse au fil des jours => précsie dans la doc exactement comment cette santé baisse et quel impact visuel d'une baisse de santé",
+    "time": "03/05 22:46",
+    "domContext": {
+      "tag": "P",
+      "text": "Si l'enfant ne lance pas sa révision à temps, la santé du Diamant baisse au fil des jours. L'app lui accorde un délai de grâce (au minimum 7 jours) av"
+    },
+    "response": "Fait. Doc mise a jour avec la formule exacte (sante = max(0, 1 - jours_retard/delai_grace)), le calcul du delai de grace (max(7, intervalle SM-2)), et un tableau des 4 paliers visuels (sain >= 80%, fatigue 50-79%, fissure 20-49%, critique < 20%) avec les couleurs et animations."
+  },
+  {
+    "x": 570,
+    "y": 5602,
+    "text": "montre moi un dimant qui se brise",
+    "time": "03/05 22:47",
+    "domContext": {
+      "tag": "P",
+      "text": "Quand la santé atteint zéro, le Diamant se brise. La règle redescend au niveau Couronne. L'enfant devra refaire 3 sessions consécutives à 90 % en quiz"
+    },
+    "response": "La capture d'ecran du diamant brise necessite un script de capture avec un etat de progression simule (sante a 0). A faire dans un prochain ticket capture."
+  },
+  {
+    "x": 553,
+    "y": 48,
+    "text": "",
+    "time": "03/05 22:48",
+    "domContext": {
+      "tag": "A",
+      "text": "← Précédent"
+    },
+    "response": "Annotation vide, rien a traiter."
+  }
+]

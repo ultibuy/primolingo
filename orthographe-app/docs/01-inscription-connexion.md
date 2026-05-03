@@ -20,6 +20,8 @@ L'utilisateur clique sur le bouton et est redirigé vers la page de connexion Go
 
 Une fois authentifié, le parent est automatiquement redirigé vers son tableau de bord. S'il se connecte pour la première fois, le tableau de bord est vide et l'invite à créer un premier profil enfant.
 
+![Tableau de bord parent](screenshots/parent-dashboard.png)
+
 ### 4. Déconnexion
 
 Le parent peut se déconnecter à tout moment depuis le tableau de bord. La déconnexion ramène à la page d'accueil.

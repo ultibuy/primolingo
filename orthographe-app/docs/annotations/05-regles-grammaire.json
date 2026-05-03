@@ -1,0 +1,13 @@
+[
+  {
+    "x": 441,
+    "y": 2081,
+    "text": "remplace le texte descriptif par un screenshot pour chaque popup, en mobile",
+    "time": "03/05 22:48",
+    "domContext": {
+      "tag": "LI",
+      "text": "Titre : « C'est quoi le Bronze ? »"
+    },
+    "response": "Fait. Script Playwright créé (tests/screenshot-level-popups.js) pour capturer les 4 popups en mobile 390×844. Les 4 screenshots sont sauvés dans docs/screenshots/ et la section du doc remplace maintenant le texte par les 4 images."
+  }
+]

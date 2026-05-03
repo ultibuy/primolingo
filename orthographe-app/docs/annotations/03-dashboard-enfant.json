@@ -1,0 +1,24 @@
+[
+  {
+    "x": 712,
+    "y": 5145,
+    "text": "ajoute ici un 5. le message d'acceuil et rappel la règle de construction du bonjour damien et de ses variante puis un 6 sur les micro stats : #quizz du jour, les records 7 et 30j et comment ils sont calculés. Ajouts à faire sur les docs uniquement. ",
+    "time": "03/05 22:01",
+    "domContext": {
+      "tag": "P",
+      "text": "Si l'enfant possède un ou deux boucliers, une icone bouclier apparait dans le header avec le nombre restant. Les boucliers protègent la flamme en cas "
+    },
+    "response": "Fait. Section 5 'Message d'accueil' ajoutee (tableau heure/message : Debout tot < 6h, Bonjour 6-12h, Bon apres-midi 12-18h, Bonsoir > 18h). Section 6 'Micro-stats du header' ajoutee (quiz aujourd'hui, record 7j, record 30j avec explication du calcul)."
+  },
+  {
+    "x": 488,
+    "y": 5628,
+    "text": "remonte ca devant le 6 sous la forme  le selecteur grammaire / vocab et expliue la règle d'affichage par défaut",
+    "time": "03/05 22:03",
+    "domContext": {
+      "tag": "P",
+      "text": "Un onglet en bas du dashboard permet de basculer vers la section dictée. Cet onglet donne accès aux sessions d'écoute et de saisie de mots."
+    },
+    "response": "Fait. Section 7 'Selecteur Grammaire / Vocabulaire' ajoutee avant le coaching (section 8). Regle d'affichage par defaut : l'onglet avec le moins de diamants s'ouvre en premier pour equilibrer la progression."
+  }
+]

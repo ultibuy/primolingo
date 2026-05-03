@@ -1,0 +1,53 @@
+[
+  {
+    "x": 441,
+    "y": 940,
+    "text": "supprimer cet écran ici des docs uniquement",
+    "time": "03/05 21:47",
+    "response": "Fait. Screenshot supprime de la doc."
+  },
+  {
+    "x": 708,
+    "y": 669,
+    "text": "présenter ici toutes les options d'emoji de profil enfant",
+    "time": "03/05 21:47",
+    "domContext": {
+      "tag": "P",
+      "text": "Une fois le profil créé, le parent voit une carte par enfant sur son tableau de bord. Il peut basculer vers l'espace de "
+    },
+    "response": "Fait. Tableau des 12 emojis ajoute dans la section 2 (Renard, Chat, Lion, Grenouille, Singe, Licorne, Dragon, Aigle, Loup, Panda, Requin, Pieuvre)."
+  },
+  {
+    "x": 414,
+    "y": 1697,
+    "text": "rajoute un 4 : retour sur dashboard parent depuis enfant : demande de pin. A ajouter dans la doc et dans l'app car pour l'instant ca ne marche pas",
+    "time": "03/05 22:04",
+    "domContext": {
+      "tag": "BODY",
+      "text": "PrimoLingo"
+    },
+    "response": "Fait. Code : le bouton 'Retourner sur l'app parent' dans Dashboard.jsx demande maintenant le PIN parental avant de naviguer. Doc : section 4 ajoutee."
+  },
+  {
+    "x": 566,
+    "y": 47,
+    "text": "",
+    "time": "03/05 22:05",
+    "domContext": {
+      "tag": "A",
+      "text": "← Précédent"
+    },
+    "response": "Annotation vide, rien a traiter."
+  },
+  {
+    "x": 491,
+    "y": 1710,
+    "text": "ajoute ici en texte sans screenshot tous les réglages qu'un parent peut faire sur le compte yc restaurer un compte à des valeurs précédentes",
+    "time": "03/05 22:05",
+    "domContext": {
+      "tag": "BODY",
+      "text": "PrimoLingo"
+    },
+    "response": "Fait. Section 'Reglages parent par enfant' ajoutee : images mystere, questions signalees, restauration de sauvegarde (30 derniers jours)."
+  }
+]

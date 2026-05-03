@@ -1,0 +1,32 @@
+[
+  {
+    "x": 559,
+    "y": 2130,
+    "text": "cet écran n'a rien à faire ici. Inègre le dans la page de docs sur le flamme ",
+    "time": "03/05 22:40",
+    "domContext": {
+      "tag": "P",
+      "text": ""
+    }
+  },
+  {
+    "x": 617,
+    "y": 3094,
+    "text": "ajoute un sreenshot de quizz avec perso verrouillé",
+    "time": "03/05 22:41",
+    "domContext": {
+      "tag": "P",
+      "text": "Si l'enfant ne possède pas encore l'émotion déclenchée, le personnage reste neutre avec une bulle verrouillée qui invite à débloquer l'émotion en bout"
+    }
+  },
+  {
+    "x": 662,
+    "y": 57,
+    "text": "",
+    "time": "03/05 22:43",
+    "domContext": {
+      "tag": "A",
+      "text": "Suivant →"
+    }
+  }
+]
