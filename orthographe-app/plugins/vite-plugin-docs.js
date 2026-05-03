@@ -109,6 +109,17 @@ const HTML_TEMPLATE = (title, body, nav) => {
       font-size: 0.78rem; cursor: pointer; white-space: nowrap;
     }
     .ann-pin { pointer-events: auto; }
+    .ann-sidebar {
+      position: fixed; right: 8px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 6px; z-index: 900;
+    }
+    .ann-sidebar-pin {
+      width: 28px; height: 28px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; font-size: 11px;
+      font-weight: 800; color: #fff; cursor: pointer; user-select: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.15s ease;
+    }
+    .ann-sidebar-pin:hover { transform: scale(1.2); }
   </style>
 </head>
 <body>
@@ -122,6 +133,9 @@ const HTML_TEMPLATE = (title, body, nav) => {
     <span>PrimoLingo — Documentation fonctionnelle</span>
     <span>v${version}</span>
   </footer>
+
+  <!-- Sidebar pins (sticky, right side) -->
+  <div class="ann-sidebar" id="ann-sidebar"></div>
 
   <!-- Annotation overlay -->
   <div class="comment-banner">
@@ -200,6 +214,31 @@ const HTML_TEMPLATE = (title, body, nav) => {
 
     function renderAnnotations() {
       document.querySelectorAll('.ann-pin').forEach(el => el.remove());
+      // Build sidebar
+      const sidebar = document.getElementById('ann-sidebar');
+      sidebar.innerHTML = '';
+      annotations.forEach((ann, i) => {
+        const hasResp = !!(ann.response && ann.response.trim());
+        const sidePin = document.createElement('div');
+        sidePin.className = 'ann-sidebar-pin';
+        sidePin.style.background = hasResp ? '#22c55e' : '#7c3aed';
+        sidePin.textContent = hasResp ? '\\u2713' : (i + 1);
+        sidePin.title = (ann.text || '').slice(0, 60) || 'Commentaire ' + (i + 1);
+        sidePin.addEventListener('click', function() {
+          window.scrollTo({ top: ann.y - 200, behavior: 'smooth' });
+          // Open the bubble after scrolling
+          setTimeout(() => {
+            document.querySelectorAll('.ann-bubble').forEach(b => { b.style.display = 'none'; });
+            const pins = document.querySelectorAll('.ann-pin');
+            if (pins[i]) {
+              const bubble = pins[i].querySelector('.ann-bubble');
+              if (bubble) bubble.style.display = 'block';
+            }
+          }, 400);
+        });
+        sidebar.appendChild(sidePin);
+      });
+      // Render inline pins
       annotations.forEach((ann, i) => {
         const pin = document.createElement('div');
         pin.className = 'ann-pin';
