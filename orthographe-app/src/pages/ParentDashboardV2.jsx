@@ -160,6 +160,8 @@ function BackupRestorePanel({ uid, childId }) {
   const [backups, setBackups] = useState(null);
   const [restoring, setRestoring] = useState(null);
   const [msg, setMsg] = useState('');
+  const [showAll, setShowAll] = useState(false);
+  const PREVIEW_COUNT = 2;
 
   useEffect(() => {
     getDailyBackups(uid, childId).then(setBackups);
@@ -195,7 +197,7 @@ function BackupRestorePanel({ uid, childId }) {
           <div style={{ fontSize: '0.78rem', color: '#9ca3af' }}>Aucune sauvegarde disponible.</div>
         ) : (
           <div style={{ display: 'grid', gap: '0.4rem' }}>
-            {backups.slice(0, 10).map(backup => (
+            {(showAll ? backups : backups.slice(0, PREVIEW_COUNT)).map(backup => (
               <div key={backup.date} style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'space-between',
                 gap: '0.5rem', padding: '0.45rem 0.6rem',
@@ -225,6 +227,15 @@ function BackupRestorePanel({ uid, childId }) {
                 </button>
               </div>
             ))}
+            {!showAll && backups.length > PREVIEW_COUNT && (
+              <button
+                type="button"
+                onClick={() => setShowAll(true)}
+                style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#9ca3af', fontSize: '0.75rem', fontWeight: 700, padding: '0.2rem 0', textAlign: 'left', fontFamily: 'var(--font-body)' }}
+              >
+                ↓ Voir les {backups.length - PREVIEW_COUNT} sauvegardes précédentes
+              </button>
+            )}
           </div>
         )}
         {msg && (

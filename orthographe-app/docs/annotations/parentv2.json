@@ -11,7 +11,7 @@
     "text": "dis \"Utile pour : 1) protéger la flamme de votre enfant (le nombre de jours consécutifs d'utilsiation) quand il a une bonne raison (week-end familial, pas de possbilité de jouer, etc..) et 2) restaurer la progression à un jour particulier en cas de besoin",
     "time": "04/05 12:24",
     "domContext": { "tag": "P", "text": "Protège la flamme : votre enfant le saisit pour récupérer sa série après une absence." },
-    "response": "Fait. Le texte du code PIN a été réécrit avec les deux cas d'usage : 1) protéger la flamme quand l'enfant a une bonne raison de ne pas avoir joué (week-end familial, etc.) et 2) restaurer la progression à un jour particulier en cas de besoin."
+    "response": "Fait. Le texte du code PIN a été réécrit avec les deux cas d'usage."
   },
   {
     "x": 550, "y": 375,
@@ -32,7 +32,7 @@
     "text": "",
     "time": "04/05 12:26",
     "domContext": { "tag": "BUTTON", "text": "Ouvrir le tableau de bord" },
-    "response": "Commentaire vide. Le bouton « Ouvrir le tableau de bord » a été supprimé et remplacé par des instructions contextuelles."
+    "response": "Commentaire vide. Le bouton a été supprimé et remplacé par des instructions contextuelles."
   },
   {
     "x": 396, "y": 980,
@@ -123,14 +123,14 @@
     "text": "ce titre devrait être traité comme titre primaire, comme \"code parental\"",
     "time": "04/05 15:01",
     "domContext": { "tag": "P", "text": "Compte connecté" },
-    "response": "Fait. « Compte connecté » est maintenant en fontSize 0.95rem, fontWeight 800, color #fff et fontFamily display — même style que le titre « Code parental à 4 chiffres »."
+    "response": "Fait. « Compte connecté » est maintenant en fontSize 0.95rem, fontWeight 800, color #fff et fontFamily display."
   },
   {
     "x": 653, "y": 548,
     "text": "les autres énumérations sont en 1. avec retrait à la 2ème ligne, fais pareil que sur \"sur l'appareil de l'enfant\"",
     "time": "04/05 15:01",
     "domContext": { "tag": "LI", "text": "1) Protéger la flamme de votre enfant..." },
-    "response": "Fait. La liste du code PIN est maintenant un <ol style={{ paddingLeft: '1.1rem' }}> avec des <li> sans préfixe manuel."
+    "response": "Fait. La liste du code PIN est maintenant un <ol paddingLeft 1.1rem> avec des <li> sans préfixe manuel."
   },
   {
     "x": 432, "y": 1959,
@@ -152,5 +152,12 @@
     "time": "04/05 16:01",
     "domContext": { "tag": "LI", "text": "Appuyez sur le bouton Partager (□↑), puis « Sur l'écran d'accueil »" },
     "response": "Fait. Un bouton « ↗ Ouvrir / partager la partie enfant » apparaît sous les étapes quand iOS ou Android est sélectionné. Il invoque navigator.share() (Web Share API native) si disponible, ou copie l'URL dans le presse-papier en fallback. Après action, il passe en vert « ✓ Lien copié ! » pendant 3 s."
+  },
+  {
+    "x": 761, "y": 1650,
+    "text": "afficher 2 jours et un petit bouton \"voir plus\" en dessous",
+    "time": "04/05 16:02",
+    "domContext": { "tag": "DIV", "text": "2026-05-049145 pièces · 0 joursRestaurer" },
+    "response": "Fait. Les sauvegardes n'affichent plus que les 2 plus récentes par défaut. Un bouton « ↓ Voir les N sauvegardes précédentes » apparaît en dessous s'il en existe davantage, et déploie toute la liste au clic."
   }
 ]
