@@ -43,10 +43,16 @@ const TILE_COUNT = 6;
 
 function detectPlatform() {
   const ua = navigator.userAgent;
-  if (/iPad|iPhone|iPod/.test(ua)) return 'ios';
+  if (/iPad|iPhone|iPod/.test(ua) || (/Mac/.test(ua) && navigator.maxTouchPoints > 1)) return 'ios';
   if (/Android/.test(ua)) return 'android';
   return 'desktop';
 }
+
+const DEVICES = [
+  { id: 'desktop', label: 'Ordinateur', emoji: '💻' },
+  { id: 'ios',     label: 'iPhone / iPad', emoji: '📱' },
+  { id: 'android', label: 'Android', emoji: '📱' },
+];
 
 // ─── MysteryTileSelector ──────────────────────────────────────────────────────
 
@@ -455,27 +461,6 @@ function ChildPanelV2({ child, uid, parentImages, isOpen, onToggle }) {
             <div style={sectionDividerStyle}>Paramètres</div>
             <ChildSettings uid={uid} childId={child.id} parentImages={parentImages} />
           </div>
-
-          {/* Partie enfant */}
-          <div>
-            <div style={sectionDividerStyle}>Partie enfant</div>
-            <p style={{ fontSize: '0.82rem', color: '#9ca3af', margin: '0 0 0.7rem', lineHeight: 1.6 }}>
-              Ouvrez l'app enfant puis mettez-la en favoris pour que <strong style={{ color: '#d1d5db' }}>{child.name}</strong> puisse y accéder facilement depuis son appareil.
-            </p>
-            <button
-              type="button"
-              onClick={() => { posthog.capture('child_play_launched', { child_id: child.id }); window.open(`/play/${child.id}`, '_blank'); }}
-              style={primaryBtnStyle(false)}
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: 6, verticalAlign: '-1px' }}><path d="M6 4l15 8-15 8V4z"/></svg>
-              Ouvrir la partie enfant
-            </button>
-          </div>
-
-          {/* Sauvegardes */}
-          <div>
-            <BackupRestorePanel uid={uid} childId={child.id} />
-          </div>
         </div>
       )}
     </div>
@@ -484,84 +469,83 @@ function ChildPanelV2({ child, uid, parentImages, isOpen, onToggle }) {
 
 // ─── AccesEnfantSection ────────────────────────────────────────────────────────
 
+const DEVICE_INSTRUCTIONS = {
+  desktop: {
+    label: 'Ordinateur',
+    parentBookmark: 'Ctrl+D (Windows) ou Cmd+D (Mac)',
+    steps: [
+      'Rendez-vous sur primolingo.app et connectez-vous avec votre compte parent',
+      'Dans la section « Gestion des enfants », cliquez sur « Ouvrir la partie enfant »',
+      'Mettez la page en favoris (Ctrl+D sur Windows, Cmd+D sur Mac) pour que l\'enfant y accède directement',
+    ],
+  },
+  ios: {
+    label: 'iPhone / iPad',
+    parentBookmark: 'Dans Safari : Partager → « Ajouter aux favoris »',
+    steps: [
+      'Rendez-vous sur primolingo.app dans Safari et connectez-vous avec votre compte parent',
+      'Dans la section « Gestion des enfants », appuyez sur « Ouvrir la partie enfant »',
+      'Appuyez sur le bouton Partager (□↑), puis « Sur l\'écran d\'accueil »',
+    ],
+  },
+  android: {
+    label: 'Android',
+    parentBookmark: 'Dans Chrome : ⋮ → « Ajouter aux favoris »',
+    steps: [
+      'Rendez-vous sur primolingo.app dans Chrome et connectez-vous avec votre compte parent',
+      'Dans la section « Gestion des enfants », appuyez sur « Ouvrir la partie enfant »',
+      'Appuyez sur ⋮ (trois points en haut à droite), puis « Ajouter à l\'écran d\'accueil »',
+    ],
+  },
+};
+
 function AccesEnfantSection() {
-  const [showCopyFallback, setShowCopyFallback] = useState(false);
-  const [copied, setCopied] = useState(false);
-  const [platform, setPlatform] = useState('desktop');
-  const [showAltPlatform, setShowAltPlatform] = useState(false);
+  const [device, setDevice] = useState('desktop');
 
   useEffect(() => {
-    setPlatform(detectPlatform());
+    setDevice(detectPlatform());
   }, []);
 
-  async function handleShare() {
-    const childUrl = `${window.location.origin}/play`;
-    const data = { title: 'PrimoLingo', text: "L'app de grammaire de l'enfant", url: childUrl };
-    if (navigator.share) {
-      try { await navigator.share(data); } catch (_) {}
-    } else {
-      setShowCopyFallback(true);
-    }
-  }
-
-  async function handleCopy() {
-    try {
-      await navigator.clipboard.writeText(`${window.location.origin}/play`);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (_) {}
-  }
-
-  const platformInstructions = {
-    ios: {
-      label: 'iPhone / iPad',
-      steps: [
-        'Cliquez sur « Ouvrir la partie enfant » ci-dessous',
-        'Appuyez sur le bouton Partager (carré avec flèche vers le haut)',
-        'Sélectionnez « Sur l\'écran d\'accueil » pour créer un accès rapide',
-      ],
-    },
-    android: {
-      label: 'Android',
-      steps: [
-        'Cliquez sur « Ouvrir la partie enfant » ci-dessous',
-        'Appuyez sur le menu ⋮ (trois points en haut à droite)',
-        'Sélectionnez « Ajouter à l\'écran d\'accueil »',
-      ],
-    },
-    desktop: {
-      label: 'Ordinateur',
-      steps: [
-        'Cliquez sur « Ouvrir la partie enfant » ci-dessous',
-        'Mettez la page en favoris (Ctrl+D sur Windows, Cmd+D sur Mac)',
-        'L\'enfant pourra y accéder directement depuis ses favoris',
-      ],
-    },
-  };
-
-  const parentBookmarkInstructions = {
-    ios: 'Dans Safari : appuyez sur Partager → « Ajouter aux favoris »',
-    android: 'Dans Chrome : appuyez sur ⋮ → « Ajouter aux favoris »',
-    desktop: 'Appuyez sur Ctrl+D (Windows) ou Cmd+D (Mac)',
-  };
-
-  const altPlatform = platform === 'ios' ? 'android' : platform === 'android' ? 'ios' : 'ios';
-  const primaryInstr = platformInstructions[platform];
-  const altInstr = platformInstructions[altPlatform];
+  const instr = DEVICE_INSTRUCTIONS[device];
 
   return (
-    <div style={{ display: 'grid', gap: '1rem' }}>
-      {/* Explanation */}
+    <div style={{ display: 'grid', gap: '1.2rem' }}>
+      {/* Preamble */}
       <div style={infoCardStyle}>
         <p style={{ margin: 0, fontSize: '0.9rem', color: '#d1d5db', lineHeight: 1.7 }}>
-          PrimoLingo a deux interfaces séparées : <strong style={{ color: '#fff' }}>ce tableau de bord</strong> (pour vous) et <strong style={{ color: '#fff' }}>l'app enfant</strong> (pour votre enfant). L'enfant choisit son personnage pour accéder à l'app — il n'a pas besoin de compte.
+          PrimoLingo est constituée de <strong style={{ color: '#fff' }}>deux parties</strong> : ce tableau de bord parent (pour vous) et la <strong style={{ color: '#fff' }}>partie enfant</strong> accessible via les boutons ci-dessous. Il n'y a pas d'app séparée — tout se passe dans le navigateur.
         </p>
         <p style={{ margin: '0.5rem 0 0', fontSize: '0.85rem', color: '#9ca3af', lineHeight: 1.6 }}>
-          Nous vous recommandons d'ajouter ce tableau de bord en favori sur votre appareil, et l'app enfant en favori sur l'appareil de votre enfant.
+          Recommandé : mettre ce tableau de bord en favori sur votre appareil, et mettre la partie enfant en favori sur l'appareil de votre enfant.
         </p>
       </div>
 
-      {/* Two-column on desktop, stacked on mobile */}
+      {/* Device selector */}
+      <div>
+        <div style={{ fontSize: '0.72rem', fontWeight: 800, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
+          Appareil de l'enfant
+        </div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+          {DEVICES.map(d => (
+            <button
+              key={d.id}
+              type="button"
+              onClick={() => setDevice(d.id)}
+              style={{
+                padding: '6px 12px', borderRadius: 'var(--radius-pill)',
+                border: `1px solid ${d.id === device ? 'rgba(96,205,255,0.5)' : 'rgba(255,255,255,0.1)'}`,
+                background: d.id === device ? 'rgba(96,205,255,0.12)' : 'rgba(255,255,255,0.04)',
+                color: d.id === device ? '#60cdff' : '#9ca3af',
+                fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--font-body)',
+              }}
+            >
+              {d.emoji} {d.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Two-column cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
         {/* Card: parent device */}
         <div style={accessCardStyle('#a78bfa', 'rgba(167,139,250,0.08)')}>
@@ -575,8 +559,8 @@ function AccesEnfantSection() {
           <p style={{ fontSize: '0.82rem', color: '#d1d5db', lineHeight: 1.6, margin: '0 0 0.5rem' }}>
             Mettez cette page en favori pour y revenir facilement.
           </p>
-          <div style={{ fontSize: '0.78rem', color: '#9ca3af', lineHeight: 1.6, margin: '0 0 0.8rem', padding: '0.5rem 0.7rem', background: 'rgba(167,139,250,0.06)', borderRadius: 8, border: '1px solid rgba(167,139,250,0.12)' }}>
-            {parentBookmarkInstructions[platform]}
+          <div style={{ fontSize: '0.78rem', color: '#9ca3af', lineHeight: 1.6, padding: '0.5rem 0.7rem', background: 'rgba(167,139,250,0.06)', borderRadius: 8, border: '1px solid rgba(167,139,250,0.12)' }}>
+            {instr.parentBookmark}
           </div>
         </div>
 
@@ -586,46 +570,69 @@ function AccesEnfantSection() {
             <span style={{ fontSize: 22 }}>📱</span>
             <div>
               <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#fff' }}>Sur l'appareil de l'enfant</div>
-              <div style={{ fontSize: '0.75rem', color: '#9ca3af', marginTop: 2 }}>App enfant</div>
+              <div style={{ fontSize: '0.75rem', color: '#9ca3af', marginTop: 2 }}>Partie enfant — {instr.label}</div>
             </div>
           </div>
-          {/* Platform instructions */}
-          <div style={{ marginBottom: '0.8rem' }}>
-            <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#60cdff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.4rem' }}>
-              {primaryInstr.label}
-            </div>
-            <ol style={{ margin: 0, paddingLeft: '1.1rem' }}>
-              {primaryInstr.steps.map((s, i) => (
-                <li key={i} style={{ fontSize: '0.8rem', color: '#d1d5db', lineHeight: 1.6, marginBottom: '0.15rem' }}>{s}</li>
-              ))}
-            </ol>
-            {!showAltPlatform && (
-              <button type="button" onClick={() => setShowAltPlatform(true)} style={{ background: 'none', border: 'none', color: '#9ca3af', fontSize: '0.72rem', cursor: 'pointer', padding: '0.3rem 0 0', textDecoration: 'underline', fontFamily: 'inherit' }}>
-                Voir les instructions {altInstr.label}
-              </button>
-            )}
-            {showAltPlatform && (
-              <div style={{ marginTop: '0.6rem' }}>
-                <div style={{ fontSize: '0.72rem', fontWeight: 700, color: '#60cdff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.3rem' }}>{altInstr.label}</div>
-                <ol style={{ margin: 0, paddingLeft: '1.1rem' }}>
-                  {altInstr.steps.map((s, i) => (
-                    <li key={i} style={{ fontSize: '0.8rem', color: '#d1d5db', lineHeight: 1.6, marginBottom: '0.15rem' }}>{s}</li>
-                  ))}
-                </ol>
-              </div>
-            )}
-          </div>
+          <ol style={{ margin: '0 0 0', paddingLeft: '1.1rem' }}>
+            {instr.steps.map((s, i) => (
+              <li key={i} style={{ fontSize: '0.8rem', color: '#d1d5db', lineHeight: 1.65, marginBottom: '0.3rem' }}>{s}</li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <button
-              type="button"
-              onClick={() => window.open('/play', '_blank')}
-              style={primaryBtnStyle(false)}
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: 6, verticalAlign: '-1px' }}><path d="M6 4l15 8-15 8V4z"/></svg>
-              Ouvrir la partie enfant
-            </button>
-          </div>
+// ─── GestionEnfantsSection ────────────────────────────────────────────────────
+
+function GestionEnfantsSection({ children, uid, parentImages, pin, navigate, refreshParentImages }) {
+  return (
+    <div style={{ display: 'grid', gap: '2rem' }}>
+
+      {/* Per-child: partie enfant + sauvegardes */}
+      {children.length > 0 && (
+        <div style={{ display: 'grid', gap: '1rem' }}>
+          {children.map(child => (
+            <div key={child.id} style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: 'var(--radius-md)', padding: '1rem 1.1rem', display: 'grid', gap: '0.9rem' }}>
+              {/* Child header */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                <span style={{ fontSize: 24, lineHeight: 1 }}>{child.avatar || '🦊'}</span>
+                <span style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-white)', fontFamily: 'var(--font-display)' }}>{child.name}</span>
+              </div>
+              {/* Ouvrir la partie enfant */}
+              <div>
+                <div style={sectionDividerStyle}>Partie enfant</div>
+                <p style={{ fontSize: '0.8rem', color: '#9ca3af', margin: '0 0 0.6rem', lineHeight: 1.5 }}>
+                  Ouvrez la partie enfant puis mettez-la en favori sur l'appareil de <strong style={{ color: '#d1d5db' }}>{child.name}</strong>.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => { posthog.capture('child_play_launched', { child_id: child.id }); window.open(`/play/${child.id}`, '_blank'); }}
+                  style={primaryBtnStyle(false)}
+                >
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: 6, verticalAlign: '-1px' }}><path d="M6 4l15 8-15 8V4z"/></svg>
+                  Ouvrir la partie enfant
+                </button>
+              </div>
+              {/* Sauvegardes */}
+              <BackupRestorePanel uid={uid} childId={child.id} />
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Bibliothèque images mystère */}
+      <div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem' }}>
+          <span style={{ fontSize: '1.1rem' }}>🖼️</span>
+          <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-display)' }}>Bibliothèque d'images mystère</span>
+        </div>
+        <p style={{ fontSize: '0.83rem', color: '#64748b', lineHeight: 1.7, margin: '0 0 0.9rem' }}>
+          Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque jour. Ajoutez vos propres photos ici (vacances, animaux, famille…), puis activez-les pour chaque enfant dans la section « Suivi des enfants » ci-dessus.
+        </p>
+        <div style={libShellStyle}>
+          <ImageLibraryWithRefresh uid={uid} onSaved={refreshParentImages} />
         </div>
       </div>
     </div>
@@ -826,10 +833,13 @@ export default function ParentDashboardV2() {
       <div style={contentStyle}>
 
         {/* Greeting */}
-        <div style={{ marginBottom: '1.8rem' }}>
-          <span style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-muted)' }}>
-            Bonjour, {user?.displayName?.split(' ')[0] || 'parent'} 👋
-          </span>
+        <div style={{ marginBottom: '2rem', padding: '1.2rem 1.4rem', background: 'rgba(167,139,250,0.05)', border: '1px solid rgba(167,139,250,0.12)', borderRadius: 'var(--radius-md)' }}>
+          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-white)', marginBottom: '0.4rem' }}>
+            Bonjour 👋
+          </div>
+          <p style={{ margin: 0, fontSize: '0.88rem', color: '#9ca3af', lineHeight: 1.65 }}>
+            Bienvenue dans l'espace parent de PrimoLingo. Vous pourrez y configurer les profils de vos enfants, suivre leur progression, gérer les images mystère et accéder à la partie enfant.
+          </p>
         </div>
 
         {/* ─ Section 1: Mon compte ─ */}
@@ -870,32 +880,9 @@ export default function ParentDashboardV2() {
           <AccesEnfantSection />
         </section>
 
-        {/* ─ Section 3: Bibliothèque d'images mystère ─ */}
+        {/* ─ Section 3: Suivi des enfants ─ */}
         <section style={sectionStyle}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem' }}>
-            <span style={{ fontSize: '1.1rem' }}>🖼️</span>
-            <h2 style={{ ...sectionTitleStyle, marginBottom: 0 }}>Bibliothèque d'images mystère</h2>
-          </div>
-          <p style={{ fontSize: '0.83rem', color: '#64748b', lineHeight: 1.7, margin: '0 0 0.9rem' }}>
-            Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque jour. Ajoutez vos propres photos ici (vacances, animaux, famille…), puis activez-les pour chaque enfant dans la section « Mes enfants » ci-dessous.
-          </p>
-          <div style={libShellStyle}>
-            <ImageLibraryWithRefresh uid={user?.uid} onSaved={refreshParentImages} />
-          </div>
-        </section>
-
-        {/* ─ Section 4: Mes enfants ─ */}
-        <section style={sectionStyle}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.2rem' }}>
-            <h2 style={{ ...sectionTitleStyle, marginBottom: 0 }}>Mes enfants</h2>
-            <button
-              type="button"
-              onClick={() => pin ? navigate('/parent/child/new') : setShowPinSetup(true)}
-              style={{ ...primaryBtnStyle(false), opacity: pin ? 1 : 0.5 }}
-            >
-              + Ajouter un enfant
-            </button>
-          </div>
+          <h2 style={sectionTitleStyle}>Suivi des enfants</h2>
 
           {loading ? (
             <div style={{ textAlign: 'center', color: 'var(--color-primary)', padding: '3rem 0' }}>Chargement…</div>
@@ -903,11 +890,8 @@ export default function ParentDashboardV2() {
             <div style={{ textAlign: 'center', padding: '3rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
               <div style={{ fontSize: 48 }}>👶</div>
               <p style={{ color: '#94a3b8', fontSize: '1rem', margin: 0 }}>
-                Aucun enfant pour l'instant.<br />Commencez par créer un profil !
+                Aucun enfant pour l'instant.<br />Ajoutez-en un dans « Gestion des enfants » ci-dessous.
               </p>
-              <button type="button" onClick={() => navigate('/parent/child/new')} style={primaryBtnStyle(false)}>
-                Créer le premier profil
-              </button>
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -922,6 +906,30 @@ export default function ParentDashboardV2() {
                 />
               ))}
             </div>
+          )}
+        </section>
+
+        {/* ─ Section 4: Gestion des enfants ─ */}
+        <section style={sectionStyle}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.2rem' }}>
+            <h2 style={{ ...sectionTitleStyle, marginBottom: 0 }}>Gestion des enfants</h2>
+            <button
+              type="button"
+              onClick={() => pin ? navigate('/parent/child/new') : setShowPinSetup(true)}
+              style={{ ...primaryBtnStyle(false), opacity: pin ? 1 : 0.5 }}
+            >
+              + Ajouter un enfant
+            </button>
+          </div>
+          {loading ? null : (
+            <GestionEnfantsSection
+              children={children}
+              uid={user.uid}
+              parentImages={parentImages}
+              pin={pin}
+              navigate={navigate}
+              refreshParentImages={refreshParentImages}
+            />
           )}
         </section>
 

@@ -1,101 +1,58 @@
 [
   {
-    "x": 1204,
-    "y": 30,
-    "text": "devrait être dans le corps de la page",
-    "time": "04/05 12:24",
-    "domContext": {
-      "tag": "SPAN",
-      "text": "Bonjour, Debug 👋"
-    },
-    "response": "Fait. Le greeting \"Bonjour, [prénom] 👋\" a été retiré du header et placé dans le corps de la page, juste au-dessus de la première section."
+    "x": 394,
+    "y": 110,
+    "text": "Change en un générique \"Bonjour Parent\". Ensuite ajoute un petit message du genre \"Bienvenu dans l'espace parent de primolingo. Vous pourrez y configurer....\"",
+    "time": "04/05 12:46",
+    "domContext": { "tag": "SPAN", "text": "Bonjour, Debug 👋" },
+    "response": "Fait. Le greeting affiche maintenant « Bonjour 👋 » (générique, sans prénom) avec un message d'accueil : « Bienvenue dans l'espace parent de PrimoLingo. Vous pourrez y configurer les profils de vos enfants, suivre leur progression, gérer les images mystère et accéder à la partie enfant. »"
   },
   {
-    "x": 690,
-    "y": 202,
-    "text": "dis \"Utile pour : 1) protéger la flamme de votre enfant (le nombre de jours consécutifs d'utilsiation) quand il a une bonne raison (week-end familial, pas de possbilité de jouer, etc..) et 2) restaurer la progression à un jour particulier en cas de besoin",
-    "time": "04/05 12:24",
-    "domContext": {
-      "tag": "P",
-      "text": "Protège la flamme : votre enfant le saisit pour récupérer sa série après une absence."
-    },
-    "response": "Fait. Le texte du code PIN a été réécrit : « Utile pour : 1) protéger la flamme de votre enfant quand il a une bonne raison (week-end familial, etc.) et 2) restaurer la progression à un jour particulier en cas de besoin. »"
+    "x": 501,
+    "y": 674,
+    "text": "merger iphone/ipad",
+    "time": "04/05 12:48",
+    "domContext": { "tag": "DIV", "text": "Appareil de l'enfant💻 Ordinateur📱 iPhone📱 iPad📱 Android (smartphone)📱 Android (tablette)" },
+    "response": "Fait. iPhone et iPad fusionnés en un seul bouton « iPhone / iPad » avec les mêmes instructions (Safari → Partager → Sur l'écran d'accueil). Le sélecteur passe à 3 options : Ordinateur / iPhone·iPad / Android."
   },
   {
-    "x": 550,
-    "y": 375,
-    "text": "explique mieux à quoi sert l'image mystère",
-    "time": "04/05 12:26",
-    "domContext": {
-      "tag": "P",
-      "text": "Ajoutez vos images ici, puis activez-les pour chaque enfant dans les paramètres ci-dessous."
-    },
-    "response": "Fait. Nouveau texte : « Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque jour. Ajoutez vos propres photos ici (vacances, animaux, famille…), puis activez-les pour chaque enfant dans la section Mes enfants ci-dessous. »"
+    "x": 755,
+    "y": 672,
+    "text": "merger les deux Android et appeler juste \"Android\"",
+    "time": "04/05 12:48",
+    "domContext": { "tag": "DIV", "text": "Appareil de l'enfant💻 Ordinateur📱 iPhone📱 iPad📱 Android (smartphone)📱 Android (tablette)" },
+    "response": "Fait. Smartphone Android et Tablette Android fusionnés en un seul bouton « Android » avec les mêmes instructions (Chrome → ⋮ → Ajouter à l'écran d'accueil). Le sélecteur est maintenant : 💻 Ordinateur / 📱 iPhone·iPad / 📱 Android."
   },
   {
-    "x": 390,
-    "y": 646,
-    "text": "remonte cette section juste en dessous du code",
-    "time": "04/05 12:26",
-    "domContext": {
-      "tag": "H2",
-      "text": "Accès enfant"
-    },
-    "response": "Fait. La section « Accès enfant » est maintenant placée juste après « Mon compte » (code PIN). L'ordre des sections est désormais : Mon compte → Accès enfant → Bibliothèque d'images mystère → Mes enfants."
+    "x": 775,
+    "y": 746,
+    "text": "rajoute l'étape de se logguer sur l'app enfant avec le compte du parent. On arrive sur l'espace parent, on clique sur \"accéder à la partie enfant\" et on met en favori sur l'appareil de l'enfant. Ajouter en  amont un selecteur pour ordinateur, ipad, iphone, tablette android, smartphone android",
+    "time": "04/05 12:41",
+    "domContext": { "tag": "LI", "text": "Cliquez sur « Ouvrir la partie enfant » ci-dessous" },
+    "response": "Fait. Sélecteur d'appareils ajouté (3 options après fusion). Les instructions incluent maintenant l'étape de connexion en étape 1 : « Rendez-vous sur primolingo.app et connectez-vous avec votre compte parent », puis étape 2 « Cliquez sur Ouvrir la partie enfant dans Gestion des enfants », puis étape 3 selon l'appareil pour mettre en favori."
   },
   {
-    "x": 615,
-    "y": 932,
-    "text": "",
-    "time": "04/05 12:26",
-    "domContext": {
-      "tag": "BUTTON",
-      "text": "Ouvrir le tableau de bord"
-    },
-    "response": "Commentaire vide. Le bouton « Ouvrir le tableau de bord » a été supprimé et remplacé par des instructions favoris contextuelles (voir annotation 6)."
+    "x": 868,
+    "y": 532,
+    "text": "remplace partout app enfant par \"partie enfant\", il n'y a pas d'app particulière. explique aussi ca en préembule, l'app est constituée de deux partie, le dash parents et la partie enfant accessible par les boutons ci-dessous",
+    "time": "04/05 12:41",
+    "domContext": { "tag": "STRONG", "text": "l'app enfant" },
+    "response": "Fait. Toutes les occurrences de « app enfant » remplacées par « partie enfant ». Le préambule explique : « PrimoLingo est constituée de deux parties : ce tableau de bord parent (pour vous) et la partie enfant accessible via les boutons ci-dessous. Il n'y a pas d'app séparée — tout se passe dans le navigateur. »"
   },
   {
-    "x": 396,
-    "y": 980,
-    "text": "le CTA devrait être \"mettre en favoris\" et en dessous une explication contextuelle au device sur comment faire",
-    "time": "04/05 12:26",
-    "domContext": {
-      "tag": "DIV",
-      "text": "🖥️Sur votre appareilTableau de bord parentMarquez cette page en favori pour y accéder facilement.Ouvrir le tableau de bord"
-    },
-    "response": "Fait. Le bouton a été supprimé. La carte parent affiche maintenant des instructions contextuelles selon l'appareil : iOS → « Dans Safari : appuyez sur Partager → Ajouter aux favoris », Android → « Dans Chrome : appuyez sur ⋮ → Ajouter aux favoris », Desktop → « Appuyez sur Ctrl+D (Windows) ou Cmd+D (Mac) »."
+    "x": 493,
+    "y": 1033,
+    "text": "à mettre tout en bas cette section",
+    "time": "04/05 12:42",
+    "domContext": { "tag": "P", "text": "Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque j" },
+    "response": "Fait. La bibliothèque d'images mystère est maintenant tout en bas, à l'intérieur de la section « Gestion des enfants », après les panneaux par enfant."
   },
   {
-    "x": 989,
-    "y": 915,
-    "text": "1 ) cliquer sur le bouton \"ouvrir la partie enfant\", 2) la mettre en favoris pour que votre enfant puisse  y accéder facilement. ",
-    "time": "04/05 12:27",
-    "domContext": {
-      "tag": "LI",
-      "text": "Ouvre primolingo.app/play dans Chrome ou Edge"
-    },
-    "response": "Fait. Les instructions pour les 3 plateformes ont été mises à jour : étape 1) Cliquer sur « Ouvrir la partie enfant », étape 2) Mettre la page en favoris (instructions spécifiques à chaque plateforme), étape 3) L'enfant pourra y accéder directement."
-  },
-  {
-    "x": 924,
-    "y": 1035,
-    "text": "retirer le CTA et remplacer le par \"Ouvrir la partie enfant\"",
-    "time": "04/05 12:28",
-    "domContext": {
-      "tag": "DIV",
-      "text": "Partager l'app enfant"
-    },
-    "response": "Fait. Le bouton « Partager l'app enfant » a été remplacé par « Ouvrir la partie enfant » qui ouvre /play dans un nouvel onglet."
-  },
-  {
-    "x": 666,
-    "y": 1781,
-    "text": "retirer le CTA ici  et créer une section \"partie enfant\" par enfant au dessus",
-    "time": "04/05 12:29",
-    "domContext": {
-      "tag": "DIV",
-      "text": "Afficher les sauvegardes"
-    },
-    "response": "Fait. 1) Le bouton « Afficher les sauvegardes » supprimé — les sauvegardes se chargent automatiquement. 2) Une section « Partie enfant » ajoutée par enfant au-dessus des sauvegardes, avec le bouton « Ouvrir la partie enfant » qui ouvre /play/:childId dans un nouvel onglet. Le bouton « Jouer avec X » en bas du panneau a aussi été retiré."
+    "x": 576,
+    "y": 1942,
+    "text": "ca c'est une section dédiée, au meme niveau que mes enfants , qui s'appèlle gestion des enfants et dans l'aquell eil y a l'ajout, le CYA vers partie efnat,les suavegardes et l'image mystere;  L'autre section s'appelle \"le suivi des enfants\"",
+    "time": "04/05 12:43",
+    "domContext": { "tag": "DIV", "text": "Partie enfant" },
+    "response": "Fait. 1) « Mes enfants » renommée en « Suivi des enfants » (activité + graphiques + paramètres images). 2) Nouvelle section « Gestion des enfants » au même niveau : bouton + Ajouter un enfant, panneau par enfant avec CTA « Ouvrir la partie enfant » + sauvegardes, et bibliothèque d'images mystère en bas."
   }
 ]
