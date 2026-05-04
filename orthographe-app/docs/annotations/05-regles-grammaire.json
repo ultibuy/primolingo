@@ -1,13 +1,13 @@
 [
   {
-    "x": 673,
-    "y": 1657,
-    "text": "ajouter ici la note mini sur 10 ou sur 20 à laquelle le % correpsond. ne pas le calculer mais aller regarder sur chaque popup la valeur calculée en prod",
-    "time": "04/05 07:39",
+    "x": 589,
+    "y": 1666,
+    "text": "ajoute aussi la valeur calculée par la dictée",
+    "time": "04/05 07:44",
     "domContext": {
       "tag": "TD",
-      "text": "Réussir 3 sessions de quiz guidé avec au moins 80 %"
+      "text": "Réussir 3 sessions de quiz guidé avec au moins 16/20 (80 %)"
     },
-    "response": "Fait. Valeurs lues depuis LevelHelpPopup (scoreFor avec sessionSize=20) : Bronze 12/20, Argent 16/20, Couronne 16/20, Diamant 18/20. Ajoutees directement dans le tableau."
+    "response": "Fait. Tableau dictee ajoute : mode guide 40 mots (24/40, 32/40, 36/40), mode reconstruct 10 mots (6/10, 8/10, 9/10). Valeurs lues depuis ChildApp.jsx (DICTEE_SESSION_SIZE = 40 pour guide, 10 pour reconstruct)."
   }
 ]

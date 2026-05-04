@@ -23,6 +23,13 @@ Chaque règle suit la même progression :
 | **Couronne** | Réussir 3 sessions de quiz direct avec au moins 16/20 (80 %) | +100 pièces |
 | **Diamant** | Réussir 3 sessions de quiz direct d'affilée avec au moins 18/20 (90 %) | +200 pièces, active les révisions espacées |
 
+**Dictée** : les mêmes pourcentages s'appliquent mais sur des sessions de taille différente :
+
+| Mode dictée | Taille session | 60 % | 80 % | 90 % |
+|-------------|----------------|------|------|------|
+| Guidé (écoute + choix) | 40 mots | 24/40 | 32/40 | 36/40 |
+| Reconstruct (reconstitution) | 10 mots | 6/10 | 8/10 | 9/10 |
+
 Pour le Diamant, le compteur de sessions consécutives repart à zéro dès qu'une session passe en dessous de 90 %. C'est volontairement exigeant : le Diamant est un vrai trophée.
 
 ### 3. Les popups de niveau
