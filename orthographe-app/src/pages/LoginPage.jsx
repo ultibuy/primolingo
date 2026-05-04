@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import AppLogo from '../components/AppLogo.jsx';
 import VersionFooter from '../components/ui/VersionFooter.jsx';
-import { signInWithGoogle, signInWithEmail, createAccountWithEmail } from '../services/auth.js';
+import { signInWithGoogle, handleGoogleRedirectResult, signInWithEmail, createAccountWithEmail } from '../services/auth.js';
 import { captureException } from '../services/sentry.js';
 import posthog from '../services/analytics.js';
 
@@ -15,19 +15,27 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function handleGoogleSignIn() {
+  // On mount: complete redirect flow if returning from Google auth
+  useEffect(() => {
+    handleGoogleRedirectResult()
+      .then((user) => {
+        if (user) {
+          posthog.capture('login_success', { method: 'google' });
+          navigate('/parent');
+        }
+      })
+      .catch((err) => {
+        posthog.capture('login_failed', { error_code: err?.code, method: 'google' });
+        captureException(err);
+        setError('La connexion Google a échoué. Réessaie.');
+      });
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  function handleGoogleSignIn() {
     posthog.capture('login_attempted', { method: 'google' });
     setLoading(true);
     setError(null);
-    try {
-      await signInWithGoogle();
-      navigate('/parent');
-    } catch (err) {
-      posthog.capture('login_failed', { error_code: err?.code, method: 'google' });
-      captureException(err);
-      setError('La connexion Google a échoué. Réessaie.');
-      setLoading(false);
-    }
+    signInWithGoogle(); // redirects away — no await needed
   }
 
   async function handleEmailSubmit(e) {

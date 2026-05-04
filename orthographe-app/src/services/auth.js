@@ -1,6 +1,7 @@
 import {
-  signInWithPopup,
   GoogleAuthProvider,
+  signInWithRedirect,
+  getRedirectResult,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   updateProfile,
@@ -22,11 +23,21 @@ async function ensureUserDoc(user) {
   }
 }
 
+// Redirects the user to Google auth (no popup — avoids /__/auth/handler on custom domain).
 export async function signInWithGoogle() {
   const provider = new GoogleAuthProvider();
-  const result = await signInWithPopup(auth, provider);
-  await ensureUserDoc(result.user);
-  return result.user;
+  await signInWithRedirect(auth, provider);
+  // user leaves the page — nothing runs after this
+}
+
+// Call on login page mount to complete the redirect flow and create the Firestore user doc.
+export async function handleGoogleRedirectResult() {
+  const result = await getRedirectResult(auth);
+  if (result?.user) {
+    await ensureUserDoc(result.user);
+    return result.user;
+  }
+  return null;
 }
 
 export async function signInWithEmail(email, password) {
