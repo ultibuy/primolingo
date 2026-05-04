@@ -70,6 +70,26 @@ export async function saveParentalPin(uid, pinData) {
 }
 
 // ---------------------------------------------------------------------------
+// Onboarding wizard (stored on the parent user document)
+// ---------------------------------------------------------------------------
+
+export async function loadUserSetup(uid) {
+  const ref = doc(db, 'users', uid);
+  const snap = await getDoc(ref);
+  if (!snap.exists()) return { parentalPin: null, onboardingWizard: null };
+  const data = snap.data();
+  return {
+    parentalPin: data.parentalPin || null,
+    onboardingWizard: data.onboardingWizard || null,
+  };
+}
+
+export async function saveOnboardingWizard(uid, data) {
+  const ref = doc(db, 'users', uid);
+  await updateDoc(ref, { onboardingWizard: data });
+}
+
+// ---------------------------------------------------------------------------
 // Per-child settings (prodQuestionCount, enabledMysteryImageIds)
 // ---------------------------------------------------------------------------
 
@@ -186,4 +206,11 @@ export async function createChild(uid, name, avatar) {
 
 export async function updateChild(uid, childId, data) {
   await updateDoc(doc(db, 'users', uid, 'children', childId), data);
+}
+
+export async function deleteChild(uid, childId) {
+  const backupsRef = collection(db, 'users', uid, 'children', childId, 'backups');
+  const backupsSnap = await getDocs(backupsRef);
+  await Promise.all(backupsSnap.docs.map(d => deleteDoc(d.ref)));
+  await deleteDoc(doc(db, 'users', uid, 'children', childId));
 }

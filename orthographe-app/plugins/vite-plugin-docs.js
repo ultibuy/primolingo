@@ -410,6 +410,12 @@ const HTML_TEMPLATE = (title, body, nav) => {
         replyInput.placeholder = 'Ajouter un suivi...';
         replyInput.addEventListener('input', function() {
           annotations[i].reply = this.value;
+          const hasReplyNow = !!(this.value && this.value.trim());
+          const hasResponseNow = !!(annotations[i].response && annotations[i].response.trim());
+          const isDone = hasResponseNow && !hasReplyNow;
+          circle.style.background = isDone ? '#22c55e' : '#7c3aed';
+          circle.style.boxShadow = '0 2px 8px ' + (isDone ? 'rgba(34,197,94,0.4)' : 'rgba(124,58,237,0.4)');
+          circle.textContent = isDone ? '\u2713' : String(i + 1);
           saveAnnotations(true);
         });
         replyInput.addEventListener('click', function(e) { e.stopPropagation(); });
@@ -823,7 +829,16 @@ function buildAnnotationOverlay(slug) {
         replyInput.style.cssText = 'width:100%;border:none;outline:none;resize:vertical;font-family:inherit;font-size:11px;line-height:1.4;padding:4px 10px 6px;min-height:32px;background:rgba(167,139,250,0.04);color:#a78bfa;box-sizing:border-box';
         replyInput.value = ann.reply || '';
         replyInput.placeholder = 'Ajouter un suivi...';
-        replyInput.addEventListener('input', function() { annotations[i].reply = this.value; saveAnnotations(true); });
+        replyInput.addEventListener('input', function() {
+          annotations[i].reply = this.value;
+          const hasReplyNow = !!(this.value && this.value.trim());
+          const hasResponseNow = !!(annotations[i].response && annotations[i].response.trim());
+          const isDone = hasResponseNow && !hasReplyNow;
+          circle.style.background = isDone ? '#22c55e' : '#7c3aed';
+          circle.style.boxShadow = '0 2px 8px ' + (isDone ? 'rgba(34,197,94,0.4)' : 'rgba(124,58,237,0.4)');
+          circle.textContent = isDone ? '\u2713' : String(i + 1);
+          saveAnnotations(true);
+        });
         replyInput.addEventListener('click', function(e) { e.stopPropagation(); });
         replyBlock.appendChild(replyInput);
         responseBlock.appendChild(replyBlock);
@@ -1060,6 +1075,22 @@ display:flex;align-items:center;gap:12px;width:100%;max-width:390px}
             if (slug === '15-coaching-messages') {
               html = injectInlineBanners(html);
               html = html.replace('<div data-icon-gallery></div>', generateIconGallery());
+            }
+            // For personnages page, inject all-moods iframe before "Equiper un personnage"
+            if (slug === '12-personnages') {
+              const allMoodsBlock = `
+<div style="margin:2rem 0 1.5rem">
+  <div style="font-size:0.65rem;color:#f87171;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem">
+    🎭 Démo — tous les personnages × toutes les émotions
+  </div>
+  <iframe
+    src="/debug/all-moods"
+    style="width:100%;height:420px;border:1px solid rgba(124,58,237,0.3);border-radius:10px;display:block"
+    title="Tous les personnages et émotions"
+  ></iframe>
+  <div style="font-size:0.6rem;color:#6b7280;margin-top:0.4rem">Cliquer sur un sprite pour l'agrandir.</div>
+</div>`;
+              html = html.replace(/<h3[^>]*>Equiper un personnage<\/h3>/, allMoodsBlock + '<h3>Equiper un personnage</h3>');
             }
             const title = md.match(/^# (.+)/m)?.[1] || slug;
 

@@ -63,6 +63,21 @@ export async function saveParentalPin(uid, pinData) {
 }
 
 // ---------------------------------------------------------------------------
+// Onboarding wizard
+// ---------------------------------------------------------------------------
+
+export async function loadUserSetup(uid) {
+  return {
+    parentalPin: read(key(['parentalPin', uid])),
+    onboardingWizard: read(key(['onboardingWizard', uid])),
+  };
+}
+
+export async function saveOnboardingWizard(uid, data) {
+  write(key(['onboardingWizard', uid]), data);
+}
+
+// ---------------------------------------------------------------------------
 // Per-child settings
 // ---------------------------------------------------------------------------
 
@@ -143,4 +158,12 @@ export async function updateChild(uid, childId, data) {
   const idx = children.findIndex(c => c.id === childId);
   if (idx >= 0) Object.assign(children[idx], data);
   write(key(['children', uid]), children);
+}
+
+export async function deleteChild(uid, childId) {
+  const children = readChildren(uid).filter(c => c.id !== childId);
+  write(key(['children', uid]), children);
+  localStorage.removeItem(key(['progress', uid, childId]));
+  localStorage.removeItem(key(['backups', uid, childId]));
+  localStorage.removeItem(key(['childSettings', uid, childId]));
 }

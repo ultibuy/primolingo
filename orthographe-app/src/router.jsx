@@ -28,15 +28,17 @@ function lazyWithRetry(importFn) {
 
 const LandingPage = lazyWithRetry(() => import('./pages/LandingPageV5.jsx'));
 const LoginPage = lazyWithRetry(() => import('./pages/LoginPage.jsx'));
-const ParentDashboard = lazyWithRetry(() => import('./pages/ParentDashboardV2.jsx'));
+const ParentDashboard = lazyWithRetry(() => import('./pages/ParentDashboard.jsx'));
 const ChildSetup = lazyWithRetry(() => import('./pages/ChildSetup.jsx'));
 const ChildApp = lazyWithRetry(() => import('./pages/ChildApp.jsx'));
+const ChildBySlug = lazyWithRetry(() => import('./pages/ChildBySlug.jsx'));
 const LegalPage = lazyWithRetry(() => import('./pages/LegalPage.jsx'));
 const RulesIndexPage = lazyWithRetry(() => import('./pages/RulesIndexPage.jsx'));
 const RulePage = lazyWithRetry(() => import('./pages/RulePage.jsx'));
 const DebugEndScreenPage = import.meta.env.DEV ? lazyWithRetry(() => import('./pages/DebugEndScreenPage.jsx')) : null;
 const DebugShopPage = import.meta.env.DEV ? lazyWithRetry(() => import('./pages/DebugShopPage.jsx')) : null;
 const DebugRewardPage = import.meta.env.DEV ? lazyWithRetry(() => import('./pages/DebugRewardPage.jsx')) : null;
+const DebugAllMoodsPage = import.meta.env.DEV ? lazyWithRetry(() => import('./pages/DebugAllMoodsPage.jsx')) : null;
 
 function LazyPage({ children }) {
   return (
@@ -147,6 +149,15 @@ export const router = createBrowserRouter([
     errorElement: <RouteErrorBoundary />,
   },
   {
+    path: '/enfant/:childSlug',
+    element: (
+      <ProtectedRoute>
+        <LazyPage><ChildBySlug /></LazyPage>
+      </ProtectedRoute>
+    ),
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
     path: '/play/:childId',
     element: (
       <ProtectedRoute>
@@ -175,6 +186,7 @@ export const router = createBrowserRouter([
     { path: '/debug/end-screen', element: <LazyPage><DebugEndScreenPage /></LazyPage>, errorElement: <RouteErrorBoundary /> },
     { path: '/debug/shop', element: <LazyPage><DebugShopPage /></LazyPage>, errorElement: <RouteErrorBoundary /> },
     { path: '/debug/reward', element: <LazyPage><DebugRewardPage /></LazyPage>, errorElement: <RouteErrorBoundary /> },
+    { path: '/debug/all-moods', element: <LazyPage><DebugAllMoodsPage /></LazyPage>, errorElement: <RouteErrorBoundary /> },
   ] : []),
   {
     path: '*',

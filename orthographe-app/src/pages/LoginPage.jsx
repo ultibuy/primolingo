@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import AppLogo from '../components/AppLogo.jsx';
 import VersionFooter from '../components/ui/VersionFooter.jsx';
-import { signInWithGoogle, signInWithEmail, createAccountWithEmail } from '../services/auth.js';
+import { signInWithGoogle, signUpWithGoogle, signInWithEmail, createAccountWithEmail } from '../services/auth.js';
 import { captureException } from '../services/sentry.js';
 import posthog from '../services/analytics.js';
 
@@ -16,11 +16,11 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
 
   async function handleGoogleSignIn() {
-    posthog.capture('login_attempted', { method: 'google' });
+    posthog.capture('login_attempted', { method: 'google', mode });
     setLoading(true);
     setError(null);
     try {
-      await signInWithGoogle();
+      await (mode === 'register' ? signUpWithGoogle() : signInWithGoogle());
       navigate('/parent');
     } catch (err) {
       posthog.capture('login_failed', { error_code: err?.code, method: 'google' });
@@ -207,6 +207,7 @@ const containerStyle = {
   backgroundPosition: 'center center',
   backgroundAttachment: 'fixed',
   display: 'flex',
+  flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
   padding: '1.25rem',

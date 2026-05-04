@@ -30,7 +30,7 @@ import { computeMaxDailyRecord } from '../engine/stats.js';
 import CharacterSprite from './CharacterSprite.jsx';
 import PinInput from './PinInput.jsx';
 import { verifyPin } from '../services/pin-crypto.js';
-import { resolveCharacterMood, resolveShopCharacter, getCharacterForRule, SHOP_CHARACTERS, SHOP_EMOTIONS, BASE_EMOTIONS } from '../data/shopCharacters.js';
+import { resolveCharacterMood, resolveShopCharacter, getCharacterForRule } from '../data/shopCharacters.js';
 import { allDictees, getDicteeWordsForLevel } from '../content/dicteesLoader.js';
 import { computeDefaultTab } from '../engine/defaultTab.js';
 import DicteeCard from './DicteeCard.jsx';
@@ -435,7 +435,6 @@ export default function Dashboard({
   const [debugOpen, setDebugOpen] = useState(false);
   const [streakAlert, setStreakAlert] = useState(null); // { nextMilestone, reward }
   const [moodTooltip, setMoodTooltip] = useState(false); // show character mood popup
-  const [pandaMood, setPandaMood] = useState(null); // null = default walk
   const [statPopup, setStatPopup] = useState(null); // 'today' | '7j' | '30j'
   const shopOwnedRef = useRef(progress.shop?.owned || []);
 
@@ -573,7 +572,7 @@ export default function Dashboard({
   useEffect(() => { shopOwnedRef.current = shopOwned; }, [shopOwned]);
 
   const activeCharacterId = resolveShopCharacter(shopOwned);
-  const activeCharacterMood = resolveCharacterMood(pandaMood, activeCharacterId, shopOwned);
+  const activeCharacterMood = resolveCharacterMood(null, activeCharacterId, shopOwned);
   const allRuleIds = useMemo(() => rules.map(r => r.id), [rules]);
 
   // ---------------------------------------------------------------------------
@@ -1501,97 +1500,6 @@ export default function Dashboard({
               </button>
             ))}
           </div>
-          <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
-            🐾 Debug — Perso actif
-          </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.8rem' }}>
-            {[
-              { mood: null,        label: '🚶 Marche',         color: '#86efac' },
-              { mood: 'wave',      label: '👋 Coucou',          color: '#86efac' },
-              { mood: 'clap',      label: '👏 Applaudissements', color: '#fde047' },
-              { mood: 'kiss',      label: '😘 Bisous',          color: '#f472b6' },
-              { mood: 'sleep',     label: '😴 Dodo',            color: '#93c5fd' },
-              { mood: 'dance',     label: '🕺 Danse',           color: '#a78bfa' },
-              { mood: 'surprise',  label: '😲 Surprise',        color: '#fbbf24' },
-              { mood: 'victory',   label: '🏆 Victoire',        color: '#fbbf24' },
-              { mood: 'think',     label: '🤔 Réflexion',       color: '#60a5fa' },
-              { mood: 'sit',       label: '🪑 Assis',           color: '#67e8f9' },
-            ].map(({ mood, label, color }) => (
-              <button key={label} onClick={() => setPandaMood(mood)} style={{
-                padding: '0.38rem 0.8rem', borderRadius: 6,
-                border: `1px solid ${color}55`,
-                background: pandaMood === mood ? `${color}40` : `${color}18`,
-                color, cursor: 'pointer',
-                fontSize: '0.72rem', fontWeight: 700,
-                outline: pandaMood === mood ? `1px solid ${color}` : 'none',
-              }}>
-                {label}
-              </button>
-            ))}
-          </div>
-          {/* ── Boutique — 17 persos × 10 moods ─────────────────── */}
-          <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
-            🐾 Boutique — {SHOP_CHARACTERS.length} personnages
-          </div>
-          <div style={{ marginBottom: '0.9rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(90px, 1fr))', gap: '0.35rem' }}>
-              {SHOP_CHARACTERS.map(ch => (
-                <div key={ch.id} style={{
-                  display: 'flex', flexDirection: 'column', alignItems: 'center',
-                  background: `${ch.color}12`,
-                  border: `1px solid ${ch.color}35`,
-                  borderRadius: 10, padding: '0.45rem 0.3rem 0.5rem',
-                  gap: '0.1rem',
-                }}>
-                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2px', marginBottom: '0.1rem' }}>
-                    <div style={{ fontSize: '1.8rem', lineHeight: 1, filter: `drop-shadow(0 0 4px ${ch.color}80)` }}>
-                      {ch.emoji}
-                    </div>
-                    <div style={{ width: '80%', height: '1px', background: 'rgba(255,255,255,0.1)' }} />
-                    <div style={{
-                      width: 64, height: 58,
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      background: `radial-gradient(circle at 50% 60%, ${ch.color}18 0%, transparent 70%)`,
-                      borderRadius: 6,
-                    }}>
-                      <CharacterSprite id={ch.id} mood={pandaMood || 'walk'} size={40} glow={true} />
-                    </div>
-                  </div>
-                  <span style={{ fontSize: '0.58rem', fontWeight: 700, color: ch.color, textAlign: 'center', lineHeight: 1.2 }}>{ch.name}</span>
-                  <span style={{ fontSize: '0.5rem', color: '#9ca3af', textAlign: 'center', lineHeight: 1.2, display: 'inline-flex', alignItems: 'center', gap: 2 }}>{ch.price ?? 500} <CoinIcon size={10} /></span>
-                </div>
-              ))}
-            </div>
-          </div>
-          {/* ── All moods for each char ──────────────────────────── */}
-          <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
-            🎭 Tous les moods ({[...BASE_EMOTIONS, ...SHOP_EMOTIONS].length})
-          </div>
-          <div style={{ marginBottom: '0.9rem', overflowX: 'auto' }}>
-            <table style={{ borderCollapse: 'collapse', minWidth: '100%', fontSize: '0.5rem' }}>
-              <thead>
-                <tr>
-                  <th style={{ color: '#6b7280', padding: '2px 4px', textAlign: 'left' }}>perso</th>
-                  {[...BASE_EMOTIONS, ...SHOP_EMOTIONS].map(e => (
-                    <th key={e.id} style={{ color: '#a78bfa', padding: '2px 4px', textAlign: 'center', fontWeight: 600 }}>{e.symbol}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {SHOP_CHARACTERS.map(ch => (
-                  <tr key={ch.id}>
-                    <td style={{ color: ch.color, padding: '2px 4px', whiteSpace: 'nowrap', fontSize: '0.55rem', fontWeight: 600 }}>{ch.emoji} {ch.name}</td>
-                    {[...BASE_EMOTIONS, ...SHOP_EMOTIONS].map(e => (
-                      <td key={e.id} style={{ padding: '1px 2px', textAlign: 'center' }}>
-                        <CharacterSprite id={ch.id} mood={e.id} size={28} glow={false} />
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
           <div style={{ fontSize: '0.65rem', color: '#f87171', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '0.7rem' }}>
             🛠 Debug — Flamme
           </div>

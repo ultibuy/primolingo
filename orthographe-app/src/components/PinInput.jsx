@@ -8,10 +8,13 @@ export default function PinInput({ onComplete, error, locked, lockedUntil, maske
   const [countdown, setCountdown] = useState(0);
   const inputRefs = useRef([]);
 
-  // Auto-focus first input
+  // Auto-focus first input — longer delay for iOS portal rendering
   useEffect(() => {
     if (autoFocus && !locked) {
-      setTimeout(() => inputRefs.current[0]?.focus(), 100);
+      setTimeout(() => {
+        const el = inputRefs.current[0];
+        if (el) { el.focus(); el.click(); }
+      }, 300);
     }
   }, [autoFocus, locked]);
 
@@ -106,6 +109,7 @@ export default function PinInput({ onComplete, error, locked, lockedUntil, maske
             onChange={e => handleChange(i, e.target.value)}
             onKeyDown={e => handleKeyDown(i, e)}
             onPaste={i === 0 ? handlePaste : undefined}
+            autoFocus={autoFocus && i === 0}
             onFocus={e => e.target.select()}
             style={{
               width: 52, height: 60,
@@ -145,6 +149,15 @@ export default function PinInput({ onComplete, error, locked, lockedUntil, maske
           40% { transform: translateX(8px); }
           60% { transform: translateX(-5px); }
           80% { transform: translateX(5px); }
+        }
+        @keyframes pin-pulse {
+          0%, 100% { border-color: rgba(var(--color-primary-rgb),0.3); }
+          50% { border-color: rgba(var(--color-primary-rgb),0.7); }
+        }
+        input[inputmode="numeric"]:focus {
+          border-color: var(--color-primary) !important;
+          box-shadow: 0 0 0 4px rgba(var(--color-primary-rgb),0.2) !important;
+          animation: pin-pulse 1.2s ease infinite;
         }
       `}</style>
     </div>

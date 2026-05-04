@@ -18,8 +18,6 @@ export default function ChildSetup() {
   const [avatar, setAvatar] = useState(AVATARS[0]);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [done, setDone] = useState(false);
-  const [newChildId, setNewChildId] = useState(null);
 
   useEffect(() => {
     if (!isEdit || !user?.uid || !childId) return;
@@ -46,33 +44,13 @@ export default function ChildSetup() {
       } else {
         const id = await createChild(user.uid, name.trim(), avatar);
         posthog.capture('child_profile_created', { child_id: id, avatar });
-        setNewChildId(id);
-        setDone(true);
+        navigate('/parent', { state: { scrollToChild: id } });
       }
     } catch (err) {
       captureException(err);
     } finally {
       setSaving(false);
     }
-  }
-
-  if (done && newChildId) {
-    return (
-      <div style={containerStyle}>
-        <div style={cardStyle}>
-          <div style={{ fontSize: 64, textAlign: 'center' }}>🚀</div>
-          <h2 style={doneTitle}>Le profil de {name} est prêt !</h2>
-          <p style={doneSub}>C'est parti pour l'aventure PrimoLingo</p>
-          <button type="button" onClick={() => navigate(`/play/${newChildId}`)} style={primaryBtnStyle}>
-            Commencer à jouer
-          </button>
-          <button type="button" onClick={() => navigate('/parent')} style={secondaryBtnStyle}>
-            Retour au tableau de bord
-          </button>
-        </div>
-      <VersionFooter />
-      </div>
-    );
   }
 
   return (
@@ -260,18 +238,3 @@ const secondaryBtnStyle = {
   fontFamily: 'var(--font-body)',
 };
 
-const doneTitle = {
-  margin: 0,
-  fontSize: '1.5rem',
-  fontWeight: 900,
-  color: 'var(--text-white)',
-  fontFamily: 'var(--font-display)',
-  textAlign: 'center',
-};
-
-const doneSub = {
-  margin: 0,
-  fontSize: '0.95rem',
-  color: 'var(--text-muted)',
-  textAlign: 'center',
-};

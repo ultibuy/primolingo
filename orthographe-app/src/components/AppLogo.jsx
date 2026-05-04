@@ -1,8 +1,9 @@
 /**
  * PrimoLingo brand logo icon — SVG matching the landing page brand guidelines.
  * Usage: <AppLogo size={48} />
+ * Usage: <AppLogo size={48} animated /> — flames flicker
  */
-export default function AppLogo({ size = 48, style = {} }) {
+export default function AppLogo({ size = 48, style = {}, animated = false }) {
   return (
     <svg
       width={size}
@@ -46,15 +47,32 @@ export default function AppLogo({ size = 48, style = {} }) {
         <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
       </g>
       <g transform="translate(-4.65 -5.54) rotate(-20 50 50)">
-        <path d="M40 68 Q44 88 48 68 Z" fill="url(#al-f)"/>
+        <g className={animated ? 'al-f1' : undefined}>
+          <path d="M40 68 Q44 88 48 68 Z" fill="url(#al-f)"/>
+        </g>
       </g>
       <g transform="translate(-4.92 -5.42) rotate(-20 50 50)">
-        <path d="M48 68 Q51 84 55 68 Z" fill="url(#al-f)"/>
-        <path d="M55 68 Q58 84 62 68 Z" fill="url(#al-f)"/>
+        <g className={animated ? 'al-f2' : undefined}>
+          <path d="M48 68 Q51 84 55 68 Z" fill="url(#al-f)"/>
+          <path d="M55 68 Q58 84 62 68 Z" fill="url(#al-f)"/>
+        </g>
       </g>
       <g transform="translate(-4.91 -5.4) rotate(-20 50 50)">
-        <path d="M62 68 Q66 88 70 68 Z" fill="url(#al-f)"/>
+        <g className={animated ? 'al-f3' : undefined}>
+          <path d="M62 68 Q66 88 70 68 Z" fill="url(#al-f)"/>
+        </g>
       </g>
+      {animated && (
+        <style>{`
+          @keyframes al-flicker {
+            0% { transform: scaleY(1) scaleX(1); opacity: 1; }
+            100% { transform: scaleY(1.3) scaleX(0.82); opacity: 0.75; }
+          }
+          .al-f1 { transform-origin: 44px 68px; animation: al-flicker 0.6s ease-in-out infinite alternate; }
+          .al-f2 { transform-origin: 55px 68px; animation: al-flicker 0.5s ease-in-out 0.15s infinite alternate; }
+          .al-f3 { transform-origin: 66px 68px; animation: al-flicker 0.7s ease-in-out 0.3s infinite alternate; }
+        `}</style>
+      )}
     </svg>
   );
 }

@@ -980,20 +980,22 @@ function MysteryImageArtwork({ imageId, mysteryImageDefinitions, progress, large
           </div>
         );
       })}
-      <div style={{
-        position: 'absolute',
-        left: large ? 16 : 12,
-        bottom: large ? 16 : 12,
-        padding: large ? '0.48rem 0.74rem' : '0.38rem 0.6rem',
-        borderRadius: 999,
-        background: 'rgba(10,14,24,0.68)',
-        border: '1px solid rgba(255,255,255,0.08)',
-        color: '#fff',
-        fontSize: large ? '0.88rem' : '0.74rem',
-        fontWeight: 700,
-      }}>
-        {revealedCount}/{MYSTERY_IMAGE_PARTS} fragments
-      </div>
+      {revealedCount < MYSTERY_IMAGE_PARTS && (
+        <div style={{
+          position: 'absolute',
+          left: large ? 16 : 12,
+          bottom: large ? 16 : 12,
+          padding: large ? '0.48rem 0.74rem' : '0.38rem 0.6rem',
+          borderRadius: 999,
+          background: 'rgba(10,14,24,0.68)',
+          border: '1px solid rgba(255,255,255,0.08)',
+          color: '#fff',
+          fontSize: large ? '0.88rem' : '0.74rem',
+          fontWeight: 700,
+        }}>
+          {revealedCount}/{MYSTERY_IMAGE_PARTS} fragments
+        </div>
+      )}
     </div>
   );
 }

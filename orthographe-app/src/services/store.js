@@ -25,9 +25,12 @@ export const restoreDailyBackup = backend.restoreDailyBackup;
 
 export const loadParentalPin = backend.loadParentalPin;
 export const saveParentalPin = backend.saveParentalPin;
+export const loadUserSetup = backend.loadUserSetup;
+export const saveOnboardingWizard = backend.saveOnboardingWizard;
 
 // Children CRUD (used by pages directly)
 export const listChildren = backend.listChildren;
 export const getChild = backend.getChild;
 export const createChild = backend.createChild;
 export const updateChild = backend.updateChild;
+export const deleteChild = backend.deleteChild;

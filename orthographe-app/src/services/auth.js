@@ -29,6 +29,14 @@ export async function signInWithGoogle() {
   return result.user;
 }
 
+export async function signUpWithGoogle() {
+  const provider = new GoogleAuthProvider();
+  provider.setCustomParameters({ prompt: 'select_account' });
+  const result = await signInWithPopup(auth, provider);
+  await ensureUserDoc(result.user);
+  return result.user;
+}
+
 export async function signInWithEmail(email, password) {
   const result = await signInWithEmailAndPassword(auth, email, password);
   await ensureUserDoc(result.user);

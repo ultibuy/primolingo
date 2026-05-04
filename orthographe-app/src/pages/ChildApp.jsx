@@ -346,8 +346,9 @@ function createDefaultRuleProgress() {
 // ---------------------------------------------------------------------------
 // ChildApp Component
 // ---------------------------------------------------------------------------
-export default function ChildApp() {
-  const { childId } = useParams();
+export default function ChildApp({ childIdOverride }) {
+  const params = useParams();
+  const childId = childIdOverride || params.childId;
   const { user } = useAuth();
   const uid = user?.uid;
 

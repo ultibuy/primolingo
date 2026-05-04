@@ -14,8 +14,11 @@ import PopupModal from '../components/PopupModal.jsx';
 import VersionFooter from '../components/ui/VersionFooter.jsx';
 import { allRules } from '../content/loader.js';
 import { allDictees, LEVELS } from '../content/dicteesLoader.js';
-import { hashPin } from '../services/pin-crypto.js';
-import { listChildren, loadParentalPin, saveParentalPin, updateChild, deleteChild } from '../services/store.js';
+import { hashPin, verifyPin } from '../services/pin-crypto.js';
+import { listChildren, loadParentalPin, saveParentalPin, updateChild, deleteChild, loadUserSetup, saveOnboardingWizard } from '../services/store.js';
+import OnboardingWizard from '../components/OnboardingWizard.jsx';
+import MotivationBanner from '../components/MotivationBanner.jsx';
+import { slugify } from './ChildBySlug.jsx';
 import {
   loadParentImages,
   saveParentImages,
@@ -796,21 +799,6 @@ function GestionEnfantsSection({ children, uid, parentImages, pin, navigate, ref
               onDeleted={(childId) => { onChildDeleted?.(childId); setEditingChildId(null); }}
             />
           )}
-          {/* Ouvrir la partie enfant */}
-          <div>
-            <div style={sectionDividerStyle}>Partie enfant</div>
-            <p style={{ fontSize: '0.8rem', color: '#9ca3af', margin: '0 0 0.6rem', lineHeight: 1.5 }}>
-              Ouvrez la partie enfant puis mettez-la en favori sur l'appareil de <strong style={{ color: '#d1d5db' }}>{child.name}</strong>.
-            </p>
-            <button
-              type="button"
-              onClick={() => { posthog.capture('child_play_launched', { child_id: child.id }); window.open(`/play/${child.id}`, '_blank'); }}
-              style={primaryBtnStyle(false)}
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: 6, verticalAlign: '-1px' }}><path d="M6 4l15 8-15 8V4z"/></svg>
-              Ouvrir la partie enfant
-            </button>
-          </div>
           {/* Sauvegardes */}
           <BackupRestorePanel uid={uid} childId={child.id} />
         </div>
@@ -838,9 +826,9 @@ function CollapsibleSection({ title, titleAs: Tag = 'h2', open, onToggle, childr
   );
 }
 
-// ─── ParentDashboardV2 ────────────────────────────────────────────────────────
+// ─── ParentDashboard ─────────────────────────────────────────────────────────
 
-export default function ParentDashboardV2() {
+export default function ParentDashboard() {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -850,8 +838,7 @@ export default function ParentDashboardV2() {
   const [openChildIds, setOpenChildIds] = useState(new Set());
   const [selectedSuiviChildId, setSelectedSuiviChildId] = useState(null);
   const [monCompteOpen, setMonCompteOpen] = useState(false);
-  const [accesEnfantOpen, setAccesEnfantOpen] = useState(true);
-  const [gestionOpen, setGestionOpen] = useState(true);
+  const [gestionOpen, setGestionOpen] = useState(false);
   const [suiviOpen, setSuiviOpen] = useState(false);
   const [imagesOpen, setImagesOpen] = useState(false);
   const [pin, setPin] = useState(undefined);
@@ -861,6 +848,16 @@ export default function ParentDashboardV2() {
   const [pinDraft, setPinDraft] = useState('');
   const [pinError, setPinError] = useState('');
   const [reauthError, setReauthError] = useState('');
+
+  // Onboarding wizard state
+  const [wizardState, setWizardState] = useState(undefined); // undefined = loading
+  const [showWizard, setShowWizard] = useState(false);
+  const [wizardStep, setWizardStep] = useState(1);
+
+  // PIN gate for Gestion des enfants
+  const [gestionUnlocked, setGestionUnlocked] = useState(false);
+  const [showGestionPinModal, setShowGestionPinModal] = useState(false);
+  const [gestionPinError, setGestionPinError] = useState('');
 
   useEffect(() => {
     if (!user?.uid) return;
@@ -873,10 +870,9 @@ export default function ParentDashboardV2() {
       setLoading(false);
       setOpenChildIds(new Set(list.length > 0 ? [list[0].id] : []));
       const hasQuiz = list.some(c => (c.progress?.statsHistory?.length ?? 0) > 0);
-      setAccesEnfantOpen(!hasQuiz);
-      setGestionOpen(!hasQuiz);
       setSuiviOpen(hasQuiz);
-      setImagesOpen(hasQuiz);
+      setGestionOpen(false);
+      setImagesOpen(false);
     });
     return unsub;
   }, [user?.uid]);
@@ -888,11 +884,52 @@ export default function ParentDashboardV2() {
 
   useEffect(() => {
     if (!user?.uid) return;
-    loadParentalPin(user.uid).then(p => {
-      setPin(p);
-      if (!p) setShowPinSetup(true);
+    loadUserSetup(user.uid).then(({ parentalPin, onboardingWizard }) => {
+      setPin(parentalPin);
+      setWizardState(onboardingWizard);
     });
   }, [user?.uid]);
+
+  // Compute wizard visibility once both wizardState and children are loaded
+  // Runs only on initial load (wizardState transitions from undefined to a value once)
+  const [wizardChecked, setWizardChecked] = useState(false);
+  useEffect(() => {
+    if (wizardChecked || wizardState === undefined || loading) return;
+    setWizardChecked(true);
+    const ws = wizardState;
+    if (!ws) {
+      // Never started — show wizard at step 1
+      setShowWizard(true);
+      setWizardStep(1);
+      return;
+    }
+    if (ws.dismissed) {
+      // Check re-show rule: step4DeviceYes=false AND no child has quiz done
+      if (!ws.step4DeviceYes) {
+        const anyQuizDone = children.some(c => (c.progress?.statsHistory?.length ?? 0) > 0);
+        if (!anyQuizDone) {
+          setShowWizard(true);
+          setWizardStep(4);
+          return;
+        }
+      }
+      setShowWizard(false);
+      return;
+    }
+    // Find first incomplete step
+    const completed = ws.completedSteps || [];
+    const firstIncomplete = [1, 2, 3, 4, 5].find(s => !completed.includes(s)) || 1;
+    setShowWizard(true);
+    setWizardStep(firstIncomplete);
+  }, [wizardState, children, loading, wizardChecked]);
+
+  // Show PIN setup only when wizard is not active and no PIN exists
+  useEffect(() => {
+    if (wizardChecked && !showWizard && pin !== undefined && !pin) {
+      setShowPinSetup(true);
+    }
+  }, [wizardChecked, showWizard, pin]);
+
 
   // Scroll to newly created child when returning from ChildSetup
   useEffect(() => {
@@ -1041,15 +1078,58 @@ export default function ParentDashboardV2() {
 
   return (
     <div style={containerStyle}>
-      {showPinSetup && renderPinModal(true)}
+      {showWizard && (
+        <OnboardingWizard
+          uid={user.uid}
+          email={user?.email}
+          pin={pin}
+          children={children}
+          initialStep={wizardStep}
+          wizardState={wizardState}
+          onPinSaved={(pinData) => setPin(pinData)}
+          onComplete={() => {
+            setShowWizard(false);
+            // Show PIN setup if not done (shouldn't happen since step 1 handles it)
+            if (!pin) setShowPinSetup(true);
+          }}
+        />
+      )}
+      {!showWizard && showPinSetup && renderPinModal(true)}
       {showPinManage && renderPinModal(false)}
+      {showGestionPinModal && (
+        <PopupModal
+          onClose={() => { setShowGestionPinModal(false); setGestionPinError(''); }}
+          panelStyle={{
+            background: 'linear-gradient(180deg, #1e1e2e, #2d2b55)',
+            borderRadius: 22, padding: '2rem 1.8rem',
+            maxWidth: 360, width: '90%',
+            border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center',
+          }}
+        >
+          <div style={{ fontSize: '2.2rem', marginBottom: '0.6rem' }}>🔒</div>
+          <h2 style={{ fontSize: '1.05rem', fontWeight: 800, color: '#e2e2e2', marginBottom: '0.8rem' }}>Code parental requis</h2>
+          <PinInput
+            onComplete={async (val) => {
+              const ok = await verifyPin(val, pin.salt, pin.hash);
+              if (ok) {
+                setGestionUnlocked(true);
+                setShowGestionPinModal(false);
+                setGestionPinError('');
+                setGestionOpen(true);
+              } else {
+                setGestionPinError('Code incorrect.');
+              }
+            }}
+            error={gestionPinError}
+          />
+        </PopupModal>
+      )}
 
       {/* ── Header ── */}
       <div style={headerStyle}>
         <div style={logoRowStyle}>
           <AppLogo size={40} />
           <span style={logoTitleStyle}>PrimoLingo</span>
-          <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#a78bfa', marginLeft: 6, padding: '2px 8px', borderRadius: 99, background: 'rgba(167,139,250,0.15)', border: '1px solid rgba(167,139,250,0.25)' }}>v2 bêta</span>
         </div>
         {reauthError && <span style={{ fontSize: '0.75rem', color: '#f87171' }}>{reauthError}</span>}
       </div>
@@ -1062,61 +1142,63 @@ export default function ParentDashboardV2() {
           <div style={{ fontSize: '1.6rem', fontWeight: 900, color: 'var(--text-white)', marginBottom: '0.8rem', fontFamily: 'var(--font-display)' }}>
             Bonjour 👋
           </div>
-          <p style={{ margin: '0 0 0.75rem', fontSize: '0.88rem', color: '#9ca3af', lineHeight: 1.5 }}>
-            Bienvenue dans l'espace parent de PrimoLingo. Vous pouvez :
+          <p style={{ margin: 0, fontSize: '0.88rem', color: '#9ca3af', lineHeight: 1.5 }}>
+            Bienvenue dans l'espace <strong style={{ color: '#fff' }}>parent</strong> de PrimoLingo.
           </p>
-          <ol style={{ margin: 0, paddingLeft: '1.3rem', display: 'grid', gap: '0.35rem', textAlign: 'left', maxWidth: 380, marginInline: 'auto' }}>
-            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Configurer</strong> les profils de vos enfants</li>
-            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Accéder</strong> à la partie enfant</li>
-            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Suivre</strong> leur progression et activité</li>
-            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Gérer</strong> les images mystère</li>
-            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Gérer</strong> votre compte et votre code</li>
-          </ol>
         </div>
 
-        {/* ─ Section 1: Accès enfant ─ */}
-        <section style={sectionStyle}>
-          <CollapsibleSection title="Accès enfant" open={accesEnfantOpen} onToggle={() => setAccesEnfantOpen(o => !o)}>
-            <AccesEnfantSection />
-          </CollapsibleSection>
-        </section>
+        {/* ─ First quiz nudge ─ */}
+        {!showWizard && !loading && (() => {
+          const pending = children.filter(c => !(c.progress?.statsHistory?.length > 0));
+          if (pending.length === 0) return null;
+          const names = pending.map(c => c.name);
+          const nameList = names.length === 1
+            ? names[0]
+            : names.slice(0, -1).join(', ') + ' et ' + names[names.length - 1];
+          const possessive = names.length === 1 ? 'son' : 'leur';
+          const message = `Prochaine étape pour ${nameList}, faire ${possessive} premier quiz.`;
+          return (
+            <MotivationBanner
+              variant="flamme"
+              emoji="📈"
+              message={message}
+              emphasis={nameList}
+              style={{ marginBottom: '1.5rem' }}
+            />
+          );
+        })()}
 
-        {/* ─ Section 2: Gestion des enfants ─ */}
-        <section style={sectionStyle}>
-          <CollapsibleSection
-            title="Gestion des enfants"
-            open={gestionOpen}
-            onToggle={() => setGestionOpen(o => !o)}
-            headerRight={
-              <button
-                type="button"
-                onClick={() => pin ? navigate('/parent/child/new') : setShowPinSetup(true)}
-                style={{ ...primaryBtnStyle(false), opacity: pin ? 1 : 0.5 }}
-              >
-                + Ajouter un enfant
-              </button>
-            }
-          >
-            {loading ? null : children.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#94a3b8', fontSize: '0.9rem' }}>
-                Aucun enfant pour l'instant. Cliquez sur « + Ajouter un enfant » pour commencer.
-              </div>
-            ) : (
-              <GestionEnfantsSection
-                children={children}
-                uid={user.uid}
-                parentImages={parentImages}
-                pin={pin}
-                navigate={navigate}
-                refreshParentImages={refreshParentImages}
-                onChildUpdated={(updated) => setChildren(prev => prev.map(c => c.id === updated.id ? { ...c, ...updated } : c))}
-                onChildDeleted={(id) => setChildren(prev => prev.filter(c => c.id !== id))}
-              />
-            )}
-          </CollapsibleSection>
-        </section>
+        {/* ─ Espace enfant ─ */}
+        {!showWizard && !loading && children.length > 0 && (
+          <section style={sectionStyle}>
+            <h2 style={sectionTitleStyle}>Espace enfant</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: children.length > 1 ? 'repeat(auto-fit, minmax(240px, 1fr))' : '1fr', gap: '1rem', marginTop: '1rem' }}>
+              {children.map(child => (
+                <div key={child.id} style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: 'var(--radius-md)', padding: '1rem 1.1rem', display: 'grid', gap: '0.7rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                    <span style={{ fontSize: 24, lineHeight: 1 }}>{child.avatar || '🦊'}</span>
+                    <span style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-white)', fontFamily: 'var(--font-display)' }}>{child.name}</span>
+                  </div>
+                  <p style={{ fontSize: '0.8rem', color: '#9ca3af', margin: 0, lineHeight: 1.5 }}>
+                    Adresse : <strong style={{ color: '#d1d5db' }}>www.primolingo.fr/enfant/{slugify(child.name)}</strong>
+                  </p>
+                  <div>
+                    <button
+                      type="button"
+                      onClick={() => { posthog.capture('child_play_launched', { child_id: child.id }); window.open(`/enfant/${slugify(child.name)}`, '_blank'); }}
+                      style={secBtnStyle}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--color-primary)" style={{ marginRight: 6, verticalAlign: '-1px' }}><path d="M6 4l15 8-15 8V4z"/></svg>
+                      Ouvrir l'espace de {child.name}
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
-        {/* ─ Section 3: Suivi des enfants ─ */}
+        {/* ─ Suivi des enfants ─ */}
         <section style={sectionStyle}>
           <CollapsibleSection title="Suivi des enfants" open={suiviOpen} onToggle={() => setSuiviOpen(o => !o)}>
             {loading ? (
@@ -1176,7 +1258,46 @@ export default function ParentDashboardV2() {
           </CollapsibleSection>
         </section>
 
-        {/* ─ Section 4: Bibliothèque d'images mystère ─ */}
+        {/* ─ Gestion des enfants ─ */}
+        <section style={sectionStyle}>
+          <CollapsibleSection
+            title={<>Gestion des enfants {!gestionUnlocked && pin && <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true" style={{ verticalAlign: '-2px', marginLeft: 4 }}><rect x="5" y="10" width="14" height="11" rx="2.5" fill="#fff"/><path d="M8 10V7a4 4 0 118 0v3" stroke="#fff" strokeWidth="2.2" fill="none" strokeLinecap="round"/><circle cx="12" cy="15" r="1.5" fill="#1e1e2e"/><rect x="11.25" y="15.5" width="1.5" height="2.5" rx=".75" fill="#1e1e2e"/></svg>}</>}
+            open={gestionOpen}
+            onToggle={() => {
+              if (gestionOpen) { setGestionOpen(false); return; }
+              if (!pin || gestionUnlocked) { setGestionOpen(true); return; }
+              setShowGestionPinModal(true);
+            }}
+          >
+            {loading ? null : children.length === 0 ? (
+              <div style={{ textAlign: 'center', padding: '2rem 1rem', color: '#94a3b8', fontSize: '0.9rem' }}>
+                Aucun enfant pour l'instant. Cliquez sur « + Ajouter un enfant » pour commencer.
+              </div>
+            ) : (
+              <GestionEnfantsSection
+                children={children}
+                uid={user.uid}
+                parentImages={parentImages}
+                pin={pin}
+                navigate={navigate}
+                refreshParentImages={refreshParentImages}
+                onChildUpdated={(updated) => setChildren(prev => prev.map(c => c.id === updated.id ? { ...c, ...updated } : c))}
+                onChildDeleted={(id) => setChildren(prev => prev.filter(c => c.id !== id))}
+              />
+            )}
+            <div style={{ textAlign: 'center', marginTop: '1rem' }}>
+              <button
+                type="button"
+                onClick={() => pin ? navigate('/parent/child/new') : setShowPinSetup(true)}
+                style={{ ...primaryBtnStyle(false), opacity: pin ? 1 : 0.5 }}
+              >
+                + Ajouter un enfant
+              </button>
+            </div>
+          </CollapsibleSection>
+        </section>
+
+        {/* ─ Bibliothèque d'images mystère ─ */}
         <section style={sectionStyle}>
           <CollapsibleSection title="Bibliothèque d'images mystère" open={imagesOpen} onToggle={() => setImagesOpen(o => !o)}>
             <p style={{ fontSize: '0.83rem', color: '#64748b', lineHeight: 1.7, margin: '0 0 0.9rem' }}>
