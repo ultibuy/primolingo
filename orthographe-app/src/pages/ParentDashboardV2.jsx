@@ -694,6 +694,7 @@ function ChildEditForm({ uid, child, onSaved, onCancel }) {
 
 function GestionEnfantsSection({ children, uid, parentImages, pin, navigate, refreshParentImages, onChildUpdated }) {
   const [editingChildId, setEditingChildId] = useState(null);
+  const [imagesOpen, setImagesOpen] = useState(true);
 
   return (
     <div style={{ display: 'grid', gap: '2rem' }}>
@@ -750,7 +751,7 @@ function GestionEnfantsSection({ children, uid, parentImages, pin, navigate, ref
 
       {/* Bibliothèque images mystère */}
       <div>
-        <h3 style={sectionTitleStyle}>Bibliothèque d'images mystère</h3>
+        <CollapsibleSection title="Bibliothèque d'images mystère" titleAs="h3" open={imagesOpen} onToggle={() => setImagesOpen(o => !o)}>
         <p style={{ fontSize: '0.83rem', color: '#64748b', lineHeight: 1.7, margin: '0 0 0.9rem' }}>
           Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque jour. PrimoLingo inclut déjà un ensemble d'images pré-configurées. Vous pouvez aussi <strong style={{ color: '#9ca3af' }}>ajouter vos propres photos</strong> (vacances, animaux, famille…) selon les goûts de vos enfants, et choisir <strong style={{ color: '#9ca3af' }}>pour quel enfant</strong> chaque image apparaîtra.
         </p>
@@ -774,8 +775,25 @@ function GestionEnfantsSection({ children, uid, parentImages, pin, navigate, ref
             ))}
           </div>
         )}
+        </CollapsibleSection>
       </div>
     </div>
+  );
+}
+
+function CollapsibleSection({ title, titleAs: Tag = 'h2', open, onToggle, children, titleStyle }) {
+  return (
+    <>
+      <button
+        type="button"
+        onClick={onToggle}
+        style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left' }}
+      >
+        <Tag style={{ ...(titleStyle || sectionTitleStyle), margin: 0, flex: 1 }}>{title}</Tag>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'transform 0.2s', transform: open ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink: 0 }}><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      {open && <div style={{ marginTop: '1rem' }}>{children}</div>}
+    </>
   );
 }
 
@@ -789,6 +807,9 @@ export default function ParentDashboardV2() {
   const [parentImages, setParentImages] = useState([]);
   const [openChildIds, setOpenChildIds] = useState(new Set());
   const [monCompteOpen, setMonCompteOpen] = useState(false);
+  const [accesEnfantOpen, setAccesEnfantOpen] = useState(true);
+  const [gestionOpen, setGestionOpen] = useState(true);
+  const [suiviOpen, setSuiviOpen] = useState(true);
   const [pin, setPin] = useState(undefined);
   const [showPinSetup, setShowPinSetup] = useState(false);
   const [showPinManage, setShowPinManage] = useState(false);
@@ -986,125 +1007,127 @@ export default function ParentDashboardV2() {
           </ol>
         </div>
 
-        {/* ─ Section 1: Mon compte ─ */}
+        {/* ─ Section 1: Accès enfant ─ */}
         <section style={sectionStyle}>
-          <button
-            type="button"
-            onClick={() => setMonCompteOpen(o => !o)}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left' }}
-          >
-            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <h2 style={{ ...sectionTitleStyle, margin: 0 }}>Mon compte</h2>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'transform 0.2s', transform: monCompteOpen ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink: 0 }}><polyline points="6 9 12 15 18 9"/></svg>
-            </span>
-          </button>
-
-          {monCompteOpen && <div style={{ marginTop: '1rem' }}>
-          {/* Account info */}
-          <div style={{ marginBottom: '1rem', padding: '0.65rem 0.9rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 10 }}>
-            <p style={{ margin: '0 0 0.5rem', fontSize: '0.95rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-display)' }}>Compte connecté</p>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.6rem', flexWrap: 'wrap' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
-                <span style={{ fontSize: '0.83rem', color: '#d1d5db', fontWeight: 600 }}>{user?.email || 'compte local'}</span>
-                <span style={{ fontSize: '0.72rem', color: '#64748b', padding: '2px 8px', borderRadius: 99, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                  {user?.providerData?.[0]?.providerId === 'google.com' ? '🔵 Google' : user?.uid === 'localhost-dev' ? '🛠 Dev local' : '✉️ Email'}
-                </span>
-              </div>
-              <button type="button" onClick={handleSignOut} style={logoutBtnStyle}>Déconnexion</button>
-            </div>
-          </div>
-
-          {/* PIN card */}
-          <div style={pinCardStyle}>
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.9rem' }}>
-              <div style={{ flex: 1 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.3rem', flexWrap: 'wrap' }}>
-                  <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#fff' }}>Code parental à 4 chiffres</span>
-                  <span style={{
-                    fontSize: '0.68rem', fontWeight: 800, padding: '2px 8px', borderRadius: 99,
-                    background: pin ? 'rgba(74,222,128,0.12)' : 'rgba(251,191,36,0.12)',
-                    border: `1px solid ${pin ? 'rgba(74,222,128,0.3)' : 'rgba(251,191,36,0.3)'}`,
-                    color: pin ? '#4ade80' : '#fbbf24',
-                  }}>
-                    {pin === undefined ? '…' : pin ? 'Défini' : 'Non défini'}
-                  </span>
-                </div>
-                <ol style={{ margin: '0 0 0.75rem', paddingLeft: '1.1rem' }}>
-                  <li style={{ fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.65, marginBottom: '0.3rem' }}>
-                    <strong style={{ color: '#d1d5db' }}>Protéger la flamme</strong> de votre enfant (le nombre de jours consécutifs d'utilisation) quand il a une bonne raison de ne pas avoir joué — week-end familial, pas de possibilité de jouer, etc.
-                  </li>
-                  <li style={{ fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.65 }}>
-                    <strong style={{ color: '#d1d5db' }}>Restaurer la progression</strong> à un jour particulier en cas de besoin.
-                  </li>
-                </ol>
-                <button type="button" onClick={handlePinManageClick} style={secBtnStyle}>
-                  {pin ? 'Gérer le code' : 'Définir le code'}
-                </button>
-              </div>
-            </div>
-          </div>
-
-          </div>}
+          <CollapsibleSection title="Accès enfant" open={accesEnfantOpen} onToggle={() => setAccesEnfantOpen(o => !o)}>
+            <AccesEnfantSection />
+          </CollapsibleSection>
         </section>
 
-        {/* ─ Section 2: Accès enfant ─ */}
+        {/* ─ Section 2: Gestion des enfants ─ */}
         <section style={sectionStyle}>
-          <h2 style={sectionTitleStyle}>Accès enfant</h2>
-          <AccesEnfantSection />
-        </section>
-
-        {/* ─ Section 3: Gestion des enfants ─ */}
-        <section style={sectionStyle}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.2rem' }}>
-            <h2 style={{ ...sectionTitleStyle, marginBottom: 0 }}>Gestion des enfants</h2>
-            <button
-              type="button"
-              onClick={() => pin ? navigate('/parent/child/new') : setShowPinSetup(true)}
-              style={{ ...primaryBtnStyle(false), opacity: pin ? 1 : 0.5 }}
-            >
-              + Ajouter un enfant
-            </button>
-          </div>
-          {loading ? null : (
-            <GestionEnfantsSection
-              children={children}
-              uid={user.uid}
-              parentImages={parentImages}
-              pin={pin}
-              navigate={navigate}
-              refreshParentImages={refreshParentImages}
-              onChildUpdated={(updated) => setChildren(prev => prev.map(c => c.id === updated.id ? { ...c, ...updated } : c))}
-            />
-          )}
-        </section>
-
-        {/* ─ Section 4: Suivi des enfants ─ */}
-        <section style={sectionStyle}>
-          <h2 style={sectionTitleStyle}>Suivi des enfants</h2>
-
-          {loading ? (
-            <div style={{ textAlign: 'center', color: 'var(--color-primary)', padding: '3rem 0' }}>Chargement…</div>
-          ) : children.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '3rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-              <div style={{ fontSize: 48 }}>👶</div>
-              <p style={{ color: '#94a3b8', fontSize: '1rem', margin: 0 }}>
-                Aucun enfant pour l'instant.<br />Ajoutez-en un dans « Gestion des enfants » ci-dessus.
-              </p>
-            </div>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {children.map(child => (
-                <ChildPanelV2
-                  key={child.id}
-                  child={child}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
+            <CollapsibleSection title="Gestion des enfants" open={gestionOpen} onToggle={() => setGestionOpen(o => !o)}>
+              {loading ? null : (
+                <GestionEnfantsSection
+                  children={children}
                   uid={user.uid}
                   parentImages={parentImages}
-                  isOpen={openChildIds.has(child.id)}
-                  onToggle={() => toggleChild(child.id)}
+                  pin={pin}
+                  navigate={navigate}
+                  refreshParentImages={refreshParentImages}
+                  onChildUpdated={(updated) => setChildren(prev => prev.map(c => c.id === updated.id ? { ...c, ...updated } : c))}
                 />
-              ))}
+              )}
+            </CollapsibleSection>
+            {!gestionOpen && (
+              <button
+                type="button"
+                onClick={() => pin ? navigate('/parent/child/new') : setShowPinSetup(true)}
+                style={{ ...primaryBtnStyle(false), opacity: pin ? 1 : 0.5 }}
+              >
+                + Ajouter un enfant
+              </button>
+            )}
+          </div>
+          {gestionOpen && (
+            <div style={{ marginTop: '0.75rem' }}>
+              <button
+                type="button"
+                onClick={() => pin ? navigate('/parent/child/new') : setShowPinSetup(true)}
+                style={{ ...primaryBtnStyle(false), opacity: pin ? 1 : 0.5 }}
+              >
+                + Ajouter un enfant
+              </button>
             </div>
           )}
+        </section>
+
+        {/* ─ Section 3: Suivi des enfants ─ */}
+        <section style={sectionStyle}>
+          <CollapsibleSection title="Suivi des enfants" open={suiviOpen} onToggle={() => setSuiviOpen(o => !o)}>
+            {loading ? (
+              <div style={{ textAlign: 'center', color: 'var(--color-primary)', padding: '3rem 0' }}>Chargement…</div>
+            ) : children.length === 0 ? (
+              <div style={{ textAlign: 'center', padding: '3rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+                <div style={{ fontSize: 48 }}>👶</div>
+                <p style={{ color: '#94a3b8', fontSize: '1rem', margin: 0 }}>
+                  Aucun enfant pour l'instant.<br />Ajoutez-en un dans « Gestion des enfants » ci-dessus.
+                </p>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {children.map(child => (
+                  <ChildPanelV2
+                    key={child.id}
+                    child={child}
+                    uid={user.uid}
+                    parentImages={parentImages}
+                    isOpen={openChildIds.has(child.id)}
+                    onToggle={() => toggleChild(child.id)}
+                  />
+                ))}
+              </div>
+            )}
+          </CollapsibleSection>
+        </section>
+
+        {/* ─ Section 4: Mon compte ─ */}
+        <section style={sectionStyle}>
+          <CollapsibleSection title="Mon compte" open={monCompteOpen} onToggle={() => setMonCompteOpen(o => !o)}>
+            {/* Account info */}
+            <div style={{ marginBottom: '1rem', padding: '0.65rem 0.9rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 10 }}>
+              <p style={{ margin: '0 0 0.5rem', fontSize: '0.95rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-display)' }}>Compte connecté</p>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.6rem', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                  <span style={{ fontSize: '0.83rem', color: '#d1d5db', fontWeight: 600 }}>{user?.email || 'compte local'}</span>
+                  <span style={{ fontSize: '0.72rem', color: '#64748b', padding: '2px 8px', borderRadius: 99, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                    {user?.providerData?.[0]?.providerId === 'google.com' ? '🔵 Google' : user?.uid === 'localhost-dev' ? '🛠 Dev local' : '✉️ Email'}
+                  </span>
+                </div>
+                <button type="button" onClick={handleSignOut} style={logoutBtnStyle}>Déconnexion</button>
+              </div>
+            </div>
+            {/* PIN card */}
+            <div style={pinCardStyle}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.9rem' }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.3rem', flexWrap: 'wrap' }}>
+                    <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#fff' }}>Code parental à 4 chiffres</span>
+                    <span style={{
+                      fontSize: '0.68rem', fontWeight: 800, padding: '2px 8px', borderRadius: 99,
+                      background: pin ? 'rgba(74,222,128,0.12)' : 'rgba(251,191,36,0.12)',
+                      border: `1px solid ${pin ? 'rgba(74,222,128,0.3)' : 'rgba(251,191,36,0.3)'}`,
+                      color: pin ? '#4ade80' : '#fbbf24',
+                    }}>
+                      {pin === undefined ? '…' : pin ? 'Défini' : 'Non défini'}
+                    </span>
+                  </div>
+                  <ol style={{ margin: '0 0 0.75rem', paddingLeft: '1.1rem' }}>
+                    <li style={{ fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.65, marginBottom: '0.3rem' }}>
+                      <strong style={{ color: '#d1d5db' }}>Protéger la flamme</strong> de votre enfant (le nombre de jours consécutifs d'utilisation) quand il a une bonne raison de ne pas avoir joué — week-end familial, pas de possibilité de jouer, etc.
+                    </li>
+                    <li style={{ fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.65 }}>
+                      <strong style={{ color: '#d1d5db' }}>Restaurer la progression</strong> à un jour particulier en cas de besoin.
+                    </li>
+                  </ol>
+                  <button type="button" onClick={handlePinManageClick} style={secBtnStyle}>
+                    {pin ? 'Gérer le code' : 'Définir le code'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </CollapsibleSection>
         </section>
 
         <VersionFooter style={{ marginTop: '2rem', paddingBottom: '5rem' }} />
