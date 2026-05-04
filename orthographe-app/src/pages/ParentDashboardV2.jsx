@@ -788,6 +788,7 @@ export default function ParentDashboardV2() {
   const [loading, setLoading] = useState(true);
   const [parentImages, setParentImages] = useState([]);
   const [openChildIds, setOpenChildIds] = useState(new Set());
+  const [monCompteOpen, setMonCompteOpen] = useState(false);
   const [pin, setPin] = useState(undefined);
   const [showPinSetup, setShowPinSetup] = useState(false);
   const [showPinManage, setShowPinManage] = useState(false);
@@ -987,8 +988,16 @@ export default function ParentDashboardV2() {
 
         {/* ─ Section 1: Mon compte ─ */}
         <section style={sectionStyle}>
-          <h2 style={sectionTitleStyle}>Mon compte</h2>
+          <button
+            type="button"
+            onClick={() => setMonCompteOpen(o => !o)}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left' }}
+          >
+            <h2 style={{ ...sectionTitleStyle, margin: 0 }}>Mon compte</h2>
+            <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '1rem', transition: 'transform 0.2s', display: 'inline-block', transform: monCompteOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+          </button>
 
+          {monCompteOpen && <>
           {/* Account info */}
           <div style={{ marginBottom: '1rem', padding: '0.65rem 0.9rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 10 }}>
             <p style={{ margin: '0 0 0.5rem', fontSize: '0.95rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-display)' }}>Compte connecté</p>
@@ -1033,6 +1042,7 @@ export default function ParentDashboardV2() {
             </div>
           </div>
 
+          </>}
         </section>
 
         {/* ─ Section 2: Accès enfant ─ */}
