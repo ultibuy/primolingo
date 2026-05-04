@@ -1,3 +1,4 @@
+/* global __APP_VERSION__ */
 import { useState, useEffect } from 'react';
 
 /**
@@ -104,7 +105,7 @@ export default function UpdateBanner() {
           Nouvelle version disponible
         </div>
         <div style={{ fontSize: '0.78rem', color: '#93c5fd', lineHeight: 1.4 }}>
-          Recharge pour profiter des dernières améliorations
+          Recharge pour profiter des dernières améliorations · v{__APP_VERSION__}
         </div>
       </div>
 
