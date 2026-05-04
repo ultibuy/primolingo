@@ -58,6 +58,79 @@ async function main() {
     console.log('  Aliases: popup-niveau, popup-couronne, popup-diamant');
   } catch {}
 
+  // ── Level info popups (LevelHelpPopup) ──
+  // Each level needs a specific progress state so the LevelPath shows the right node.
+  // We click on the colored circle at the known position to open the popup.
+  const levelConfigs = [
+    { name: 'bronze',   level: 1, x: 90, y: 458 },
+    { name: 'argent',   level: 1, x: 155, y: 458 },
+    { name: 'couronne', level: 2, x: 225, y: 458 },
+    { name: 'diamant',  level: 4, x: 300, y: 458 },
+  ];
+
+  const today = new Date().toISOString().slice(0, 10);
+  const baseProgress = (lvl) => ({
+    userId: 'local', coins: 500, shields: 0,
+    streak: { current: 3, longest: 5, lastActiveDate: today },
+    dailyActivity: { date: today, count: 1, yesterdayCount: 1, bestDaily: 1 },
+    milestones: { firstSession: true },
+    rules: { 'a-a-as': {
+      level: lvl,
+      guidedSessionsCompleted: lvl >= 1 ? 3 : 0,
+      guidedSessionsAbove80: lvl >= 2 ? 3 : lvl >= 1 ? 1 : 0,
+      guidedBestScore: 80,
+      directSessionsCompleted: lvl >= 2 ? 3 : 0,
+      directSessionsAbove80: lvl >= 3 ? 3 : 0,
+      directBestScore: lvl >= 3 ? 90 : 0,
+      directConsecutiveAbove90: lvl >= 4 ? 3 : 0,
+    }},
+    shop: { owned: [], equipped: {}, activeBoosts: {}, mysteryImages: {}, inventory: {} },
+    coaching: { shown: {}, lastShownByArc: {}, dailyShownCount: { date: today, count: 99 } },
+    statsHistory: [], parentalCode: null,
+  });
+
+  for (const cfg of levelConfigs) {
+    const ctx = await browser.newContext({ viewport: MOBILE });
+    const page = await ctx.newPage();
+    await page.addInitScript(({ progress, today }) => {
+      localStorage.setItem('ortho_debug', '1');
+      localStorage.setItem('debug_uid', 'localhost-dev');
+      localStorage.setItem('debug_child_name', 'Test');
+      localStorage.setItem('local:children:localhost-dev', JSON.stringify([{ id: 'c1', name: 'Test', avatar: '', createdAt: '2026-01-01' }]));
+      localStorage.setItem('local:childSettings:localhost-dev:c1', JSON.stringify({ prodQuestionCount: 20 }));
+      localStorage.setItem('local:progress:localhost-dev:c1', JSON.stringify(progress));
+      localStorage.setItem('ortho_first_quiz_bonus_dismissed:c1', today);
+    }, { progress: baseProgress(cfg.level), today });
+
+    await page.goto(`${BASE}/play/c1`, { waitUntil: 'networkidle', timeout: 15000 });
+    await page.waitForTimeout(2000);
+
+    // Click the level node circle
+    await page.mouse.click(cfg.x, cfg.y);
+    await page.waitForTimeout(1200);
+
+    const hasPopup = await page.evaluate(() => document.body.innerText.includes("C'est quoi"));
+    if (hasPopup) {
+      await page.screenshot({ path: join(DIR, `popup-${cfg.name}.png`), fullPage: false });
+      console.log(`  📸 popup-${cfg.name}.png`);
+    } else {
+      console.log(`  ⚠️  popup-${cfg.name}: popup not found, trying nearby positions...`);
+      let found = false;
+      for (const [dx, dy] of [[0,0],[-5,0],[5,0],[0,-5],[0,5],[-10,0],[10,0]]) {
+        await page.mouse.click(cfg.x + dx, cfg.y + dy);
+        await page.waitForTimeout(800);
+        if (await page.evaluate(() => document.body.innerText.includes("C'est quoi"))) {
+          await page.screenshot({ path: join(DIR, `popup-${cfg.name}.png`), fullPage: false });
+          console.log(`  📸 popup-${cfg.name}.png (at offset ${dx},${dy})`);
+          found = true;
+          break;
+        }
+      }
+      if (!found) console.log(`  ❌ popup-${cfg.name}: could not open popup`);
+    }
+    await ctx.close();
+  }
+
   await browser.close();
   console.log(`\n✅ Done!\n`);
 }
