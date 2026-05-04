@@ -154,6 +154,11 @@ function BackupRestorePanel({ uid, childId }) {
   const [restoring, setRestoring] = useState(null);
   const [msg, setMsg] = useState('');
 
+  useEffect(() => {
+    getDailyBackups(uid, childId).then(setBackups);
+  }, [uid, childId]);
+
+  // kept for compatibility but no longer used as the trigger button was removed
   async function handleLoad() {
     setMsg('');
     const list = await getDailyBackups(uid, childId);
@@ -178,9 +183,7 @@ function BackupRestorePanel({ uid, childId }) {
       <div style={subSectionLabelStyle}>Sauvegardes quotidiennes</div>
       <div style={{ marginTop: '0.5rem' }}>
         {backups === null ? (
-          <button type="button" onClick={handleLoad} style={outlineBtnStyle('#f87171', 'rgba(248,113,113,0.25)', 'rgba(248,113,113,0.08)')}>
-            Afficher les sauvegardes
-          </button>
+          <div style={{ fontSize: '0.78rem', color: '#64748b' }}>Chargement…</div>
         ) : backups.length === 0 ? (
           <div style={{ fontSize: '0.78rem', color: '#9ca3af' }}>Aucune sauvegarde disponible.</div>
         ) : (
@@ -453,20 +456,26 @@ function ChildPanelV2({ child, uid, parentImages, isOpen, onToggle }) {
             <ChildSettings uid={uid} childId={child.id} parentImages={parentImages} />
           </div>
 
+          {/* Partie enfant */}
+          <div>
+            <div style={sectionDividerStyle}>Partie enfant</div>
+            <p style={{ fontSize: '0.82rem', color: '#9ca3af', margin: '0 0 0.7rem', lineHeight: 1.6 }}>
+              Ouvrez l'app enfant puis mettez-la en favoris pour que <strong style={{ color: '#d1d5db' }}>{child.name}</strong> puisse y accéder facilement depuis son appareil.
+            </p>
+            <button
+              type="button"
+              onClick={() => { posthog.capture('child_play_launched', { child_id: child.id }); window.open(`/play/${child.id}`, '_blank'); }}
+              style={primaryBtnStyle(false)}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: 6, verticalAlign: '-1px' }}><path d="M6 4l15 8-15 8V4z"/></svg>
+              Ouvrir la partie enfant
+            </button>
+          </div>
+
           {/* Sauvegardes */}
           <div>
             <BackupRestorePanel uid={uid} childId={child.id} />
           </div>
-
-          {/* Play button */}
-          <button
-            type="button"
-            onClick={() => { posthog.capture('child_play_launched', { child_id: child.id }); navigate(`/play/${child.id}`); }}
-            style={playBtnStyle}
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: 6, verticalAlign: '-2px' }}><path d="M6 4l15 8-15 8V4z"/></svg>
-            Jouer avec {child.name}
-          </button>
         </div>
       )}
     </div>
@@ -507,27 +516,33 @@ function AccesEnfantSection() {
     ios: {
       label: 'iPhone / iPad',
       steps: [
-        'Ouvre primolingo.app/play dans Safari',
-        'Appuie sur le bouton Partager (carré avec flèche vers le haut)',
-        'Sélectionne « Sur l\'écran d\'accueil »',
+        'Cliquez sur « Ouvrir la partie enfant » ci-dessous',
+        'Appuyez sur le bouton Partager (carré avec flèche vers le haut)',
+        'Sélectionnez « Sur l\'écran d\'accueil » pour créer un accès rapide',
       ],
     },
     android: {
       label: 'Android',
       steps: [
-        'Ouvre primolingo.app/play dans Chrome',
-        'Appuie sur le menu ⋮ (trois points en haut à droite)',
-        'Sélectionne « Ajouter à l\'écran d\'accueil »',
+        'Cliquez sur « Ouvrir la partie enfant » ci-dessous',
+        'Appuyez sur le menu ⋮ (trois points en haut à droite)',
+        'Sélectionnez « Ajouter à l\'écran d\'accueil »',
       ],
     },
     desktop: {
       label: 'Ordinateur',
       steps: [
-        'Ouvre primolingo.app/play dans Chrome ou Edge',
-        'Clique sur l\'icône d\'installation dans la barre d\'adresse',
-        'Ou partage l\'URL à l\'enfant par message',
+        'Cliquez sur « Ouvrir la partie enfant » ci-dessous',
+        'Mettez la page en favoris (Ctrl+D sur Windows, Cmd+D sur Mac)',
+        'L\'enfant pourra y accéder directement depuis ses favoris',
       ],
     },
+  };
+
+  const parentBookmarkInstructions = {
+    ios: 'Dans Safari : appuyez sur Partager → « Ajouter aux favoris »',
+    android: 'Dans Chrome : appuyez sur ⋮ → « Ajouter aux favoris »',
+    desktop: 'Appuyez sur Ctrl+D (Windows) ou Cmd+D (Mac)',
   };
 
   const altPlatform = platform === 'ios' ? 'android' : platform === 'android' ? 'ios' : 'ios';
@@ -557,16 +572,12 @@ function AccesEnfantSection() {
               <div style={{ fontSize: '0.75rem', color: '#9ca3af', marginTop: 2 }}>Tableau de bord parent</div>
             </div>
           </div>
-          <p style={{ fontSize: '0.82rem', color: '#d1d5db', lineHeight: 1.6, margin: '0 0 0.8rem' }}>
-            Marquez cette page en favori pour y accéder facilement.
+          <p style={{ fontSize: '0.82rem', color: '#d1d5db', lineHeight: 1.6, margin: '0 0 0.5rem' }}>
+            Mettez cette page en favori pour y revenir facilement.
           </p>
-          <button
-            type="button"
-            onClick={() => window.open('/parent', '_blank')}
-            style={primaryBtnStyle(false)}
-          >
-            Ouvrir le tableau de bord
-          </button>
+          <div style={{ fontSize: '0.78rem', color: '#9ca3af', lineHeight: 1.6, margin: '0 0 0.8rem', padding: '0.5rem 0.7rem', background: 'rgba(167,139,250,0.06)', borderRadius: 8, border: '1px solid rgba(167,139,250,0.12)' }}>
+            {parentBookmarkInstructions[platform]}
+          </div>
         </div>
 
         {/* Card: child device */}
@@ -606,23 +617,15 @@ function AccesEnfantSection() {
           </div>
 
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <button type="button" onClick={handleShare} style={primaryBtnStyle(false)}>
-              Partager l'app enfant
+            <button
+              type="button"
+              onClick={() => window.open('/play', '_blank')}
+              style={primaryBtnStyle(false)}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff" style={{ marginRight: 6, verticalAlign: '-1px' }}><path d="M6 4l15 8-15 8V4z"/></svg>
+              Ouvrir la partie enfant
             </button>
           </div>
-
-          {showCopyFallback && (
-            <div style={{ marginTop: '0.6rem', display: 'flex', gap: '0.4rem', alignItems: 'center' }}>
-              <input
-                readOnly
-                value={`${window.location.origin}/play`}
-                style={{ ...inputStyle, fontSize: '0.78rem', padding: '0.4rem 0.6rem', flex: 1 }}
-              />
-              <button type="button" onClick={handleCopy} style={secBtnStyle}>
-                {copied ? '✓' : 'Copier'}
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </div>
@@ -814,9 +817,6 @@ export default function ParentDashboardV2() {
           <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#a78bfa', marginLeft: 6, padding: '2px 8px', borderRadius: 99, background: 'rgba(167,139,250,0.15)', border: '1px solid rgba(167,139,250,0.25)' }}>v2 bêta</span>
         </div>
         <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-            Bonjour, {user?.displayName?.split(' ')[0] || 'parent'} 👋
-          </span>
           {reauthError && <span style={{ fontSize: '0.75rem', color: '#f87171' }}>{reauthError}</span>}
           <button type="button" onClick={handleSignOut} style={logoutBtnStyle}>Déconnexion</button>
         </div>
@@ -824,6 +824,13 @@ export default function ParentDashboardV2() {
 
       {/* ── Content ── */}
       <div style={contentStyle}>
+
+        {/* Greeting */}
+        <div style={{ marginBottom: '1.8rem' }}>
+          <span style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-muted)' }}>
+            Bonjour, {user?.displayName?.split(' ')[0] || 'parent'} 👋
+          </span>
+        </div>
 
         {/* ─ Section 1: Mon compte ─ */}
         <section style={sectionStyle}>
@@ -845,11 +852,8 @@ export default function ParentDashboardV2() {
                     {pin === undefined ? '…' : pin ? 'Défini' : 'Non défini'}
                   </span>
                 </div>
-                <p style={{ margin: '0 0 0.25rem', fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.6 }}>
-                  <strong style={{ color: '#d1d5db' }}>Protège la flamme :</strong> votre enfant le saisit pour récupérer sa série après une absence.
-                </p>
-                <p style={{ margin: '0 0 0.75rem', fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.6 }}>
-                  <strong style={{ color: '#d1d5db' }}>Nécessaire pour restaurer une sauvegarde.</strong>
+                <p style={{ margin: '0 0 0.75rem', fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.7 }}>
+                  Utile pour : <strong style={{ color: '#d1d5db' }}>1) protéger la flamme</strong> de votre enfant (le nombre de jours consécutifs d'utilisation) quand il a une bonne raison de ne pas avoir joué (week-end familial, pas de possibilité de jouer, etc.) et <strong style={{ color: '#d1d5db' }}>2) restaurer la progression</strong> à un jour particulier en cas de besoin.
                 </p>
                 <button type="button" onClick={handlePinManageClick} style={secBtnStyle}>
                   {pin ? 'Gérer le code' : 'Définir le code'}
@@ -858,19 +862,6 @@ export default function ParentDashboardV2() {
             </div>
           </div>
 
-          {/* Image library */}
-          <div style={{ marginTop: '1.5rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem' }}>
-              <span style={{ fontSize: '1.1rem' }}>🖼️</span>
-              <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#fff' }}>Bibliothèque d'images mystère</span>
-            </div>
-            <p style={{ fontSize: '0.83rem', color: '#64748b', lineHeight: 1.6, margin: '0 0 0.9rem' }}>
-              Ajoutez vos images ici, puis activez-les pour chaque enfant dans les paramètres ci-dessous.
-            </p>
-            <div style={libShellStyle}>
-              <ImageLibraryWithRefresh uid={user?.uid} onSaved={refreshParentImages} />
-            </div>
-          </div>
         </section>
 
         {/* ─ Section 2: Accès enfant ─ */}
@@ -879,7 +870,21 @@ export default function ParentDashboardV2() {
           <AccesEnfantSection />
         </section>
 
-        {/* ─ Section 3: Mes enfants ─ */}
+        {/* ─ Section 3: Bibliothèque d'images mystère ─ */}
+        <section style={sectionStyle}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem' }}>
+            <span style={{ fontSize: '1.1rem' }}>🖼️</span>
+            <h2 style={{ ...sectionTitleStyle, marginBottom: 0 }}>Bibliothèque d'images mystère</h2>
+          </div>
+          <p style={{ fontSize: '0.83rem', color: '#64748b', lineHeight: 1.7, margin: '0 0 0.9rem' }}>
+            Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque jour. Ajoutez vos propres photos ici (vacances, animaux, famille…), puis activez-les pour chaque enfant dans la section « Mes enfants » ci-dessous.
+          </p>
+          <div style={libShellStyle}>
+            <ImageLibraryWithRefresh uid={user?.uid} onSaved={refreshParentImages} />
+          </div>
+        </section>
+
+        {/* ─ Section 4: Mes enfants ─ */}
         <section style={sectionStyle}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.2rem' }}>
             <h2 style={{ ...sectionTitleStyle, marginBottom: 0 }}>Mes enfants</h2>

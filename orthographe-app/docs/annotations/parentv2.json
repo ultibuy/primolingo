@@ -1,0 +1,101 @@
+[
+  {
+    "x": 1204,
+    "y": 30,
+    "text": "devrait être dans le corps de la page",
+    "time": "04/05 12:24",
+    "domContext": {
+      "tag": "SPAN",
+      "text": "Bonjour, Debug 👋"
+    },
+    "response": "Fait. Le greeting \"Bonjour, [prénom] 👋\" a été retiré du header et placé dans le corps de la page, juste au-dessus de la première section."
+  },
+  {
+    "x": 690,
+    "y": 202,
+    "text": "dis \"Utile pour : 1) protéger la flamme de votre enfant (le nombre de jours consécutifs d'utilsiation) quand il a une bonne raison (week-end familial, pas de possbilité de jouer, etc..) et 2) restaurer la progression à un jour particulier en cas de besoin",
+    "time": "04/05 12:24",
+    "domContext": {
+      "tag": "P",
+      "text": "Protège la flamme : votre enfant le saisit pour récupérer sa série après une absence."
+    },
+    "response": "Fait. Le texte du code PIN a été réécrit avec les deux cas d'usage : 1) protéger la flamme quand l'enfant a une bonne raison de ne pas avoir joué (week-end familial, etc.) et 2) restaurer la progression à un jour particulier en cas de besoin."
+  },
+  {
+    "x": 550,
+    "y": 375,
+    "text": "explique mieux à quoi sert l'image mystère",
+    "time": "04/05 12:26",
+    "domContext": {
+      "tag": "P",
+      "text": "Ajoutez vos images ici, puis activez-les pour chaque enfant dans les paramètres ci-dessous."
+    },
+    "response": "Fait. Le texte explique maintenant le principe complet : « Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque jour. Ajoutez vos propres photos ici (vacances, animaux, famille…), puis activez-les pour chaque enfant dans la section Mes enfants ci-dessous. »"
+  },
+  {
+    "x": 390,
+    "y": 646,
+    "text": "remonte cette section juste en dessous du code",
+    "time": "04/05 12:26",
+    "domContext": {
+      "tag": "H2",
+      "text": "Accès enfant"
+    },
+    "response": "Fait. La section « Accès enfant » est maintenant placée juste après « Mon compte » (code PIN), avant la bibliothèque d'images mystère. L'ordre des sections est désormais : Mon compte → Accès enfant → Bibliothèque d'images mystère → Mes enfants."
+  },
+  {
+    "x": 615,
+    "y": 932,
+    "text": "",
+    "time": "04/05 12:26",
+    "domContext": {
+      "tag": "BUTTON",
+      "text": "Ouvrir le tableau de bord"
+    },
+    "response": "Commentaire vide. Le bouton « Ouvrir le tableau de bord » a été supprimé et remplacé par des instructions contextuelles (voir annotation 6)."
+  },
+  {
+    "x": 396,
+    "y": 980,
+    "text": "le CTA devrait être \"mettre en favoris\" et en dessous une explication contextuelle au device sur comment faire",
+    "time": "04/05 12:26",
+    "domContext": {
+      "tag": "DIV",
+      "text": "🖥️Sur votre appareilTableau de bord parentMarquez cette page en favori pour y accéder facilement.Ouvrir le tableau de bord"
+    },
+    "response": "Fait. La carte parent affiche maintenant des instructions contextuelles selon l'appareil détecté : sur iOS « Dans Safari : appuyez sur Partager → Ajouter aux favoris », sur Android « Dans Chrome : appuyez sur ⋮ → Ajouter aux favoris », sur desktop « Appuyez sur Ctrl+D (Windows) ou Cmd+D (Mac) ». Le bouton « Ouvrir le tableau de bord » a été supprimé."
+  },
+  {
+    "x": 989,
+    "y": 915,
+    "text": "1 ) cliquer sur le bouton \"ouvrir la partie enfant\", 2) la mettre en favoris pour que votre enfant puisse  y accéder facilement. ",
+    "time": "04/05 12:27",
+    "domContext": {
+      "tag": "LI",
+      "text": "Ouvre primolingo.app/play dans Chrome ou Edge"
+    },
+    "response": "Fait. Les instructions pour les 3 plateformes ont été mises à jour : étape 1) Cliquer sur « Ouvrir la partie enfant », étape 2) Mettre la page en favoris (instructions spécifiques à chaque plateforme), étape 3) L'enfant pourra y accéder facilement."
+  },
+  {
+    "x": 924,
+    "y": 1035,
+    "text": "retirer le CTA et remplacer le par \"Ouvrir la partie enfant\"",
+    "time": "04/05 12:28",
+    "domContext": {
+      "tag": "DIV",
+      "text": "Partager l'app enfant"
+    },
+    "response": "Fait. Le bouton « Partager l'app enfant » a été remplacé par « Ouvrir la partie enfant » qui ouvre /play dans un nouvel onglet. Le partage via Web Share API a été supprimé."
+  },
+  {
+    "x": 666,
+    "y": 1781,
+    "text": "retirer le CTA ici  et créer une section \"partie enfant\" par enfant au dessus",
+    "time": "04/05 12:29",
+    "domContext": {
+      "tag": "DIV",
+      "text": "Afficher les sauvegardes"
+    },
+    "response": "Fait. 1) Le bouton « Afficher les sauvegardes » a été supprimé — les sauvegardes se chargent automatiquement à l'ouverture du panneau. 2) Une section « Partie enfant » a été ajoutée par enfant juste au-dessus des sauvegardes, avec un texte explicatif et le bouton « Ouvrir la partie enfant » qui ouvre /play/:childId dans un nouvel onglet. Le bouton « Jouer avec X » en bas du panneau a été retiré."
+  }
+]
