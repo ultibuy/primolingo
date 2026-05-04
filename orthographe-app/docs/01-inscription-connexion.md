@@ -62,19 +62,36 @@ Quand le code est requis (récupération de flamme, retour parent), l'enfant voi
 - Le code est haché (SHA-256 + salt) avant d'être stocké. Le PIN en clair n'est jamais enregistré.
 - Si aucun code n'est défini, les actions protégées restent accessibles sans vérification.
 
+## Tests
+
+La suite `auth-flow.test.js` couvre l'ensemble du flux d'authentification.
+
+**Mode rapide** (bypass Firebase, pour CI et développement quotidien) :
+```bash
+npm run test:auth
+```
+
+**Mode réel** (connexion Firebase effective avec le compte test) :
+```bash
+npm run test:auth:real
+```
+
+Le compte test est `test-parent@primolingo.fr` / `Test1234!`. Il sert uniquement à valider le vrai flux de connexion e-mail et la redirection vers `/parent`.
+
+En mode rapide, le dev-user automatique de localhost est désactivé via `ortho_disable_dev_auth = '1'` pour que la page de connexion s'affiche normalement. En mode réel, ce même flag reste actif — Firebase prend le relais pour la vraie authentification.
+
 ## Règles
 
 | ID | Règle | Critère de succès |
 |----|-------|-------------------|
-| — | Deux méthodes de connexion : Google et e-mail/mot de passe | Les deux options sont visibles sur la page de connexion |
-| — | La première connexion crée automatiquement le compte | Le parent n'a aucune étape d'inscription supplémentaire (Google) ou crée son compte via le formulaire (e-mail) |
-| — | Après connexion, le parent arrive sur son tableau de bord | La redirection est immédiate, sans page intermédiaire |
-| — | La session reste active tant que le parent ne se déconnecte pas | En revenant sur l'app, le parent est toujours connecté |
-| — | Le code parental est haché avant stockage | Aucun PIN en clair dans Firestore ou localStorage |
-| — | Les erreurs de connexion sont affichées en français | Mot de passe incorrect, compte inexistant, etc. |
-| — | Le CTA "Créer un compte gratuit" de la page d'accueil ouvre la page de connexion en mode inscription | L'URL est `/login?mode=register`, le bouton affiche "S'inscrire avec Google" et "Créer mon compte" |
+| L01 | Deux méthodes de connexion : Google et e-mail/mot de passe | Les deux options sont visibles sur la page de connexion |
+| L02 | La première connexion crée automatiquement le compte | Le parent n'a aucune étape d'inscription supplémentaire (Google) ou crée son compte via le formulaire (e-mail) |
+| L03 | Après connexion, le parent arrive sur son tableau de bord | La route `/parent` est protégée et redirige les anonymes vers `/login` ; en `AUTH_REAL=1`, le compte test se connecte et arrive sur `/parent` |
+| L04 | La session reste active tant que le parent ne se déconnecte pas | Firebase Auth est configuré avec `browserLocalPersistence` |
+| L05 | Le code parental est haché avant stockage | Aucun PIN en clair dans Firestore ou localStorage |
+| L06 | Les erreurs de connexion sont affichées en français | Mot de passe incorrect, compte inexistant, etc. |
+| L07 | Le CTA "Créer un compte gratuit" de la page d'accueil ouvre la page de connexion en mode inscription | L'URL est `/login?mode=register`, le bouton affiche "S'inscrire avec Google" et "Créer mon compte" |
 
 ## Voir aussi
 
-- [Gestion des enfants](02-gestion-enfants.md) — Créer le premier profil enfant
-- [Tableau de bord parent](16-tableau-bord-parent.md) — Vue complète du tableau de bord parent
+- [Tableau de bord parent](02-gestion-enfants.md) — Créer le premier profil enfant et piloter sa progression
