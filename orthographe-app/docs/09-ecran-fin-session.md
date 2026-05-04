@@ -28,11 +28,13 @@ Sous le score, le détail des pièces est affiché :
 Plusieurs bonus peuvent s'ajouter aux pièces de base. Chaque bonus est affiché séparément avec une animation :
 
 - **Bonus du jour** : +10 pièces pour la première session qualifiante de la journée (score ≥ 60 %).
-- **Bonus de bienvenue** : +200 pièces pour la toute première session qualifiante de la vie du joueur. Ce bonus n'est versé qu'une seule fois.
+- **Bonus de bienvenue** : +200 pièces pour la toute première session qualifiante de la vie du joueur. Ce bonus n'est versé qu'une seule fois. L'écran affiche "Bonus de bienvenue" au lieu de "Bonus du jour".
 - **Bonus de palier de flamme** : les pièces du palier atteint (100, 200, 350, 500 ou 1 000 selon le palier).
 - **Bonus double pièces** : si l'enfant a activé le boost "double pièces" en boutique, toutes les pièces de la session sont doublées.
 
 ![Détail des pièces](screenshots/fin-pieces.png)
+
+![Bonus de bienvenue +200](screenshots/end-screen-welcome-bonus.png)
 
 ### 4. La barre de progression
 
