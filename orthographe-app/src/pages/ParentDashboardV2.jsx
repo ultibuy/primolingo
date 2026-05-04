@@ -994,10 +994,10 @@ export default function ParentDashboardV2() {
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left' }}
           >
             <h2 style={{ ...sectionTitleStyle, margin: 0 }}>Mon compte</h2>
-            <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '1rem', transition: 'transform 0.2s', display: 'inline-block', transform: monCompteOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▾</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={monCompteOpen ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'transform 0.2s', transform: monCompteOpen ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink: 0 }}><polyline points="6 9 12 15 18 9"/></svg>
           </button>
 
-          {monCompteOpen && <>
+          {monCompteOpen && <div style={{ marginTop: '1rem' }}>
           {/* Account info */}
           <div style={{ marginBottom: '1rem', padding: '0.65rem 0.9rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 10 }}>
             <p style={{ margin: '0 0 0.5rem', fontSize: '0.95rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-display)' }}>Compte connecté</p>
@@ -1042,7 +1042,7 @@ export default function ParentDashboardV2() {
             </div>
           </div>
 
-          </>}
+          </div>}
         </section>
 
         {/* ─ Section 2: Accès enfant ─ */}
