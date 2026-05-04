@@ -57,7 +57,8 @@ L'enfant appuie sur une règle pour voir les options disponibles :
 | ID | Règle | Critère de succès |
 |----|-------|-------------------|
 | N04 | Chaque règle progresse indépendamment à travers les niveaux Bronze, Argent, Couronne, Diamant | Le niveau d'une règle ne dépend que des sessions jouées sur cette règle |
-| N05 | Les seuils de passage de niveau sont respectés (1 session ≥ 60 % pour Bronze, 3 à 80 % pour Argent, 3 à 80 % pour Couronne, 3 consécutives à 90 % pour Diamant) | Le passage de niveau se déclenche exactement au nombre de sessions requis avec le score requis |
+| N05 | Les seuils de passage de niveau sont respectés (1 session ≥ 12/20 pour Bronze, 3 à 16/20 pour Argent, 3 à 16/20 pour Couronne, 3 consécutives à 18/20 pour Diamant) | Le passage de niveau se déclenche exactement au nombre de sessions requis avec le score requis |
+| N05b | Les pourcentages ne sont jamais affichés à l'utilisateur | Tous les seuils sont convertis en note sur 10 ou sur 20 selon la taille de la session (ex. 12/20, 8/10). Aucun "60 %", "80 %" ou "90 %" ne doit apparaître dans les popups ou l'UI enfant |
 
 ## Voir aussi
 

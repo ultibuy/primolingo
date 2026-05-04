@@ -45,6 +45,10 @@ Une barre de progression montre l'avancement de la règle vers le prochain nivea
 
 Si un changement de niveau a lieu, une animation de célébration s'affiche avec le nouveau badge et les pièces bonus du niveau.
 
+| Bronze | Argent | Couronne | Diamant |
+|--------|--------|----------|---------|
+| ![Animation Bronze](screenshots/reward-bronze.png) | ![Animation Argent](screenshots/reward-argent.png) | ![Animation Couronne](screenshots/reward-couronne.png) | ![Animation Diamant](screenshots/reward-diamant.png) |
+
 ### 5. Le récapitulatif des réponses
 
 En bas de l'écran, un récapitulatif liste chaque question de la session avec la réponse donnée par l'enfant et la bonne réponse. Les erreurs sont mises en évidence pour que l'enfant puisse revoir les points difficiles.

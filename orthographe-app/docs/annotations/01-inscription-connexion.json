@@ -1,0 +1,13 @@
+[
+  {
+    "x": 556,
+    "y": 1116,
+    "text": "le sous  texte de la page de connexion devrait être \"Utilisez le compte du parent. La connection Google ne donne pas accès à vos emails. Seuls nom et adresse email sont utilisés pour vous connecter.",
+    "time": "04/05 10:12",
+    "domContext": {
+      "tag": "P",
+      "text": ""
+    },
+    "response": "Fait. Texte mis a jour dans LoginPage.jsx : 'Utilisez le compte du parent. La connexion Google ne donne pas acces a vos e-mails. Seuls nom et adresse e-mail sont utilises pour vous connecter.'"
+  }
+]

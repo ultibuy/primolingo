@@ -49,5 +49,16 @@
       "text": "PrimoLingo"
     },
     "response": "Fait. Section 'Reglages parent par enfant' ajoutee : images mystere, questions signalees, restauration de sauvegarde (30 derniers jours)."
+  },
+  {
+    "x": 716,
+    "y": 857,
+    "text": "ajoute une option cheval en prod et maj la doc",
+    "time": "04/05 00:23",
+    "domContext": {
+      "tag": "TD",
+      "text": "Singe"
+    },
+    "response": "Fait. 🐴 Cheval ajouté en 13e position dans AVATARS (ChildSetup.jsx) et dans le tableau de la doc (12 → 13 options)."
   }
 ]

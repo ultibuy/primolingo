@@ -65,7 +65,7 @@ async function main() {
     { name: 'bronze',   level: 1, x: 90, y: 458 },
     { name: 'argent',   level: 1, x: 155, y: 458 },
     { name: 'couronne', level: 2, x: 225, y: 458 },
-    { name: 'diamant',  level: 4, x: 300, y: 458 },
+    { name: 'diamant',  level: 4, x: 312, y: 530, needsGrammaireTab: true },
   ];
 
   const today = new Date().toISOString().slice(0, 10);
@@ -105,8 +105,26 @@ async function main() {
     await page.goto(`${BASE}/play/c1`, { waitUntil: 'networkidle', timeout: 15000 });
     await page.waitForTimeout(2000);
 
-    // Click the level node circle
-    await page.mouse.click(cfg.x, cfg.y);
+    // Some levels need the Grammaire tab (e.g. diamond at level 4 defaults to Vocabulaire)
+    if (cfg.needsGrammaireTab) {
+      await page.click('button:has-text("Grammaire")').catch(() => {});
+      await page.waitForTimeout(1000);
+    }
+
+    // Try clicking by text label first, then fall back to coordinates
+    const clickedByText = await page.evaluate((name) => {
+      const divs = [...document.querySelectorAll('div')];
+      const labels = { bronze: 'Bronze', argent: 'Argent', couronne: 'Couronne', diamant: 'Diamant' };
+      const label = labels[name];
+      for (const el of divs) {
+        if (getComputedStyle(el).cursor === 'pointer' && el.textContent.trim() === label && el.getBoundingClientRect().y > 300) {
+          el.click();
+          return true;
+        }
+      }
+      return false;
+    }, cfg.name);
+    if (!clickedByText) await page.mouse.click(cfg.x, cfg.y);
     await page.waitForTimeout(1200);
 
     const hasPopup = await page.evaluate(() => document.body.innerText.includes("C'est quoi"));

@@ -14,7 +14,7 @@ Le parent clique sur "Ajouter un enfant" depuis son tableau de bord. Un formulai
 
 Le prénom est obligatoire. Il s'affichera dans le message d'accueil du dashboard enfant (par exemple : "Bonjour Damien !"). Le parent peut le modifier à tout moment.
 
-L'avatar est un emoji choisi parmi les 12 options suivantes :
+L'avatar est un emoji choisi parmi les 13 options suivantes :
 
 | Emoji | Nom |
 |-------|-----|
@@ -30,6 +30,7 @@ L'avatar est un emoji choisi parmi les 12 options suivantes :
 | 🐼 | Panda |
 | 🦈 | Requin |
 | 🐙 | Pieuvre |
+| 🐴 | Cheval |
 
 L'avatar s'affiche sur la carte enfant dans le dashboard parent et dans le header du dashboard enfant.
 

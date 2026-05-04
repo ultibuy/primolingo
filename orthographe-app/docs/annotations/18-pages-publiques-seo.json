@@ -1,13 +1,1 @@
-[
-  {
-    "x": 532,
-    "y": 616,
-    "text": "mets à jour ce screenshot",
-    "time": "04/05 01:00",
-    "domContext": {
-      "tag": "P",
-      "text": ""
-    },
-    "response": "Fait. Screenshot seo-landing.png recapture depuis la prod avec le header a jour (logo + Se connecter, sans Regles d'orthographe). Force refresh (Cmd+Shift+R) si tu vois encore l'ancien."
-  }
-]
+[]

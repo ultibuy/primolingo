@@ -11,14 +11,25 @@
     "response": "Fait. 3 corrections : 1) ChildApp.jsx : DICTEE_SESSION_SIZE guide passe de 40 a 20. 2) Dashboard.jsx : popup dictee helpSize guide passe de 40 a 20. 3) persistence.js : prodQuestionCount force a 20 (ignore l'ancien reglage sauvegarde qui pouvait etre 19). Doc mise a jour avec le tableau corrige (grammaire 20q, dictee guidee 20 mots, dictee reconstruct 10 mots)."
   },
   {
-    "x": 496,
-    "y": 2701,
-    "text": "remplace tous les % par leur vraie valeur dans la popup bronze, on ne doit jamais voir de % tjs leur valeur sur 10 ou sur 20",
-    "time": "04/05 08:04",
+    "x": 512,
+    "y": 5420,
+    "text": "ajouter une règle d'affichage que les % sont systématiquement convertis en une note sur 10 ou sur 20",
+    "time": "04/05 08:07",
+    "domContext": {
+      "tag": "TD",
+      "text": "Les seuils de passage de niveau sont respectés (1 session ≥ 60 % pour Bronze, 3 à 80 % pour Argent, 3 à 80 % pour Couronne, 3 consécutives à 90 % pour"
+    },
+    "response": "Fait. Regle N05b ajoutee : 'Les pourcentages ne sont jamais affiches a l'utilisateur — tous les seuils sont convertis en note sur 10 ou sur 20'. La regle N05 a aussi ete mise a jour avec les valeurs en /20 au lieu des %."
+  },
+  {
+    "x": 914,
+    "y": 3446,
+    "text": "ce n'est pas le bon screenshot pour diamant. mets le à jour ainsi que le script de capture",
+    "time": "04/05 10:11",
     "domContext": {
       "tag": "P",
       "text": ""
     },
-    "response": "Fait. Dans LevelHelpPopup.jsx, les 2 hints de la popup Bronze qui contenaient des % ont ete remplaces par les valeurs calculees : 'Minimum 60%' → 'Minimum 12/20', '60% → 5, 80% → 20, 100% → 30' → '12/20 → 5, 16/20 → 20, 20/20 → 30'. Les valeurs s'adaptent automatiquement au sessionSize."
+    "response": "Fait. popup-diamant.png remplace par la vraie popup LevelHelpPopup (C'est quoi le Diamant ? avec 18/20). L'ancien montrait la reward popup (+200 pieces). Script capture-shop-rewards.js mis a jour avec la technique click-by-text-label + flag needsGrammaireTab."
   }
 ]

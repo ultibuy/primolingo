@@ -51,7 +51,8 @@
     "domContext": {
       "tag": "P",
       "text": "Chaque message de coaching utilise une icone SVG adaptee au contexte. Les icones sont definies dans MotivationBanner.jsx via le composant BannerSvgIco"
-    }
+    },
+    "response": "Les deux sont déjà dans la galerie : ❤️ Cœur et 🧩 Puzzle font partie de ICON_GALLERY_ITEMS dans vite-plugin-docs.js. La galerie est générée dynamiquement via generateIconGallery()."
   },
   {
     "x": 1441,
@@ -61,7 +62,8 @@
     "domContext": {
       "tag": "DIV",
       "text": "✓✓✓✓✓✓✓✓✓✓1112"
-    }
+    },
+    "response": "Pin vide — rien à traiter."
   },
   {
     "x": 1453,
@@ -71,7 +73,8 @@
     "domContext": {
       "tag": "DIV",
       "text": "✓✓✓✓✓✓✓✓✓101112"
-    }
+    },
+    "response": "Pin vide — rien à traiter."
   },
   {
     "x": 359,
@@ -81,7 +84,8 @@
     "domContext": {
       "tag": "DIV",
       "text": "arc11.1\n\nPremier morceau dévoilé. Encore 5 morceaux pour voir l'image complète."
-    }
+    },
+    "response": "Fait. Le point du ? était sub-pixel à l'affichage (viewBox 640 → 34px : dot fonte ~1px). Ajout d'un <circle cx=\"300\" cy=\"400\" r=\"45\"> explicite (~2.4px à l'affichage) dans ux-designer/puzzle-piece-outline.svg et dans getBannerSvg '🧩' de vite-plugin-docs.js. Utilisé pour arc6.8, arc11.1, 11.2, 11.3."
   },
   {
     "x": 456,
@@ -91,7 +95,8 @@
     "domContext": {
       "tag": "DIV",
       "text": "Pas grave, le bonus de 200 pièces t'attend dès que tu finis une session avec au moins 12/20."
-    }
+    },
+    "response": "Déjà fait lors de la session précédente. coaching.js et coaching-messages.json ont le texte « Zut il te fallait au moins 12/20 pour débloquer les 200 pièces. Elles t'attendent toujours ! » avec emoji 🪙."
   },
   {
     "x": 375,
@@ -101,7 +106,8 @@
     "domContext": {
       "tag": "DIV",
       "text": "arc2.1\n\nBelle session sur \"a / à / as\". Plus que 2 sessions à 16/20 pour passer Argent."
-    }
+    },
+    "response": "Déjà en vert. arc2.1 utilise le variant 'plain' (accent #48bb78 vert) et l'emoji '📈' dans coaching.js et coaching-messages.json — mis à jour en session précédente."
   },
   {
     "x": 374,
@@ -111,7 +117,8 @@
     "domContext": {
       "tag": "DIV",
       "text": "arc6.8\n\n60 pièces = 1 morceau d'image mystère. Découvre ton image cachée morceau par morceau."
-    }
+    },
+    "response": "arc6.8 utilise déjà l'emoji 🧩 (puzzle+?). Le point du ? est maintenant explicite grâce au fix de l'annotation 8."
   },
   {
     "x": 368,
@@ -121,6 +128,7 @@
     "domContext": {
       "tag": "DIV",
       "text": "arc8.1\n\nTu maîtrises les règles ? C'est le moment d'apprendre de nouveaux mots de vocabulaire."
-    }
+    },
+    "response": "Déjà en vert. arc8.1 a le variant 'plain' (accent #48bb78 vert) et l'emoji '📈' dans coaching.js et coaching-messages.json — mis à jour en session précédente."
   }
 ]

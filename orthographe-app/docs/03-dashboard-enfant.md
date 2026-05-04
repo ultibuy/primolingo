@@ -37,6 +37,8 @@ En haut du dashboard, un message salue l'enfant par son prenom. Le texte varie s
 | 12h - 18h | "Bon apres-midi, [prenom]" |
 | Apres 18h | "Bonsoir, [prenom]" |
 
+L'emoji avatar de l'enfant s'affiche directement apres le prenom. En cliquant dessus, un selecteur inline apparait sous le message d'accueil et permet a l'enfant de choisir un nouvel avatar parmi les 13 disponibles. La modification est sauvegardee immediatement.
+
 ### 6. Les micro-stats du header
 
 Trois compteurs sont affiches sous la flamme et les pieces :
@@ -45,7 +47,7 @@ Trois compteurs sont affiches sous la flamme et les pieces :
 - **Record 7j** : nombre maximum de sessions jouees en un seul jour au cours des 7 derniers jours.
 - **Record 30j** : meme calcul sur les 30 derniers jours.
 
-Les records sont calcules a partir de l'historique de stats (`statsHistory`) en comptant les sessions par jour et en prenant le max sur la periode.
+Les records comptent toutes les sessions terminees (grammaire et dictee, modes guide et direct confondus), quel que soit le score obtenu. Il n'y a pas de seuil minimum : une session terminee est comptabilisee, meme si l'enfant a fait beaucoup d'erreurs.
 
 ### 7. Le selecteur Grammaire / Vocabulaire
 

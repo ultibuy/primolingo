@@ -7,7 +7,8 @@
     "domContext": {
       "tag": "LI",
       "text": "Bonus de palier de flamme : les pièces du palier atteint (100, 200, 350, 500 ou 1 000 selon le palier)."
-    }
+    },
+    "response": "Oui, tous ces bonus apparaissent sur l'écran de fin. Le bonus du jour (+10) et le bonus de bienvenue (+200 pour la toute première session) sont affichés sur la même ligne 'Bonus du jour'. Le bonus de palier de flamme s'affiche sous le nom 'Bonus série Xj' (ex : 'Bonus série 7j'). Le double pièces s'affiche comme 'Double x2'."
   },
   {
     "x": 675,
@@ -17,7 +18,8 @@
     "domContext": {
       "tag": "P",
       "text": "Si un changement de niveau a lieu, une animation de célébration s'affiche avec le nouveau badge et les pièces bonus du niveau."
-    }
+    },
+    "response": "Fait. Les 4 screenshots (reward-bronze.png, reward-argent.png, reward-couronne.png, reward-diamant.png) existent déjà dans docs/screenshots/ et sont maintenant affichés dans le doc sous la description de l'animation."
   },
   {
     "x": 663,
@@ -27,6 +29,7 @@
     "domContext": {
       "tag": "A",
       "text": "Suivant →"
-    }
+    },
+    "response": "Commentaire vide — rien à faire."
   }
 ]

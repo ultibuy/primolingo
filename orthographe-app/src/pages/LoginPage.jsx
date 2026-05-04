@@ -146,7 +146,7 @@ export default function LoginPage() {
         <div style={privacyNoteStyle}>
           <ShieldCheckIcon />
           <p style={privacyTextStyle}>
-            Utilisez le compte du <strong>parent</strong>. Vos données restent privées.
+            Utilisez le compte du <strong>parent</strong>. La connexion Google ne donne pas accès à vos e-mails. Seuls nom et adresse e-mail sont utilisés pour vous connecter.
           </p>
         </div>
 
