@@ -424,17 +424,6 @@ function ChildPanelV2({ child, uid, parentImages, isOpen, onToggle }) {
           <span style={statChipStyle}><CrownIcon size={13} animate={false} /> {rulesDone}</span>
           <span style={{ ...statChipStyle, display: 'inline-flex', alignItems: 'center', gap: 2 }}><CoinIcon size={13} /> {coins}</span>
         </div>
-        {/* Edit + chevron */}
-        <button
-          type="button"
-          onClick={e => { e.stopPropagation(); navigate(`/parent/child/${child.id}/edit`); }}
-          style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(255,255,255,0.4)', padding: '4px 6px', borderRadius: 6, fontSize: 14, flexShrink: 0 }}
-          title="Modifier le profil"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M15.23 3.77a3 3 0 014.24 4.24L7.68 19.8l-5.2 1.3 1.3-5.2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </button>
         <span style={{ color: 'rgba(255,255,255,0.35)', fontSize: 12, flexShrink: 0 }}>{isOpen ? '▲' : '▼'}</span>
       </div>
 
@@ -680,7 +669,7 @@ function GestionEnfantsSection({ children, uid, parentImages, pin, navigate, ref
                 <button
                   type="button"
                   onClick={() => setEditingChildId(editingChildId === child.id ? null : child.id)}
-                  style={{ background: 'none', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, cursor: 'pointer', color: 'rgba(255,255,255,0.5)', padding: '4px 8px', fontSize: '0.75rem', fontWeight: 700, fontFamily: 'var(--font-body)' }}
+                  style={{ background: 'none', border: '1px solid rgba(255,255,255,0.25)', borderRadius: 8, cursor: 'pointer', color: 'rgba(255,255,255,0.75)', padding: '4px 8px', fontSize: '0.75rem', fontWeight: 700, fontFamily: 'var(--font-body)' }}
                 >
                   ✏️ Modifier
                 </button>
@@ -964,13 +953,14 @@ export default function ParentDashboardV2() {
           <h2 style={sectionTitleStyle}>Mon compte</h2>
 
           {/* Account info */}
-          <p style={{ margin: '0 0 0.4rem', fontSize: '0.72rem', fontWeight: 700, color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Compte connecté</p>
-          <div style={{ marginBottom: '1rem', padding: '0.65rem 0.9rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 10, display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: '1rem' }}>👤</span>
+          <div style={{ marginBottom: '1rem', padding: '0.65rem 0.9rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 10 }}>
+            <p style={{ margin: '0 0 0.4rem', fontSize: '0.68rem', fontWeight: 700, color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Compte connecté</p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
             <span style={{ fontSize: '0.83rem', color: '#d1d5db', fontWeight: 600 }}>{user?.email || 'compte local'}</span>
             <span style={{ fontSize: '0.72rem', color: '#64748b', padding: '2px 8px', borderRadius: 99, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
               {user?.providerData?.[0]?.providerId === 'google.com' ? '🔵 Google' : user?.uid === 'localhost-dev' ? '🛠 Dev local' : '✉️ Email'}
             </span>
+            </div>
           </div>
 
           {/* PIN card */}
