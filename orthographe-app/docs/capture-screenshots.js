@@ -100,11 +100,52 @@ async function main() {
   console.log(`\nCapturing docs screenshots from ${BASE}\n`);
   browser = await chromium.launch();
 
-  // 01 — Login
+  // 01 — Login (local dev — no auth)
   console.log('01 — Login');
   { const ctx = await mobile(); const p = await ctx.newPage();
     await p.goto(`${BASE}/login`, { waitUntil: 'networkidle' });
     await snap(p, '01-connexion-accueil'); await ctx.close(); }
+
+  // 01b — Email auth flows (prod only — uses test account)
+  const PROD = 'https://www.primolingo.fr';
+  const TEST_EMAIL = 'test-parent@primolingo.fr';
+  const TEST_PASS = 'Test1234!';
+  console.log('01b — Email auth (prod)');
+  // Login page
+  { const ctx = await mobile(); const p = await ctx.newPage();
+    await p.goto(`${PROD}/login`, { waitUntil: 'networkidle', timeout: 15000 }).catch(() => {});
+    await p.waitForTimeout(1500);
+    await snap(p, '01-login-email');
+    // Fill form
+    await p.fill('input[type=email]', TEST_EMAIL);
+    await p.fill('input[type=password]', TEST_PASS);
+    await p.waitForTimeout(300);
+    await snap(p, '01-login-email-filled');
+    // Submit
+    await p.click('button[type=submit]');
+    await p.waitForURL('**/parent**', { timeout: 10000 }).catch(() => {});
+    await p.waitForTimeout(2000);
+    await snap(p, '01-login-success');
+    console.log('  email login → ' + p.url());
+    await ctx.close(); }
+  // Register mode
+  { const ctx = await mobile(); const p = await ctx.newPage();
+    await p.goto(`${PROD}/login`, { waitUntil: 'networkidle', timeout: 15000 }).catch(() => {});
+    await p.waitForTimeout(1000);
+    const toggle = p.locator('button:has-text("Pas encore de compte")');
+    if (await toggle.count() > 0) { await toggle.click(); await p.waitForTimeout(500); }
+    await snap(p, '01-register-email');
+    await ctx.close(); }
+  // Wrong password
+  { const ctx = await mobile(); const p = await ctx.newPage();
+    await p.goto(`${PROD}/login`, { waitUntil: 'networkidle', timeout: 15000 }).catch(() => {});
+    await p.waitForTimeout(1000);
+    await p.fill('input[type=email]', TEST_EMAIL);
+    await p.fill('input[type=password]', 'mauvais');
+    await p.click('button[type=submit]');
+    await p.waitForTimeout(3000);
+    await snap(p, '01-login-error');
+    await ctx.close(); }
 
   // 18 — SEO
   console.log('18 — SEO');

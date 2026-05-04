@@ -17,10 +17,13 @@ Ce fichier recense chaque screenshot de la doc, le script qui le produit, et sig
 | Screenshot | Script | Statut |
 |------------|--------|--------|
 | `01-connexion-accueil.png` | `capture-screenshots.js` | OK |
-| `01-connexion-login.png` | — | non couvert (capture manuelle depuis prod) |
+| `01-login-email.png` | `capture-screenshots.js` | OK (prod, test account) |
+| `01-login-email-filled.png` | `capture-screenshots.js` | OK (prod, test account) |
+| `01-login-success.png` | `capture-screenshots.js` | OK (prod, test account) |
+| `01-register-email.png` | `capture-screenshots.js` | OK (prod, test account) |
+| `01-login-error.png` | `capture-screenshots.js` | OK (prod, test account) |
 | `01-code-parental-setup.png` | — | non couvert (copie depuis tests/screenshots/) |
 | `01-code-parental-saisie.png` | — | non couvert (copie depuis tests/screenshots/) |
-| `01-login.png` | — | doublon de 01-connexion-accueil |
 | `03-dashboard-accueil.png` | `capture-screenshots.js` | OK (alias de dashboard-accueil) |
 | `03-dashboard-flamme.png` | `capture-screenshots.js` | OK (alias de dashboard-flamme) |
 | `05-regle-memo.png` | `capture-screenshots.js` | OK (alias de regle-memo) |
@@ -80,7 +83,6 @@ Ce fichier recense chaque screenshot de la doc, le script qui le produit, et sig
 |------------|--------|
 | `01-code-parental-setup.png` | Copie depuis tests/screenshots/pin-06 |
 | `01-code-parental-saisie.png` | Copie depuis tests/screenshots/pin-02 |
-| `01-connexion-login.png` | Capture manuelle depuis prod (auth Google) |
 | `15-coaching-message.png` | Screenshot manuel |
 | `debug-check.png` | Screenshot dev |
 | `docs-*.png` | Screenshots de la doc elle-meme (meta) |

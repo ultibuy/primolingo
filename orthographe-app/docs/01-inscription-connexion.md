@@ -2,27 +2,37 @@
 
 ## Description
 
-PrimoLingo utilise la connexion Google pour créer un compte parent. Le parent se connecte, accède à son tableau de bord, et crée ensuite un ou plusieurs profils enfants. Il n'y a pas de mot de passe à retenir : tout passe par le compte Google.
+PrimoLingo propose deux méthodes de connexion : Google et e-mail/mot de passe. Le parent se connecte, accède à son tableau de bord, et crée ensuite un ou plusieurs profils enfants.
 
 ## Parcours utilisateur
 
 ### 1. Arrivée sur la page de connexion
 
-L'utilisateur arrive sur la page d'accueil de PrimoLingo. Un bouton "Se connecter avec Google" est affiché au centre de l'écran.
+La page de connexion propose deux options : se connecter avec Google ou avec un e-mail et un mot de passe. Un lien permet de basculer entre le mode connexion et le mode création de compte.
 
-![Page de connexion](screenshots/01-connexion-accueil.png)
+![Page de connexion](screenshots/01-login-email.png)
 
-### 2. Authentification Google
+### 2. Connexion avec Google
 
-L'utilisateur clique sur le bouton et est redirigé vers la page de connexion Google. Il choisit son compte ou en crée un. Aucune information personnelle au-delà du nom et de l'adresse e-mail n'est demandée.
+L'utilisateur clique sur "Se connecter avec Google" et est redirigé vers la page de connexion Google. Il choisit son compte ou en crée un. Aucune information personnelle au-delà du nom et de l'adresse e-mail n'est demandée.
 
-### 3. Redirection vers le tableau de bord parent
+### 3. Connexion par e-mail
 
-Une fois authentifié, le parent est automatiquement redirigé vers son tableau de bord. S'il se connecte pour la première fois, le tableau de bord est vide et l'invite à créer un premier profil enfant.
+L'utilisateur saisit son adresse e-mail et son mot de passe, puis clique sur "Se connecter". Si les identifiants sont corrects, il est redirigé vers le tableau de bord parent.
 
-![Tableau de bord parent](screenshots/parent-dashboard.png)
+En cas d'erreur, un message en français s'affiche : mot de passe incorrect, compte inexistant, trop de tentatives, etc.
 
-### 4. Déconnexion
+### 4. Création de compte par e-mail
+
+En cliquant sur "Pas encore de compte ? Créer un compte", le formulaire bascule en mode inscription. Le bouton Google affiche "S'inscrire avec Google" et le bouton e-mail affiche "Créer mon compte". Le mot de passe doit faire au moins 6 caractères.
+
+![Mode inscription](screenshots/01-register-email.png)
+
+### 5. Redirection vers le tableau de bord parent
+
+Une fois authentifié (Google ou e-mail), le parent est automatiquement redirigé vers son tableau de bord. S'il se connecte pour la première fois, une modale l'invite à définir son code parental.
+
+### 6. Déconnexion
 
 Le parent peut se déconnecter à tout moment depuis le tableau de bord. La déconnexion ramène à la page d'accueil.
 
@@ -56,11 +66,12 @@ Quand le code est requis (récupération de flamme, retour parent), l'enfant voi
 
 | ID | Règle | Critère de succès |
 |----|-------|-------------------|
-| — | Le bouton Google est le seul moyen de connexion | Aucun formulaire e-mail/mot de passe n'est proposé |
-| — | La première connexion crée automatiquement le compte | Le parent n'a aucune étape d'inscription supplémentaire |
+| — | Deux méthodes de connexion : Google et e-mail/mot de passe | Les deux options sont visibles sur la page de connexion |
+| — | La première connexion crée automatiquement le compte | Le parent n'a aucune étape d'inscription supplémentaire (Google) ou crée son compte via le formulaire (e-mail) |
 | — | Après connexion, le parent arrive sur son tableau de bord | La redirection est immédiate, sans page intermédiaire |
 | — | La session reste active tant que le parent ne se déconnecte pas | En revenant sur l'app, le parent est toujours connecté |
 | — | Le code parental est haché avant stockage | Aucun PIN en clair dans Firestore ou localStorage |
+| — | Les erreurs de connexion sont affichées en français | Mot de passe incorrect, compte inexistant, etc. |
 
 ## Voir aussi
 
