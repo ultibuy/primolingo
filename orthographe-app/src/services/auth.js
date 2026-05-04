@@ -1,26 +1,43 @@
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from 'firebase/auth';
 import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { auth, db } from '../firebase';
+import { auth } from './firebase-auth.js';
+import { db } from './firebase-db.js';
 
-export async function signInWithGoogle() {
-  const provider = new GoogleAuthProvider();
-  const result = await signInWithPopup(auth, provider);
-  const user = result.user;
-
-  // Créer le document parent s'il n'existe pas
+async function ensureUserDoc(user) {
   const userRef = doc(db, 'users', user.uid);
   const userSnap = await getDoc(userRef);
-
   if (!userSnap.exists()) {
     await setDoc(userRef, {
       email: user.email,
       displayName: user.displayName,
       createdAt: serverTimestamp(),
-      settings: {
-        prodQuestionCount: 20,
-      }
+      settings: { prodQuestionCount: 20 },
     });
   }
+}
 
-  return user;
+export async function signInWithGoogle() {
+  const provider = new GoogleAuthProvider();
+  const result = await signInWithPopup(auth, provider);
+  await ensureUserDoc(result.user);
+  return result.user;
+}
+
+export async function signInWithEmail(email, password) {
+  const result = await signInWithEmailAndPassword(auth, email, password);
+  await ensureUserDoc(result.user);
+  return result.user;
+}
+
+export async function createAccountWithEmail(email, password) {
+  const result = await createUserWithEmailAndPassword(auth, email, password);
+  await updateProfile(result.user, { displayName: email.split('@')[0] });
+  await ensureUserDoc(result.user);
+  return result.user;
 }
