@@ -488,6 +488,22 @@ const DEVICE_INSTRUCTIONS = {
 function AccesEnfantSection() {
   const [childDevice, setChildDevice] = useState('desktop');
   const [parentDevice, setParentDevice] = useState('desktop');
+  const [shareDone, setShareDone] = useState(false);
+
+  async function handleShare() {
+    const url = window.location.origin + '/play';
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: 'PrimoLingo — partie enfant', url });
+        setShareDone(true);
+        setTimeout(() => setShareDone(false), 3000);
+      } else {
+        await navigator.clipboard.writeText(url);
+        setShareDone(true);
+        setTimeout(() => setShareDone(false), 3000);
+      }
+    } catch (_) { /* dismissed */ }
+  }
 
   useEffect(() => {
     const detected = detectPlatform();
@@ -579,6 +595,22 @@ function AccesEnfantSection() {
               <li key={i} style={{ fontSize: '0.8rem', color: '#d1d5db', lineHeight: 1.65, marginBottom: '0.3rem' }}>{s}</li>
             ))}
           </ol>
+          {(childDevice === 'ios' || childDevice === 'android') && (
+            <button
+              type="button"
+              onClick={handleShare}
+              style={{
+                marginTop: '0.8rem', width: '100%', padding: '0.55rem 1rem',
+                borderRadius: 10, border: '1px solid rgba(96,205,255,0.35)',
+                background: shareDone ? 'rgba(74,222,128,0.12)' : 'rgba(96,205,255,0.1)',
+                color: shareDone ? '#4ade80' : '#60cdff',
+                fontSize: '0.82rem', fontWeight: 700, cursor: 'pointer',
+                fontFamily: 'var(--font-body)', transition: 'background 0.2s, color 0.2s',
+              }}
+            >
+              {shareDone ? '✓ Lien copié !' : '↗ Ouvrir / partager la partie enfant'}
+            </button>
+          )}
         </div>
       </div>
     </div>
