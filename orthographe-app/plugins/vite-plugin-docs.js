@@ -157,13 +157,17 @@ const HTML_TEMPLATE = (title, body, nav) => {
       .then(data => { annotations = data; renderAnnotations(); })
       .catch(() => {});
 
-    function saveAnnotations() {
-      fetch('/docs/api/annotations?slug=' + encodeURIComponent(ANN_SLUG), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(annotations),
-      }).catch(() => {});
-      updateUI();
+    let _saveTimer = null;
+    function saveAnnotations(skipRender) {
+      clearTimeout(_saveTimer);
+      _saveTimer = setTimeout(() => {
+        fetch('/docs/api/annotations?slug=' + encodeURIComponent(ANN_SLUG), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(annotations),
+        }).catch(() => {});
+      }, 300);
+      if (!skipRender) updateUI();
     }
 
     function updateUI() {
@@ -266,7 +270,7 @@ const HTML_TEMPLATE = (title, body, nav) => {
         textarea.placeholder = 'Votre commentaire...';
         textarea.addEventListener('input', function() {
           annotations[i].text = this.value;
-          saveAnnotations();
+          saveAnnotations(true);
         });
         textarea.addEventListener('click', function(e) { e.stopPropagation(); });
 
@@ -288,7 +292,7 @@ const HTML_TEMPLATE = (title, body, nav) => {
         respInput.placeholder = 'Ecrire une reponse...';
         respInput.addEventListener('input', function() {
           annotations[i].response = this.value;
-          saveAnnotations();
+          saveAnnotations(true);
         });
         respInput.addEventListener('click', function(e) { e.stopPropagation(); });
         responseBlock.appendChild(respInput);
@@ -306,8 +310,7 @@ const HTML_TEMPLATE = (title, body, nav) => {
         replyInput.placeholder = 'Ajouter un suivi...';
         replyInput.addEventListener('input', function() {
           annotations[i].reply = this.value;
-          saveAnnotations();
-          renderAnnotations();
+          saveAnnotations(true);
         });
         replyInput.addEventListener('click', function(e) { e.stopPropagation(); });
         replyBlock.appendChild(replyInput);
@@ -472,7 +475,7 @@ function getBannerSvg(emoji, accent, secondary) {
     case '✅':
       return `<svg ${cp}><circle cx="20" cy="20" r="14" fill="${accent}20" stroke="${accent}" stroke-width="2"/><path d="m13 20 4.5 4.5 9-9" stroke="${accent}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
     case '🧩':
-      return `<svg width="34" height="34" viewBox="0 0 640 640" fill="none"><path d="M288 64C323.3 64 352 85.5 352 112C352 122.4 347.6 132 340 139.9C333.4 146.8 328 155.2 328 164.8C328 179.8 340.2 192 355.2 192L400 192C426.5 192 448 213.5 448 240L448 284.8C448 299.8 460.2 312 475.2 312C484.7 312 493.2 306.6 500.1 300C508 292.5 517.6 288 528 288C554.5 288 576 316.7 576 352C576 387.3 554.5 416 528 416C517.6 416 507.9 411.6 500.1 404C493.2 397.4 484.8 392 475.2 392C460.2 392 448 404.2 448 419.2L448 528C448 554.5 426.5 576 400 576L343.2 576C330.4 576 320 565.6 320 552.8C320 543.6 325.8 535.5 333.2 530C344.8 521.3 352 509.3 352 496C352 469.5 323.3 448 288 448C252.7 448 224 469.5 224 496C224 509.3 231.2 521.3 242.8 530C250.2 535.5 256 543.5 256 552.8C256 565.6 245.6 576 232.8 576L112 576C85.5 576 64 554.5 64 528L64 407.2C64 394.4 74.4 384 87.2 384C96.4 384 104.5 389.8 110 397.2C118.7 408.8 130.7 416 144 416C170.5 416 192 387.3 192 352C192 316.7 170.5 288 144 288C130.7 288 118.7 295.2 110 306.8C104.5 314.2 96.5 320 87.2 320C74.4 320 64 309.6 64 296.8L64 240C64 213.5 85.5 192 112 192L220.8 192C235.8 192 248 179.8 248 164.8C248 155.3 242.6 146.8 236 139.9C228.5 132 224 122.4 224 112C224 85.5 252.7 64 288 64z" stroke="${accent}" stroke-width="32" stroke-linejoin="round"/><text x="300" y="410" text-anchor="middle" font-family="Fredoka, 'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="220" fill="${accent}">?</text></svg>`;
+      return `<svg width="34" height="34" viewBox="0 0 640 640" fill="none"><path d="M288 64C323.3 64 352 85.5 352 112C352 122.4 347.6 132 340 139.9C333.4 146.8 328 155.2 328 164.8C328 179.8 340.2 192 355.2 192L400 192C426.5 192 448 213.5 448 240L448 284.8C448 299.8 460.2 312 475.2 312C484.7 312 493.2 306.6 500.1 300C508 292.5 517.6 288 528 288C554.5 288 576 316.7 576 352C576 387.3 554.5 416 528 416C517.6 416 507.9 411.6 500.1 404C493.2 397.4 484.8 392 475.2 392C460.2 392 448 404.2 448 419.2L448 528C448 554.5 426.5 576 400 576L343.2 576C330.4 576 320 565.6 320 552.8C320 543.6 325.8 535.5 333.2 530C344.8 521.3 352 509.3 352 496C352 469.5 323.3 448 288 448C252.7 448 224 469.5 224 496C224 509.3 231.2 521.3 242.8 530C250.2 535.5 256 543.5 256 552.8C256 565.6 245.6 576 232.8 576L112 576C85.5 576 64 554.5 64 528L64 407.2C64 394.4 74.4 384 87.2 384C96.4 384 104.5 389.8 110 397.2C118.7 408.8 130.7 416 144 416C170.5 416 192 387.3 192 352C192 316.7 170.5 288 144 288C130.7 288 118.7 295.2 110 306.8C104.5 314.2 96.5 320 87.2 320C74.4 320 64 309.6 64 296.8L64 240C64 213.5 85.5 192 112 192L220.8 192C235.8 192 248 179.8 248 164.8C248 155.3 242.6 146.8 236 139.9C228.5 132 224 122.4 224 112C224 85.5 252.7 64 288 64z" stroke="${accent}" stroke-width="32" stroke-linejoin="round"/><text x="300" y="410" text-anchor="middle" font-family="Fredoka, 'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="220" fill="${accent}">?</text><circle cx="300" cy="400" r="20" fill="${accent}"/></svg>`;
     case '❤️':
       return `<svg ${cp}><path d="M20 32C20 32 6 22 6 13.5C6 9.4 9.1 6 13 6C15.7 6 18 7.7 20 10C22 7.7 24.3 6 27 6C30.9 6 34 9.4 34 13.5C34 22 20 32 20 32Z" fill="${accent}30" stroke="${accent}" stroke-width="2.2" stroke-linejoin="round"/></svg>`;
     default:
