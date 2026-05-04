@@ -993,8 +993,10 @@ export default function ParentDashboardV2() {
             onClick={() => setMonCompteOpen(o => !o)}
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left' }}
           >
-            <h2 style={{ ...sectionTitleStyle, margin: 0 }}>Mon compte</h2>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={monCompteOpen ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)'} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'transform 0.2s', transform: monCompteOpen ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink: 0 }}><polyline points="6 9 12 15 18 9"/></svg>
+            <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <h2 style={{ ...sectionTitleStyle, margin: 0 }}>Mon compte</h2>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'transform 0.2s', transform: monCompteOpen ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink: 0 }}><polyline points="6 9 12 15 18 9"/></svg>
+            </span>
           </button>
 
           {monCompteOpen && <div style={{ marginTop: '1rem' }}>
