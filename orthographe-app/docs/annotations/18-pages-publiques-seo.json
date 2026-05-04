@@ -53,5 +53,16 @@
       "text": "PrimoLingo\n    Sommaire\n    ← PrécédentSuivant →\n  \n  Pages publiques et SEO\nDescription\nLes pages publiques permettent "
     },
     "response": "Fait. La section « Illustrations (landing page) » a été supprimée."
+  },
+  {
+    "x": 671,
+    "y": 13386,
+    "text": "je ne vois pas les flammes derrière la fusée sur cette version, c'est normal ?",
+    "time": "04/05 17:30",
+    "domContext": {
+      "tag": "TD",
+      "text": "Android adaptive icon (fond plein, safe zone 80%)"
+    },
+    "response": "Non, c'était un bug : le script gen-pwa-icons.mjs reconstruisait le SVG maskable avec un bloc <defs> incomplet — seul bggrad était inclus, fgrad (flammes orange→ambre) et rgrad (hublot violet) manquaient, rendant ces éléments transparents. Corrigé : les trois gradients sont maintenant déclarés. Icône régénérée, les flammes sont bien visibles."
   }
 ]

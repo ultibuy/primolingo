@@ -15,13 +15,22 @@ const svgSrc = readFileSync(join(root, 'public/favicon.svg'), 'utf-8');
 // Regular icon SVG — square background (no rx), full content
 const regularSvg = svgSrc.replace('rx="22.37"', 'rx="0"');
 
-// Maskable icon SVG — square background, content scaled to 80% safe zone
+// Maskable icon SVG — square background (full bleed), content scaled to 80% safe zone.
+// All gradients from the source SVG are preserved in <defs> so flames and rocket window render correctly.
 const maskableSvg = `<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="bggrad" x1="0" x2="0" y1="0" y2="1">
       <stop offset="0" stop-color="#1e1e2e"/>
       <stop offset="0.5" stop-color="#2d2b55"/>
       <stop offset="1" stop-color="#1a1a2e"/>
+    </linearGradient>
+    <linearGradient id="rgrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#c4b5fd"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="fgrad" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#fb923c"/>
     </linearGradient>
   </defs>
   <rect width="100" height="100" fill="url(#bggrad)"/>
