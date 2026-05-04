@@ -16,14 +16,102 @@ function getAnnotationFile(slug) {
   return join(ANNOTATIONS_DIR, `${slug}.json`);
 }
 
-function loadAnnotations(slug) {
-  const file = getAnnotationFile(slug);
-  try { return existsSync(file) ? JSON.parse(readFileSync(file, 'utf-8')) : []; }
+function getAnnotationStateFile(slug, state) {
+  return join(ANNOTATIONS_DIR, `${slug}.${state}.json`);
+}
+
+function loadAnnotationFile(file) {
+  try {
+    const data = existsSync(file) ? JSON.parse(readFileSync(file, 'utf-8')) : [];
+    return Array.isArray(data) ? data : [];
+  }
   catch { return []; }
 }
 
+function annotationKey(annotation) {
+  return [
+    Math.round(Number(annotation.x) || 0),
+    Math.round(Number(annotation.y) || 0),
+    annotation.time || '',
+    annotation.text || '',
+  ].join('|');
+}
+
+function isAnnotationDone(annotation) {
+  return !!(annotation.response && annotation.response.trim()) && !(annotation.reply && annotation.reply.trim());
+}
+
+function sortAnnotations(annotations) {
+  return [...annotations].sort((a, b) => {
+    const byY = (Number(a.y) || 0) - (Number(b.y) || 0);
+    if (byY) return byY;
+    return (Number(a.x) || 0) - (Number(b.x) || 0);
+  });
+}
+
+function saveAnnotationStates(slug, pending, done) {
+  writeFileSync(getAnnotationStateFile(slug, 'pending'), JSON.stringify(sortAnnotations(pending), null, 2));
+  writeFileSync(getAnnotationStateFile(slug, 'done'), JSON.stringify(sortAnnotations(done), null, 2));
+}
+
+function migrateLegacyAnnotations(slug) {
+  const pendingFile = getAnnotationStateFile(slug, 'pending');
+  const doneFile = getAnnotationStateFile(slug, 'done');
+  if (existsSync(pendingFile) || existsSync(doneFile)) return;
+
+  const legacy = loadAnnotationFile(getAnnotationFile(slug));
+  if (!legacy.length) return;
+
+  const pending = [];
+  const done = [];
+  for (const annotation of legacy) {
+    if (isAnnotationDone(annotation)) done.push(annotation);
+    else pending.push(annotation);
+  }
+  saveAnnotationStates(slug, pending, done);
+}
+
+function loadAnnotations(slug) {
+  migrateLegacyAnnotations(slug);
+  return sortAnnotations([
+    ...loadAnnotationFile(getAnnotationStateFile(slug, 'pending')),
+    ...loadAnnotationFile(getAnnotationStateFile(slug, 'done')),
+  ]);
+}
+
 function saveAnnotations(slug, annotations) {
-  writeFileSync(getAnnotationFile(slug), JSON.stringify(annotations, null, 2));
+  if (!Array.isArray(annotations)) return;
+
+  if (annotations.length === 0) {
+    saveAnnotationStates(slug, [], []);
+    return;
+  }
+
+  migrateLegacyAnnotations(slug);
+
+  const existingDone = loadAnnotationFile(getAnnotationStateFile(slug, 'done'));
+  const existingDoneByKey = new Map(existingDone.map(annotation => [annotationKey(annotation), annotation]));
+  const doneByKey = new Map();
+  const pendingByKey = new Map();
+
+  for (const annotation of annotations) {
+    const key = annotationKey(annotation);
+    const existingDoneAnnotation = existingDoneByKey.get(key);
+
+    if (isAnnotationDone(annotation)) {
+      doneByKey.set(key, annotation);
+      pendingByKey.delete(key);
+      continue;
+    }
+
+    if (existingDoneAnnotation && !(annotation.reply && annotation.reply.trim())) {
+      continue;
+    }
+
+    pendingByKey.set(key, annotation);
+  }
+
+  saveAnnotationStates(slug, [...pendingByKey.values()], [...doneByKey.values()]);
 }
 
 function getVersion() {
@@ -72,6 +160,18 @@ const HTML_TEMPLATE = (title, body, nav) => {
          color: #d1d5db; vertical-align: top; }
     tr:hover td { background: rgba(255,255,255,0.02); }
     td:first-child { color: #6ee7b7; font-weight: 700; font-family: monospace; white-space: nowrap; }
+    .test-chip {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.25rem;
+      min-width: 6.6rem; padding: 0.18rem 0.55rem; border-radius: 999px;
+      font-size: 0.68rem; font-weight: 800; letter-spacing: 0.03em; white-space: nowrap;
+      text-transform: uppercase; border: 1px solid transparent;
+    }
+    .test-chip-predeploy {
+      color: #86efac; background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.35);
+    }
+    .test-chip-manual {
+      color: #c4b5fd; background: rgba(167,139,250,0.13); border-color: rgba(167,139,250,0.35);
+    }
     img { max-width: 390px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1);
           margin: 0.8rem 0; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
     blockquote { border-left: 3px solid #a78bfa; padding: 0.5rem 1rem; margin: 0 0 1rem;
@@ -561,6 +661,267 @@ function injectInlineBanners(html) {
   });
 }
 
+function buildAnnotationOverlay(slug) {
+  return `
+  <style>
+    .comment-banner {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: rgba(15,17,23,0.95); backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(167,139,250,0.25);
+      padding: 0.6rem 1rem; z-index: 9999;
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .comment-banner button {
+      background: rgba(167,139,250,0.2); border: 1px solid rgba(167,139,250,0.35);
+      border-radius: 8px; padding: 0.4rem 0.9rem; color: #a78bfa; font-weight: 700;
+      font-size: 0.78rem; cursor: pointer; white-space: nowrap; font-family: inherit;
+    }
+    .ann-pin { pointer-events: auto; }
+    .ann-sidebar {
+      position: fixed; right: 8px; top: 50%; transform: translateY(-50%);
+      display: flex; flex-direction: column; gap: 6px; z-index: 9000;
+    }
+    .ann-sidebar-pin {
+      width: 28px; height: 28px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; font-size: 11px;
+      font-weight: 800; color: #fff; cursor: pointer; user-select: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3); transition: transform 0.15s ease;
+    }
+    .ann-sidebar-pin:hover { transform: scale(1.2); }
+  </style>
+  <div class="ann-sidebar" id="ann-sidebar"></div>
+  <div class="comment-banner">
+    <button id="toggle-annotations" onclick="toggleAnnotationMode()">Mode commentaire</button>
+    <span id="annotation-count" style="margin-left:auto;color:rgba(255,255,255,0.3);font-size:0.72rem">0 commentaire</span>
+    <button id="btn-copy" onclick="copyAllAnnotations()">Copier tout</button>
+    <button id="btn-copy-pending" onclick="copyPendingAnnotations()">Copier sans reponse</button>
+    <button id="btn-clear" onclick="clearAllAnnotations()">Effacer tout</button>
+  </div>
+  <script>
+    const ANN_SLUG = '${slug}';
+    let annotationMode = false;
+    let annotations = [];
+
+    fetch('/docs/api/annotations?slug=' + encodeURIComponent(ANN_SLUG))
+      .then(r => r.json())
+      .then(data => { annotations = data; renderAnnotations(); })
+      .catch(() => {});
+
+    let _saveTimer = null;
+    function saveAnnotations(skipRender) {
+      clearTimeout(_saveTimer);
+      _saveTimer = setTimeout(() => {
+        fetch('/docs/api/annotations?slug=' + encodeURIComponent(ANN_SLUG), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(annotations),
+        }).catch(() => {});
+      }, 300);
+      if (!skipRender) updateUI();
+    }
+
+    function updateUI() {
+      const n = annotations.length;
+      document.getElementById('annotation-count').textContent = n + ' commentaire' + (n !== 1 ? 's' : '');
+      const pending = annotations.filter(a => (!a.response || !a.response.trim()) || (a.reply && a.reply.trim())).length;
+      document.getElementById('btn-copy').style.opacity = n > 0 ? '1' : '0.35';
+      document.getElementById('btn-copy-pending').style.opacity = pending > 0 ? '1' : '0.35';
+      document.getElementById('btn-copy-pending').textContent = pending > 0 ? 'Copier sans reponse (' + pending + ')' : 'Tout traite';
+      document.getElementById('btn-clear').style.opacity = n > 0 ? '1' : '0.35';
+    }
+
+    function toggleAnnotationMode() {
+      annotationMode = !annotationMode;
+      const btn = document.getElementById('toggle-annotations');
+      btn.style.background = annotationMode ? '#7c3aed' : 'rgba(167,139,250,0.2)';
+      btn.style.color = annotationMode ? '#fff' : '#a78bfa';
+      document.body.style.cursor = annotationMode ? 'crosshair' : '';
+    }
+
+    function captureDomContext(clientX, clientY) {
+      document.querySelectorAll('.ann-pin').forEach(p => { p.style.pointerEvents = 'none'; p.style.visibility = 'hidden'; });
+      const el = document.elementFromPoint(clientX, clientY);
+      document.querySelectorAll('.ann-pin').forEach(p => { p.style.pointerEvents = ''; p.style.visibility = ''; });
+      if (!el) return { tag: 'body', text: '' };
+      const skip = new Set(['HTML', 'BODY', 'MAIN', 'ARTICLE', 'SECTION', 'NAV', 'FOOTER', 'HEADER']);
+      let target = el;
+      for (let i = 0; i < 4; i++) {
+        const t = (target.textContent || '').trim();
+        if (t.length >= 5 || !target.parentElement || skip.has(target.parentElement.tagName)) break;
+        target = target.parentElement;
+      }
+      if (skip.has(target.tagName)) target = el;
+      return { tag: target.tagName || '?', text: (target.textContent || '').trim().slice(0, 150) };
+    }
+
+    function renderAnnotations() {
+      document.querySelectorAll('.ann-pin').forEach(el => el.remove());
+      const sidebar = document.getElementById('ann-sidebar');
+      if (!sidebar) return;
+      sidebar.innerHTML = '';
+      annotations.forEach((ann, i) => {
+        const hasResp = !!(ann.response && ann.response.trim());
+        const hasRep = !!(ann.reply && ann.reply.trim());
+        const sidePin = document.createElement('div');
+        sidePin.className = 'ann-sidebar-pin';
+        sidePin.style.background = (hasResp && !hasRep) ? '#22c55e' : '#7c3aed';
+        sidePin.textContent = (hasResp && !hasRep) ? '\\u2713' : (i + 1);
+        sidePin.title = (ann.text || '').slice(0, 60) || 'Commentaire ' + (i + 1);
+        sidePin.addEventListener('click', function() {
+          window.scrollTo({ top: ann.y - 200, behavior: 'smooth' });
+          setTimeout(() => {
+            document.querySelectorAll('.ann-bubble').forEach(b => { b.style.display = 'none'; });
+            const pins = document.querySelectorAll('.ann-pin');
+            if (pins[i]) { const bubble = pins[i].querySelector('.ann-bubble'); if (bubble) bubble.style.display = 'block'; }
+          }, 400);
+        });
+        sidebar.appendChild(sidePin);
+      });
+      annotations.forEach((ann, i) => {
+        const pin = document.createElement('div');
+        pin.className = 'ann-pin';
+        pin.style.cssText = 'position:absolute;left:' + ann.x + 'px;top:' + ann.y + 'px;z-index:5000;';
+        const hasResponse = !!(ann.response && ann.response.trim());
+        const hasReply = !!(ann.reply && ann.reply.trim());
+        const pinColor = (hasResponse && !hasReply) ? '#22c55e' : '#7c3aed';
+        const pinShadow = (hasResponse && !hasReply) ? 'rgba(34,197,94,0.4)' : 'rgba(124,58,237,0.4)';
+        const circle = document.createElement('div');
+        circle.style.cssText = 'width:26px;height:26px;border-radius:50%;background:' + pinColor + ';color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px ' + pinShadow + ';cursor:pointer;transform:translate(-50%,-50%);user-select:none';
+        circle.textContent = (hasResponse && !hasReply) ? '\\u2713' : (i + 1);
+        const bubble = document.createElement('div');
+        bubble.className = 'ann-bubble';
+        bubble.style.cssText = 'display:none;position:absolute;top:18px;left:-10px;background:#1a1a2e;border:2px solid #7c3aed;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,0.5);min-width:220px;max-width:320px;z-index:6000;overflow:hidden';
+        const textarea = document.createElement('textarea');
+        textarea.style.cssText = 'width:100%;border:none;outline:none;resize:vertical;font-family:inherit;font-size:12px;line-height:1.5;padding:8px 10px;min-height:50px;background:#1a1a2e;color:#e5e7eb;box-sizing:border-box';
+        textarea.value = ann.text || '';
+        textarea.placeholder = 'Votre commentaire...';
+        textarea.addEventListener('input', function() { annotations[i].text = this.value; saveAnnotations(true); });
+        textarea.addEventListener('click', function(e) { e.stopPropagation(); });
+        const ctx = document.createElement('div');
+        ctx.style.cssText = 'padding:4px 10px;font-size:10px;color:#6b7280;border-top:1px solid rgba(255,255,255,0.08);line-height:1.4';
+        ctx.textContent = ann.domContext ? '<' + ann.domContext.tag + '> ' + (ann.domContext.text || '').slice(0, 80) : '';
+        const responseBlock = document.createElement('div');
+        responseBlock.style.cssText = 'border-top:1px solid rgba(255,255,255,0.08)';
+        const respLabel = document.createElement('div');
+        respLabel.style.cssText = 'padding:4px 10px 0;font-size:9px;color:#4ade80;font-weight:700;text-transform:uppercase;letter-spacing:0.05em';
+        respLabel.textContent = 'Reponse';
+        responseBlock.appendChild(respLabel);
+        const respInput = document.createElement('textarea');
+        respInput.style.cssText = 'width:100%;border:none;outline:none;resize:vertical;font-family:inherit;font-size:11px;line-height:1.4;padding:4px 10px 6px;min-height:32px;background:rgba(74,222,128,0.04);color:#4ade80;box-sizing:border-box';
+        respInput.value = ann.response || '';
+        respInput.placeholder = 'Ecrire une reponse...';
+        respInput.addEventListener('input', function() { annotations[i].response = this.value; saveAnnotations(true); });
+        respInput.addEventListener('click', function(e) { e.stopPropagation(); });
+        responseBlock.appendChild(respInput);
+        const replyBlock = document.createElement('div');
+        replyBlock.style.cssText = 'border-top:1px solid rgba(255,255,255,0.08)';
+        const replyLabel = document.createElement('div');
+        replyLabel.style.cssText = 'padding:4px 10px 0;font-size:9px;color:#a78bfa;font-weight:700;text-transform:uppercase;letter-spacing:0.05em';
+        replyLabel.textContent = 'Ma réponse';
+        replyBlock.appendChild(replyLabel);
+        const replyInput = document.createElement('textarea');
+        replyInput.style.cssText = 'width:100%;border:none;outline:none;resize:vertical;font-family:inherit;font-size:11px;line-height:1.4;padding:4px 10px 6px;min-height:32px;background:rgba(167,139,250,0.04);color:#a78bfa;box-sizing:border-box';
+        replyInput.value = ann.reply || '';
+        replyInput.placeholder = 'Ajouter un suivi...';
+        replyInput.addEventListener('input', function() { annotations[i].reply = this.value; saveAnnotations(true); });
+        replyInput.addEventListener('click', function(e) { e.stopPropagation(); });
+        replyBlock.appendChild(replyInput);
+        responseBlock.appendChild(replyBlock);
+        const footer = document.createElement('div');
+        footer.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:4px 10px;border-top:1px solid rgba(255,255,255,0.08)';
+        footer.innerHTML = '<span style="font-size:10px;color:rgba(255,255,255,0.2)">' + (ann.time || '') + '</span>';
+        const del = document.createElement('span');
+        del.style.cssText = 'font-size:10px;color:#f87171;cursor:pointer';
+        del.textContent = 'supprimer';
+        del.addEventListener('click', function(e) { e.stopPropagation(); deleteAnnotation(i); });
+        footer.appendChild(del);
+        bubble.appendChild(textarea);
+        if (ann.domContext && ann.domContext.text) bubble.appendChild(ctx);
+        bubble.appendChild(responseBlock);
+        bubble.appendChild(footer);
+        pin.appendChild(circle);
+        pin.appendChild(bubble);
+        circle.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const showing = bubble.style.display !== 'none';
+          document.querySelectorAll('.ann-bubble').forEach(b => { b.style.display = 'none'; });
+          bubble.style.display = showing ? 'none' : 'block';
+          if (!showing) textarea.focus();
+        });
+        document.body.appendChild(pin);
+      });
+      updateUI();
+    }
+
+    function deleteAnnotation(i) { annotations.splice(i, 1); saveAnnotations(); renderAnnotations(); }
+
+    function buildPromptHeader() {
+      return 'Voici des annotations realisees sur les docs fonctionnelles de l\\'app. Traite chaque commentaire dans l\\'ordre en utilisant autant d\\'agents que necessaire.\\n\\nAttention !!!\\n1) Si le commentaire est une question, tu ne fais que repondre a la question du commentaire dans le champ reponse — tu ne lances aucun changement dans le code.\\n2) Si au contraire le commentaire est une demande "modifie ci ou ca" alors : a) modifie-le dans le code, b) mets a jour la doc, et c) reponds au commentaire dans le champ reponse.\\n\\nLes annotations sont stockees dans docs/annotations/' + ANN_SLUG + '.json. Apres avoir traite chaque commentaire, ecris ta reponse dans le champ "response" de l\\'annotation correspondante dans ce fichier JSON. Le pin passera au vert automatiquement au prochain chargement de la page.';
+    }
+
+    function formatAnnotation(a, i) {
+      let line = '(' + (i+1) + ') [x:' + a.x + ' y:' + a.y + '] ' + (a.text || '(vide)');
+      if (a.domContext && a.domContext.text) line += '\\n    Element: <' + a.domContext.tag + '> "' + a.domContext.text.slice(0, 120) + '"';
+      if (a.response) line += '\\n    Reponse: ' + a.response;
+      if (a.reply && a.reply.trim()) line += '\\n    Suivi: ' + a.reply;
+      return line;
+    }
+
+    function flashButton(btnId) {
+      const btn = document.getElementById(btnId);
+      const old = btn.textContent;
+      btn.textContent = 'Copie !'; btn.style.background = '#4ade80'; btn.style.color = '#0a1410';
+      setTimeout(() => { btn.textContent = old; btn.style.background = ''; btn.style.color = ''; }, 1500);
+    }
+
+    function copyAllAnnotations() {
+      if (annotations.length === 0) return;
+      const lines = annotations.map((a, i) => formatAnnotation(a, i));
+      const text = buildPromptHeader() + '\\n\\n=== Annotations /parentv2 ===\\n\\n' + lines.join('\\n\\n');
+      navigator.clipboard.writeText(text).then(() => flashButton('btn-copy')).catch(() => {});
+    }
+
+    function copyPendingAnnotations() {
+      const pending = annotations.filter(a => (!a.response || !a.response.trim()) || (a.reply && a.reply.trim()));
+      if (pending.length === 0) return;
+      const lines = pending.map((a) => formatAnnotation(a, annotations.indexOf(a)));
+      const text = buildPromptHeader() + '\\n\\n=== Annotations /parentv2 (sans reponse) ===\\n\\n' + lines.join('\\n\\n');
+      navigator.clipboard.writeText(text).then(() => flashButton('btn-copy-pending')).catch(() => {});
+    }
+
+    function clearAllAnnotations() {
+      if (annotations.length === 0) return;
+      if (!confirm('Effacer tous les commentaires ?')) return;
+      annotations = []; saveAnnotations(); renderAnnotations();
+    }
+
+    document.addEventListener('click', function(e) {
+      if (!annotationMode) return;
+      if (e.target.closest('.comment-banner') || e.target.closest('.ann-pin')) return;
+      if (e.target.closest('.ann-sidebar')) return;
+      const x = e.pageX; const y = e.pageY;
+      const domContext = captureDomContext(e.clientX, e.clientY);
+      annotations.push({
+        x: Math.round(x), y: Math.round(y), text: '',
+        time: new Date().toLocaleString('fr-FR', { day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit' }),
+        domContext: domContext,
+      });
+      saveAnnotations();
+      renderAnnotations();
+      const pins = document.querySelectorAll('.ann-pin');
+      const lastPin = pins[pins.length - 1];
+      if (lastPin) {
+        document.querySelectorAll('.ann-bubble').forEach(b => { b.style.display = 'none'; });
+        const bubble = lastPin.querySelector('.ann-bubble');
+        if (bubble) { bubble.style.display = 'block'; const ta = bubble.querySelector('textarea'); if (ta) ta.focus(); }
+      }
+    });
+
+    // Wait for React to mount before rendering annotations
+    setTimeout(renderAnnotations, 800);
+  </script>`;
+}
+
 export default function docsPlugin() {
   return {
     name: 'primolingo-docs',
@@ -597,11 +958,26 @@ export default function docsPlugin() {
                 saveAnnotations(slug, data);
                 res.setHeader('Content-Type', 'application/json');
                 res.end(JSON.stringify({ ok: true }));
-              } catch (e) {
+              } catch {
                 res.statusCode = 400;
                 res.end(JSON.stringify({ error: 'invalid JSON' }));
               }
             });
+            return;
+          }
+        }
+
+        // ── /parentv2 — React SPA + annotation overlay ───────────────────
+        if (url === '/parentv2' && req.method === 'GET') {
+          const indexPath = join(DOCS_DIR, '..', 'index.html');
+          if (existsSync(indexPath)) {
+            const html = readFileSync(indexPath, 'utf-8');
+            server.transformIndexHtml('/parentv2', html, req.url).then(transformed => {
+              const overlay = buildAnnotationOverlay('parentv2');
+              const final = transformed.replace('</body>', overlay + '\n</body>');
+              res.setHeader('Content-Type', 'text/html; charset=utf-8');
+              res.end(final);
+            }).catch(() => next());
             return;
           }
         }

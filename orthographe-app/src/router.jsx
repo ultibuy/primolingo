@@ -1,16 +1,21 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { createBrowserRouter, Navigate, useRouteError } from 'react-router-dom';
-import * as Sentry from '@sentry/react';
+import { WarningIcon } from './components/icons/ProductIcons.jsx';
 import { useAuth } from './contexts/AuthContext.jsx';
+import AppLoadingScreen from './components/AppLoadingScreen.jsx';
+import { captureException } from './services/sentry.js';
 
 // ---------------------------------------------------------------------------
 // lazyWithRetry — reloads the page once on chunk load failure (stale cache
 // after a new deploy). Uses sessionStorage to avoid infinite reload loops.
 // ---------------------------------------------------------------------------
 function lazyWithRetry(importFn) {
+  const key = 'chunk_reload_attempted';
   return lazy(() =>
-    importFn().catch((err) => {
-      const key = 'chunk_reload_attempted';
+    importFn().then((module) => {
+      sessionStorage.removeItem(key);
+      return module;
+    }).catch((err) => {
       if (!sessionStorage.getItem(key)) {
         sessionStorage.setItem(key, '1');
         window.location.reload();
@@ -21,16 +26,22 @@ function lazyWithRetry(importFn) {
   );
 }
 
-const LandingPage = lazyWithRetry(() => import('./pages/LandingPageV4.jsx'));
+const LandingPage = lazyWithRetry(() => import('./pages/LandingPageV5.jsx'));
 const LoginPage = lazyWithRetry(() => import('./pages/LoginPage.jsx'));
 const ParentDashboard = lazyWithRetry(() => import('./pages/ParentDashboard.jsx'));
+const ParentDashboardV2 = lazyWithRetry(() => import('./pages/ParentDashboardV2.jsx'));
 const ChildSetup = lazyWithRetry(() => import('./pages/ChildSetup.jsx'));
 const ChildApp = lazyWithRetry(() => import('./pages/ChildApp.jsx'));
 const LegalPage = lazyWithRetry(() => import('./pages/LegalPage.jsx'));
+const RulesIndexPage = lazyWithRetry(() => import('./pages/RulesIndexPage.jsx'));
+const RulePage = lazyWithRetry(() => import('./pages/RulePage.jsx'));
+const DebugEndScreenPage = import.meta.env.DEV ? lazyWithRetry(() => import('./pages/DebugEndScreenPage.jsx')) : null;
+const DebugShopPage = import.meta.env.DEV ? lazyWithRetry(() => import('./pages/DebugShopPage.jsx')) : null;
+const DebugRewardPage = import.meta.env.DEV ? lazyWithRetry(() => import('./pages/DebugRewardPage.jsx')) : null;
 
 function LazyPage({ children }) {
   return (
-    <Suspense fallback={<div style={routeLoadingStyle}>Chargement...</div>}>
+    <Suspense fallback={<AppLoadingScreen />}>
       {children}
     </Suspense>
   );
@@ -44,12 +55,12 @@ function RouteErrorBoundary() {
   const error = useRouteError();
 
   useEffect(() => {
-    if (error) Sentry.captureException(error);
+    if (error) captureException(error);
   }, [error]);
 
   return (
     <div style={errorPageStyle}>
-      <div style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>😕</div>
+      <div style={{ marginBottom: '1rem' }}><WarningIcon size={48} color="var(--color-orange)" /></div>
       <h1 style={{ fontSize: '1.2rem', fontWeight: 800, marginBottom: '0.5rem' }}>
         Une erreur est survenue
       </h1>
@@ -68,15 +79,26 @@ function RouteErrorBoundary() {
 
 // ProtectedRoute: redirects to /login if not authenticated
 function ProtectedRoute({ children }) {
-  const { user } = useAuth();
+  const { user, loading, authReady, ensureAuth } = useAuth();
+
+  useEffect(() => {
+    ensureAuth();
+  }, [ensureAuth]);
+
+  if (loading || !authReady) return <AppLoadingScreen />;
   if (!user) return <Navigate to="/login" replace />;
   return children;
 }
 
 // PublicOnlyRoute: redirects to /parent if already authenticated
 function PublicOnlyRoute({ children }) {
-  const { user } = useAuth();
-  if (user) return <Navigate to="/parent" replace />;
+  const { user, authReady, ensureAuth } = useAuth();
+
+  useEffect(() => {
+    ensureAuth();
+  }, [ensureAuth]);
+
+  if (authReady && user) return <Navigate to="/parent" replace />;
   return children;
 }
 
@@ -103,6 +125,15 @@ export const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <LazyPage><ParentDashboard /></LazyPage>
+      </ProtectedRoute>
+    ),
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: '/parentv2',
+    element: (
+      <ProtectedRoute>
+        <LazyPage><ParentDashboardV2 /></LazyPage>
       </ProtectedRoute>
     ),
     errorElement: <RouteErrorBoundary />,
@@ -140,20 +171,26 @@ export const router = createBrowserRouter([
     errorElement: <RouteErrorBoundary />,
   },
   {
+    path: '/regles',
+    element: <LazyPage><RulesIndexPage /></LazyPage>,
+    errorElement: <RouteErrorBoundary />,
+  },
+  {
+    path: '/regles/:ruleId',
+    element: <LazyPage><RulePage /></LazyPage>,
+    errorElement: <RouteErrorBoundary />,
+  },
+  // Debug routes — dev only, tree-shaken in prod
+  ...(DebugEndScreenPage ? [
+    { path: '/debug/end-screen', element: <LazyPage><DebugEndScreenPage /></LazyPage>, errorElement: <RouteErrorBoundary /> },
+    { path: '/debug/shop', element: <LazyPage><DebugShopPage /></LazyPage>, errorElement: <RouteErrorBoundary /> },
+    { path: '/debug/reward', element: <LazyPage><DebugRewardPage /></LazyPage>, errorElement: <RouteErrorBoundary /> },
+  ] : []),
+  {
     path: '*',
     element: <Navigate to="/" replace />,
   },
 ]);
-
-const routeLoadingStyle = {
-  minHeight: '100vh',
-  display: 'grid',
-  placeItems: 'center',
-  background: '#101827',
-  color: '#e5e7eb',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
-  fontWeight: 800,
-};
 
 const errorPageStyle = {
   minHeight: '100vh',
@@ -167,12 +204,14 @@ const errorPageStyle = {
 };
 
 const retryButtonStyle = {
-  background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
-  color: '#fff',
+  background: 'var(--gradient-brand)',
+  color: 'var(--text-white)',
   border: 'none',
-  borderRadius: 12,
+  borderRadius: 'var(--radius-pill)',
   padding: '0.75rem 1.5rem',
+  fontFamily: 'var(--font-display)',
   fontWeight: 800,
   fontSize: '0.95rem',
   cursor: 'pointer',
+  boxShadow: 'var(--shadow-glow)',
 };
