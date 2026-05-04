@@ -97,5 +97,37 @@
       "text": "Afficher les sauvegardes"
     },
     "response": "Fait. 1) Le bouton « Afficher les sauvegardes » a été supprimé — les sauvegardes se chargent automatiquement à l'ouverture du panneau. 2) Une section « Partie enfant » a été ajoutée par enfant juste au-dessus des sauvegardes, avec un texte explicatif et le bouton « Ouvrir la partie enfant » qui ouvre /play/:childId dans un nouvel onglet. Le bouton « Jouer avec X » en bas du panneau a été retiré."
+  },
+  {
+    "x": 607,
+    "y": 425,
+    "text": "ajoute un titre",
+    "time": "04/05 13:01",
+    "domContext": { "tag": "DIV", "text": "👤debug@test.com🛠 Dev local" },
+    "response": "Fait. Un label « Compte connecté » en petites majuscules apparaît juste au-dessus du bandeau email/méthode de connexion."
+  },
+  {
+    "x": 640,
+    "y": 240,
+    "text": "supprimer les émoji et énumère, 1, 2, ...",
+    "time": "04/05 13:01",
+    "domContext": { "tag": "LI", "text": "📊 Suivre leur progression et activité" },
+    "response": "Fait. Les emoji (👤📊🖼️▶️) ont été retirés et la liste non-ordonnée a été remplacée par un <ol> avec numérotation automatique 1, 2, 3, 4."
+  },
+  {
+    "x": 336,
+    "y": 496,
+    "text": "pas d'émoji",
+    "time": "04/05 13:02",
+    "domContext": { "tag": "DIV", "text": "🔒Code parental à 4 chiffresDéfini1) Protéger la flamme de votre enfant..." },
+    "response": "Fait. L'emoji 🔒 a été retiré de la carte Code parental."
+  },
+  {
+    "x": 328,
+    "y": 885,
+    "text": "utilise notre étoile svg",
+    "time": "04/05 13:03",
+    "domContext": { "tag": "P", "text": "⭐ Recommandé : mettre ce tableau de bord en favori sur votre appareil..." },
+    "response": "Fait. L'emoji ⭐ a été remplacé par le SVG étoile du projet (même forme dégradée orange→jaune que dans MiniQuiz), affiché en 16×16 px aligné sur la ligne de texte."
   }
 ]

@@ -520,7 +520,16 @@ function AccesEnfantSection() {
           Depuis la partie enfant, un bouton permet de revenir sur ce tableau de bord — il nécessite votre <strong style={{ color: '#d1d5db' }}>code parental</strong>.
         </p>
         <p style={{ margin: '0.5rem 0 0', fontSize: '0.85rem', color: '#9ca3af', lineHeight: 1.6 }}>
-          ⭐ <strong style={{ color: '#fff' }}>Recommandé :</strong> mettre ce tableau de bord en favori sur votre appareil, et mettre la partie enfant en favori sur l'appareil de votre enfant.
+          <svg style={{ display: 'inline', verticalAlign: 'middle', marginRight: '0.3em', flexShrink: 0 }} width="16" height="16" viewBox="0 0 48 48" aria-hidden="true">
+            <defs>
+              <linearGradient id="recStarGrad" x1="13" y1="40" x2="34" y2="8" gradientUnits="userSpaceOnUse">
+                <stop stopColor="#fb923c" />
+                <stop offset="0.48" stopColor="#fbbf24" />
+                <stop offset="1" stopColor="#fff7ad" />
+              </linearGradient>
+            </defs>
+            <path d="m24 5.7 5.4 10.9 12 1.8-8.7 8.4 2.1 12-10.8-5.7-10.8 5.7 2.1-12-8.7-8.4 12-1.8L24 5.7Z" fill="url(#recStarGrad)" stroke="#fde68a" strokeWidth="1.4" strokeLinejoin="round" />
+          </svg>{' '}<strong style={{ color: '#fff' }}>Recommandé :</strong> mettre ce tableau de bord en favori sur votre appareil, et mettre la partie enfant en favori sur l'appareil de votre enfant.
         </p>
       </div>
 
@@ -942,12 +951,12 @@ export default function ParentDashboardV2() {
           <p style={{ margin: '0 0 0.75rem', fontSize: '0.88rem', color: '#9ca3af', lineHeight: 1.5 }}>
             Bienvenue dans l'espace parent de PrimoLingo. Vous pouvez :
           </p>
-          <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gap: '0.35rem', textAlign: 'left', maxWidth: 380, marginInline: 'auto' }}>
-            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}>👤 <strong>Configurer</strong> les profils de vos enfants</li>
-            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}>📊 <strong>Suivre</strong> leur progression et activité</li>
-            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}>🖼️ <strong>Gérer</strong> les images mystère</li>
-            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}>▶️ <strong>Accéder</strong> à la partie enfant</li>
-          </ul>
+          <ol style={{ margin: 0, paddingLeft: '1.3rem', display: 'grid', gap: '0.35rem', textAlign: 'left', maxWidth: 380, marginInline: 'auto' }}>
+            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Configurer</strong> les profils de vos enfants</li>
+            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Suivre</strong> leur progression et activité</li>
+            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Gérer</strong> les images mystère</li>
+            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Accéder</strong> à la partie enfant</li>
+          </ol>
         </div>
 
         {/* ─ Section 1: Mon compte ─ */}
@@ -955,6 +964,7 @@ export default function ParentDashboardV2() {
           <h2 style={sectionTitleStyle}>Mon compte</h2>
 
           {/* Account info */}
+          <p style={{ margin: '0 0 0.4rem', fontSize: '0.72rem', fontWeight: 700, color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Compte connecté</p>
           <div style={{ marginBottom: '1rem', padding: '0.65rem 0.9rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 10, display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
             <span style={{ fontSize: '1rem' }}>👤</span>
             <span style={{ fontSize: '0.83rem', color: '#d1d5db', fontWeight: 600 }}>{user?.email || 'compte local'}</span>
@@ -966,7 +976,6 @@ export default function ParentDashboardV2() {
           {/* PIN card */}
           <div style={pinCardStyle}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.9rem' }}>
-              <div style={{ fontSize: 28, lineHeight: 1, flexShrink: 0 }}>🔒</div>
               <div style={{ flex: 1 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.3rem', flexWrap: 'wrap' }}>
                   <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#fff' }}>Code parental à 4 chiffres</span>
