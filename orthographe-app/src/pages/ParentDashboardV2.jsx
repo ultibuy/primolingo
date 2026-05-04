@@ -15,7 +15,7 @@ import PopupModal from '../components/PopupModal.jsx';
 import { allRules } from '../content/loader.js';
 import { allDictees, LEVELS } from '../content/dicteesLoader.js';
 import { hashPin } from '../services/pin-crypto.js';
-import { listChildren, loadParentalPin, saveParentalPin } from '../services/store.js';
+import { listChildren, loadParentalPin, saveParentalPin, updateChild } from '../services/store.js';
 import {
   loadParentImages,
   saveParentImages,
@@ -27,6 +27,7 @@ import {
   restoreDailyBackup,
 } from '../store/persistence.js';
 
+const AVATARS = ['🦊', '🐱', '🦁', '🐸', '🐵', '🦄', '🐲', '🦅', '🐺', '🐼', '🦈', '🐙', '🐴'];
 const TOTAL_GRAMMAR_RULES = allRules.length;
 const TOTAL_DICTEE_RULES  = allDictees.length * LEVELS.length;
 const ProgressCharts = lazy(() => import('../components/ProgressCharts.jsx'));
@@ -456,11 +457,7 @@ function ChildPanelV2({ child, uid, parentImages, isOpen, onToggle }) {
             </Suspense>
           </div>
 
-          {/* Paramètres */}
-          <div>
-            <div style={sectionDividerStyle}>Paramètres</div>
-            <ChildSettings uid={uid} childId={child.id} parentImages={parentImages} />
-          </div>
+          {/* Activité seule dans Suivi des enfants — les images mystère sont gérées dans Gestion des enfants */}
         </div>
       )}
     </div>
@@ -523,7 +520,7 @@ function AccesEnfantSection() {
           Depuis la partie enfant, un bouton permet de revenir sur ce tableau de bord — il nécessite votre <strong style={{ color: '#d1d5db' }}>code parental</strong>.
         </p>
         <p style={{ margin: '0.5rem 0 0', fontSize: '0.85rem', color: '#9ca3af', lineHeight: 1.6 }}>
-          Recommandé : mettre ce tableau de bord en favori sur votre appareil, et mettre la partie enfant en favori sur l'appareil de votre enfant.
+          ⭐ <strong style={{ color: '#fff' }}>Recommandé :</strong> mettre ce tableau de bord en favori sur votre appareil, et mettre la partie enfant en favori sur l'appareil de votre enfant.
         </p>
       </div>
 
@@ -538,9 +535,14 @@ function AccesEnfantSection() {
               <div style={{ fontSize: '0.75rem', color: '#9ca3af', marginTop: 2 }}>Tableau de bord parent</div>
             </div>
           </div>
-          <p style={{ fontSize: '0.82rem', color: '#d1d5db', lineHeight: 1.6, margin: '0 0 0.5rem' }}>
-            Mettez cette page en favori pour y revenir facilement.
-          </p>
+          <ol style={{ margin: '0 0 0.5rem', paddingLeft: '1.1rem' }}>
+            <li style={{ fontSize: '0.82rem', color: '#d1d5db', lineHeight: 1.65, marginBottom: '0.25rem' }}>
+              Ajoutez un enfant dans « Gestion des enfants » ci-dessous
+            </li>
+            <li style={{ fontSize: '0.82rem', color: '#d1d5db', lineHeight: 1.65 }}>
+              Mettez cette page en favori pour y revenir facilement
+            </li>
+          </ol>
           <div style={{ fontSize: '0.78rem', color: '#9ca3af', lineHeight: 1.6, padding: '0.5rem 0.7rem', background: 'rgba(167,139,250,0.06)', borderRadius: 8, border: '1px solid rgba(167,139,250,0.12)' }}>
             {parentInstr.parentBookmark}
           </div>
@@ -585,9 +587,73 @@ function AccesEnfantSection() {
   );
 }
 
+// ─── ChildEditForm (inline name + avatar editing) ────────────────────────────
+
+function ChildEditForm({ uid, child, onSaved, onCancel }) {
+  const [name, setName] = useState(child.name);
+  const [avatar, setAvatar] = useState(child.avatar || AVATARS[0]);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
+
+  async function handleSave() {
+    if (!name.trim()) { setError('Le prénom est obligatoire.'); return; }
+    setSaving(true);
+    try {
+      await updateChild(uid, child.id, { name: name.trim(), avatar });
+      onSaved({ ...child, name: name.trim(), avatar });
+    } catch (e) {
+      captureException(e);
+      setError('Erreur lors de la sauvegarde.');
+    }
+    setSaving(false);
+  }
+
+  return (
+    <div style={{ display: 'grid', gap: '0.75rem' }}>
+      <div>
+        <div style={{ fontSize: '0.72rem', fontWeight: 800, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.4rem' }}>Prénom</div>
+        <input
+          type="text"
+          value={name}
+          onChange={e => setName(e.target.value)}
+          maxLength={20}
+          style={inputStyle}
+          autoFocus
+        />
+      </div>
+      <div>
+        <div style={{ fontSize: '0.72rem', fontWeight: 800, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.4rem' }}>Avatar</div>
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+          {AVATARS.map(a => (
+            <button
+              key={a}
+              type="button"
+              onClick={() => setAvatar(a)}
+              style={{
+                fontSize: 24, lineHeight: 1, padding: '0.3rem', borderRadius: 8, cursor: 'pointer',
+                border: `2px solid ${a === avatar ? '#a78bfa' : 'rgba(255,255,255,0.1)'}`,
+                background: a === avatar ? 'rgba(167,139,250,0.15)' : 'rgba(255,255,255,0.04)',
+              }}
+            >{a}</button>
+          ))}
+        </div>
+      </div>
+      {error && <div style={{ fontSize: '0.78rem', color: '#f87171', fontWeight: 600 }}>{error}</div>}
+      <div style={{ display: 'flex', gap: '0.5rem' }}>
+        <button type="button" onClick={handleSave} disabled={saving} style={primaryBtnStyle(saving)}>
+          {saving ? 'Enregistrement…' : 'Enregistrer'}
+        </button>
+        <button type="button" onClick={onCancel} style={secBtnStyle}>Annuler</button>
+      </div>
+    </div>
+  );
+}
+
 // ─── GestionEnfantsSection ────────────────────────────────────────────────────
 
-function GestionEnfantsSection({ children, uid, parentImages, pin, navigate, refreshParentImages }) {
+function GestionEnfantsSection({ children, uid, parentImages, pin, navigate, refreshParentImages, onChildUpdated }) {
+  const [editingChildId, setEditingChildId] = useState(null);
+
   return (
     <div style={{ display: 'grid', gap: '2rem' }}>
 
@@ -597,10 +663,28 @@ function GestionEnfantsSection({ children, uid, parentImages, pin, navigate, ref
           {children.map(child => (
             <div key={child.id} style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: 'var(--radius-md)', padding: '1rem 1.1rem', display: 'grid', gap: '0.9rem' }}>
               {/* Child header */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                <span style={{ fontSize: 24, lineHeight: 1 }}>{child.avatar || '🦊'}</span>
-                <span style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-white)', fontFamily: 'var(--font-display)' }}>{child.name}</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+                  <span style={{ fontSize: 24, lineHeight: 1 }}>{child.avatar || '🦊'}</span>
+                  <span style={{ fontSize: '0.95rem', fontWeight: 800, color: 'var(--text-white)', fontFamily: 'var(--font-display)' }}>{child.name}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setEditingChildId(editingChildId === child.id ? null : child.id)}
+                  style={{ background: 'none', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 8, cursor: 'pointer', color: 'rgba(255,255,255,0.5)', padding: '4px 8px', fontSize: '0.75rem', fontWeight: 700, fontFamily: 'var(--font-body)' }}
+                >
+                  ✏️ Modifier
+                </button>
               </div>
+              {/* Inline edit form */}
+              {editingChildId === child.id && (
+                <ChildEditForm
+                  uid={uid}
+                  child={child}
+                  onSaved={(updated) => { onChildUpdated?.(updated); setEditingChildId(null); }}
+                  onCancel={() => setEditingChildId(null)}
+                />
+              )}
               {/* Ouvrir la partie enfant */}
               <div>
                 <div style={sectionDividerStyle}>Partie enfant</div>
@@ -630,11 +714,28 @@ function GestionEnfantsSection({ children, uid, parentImages, pin, navigate, ref
           <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-display)' }}>Bibliothèque d'images mystère</span>
         </div>
         <p style={{ fontSize: '0.83rem', color: '#64748b', lineHeight: 1.7, margin: '0 0 0.9rem' }}>
-          Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque jour. Ajoutez vos propres photos ici (vacances, animaux, famille…), puis activez-les pour chaque enfant dans la section « Suivi des enfants » ci-dessus.
+          Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque jour. Ajoutez vos propres photos ici (vacances, animaux, famille…), puis activez-les pour chaque enfant ci-dessous.
         </p>
         <div style={libShellStyle}>
           <ImageLibraryWithRefresh uid={uid} onSaved={refreshParentImages} />
         </div>
+
+        {/* Per-child image activation */}
+        {children.length > 0 && parentImages.length > 0 && (
+          <div style={{ marginTop: '1.2rem', display: 'grid', gap: '0.75rem' }}>
+            <div style={{ fontSize: '0.72rem', fontWeight: 800, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+              Images activées par enfant
+            </div>
+            {children.map(child => (
+              <div key={child.id} style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: 10, padding: '0.75rem 0.9rem' }}>
+                <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#d1d5db', marginBottom: '0.5rem' }}>
+                  {child.avatar || '🦊'} {child.name}
+                </div>
+                <ChildSettings uid={uid} childId={child.id} parentImages={parentImages} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
@@ -853,6 +954,15 @@ export default function ParentDashboardV2() {
         <section style={sectionStyle}>
           <h2 style={sectionTitleStyle}>Mon compte</h2>
 
+          {/* Account info */}
+          <div style={{ marginBottom: '1rem', padding: '0.65rem 0.9rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 10, display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+            <span style={{ fontSize: '1rem' }}>👤</span>
+            <span style={{ fontSize: '0.83rem', color: '#d1d5db', fontWeight: 600 }}>{user?.email || 'compte local'}</span>
+            <span style={{ fontSize: '0.72rem', color: '#64748b', padding: '2px 8px', borderRadius: 99, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
+              {user?.providerData?.[0]?.providerId === 'google.com' ? '🔵 Google' : user?.uid === 'localhost-dev' ? '🛠 Dev local' : '✉️ Email'}
+            </span>
+          </div>
+
           {/* PIN card */}
           <div style={pinCardStyle}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.9rem' }}>
@@ -912,6 +1022,7 @@ export default function ParentDashboardV2() {
               pin={pin}
               navigate={navigate}
               refreshParentImages={refreshParentImages}
+              onChildUpdated={(updated) => setChildren(prev => prev.map(c => c.id === updated.id ? { ...c, ...updated } : c))}
             />
           )}
         </section>
