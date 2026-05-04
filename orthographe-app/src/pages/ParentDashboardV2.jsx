@@ -692,9 +692,9 @@ function ChildEditForm({ uid, child, onSaved, onCancel }) {
 
 // ─── GestionEnfantsSection ────────────────────────────────────────────────────
 
-function GestionEnfantsSection({ children, uid, parentImages, pin, navigate, refreshParentImages, onChildUpdated }) {
+function GestionEnfantsSection({ children, uid, parentImages, pin, navigate, refreshParentImages, onChildUpdated, imagesOpenOverride }) {
   const [editingChildId, setEditingChildId] = useState(null);
-  const [imagesOpen, setImagesOpen] = useState(true);
+  const [imagesOpen, setImagesOpen] = useState(imagesOpenOverride ?? false);
 
   return (
     <div style={{ display: 'grid', gap: '2rem' }}>
@@ -787,9 +787,9 @@ function CollapsibleSection({ title, titleAs: Tag = 'h2', open, onToggle, childr
       <button
         type="button"
         onClick={onToggle}
-        style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', width: '100%', background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left' }}
+        style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'none', border: 'none', padding: 0, cursor: 'pointer', textAlign: 'left' }}
       >
-        <Tag style={{ ...(titleStyle || sectionTitleStyle), margin: 0, flex: 1 }}>{title}</Tag>
+        <Tag style={{ ...(titleStyle || sectionTitleStyle), margin: 0 }}>{title}</Tag>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ transition: 'transform 0.2s', transform: open ? 'rotate(180deg)' : 'rotate(0deg)', flexShrink: 0 }}><polyline points="6 9 12 15 18 9"/></svg>
       </button>
       {open && <div style={{ marginTop: '1rem' }}>{children}</div>}
@@ -809,7 +809,8 @@ export default function ParentDashboardV2() {
   const [monCompteOpen, setMonCompteOpen] = useState(false);
   const [accesEnfantOpen, setAccesEnfantOpen] = useState(true);
   const [gestionOpen, setGestionOpen] = useState(true);
-  const [suiviOpen, setSuiviOpen] = useState(true);
+  const [suiviOpen, setSuiviOpen] = useState(false);
+  const [imagesOverride, setImagesOverride] = useState(null); // null = auto
   const [pin, setPin] = useState(undefined);
   const [showPinSetup, setShowPinSetup] = useState(false);
   const [showPinManage, setShowPinManage] = useState(false);
@@ -824,6 +825,11 @@ export default function ParentDashboardV2() {
       setChildren(list);
       setLoading(false);
       setOpenChildIds(new Set(list.length > 0 ? [list[0].id] : []));
+      const hasQuiz = list.some(c => (c.progress?.statsHistory?.length ?? 0) > 0);
+      setAccesEnfantOpen(!hasQuiz);
+      setGestionOpen(!hasQuiz);
+      setSuiviOpen(hasQuiz);
+      setImagesOverride(hasQuiz ? true : null);
     });
     return unsub;
   }, [user?.uid]);
@@ -1001,20 +1007,13 @@ export default function ParentDashboardV2() {
           </p>
           <ol style={{ margin: 0, paddingLeft: '1.3rem', display: 'grid', gap: '0.35rem', textAlign: 'left', maxWidth: 380, marginInline: 'auto' }}>
             <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Configurer</strong> les profils de vos enfants</li>
+            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Accéder</strong> à la partie enfant</li>
             <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Suivre</strong> leur progression et activité</li>
             <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Gérer</strong> les images mystère</li>
-            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}><strong>Accéder</strong> à la partie enfant</li>
           </ol>
         </div>
 
-        {/* ─ Section 1: Accès enfant ─ */}
-        <section style={sectionStyle}>
-          <CollapsibleSection title="Accès enfant" open={accesEnfantOpen} onToggle={() => setAccesEnfantOpen(o => !o)}>
-            <AccesEnfantSection />
-          </CollapsibleSection>
-        </section>
-
-        {/* ─ Section 2: Gestion des enfants ─ */}
+        {/* ─ Section 1: Gestion des enfants ─ */}
         <section style={sectionStyle}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem' }}>
             <CollapsibleSection title="Gestion des enfants" open={gestionOpen} onToggle={() => setGestionOpen(o => !o)}>
@@ -1026,31 +1025,26 @@ export default function ParentDashboardV2() {
                   pin={pin}
                   navigate={navigate}
                   refreshParentImages={refreshParentImages}
+                  imagesOpenOverride={imagesOverride}
                   onChildUpdated={(updated) => setChildren(prev => prev.map(c => c.id === updated.id ? { ...c, ...updated } : c))}
                 />
               )}
             </CollapsibleSection>
-            {!gestionOpen && (
-              <button
-                type="button"
-                onClick={() => pin ? navigate('/parent/child/new') : setShowPinSetup(true)}
-                style={{ ...primaryBtnStyle(false), opacity: pin ? 1 : 0.5 }}
-              >
-                + Ajouter un enfant
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={() => pin ? navigate('/parent/child/new') : setShowPinSetup(true)}
+              style={{ ...primaryBtnStyle(false), opacity: pin ? 1 : 0.5 }}
+            >
+              + Ajouter un enfant
+            </button>
           </div>
-          {gestionOpen && (
-            <div style={{ marginTop: '0.75rem' }}>
-              <button
-                type="button"
-                onClick={() => pin ? navigate('/parent/child/new') : setShowPinSetup(true)}
-                style={{ ...primaryBtnStyle(false), opacity: pin ? 1 : 0.5 }}
-              >
-                + Ajouter un enfant
-              </button>
-            </div>
-          )}
+        </section>
+
+        {/* ─ Section 2: Accès enfant ─ */}
+        <section style={sectionStyle}>
+          <CollapsibleSection title="Accès enfant" open={accesEnfantOpen} onToggle={() => setAccesEnfantOpen(o => !o)}>
+            <AccesEnfantSection />
+          </CollapsibleSection>
         </section>
 
         {/* ─ Section 3: Suivi des enfants ─ */}
