@@ -114,6 +114,16 @@ const fixtures = {
       levelProgress: { justLeveledUp: true, nextLevelName: 'Couronne', current: 3, target: 3 },
     };
   },
+  // Welcome bonus (+200) — first ever session
+  'welcome-bonus': () => {
+    const questions = makeQuestions(3);
+    return {
+      rule: RULE, questions, answers: makeAnswers(questions, 3), score: 3,
+      isFirstSessionOfDay: true,
+      firstSessionBonusAmount: 200,
+      coins: 0,
+    };
+  },
 };
 
 export default fixtures;

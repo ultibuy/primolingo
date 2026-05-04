@@ -19,6 +19,7 @@ const CASES = [
   'no-character-fail',
   'level-progress',
   'no-objective',
+  'welcome-bonus',
 ];
 
 async function main() {

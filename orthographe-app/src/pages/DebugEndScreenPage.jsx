@@ -39,6 +39,7 @@ export default function DebugEndScreenPage() {
       characterId={fixture.characterId || null}
       shopOwned={fixture.shopOwned || []}
       isFirstSessionOfDay={fixture.isFirstSessionOfDay || false}
+      firstSessionBonusAmount={fixture.firstSessionBonusAmount}
       hasDoubleCoinsActive={fixture.hasDoubleCoinsActive || false}
       streakMilestoneJustEarned={fixture.streakMilestoneJustEarned || null}
       levelProgress={fixture.levelProgress || null}
