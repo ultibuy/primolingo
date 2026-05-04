@@ -38,6 +38,7 @@ export default function EndScreen({
   onFinish,
   hasDoubleCoinsActive,
   isFirstSessionOfDay,
+  firstSessionBonusAmount,
   levelProgress,
   streakMilestoneJustEarned,
   characterId = null,
@@ -51,7 +52,7 @@ export default function EndScreen({
   const pct = total > 0 ? Math.round((score / total) * 100) : 0;
   const baseCoins = calculateCoins(score, total);
   const qualifies = pct >= 60;
-  const firstSessionBonus = isFirstSessionOfDay && qualifies ? 10 : 0;
+  const firstSessionBonus = isFirstSessionOfDay && qualifies ? (firstSessionBonusAmount || 10) : 0;
   const streakBonus = streakMilestoneJustEarned?.coins || 0;
   const coinsBeforeMultiplier = baseCoins + firstSessionBonus;
   const doubleCoinsBonus = hasDoubleCoinsActive ? coinsBeforeMultiplier : 0;
@@ -387,7 +388,7 @@ export default function EndScreen({
                 transition: 'all 0.4s ease',
               }}>
                 {firstSessionBonus > 0 && (
-                  <BonusRow label="Bonus du jour" value={`+${displayedDailyBonus}`} />
+                  <BonusRow label={firstSessionBonus >= 200 ? "Bonus de bienvenue" : "Bonus du jour"} value={`+${displayedDailyBonus}`} />
                 )}
                 {streakBonus > 0 && (
                   <BonusRow label={`Bonus série ${streakMilestoneJustEarned.streak}j`} value={`+${displayedStreakBonus}`} />

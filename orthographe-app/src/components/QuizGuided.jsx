@@ -53,6 +53,7 @@ export default function QuizGuided({
   onBuyEmotion = null,
   coins = 0,
   onFlagQuestion,
+  firstSessionBonusAmount,
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [axisSelections, setAxisSelections] = useState({});
@@ -122,6 +123,7 @@ export default function QuizGuided({
         characterId={characterId}
         shopOwned={shopOwned}
         isFirstEverSession={isFirstEverSession}
+        firstSessionBonusAmount={firstSessionBonusAmount}
         onBuyEmotion={onBuyEmotion}
         coins={coins}
         onFinish={() => onFinish(score, questions.length, answers)}

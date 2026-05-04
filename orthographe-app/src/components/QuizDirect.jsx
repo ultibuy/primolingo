@@ -22,6 +22,7 @@ export default function QuizDirect({
   onBuyEmotion = null,
   coins = 0,
   onFlagQuestion,
+  firstSessionBonusAmount,
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -76,6 +77,7 @@ export default function QuizDirect({
         characterId={characterId}
         shopOwned={shopOwned}
         isFirstEverSession={isFirstEverSession}
+        firstSessionBonusAmount={firstSessionBonusAmount}
         onBuyEmotion={onBuyEmotion}
         coins={coins}
         onFinish={() => onFinish(score, questions.length, answers)}

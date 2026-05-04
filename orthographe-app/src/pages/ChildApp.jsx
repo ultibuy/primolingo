@@ -1090,6 +1090,7 @@ export default function ChildApp() {
       (sum, rp) => sum + (rp.guidedSessionsCompleted || 0) + (rp.directSessionsCompleted || 0), 0
     );
     const isFirstEverSession = totalSessionsCompleted === 0;
+    const isWelcomeBonus = !progress?.milestones?.firstSession;
     return renderWithSaveError(
       <QuizComponent
         rule={activeRule}
@@ -1101,6 +1102,7 @@ export default function ChildApp() {
         allRules={allRules}
         isFirstSessionOfDay={isFirstSessionOfDay}
         isFirstEverSession={isFirstEverSession}
+        firstSessionBonusAmount={isFirstSessionOfDay ? (isWelcomeBonus ? 200 : 10) : 0}
         ruleProgress={ruleProgress}
         streak={progress.streak}
         milestones={progress.milestones}
