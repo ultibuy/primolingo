@@ -6,7 +6,7 @@ import posthog from '../services/analytics.js';
 
 // Context
 import { useAuth } from '../contexts/AuthContext.jsx';
-import { getChild, loadParentalPin } from '../services/store.js';
+import { getChild, loadParentalPin, updateChild } from '../services/store.js';
 import { verifyPin } from '../services/pin-crypto.js';
 
 // Content
@@ -352,6 +352,7 @@ export default function ChildApp() {
 
   const [progress, setProgress] = useState(null);
   const [childName, setChildName] = useState('');
+  const [childAvatar, setChildAvatar] = useState('');
   const [adminSettings, setAdminSettings] = useState(null);
   const [sessionSize, setSessionSize] = useState(DEFAULT_SESSION_SIZE);
   const [screen, setScreen] = useState('dashboard');
@@ -579,10 +580,16 @@ export default function ChildApp() {
       .then((child) => {
         if (!child) return;
         setChildName(String(child.name || '').trim());
+        setChildAvatar(child.avatar || '');
       })
       .catch((error) => {
         captureException(error);
       });
+  }, [uid, childId]);
+
+  const handleAvatarChange = useCallback(async (emoji) => {
+    setChildAvatar(emoji);
+    await updateChild(uid, childId, { avatar: emoji });
   }, [uid, childId]);
 
   const handlePlay = useCallback((ruleId, mode) => {
@@ -701,7 +708,7 @@ export default function ChildApp() {
     const ruleProgress = progress.rules?.[quizId];
     const internalLevel = ruleProgress?.level || 0;
     const isReconstruct = internalLevel >= 2;
-    const DICTEE_SESSION_SIZE = isReconstruct ? 10 : 40;
+    const DICTEE_SESSION_SIZE = isReconstruct ? 10 : 20;
     const shuffled = [...allWords].sort(() => Math.random() - 0.5);
     const words = shuffled.slice(0, DICTEE_SESSION_SIZE);
     // SM-2 review: level 4+ with overdue review date → reconstruct mode
@@ -1172,6 +1179,8 @@ export default function ChildApp() {
       rules={sortedRules}
       progress={progress}
       childName={childName}
+      childAvatar={childAvatar}
+      onAvatarChange={handleAvatarChange}
       onPlay={handlePlay}
       onOpenShop={(tab, section) => { setShopInitialTab(tab || null); setShopInitialSection(section || null); setScreen('shop'); }}
       onOpenDictees={() => setScreen('dictees')}
@@ -1188,6 +1197,7 @@ export default function ChildApp() {
       onPlayDictee={handleDicteePlay}
       initialTab={dashboardTab}
       onTabChange={setDashboardTab}
+      parentalPin={parentalPin}
       onProgressChange={(next) => {
         setProgress(next);
         persistProgress(next);

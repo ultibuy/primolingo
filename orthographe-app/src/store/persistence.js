@@ -142,7 +142,7 @@ export async function loadAdminSettings(uid, childId) {
     const allImages = normalizeCustomMysteryImages(parentImages);
     const customMysteryImages = allImages.filter(img => enabledIds.includes(img.id));
     return {
-      prodQuestionCount: Math.max(1, Math.min(Number.parseInt(settings.prodQuestionCount, 10) || 20, 50)),
+      prodQuestionCount: 20,
       customMysteryImages,
     };
   } catch (error) {

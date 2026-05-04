@@ -1,13 +1,13 @@
 [
   {
-    "x": 589,
-    "y": 1666,
-    "text": "ajoute aussi la valeur calculée par la dictée",
-    "time": "04/05 07:44",
+    "x": 677,
+    "y": 1938,
+    "text": "il n'y a jamais 19 mots. 19 mots s'affiche en mode dictée et c'est un bug corrige le. En mode dictée, on a 20 questions en guidé et 10 en mode non guidé. Le % doit s'adapter quand on clique dans la popup en fonction du niveau : si guidé /20 si pas guidé /10",
+    "time": "04/05 07:52",
     "domContext": {
       "tag": "TD",
-      "text": "Réussir 3 sessions de quiz guidé avec au moins 16/20 (80 %)"
+      "text": "12/19"
     },
-    "response": "Fait. Tableau unifie avec les seuils pour grammaire 19q (12/19, 16/19, 18/19), grammaire 20q (12/20, 16/20, 18/20), dictee guidee 40 mots (24/40, 32/40, 36/40), dictee reconstruct 10 mots (6/10, 8/10, 9/10). Note ajoutee sur les anciens comptes qui peuvent avoir 19 questions."
+    "response": "Fait. 3 corrections : 1) ChildApp.jsx : DICTEE_SESSION_SIZE guide passe de 40 a 20. 2) Dashboard.jsx : popup dictee helpSize guide passe de 40 a 20. 3) persistence.js : prodQuestionCount force a 20 (ignore l'ancien reglage sauvegarde qui pouvait etre 19). Doc mise a jour avec le tableau corrige (grammaire 20q, dictee guidee 20 mots, dictee reconstruct 10 mots)."
   }
 ]

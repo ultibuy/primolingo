@@ -28,6 +28,8 @@ import { getToday } from '../engine/sm2.js';
 import { getDoubleCoinsBonusEarned, getDoubleCoinsRemainingSessions, getEquipped, SHOP_CATALOG } from '../engine/economy.js';
 import { computeMaxDailyRecord } from '../engine/stats.js';
 import CharacterSprite from './CharacterSprite.jsx';
+import PinInput from './PinInput.jsx';
+import { verifyPin } from '../services/pin-crypto.js';
 import { resolveCharacterMood, resolveShopCharacter, getCharacterForRule, SHOP_CHARACTERS, SHOP_EMOTIONS, BASE_EMOTIONS } from '../data/shopCharacters.js';
 import { allDictees, getDicteeWordsForLevel } from '../content/dicteesLoader.js';
 import { computeDefaultTab } from '../engine/defaultTab.js';
@@ -38,6 +40,11 @@ import Panel from './ui/Panel.jsx';
 import ProgressListCard from './ui/ProgressListCard.jsx';
 import SegmentedTabs from './ui/SegmentedTabs.jsx';
 import StatBadge from './ui/StatBadge.jsx';
+
+// ---------------------------------------------------------------------------
+// Avatar emoji list (same as ChildSetup)
+// ---------------------------------------------------------------------------
+const AVATARS = ['🦊', '🐱', '🦁', '🐸', '🐵', '🦄', '🐲', '🦅', '🐺', '🐼', '🦈', '🐙', '🐴'];
 
 // ---------------------------------------------------------------------------
 // FIX 1 & FIX 3 — Corrected milestone messages with proper French accents
@@ -350,6 +357,8 @@ export default function Dashboard({
   rules,
   progress,
   childName,
+  childAvatar = '',
+  onAvatarChange,
   onPlay,
   onOpenShop,
   pendingEvents,
@@ -366,6 +375,7 @@ export default function Dashboard({
   initialTab,
   onTabChange,
   onProgressChange,
+  parentalPin,
 }) {
   const navigate = useNavigate();
   const [overlay, setOverlay] = useState(null);
@@ -383,7 +393,40 @@ export default function Dashboard({
   const [bugTarget, setBugTarget] = useState(null); // { type, title, id, level? }
   const [bugDesc, setBugDesc] = useState('');
   const [bugCopied, setBugCopied] = useState(false);
+  const [showParentPin, setShowParentPin] = useState(false);
+  const [parentPinError, setParentPinError] = useState('');
+  const [parentPinLockedUntil, setParentPinLockedUntil] = useState(0);
+  const [showAvatarPicker, setShowAvatarPicker] = useState(false);
   const isDebug = isLocalhost();
+
+  const handleParentReturn = useCallback(() => {
+    if (!parentalPin) {
+      navigate('/parent');
+      return;
+    }
+    setShowParentPin(true);
+    setParentPinError('');
+  }, [parentalPin, navigate]);
+
+  const handleParentPinSubmit = useCallback(async (enteredPin) => {
+    if (enteredPin.length !== 4) {
+      setParentPinError('Le code doit contenir 4 chiffres.');
+      return;
+    }
+
+    const pinOk = parentalPin?.salt && parentalPin?.hash
+      ? await verifyPin(enteredPin, parentalPin.salt, parentalPin.hash)
+      : enteredPin === parentalPin;
+
+    if (!pinOk) {
+      setParentPinError('Code incorrect.');
+      return;
+    }
+
+    setShowParentPin(false);
+    setParentPinError('');
+    navigate('/parent');
+  }, [parentalPin, navigate]);
   const overlayTimeoutsRef = useRef([]);
   const [debugStreak, setDebugStreak] = useState(String(progress.streak?.current || 0));
   const [debugDate, setDebugDate] = useState(progress.streak?.lastActiveDate || '');
@@ -997,7 +1040,46 @@ export default function Dashboard({
         <div style={{ textAlign: 'center', padding: '0.5rem 1rem 0.8rem' }}>
           <h1 style={{ fontSize: '1.7rem', fontWeight: 800, color: '#fff', margin: '0 0 0.5rem', letterSpacing: '-0.02em' }}>
             {getGreeting()}{childName ? `, ${childName}` : ''}
+            {childAvatar && (
+              <button
+                onClick={() => setShowAvatarPicker(v => !v)}
+                style={{
+                  background: 'none', border: 'none', cursor: 'pointer',
+                  fontSize: '1.4rem', marginLeft: '0.4rem',
+                  verticalAlign: 'middle', lineHeight: 1,
+                  padding: '0 0.2rem',
+                  borderRadius: 8,
+                  transition: 'background 0.15s',
+                }}
+                title="Changer d'avatar"
+              >
+                {childAvatar}
+              </button>
+            )}
           </h1>
+          {showAvatarPicker && (
+            <div style={{
+              display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.4rem',
+              padding: '0.6rem', marginTop: '0.4rem',
+              background: 'rgba(255,255,255,0.06)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              borderRadius: 14,
+            }}>
+              {AVATARS.map(a => (
+                <button
+                  key={a}
+                  onClick={() => { onAvatarChange?.(a); setShowAvatarPicker(false); }}
+                  style={{
+                    fontSize: '1.5rem', background: a === childAvatar ? 'rgba(167,139,250,0.25)' : 'none',
+                    border: a === childAvatar ? '2px solid #a78bfa' : '2px solid transparent',
+                    borderRadius: 10, cursor: 'pointer', padding: '0.25rem 0.3rem', lineHeight: 1,
+                  }}
+                >
+                  {a}
+                </button>
+              ))}
+            </div>
+          )}
           <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', flexWrap: 'nowrap' }}>
             {[
               {
@@ -1323,7 +1405,7 @@ export default function Dashboard({
                                 const reconstructHelp = ['crown', 'diamond', 'diamond_status', 'badge_diamond'].includes(lvlKey);
                                 const helpSize = reconstructHelp
                                   ? Math.min(10, words?.length || 10)
-                                  : Math.min(40, words?.length || 40);
+                                  : Math.min(20, words?.length || 20);
                                 setLevelHelp({
                                   level: lvlKey,
                                   ruleTitle: dictee.title,
@@ -1353,7 +1435,7 @@ export default function Dashboard({
           <ActionButton
             variant="subtle"
             size="sm"
-            onClick={() => navigate('/parent')}
+            onClick={handleParentReturn}
             style={{ color: '#4b5563', fontWeight: 700 }}
           >
             Retourner sur l'app parent
@@ -2102,6 +2184,25 @@ export default function Dashboard({
         }}
         onClose={() => setEditingRule(null)}
       />
+    )}
+
+    {/* ── Parent PIN modal ── */}
+    {showParentPin && (
+      <PopupModal
+        onClose={() => setShowParentPin(false)}
+        ariaLabel="Code parental"
+        panelStyle={{ maxWidth: 340, padding: '2rem 1.5rem' }}
+      >
+        <h3 style={{ textAlign: 'center', margin: '0 0 1.2rem', fontSize: '1.1rem', fontWeight: 700 }}>
+          Code parental
+        </h3>
+        <PinInput
+          onComplete={handleParentPinSubmit}
+          error={parentPinError}
+          locked={parentPinLockedUntil > Date.now()}
+          lockedUntil={parentPinLockedUntil}
+        />
+      </PopupModal>
     )}
     </>
   );
