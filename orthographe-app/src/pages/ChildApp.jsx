@@ -580,7 +580,8 @@ export default function ChildApp() {
     getChild(uid, childId)
       .then((child) => {
         if (!child) return;
-        setChildName(String(child.name || '').trim());
+        const raw = String(child.name || '').trim();
+        setChildName(raw ? raw.charAt(0).toUpperCase() + raw.slice(1) : '');
         setChildAvatar(child.avatar || '');
       })
       .catch((error) => {

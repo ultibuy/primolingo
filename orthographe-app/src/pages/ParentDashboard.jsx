@@ -865,7 +865,11 @@ export default function ParentDashboardV2() {
   useEffect(() => {
     if (!user?.uid) return;
     const unsub = listChildren(user.uid, (list) => {
-      setChildren(list);
+      const capitalized = list.map(c => ({
+        ...c,
+        name: c.name ? c.name.charAt(0).toUpperCase() + c.name.slice(1) : c.name,
+      }));
+      setChildren(capitalized);
       setLoading(false);
       setOpenChildIds(new Set(list.length > 0 ? [list[0].id] : []));
       const hasQuiz = list.some(c => (c.progress?.statsHistory?.length ?? 0) > 0);
