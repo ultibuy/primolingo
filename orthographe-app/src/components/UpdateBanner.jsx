@@ -1,4 +1,3 @@
-/* global __APP_VERSION__ */
 import { useState, useEffect } from 'react';
 
 /**
@@ -8,6 +7,15 @@ import { useState, useEffect } from 'react';
  */
 export default function UpdateBanner() {
   const [waiting, setWaiting] = useState(false);
+  const [newVersion, setNewVersion] = useState(null);
+
+  // Fetch the new version from /version.json when update is detected
+  const fetchNewVersion = () => {
+    fetch(`/version.json?t=${Date.now()}`)
+      .then(r => r.json())
+      .then(({ major, minor, patch }) => setNewVersion(`${major}.${minor}.${String(patch).padStart(3, '0')}`))
+      .catch(() => {});
+  };
 
   useEffect(() => {
     if (!('serviceWorker' in navigator)) return undefined;
@@ -17,7 +25,7 @@ export default function UpdateBanner() {
     // Check if a SW is already waiting right now
     const checkWaiting = (reg) => {
       if (cancelled) return;
-      if (reg.waiting && reg.active) setWaiting(true);
+      if (reg.waiting && reg.active) { setWaiting(true); fetchNewVersion(); }
     };
 
     // Listen for new SW arriving
@@ -25,7 +33,7 @@ export default function UpdateBanner() {
       if (cancelled) return;
       if (reg.installing) {
         reg.installing.addEventListener('statechange', (e) => {
-          if (e.target.state === 'installed' && reg.active) setWaiting(true);
+          if (e.target.state === 'installed' && reg.active) { setWaiting(true); fetchNewVersion(); }
         });
       }
     };
@@ -105,7 +113,7 @@ export default function UpdateBanner() {
           Nouvelle version disponible
         </div>
         <div style={{ fontSize: '0.78rem', color: '#93c5fd', lineHeight: 1.4 }}>
-          Recharge pour profiter des dernières améliorations · v{__APP_VERSION__}
+          Recharge pour profiter des dernières améliorations{newVersion ? ` · v${newVersion}` : ''}
         </div>
       </div>
 
