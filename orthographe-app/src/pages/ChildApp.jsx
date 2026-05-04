@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useRef, lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
+import { version as APP_VERSION } from '../../package.json';
 import '../index.css';
 import { captureException } from '../services/sentry.js';
 import posthog from '../services/analytics.js';
@@ -1175,34 +1176,39 @@ export default function ChildApp() {
   const sortedRules = sortRulesByPriority(allRules, progress.rules || {});
 
   return renderWithSaveError(
-    <Dashboard
-      rules={sortedRules}
-      progress={progress}
-      childName={childName}
-      childAvatar={childAvatar}
-      onAvatarChange={handleAvatarChange}
-      onPlay={handlePlay}
-      onOpenShop={(tab, section) => { setShopInitialTab(tab || null); setShopInitialSection(section || null); setScreen('shop'); }}
-      onOpenDictees={() => setScreen('dictees')}
-      pendingEvents={pendingEvents}
-      onEventsSeen={handleEventsSeen}
-      onDebugUpdateStreak={handleDebugUpdateStreak}
-      onDebugSetCoins={handleDebugSetCoins}
-      onDebugClearProgress={handleDebugClearProgress}
-      dailyBackups={dailyBackups}
-      onDebugRestoreBackup={handleDebugRestoreBackup}
-      onTriggerEntranceAnim={triggerEntranceAnim}
-      sessionSize={sessionSize}
-      onDebugSetSessionSize={setSessionSize}
-      onPlayDictee={handleDicteePlay}
-      initialTab={dashboardTab}
-      onTabChange={setDashboardTab}
-      parentalPin={parentalPin}
-      onProgressChange={(next) => {
-        setProgress(next);
-        persistProgress(next);
-      }}
-    />
+    <>
+      <Dashboard
+        rules={sortedRules}
+        progress={progress}
+        childName={childName}
+        childAvatar={childAvatar}
+        onAvatarChange={handleAvatarChange}
+        onPlay={handlePlay}
+        onOpenShop={(tab, section) => { setShopInitialTab(tab || null); setShopInitialSection(section || null); setScreen('shop'); }}
+        onOpenDictees={() => setScreen('dictees')}
+        pendingEvents={pendingEvents}
+        onEventsSeen={handleEventsSeen}
+        onDebugUpdateStreak={handleDebugUpdateStreak}
+        onDebugSetCoins={handleDebugSetCoins}
+        onDebugClearProgress={handleDebugClearProgress}
+        dailyBackups={dailyBackups}
+        onDebugRestoreBackup={handleDebugRestoreBackup}
+        onTriggerEntranceAnim={triggerEntranceAnim}
+        sessionSize={sessionSize}
+        onDebugSetSessionSize={setSessionSize}
+        onPlayDictee={handleDicteePlay}
+        initialTab={dashboardTab}
+        onTabChange={setDashboardTab}
+        parentalPin={parentalPin}
+        onProgressChange={(next) => {
+          setProgress(next);
+          persistProgress(next);
+        }}
+      />
+      <div style={{ textAlign: 'center', padding: '0.5rem 0 1rem', fontSize: '0.65rem', color: 'rgba(255,255,255,0.12)' }}>
+        v{APP_VERSION}
+      </div>
+    </>
   );
 }
 

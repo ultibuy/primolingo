@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { version as APP_VERSION } from "../../package.json";
 import CoinIcon from "../components/CoinIcon.jsx";
 import CharacterSprite from "../components/CharacterSprite.jsx";
 import LightningEntranceEffect from "../components/LightningEntranceEffect.jsx";
@@ -2257,6 +2258,7 @@ export default function LandingPageV5() {
             </a>
           </p>
           <p style={{ marginTop: 4 }}>© 2026 PrimoLingo</p>
+          <p style={{ marginTop: 4, fontSize: '0.65rem', color: 'rgba(255,255,255,0.12)' }}>v{APP_VERSION}</p>
         </footer>
 
         </div>{/* end pageContent */}
