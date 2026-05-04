@@ -2,6 +2,7 @@
   "hosting": [
     {
       "target": "app",
+      "predeploy": ["node scripts/bump-version.js", "npm run build"],
       "public": "dist",
       "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "cleanUrls": true,
