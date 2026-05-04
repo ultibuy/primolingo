@@ -9,5 +9,16 @@
       "text": "12/19"
     },
     "response": "Fait. 3 corrections : 1) ChildApp.jsx : DICTEE_SESSION_SIZE guide passe de 40 a 20. 2) Dashboard.jsx : popup dictee helpSize guide passe de 40 a 20. 3) persistence.js : prodQuestionCount force a 20 (ignore l'ancien reglage sauvegarde qui pouvait etre 19). Doc mise a jour avec le tableau corrige (grammaire 20q, dictee guidee 20 mots, dictee reconstruct 10 mots)."
+  },
+  {
+    "x": 496,
+    "y": 2701,
+    "text": "remplace tous les % par leur vraie valeur dans la popup bronze, on ne doit jamais voir de % tjs leur valeur sur 10 ou sur 20",
+    "time": "04/05 08:04",
+    "domContext": {
+      "tag": "P",
+      "text": ""
+    },
+    "response": "Fait. Dans LevelHelpPopup.jsx, les 2 hints de la popup Bronze qui contenaient des % ont ete remplaces par les valeurs calculees : 'Minimum 60%' → 'Minimum 12/20', '60% → 5, 80% → 20, 100% → 30' → '12/20 → 5, 16/20 → 20, 20/20 → 30'. Les valeurs s'adaptent automatiquement au sessionSize."
   }
 ]

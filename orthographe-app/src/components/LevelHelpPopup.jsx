@@ -30,9 +30,9 @@ function buildLevelData(sessionSize) {
       headline: "C'est quoi le Bronze ?",
       description: `Premier palier. Termine une session guidée avec au moins ${s60} et c'est validé.`,
       stats: [
-        { label: "Pour l'obtenir", value: `1 session guidée avec au moins ${s60}`, hint: "Minimum 60% pour valider. Le pavé de décision t'accompagne." },
+        { label: "Pour l'obtenir", value: `1 session guidée avec au moins ${s60}`, hint: `Minimum ${s60} pour valider. Le pavé de décision t'accompagne.` },
         { label: 'Mode guidé', value: "Le pavé t'accompagne", hint: "Il élimine les mauvaises réponses une par une." },
-        { label: 'Pièces', value: '0 à 30 par session', hint: "60% → 5, 80% → 20, 100% → 30." },
+        { label: 'Pièces', value: '0 à 30 par session', hint: `${s60} → 5, ${s80} → 20, ${scoreFor(100, sessionSize)} → 30.` },
         { label: "Ensuite", value: "Direction l'Argent", hint: `3 sessions guidées \u2265 ${s80}.` },
       ],
     },
