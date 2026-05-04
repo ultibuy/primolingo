@@ -1171,7 +1171,7 @@ export default function ParentDashboard() {
         {/* ─ Espace enfant ─ */}
         {!showWizard && !loading && children.length > 0 && (
           <section style={sectionStyle}>
-            <h2 style={sectionTitleStyle}>Espace enfant</h2>
+            <h2 style={sectionTitleStyle}>{children.length > 1 ? 'Espaces enfant' : 'Espace enfant'}</h2>
             <div style={{ display: 'grid', gridTemplateColumns: children.length > 1 ? 'repeat(auto-fit, minmax(240px, 1fr))' : '1fr', gap: '1rem', marginTop: '1rem' }}>
               {children.map(child => (
                 <div key={child.id} style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: 'var(--radius-md)', padding: '1rem 1.1rem', display: 'grid', gap: '0.7rem' }}>
@@ -1333,8 +1333,8 @@ export default function ParentDashboard() {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.6rem', flexWrap: 'wrap' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
                   <span style={{ fontSize: '0.83rem', color: '#d1d5db', fontWeight: 600 }}>{user?.email || 'compte local'}</span>
-                  <span style={{ fontSize: '0.72rem', color: '#64748b', padding: '2px 8px', borderRadius: 99, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                    {user?.providerData?.[0]?.providerId === 'google.com' ? '🔵 Google' : user?.uid === 'localhost-dev' ? '🛠 Dev local' : '✉️ Email'}
+                  <span style={{ fontSize: '0.72rem', color: '#64748b' }}>
+                    {user?.providerData?.[0]?.providerId === 'google.com' ? 'Connexion Google' : user?.uid === 'localhost-dev' ? 'Dev local' : 'Connexion Email'}
                   </span>
                 </div>
                 <button type="button" onClick={handleSignOut} style={logoutBtnStyle}>Déconnexion</button>
