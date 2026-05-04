@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { version as APP_VERSION } from '../../package.json';
+import VersionFooter from '../components/ui/VersionFooter.jsx';
 import { useAuth } from '../contexts/AuthContext.jsx';
 import { getChild, createChild, updateChild } from '../services/store.js';
 import { captureException } from '../services/sentry.js';
@@ -70,9 +70,7 @@ export default function ChildSetup() {
             Retour au tableau de bord
           </button>
         </div>
-      <div style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.65rem', color: 'rgba(255,255,255,0.12)' }}>
-        v{APP_VERSION}
-      </div>
+      <VersionFooter />
       </div>
     );
   }
@@ -130,9 +128,7 @@ export default function ChildSetup() {
           </form>
         )}
       </div>
-      <div style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.65rem', color: 'rgba(255,255,255,0.12)' }}>
-        v{APP_VERSION}
-      </div>
+      <VersionFooter />
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import { useEffect, useState, useCallback, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { version as APP_VERSION } from '../../package.json';
 import { GoogleAuthProvider, reauthenticateWithPopup } from 'firebase/auth';
 import { useAuth } from '../contexts/AuthContext.jsx';
 import { auth } from '../services/firebase-auth.js';
@@ -12,6 +11,7 @@ import CrownIcon from '../components/CrownIcon.jsx';
 import AppLogo from '../components/AppLogo.jsx';
 import PinInput from '../components/PinInput.jsx';
 import PopupModal from '../components/PopupModal.jsx';
+import VersionFooter from '../components/ui/VersionFooter.jsx';
 import { allRules } from '../content/loader.js';
 import { allDictees, LEVELS } from '../content/dicteesLoader.js';
 import { hashPin } from '../services/pin-crypto.js';
@@ -1095,9 +1095,7 @@ export default function ParentDashboardV2() {
           )}
         </section>
 
-        <div style={{ textAlign: 'center', marginTop: '2rem', fontSize: '0.65rem', color: 'rgba(255,255,255,0.12)', paddingBottom: '5rem' }}>
-          v{APP_VERSION} · dashboard parent v2
-        </div>
+        <VersionFooter style={{ marginTop: '2rem', paddingBottom: '5rem' }} />
       </div>
     </div>
   );

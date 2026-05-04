@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { version as APP_VERSION } from '../../package.json';
 import AppLogo from '../components/AppLogo.jsx';
+import VersionFooter from '../components/ui/VersionFooter.jsx';
 import { signInWithGoogle, signInWithEmail, createAccountWithEmail } from '../services/auth.js';
 import { captureException } from '../services/sentry.js';
 import posthog from '../services/analytics.js';
@@ -156,9 +156,7 @@ export default function LoginPage() {
         <a href="/" style={backLinkStyle}>&larr; Retour à l'accueil</a>
       </div>
 
-      <div style={{ textAlign: 'center', marginTop: '1rem', fontSize: '0.65rem', color: 'rgba(255,255,255,0.12)' }}>
-        v{APP_VERSION}
-      </div>
+      <VersionFooter />
 
       <style>{`
         @keyframes spin { to { transform: rotate(360deg); } }
