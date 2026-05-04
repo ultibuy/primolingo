@@ -18,17 +18,21 @@ Chaque règle suit la même progression :
 
 | Niveau | Comment l'atteindre | Récompense |
 |--------|---------------------|------------|
-| **Bronze** | Terminer 1 session de quiz guidé avec au moins 12/20 (60 %) | — |
-| **Argent** | Réussir 3 sessions de quiz guidé avec au moins 16/20 (80 %) | +30 pièces, débloque le quiz direct |
-| **Couronne** | Réussir 3 sessions de quiz direct avec au moins 16/20 (80 %) | +100 pièces |
-| **Diamant** | Réussir 3 sessions de quiz direct d'affilée avec au moins 18/20 (90 %) | +200 pièces, active les révisions espacées |
+| **Bronze** | Terminer 1 session de quiz guidé avec au moins 60 % | — |
+| **Argent** | Réussir 3 sessions de quiz guidé avec au moins 80 % | +30 pièces, débloque le quiz direct |
+| **Couronne** | Réussir 3 sessions de quiz direct avec au moins 80 % | +100 pièces |
+| **Diamant** | Réussir 3 sessions de quiz direct d'affilée avec au moins 90 % | +200 pièces, active les révisions espacées |
 
-**Dictée** : les mêmes pourcentages s'appliquent mais sur des sessions de taille différente :
+Les seuils en nombre de bonnes réponses sont calculés automatiquement selon la taille de la session. La popup de chaque niveau affiche la valeur exacte. Voici les valeurs courantes :
 
-| Mode dictée | Taille session | 60 % | 80 % | 90 % |
-|-------------|----------------|------|------|------|
-| Guidé (écoute + choix) | 40 mots | 24/40 | 32/40 | 36/40 |
-| Reconstruct (reconstitution) | 10 mots | 6/10 | 8/10 | 9/10 |
+| Taille session | 60 % (Bronze) | 80 % (Argent/Couronne) | 90 % (Diamant) |
+|----------------|---------------|------------------------|----------------|
+| Grammaire — 19 questions | 12/19 | 16/19 | 18/19 |
+| Grammaire — 20 questions | 12/20 | 16/20 | 18/20 |
+| Dictée guidée — 40 mots | 24/40 | 32/40 | 36/40 |
+| Dictée reconstruct — 10 mots | 6/10 | 8/10 | 9/10 |
+
+Note : certains comptes créés avant mai 2026 peuvent avoir un nombre de questions différent (ex. 19). Les nouveaux comptes utilisent 20 par défaut.
 
 Pour le Diamant, le compteur de sessions consécutives repart à zéro dès qu'une session passe en dessous de 90 %. C'est volontairement exigeant : le Diamant est un vrai trophée.
 

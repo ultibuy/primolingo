@@ -8,6 +8,6 @@
       "tag": "TD",
       "text": "Réussir 3 sessions de quiz guidé avec au moins 16/20 (80 %)"
     },
-    "response": "Fait. Tableau dictee ajoute : mode guide 40 mots (24/40, 32/40, 36/40), mode reconstruct 10 mots (6/10, 8/10, 9/10). Valeurs lues depuis ChildApp.jsx (DICTEE_SESSION_SIZE = 40 pour guide, 10 pour reconstruct)."
+    "response": "Fait. Tableau unifie avec les seuils pour grammaire 19q (12/19, 16/19, 18/19), grammaire 20q (12/20, 16/20, 18/20), dictee guidee 40 mots (24/40, 32/40, 36/40), dictee reconstruct 10 mots (6/10, 8/10, 9/10). Note ajoutee sur les anciens comptes qui peuvent avoir 19 questions."
   }
 ]
