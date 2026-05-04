@@ -10,11 +10,13 @@ Avant chaque mise en production, une série de vérifications automatiques est l
 |----------|-----------------|-------------------|
 | `test:unit` | Après modification des calculs ou du coaching | Les calculs de pièces, de flamme, de niveaux et les messages de coaching |
 | `test:e2e` | Après modification de l'interface | Les parcours utilisateur complets en navigateur simulé |
-| `test:all` | Avant un gros changement | Tout : calculs + interface |
+| `test:all` | Avant un gros changement | Tout : calculs + interface (= suite prédéploiement complète) |
 | `test:auth` | Après modification du flux d'authentification | L01–L07 : connexion, inscription, redirection, hachage PIN |
 | `test:auth:real` | Validation Firebase réelle (compte test) | L03b : connexion e-mail effective et redirection vers `/parent` |
 | `deploy` | Pour mettre en production | Vérifie tout, construit l'app, teste contre la version finale, puis déploie |
 | `deploy:raw` | Urgence uniquement | Déploie sans vérification — à éviter |
+
+> **Predeploy** désigne l'ensemble des tests qui s'exécutent automatiquement à chaque `npm run deploy`, avant que Firebase reçoive quoi que ce soit. Ces tests sont rapides (< 30 s), sans navigateur, et bloquants : un échec arrête le déploiement. Les tests marqués <span class="test-chip test-chip-predeploy">Predeploy</span> dans les tableaux ci-dessous font partie de cette barrière. Les tests <span class="test-chip test-chip-manual">Suite manuelle</span> nécessitent un profil enfant simulé et ne peuvent pas tourner en CI — ils doivent être lancés manuellement via `npm run test:all`.
 
 ## Ce qui est vérifié automatiquement avant chaque déploiement
 
@@ -32,6 +34,18 @@ Les parcours qui nécessitent un profil enfant (dashboard, quiz, boutique, perso
 La suite manuelle doit être lancée avant tout changement important touchant l'interface ou les mécaniques de jeu.
 
 Quand un changement est important, il faut aussi demander à l'utilisateur si la documentation fonctionnelle doit être mise à jour. Si oui, la page de documentation concernée doit être mise à jour dans la même intervention.
+
+## Politique CI selon l'ampleur du changement
+
+| Ampleur | Exemples | Tests à lancer | Doc à mettre à jour ? |
+|---------|----------|---------------|----------------------|
+| **Micro** — cosmétique pur | Couleur, marge, libellé | Aucun — vérification visuelle suffit | Non |
+| **Petit** — logique isolée | Calcul de pièces, règle de coaching | `npm run test:unit` | Si la règle concernée est documentée |
+| **Moyen** — interface ou parcours | Nouveau composant, modification de flux | `npm run test:e2e` | Oui, page fonctionnelle concernée |
+| **Gros** — transversal ou refacto | Moteur de jeu, auth, architecture | `npm run test:all` puis vérification manuelle | Oui, toutes les pages touchées |
+| **Déploiement** | Toute mise en prod | `npm run deploy` (predeploy automatique) | Selon ampleur du changement inclus |
+
+Règle générale : dès qu'un changement touche une règle documentée dans `docs/`, la page correspondante doit être mise à jour dans la même intervention.
 
 ## Tests par domaine
 

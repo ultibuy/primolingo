@@ -42,5 +42,27 @@
       "text": "Coaching et messages"
     },
     "response": "Fait : la colonne Domaine a été supprimée. Les tests sont maintenant regroupés en sous-sections par domaine, avec un tableau séparé pour chaque domaine. La colonne ID vient directement de `src/debug/testRegistry.js`, et la colonne Exécution est rendue avec des chips colorées."
+  },
+  {
+    "x": 563,
+    "y": 567,
+    "text": "plus tard tu parles de pre-deploy. explique ce concept ici",
+    "time": "04/05 17:40",
+    "domContext": {
+      "tag": "TD",
+      "text": "Avant un gros changement"
+    },
+    "response": "Fait. Un encadré explicatif a été ajouté juste avant la section « Ce qui est vérifié automatiquement avant chaque déploiement » : il définit ce que signifie Predeploy (tests rapides sans navigateur, bloquants, lancés automatiquement par npm run deploy) et ce que désigne Suite manuelle (tests nécessitant un profil enfant simulé, lancés via npm run test:all)."
+  },
+  {
+    "x": 452,
+    "y": 846,
+    "text": "ajoute une section pour expliciter la politique de CI en fonction de l'ampleur du changement",
+    "time": "04/05 17:40",
+    "domContext": {
+      "tag": "BODY",
+      "text": "PrimoLingo\n    Sommaire\n    ← PrécédentSuivant →\n  \n  Politique de tests et déploiement\nDescription\nAvant chaque mise en"
+    },
+    "response": "Fait. Section « Politique CI selon l'ampleur du changement » ajoutée avec un tableau à 5 niveaux : Micro (cosmétique, aucun test), Petit (logique isolée, test:unit), Moyen (interface/parcours, test:e2e), Gros (transversal/refacto, test:all + manuelle), Déploiement (npm run deploy, predeploy automatique). La règle de mise à jour de la doc est rappelée en dessous."
   }
 ]
