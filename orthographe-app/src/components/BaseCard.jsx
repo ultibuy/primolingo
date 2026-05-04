@@ -50,15 +50,17 @@ export default function BaseCard({
     width: '100%',
     minWidth: 0,
     boxSizing: 'border-box',
-    background: locked ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.06)',
-    borderRadius: 20,
+    background: locked ? 'rgba(255,255,255,0.03)' : 'var(--glass-bg)',
+    borderRadius: 'var(--radius-md)',
     padding: '1.4rem 1.5rem',
     border: locked
       ? '1px solid rgba(255,255,255,0.04)'
-      : '1px solid rgba(255,255,255,0.08)',
-    boxShadow: locked ? 'none' : '0 4px 24px rgba(0,0,0,0.2)',
+      : '1px solid var(--glass-border)',
+    boxShadow: locked ? 'none' : 'var(--shadow-md)',
+    backdropFilter: 'blur(var(--blur-md))',
+    WebkitBackdropFilter: 'blur(var(--blur-md))',
     opacity: locked ? 0.45 : 1,
-    transition: 'all 0.2s ease',
+    transition: 'all var(--motion-base)',
     filter: locked ? 'grayscale(0.7)' : 'none',
     position: 'relative',
     ...cardStyle,
@@ -77,9 +79,9 @@ export default function BaseCard({
           onClick={(e) => { e.stopPropagation(); onBugReport(); }}
           style={{
             position: 'absolute', top: 8, right: 8,
-            background: 'rgba(255,255,255,0.07)',
-            border: '1px solid rgba(255,255,255,0.12)',
-            borderRadius: 8, padding: '2px 6px',
+            background: 'var(--glass-bg)',
+            border: '1px solid var(--glass-border)',
+            borderRadius: 'var(--radius-xs)', padding: '2px 6px',
             fontSize: '0.75rem', cursor: 'pointer',
             lineHeight: 1.5, zIndex: 2, opacity: 0.55,
           }}
@@ -121,7 +123,7 @@ export default function BaseCard({
               </span>
             )}
           </div>
-          <div style={{ height: 6, borderRadius: 3, background: 'rgba(255,255,255,0.06)', overflow: 'hidden' }}>
+          <div style={{ height: 6, borderRadius: 3, background: 'var(--glass-bg)', overflow: 'hidden' }}>
             <div style={{
               height: '100%',
               width: `${Math.round(progressPct * 100)}%`,
@@ -147,16 +149,16 @@ export default function BaseCard({
             width: '100%',
             minWidth: 0,
             boxSizing: 'border-box',
-            padding: '0.8rem',
-            borderRadius: 12,
+            padding: '12px 24px',
+            borderRadius: 'var(--radius-pill)',
             border: 'none',
-            background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
-            color: '#fff',
+            background: 'var(--gradient-brand)',
+            color: 'var(--text-white)',
             cursor: buttonDisabled ? 'default' : 'pointer',
-            fontSize: '0.95rem',
+            fontSize: 14,
             fontWeight: 700,
-            boxShadow: '0 4px 15px rgba(0,0,0,0.2)',
-            transition: 'all 0.15s ease',
+            boxShadow: 'var(--shadow-glow)',
+            transition: 'all var(--motion-base)',
             ...buttonStyle,
           }}
         >

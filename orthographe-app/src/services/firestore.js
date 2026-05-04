@@ -16,7 +16,7 @@ import {
   orderBy,
   onSnapshot,
 } from 'firebase/firestore';
-import { db } from '../firebase.js';
+import { db } from './firebase-db.js';
 import { getToday } from '../engine/sm2.js';
 
 // ---------------------------------------------------------------------------

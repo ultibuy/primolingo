@@ -54,7 +54,7 @@ export default function ProgressBar({
           pointerEvents: 'none',
           zIndex: 10,
         }}>
-          <CharacterSprite id={activeChar} mood={mood} size={28} glow={false} />
+          <CharacterSprite id={activeChar} mood={mood} size={28} glow={true} />
         </div>
       )}
       <div

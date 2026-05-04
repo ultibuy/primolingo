@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import * as Sentry from '@sentry/react';
+import { captureException } from '../services/sentry.js';
 
 export default class ErrorBoundary extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ export default class ErrorBoundary extends Component {
 
   componentDidCatch(error, info) {
     console.error('[ErrorBoundary]', error, info?.componentStack);
-    Sentry.captureException(error, { extra: { componentStack: info?.componentStack } });
+    captureException(error, { extra: { componentStack: info?.componentStack } });
   }
 
   render() {
@@ -36,7 +36,7 @@ export default class ErrorBoundary extends Component {
           padding: '2.5rem 2rem',
           border: '1px solid rgba(255,255,255,0.1)',
         }}>
-          <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>😵</div>
+          <div style={{ marginBottom: '1rem' }}><svg width="52" height="52" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L1.5 20.5h21L12 2z" fill="var(--color-orange,#fb923c)" opacity="0.15" stroke="var(--color-orange,#fb923c)" strokeWidth="1.5" strokeLinejoin="round"/><line x1="12" y1="9" x2="12" y2="14" stroke="var(--color-orange,#fb923c)" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="17" r="1" fill="var(--color-orange,#fb923c)"/></svg></div>
           <h1 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#e2e2e2', marginBottom: '0.5rem' }}>
             Oups, quelque chose a planté
           </h1>

@@ -29,48 +29,54 @@ export default function ActionButton({
 
 const baseStyle = {
   border: 'none',
-  borderRadius: 10,
+  borderRadius: 'var(--radius-pill)',
   boxSizing: 'border-box',
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: 6,
+  gap: 8,
   minWidth: 0,
-  fontFamily: 'inherit',
-  fontWeight: 800,
+  fontFamily: 'var(--font-body)',
+  fontWeight: 700,
   lineHeight: 1.1,
   whiteSpace: 'nowrap',
-  transition: 'background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease',
+  transition: 'all var(--motion-base)',
   touchAction: 'manipulation',
 };
 
 const variantStyles = {
   primary: {
-    background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
-    color: '#fff',
-    boxShadow: '0 2px 10px rgba(var(--color-primary-rgb),0.28)',
+    background: 'var(--gradient-brand)',
+    color: 'var(--text-white)',
+    boxShadow: 'var(--shadow-glow)',
   },
   subtle: {
-    background: 'rgba(255,255,255,0.04)',
-    border: '1px solid rgba(255,255,255,0.08)',
-    color: '#cbd5e1',
+    background: 'var(--glass-bg)',
+    border: '1px solid var(--glass-border)',
+    color: 'var(--text-light)',
     boxShadow: 'none',
   },
   ghost: {
     background: 'transparent',
-    color: 'inherit',
+    color: 'var(--color-primary)',
+    border: '1.5px solid var(--color-primary)',
     boxShadow: 'none',
+  },
+  gold: {
+    background: 'var(--gradient-flame)',
+    color: 'var(--color-bg1)',
+    boxShadow: 'var(--shadow-glow-gold)',
   },
   danger: {
     background: 'rgba(248,113,113,0.08)',
     border: '1px solid rgba(248,113,113,0.25)',
-    color: '#f87171',
+    color: 'var(--color-red)',
     boxShadow: 'none',
   },
 };
 
 const sizeStyles = {
-  sm: { padding: '0.45rem 0.85rem', fontSize: '0.78rem' },
-  md: { padding: '0.62rem 1rem', fontSize: '0.86rem' },
-  lg: { padding: '0.78rem 1.15rem', fontSize: '0.98rem' },
+  sm: { padding: '8px 16px', fontSize: 13 },
+  md: { padding: '12px 24px', fontSize: 14 },
+  lg: { padding: '16px 36px', fontSize: 17 },
 };

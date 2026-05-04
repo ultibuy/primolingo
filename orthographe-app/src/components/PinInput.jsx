@@ -112,27 +112,28 @@ export default function PinInput({ onComplete, error, locked, lockedUntil, maske
               fontSize: masked ? '1.6rem' : '1.4rem',
               fontWeight: 800,
               textAlign: 'center',
-              border: `2px solid ${error ? '#f87171' : d ? 'rgba(167,139,250,0.6)' : 'rgba(255,255,255,0.15)'}`,
-              borderRadius: 14,
-              background: isLocked ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.06)',
-              color: isLocked ? '#6b7280' : '#e2e2e2',
+              border: `2px solid ${error ? 'var(--color-red)' : d ? 'rgba(var(--color-primary-rgb),0.6)' : 'var(--glass-border)'}`,
+              borderRadius: 'var(--radius-sm)',
+              background: isLocked ? 'rgba(255,255,255,0.03)' : 'var(--glass-bg)',
+              color: isLocked ? 'var(--text-subtle)' : 'var(--text-white)',
               outline: 'none',
               caretColor: 'transparent',
-              transition: 'border-color 0.2s ease',
-              fontFamily: 'inherit',
+              transition: 'border-color var(--motion-base), box-shadow var(--motion-base)',
+              fontFamily: 'var(--font-body)',
+              boxShadow: d && !error ? '0 0 0 4px rgba(var(--color-primary-rgb),0.15)' : 'none',
             }}
           />
         ))}
       </div>
 
       {error && !isLocked && (
-        <p style={{ color: '#f87171', fontSize: '0.82rem', marginTop: '0.6rem', fontWeight: 600 }}>
+        <p style={{ color: 'var(--color-red)', fontSize: '0.82rem', marginTop: '0.6rem', fontWeight: 600 }}>
           {error}
         </p>
       )}
 
       {isLocked && countdown > 0 && (
-        <p style={{ color: '#fbbf24', fontSize: '0.82rem', marginTop: '0.6rem', fontWeight: 600 }}>
+        <p style={{ color: 'var(--color-gold)', fontSize: '0.82rem', marginTop: '0.6rem', fontWeight: 600 }}>
           Trop de tentatives — réessaie dans {countdown}s
         </p>
       )}

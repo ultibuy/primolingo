@@ -28,8 +28,7 @@ function lazyWithRetry(importFn) {
 
 const LandingPage = lazyWithRetry(() => import('./pages/LandingPageV5.jsx'));
 const LoginPage = lazyWithRetry(() => import('./pages/LoginPage.jsx'));
-const ParentDashboard = lazyWithRetry(() => import('./pages/ParentDashboard.jsx'));
-const ParentDashboardV2 = lazyWithRetry(() => import('./pages/ParentDashboardV2.jsx'));
+const ParentDashboard = lazyWithRetry(() => import('./pages/ParentDashboardV2.jsx'));
 const ChildSetup = lazyWithRetry(() => import('./pages/ChildSetup.jsx'));
 const ChildApp = lazyWithRetry(() => import('./pages/ChildApp.jsx'));
 const LegalPage = lazyWithRetry(() => import('./pages/LegalPage.jsx'));
@@ -125,15 +124,6 @@ export const router = createBrowserRouter([
     element: (
       <ProtectedRoute>
         <LazyPage><ParentDashboard /></LazyPage>
-      </ProtectedRoute>
-    ),
-    errorElement: <RouteErrorBoundary />,
-  },
-  {
-    path: '/parentv2',
-    element: (
-      <ProtectedRoute>
-        <LazyPage><ParentDashboardV2 /></LazyPage>
       </ProtectedRoute>
     ),
     errorElement: <RouteErrorBoundary />,

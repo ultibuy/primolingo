@@ -1,5 +1,18 @@
 {
   "projects": {
     "default": "orthographe-eabb9"
-  }
+  },
+  "targets": {
+    "orthographe-eabb9": {
+      "hosting": {
+        "legacy": [
+          "orthographe-eabb9"
+        ],
+        "app": [
+          "primolingo-fr"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

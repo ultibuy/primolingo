@@ -7,7 +7,7 @@ Cette documentation décrit le fonctionnement de PrimoLingo du point de vue de l
 ## Sommaire
 
 1. [Inscription et connexion](01-inscription-connexion) — Création de compte, connexion Google
-2. [Gestion des enfants](02-gestion-enfants) — Ajout de profils, réglages par enfant
+2. [Tableau de bord parent](02-gestion-enfants) — Profils enfants, progression, réglages et sauvegardes
 3. [Dashboard enfant](03-dashboard-enfant) — Accueil du joueur, flamme, compteurs, navigation
 4. [Flamme et série](04-flamme-serie) — Jours consécutifs, paliers, bouclier, retour après absence
 5. [Règles de grammaire](05-regles-grammaire) — 20 règles, niveaux Bronze à Diamant
@@ -21,11 +21,10 @@ Cette documentation décrit le fonctionnement de PrimoLingo du point de vue de l
 13. [Images mystère](13-images-mystere) — Fragments, grille, révélation progressive
 14. [Économie et récompenses](14-economie-recompenses) — Pièces, bonus, popups de récompense
 15. [Coaching et messages](15-coaching-messages) — Messages contextuels, priorités
-16. [Tableau de bord parent](16-tableau-bord-parent) — Vue par enfant, sauvegardes
-17. [Code PIN parental](17-code-pin-parental) — Sécurité, verrouillage progressif
-18. [Pages publiques et SEO](18-pages-publiques-seo) — Landing, pages règles, mini-quiz
-19. [CI/CD et politique de tests](19-ci-cd-tests) — Tests automatiques, déploiement
-20. [SVG et pictogrammes](20-svg-icons) — Icônes React SVG, remplacements d'emojis, usages recommandés
+16. [Code PIN parental](17-code-pin-parental) — Sécurité, verrouillage progressif
+17. [Pages publiques et SEO](18-pages-publiques-seo) — Landing, pages règles, mini-quiz
+18. [CI/CD et politique de tests](19-ci-cd-tests) — Tests automatiques, déploiement
+19. [SVG et pictogrammes](20-svg-icons) — Icônes React SVG, remplacements d'emojis, usages recommandés
 
 ---
 

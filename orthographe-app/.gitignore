@@ -38,3 +38,4 @@ tests/screenshots/
 trash/
 ux-designer/
 persos-a-integrer/
+.env

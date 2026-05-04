@@ -1207,12 +1207,10 @@ function EmotionCard({ emo, isBase, charId = null, isOwned = false, animateIn = 
 
       {/* Visual — CharacterSprite for all emotions when charId available */}
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 5 }}>
-        {charId ? (
-          <CharacterSprite id={charId} mood={emo.id} size={92} glow={false} />
+        {(charId && (isBase || isOwned)) ? (
+          <CharacterSprite id={charId} mood={emo.id} size={46} glow={false} />
         ) : (
-          <div style={{ width: 92, height: 92, borderRadius: 18, background: 'rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <EmotionFallbackIcon emotionId={emo.id} size={76} />
-          </div>
+          <EmotionFallbackIcon emotionId={emo.id} size={38} />
         )}
       </div>
 

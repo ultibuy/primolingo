@@ -59,14 +59,32 @@ function getRuleLevel(ruleProgress) {
 function sessionSize() {
   try { return window.__ORTHO_SESSION_SIZE__ || 20; } catch { return 20; }
 }
-function getLevelProgress(level, rp) {
+
+// Rules with rounds (e.g. g-gu-ge) use ALL questions in that round,
+// not the global sessionSize. Compute the effective session size per rule.
+function effectiveSessionSize(rule) {
+  const questions = rule?.questions || [];
+  const hasRounds = questions.some(q => q.round);
+  if (hasRounds) {
+    // Guided sessions use round questions — count the largest round
+    const roundCounts = {};
+    for (const q of questions) {
+      if (q.round) roundCounts[q.round] = (roundCounts[q.round] || 0) + 1;
+    }
+    const maxRound = Math.max(...Object.values(roundCounts), 0);
+    if (maxRound > 0) return maxRound;
+  }
+  return sessionSize();
+}
+
+function getLevelProgress(level, rp, rule) {
   if (!rp) return { fraction: '0/1', pct: 0, desc: 'Complète 1 session guidée' };
 
   const guidedAbove80 = rp.guidedSessionsAbove80 || 0;
   const directAbove80 = rp.directSessionsAbove80 || 0;
   const directAbove90 = rp.directConsecutiveAbove90 || rp.directPerfectStreak || 0;
 
-  const n = sessionSize();
+  const n = effectiveSessionSize(rule);
   const min80 = Math.ceil(n * 80 / 100);
   const min90 = Math.ceil(n * 90 / 100);
 
@@ -157,7 +175,7 @@ export default function RuleCard({
 }) {
   const level = getRuleLevel(ruleProgress);
   const config = LEVEL_CONFIG[level] || LEVEL_CONFIG[0];
-  const prog = getLevelProgress(level, ruleProgress);
+  const prog = getLevelProgress(level, ruleProgress, rule);
   const progressPct = Math.max(0, Math.min(1, prog.pct));
 
   const isDiamondLevel = level >= 4;
@@ -303,7 +321,7 @@ export default function RuleCard({
           border: '1px solid rgba(251,146,0,0.25)',
           marginBottom: '0.6rem',
         }}>
-          <span style={{ fontSize: '0.8rem' }}>⏰</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke="#fb923c" strokeWidth="1.8"/><path d="M12 7v5l3.5 2" stroke="#fb923c" strokeWidth="2" strokeLinecap="round"/></svg>
           <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#fb923c' }}>
             Révision due
           </span>
@@ -401,7 +419,7 @@ export default function RuleCard({
           textAlign: 'center',
           fontSize: '0.78rem', color: '#60a5fa', fontWeight: 600,
         }}>
-          💎 Maîtrisée — diamant brillant
+          <span style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: '0.3rem' }}><DiamondIcon size={16} animate={false} /></span>Maîtrisée — diamant brillant
         </div>
       )}
 
@@ -437,7 +455,7 @@ export default function RuleCard({
           transition: 'all 0.15s ease',
         }}
       >
-        {level === 0 ? '▶  ' : ''}
+        {level === 0 ? <><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{marginRight:'0.4rem',verticalAlign:'middle'}}><path d="M6 4l14 8-14 8V4z"/></svg></> : ''}
         {buttonText}
       </button>
     </div>

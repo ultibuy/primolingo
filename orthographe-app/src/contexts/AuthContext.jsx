@@ -1,62 +1,81 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged, signOut as firebaseSignOut } from 'firebase/auth';
-import { auth } from '../firebase';
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 
 const AuthContext = createContext(null);
+const DEV_USER = { uid: 'localhost-dev', email: 'debug@test.com', displayName: 'Debug' };
+
+function shouldUseDevUser() {
+  if (!import.meta.env.DEV) return false;
+  if (typeof window === 'undefined') return true;
+  return window.localStorage.getItem('ortho_disable_dev_auth') !== '1';
+}
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(shouldUseDevUser() ? DEV_USER : null);
+  const [loading, setLoading] = useState(false);
+  const [authReady, setAuthReady] = useState(import.meta.env.DEV);
+  const unsubscribeRef = useRef(null);
+  const authPromiseRef = useRef(null);
 
-  useEffect(() => {
-    // Dev mode only: bypass Firebase auth entirely
+  const ensureAuth = useCallback(() => {
     if (import.meta.env.DEV) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setUser({ uid: 'localhost-dev', email: 'debug@test.com', displayName: 'Debug' });
+      const devUserEnabled = shouldUseDevUser();
+      const nextUser = devUserEnabled ? DEV_USER : null;
+      setUser(nextUser);
+      setAuthReady(true);
       setLoading(false);
-      return;
+      return Promise.resolve(nextUser);
     }
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
+    if (authReady) return Promise.resolve(user);
+    if (authPromiseRef.current) return authPromiseRef.current;
+
+    setLoading(true);
+    authPromiseRef.current = Promise.all([
+      import('firebase/auth'),
+      import('../services/firebase-auth.js'),
+    ]).then(([{ onAuthStateChanged }, { auth }]) => {
+      unsubscribeRef.current = onAuthStateChanged(auth, (firebaseUser) => {
+        import('../services/analytics.js').then(({ default: posthog }) => {
+          if (firebaseUser) {
+            posthog.identify(firebaseUser.uid, {
+              email: firebaseUser.email,
+              name: firebaseUser.displayName,
+            });
+          } else {
+            posthog.reset();
+          }
+        }).catch(() => {});
+
+        setUser(firebaseUser);
+        setAuthReady(true);
+        setLoading(false);
+      });
+    }).catch((error) => {
+      console.warn('Firebase auth init failed:', error);
+      setAuthReady(true);
       setLoading(false);
     });
-    return unsubscribe;
+    return authPromiseRef.current;
+  }, [authReady, user]);
+
+  useEffect(() => {
+    return () => {
+      if (unsubscribeRef.current) unsubscribeRef.current();
+    };
   }, []);
 
   async function signOut() {
+    const [{ signOut: firebaseSignOut }, { auth }] = await Promise.all([
+      import('firebase/auth'),
+      import('../services/firebase-auth.js'),
+    ]);
     await firebaseSignOut(auth);
-  }
-
-  if (loading) {
-    return (
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'linear-gradient(135deg, #1e1e2e 0%, #2d2b55 100%)',
-      }}>
-        <div style={{ textAlign: 'center' }}>
-          <div style={{
-            width: 48,
-            height: 48,
-            border: '3px solid rgba(167, 139, 250, 0.3)',
-            borderTopColor: '#a78bfa',
-            borderRadius: '50%',
-            animation: 'spin 0.8s linear infinite',
-            margin: '0 auto 16px',
-          }} />
-          <p style={{ color: '#a78bfa', fontFamily: 'Outfit, sans-serif', fontSize: 16 }}>
-            Chargement…
-          </p>
-          <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
-        </div>
-      </div>
-    );
+    setUser(null);
+    setAuthReady(true);
+    import('../services/analytics.js').then(({ default: posthog }) => posthog.reset()).catch(() => {});
   }
 
   return (
-    <AuthContext.Provider value={{ user, loading, signOut }}>
+    <AuthContext.Provider value={{ user, loading, authReady, ensureAuth, signOut }}>
       {children}
     </AuthContext.Provider>
   );

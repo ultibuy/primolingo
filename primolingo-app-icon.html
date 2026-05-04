@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>PrimoLingo — App icon final</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;700;800;900&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 60px 24px 80px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: linear-gradient(135deg, #f6f9ff 0%, #fdf6ff 100%);
+    color: #1e1e2e;
+  }
+  h1 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    text-align: center;
+    font-size: 38px;
+    margin: 0 0 6px;
+    letter-spacing: -0.02em;
+  }
+  .sub {
+    text-align: center;
+    color: #6b6b80;
+    margin-bottom: 56px;
+    font-size: 16px;
+  }
+  .hero {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 64px;
+  }
+  .hero .ios-icon {
+    box-shadow: 0 24px 60px rgba(122, 92, 255, 0.35), 0 6px 16px rgba(30, 30, 46, 0.2);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 24px 20px;
+    box-shadow: 0 4px 18px rgba(50, 30, 90, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .label {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+  }
+  .hint {
+    font-size: 12px;
+    color: #6b6b80;
+    text-align: center;
+  }
+  .ios-icon { border-radius: 22.37%; overflow: hidden; }
+  .android-round { border-radius: 50%; overflow: hidden; }
+
+  .home-mock {
+    background: linear-gradient(180deg, #2a1d52, #1e1e2e);
+    padding: 24px 26px;
+    border-radius: 32px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px 12px;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .home-app { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .home-app .tile { width: 56px; height: 56px; border-radius: 13px; background: rgba(255,255,255,0.08); }
+  .home-app .tile.real { box-shadow: 0 4px 12px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .home-app span { font-size: 9px; color: rgba(255,255,255,0.7); }
+
+  .swatch-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .swatch {
+    width: 28px; height: 28px; border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+</style>
+</head>
+<body>
+
+<h1>App icon — Night sky + lettres</h1>
+<p class="sub">Lettres agrandies pour bien se voir. Codes homepage PrimoLingo.</p>
+
+<!-- ============ HERO 320px ============ -->
+<div class="hero">
+  <div class="ios-icon" style="width: 320px; height: 320px; background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);">
+    <svg width="320" height="320" viewBox="0 0 100 100">
+      <defs>
+        <linearGradient id="hG" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="#c4b5fd"/>
+          <stop offset="1" stop-color="#a78bfa"/>
+        </linearGradient>
+        <linearGradient id="hFlame" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="#fbbf24"/>
+          <stop offset="1" stop-color="#fb923c"/>
+        </linearGradient>
+      </defs>
+      <!-- Star field -->
+      <circle cx="14" cy="18" r="0.7" fill="#fff" opacity="0.85"/>
+      <circle cx="84" cy="14" r="0.6" fill="#fff" opacity="0.7"/>
+      <circle cx="88" cy="34" r="0.9" fill="#fbbf24" opacity="0.95"/>
+      <circle cx="12" cy="44" r="0.55" fill="#fff" opacity="0.6"/>
+      <circle cx="92" cy="62" r="0.55" fill="#c4b5fd" opacity="0.85"/>
+      <circle cx="18" cy="68" r="0.5" fill="#fff" opacity="0.55"/>
+      <g opacity="0.95" transform="translate(82 24)">
+        <path d="M0 -3 L0 3 M-3 0 L3 0" stroke="#fbbf24" stroke-width="0.7" stroke-linecap="round"/>
+      </g>
+      <g opacity="0.7" transform="translate(20 30)">
+        <path d="M0 -2 L0 2 M-2 0 L2 0" stroke="#fff" stroke-width="0.6" stroke-linecap="round"/>
+      </g>
+
+      <!-- Bigger floating letters BEHIND the rocket -->
+      <text x="20" y="92" font-size="13" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.95">a</text>
+      <text x="34" y="84" font-size="11" fill="#c4b5fd" font-family="Fredoka" font-weight="700" opacity="0.85">é</text>
+      <text x="60" y="90" font-size="14" fill="#fff" font-family="Fredoka" font-weight="700" opacity="0.95">b</text>
+      <text x="76" y="80" font-size="12" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.9">c</text>
+      <text x="80" y="94" font-size="10" fill="#a78bfa" font-family="Fredoka" font-weight="700" opacity="0.85">d</text>
+
+      <!-- Rocket -->
+      <g transform="rotate(-20 50 50)">
+        <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+        <path d="M50 12 Q70 30 70 65 L60 65 Q60 30 50 12 Z" fill="url(#hG)" opacity="0.25"/>
+        <circle cx="50" cy="40" r="9" fill="url(#hG)"/>
+        <circle cx="50" cy="40" r="5" fill="#1e1e2e"/>
+        <circle cx="48" cy="38" r="1.5" fill="#fff" opacity="0.95"/>
+        <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+        <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+        <path d="M40 68 Q44 88 48 68 Q51 84 55 68 Q58 84 62 68 Q66 88 70 68" fill="url(#hFlame)"/>
+      </g>
+    </svg>
+  </div>
+</div>
+
+<!-- ============ Sizes ============ -->
+<div class="grid">
+
+  <div class="card">
+    <div class="ios-icon" style="width: 200px; height: 200px; background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);">
+      <svg width="200" height="200" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s200G" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+          <linearGradient id="s200F" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb923c"/></linearGradient>
+        </defs>
+        <circle cx="84" cy="14" r="0.6" fill="#fff" opacity="0.7"/>
+        <circle cx="88" cy="34" r="0.9" fill="#fbbf24" opacity="0.95"/>
+        <circle cx="14" cy="42" r="0.55" fill="#fff" opacity="0.6"/>
+        <text x="20" y="92" font-size="13" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.95">a</text>
+        <text x="34" y="84" font-size="11" fill="#c4b5fd" font-family="Fredoka" font-weight="700" opacity="0.85">é</text>
+        <text x="60" y="90" font-size="14" fill="#fff" font-family="Fredoka" font-weight="700" opacity="0.95">b</text>
+        <text x="76" y="80" font-size="12" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.9">c</text>
+        <text x="80" y="94" font-size="10" fill="#a78bfa" font-family="Fredoka" font-weight="700" opacity="0.85">d</text>
+        <g transform="rotate(-20 50 50)">
+          <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+          <path d="M50 12 Q70 30 70 65 L60 65 Q60 30 50 12 Z" fill="url(#s200G)" opacity="0.25"/>
+          <circle cx="50" cy="40" r="9" fill="url(#s200G)"/>
+          <circle cx="50" cy="40" r="5" fill="#1e1e2e"/>
+          <circle cx="48" cy="38" r="1.5" fill="#fff" opacity="0.95"/>
+          <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+          <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+          <path d="M40 68 Q44 88 48 68 Q51 84 55 68 Q58 84 62 68 Q66 88 70 68" fill="url(#s200F)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="label">200 px — store size</div>
+    <div class="hint">App Store / Play Store</div>
+  </div>
+
+  <div class="card">
+    <div class="ios-icon" style="width: 120px; height: 120px; background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);">
+      <svg width="120" height="120" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s120G" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+          <linearGradient id="s120F" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb923c"/></linearGradient>
+        </defs>
+        <circle cx="84" cy="14" r="0.6" fill="#fff" opacity="0.7"/>
+        <circle cx="88" cy="34" r="1" fill="#fbbf24" opacity="0.95"/>
+        <text x="20" y="92" font-size="13" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.95">a</text>
+        <text x="34" y="84" font-size="11" fill="#c4b5fd" font-family="Fredoka" font-weight="700" opacity="0.85">é</text>
+        <text x="60" y="90" font-size="14" fill="#fff" font-family="Fredoka" font-weight="700" opacity="0.95">b</text>
+        <text x="76" y="80" font-size="12" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.9">c</text>
+        <text x="80" y="94" font-size="10" fill="#a78bfa" font-family="Fredoka" font-weight="700" opacity="0.85">d</text>
+        <g transform="rotate(-20 50 50)">
+          <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+          <path d="M50 12 Q70 30 70 65 L60 65 Q60 30 50 12 Z" fill="url(#s120G)" opacity="0.25"/>
+          <circle cx="50" cy="40" r="9" fill="url(#s120G)"/>
+          <circle cx="50" cy="40" r="5" fill="#1e1e2e"/>
+          <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+          <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+          <path d="M40 68 Q44 88 48 68 Q51 84 55 68 Q58 84 62 68 Q66 88 70 68" fill="url(#s120F)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="label">120 px — large iPad</div>
+  </div>
+
+  <div class="card">
+    <div class="ios-icon" style="width: 88px; height: 88px; background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);">
+      <svg width="88" height="88" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s88G" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+          <linearGradient id="s88F" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb923c"/></linearGradient>
+        </defs>
+        <circle cx="88" cy="34" r="1" fill="#fbbf24" opacity="0.95"/>
+        <text x="20" y="92" font-size="13" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.95">a</text>
+        <text x="34" y="84" font-size="11" fill="#c4b5fd" font-family="Fredoka" font-weight="700" opacity="0.85">é</text>
+        <text x="60" y="90" font-size="14" fill="#fff" font-family="Fredoka" font-weight="700" opacity="0.95">b</text>
+        <text x="80" y="94" font-size="10" fill="#a78bfa" font-family="Fredoka" font-weight="700" opacity="0.85">d</text>
+        <g transform="rotate(-20 50 50)">
+          <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+          <circle cx="50" cy="40" r="9" fill="url(#s88G)"/>
+          <circle cx="50" cy="40" r="5" fill="#1e1e2e"/>
+          <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+          <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+          <path d="M40 68 Q44 88 48 68 Q51 84 55 68 Q58 84 62 68 Q66 88 70 68" fill="url(#s88F)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="label">88 px — home screen</div>
+    <div class="hint">Taille réelle iPhone</div>
+  </div>
+
+  <div class="card">
+    <div class="ios-icon" style="width: 60px; height: 60px; background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);">
+      <svg width="60" height="60" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s60G" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+          <linearGradient id="s60F" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb923c"/></linearGradient>
+        </defs>
+        <text x="22" y="92" font-size="14" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.95">a</text>
+        <text x="62" y="92" font-size="14" fill="#fff" font-family="Fredoka" font-weight="700" opacity="0.9">b</text>
+        <g transform="rotate(-20 50 50)">
+          <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+          <circle cx="50" cy="40" r="9" fill="url(#s60G)"/>
+          <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+          <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+          <path d="M40 68 Q44 88 48 68 Q51 84 55 68 Q58 84 62 68 Q66 88 70 68" fill="url(#s60F)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="label">60 px — search / spotlight</div>
+    <div class="hint">2 lettres au lieu de 5</div>
+  </div>
+
+  <div class="card">
+    <div class="ios-icon" style="width: 40px; height: 40px; background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);">
+      <svg width="40" height="40" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="s40G" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+          <linearGradient id="s40F" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb923c"/></linearGradient>
+        </defs>
+        <g transform="rotate(-20 50 50)">
+          <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+          <circle cx="50" cy="40" r="10" fill="url(#s40G)"/>
+          <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+          <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+          <path d="M40 68 Q44 88 48 68 Q51 84 55 68 Q58 84 62 68 Q66 88 70 68" fill="url(#s40F)"/>
+        </g>
+      </svg>
+    </div>
+    <div class="label">40 px — settings / favicon</div>
+    <div class="hint">Lettres retirées, fusée seule</div>
+  </div>
+
+  <!-- Home screen mockup -->
+  <div class="card" style="grid-column: span 2;">
+    <div style="background: #f1eef9; border-radius: 14px; padding: 24px; width: 100%; display: flex; justify-content: center;">
+      <div class="home-mock">
+        <div class="home-app"><div class="tile"></div><span>Photos</span></div>
+        <div class="home-app">
+          <div class="tile real" style="background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);">
+            <svg width="56" height="56" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="hmG" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+                <linearGradient id="hmF" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb923c"/></linearGradient>
+              </defs>
+              <circle cx="88" cy="34" r="1" fill="#fbbf24"/>
+              <text x="22" y="92" font-size="13" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.95">a</text>
+              <text x="62" y="90" font-size="14" fill="#fff" font-family="Fredoka" font-weight="700" opacity="0.95">b</text>
+              <text x="80" y="94" font-size="10" fill="#a78bfa" font-family="Fredoka" font-weight="700" opacity="0.85">d</text>
+              <g transform="rotate(-20 50 50)">
+                <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+                <circle cx="50" cy="40" r="9" fill="url(#hmG)"/>
+                <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+                <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+                <path d="M40 68 Q44 88 48 68 Q51 84 55 68 Q58 84 62 68 Q66 88 70 68" fill="url(#hmF)"/>
+              </g>
+            </svg>
+          </div>
+          <span>PrimoLingo</span>
+        </div>
+        <div class="home-app"><div class="tile"></div><span>Notes</span></div>
+        <div class="home-app"><div class="tile"></div><span>Maps</span></div>
+        <div class="home-app"><div class="tile"></div><span>Mail</span></div>
+        <div class="home-app"><div class="tile"></div><span>Calculator</span></div>
+        <div class="home-app"><div class="tile"></div><span>Music</span></div>
+        <div class="home-app"><div class="tile"></div><span>Settings</span></div>
+      </div>
+    </div>
+    <div class="label">Home screen mockup</div>
+    <div class="hint">Test de lisibilité réel à 56 px au milieu d'autres apps</div>
+  </div>
+
+</div>
+
+<div class="swatch-row">
+  <div class="swatch" style="background:#1e1e2e" title="bg-1"></div>
+  <div class="swatch" style="background:#2d2b55" title="bg-2"></div>
+  <div class="swatch" style="background:#a78bfa" title="primary"></div>
+  <div class="swatch" style="background:#c4b5fd" title="primary-light"></div>
+  <div class="swatch" style="background:#fbbf24" title="gold"></div>
+  <div class="swatch" style="background:#fff" title="white"></div>
+</div>
+
+</body>
+</html>

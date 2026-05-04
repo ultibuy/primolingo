@@ -29,45 +29,30 @@ export default function ProgressListCard({
       }}
     >
       {lockIcon ?? <LockIcon />}
-      <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.7rem', minWidth: 0 }}>
-          <button
-            type="button"
-            onClick={onTitleClick}
-            title={titleTitle}
-            disabled={!onTitleClick}
-            style={{
-              padding: 0,
-              border: 'none',
-              background: 'transparent',
-              color: 'var(--color-accent)',
-              cursor: onTitleClick ? 'pointer' : 'default',
-              fontFamily: 'inherit',
-              fontSize: '0.88rem',
-              fontWeight: 800,
-              textAlign: 'left',
-              flex: 1,
-              minWidth: 0,
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {title}
-          </button>
-          {actionLabel && onAction && (
-            <ActionButton
-              size="sm"
-              onClick={onAction}
-              style={{
-                flexShrink: 0,
-                boxShadow: recommended ? '0 2px 12px rgba(124,58,237,0.35)' : '0 2px 8px rgba(124,58,237,0.25)',
-              }}
-            >
-              {actionLabel}
-            </ActionButton>
-          )}
-        </div>
+      <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+        <button
+          type="button"
+          onClick={onTitleClick}
+          title={titleTitle}
+          disabled={!onTitleClick}
+          style={{
+            padding: 0,
+            border: 'none',
+            background: 'transparent',
+            color: 'var(--color-accent)',
+            cursor: onTitleClick ? 'pointer' : 'default',
+            fontFamily: 'inherit',
+            fontSize: '0.88rem',
+            fontWeight: 800,
+            textAlign: 'left',
+            minWidth: 0,
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {title}
+        </button>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap', minWidth: 0 }}>
           {recommended && recommendedLabel && (
             <StatusPill highlighted>{recommendedLabel}</StatusPill>
@@ -77,6 +62,19 @@ export default function ProgressListCard({
           )}
         </div>
       </div>
+      {actionLabel && onAction && (
+        <ActionButton
+          size="sm"
+          onClick={onAction}
+          style={{
+            flexShrink: 0,
+            alignSelf: 'center',
+            boxShadow: recommended ? '0 2px 12px rgba(124,58,237,0.35)' : '0 2px 8px rgba(124,58,237,0.25)',
+          }}
+        >
+          {actionLabel}
+        </ActionButton>
+      )}
       {trailing}
     </Panel>
   );

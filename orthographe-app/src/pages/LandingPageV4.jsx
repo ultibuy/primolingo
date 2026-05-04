@@ -69,14 +69,7 @@ const css = {
   navLogoIcon: {
     width: 36,
     height: 36,
-    borderRadius: 10,
-    background: `linear-gradient(135deg, ${T.primaryDark}, ${T.primary})`,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    fontSize: 14,
-    fontWeight: 900,
-    color: "#fff",
+    flexShrink: 0,
   },
   navCta: {
     padding: "10px 24px",
@@ -1180,7 +1173,52 @@ export default function LandingPageV4() {
         {/* ─── NAV ─── */}
         <nav style={css.nav} className="oq-nav" data-section="nav">
           <div style={css.navLogo}>
-            <div style={css.navLogoIcon}>PL</div>
+            <svg style={css.navLogoIcon} viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="nl-bg" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stopColor="#1e1e2e"/>
+                  <stop offset="0.5" stopColor="#2d2b55"/>
+                  <stop offset="1" stopColor="#1a1a2e"/>
+                </linearGradient>
+                <linearGradient id="nl-r" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stopColor="#c4b5fd"/>
+                  <stop offset="1" stopColor="#a78bfa"/>
+                </linearGradient>
+                <linearGradient id="nl-f" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stopColor="#fbbf24"/>
+                  <stop offset="1" stopColor="#fb923c"/>
+                </linearGradient>
+              </defs>
+              <rect width="100" height="100" rx="22.37" fill="url(#nl-bg)"/>
+              <circle cx="14" cy="18" r="0.7" fill="#ffffff" opacity="0.85"/>
+              <circle cx="84" cy="14" r="0.6" fill="#ffffff" opacity="0.7"/>
+              <circle cx="88" cy="34" r="0.9" fill="#fbbf24" opacity="0.95"/>
+              <circle cx="92" cy="62" r="0.55" fill="#c4b5fd" opacity="0.85"/>
+              <g transform="translate(82 24)">
+                <path d="M0 -3 L0 3 M-3 0 L3 0" stroke="#fbbf24" strokeWidth="0.7" strokeLinecap="round" opacity="0.95"/>
+              </g>
+              <text x="49" y="92" fontSize="13" fill="#c4b5fd" fontFamily="Fredoka, sans-serif" fontWeight="700" opacity="0.9">é</text>
+              <text x="54" y="80" fontSize="14" fill="#fbbf24" fontFamily="Fredoka, sans-serif" fontWeight="700" opacity="0.95">a</text>
+              <text x="65" y="94" fontSize="15" fill="#ffffff" fontFamily="Fredoka, sans-serif" fontWeight="700" opacity="0.95">b</text>
+              <g transform="translate(-0.23 -7.76) rotate(-20 50 50)">
+                <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#ffffff"/>
+                <path d="M50 12 Q70 30 70 65 L60 65 Q60 30 50 12 Z" fill="url(#nl-r)" opacity="0.25"/>
+                <circle cx="50" cy="40" r="9" fill="url(#nl-r)"/>
+                <circle cx="50" cy="40" r="5" fill="#1e1e2e"/>
+                <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+                <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+              </g>
+              <g transform="translate(-4.65 -5.54) rotate(-20 50 50)">
+                <path d="M40 68 Q44 88 48 68 Z" fill="url(#nl-f)"/>
+              </g>
+              <g transform="translate(-4.92 -5.42) rotate(-20 50 50)">
+                <path d="M48 68 Q51 84 55 68 Z" fill="url(#nl-f)"/>
+                <path d="M55 68 Q58 84 62 68 Z" fill="url(#nl-f)"/>
+              </g>
+              <g transform="translate(-4.91 -5.4) rotate(-20 50 50)">
+                <path d="M62 68 Q66 88 70 68 Z" fill="url(#nl-f)"/>
+              </g>
+            </svg>
             PrimoLingo
           </div>
           <button style={css.navCta}

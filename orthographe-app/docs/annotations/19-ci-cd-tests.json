@@ -1,0 +1,46 @@
+[
+  {
+    "x": 666,
+    "y": 837,
+    "text": "exception à la règle de pas de code dans la doc: indique ici quelle commande permet de faire ca",
+    "time": "04/05 10:50",
+    "domContext": {
+      "tag": "LI",
+      "text": "Qualite du code — Le code ne contient pas d'erreur de syntaxe ou de variable inutilisee."
+    },
+    "response": "Fait : la ligne Qualité du code indique maintenant la commande `npm run lint`."
+  },
+  {
+    "x": 433,
+    "y": 1242,
+    "text": "ajoute aussi que si un changement est important, il faut demander à l'utilisateur si on veut mettre à jour la doc",
+    "time": "04/05 10:50",
+    "domContext": {
+      "tag": "P",
+      "text": "La suite manuelle doit etre lancee avant tout changement important touchant l'interface ou les mecaniques de jeu."
+    },
+    "response": "Fait : la doc précise maintenant qu'en cas de changement important il faut demander à l'utilisateur si la documentation fonctionnelle doit être mise à jour, puis le faire dans la même intervention si nécessaire."
+  },
+  {
+    "x": 614,
+    "y": 1643,
+    "text": "fais un tableau plus complet ou tu listes tous les tests et tu indique quellle règle il vérifie. Indique en dessous toutes les règles orphelines, cad sans test",
+    "time": "04/05 10:51",
+    "domContext": {
+      "tag": "TR",
+      "text": "Dictee\n—\nD01 a D06"
+    },
+    "response": "Fait : le tableau liste maintenant chaque test du registre avec l'ID, l'exécution, le fichier et la règle vérifiée. Les règles orphelines sans test sont listées juste en dessous."
+  },
+  {
+    "x": 489,
+    "y": 1505,
+    "text": "supprime la colonne domaine et met l'info en sous section qui interrompent le tableau. on a donc autant de tableaux que de sous sections, c'est plus lisible. Ajotue une colonne d'id de test et assure toi que cet id est bien référéencé dans le fichier js. Pour la colonne Eexecution , mets la en forme en chips de couleurs",
+    "time": "04/05 11:02",
+    "domContext": {
+      "tag": "TD",
+      "text": "Coaching et messages"
+    },
+    "response": "Fait : la colonne Domaine a été supprimée. Les tests sont maintenant regroupés en sous-sections par domaine, avec un tableau séparé pour chaque domaine. La colonne ID vient directement de `src/debug/testRegistry.js`, et la colonne Exécution est rendue avec des chips colorées."
+  }
+]

@@ -50,4 +50,4 @@ Le code a 4 chiffres n'est jamais enregistre tel quel. Seul un hash accompagne d
 
 ## Voir aussi
 
-- [Tableau de bord parent](./16-tableau-bord-parent.md)
+- [Tableau de bord parent](./02-gestion-enfants.md)

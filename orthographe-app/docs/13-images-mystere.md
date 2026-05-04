@@ -35,4 +35,4 @@ Les parents peuvent ajouter leurs propres images (photos de famille, dessins) de
 
 - [Boutique](./11-boutique.md)
 - [Économie et récompenses](./14-economie-recompenses.md)
-- [Tableau de bord parent](./16-tableau-bord-parent.md)
+- [Tableau de bord parent](./02-gestion-enfants.md)

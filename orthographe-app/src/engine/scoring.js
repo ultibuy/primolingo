@@ -87,8 +87,8 @@ export function checkLevelUp(ruleProgress, mode, score, total) {
       updates.guidedBestScore = pct;
     }
 
-    // Level 0 → 1: Complete 1 guided session (any score)
-    if (level === 0) {
+    // Level 0 → 1: Complete 1 guided session with at least 60%
+    if (level === 0 && pct >= 60) {
       newLevel = 1;
       events.push('level_up_1');
     }
@@ -433,7 +433,7 @@ export function processSessionResult(next, rp, {
 
     if (levelResult.newLevel !== null && levelResult.newLevel > oldLevel) {
       rp.level = levelResult.newLevel;
-      events.push({ type: 'levelUp', value: levelResult.newLevel, ruleTitle: title, coins: levelResult.coinsEarned || 0 });
+      events.push({ type: 'levelUp', value: levelResult.newLevel, ruleTitle: title, coins: levelResult.coinsEarned || 0, total });
 
       if (levelResult.coinsEarned > 0) {
         next.coins = (next.coins || 0) + levelResult.coinsEarned;

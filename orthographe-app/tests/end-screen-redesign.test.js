@@ -270,7 +270,7 @@ async function clickButtonContaining(page, label) {
 async function answerOneQuestionAndAdvance(page) {
   // In guided mode, there are decision axis buttons + answer buttons.
   // Keep clicking non-navigation, non-empty buttons until "Question suivante" appears.
-  for (let attempt = 0; attempt < 15; attempt++) {
+  for (let attempt = 0; attempt < 30; attempt++) {
     await page.waitForTimeout(400);
 
     // Check if "Question suivante" or "Voir le résultat" is available
@@ -284,6 +284,12 @@ async function answerOneQuestionAndAdvance(page) {
     const onEnd = await page.evaluate(() =>
       document.body.innerText.includes('Session terminée') || document.body.innerText.includes('Session terminée'));
     if (onEnd) return true;
+
+    const isLoading = await page.evaluate(() => document.body.innerText.includes('Chargement'));
+    if (isLoading) {
+      await page.waitForTimeout(1000);
+      continue;
+    }
 
     // Click the LAST non-navigation visible button (answer choices are at the bottom)
     await page.evaluate(() => {
@@ -396,12 +402,8 @@ async function testMobilePerfectSmallSession(browser) {
   assert(/\d+\/3/.test(text), 'Expected score x/3 visible');
   await assertNoVisibleEmoji(page, 'mobile perfect session');
 
-  // No trophy/cup
-  const hasTrophy = await page.evaluate(() => {
-    const html = document.body.innerHTML;
-    return html.includes('TrophyIcon') || /🏆/.test(document.body.innerText);
-  });
-  assert(!hasTrophy, 'No trophy should be visible');
+  // No emoji trophy/cup: a SVG fallback is allowed when no character is equipped.
+  assert(!/🏆/.test(text), 'No emoji trophy should be visible');
 
   // No "Animation de victoire"
   assert(!text.includes('Animation de victoire'), 'No "Animation de victoire" text');
@@ -444,20 +446,61 @@ async function testMobileLongRecap(browser) {
   });
   assert(continuerVisible, 'Continuer must stay visible with long recap');
 
-  // The content area should be scrollable when 10+ answers are shown
-  const scrollable = await page.evaluate(() => {
-    // Find any element with overflow-y: auto/scroll that has more content than visible
-    const elements = document.querySelectorAll('*');
-    for (const el of elements) {
-      const style = getComputedStyle(el);
-      if ((style.overflowY === 'auto' || style.overflowY === 'scroll') && el.scrollHeight > el.clientHeight + 10) {
-        return true;
-      }
-    }
-    // Also check body
-    return document.body.scrollHeight > window.innerHeight;
+  // The answer recap itself should be scrollable, not the whole page/card.
+  const recapScrollable = await page.evaluate(() => {
+    const recap = document.querySelector('[data-testid="end-screen-recap-scroll"]');
+    if (!recap) return { found: false };
+    const style = getComputedStyle(recap);
+    return {
+      found: true,
+      overflowY: style.overflowY,
+      scrollHeight: recap.scrollHeight,
+      clientHeight: recap.clientHeight,
+      scrollable: (style.overflowY === 'auto' || style.overflowY === 'scroll') && recap.scrollHeight > recap.clientHeight + 10,
+    };
   });
-  assert(scrollable, 'Content area should be scrollable with 10 answers');
+  assert(recapScrollable.found, 'Answer recap scroll container should exist');
+  assert(recapScrollable.scrollable, `Answer recap should be scrollable with 10 answers: ${JSON.stringify(recapScrollable)}`);
+
+  const compactRows = await page.evaluate(() => {
+    const recap = document.querySelector('[data-testid="end-screen-recap-scroll"]');
+    const rows = [...document.querySelectorAll('[data-testid="end-screen-answer-row"]')];
+    const rowHeights = rows.map((row) => row.getBoundingClientRect().height);
+    const recapRect = recap?.getBoundingClientRect();
+    const visibleRows = recapRect
+      ? rows.filter((row) => {
+          const rect = row.getBoundingClientRect();
+          return rect.bottom > recapRect.top && rect.top < recapRect.bottom;
+        }).length
+      : 0;
+    return {
+      rowCount: rows.length,
+      maxRowHeight: Math.max(...rowHeights),
+      visibleRows,
+    };
+  });
+  assert(compactRows.rowCount >= 10, `Expected at least 10 answer rows: ${JSON.stringify(compactRows)}`);
+  assert(compactRows.maxRowHeight <= 58, `Answer rows should stay compact: ${JSON.stringify(compactRows)}`);
+  assert(compactRows.visibleRows >= 4, `At least 4 answer rows should be visible: ${JSON.stringify(compactRows)}`);
+
+  const mascotSizing = await page.evaluate(() => {
+    const mascot = document.querySelector('[data-testid="end-screen-mascot"]');
+    const sprite = document.querySelector('[data-testid="end-screen-character-sprite"]');
+    if (!mascot || !sprite) return { found: false };
+    const mascotRect = mascot.getBoundingClientRect();
+    const spriteRect = sprite.getBoundingClientRect();
+    return {
+      found: true,
+      mascotWidth: mascotRect.width,
+      mascotHeight: mascotRect.height,
+      spriteWidth: spriteRect.width,
+      spriteHeight: spriteRect.height,
+    };
+  });
+  if (mascotSizing.found) {
+    assert(mascotSizing.spriteWidth <= 52, `Character sprite should stay compact without circle clipping: ${JSON.stringify(mascotSizing)}`);
+    assert(mascotSizing.spriteHeight <= mascotSizing.mascotHeight, `Character sprite should fit the mascot slot height: ${JSON.stringify(mascotSizing)}`);
+  }
 
   assertNoBadConsole(page, 'mobile long recap');
   await page.close();

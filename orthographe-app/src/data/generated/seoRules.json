@@ -1,0 +1,3096 @@
+[
+  {
+    "id": "a-a-as",
+    "title": "a / à / as",
+    "shortTitle": "a / à / as",
+    "description": "Distinguer : a (verbe avoir, il/elle/on), as (verbe avoir, tu), à (préposition).",
+    "choices": [
+      {
+        "id": "a",
+        "label": "a"
+      },
+      {
+        "id": "as",
+        "label": "as"
+      },
+      {
+        "id": "ap",
+        "label": "à"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "isVerbe",
+        "question": "Est-ce le verbe avoir ?",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui, c'est un verbe",
+            "eliminates": [
+              "ap"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non, c'est une préposition",
+            "eliminates": [
+              "a",
+              "as"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sujet",
+        "question": "Quel est le sujet ?",
+        "dependsOn": "isVerbe",
+        "showWhen": true,
+        "options": [
+          {
+            "value": "tu",
+            "label": "tu → as",
+            "eliminates": [
+              "a"
+            ]
+          },
+          {
+            "value": "il/elle/on",
+            "label": "il / elle / on → a",
+            "eliminates": [
+              "as"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "La règle en un coup d'œil",
+      "rows": [
+        {
+          "form": "a",
+          "test": "remplacer par « avait »",
+          "example": "Il a faim. → Il avait faim. ✓"
+        },
+        {
+          "form": "as",
+          "test": "remplacer par « avais »",
+          "example": "Tu as raison. → Tu avais raison. ✓"
+        },
+        {
+          "form": "à",
+          "test": "avait/avais ne marche pas",
+          "example": "Je vais à Paris. → Je vais avait Paris. ✗"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Il ",
+        "after": " faim après le sport.",
+        "answer": "a",
+        "difficulty": 1,
+        "explanation": "On peut dire « il avait faim » → verbe avoir, sujet il → a."
+      },
+      {
+        "id": "q002",
+        "before": "Elle ",
+        "after": " une belle robe rouge.",
+        "answer": "a",
+        "difficulty": 1,
+        "explanation": "On peut dire « elle avait une belle robe » → verbe avoir, sujet elle → a."
+      },
+      {
+        "id": "q136",
+        "before": "Le gâteau ",
+        "after": " un goût délicieux.",
+        "answer": "a",
+        "difficulty": 3,
+        "explanation": "On peut dire « le gâteau avait un goût délicieux » → verbe avoir → a."
+      },
+      {
+        "id": "q137",
+        "before": "Il ",
+        "after": " surmonté cette difficulté.",
+        "answer": "a",
+        "difficulty": 3,
+        "explanation": "On peut dire « il avait surmonté » → verbe avoir au passé composé → a."
+      },
+      {
+        "id": "q138",
+        "before": "Elle ",
+        "after": " terminé son travail avant l'heure.",
+        "answer": "a",
+        "difficulty": 3,
+        "explanation": "On peut dire « elle avait terminé » → verbe avoir au passé composé → a."
+      }
+    ]
+  },
+  {
+    "id": "adverbes-ment",
+    "title": "-ement · -emment · -amment",
+    "shortTitle": "-ement / -emment / -amment",
+    "description": "Choisir la bonne terminaison des adverbes en -ment : écouter le son final, puis identifier l'adjectif de base (-ant → -amment, -ent → -emment, autre → -ement).",
+    "choices": [
+      {
+        "id": "ement",
+        "label": "-ement"
+      },
+      {
+        "id": "emment",
+        "label": "-emment"
+      },
+      {
+        "id": "amment",
+        "label": "-amment"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "son",
+        "question": "Quel son entends-tu à la fin de l'adverbe ?",
+        "sub": "Prononce l'adverbe à voix haute",
+        "options": [
+          {
+            "value": "ement",
+            "label": "« -ement » (son euh-man)",
+            "sub": "",
+            "eliminates": [
+              "emment",
+              "amment"
+            ]
+          },
+          {
+            "value": "ament",
+            "label": "« -ament » (son a-man)",
+            "sub": "",
+            "eliminates": [
+              "ement"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "adjectifBase",
+        "question": "L'adjectif de base se termine par…",
+        "sub": "Trouve l'adjectif dont vient cet adverbe",
+        "dependsOn": "son",
+        "showWhen": "ament",
+        "options": [
+          {
+            "value": "ant",
+            "label": "-ant ",
+            "eliminates": [
+              "emment"
+            ]
+          },
+          {
+            "value": "ent",
+            "label": "-ent",
+            "eliminates": [
+              "amment"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "La règle en un coup d'œil",
+      "rows": [
+        {
+          "form": "-ement",
+          "test": "On entend « -ement » (euh-man)",
+          "example": "lent → lentement, doux → doucement"
+        },
+        {
+          "form": "-emment",
+          "test": "Son « -ament » + adjectif en -ent",
+          "example": "prudent → prudemment, évident → évidemment"
+        },
+        {
+          "form": "-amment",
+          "test": "Son « -ament » + adjectif en -ant",
+          "example": "brillant → brillamment, suffisant → suffisamment"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Elle marche lent",
+        "after": " mais sûrement vers la sortie.",
+        "answer": "ement",
+        "difficulty": 1,
+        "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : lent → lentement)"
+      },
+      {
+        "id": "q004",
+        "before": "Elle parle ",
+        "after": " en classe.",
+        "answer": "ement",
+        "difficulty": 1,
+        "explanation": "On entend le son « -ement » → c'est -ement. (Adjectif : doux → douc + ement = doucement)"
+      },
+      {
+        "id": "q002",
+        "before": "Il a agi prud",
+        "after": " dans cette situation délicate.",
+        "answer": "emment",
+        "difficulty": 2,
+        "explanation": "On entend « -ament ». L'adjectif de base est « prudent » (terminaison -ent) → on écrit -emment."
+      },
+      {
+        "id": "q003",
+        "before": "Elle a répondu suffis",
+        "after": " à toutes les questions du jury.",
+        "answer": "amment",
+        "difficulty": 2,
+        "explanation": "On entend « -ament ». L'adjectif de base est « suffisant » (terminaison -ant) → on écrit -amment."
+      },
+      {
+        "id": "q012",
+        "before": "C'est ",
+        "after": " ce que nous observons.",
+        "answer": "emment",
+        "difficulty": 2,
+        "explanation": "On entend « -ament ». L'adjectif de base est « évident » (terminaison -ent) → on écrit -emment."
+      }
+    ]
+  },
+  {
+    "id": "ant-ent",
+    "title": "-ant · -ent",
+    "shortTitle": "-ant / -ent",
+    "description": "Les adjectifs terminés par le son [ɑ̃] s'écrivent -ant ou -ent. La clé : le mot est-il le participe présent d'un verbe français usuel ?",
+    "choices": [
+      {
+        "id": "ant",
+        "label": "ant"
+      },
+      {
+        "id": "ent",
+        "label": "ent"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "exception",
+        "question": "Est-ce une exception à connaître par  ❤️  ?",
+        "sub": "— *Exceptions -ent malgré un verbe proche* : négligent, différent, précédent, excellent,, influent, violent, résident. <br>— *Exceptions -ant malgré un participe différent* : puissant , savant , vaillant",
+        "options": [
+          {
+            "value": "ent-exc",
+            "label": "Oui — exception -ent",
+            "eliminates": [
+              "ant"
+            ]
+          },
+          {
+            "value": "ant-exc",
+            "label": "Oui — exception -ant",
+            "eliminates": [
+              "ent"
+            ]
+          },
+          {
+            "value": "non",
+            "label": "Non, cas standard",
+            "eliminates": []
+          }
+        ]
+      },
+      {
+        "id": "verbe",
+        "question": "Peut-on former le participe présent d'un verbe usuel avec cette forme ?",
+        "sub": "Ex : charmer → charmant, fatiguer → fatigant, amuser → amusant",
+        "dependsOn": "exception",
+        "showWhen": "non",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui → -ant",
+            "eliminates": [
+              "ent"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non → -ent",
+            "eliminates": [
+              "ant"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "Comment choisir -ant ou -ent ?",
+      "rows": [
+        {
+          "form": "-ant",
+          "test": "Le mot est le participe présent d'un verbe français (charmer → charmant)",
+          "example": "charmant, fatigant, amusant, pesant"
+        },
+        {
+          "form": "-ent",
+          "test": "Adjectif d'origine latine sans participe présent correspondant",
+          "example": "violent, prudent, récent, ardent"
+        },
+        {
+          "form": "Exceptions -ent",
+          "test": "Verbe existe mais l'adjectif verbal diffère du participe",
+          "example": "négligent, différent, précédent, excellent, convergent, adhérent, émergent, influent, somnolent, résident"
+        },
+        {
+          "form": "Exceptions -ant",
+          "test": "Forme figée dont le participe présent a divergé",
+          "example": "puissant (pouvoir→pouvant), savant (savoir→sachant), vaillant (valoir→valant)"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Il a un sourire charm",
+        "after": " qui met tout le monde à l'aise.",
+        "answer": "ant",
+        "difficulty": 1,
+        "explanation": "Charmer → participe présent = charmant. Cas standard, pas d'exception."
+      },
+      {
+        "id": "q002",
+        "before": "Ce spectacle est vraiment amus",
+        "after": ", le public a beaucoup ri.",
+        "answer": "ant",
+        "difficulty": 1,
+        "explanation": "Amuser → participe présent = amusant. Cas standard, pas d'exception."
+      },
+      {
+        "id": "q018",
+        "before": "Ce pays est puis",
+        "after": " économiquement et militairement.",
+        "answer": "ant",
+        "difficulty": 3,
+        "explanation": "Puissant vient de pouvoir, dont le participe présent est pouvant. Forme ancienne figée en -ant — exception -ant à mémoriser."
+      },
+      {
+        "id": "q019",
+        "before": "Il tient un discours sav",
+        "after": " que peu de gens comprennent.",
+        "answer": "ant",
+        "difficulty": 3,
+        "explanation": "Savant vient de savoir, dont le participe présent est sachant. Forme ancienne figée en -ant — exception -ant à mémoriser."
+      },
+      {
+        "id": "q020",
+        "before": "Il s'est montré vaill",
+        "after": " face à l'adversité.",
+        "answer": "ant",
+        "difficulty": 3,
+        "explanation": "Vaillant vient du vieux français vaillir, dont le participe présent est valant. Forme ancienne figée en -ant — exception -ant à mémoriser."
+      }
+    ]
+  },
+  {
+    "id": "ce-se",
+    "title": "ce · se",
+    "shortTitle": "ce / se",
+    "description": "Distingue 'se' (pronom réfléchi, 3ème personne) de 'ce' (pronom ou déterminant démonstratif). Test : mets la phrase au sujet 'je' — si le mot devient 'me', c'est 'se' ; sinon c'est 'ce'.",
+    "choices": [
+      {
+        "id": "se",
+        "label": "se"
+      },
+      {
+        "id": "ce",
+        "label": "ce"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "axe1",
+        "question": "Peut-on remplacer par « me » en mettant le sujet à « je » ?",
+        "sub": "Ex : « il __ lave » → « je me lave » ✓",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui",
+            "sub": "",
+            "eliminates": [
+              "ce"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non",
+            "sub": "",
+            "eliminates": [
+              "se"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "ce ou se ?",
+      "rows": [
+        {
+          "form": "se",
+          "test": "Je me … (remplace se par me avec le sujet je)",
+          "example": "Il se lève tôt → Je me lève tôt ✓"
+        },
+        {
+          "form": "ce",
+          "test": "Ne peut pas devenir me",
+          "example": "Ce sera long → Je me sera long ✗"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Le chien",
+        "after": " couche souvent devant la cheminée.",
+        "answer": "se",
+        "difficulty": 1,
+        "explanation": "« Je me couche » fonctionne avec 'je' → c'est 'se' (pronom réfléchi)."
+      },
+      {
+        "id": "q002",
+        "before": "",
+        "after": " sera une longue journée.",
+        "answer": "ce",
+        "difficulty": 1,
+        "explanation": "« Je me sera » est impossible → c'est 'ce' (déterminant démonstratif)."
+      },
+      {
+        "id": "q017",
+        "before": "Il",
+        "after": " souvient toujours de nos rendez-vous.",
+        "answer": "se",
+        "difficulty": 3,
+        "explanation": "Test : 'je me souviens' fonctionne → pronom réfléchi 'se'. Le verbe 'se souvenir' est toujours pronominal."
+      },
+      {
+        "id": "q020",
+        "before": "C'est exactement",
+        "after": " à quoi je m'attendais.",
+        "answer": "ce",
+        "difficulty": 3,
+        "explanation": "« Je me à quoi » est impossible → c'est 'ce' (pronom démonstratif dans la locution 'ce à quoi')."
+      },
+      {
+        "id": "q038",
+        "before": "Tant que tu ne comprends pas",
+        "after": " concept fondamental, tu resteras bloqué.",
+        "answer": "ce",
+        "difficulty": 3,
+        "explanation": "« Ce concept » : 'ce' est un déterminant démonstratif devant un nom. Test : 'je me concept' est impossible → c'est 'ce'."
+      }
+    ]
+  },
+  {
+    "id": "ces-ses",
+    "title": "ces · ses · s'est · c'est",
+    "shortTitle": "ces / ses",
+    "description": "Distinguer les quatre homophones : ces (démonstratif pluriel), ses (possessif pluriel), s'est (pronom réfléchi + être), c'est (ce + est).",
+    "choices": [
+      {
+        "id": "ces",
+        "label": "ces"
+      },
+      {
+        "id": "ses",
+        "label": "ses"
+      },
+      {
+        "id": "sest",
+        "label": "s'est"
+      },
+      {
+        "id": "cest",
+        "label": "c'est"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "hasEtre",
+        "question": "Verbe être présent ?",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui, avec être",
+            "eliminates": [
+              "ces",
+              "ses"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non, sans être",
+            "eliminates": [
+              "sest",
+              "cest"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "initiale",
+        "question": "Commence par ?",
+        "dependsOn": "hasEtre",
+        "options": [
+          {
+            "value": "C",
+            "labelWhenEtre": "C → cela est",
+            "labelWhenNoEtre": "C → ceux-là",
+            "labelDefault": "C",
+            "eliminates": [
+              "ses",
+              "sest"
+            ]
+          },
+          {
+            "value": "S",
+            "labelWhenEtre": "S → se + être",
+            "labelWhenNoEtre": "S → les siens",
+            "labelDefault": "S",
+            "eliminates": [
+              "ces",
+              "cest"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "La règle en un coup d'œil",
+      "rows": [
+        {
+          "form": "c'est",
+          "test": "cela est",
+          "example": "C'est beau."
+        },
+        {
+          "form": "s'est",
+          "test": "se + est",
+          "example": "Il s'est trompé."
+        },
+        {
+          "form": "ces",
+          "test": "ceux-là",
+          "example": "Ces livres-là."
+        },
+        {
+          "form": "ses",
+          "test": "les siens",
+          "example": "Ses affaires à lui."
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "L'enfant ",
+        "after": " réveillé en pleine nuit.",
+        "answer": "sest",
+        "difficulty": 1,
+        "explanation": "L'enfant se est réveillé → verbe être (se réveiller), pronom réfléchi « se » → S. Donc : s'est."
+      },
+      {
+        "id": "q002",
+        "before": "Mon collègue ",
+        "after": " inscrit à un marathon.",
+        "answer": "sest",
+        "difficulty": 1,
+        "explanation": "Mon collègue se est inscrit → verbe être (s'inscrire), pronom réfléchi « se » → S. Donc : s'est."
+      },
+      {
+        "id": "q005",
+        "before": "Elle ",
+        "after": " rendu compte de son erreur.",
+        "answer": "sest",
+        "difficulty": 2,
+        "explanation": "Elle se est rendu compte → verbe être (se rendre compte), pronom réfléchi « se » → S. Donc : s'est."
+      },
+      {
+        "id": "q008",
+        "before": "",
+        "after": " grâce à toi qu'on a gagné.",
+        "answer": "cest",
+        "difficulty": 2,
+        "explanation": "Cela est grâce à toi → verbe être, « ce » → C. Donc : c'est."
+      },
+      {
+        "id": "q009",
+        "before": "",
+        "after": " exactement ce que je voulais dire.",
+        "answer": "cest",
+        "difficulty": 2,
+        "explanation": "Cela est exactement ce que… → verbe être, « ce » → C. Donc : c'est."
+      }
+    ]
+  },
+  {
+    "id": "conjugaison-3eme-groupe-present",
+    "title": "3ème groupe au présent",
+    "shortTitle": "3ème groupe",
+    "description": "Écris la bonne forme du verbe : distingue les homophones de conjugaison (voit/vois, peut/peux, prend/prends…) en identifiant la personne grammaticale du sujet.",
+    "choices": [],
+    "decisionAxes": [
+      {
+        "id": "personne",
+        "question": "Quelle est la personne grammaticale du sujet ?",
+        "sub": "Identifie le sujet dans la phrase, puis applique la règle",
+        "options": [
+          {
+            "value": "1-2-sg",
+            "label": "Je / Tu",
+            "sub": "1ère ou 2ème personne du singulier",
+            "eliminates": [],
+            "result": "Forme avec -s ou -x final (je vois, tu peux, je prends, tu veux…)"
+          },
+          {
+            "value": "3-sg",
+            "label": "Il / Elle / On",
+            "sub": "3ème personne du singulier",
+            "eliminates": [],
+            "result": "Forme sans -s ni -x (il voit, il peut, il prend, il veut, il va…)"
+          },
+          {
+            "value": "3-pl",
+            "label": "Ils / Elles",
+            "sub": "3ème personne du pluriel",
+            "eliminates": [],
+            "result": "Forme en -ent (ils voient, ils peuvent, ils prennent…)"
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "Homophones du présent — 3ème groupe",
+      "rows": [
+        {
+          "form": "je / tu",
+          "test": "→ -s ou -x",
+          "example": "je vois, tu peux, je prends, tu veux"
+        },
+        {
+          "form": "il / elle / on",
+          "test": "→ -t ou rien (va, prend)",
+          "example": "il voit, elle peut, il prend, il va"
+        },
+        {
+          "form": "ils / elles",
+          "test": "→ -ent",
+          "example": "ils voient, elles peuvent, ils prennent"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Elle",
+        "after": " son reflet dans le miroir.",
+        "answer": "voit",
+        "difficulty": 1,
+        "explanation": "'Elle' → 3ème pers. sing. → 'voit' avec -t final (muet).",
+        "choices": [
+          {
+            "id": "voit",
+            "label": "voit",
+            "forAxis": {
+              "personne": "3-sg"
+            }
+          },
+          {
+            "id": "vois",
+            "label": "vois",
+            "forAxis": {
+              "personne": "1-2-sg"
+            }
+          },
+          {
+            "id": "voix",
+            "label": "voix"
+          }
+        ]
+      },
+      {
+        "id": "q002",
+        "before": "Je",
+        "after": " clairement ce que tu veux dire.",
+        "answer": "vois",
+        "difficulty": 1,
+        "explanation": "'Je' → 1ère pers. sing. → 'vois' (pas de -t final).",
+        "choices": [
+          {
+            "id": "voit",
+            "label": "voit",
+            "forAxis": {
+              "personne": "3-sg"
+            }
+          },
+          {
+            "id": "vois",
+            "label": "vois",
+            "forAxis": {
+              "personne": "1-2-sg"
+            }
+          },
+          {
+            "id": "voie",
+            "label": "voie"
+          }
+        ]
+      },
+      {
+        "id": "q004",
+        "before": "Mon frère",
+        "after": " très bien sans ses lunettes.",
+        "answer": "voit",
+        "difficulty": 2,
+        "explanation": "'Mon frère' (3ème pers. sing.) → 'voit' avec -t final.",
+        "choices": [
+          {
+            "id": "voit",
+            "label": "voit",
+            "forAxis": {
+              "personne": "3-sg"
+            }
+          },
+          {
+            "id": "vois",
+            "label": "vois",
+            "forAxis": {
+              "personne": "1-2-sg"
+            }
+          },
+          {
+            "id": "voix",
+            "label": "voix"
+          }
+        ]
+      },
+      {
+        "id": "q005",
+        "before": "Le médecin",
+        "after": " tous ses patients le matin.",
+        "answer": "voit",
+        "difficulty": 2,
+        "explanation": "'Le médecin' (3ème pers. sing.) → 'voit' avec -t final.",
+        "choices": [
+          {
+            "id": "voit",
+            "label": "voit",
+            "forAxis": {
+              "personne": "3-sg"
+            }
+          },
+          {
+            "id": "vois",
+            "label": "vois",
+            "forAxis": {
+              "personne": "1-2-sg"
+            }
+          },
+          {
+            "id": "voix",
+            "label": "voix"
+          }
+        ]
+      },
+      {
+        "id": "q009",
+        "before": "Ma sœur",
+        "after": " parler trois langues.",
+        "answer": "peut",
+        "difficulty": 2,
+        "explanation": "'Ma sœur' (3ème pers. sing.) → 'peut' avec -t final.",
+        "choices": [
+          {
+            "id": "peut",
+            "label": "peut",
+            "forAxis": {
+              "personne": "3-sg"
+            }
+          },
+          {
+            "id": "peux",
+            "label": "peux",
+            "forAxis": {
+              "personne": "1-2-sg"
+            }
+          },
+          {
+            "id": "peu",
+            "label": "peu"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "er-e-ez-ais-ait",
+    "title": "-er · -é · -ez · -ais · -ait",
+    "shortTitle": "terminaisons verbales",
+    "description": "Choisir la bonne terminaison d'un verbe du 1er groupe : infinitif (-er), participe passé (-é), 2e pers. pluriel (-ez), imparfait 1re/2e pers. (-ais), imparfait 3e pers. (-ait).",
+    "choices": [
+      {
+        "id": "er",
+        "label": "-er"
+      },
+      {
+        "id": "e",
+        "label": "-é"
+      },
+      {
+        "id": "ez",
+        "label": "-ez"
+      },
+      {
+        "id": "ais",
+        "label": "-ais"
+      },
+      {
+        "id": "ait",
+        "label": "-ait"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "conjugue",
+        "question": "Le verbe est  :",
+        "options": [
+          {
+            "value": true,
+            "label": "Conjugué",
+            "eliminates": [
+              "er",
+              "e"
+            ]
+          },
+          {
+            "value": false,
+            "label": "à l'infinitif ou participe",
+            "eliminates": [
+              "ez",
+              "ais",
+              "ait"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "subType",
+        "question": "Précise",
+        "dependsOn": "conjugue",
+        "options": [
+          {
+            "value": "mordre",
+            "showWhen": false,
+            "label": "On dirait « mordre »",
+            "eliminates": [
+              "e"
+            ]
+          },
+          {
+            "value": "mordu",
+            "showWhen": false,
+            "label": "On dirait « mordu »",
+            "eliminates": [
+              "er"
+            ]
+          },
+          {
+            "value": "vous",
+            "showWhen": true,
+            "label": "Sujet = vous",
+            "eliminates": [
+              "ais",
+              "ait"
+            ]
+          },
+          {
+            "value": "je/tu",
+            "showWhen": true,
+            "label": "Sujet = je ou tu",
+            "eliminates": [
+              "ez",
+              "ait"
+            ]
+          },
+          {
+            "value": "il/elle/on",
+            "showWhen": true,
+            "label": "Sujet = il, elle ou on",
+            "eliminates": [
+              "ez",
+              "ais"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "La règle en un coup d'œil",
+      "rows": [
+        {
+          "form": "-er",
+          "test": "remplacer par « mordre »",
+          "example": "Il faut parler."
+        },
+        {
+          "form": "-é",
+          "test": "remplacer par « mordu »",
+          "example": "Il a parlé."
+        },
+        {
+          "form": "-ez",
+          "test": "sujet = vous",
+          "example": "Vous parlez."
+        },
+        {
+          "form": "-ais",
+          "test": "sujet = je / tu + passé",
+          "example": "Je parlais."
+        },
+        {
+          "form": "-ait",
+          "test": "sujet = il/elle/on + passé",
+          "example": "Il parlait."
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Il faut ",
+        "after": " avant l'examen.",
+        "answer": "er",
+        "difficulty": 1,
+        "explanation": "On peut dire « il faut mordre » → infinitif → -er."
+      },
+      {
+        "id": "q002",
+        "before": "Tu dois ",
+        "after": " davantage.",
+        "answer": "er",
+        "difficulty": 1,
+        "explanation": "On peut dire « tu dois mordre » → infinitif → -er."
+      },
+      {
+        "id": "q006",
+        "before": "Je viens de ",
+        "after": " mon travail.",
+        "answer": "er",
+        "difficulty": 2,
+        "explanation": "Après « venir de », on utilise l'infinitif → -er."
+      },
+      {
+        "id": "q013",
+        "before": "Sans ",
+        "after": ", on ne gagne rien.",
+        "answer": "er",
+        "difficulty": 2,
+        "explanation": "Après « sans », on utilise l'infinitif → -er."
+      },
+      {
+        "id": "q031",
+        "before": "Le travail est ",
+        "after": ".",
+        "answer": "e",
+        "difficulty": 2,
+        "explanation": "Adjectif verbal issu du participe passé → -é."
+      }
+    ]
+  },
+  {
+    "id": "feminin-e-ee",
+    "title": "Terminaison du fémin -é  ou -ée",
+    "shortTitle": "-é / -ée",
+    "description": "Comment écrire le féminin des noms en -é, -té et -tié ? La plupart des noms féminins en -é prennent -ée, mais ceux en -té et -tié s'écrivent sans -e final (sauf exceptions).",
+    "choices": [
+      {
+        "id": "e",
+        "label": "-é"
+      },
+      {
+        "id": "ee",
+        "label": "-ée"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "son-final",
+        "question": "Le mot se termine-t-il par le son…",
+        "options": [
+          {
+            "value": "te",
+            "label": "-té",
+            "eliminates": []
+          },
+          {
+            "value": "tie",
+            "label": "-tié",
+            "eliminates": [
+              "ee"
+            ]
+          },
+          {
+            "value": "autre",
+            "label": "Autre",
+            "eliminates": []
+          }
+        ]
+      },
+      {
+        "id": "exception-te",
+        "question": "Ce mot en -té est-il…",
+        "dependsOn": "son-final",
+        "showWhen": "te",
+        "options": [
+          {
+            "value": "exception",
+            "label": "Une exception",
+            "eliminates": [
+              "e"
+            ]
+          },
+          {
+            "value": "quantite",
+            "label": "Une quantité ",
+            "eliminates": [
+              "e"
+            ]
+          },
+          {
+            "value": "autre",
+            "label": "Autre",
+            "eliminates": [
+              "ee"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exception-cle",
+        "question": "Est-ce le mot 'clé' ?",
+        "dependsOn": "son-final",
+        "showWhen": "autre",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui",
+            "eliminates": [
+              "ee"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non",
+            "eliminates": [
+              "e"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "Féminin des noms en -é, -té, -tié",
+      "rows": [
+        {
+          "form": "-ée",
+          "test": "Nom féminin en -é → ajouter -e (règle générale)",
+          "example": "la cheminée, la rentrée, l'allée"
+        },
+        {
+          "form": "-é",
+          "test": "Nom en -té ou -tié → pas de -e final",
+          "example": "la liberté, la beauté, l'amitié"
+        },
+        {
+          "form": "-ée (exception)",
+          "test": "Exceptions en -té : dictée, jetée, montée, pâtée, portée + noms de contenu",
+          "example": "la dictée, la brouettée"
+        },
+        {
+          "form": "-é (exception)",
+          "test": "Exception unique : clé",
+          "example": "la clé"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "La chemin",
+        "after": " fume encore après l'incendie.",
+        "answer": "ee",
+        "difficulty": 1,
+        "explanation": "Cheminée ne se termine pas par le son [-té] → règle générale : -ée."
+      },
+      {
+        "id": "q002",
+        "before": "La rentr",
+        "after": " des classes est en septembre.",
+        "answer": "ee",
+        "difficulty": 1,
+        "explanation": "Rentrée ne se termine pas par le son [-té] → règle générale : -ée."
+      },
+      {
+        "id": "q015",
+        "before": "Il mange une assiett",
+        "after": " de pâtes.",
+        "answer": "ee",
+        "difficulty": 3,
+        "explanation": "Assiettée se termine par [-té] mais c'est un nom de contenu (le contenu d'une assiette) → -ée."
+      },
+      {
+        "id": "q027",
+        "before": "Il a transporté une brouett",
+        "after": " de sable.",
+        "answer": "ee",
+        "difficulty": 3,
+        "explanation": "Brouettée se termine par [-té] mais c'est un nom de contenu (le contenu d'une brouette) → -ée."
+      },
+      {
+        "id": "q038",
+        "before": "Elle a mangé une pellet",
+        "after": " de bonbons.",
+        "answer": "ee",
+        "difficulty": 3,
+        "explanation": "Pelletée se termine par [-té] mais c'est un nom de contenu (le contenu d'une pelle) → -ée."
+      }
+    ]
+  },
+  {
+    "id": "g-gu-ge",
+    "title": "g · gu · ge",
+    "shortTitle": "g / gu / ge",
+    "description": "Choisir entre g, gu et ge selon le son entendu (g dur 'gueu' ou g doux 'je') et la voyelle qui suit (a/o/u ou e/i/y).",
+    "choices": [
+      {
+        "id": "g",
+        "label": "g"
+      },
+      {
+        "id": "gu",
+        "label": "gu"
+      },
+      {
+        "id": "ge",
+        "label": "ge"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "son",
+        "question": "Quel son entends-tu juste avant la voyelle ?",
+        "sub": "Écoute bien : son 'gueu' (dur) ou son 'je' (doux) ?",
+        "options": [
+          {
+            "value": true,
+            "label": "[g] dur — comme dans 'gare', 'gomme', 'guirlande'",
+            "eliminates": [
+              "ge"
+            ]
+          },
+          {
+            "value": false,
+            "label": "[ʒ] doux — comme dans 'jardin', 'girafe', 'mangeons'",
+            "eliminates": [
+              "gu"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "voyelleDur",
+        "question": "Quelle voyelle vois-tu juste après le trou ?",
+        "sub": "Regarde la première lettre qui suit le blanc.",
+        "dependsOn": "son",
+        "showWhen": true,
+        "options": [
+          {
+            "value": "ouverte",
+            "label": "a, o, u ou consonne ",
+            "eliminates": [
+              "gu"
+            ]
+          },
+          {
+            "value": "fermee",
+            "label": "e, i, y, é, è, ê ",
+            "eliminates": [
+              "g"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "voyelleDoux",
+        "question": "Quelle voyelle vois-tu juste après le trou ?",
+        "sub": "Regarde la première lettre qui suit le blanc.",
+        "dependsOn": "son",
+        "showWhen": false,
+        "options": [
+          {
+            "value": "ouverte",
+            "label": "a, o, u ",
+            "eliminates": [
+              "g"
+            ]
+          },
+          {
+            "value": "fermee",
+            "label": "e, i, y, é → g (girafe, genou)",
+            "eliminates": [
+              "ge"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "Le son g en un coup d'œil",
+      "rows": [
+        {
+          "form": "g (dur)",
+          "test": "[g] + a, o, u ou consonne",
+          "example": "gare, gomme, gros"
+        },
+        {
+          "form": "gu (dur)",
+          "test": "[g] + e, i, y (le u durcit le g)",
+          "example": "guirlande, guitare, guêpe"
+        },
+        {
+          "form": "ge (doux)",
+          "test": "[ʒ] + a, o, u (le e adoucit le g)",
+          "example": "bourgeois, pigeon, mangeons"
+        },
+        {
+          "form": "g (doux)",
+          "test": "[ʒ] + e, i, y, é, è",
+          "example": "girafe, genou, gilet, géant"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Le train arrive à la ",
+        "after": "are à 18 heures.",
+        "answer": "g",
+        "difficulty": 1,
+        "explanation": "On entend le son [g] dur (gueu) suivi d'un 'a' → on écrit simplement 'g' (gare)."
+      },
+      {
+        "id": "q002",
+        "before": "J'ai oublié ma ",
+        "after": "omme dans la trousse.",
+        "answer": "g",
+        "difficulty": 1,
+        "explanation": "Son [g] dur + 'o' → 'g' tout seul (gomme). Pas besoin de 'u' devant a/o/u."
+      },
+      {
+        "id": "q014",
+        "before": "Nous man",
+        "after": "ons une pizza ce soir.",
+        "answer": "ge",
+        "difficulty": 3,
+        "explanation": "Verbe 'manger' à la 1re personne du pluriel : on garde le 'e' (mangeons) pour conserver le son [ʒ] devant 'ons'."
+      },
+      {
+        "id": "q015",
+        "before": "Nous na",
+        "after": "ons à la piscine le mercredi.",
+        "answer": "ge",
+        "difficulty": 3,
+        "explanation": "Verbe 'nager' : son [ʒ] + 'ons' → 'ge' (nageons), comme pour mangeons."
+      },
+      {
+        "id": "q060",
+        "before": "Un vieux ",
+        "after": "éridon trônait au milieu du salon.",
+        "answer": "gu",
+        "difficulty": 3,
+        "explanation": "Son [g] dur + 'é' → gu (guéridon). Mot rare, la règle s'applique toujours."
+      }
+    ]
+  },
+  {
+    "id": "groupes-verbes",
+    "title": "1er · 2ème · 3ème groupes",
+    "shortTitle": "Groupes de verbes",
+    "description": "Savoir identifier le groupe d'un verbe français : 1er groupe (verbes en -er sauf aller), 2ème groupe (verbes en -ir qui font -issons), 3ème groupe (tous les autres).",
+    "choices": [
+      {
+        "id": "g1",
+        "label": "1er"
+      },
+      {
+        "id": "g2",
+        "label": "2ème"
+      },
+      {
+        "id": "g3",
+        "label": "3ème"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "terminaison",
+        "question": "Comment se termine le verbe à l'infinitif ?",
+        "options": [
+          {
+            "value": "er",
+            "label": "En -er",
+            "eliminates": [
+              "g2",
+              "g3"
+            ]
+          },
+          {
+            "value": "ir",
+            "label": "En -ir",
+            "eliminates": [
+              "g1"
+            ]
+          },
+          {
+            "value": "autre",
+            "label": "Autre",
+            "eliminates": [
+              "g1",
+              "g2"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "issons",
+        "question": "Conjugué avec « nous », fait-il « -issons » ?",
+        "dependsOn": "terminaison",
+        "showWhen": "ir",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui",
+            "eliminates": [
+              "g3"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non",
+            "eliminates": [
+              "g2"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "Les trois groupes de verbes",
+      "rows": [
+        {
+          "form": "1er groupe",
+          "test": "Infinitif en -er (sauf aller)",
+          "example": "chanter, manger, jouer"
+        },
+        {
+          "form": "2ème groupe",
+          "test": "Infinitif en -ir + « nous …issons »",
+          "example": "finir → nous finissons"
+        },
+        {
+          "form": "3ème groupe",
+          "test": "Tous les autres (+ aller)",
+          "example": "partir, voir, prendre, aller"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Le verbe « chanter » est un verbe du",
+        "after": ".",
+        "answer": "g1",
+        "difficulty": 1,
+        "explanation": "Chanter se termine en -er → 1er groupe."
+      },
+      {
+        "id": "q002",
+        "before": "Le verbe « manger » est un verbe du",
+        "after": ".",
+        "answer": "g1",
+        "difficulty": 1,
+        "explanation": "Manger se termine en -er → 1er groupe."
+      },
+      {
+        "id": "q051",
+        "before": "Le verbe « abolir » est un verbe du",
+        "after": ".",
+        "answer": "g2",
+        "difficulty": 3,
+        "explanation": "Abolir se termine en -ir et on dit « nous abolissons » → 2ème groupe."
+      },
+      {
+        "id": "q059",
+        "before": "Le verbe « épaissir » est un verbe du",
+        "after": ".",
+        "answer": "g2",
+        "difficulty": 3,
+        "explanation": "Épaissir se termine en -ir et on dit « nous épaississons » → 2ème groupe."
+      },
+      {
+        "id": "q060",
+        "before": "Le verbe « approfondir » est un verbe du",
+        "after": ".",
+        "answer": "g2",
+        "difficulty": 3,
+        "explanation": "Approfondir se termine en -ir et on dit « nous approfondissons » → 2ème groupe."
+      }
+    ]
+  },
+  {
+    "id": "leur-leurs",
+    "title": "leur · leurs",
+    "shortTitle": "leur / leurs",
+    "description": "Distinguer : leur pronom (invariable, devant un verbe, = lui) et leur/leurs déterminant (accord avec le nom qui suit).",
+    "choices": [
+      {
+        "id": "leur",
+        "label": "leur"
+      },
+      {
+        "id": "leurs",
+        "label": "leurs"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "isPronom",
+        "question": "Quelle est la nature du mot suivant ?",
+        "options": [
+          {
+            "value": true,
+            "label": "Un verbe",
+            "eliminates": [
+              "leurs"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Un nom",
+            "eliminates": []
+          }
+        ]
+      },
+      {
+        "id": "nombre",
+        "question": "Le nom qui suit est…",
+        "dependsOn": "isPronom",
+        "showWhen": false,
+        "options": [
+          {
+            "value": "singulier",
+            "label": "Singulier → leur",
+            "eliminates": [
+              "leurs"
+            ]
+          },
+          {
+            "value": "pluriel",
+            "label": "Pluriel → leurs",
+            "eliminates": [
+              "leur"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "La règle en un coup d'œil",
+      "rows": [
+        {
+          "form": "leur (pronom)",
+          "test": "remplace par « lui »",
+          "example": "Je leur parle. → Je lui parle. ✓"
+        },
+        {
+          "form": "leur (dét. sg)",
+          "test": "nom singulier après",
+          "example": "leur maison (une maison)"
+        },
+        {
+          "form": "leurs (dét. pl)",
+          "test": "nom pluriel après",
+          "example": "leurs maisons (des maisons)"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Je ",
+        "after": " ai expliqué la situation.",
+        "answer": "leur",
+        "difficulty": 1,
+        "explanation": "Pronom : on peut dire « je lui ai expliqué » → leur invariable."
+      },
+      {
+        "id": "q002",
+        "before": "Tu ",
+        "after": " as donné un cadeau.",
+        "answer": "leur",
+        "difficulty": 1,
+        "explanation": "Pronom : remplace par « lui as donné » → leur pronom invariable."
+      },
+      {
+        "id": "q081",
+        "before": "C'est ",
+        "after": " anniversaire demain.",
+        "answer": "leur",
+        "difficulty": 3,
+        "explanation": "Déterminant singulier : l'anniversaire (singulier) → leur."
+      },
+      {
+        "id": "q082",
+        "before": "Ils ont donné ",
+        "after": " clés à Marie.",
+        "answer": "leurs",
+        "difficulty": 3,
+        "explanation": "Déterminant pluriel : les clés (pluriel) → leurs."
+      },
+      {
+        "id": "q150",
+        "before": "Jamais vous ne ",
+        "after": " devez cacher la vérité.",
+        "answer": "leur",
+        "difficulty": 3,
+        "explanation": "Pronom : on peut dire « Jamais vous ne lui devez cacher la vérité. » → leur invariable."
+      }
+    ]
+  },
+  {
+    "id": "mais-mes-met-mets",
+    "title": "mais · mes · met · mets",
+    "shortTitle": "mais / mes / met / mets",
+    "description": "Distinguer la conjonction 'mais', le possessif 'mes' et les formes du verbe 'mettre' (met, mets).",
+    "choices": [
+      {
+        "id": "mais",
+        "label": "mais"
+      },
+      {
+        "id": "mes",
+        "label": "mes"
+      },
+      {
+        "id": "met",
+        "label": "met"
+      },
+      {
+        "id": "mets",
+        "label": "mets"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "opposition",
+        "question": "Peut-on remplacer par 'cependant' ou 'pourtant' ?",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui",
+            "eliminates": [
+              "mes",
+              "met",
+              "mets"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non",
+            "eliminates": [
+              "mais"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "possessif",
+        "question": "Peut-on remplacer par 'tes' ?",
+        "dependsOn": "opposition",
+        "showWhen": false,
+        "options": [
+          {
+            "value": true,
+            "label": "Oui",
+            "eliminates": [
+              "met",
+              "mets"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non",
+            "eliminates": [
+              "mes"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "sujet-verbe",
+        "question": "Le sujet est-il 'je' ou 'tu' ?",
+        "dependsOn": "possessif",
+        "showWhen": false,
+        "options": [
+          {
+            "value": true,
+            "label": "Oui (je / tu)",
+            "eliminates": [
+              "met"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non (il / elle / on…)",
+            "eliminates": [
+              "mets"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "mais · mes · met · mets",
+      "rows": [
+        {
+          "form": "mais",
+          "test": "Remplaçable par 'cependant'",
+          "example": "Il est fatigué, mais il continue."
+        },
+        {
+          "form": "mes",
+          "test": "Remplaçable par 'tes'",
+          "example": "Mes amis sont là."
+        },
+        {
+          "form": "met",
+          "test": "Verbe mettre, sujet il/elle/on",
+          "example": "Elle met la table."
+        },
+        {
+          "form": "mets",
+          "test": "Verbe mettre, sujet je/tu — ou nom pluriel (les mets)",
+          "example": "Je mets du sel. / Ces mets sont délicieux."
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Le trek en montagne était difficile,",
+        "after": "vraiment inoubliable.",
+        "answer": "mais",
+        "difficulty": 1,
+        "explanation": "Conjonction d'opposition : l'effort (difficile) s'oppose au résultat positif (inoubliable).",
+        "choices": [
+          {
+            "id": "mais",
+            "label": "mais"
+          },
+          {
+            "id": "mes",
+            "label": "mes"
+          },
+          {
+            "id": "met",
+            "label": "met"
+          },
+          {
+            "id": "mets",
+            "label": "mets"
+          }
+        ]
+      },
+      {
+        "id": "q002",
+        "before": "J'ai préparé",
+        "after": "affaires depuis deux jours pour ce voyage.",
+        "answer": "mes",
+        "difficulty": 1,
+        "explanation": "Déterminant possessif pluriel : les affaires qui m'appartiennent. Peut se remplacer par 'tes'.",
+        "choices": [
+          {
+            "id": "mais",
+            "label": "mais"
+          },
+          {
+            "id": "mes",
+            "label": "mes"
+          },
+          {
+            "id": "met",
+            "label": "met"
+          },
+          {
+            "id": "mets",
+            "label": "mets"
+          }
+        ]
+      },
+      {
+        "id": "q011",
+        "before": "L'archéologue",
+        "after": "en lumière les artefacts découverts dans les ruines.",
+        "answer": "met",
+        "difficulty": 3,
+        "explanation": "Verbe mettre à la 3e personne, sens figuré : révéler, exposer l'importance des artefacts.",
+        "choices": [
+          {
+            "id": "mais",
+            "label": "mais"
+          },
+          {
+            "id": "mes",
+            "label": "mes"
+          },
+          {
+            "id": "met",
+            "label": "met"
+          },
+          {
+            "id": "mets",
+            "label": "mets"
+          }
+        ]
+      },
+      {
+        "id": "q012",
+        "before": "Lors de chaque expédition, je",
+        "after": "un soin particulier à documenter chaque moment.",
+        "answer": "mets",
+        "difficulty": 3,
+        "explanation": "Verbe mettre à la 1ère personne : apporter du soin à la documentation.",
+        "choices": [
+          {
+            "id": "mais",
+            "label": "mais"
+          },
+          {
+            "id": "mes",
+            "label": "mes"
+          },
+          {
+            "id": "met",
+            "label": "met"
+          },
+          {
+            "id": "mets",
+            "label": "mets"
+          }
+        ]
+      },
+      {
+        "id": "q013",
+        "before": "La traversée du désert était harassante,",
+        "after": "elle nous a forgés en tant que groupe.",
+        "answer": "mais",
+        "difficulty": 3,
+        "explanation": "Opposition forte : l'épreuve (harassante) crée une cohésion (groupe uni).",
+        "choices": [
+          {
+            "id": "mais",
+            "label": "mais"
+          },
+          {
+            "id": "mes",
+            "label": "mes"
+          },
+          {
+            "id": "met",
+            "label": "met"
+          },
+          {
+            "id": "mets",
+            "label": "mets"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ou-ou",
+    "title": "ou · où",
+    "shortTitle": "ou / où",
+    "description": "Distinguer : ou (conjonction de coordination = ou bien) et où (adverbe de lieu ou de temps, pronom relatif).",
+    "choices": [
+      {
+        "id": "ou",
+        "label": "ou"
+      },
+      {
+        "id": "ouu",
+        "label": "où"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "isConjonction",
+        "question": "Peut-on remplacer par « ou bien » ?",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui → ou",
+            "eliminates": [
+              "ouu"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non → où",
+            "eliminates": [
+              "ou"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "La règle en un coup d'œil",
+      "rows": [
+        {
+          "form": "ou",
+          "test": "remplacer par « ou bien »",
+          "example": "Thé ou café ? → Thé ou bien café ? ✓"
+        },
+        {
+          "form": "où",
+          "test": "ou bien ne fonctionne pas",
+          "example": "La ville où je vis → La ville ou bien je vis ✗"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Tu préfères le thé ",
+        "after": " le café ?",
+        "answer": "ou",
+        "difficulty": 1,
+        "explanation": "On peut dire « thé ou bien café » → conjonction → ou."
+      },
+      {
+        "id": "q002",
+        "before": "Je vais à Paris, ",
+        "after": " vas-tu ?",
+        "answer": "ouu",
+        "difficulty": 1,
+        "explanation": "« ou bien vas-tu » ne marche pas. C'est un adverbe interrogatif de lieu → où."
+      },
+      {
+        "id": "q016",
+        "before": "D'",
+        "after": " viens-tu ?",
+        "answer": "ouu",
+        "difficulty": 3,
+        "explanation": "« D'où » est toujours écrit ensemble. Même si « ou bien » ne marche pas, c'est l'adverbe où → où."
+      },
+      {
+        "id": "q020",
+        "before": "Par ",
+        "after": " dois-je passer ?",
+        "answer": "ouu",
+        "difficulty": 3,
+        "explanation": "« Par où » est un adverbe interrogatif → où. Même si « par ou bien » ne marche pas, c'est où."
+      },
+      {
+        "id": "q024",
+        "before": "Jusqu'",
+        "after": " iras-tu ?",
+        "answer": "ouu",
+        "difficulty": 3,
+        "explanation": "« Jusqu'où » est un adverbe interrogatif de lieu → où."
+      }
+    ]
+  },
+  {
+    "id": "peu-peut-peux",
+    "title": "peu · peut · peux",
+    "shortTitle": "peu / peut / peux",
+    "description": "Distinguer l'adverbe de quantité 'peu', la 3e personne de 'pouvoir' (peut) et la 1ère/2e personne (peux).",
+    "choices": [
+      {
+        "id": "peu",
+        "label": "peu"
+      },
+      {
+        "id": "peut",
+        "label": "peut"
+      },
+      {
+        "id": "peux",
+        "label": "peux"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "est-verbe",
+        "question": "Peut-on remplacer par une forme du verbe 'pouvoir' ?",
+        "sub": "Essaie : 'être capable de'",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui",
+            "sub": "C'est le verbe pouvoir",
+            "eliminates": [
+              "peu"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non",
+            "sub": "C'est l'adverbe de quantité",
+            "eliminates": [
+              "peut",
+              "peux"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "quel-sujet",
+        "question": "Le sujet est-il 'je' ou 'tu' ?",
+        "dependsOn": "est-verbe",
+        "showWhen": true,
+        "options": [
+          {
+            "value": true,
+            "label": "Oui (je / tu)",
+            "eliminates": [
+              "peut"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non (il / elle / on…)",
+            "eliminates": [
+              "peux"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "peu · peut · peux",
+      "rows": [
+        {
+          "form": "peu",
+          "test": "Remplaçable par 'pas beaucoup'",
+          "example": "Il mange peu."
+        },
+        {
+          "form": "peut",
+          "test": "Sujet = il/elle/on + verbe pouvoir",
+          "example": "Elle peut venir."
+        },
+        {
+          "form": "peux",
+          "test": "Sujet = je/tu + verbe pouvoir",
+          "example": "Je peux t'aider."
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Tu",
+        "after": " nager très loin sans te fatiguer.",
+        "answer": "peux",
+        "difficulty": 1,
+        "explanation": "Tu (2e pers. sing.) → 'peux' (verbe pouvoir).",
+        "choices": [
+          {
+            "id": "peu",
+            "label": "peu"
+          },
+          {
+            "id": "peut",
+            "label": "peut"
+          },
+          {
+            "id": "peux",
+            "label": "peux"
+          }
+        ]
+      },
+      {
+        "id": "q002",
+        "before": "Elle court",
+        "after": " pendant l'entraînement de cross.",
+        "answer": "peu",
+        "difficulty": 1,
+        "explanation": "Adverbe de quantité modifiant le verbe → 'peu' (elle court PEU).",
+        "choices": [
+          {
+            "id": "peu",
+            "label": "peu"
+          },
+          {
+            "id": "peut",
+            "label": "peut"
+          },
+          {
+            "id": "peux",
+            "label": "peux"
+          }
+        ]
+      },
+      {
+        "id": "q011",
+        "before": "On a",
+        "after": " de chance quand on joue au football.",
+        "answer": "peu",
+        "difficulty": 3,
+        "explanation": "Adverbe quantifiant la chance → 'peu' (on a PEU de chance).",
+        "choices": [
+          {
+            "id": "peu",
+            "label": "peu"
+          },
+          {
+            "id": "peut",
+            "label": "peut"
+          },
+          {
+            "id": "peux",
+            "label": "peux"
+          }
+        ]
+      },
+      {
+        "id": "q012",
+        "before": "Ça",
+        "after": " sembler difficile au début du terrain.",
+        "answer": "peut",
+        "difficulty": 3,
+        "explanation": "Ça (3e pers. sing., sujet neutre) → 'peut' (verbe pouvoir).",
+        "choices": [
+          {
+            "id": "peu",
+            "label": "peu"
+          },
+          {
+            "id": "peut",
+            "label": "peut"
+          },
+          {
+            "id": "peux",
+            "label": "peux"
+          }
+        ]
+      },
+      {
+        "id": "q017",
+        "before": "Les skieurs descendent",
+        "after": " les pentes raides.",
+        "answer": "peu",
+        "difficulty": 3,
+        "explanation": "Adverbe quantifiant la descente → 'peu' (ils descendent PEU).",
+        "choices": [
+          {
+            "id": "peu",
+            "label": "peu"
+          },
+          {
+            "id": "peut",
+            "label": "peut"
+          },
+          {
+            "id": "peux",
+            "label": "peux"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "pluriel-al-ou",
+    "title": "pluriel en -aux · -als · -oux · -ous",
+    "shortTitle": "pluriel -al / -ou",
+    "description": "Les noms en -al font leur pluriel en -aux (cheval → chevaux), sauf quelques exceptions en -als (bal, festival…). Les noms en -ou prennent -ous, sauf 7 exceptions en -oux (bijou, caillou, chou, genou, hibou, joujou, pou).",
+    "choices": [
+      {
+        "id": "aux",
+        "label": "-aux"
+      },
+      {
+        "id": "als",
+        "label": "-als"
+      },
+      {
+        "id": "oux",
+        "label": "-oux"
+      },
+      {
+        "id": "ous",
+        "label": "-ous"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "terminaison",
+        "question": "Le nom au singulier se termine par…",
+        "options": [
+          {
+            "value": "al",
+            "label": "-al",
+            "eliminates": [
+              "oux",
+              "ous"
+            ]
+          },
+          {
+            "value": "ou",
+            "label": "-ou",
+            "eliminates": [
+              "aux",
+              "als"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exception_al",
+        "question": "Ce nom fait-il partie des exceptions ?",
+        "sub": "Exceptions en -als : bal, carnaval, festival, récital, régal, chacal, bancal…",
+        "dependsOn": "terminaison",
+        "showWhen": "al",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui ",
+            "eliminates": [
+              "aux"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non (règle générale) ",
+            "eliminates": [
+              "als"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "exception_ou",
+        "question": "Ce nom fait-il partie des 7 exceptions ?",
+        "sub": "Les 7 exceptions en -oux : bijou, caillou, chou, genou, hibou, joujou, pou",
+        "dependsOn": "terminaison",
+        "showWhen": "ou",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui ",
+            "eliminates": [
+              "ous"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non (règle générale) ",
+            "eliminates": [
+              "oux"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "La règle en un coup d'œil",
+      "rows": [
+        {
+          "form": "-aux",
+          "test": "nom en -al, cas général",
+          "example": "cheval → chevaux"
+        },
+        {
+          "form": "-als",
+          "test": "nom en -al, exception",
+          "example": "festival → festivals"
+        },
+        {
+          "form": "-oux",
+          "test": "l'un des 7 : bij, caill, ch, gen, hib, joujo, p",
+          "example": "genou → genoux"
+        },
+        {
+          "form": "-ous",
+          "test": "nom en -ou, cas général",
+          "example": "trou → trous"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Les chev",
+        "after": " galopent librement dans la prairie.",
+        "answer": "aux",
+        "difficulty": 1,
+        "explanation": "« cheval » → -al, règle générale → pluriel en -aux : chevaux."
+      },
+      {
+        "id": "q002",
+        "before": "Les anim",
+        "after": " sauvages vivent en forêt tropicale.",
+        "answer": "aux",
+        "difficulty": 1,
+        "explanation": "« animal » → -al, règle générale → pluriel en -aux : animaux."
+      },
+      {
+        "id": "q009",
+        "before": "Les récit",
+        "after": " de piano ont enthousiasmé le public ce soir-là.",
+        "answer": "als",
+        "difficulty": 3,
+        "explanation": "« récital » est une exception en -als : récitals (et non « récitaux »)."
+      },
+      {
+        "id": "q010",
+        "before": "Deux chac",
+        "after": " rôdaient autour du campement à la tombée de la nuit.",
+        "answer": "als",
+        "difficulty": 3,
+        "explanation": "« chacal » est une exception en -als : chacals (et non « chacaux »)."
+      },
+      {
+        "id": "q041",
+        "before": "Les résidus végétal",
+        "after": " sont biodégradables.",
+        "answer": "aux",
+        "difficulty": 3,
+        "explanation": "« végétal » → -al, règle générale → pluriel en -aux : végétaux."
+      }
+    ]
+  },
+  {
+    "id": "pluriel-noms-adjectifs",
+    "title": "Pluriel des noms · s · z · x",
+    "shortTitle": "Pluriel noms (2)",
+    "description": "La plupart des noms communs prennent un -s au pluriel. Ceux qui finissent par -eau, -au ou -eu prennent un -x. Ceux qui finissent déjà par s, z ou x restent identiques au singulier.",
+    "choices": [
+      {
+        "id": "s",
+        "label": "s"
+      },
+      {
+        "id": "x",
+        "label": "x"
+      },
+      {
+        "id": "z",
+        "label": "z"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "terminaison",
+        "question": "Comment se termine le nom au singulier ?",
+        "options": [
+          {
+            "value": "sxz",
+            "label": "par s, z, x",
+            "eliminates": []
+          },
+          {
+            "value": "eau",
+            "label": "par -eau, -au, -eu",
+            "eliminates": [
+              "s",
+              "z"
+            ]
+          },
+          {
+            "value": "autre",
+            "label": "par une autre lettre",
+            "eliminates": [
+              "z",
+              "x"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "terminaison2",
+        "question": "Par quelle lettre se termine-t-il exactement ?",
+        "dependsOn": "terminaison",
+        "showWhen": "sxz",
+        "options": [
+          {
+            "value": "fs",
+            "label": "s",
+            "eliminates": [
+              "z",
+              "x"
+            ]
+          },
+          {
+            "value": "fz",
+            "label": "z",
+            "eliminates": [
+              "s",
+              "x"
+            ]
+          },
+          {
+            "value": "fx",
+            "label": "x",
+            "eliminates": [
+              "s",
+              "z"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "Pluriel des noms communs",
+      "rows": [
+        {
+          "form": "-x",
+          "test": "finit par -eau, -au ou -eu",
+          "example": "un bureau → des bureaux"
+        },
+        {
+          "form": "même lettre (s / z / x)",
+          "test": "finit déjà par s, z ou x",
+          "example": "un avis → des avis · un prix → des prix"
+        },
+        {
+          "form": "-s",
+          "test": "tous les autres cas",
+          "example": "un fruit → des fruits"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Le pluriel du nom « ami » se termine par",
+        "after": ".",
+        "answer": "s",
+        "difficulty": 1,
+        "explanation": "« ami » ne finit pas par -eau/-au/-eu ni par s/z/x → pluriel en -s : « amis »."
+      },
+      {
+        "id": "q002",
+        "before": "Le pluriel du nom « drapeau » se termine par",
+        "after": ".",
+        "answer": "x",
+        "difficulty": 1,
+        "explanation": "« drapeau » finit par -eau → pluriel en -x : « drapeaux »."
+      },
+      {
+        "id": "q076",
+        "before": "Le pluriel du nom « arceau » se termine par",
+        "after": ".",
+        "answer": "x",
+        "difficulty": 3,
+        "explanation": "« arceau » finit par -eau → pluriel en -x : « arceaux »."
+      },
+      {
+        "id": "q077",
+        "before": "Le pluriel du nom « souris » se termine par",
+        "after": ".",
+        "answer": "s",
+        "difficulty": 3,
+        "explanation": "« souris » finit déjà par s → pluriel identique au singulier : « souris » (se termine par s)."
+      },
+      {
+        "id": "q078",
+        "before": "Le pluriel du nom « barreau » se termine par",
+        "after": ".",
+        "answer": "x",
+        "difficulty": 3,
+        "explanation": "« barreau » finit par -eau → pluriel en -x : « barreaux »."
+      }
+    ]
+  },
+  {
+    "id": "pp-etre-groupe",
+    "title": "é · ée · és · ées — passé composé 1er groupe",
+    "shortTitle": "Accord PP être",
+    "description": "Choisir la bonne terminaison du participe passé d'un verbe du 1er groupe conjugué avec avoir ou être. Avec avoir, le participe est invariable (-é). Avec être, il s'accorde en genre et en nombre avec le sujet.",
+    "choices": [
+      {
+        "id": "e",
+        "label": "é"
+      },
+      {
+        "id": "ee",
+        "label": "ée"
+      },
+      {
+        "id": "es",
+        "label": "és"
+      },
+      {
+        "id": "ees",
+        "label": "ées"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "auxiliaire",
+        "question": "L'auxiliaire est-il 'avoir' ?",
+        "sub": "Repère le mot avant le participe : a, as, avons, avez, ont → avoir ; est, es, sommes, êtes, sont → être",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui — avoir",
+            "sub": "",
+            "eliminates": [
+              "ee",
+              "es",
+              "ees"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non — être",
+            "sub": "",
+            "eliminates": []
+          }
+        ]
+      },
+      {
+        "id": "genreNombre",
+        "question": "Quel est le genre et le nombre du sujet ?",
+        "sub": "Le participe passé avec être s'accorde comme un adjectif avec le sujet",
+        "dependsOn": "auxiliaire",
+        "showWhen": false,
+        "options": [
+          {
+            "value": "ms",
+            "label": "Masculin singulier",
+            "eliminates": [
+              "ee",
+              "es",
+              "ees"
+            ]
+          },
+          {
+            "value": "fs",
+            "label": "Féminin singulier",
+            "eliminates": [
+              "e",
+              "es",
+              "ees"
+            ]
+          },
+          {
+            "value": "mp",
+            "label": "Masculin pluriel",
+            "eliminates": [
+              "e",
+              "ee",
+              "ees"
+            ]
+          },
+          {
+            "value": "fp",
+            "label": "Féminin pluriel",
+            "eliminates": [
+              "e",
+              "ee",
+              "es"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "Accord du participe passé — 1er groupe",
+      "rows": [
+        {
+          "form": "-é",
+          "test": "auxiliaire avoir (invariable) OU être + masc. sing.",
+          "example": "Il a chanté. / Il est arrivé."
+        },
+        {
+          "form": "-ée",
+          "test": "être + féminin singulier",
+          "example": "Elle est arrivée en avance."
+        },
+        {
+          "form": "-és",
+          "test": "être + masculin pluriel",
+          "example": "Ils sont retournés à l'école."
+        },
+        {
+          "form": "-ées",
+          "test": "être + féminin pluriel",
+          "example": "Elles sont rentrées tard."
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Elle a chant",
+        "after": " en chœur.",
+        "answer": "e",
+        "difficulty": 1,
+        "explanation": "Auxiliaire 'avoir' → pas d'accord : -é."
+      },
+      {
+        "id": "q002",
+        "before": "Elles ont dans",
+        "after": " toute la soirée.",
+        "answer": "e",
+        "difficulty": 1,
+        "explanation": "Avec 'avoir', le participe est invariable : -é."
+      },
+      {
+        "id": "q016",
+        "before": "Sa meilleure amie est arriv",
+        "after": " à la maison avant la tempête.",
+        "answer": "ee",
+        "difficulty": 3,
+        "explanation": "Auxiliaire 'être' + sujet féminin singulier → -ée."
+      },
+      {
+        "id": "q017",
+        "before": "Après leur entraînement, les athlètes masculins sont tomb",
+        "after": " de fatigue.",
+        "answer": "es",
+        "difficulty": 3,
+        "explanation": "Auxiliaire 'être' + sujet masculin pluriel → -és."
+      },
+      {
+        "id": "q019",
+        "before": "Les trois danseuses sont arriv",
+        "after": " tard à cause du trafic.",
+        "answer": "ees",
+        "difficulty": 3,
+        "explanation": "Auxiliaire 'être' + sujet féminin pluriel → -ées."
+      }
+    ]
+  },
+  {
+    "id": "pp-ir-groupes",
+    "title": "i · is · ert · u — participe passé verbes en -ir",
+    "shortTitle": "PP verbes en -ir",
+    "description": "Choisir la bonne terminaison du participe passé d'un verbe en -ir. Clé : si le verbe est du 2ème groupe (-issons), le participe passé est toujours -i. Si c'est le 3ème groupe, on met le participe passé au féminin pour trouver la terminaison.",
+    "choices": [
+      {
+        "id": "i",
+        "label": "i"
+      },
+      {
+        "id": "is",
+        "label": "is"
+      },
+      {
+        "id": "ert",
+        "label": "ert"
+      },
+      {
+        "id": "u",
+        "label": "u"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "groupe",
+        "question": "Quel est le groupe du verbe ?",
+        "sub": "Test : conjugue à la 1ère personne du pluriel. Si ça fait '-issons' → 2ème groupe. Sinon → 3ème groupe.",
+        "options": [
+          {
+            "value": "g2",
+            "label": "2ème groupe",
+            "sub": "",
+            "eliminates": [
+              "is",
+              "ert",
+              "u"
+            ]
+          },
+          {
+            "value": "g3",
+            "label": "3ème groupe",
+            "sub": "",
+            "eliminates": []
+          }
+        ]
+      },
+      {
+        "id": "feminin",
+        "question": "Si tu dis \"Elle est...\" écoute la terminaison du participe passé",
+        "sub": "Il a  ouvert → Elle est ouverte (-erte). Parfois la phrase n'aura pas de sens (par exemple \"Elle est mentie\", mais ça t'aidera quand même)",
+        "dependsOn": "groupe",
+        "showWhen": "g3",
+        "options": [
+          {
+            "value": "ie",
+            "label": "-ie",
+            "eliminates": [
+              "is",
+              "ert",
+              "u"
+            ]
+          },
+          {
+            "value": "ise",
+            "label": "-ise ",
+            "eliminates": [
+              "i",
+              "ert",
+              "u"
+            ]
+          },
+          {
+            "value": "erte",
+            "label": "-erte",
+            "eliminates": [
+              "i",
+              "is",
+              "u"
+            ]
+          },
+          {
+            "value": "ue",
+            "label": "-ue",
+            "eliminates": [
+              "i",
+              "is",
+              "ert"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "Participe passé des verbes en -ir",
+      "rows": [
+        {
+          "form": "-i",
+          "test": "2ème groupe (nous -issons) OU 3ème groupe féminin en -ie",
+          "example": "fini, choisi, parti, dormi, sorti"
+        },
+        {
+          "form": "-is",
+          "test": "3ème groupe, féminin en -ise",
+          "example": "acquis, conquis"
+        },
+        {
+          "form": "-ert",
+          "test": "3ème groupe, féminin en -erte",
+          "example": "ouvert, offert, couvert, souffert"
+        },
+        {
+          "form": "-u",
+          "test": "3ème groupe, féminin en -ue",
+          "example": "couru, venu, tenu, devenu"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Il a fin",
+        "after": " son devoir avant le dîner.",
+        "answer": "i",
+        "difficulty": 1,
+        "explanation": "Finir fait 'nous finissons' → 2ème groupe → participe passé toujours en -i."
+      },
+      {
+        "id": "q002",
+        "before": "Elle a chois",
+        "after": " la robe bleue pour la soirée.",
+        "answer": "i",
+        "difficulty": 1,
+        "explanation": "Choisir fait 'nous choisissons' → 2ème groupe → participe passé en -i."
+      },
+      {
+        "id": "q021",
+        "before": "Ils ont bât",
+        "after": " cette maison en moins de six mois.",
+        "answer": "i",
+        "difficulty": 3,
+        "explanation": "Bâtir fait 'nous bâtissons' → 2ème groupe → participe passé en -i."
+      },
+      {
+        "id": "q024",
+        "before": "Elle a réag",
+        "after": " calmement face à la crise.",
+        "answer": "i",
+        "difficulty": 3,
+        "explanation": "Réagir fait 'nous réagissons' → 2ème groupe → participe passé en -i."
+      },
+      {
+        "id": "q025",
+        "before": "Il a franch",
+        "after": " la ligne d'arrivée en premier.",
+        "answer": "i",
+        "difficulty": 3,
+        "explanation": "Franchir fait 'nous franchissons' → 2ème groupe → participe passé en -i."
+      }
+    ]
+  },
+  {
+    "id": "son-sont",
+    "title": "son · sont",
+    "shortTitle": "son / sont",
+    "description": "Distinguer 'son' (adjectif possessif, remplaçable par 'mon' ou 'ma') et 'sont' (verbe être conjugué, remplaçable par 'ils sont').",
+    "choices": [
+      {
+        "id": "son",
+        "label": "son"
+      },
+      {
+        "id": "sont",
+        "label": "sont"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "remplacement",
+        "question": "Peut-on remplacer par 'ils sont' ?",
+        "sub": "Teste mentalement : 'ils sont...' — si la phrase garde un sens → 'sont'. Sinon, essaie 'mon' ou 'ma' → 'son'.",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui — 'ils sont' fonctionne",
+            "sub": "",
+            "eliminates": [
+              "son"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non — 'mon' ou 'ma' fonctionne",
+            "sub": "",
+            "eliminates": [
+              "sont"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "son ou sont ?",
+      "rows": [
+        {
+          "form": "son",
+          "test": "Remplaçable par 'mon' ou 'ma'",
+          "example": "Son chien aboie. → Mon chien aboie. ✓"
+        },
+        {
+          "form": "sont",
+          "test": "Remplaçable par 'ils sont'",
+          "example": "Ils sont partis. → ils sont partis. ✓"
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "Ils ",
+        "after": " arrivés en retard à la réunion.",
+        "answer": "sont",
+        "difficulty": 1,
+        "explanation": "On peut dire 'ils sont arrivés' → c'est 'sont', le verbe être."
+      },
+      {
+        "id": "q002",
+        "before": "Il a oublié ",
+        "after": " passeport la veille du voyage.",
+        "answer": "son",
+        "difficulty": 1,
+        "explanation": "On peut dire 'mon passeport' → c'est 'son', adjectif possessif."
+      },
+      {
+        "id": "q014",
+        "before": "Les trois frères ",
+        "after": " devenus ingénieurs, avocat et médecin.",
+        "answer": "sont",
+        "difficulty": 3,
+        "explanation": "On peut dire 'ils sont devenus' → c'est 'sont', le verbe être avec l'attribut du sujet."
+      },
+      {
+        "id": "q015",
+        "before": "Bien que fatigué, il a gardé ",
+        "after": " sourire malgré les difficultés.",
+        "answer": "son",
+        "difficulty": 3,
+        "explanation": "On peut dire 'mon sourire' → c'est 'son', adjectif possessif dans une phrase complexe."
+      },
+      {
+        "id": "q016",
+        "before": "Les voitures des voisins ",
+        "after": " garées devant la maison depuis hier matin.",
+        "answer": "sont",
+        "difficulty": 3,
+        "explanation": "On peut dire 'elles sont garées' → c'est 'sont', le verbe être avec un participe passé."
+      }
+    ]
+  },
+  {
+    "id": "tout-tous-toute-toutes",
+    "title": "tout · tous · toute · toutes",
+    "shortTitle": "tout / tous / toute / toutes",
+    "description": "Accorder 'tout' en genre et en nombre avec le nom ou l'adjectif qu'il accompagne.",
+    "choices": [
+      {
+        "id": "tout",
+        "label": "tout"
+      },
+      {
+        "id": "tous",
+        "label": "tous"
+      },
+      {
+        "id": "toute",
+        "label": "toute"
+      },
+      {
+        "id": "toutes",
+        "label": "toutes"
+      }
+    ],
+    "decisionAxes": [
+      {
+        "id": "nombre",
+        "question": "Le nom (ou le pronom) est-il au pluriel ?",
+        "options": [
+          {
+            "value": true,
+            "label": "Oui (pluriel)",
+            "eliminates": [
+              "tout",
+              "toute"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non (singulier ou adverbe)",
+            "eliminates": [
+              "tous",
+              "toutes"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "genre-sing",
+        "question": "Le nom est-il féminin ?",
+        "dependsOn": "nombre",
+        "showWhen": false,
+        "options": [
+          {
+            "value": true,
+            "label": "Oui (féminin singulier)",
+            "eliminates": [
+              "tout"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non (masculin singulier)",
+            "eliminates": [
+              "toute"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "genre-plur",
+        "question": "Le nom est-il féminin ?",
+        "dependsOn": "nombre",
+        "showWhen": true,
+        "options": [
+          {
+            "value": true,
+            "label": "Oui (féminin pluriel)",
+            "eliminates": [
+              "tous"
+            ]
+          },
+          {
+            "value": false,
+            "label": "Non (masculin pluriel)",
+            "eliminates": [
+              "toutes"
+            ]
+          }
+        ]
+      }
+    ],
+    "memoCard": {
+      "title": "tout · tous · toute · toutes",
+      "rows": [
+        {
+          "form": "tout",
+          "test": "Masc. sing. ou adverbe invariable",
+          "example": "Tout le monde. / Tout va bien."
+        },
+        {
+          "form": "tous",
+          "test": "Masc. plur.",
+          "example": "Tous les jours. / Ils sont tous là."
+        },
+        {
+          "form": "toute",
+          "test": "Fém. sing.",
+          "example": "Toute la journée."
+        },
+        {
+          "form": "toutes",
+          "test": "Fém. plur.",
+          "example": "Toutes les filles."
+        }
+      ]
+    },
+    "questions": [
+      {
+        "id": "q001",
+        "before": "",
+        "after": " la journée, elle a travaillé sans relâche.",
+        "answer": "toute",
+        "difficulty": 1,
+        "explanation": "Le nom 'journée' est féminin singulier → on utilise 'toute'.",
+        "choices": [
+          {
+            "id": "tout",
+            "label": "tout"
+          },
+          {
+            "id": "tous",
+            "label": "tous"
+          },
+          {
+            "id": "toute",
+            "label": "toute"
+          },
+          {
+            "id": "toutes",
+            "label": "toutes"
+          }
+        ]
+      },
+      {
+        "id": "q002",
+        "before": "Pendant",
+        "after": " la nuit, le silence règne sur la ville.",
+        "answer": "toute",
+        "difficulty": 1,
+        "explanation": "Le nom 'nuit' est féminin singulier → on utilise 'toute'.",
+        "choices": [
+          {
+            "id": "tout",
+            "label": "tout"
+          },
+          {
+            "id": "tous",
+            "label": "tous"
+          },
+          {
+            "id": "toute",
+            "label": "toute"
+          },
+          {
+            "id": "toutes",
+            "label": "toutes"
+          }
+        ]
+      },
+      {
+        "id": "q012",
+        "before": "Elle a peint",
+        "after": " les maisons de la rue en blanc.",
+        "answer": "toutes",
+        "difficulty": 3,
+        "explanation": "Le nom 'maisons' est féminin pluriel → on utilise 'toutes'.",
+        "choices": [
+          {
+            "id": "tout",
+            "label": "tout"
+          },
+          {
+            "id": "tous",
+            "label": "tous"
+          },
+          {
+            "id": "toute",
+            "label": "toute"
+          },
+          {
+            "id": "toutes",
+            "label": "toutes"
+          }
+        ]
+      },
+      {
+        "id": "q013",
+        "before": "",
+        "after": " les semaines de l'année, elle se rend au marché.",
+        "answer": "toutes",
+        "difficulty": 3,
+        "explanation": "Le nom 'semaines' est féminin pluriel → on utilise 'toutes'.",
+        "choices": [
+          {
+            "id": "tout",
+            "label": "tout"
+          },
+          {
+            "id": "tous",
+            "label": "tous"
+          },
+          {
+            "id": "toute",
+            "label": "toute"
+          },
+          {
+            "id": "toutes",
+            "label": "toutes"
+          }
+        ]
+      },
+      {
+        "id": "q014",
+        "before": "Les philosophes réfléchissent sur",
+        "after": " les vies humaines.",
+        "answer": "toutes",
+        "difficulty": 3,
+        "explanation": "Le nom 'vies' est féminin pluriel → on utilise 'toutes'.",
+        "choices": [
+          {
+            "id": "tout",
+            "label": "tout"
+          },
+          {
+            "id": "tous",
+            "label": "tous"
+          },
+          {
+            "id": "toute",
+            "label": "toute"
+          },
+          {
+            "id": "toutes",
+            "label": "toutes"
+          }
+        ]
+      }
+    ]
+  }
+]

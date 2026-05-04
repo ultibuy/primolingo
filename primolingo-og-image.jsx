@@ -1,0 +1,190 @@
+import React from 'react';
+
+/**
+ * OgImage — 1200×630 image for Open Graph / SMS preview
+ *
+ * Usage :
+ *   1. Mount this component in a route like /og-preview
+ *   2. Screenshot via Playwright at exact 1200×630
+ *      (cf. scripts/generate-og.mjs ci-dessous)
+ *   3. Result → public/og-image.png
+ *
+ * Tags HTML à ajouter dans index.html :
+ *   <meta property="og:image" content="https://www.primolingo.fr/og-image.png" />
+ *   <meta property="og:image:width" content="1200" />
+ *   <meta property="og:image:height" content="630" />
+ *   <meta property="twitter:card" content="summary_large_image" />
+ *   <meta property="twitter:image" content="https://www.primolingo.fr/og-image.png" />
+ */
+
+const STARS = [
+  // [x, y, r, color, opacity]
+  [60, 40, 2.2, '#ffffff', 0.85],
+  [140, 80, 1.6, '#ffffff', 0.6],
+  [240, 30, 2, '#fbbf24', 0.95],
+  [340, 70, 1.4, '#c4b5fd', 0.75],
+  [430, 25, 1.8, '#ffffff', 0.7],
+  [560, 60, 1.6, '#fbbf24', 0.85],
+  [680, 30, 1.4, '#ffffff', 0.6],
+  [820, 70, 1.8, '#c4b5fd', 0.8],
+  [950, 40, 1.6, '#ffffff', 0.65],
+  [1080, 80, 1.4, '#fbbf24', 0.85],
+  [1140, 30, 1.6, '#ffffff', 0.75],
+  [40, 160, 1.4, '#c4b5fd', 0.7],
+  [60, 280, 1.8, '#ffffff', 0.7],
+  [80, 420, 1.6, '#fbbf24', 0.85],
+  [40, 540, 1.4, '#c4b5fd', 0.75],
+  [120, 590, 1.6, '#ffffff', 0.6],
+  [260, 580, 1.4, '#ffffff', 0.55],
+  [380, 590, 1.8, '#fbbf24', 0.9],
+  [520, 580, 1.4, '#c4b5fd', 0.75],
+  [620, 590, 1.6, '#ffffff', 0.65],
+  [740, 580, 1.4, '#fbbf24', 0.8],
+  [860, 590, 1.6, '#ffffff', 0.7],
+  [980, 580, 1.4, '#c4b5fd', 0.75],
+  [1100, 590, 1.6, '#ffffff', 0.65],
+  [1160, 540, 1.4, '#fbbf24', 0.85],
+  [1170, 420, 1.6, '#c4b5fd', 0.75],
+  [1150, 280, 1.4, '#ffffff', 0.6],
+  [1170, 160, 1.8, '#fbbf24', 0.9],
+  [1160, 360, 1.4, '#ffffff', 0.7],
+  [1130, 480, 1.6, '#c4b5fd', 0.8],
+  [180, 220, 1.2, '#ffffff', 0.45],
+  [380, 180, 1.2, '#c4b5fd', 0.5],
+  [880, 220, 1.2, '#ffffff', 0.5],
+  [1040, 180, 1.2, '#fbbf24', 0.7],
+];
+
+const CROSSES = [
+  // [x, y, size, color, opacity]
+  [200, 50, 7, '#fbbf24', 0.95],
+  [490, 100, 5, '#ffffff', 0.7],
+  [780, 50, 6, '#c4b5fd', 0.85],
+  [1020, 110, 7, '#fbbf24', 0.9],
+  [80, 350, 5, '#ffffff', 0.6],
+  [1140, 350, 6, '#c4b5fd', 0.8],
+  [330, 555, 6, '#fbbf24', 0.85],
+  [810, 555, 5, '#ffffff', 0.7],
+];
+
+export default function OgImage() {
+  return (
+    <div style={{
+      width: 1200, height: 630,
+      background: 'linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%)',
+      position: 'relative', overflow: 'hidden',
+      fontFamily: "'Plus Jakarta Sans', sans-serif",
+      color: '#ffffff',
+    }}>
+      {/* Star field */}
+      <svg viewBox="0 0 1200 630" style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}>
+        {STARS.map(([x, y, r, c, o], i) => (
+          <circle key={'s' + i} cx={x} cy={y} r={r} fill={c} opacity={o} />
+        ))}
+        {CROSSES.map(([x, y, s, c, o], i) => (
+          <g key={'c' + i} transform={`translate(${x} ${y})`} opacity={o}>
+            <path d={`M0 -${s} L0 ${s} M-${s} 0 L${s} 0`}
+                  stroke={c} strokeWidth="2.5" strokeLinecap="round" />
+          </g>
+        ))}
+      </svg>
+
+      {/* Soft purple glow under rocket */}
+      <div style={{
+        position: 'absolute', left: 30, top: 130, width: 520, height: 380,
+        background: 'radial-gradient(circle, rgba(167,139,250,0.32) 0%, transparent 65%)',
+        filter: 'blur(50px)', pointerEvents: 'none',
+      }} />
+
+      {/* Rocket icon */}
+      <div style={{ position: 'absolute', left: 25, top: 85, width: 460, height: 460 }}>
+        <svg viewBox="0 0 100 100" width="460" height="460">
+          <defs>
+            <linearGradient id="og-rg" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stopColor="#c4b5fd" />
+              <stop offset="1" stopColor="#a78bfa" />
+            </linearGradient>
+            <linearGradient id="og-fg" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stopColor="#fbbf24" />
+              <stop offset="1" stopColor="#fb923c" />
+            </linearGradient>
+          </defs>
+          <text x="48.65" y="91.64" fontSize="13" fill="#c4b5fd" fontFamily="Fredoka, sans-serif" fontWeight="700" opacity="0.9">é</text>
+          <text x="53.79" y="79.95" fontSize="14" fill="#fbbf24" fontFamily="Fredoka, sans-serif" fontWeight="700" opacity="0.95">a</text>
+          <text x="65.15" y="93.65" fontSize="15" fill="#ffffff" fontFamily="Fredoka, sans-serif" fontWeight="700" opacity="0.95">b</text>
+          <text x="66.19" y="75.94" fontSize="13" fill="#fbbf24" fontFamily="Fredoka, sans-serif" fontWeight="700" opacity="0.9">c</text>
+          <text x="76.93" y="84.36" fontSize="12" fill="#a78bfa" fontFamily="Fredoka, sans-serif" fontWeight="700" opacity="0.9">d</text>
+          <g transform="translate(-0.23 -7.76) rotate(-20 50 50)">
+            <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#ffffff" />
+            <path d="M50 12 Q70 30 70 65 L60 65 Q60 30 50 12 Z" fill="url(#og-rg)" opacity="0.25" />
+            <circle cx="50" cy="40" r="9" fill="url(#og-rg)" />
+            <circle cx="50" cy="40" r="5" fill="#1e1e2e" />
+            <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa" />
+            <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa" />
+          </g>
+          <g transform="translate(-4.65 -5.54) rotate(-20 50 50)">
+            <path d="M40 68 Q44 88 48 68 Z" fill="url(#og-fg)" />
+          </g>
+          <g transform="translate(-4.92 -5.42) rotate(-20 50 50)">
+            <path d="M48 68 Q51 84 55 68 Z" fill="url(#og-fg)" />
+            <path d="M55 68 Q58 84 62 68 Z" fill="url(#og-fg)" />
+          </g>
+          <g transform="translate(-4.91 -5.4) rotate(-20 50 50)">
+            <path d="M62 68 Q66 88 70 68 Z" fill="url(#og-fg)" />
+          </g>
+        </svg>
+      </div>
+
+      {/* Wordmark — single line PrimoLingo, centré entre badge & tagline */}
+      <div style={{
+        position: 'absolute', left: 520, top: 215,
+        fontFamily: "'Outfit', sans-serif", fontWeight: 900,
+        letterSpacing: '-0.03em', lineHeight: 1.0,
+        fontSize: 124, paddingBottom: 12,
+      }}>
+        <span style={{ color: '#ffffff' }}>Primo</span><span style={{
+          background: 'linear-gradient(135deg, #c4b5fd 0%, #a78bfa 30%, #fbbf24 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+        }}>Lingo</span>
+      </div>
+
+      {/* Tagline — 2 lignes, hiérarchisées : 58 lavande / 72 gold */}
+      <div style={{ position: 'absolute', left: 522, top: 385 }}>
+        <div style={{
+          fontFamily: "'Outfit', sans-serif", fontWeight: 700,
+          fontSize: 58, color: '#c4b5fd',
+          letterSpacing: '-0.015em', lineHeight: 1.0,
+          marginBottom: 10,
+        }}>
+          Chaque règle de français,
+        </div>
+        <div style={{
+          fontFamily: "'Outfit', sans-serif", fontWeight: 800,
+          fontSize: 72, color: '#fbbf24',
+          letterSpacing: '-0.02em', lineHeight: 1.0,
+          paddingBottom: 8,
+        }}>
+          gravée à vie.
+        </div>
+      </div>
+
+      {/* Top-right badge — 35px, "100% gratuit" */}
+      <div style={{
+        position: 'absolute', right: 48, top: 48,
+        padding: '20px 40px', borderRadius: 100,
+        background: 'rgba(255,255,255,0.1)',
+        border: '1.5px solid rgba(255,255,255,0.2)',
+        backdropFilter: 'blur(12px)',
+        fontFamily: "'Outfit', sans-serif", fontWeight: 800,
+        fontSize: 35, color: '#ffffff',
+        textTransform: 'uppercase', letterSpacing: '1.5px',
+        display: 'flex', alignItems: 'center', gap: 14,
+      }}>
+        <span>✨</span>
+        <span><span style={{ color: '#fbbf24' }}>100%</span> gratuit</span>
+      </div>
+    </div>
+  );
+}

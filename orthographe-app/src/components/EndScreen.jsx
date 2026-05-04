@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import CoinIcon from './CoinIcon.jsx';
 import CharacterSprite from './CharacterSprite.jsx';
 import EmotionPurchasePopup from './EmotionPurchasePopup.jsx';
-import { TrophyIcon, CheckIcon } from './icons/ProductIcons.jsx';
+import { TrophyIcon, ChartMedalIcon } from './icons/ProductIcons.jsx';
 import { resolveCharacterMood } from '../data/shopCharacters.js';
 import { calculateCoins } from '../engine/scoring.js';
 
@@ -45,6 +45,7 @@ export default function EndScreen({
   isFirstEverSession = false,
   onBuyEmotion = null,
   coins = 0,
+  debugSkipAnimations = false,
 }) {
   const total = questions.length;
   const pct = total > 0 ? Math.round((score / total) * 100) : 0;
@@ -68,23 +69,22 @@ export default function EndScreen({
 
   const feedbackMessage = getFeedbackMessage(pct);
 
-  // Animation states
-  const [displayedScore, setDisplayedScore] = useState(() => (
-    score === 0 || total <= 2 ? score : 0
-  ));
-  const [showFeedback, setShowFeedback] = useState(false);
-  const [showCoins, setShowCoins] = useState(false);
-  const [visibleTier, setVisibleTier] = useState(-1);
-  const [animatingCoins, setAnimatingCoins] = useState(false);
-  const [displayedCoins, setDisplayedCoins] = useState(0);
-  const [showBonuses, setShowBonuses] = useState(false);
-  const [displayedDailyBonus, setDisplayedDailyBonus] = useState(0);
-  const [displayedStreakBonus, setDisplayedStreakBonus] = useState(0);
-  const [showTotal, setShowTotal] = useState(false);
-  const [showProgression, setShowProgression] = useState(false);
-  const [progressBarAnimated, setProgressBarAnimated] = useState(false);
-  const [showRecap, setShowRecap] = useState(false);
-  const [showButton, setShowButton] = useState(false);
+  // Animation states — debugSkipAnimations makes everything instantly visible
+  const skip = debugSkipAnimations;
+  const [displayedScore, setDisplayedScore] = useState(() => skip ? score : (score === 0 || total <= 2 ? score : 0));
+  const [showFeedback, setShowFeedback] = useState(skip);
+  const [showCoins, setShowCoins] = useState(skip);
+  const [visibleTier, setVisibleTier] = useState(skip ? 2 : -1);
+  const [animatingCoins, setAnimatingCoins] = useState(skip);
+  const [displayedCoins, setDisplayedCoins] = useState(skip ? (activeTier >= 0 ? tiers[activeTier].coins : 0) : 0);
+  const [showBonuses, setShowBonuses] = useState(skip);
+  const [displayedDailyBonus, setDisplayedDailyBonus] = useState(skip ? firstSessionBonus : 0);
+  const [displayedStreakBonus, setDisplayedStreakBonus] = useState(skip ? streakBonus : 0);
+  const [showTotal, setShowTotal] = useState(skip);
+  const [showProgression, setShowProgression] = useState(skip);
+  const [progressBarAnimated, setProgressBarAnimated] = useState(skip);
+  const [showRecap, setShowRecap] = useState(skip);
+  const [showButton, setShowButton] = useState(true);
 
   // Step 1: Score count-up
   useEffect(() => {
@@ -256,17 +256,15 @@ export default function EndScreen({
 
   return (
     <div style={pageStyle}>
-      {/* Scrollable content area */}
       <div style={scrollAreaStyle}>
-        <div style={contentWrapperStyle}>
-        {/* Header card */}
-        <div style={headerCardStyle}>
+        <div style={sessionCardStyle}>
+        <div style={fixedCardContentStyle}>
           {/* Mascot + Title row */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+          <div style={heroRowStyle}>
             {/* Character mascot */}
-            <div style={mascotContainerStyle}>
-              {characterId ? (
-                isCharLocked ? (
+            {characterId ? (
+              <div data-testid="end-screen-mascot" style={mascotCharacterSlotStyle}>
+                {isCharLocked ? (
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <button
                       type="button"
@@ -278,21 +276,30 @@ export default function EndScreen({
                     </button>
                     <div style={{ width: 0, height: 0, borderLeft: '5px solid transparent', borderRight: '5px solid transparent', borderTop: '6px solid rgba(255,255,255,0.96)', marginTop: -1 }} />
                     <button type="button" onClick={() => setShowEmotionPopup(true)} style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', lineHeight: 0 }}>
-                      <CharacterSprite id={characterId} mood="walk" size={68} glow={false} />
+                      <div data-testid="end-screen-character-sprite" style={mascotSpriteStyle}>
+                        <span aria-hidden="true" style={mascotSpriteGlowStyle} />
+                        <CharacterSprite id={characterId} mood="walk" size={48} glow />
+                      </div>
                     </button>
                   </div>
                 ) : (
-                  <CharacterSprite id={characterId} mood={charMood} size={68} glow={false} />
-                )
-              ) : (
-                <div style={mascotFallbackStyle}>
-                {pct === 100
-                  ? <TrophyIcon size={32} color="#fbbf24" />
-                  : <CheckIcon size={32} color="#34d399" />
-                }
+                  <div data-testid="end-screen-character-sprite" style={mascotSpriteStyle}>
+                    <span aria-hidden="true" style={mascotSpriteGlowStyle} />
+                    <CharacterSprite id={characterId} mood={charMood} size={48} glow />
+                  </div>
+                )}
               </div>
-              )}
-            </div>
+            ) : (
+              <div data-testid="end-screen-mascot" style={mascotContainerStyle}>
+                <div style={mascotFallbackStyle}>
+                  {pct === 100 ? (
+                    <TrophyIcon size={36} color="#fbbf24" />
+                  ) : (
+                    <ChartMedalIcon size={36} color="#d7dde8" />
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Title + score column */}
             <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -317,7 +324,7 @@ export default function EndScreen({
 
           {/* Score rows / coin tiers */}
           <div style={{
-            marginTop: 12,
+            marginTop: 16,
             opacity: showCoins ? 1 : 0,
             transform: showCoins ? 'translateY(0)' : 'translateY(8px)',
             transition: 'all 0.5s ease',
@@ -391,9 +398,6 @@ export default function EndScreen({
               </div>
             )}
 
-            {/* Divider */}
-            <div style={{ height: 1, background: 'rgba(255,255,255,0.06)', margin: '4px 0' }} />
-
             {/* Total */}
             {(firstSessionBonus > 0 || streakBonus > 0 || doubleCoinsBonus > 0) && (
               <div style={{
@@ -410,7 +414,6 @@ export default function EndScreen({
               </div>
             )}
           </div>
-        </div>
 
         {/* Prochain objectif — conditional */}
         {showLevelBar && (
@@ -443,15 +446,19 @@ export default function EndScreen({
           </div>
         )}
 
+          <div style={sectionDividerStyle} />
+        </div>
+
         {/* Answer recap */}
         <div style={{
+          flex: 1,
+          minHeight: 0,
           opacity: showRecap ? 1 : 0,
           transform: showRecap ? 'translateY(0)' : 'translateY(10px)',
           transition: 'all 0.4s ease',
-          marginBottom: 12,
         }}>
-          <div style={recapCardStyle}>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div data-testid="end-screen-recap-scroll" style={recapScrollStyle}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 7 }}>
             {[...questions.map((q, i) => ({ q, a: answers[i], i }))].sort((x, y) => {
               const okX = x.a?.correct ? 1 : 0;
               const okY = y.a?.correct ? 1 : 0;
@@ -464,16 +471,16 @@ export default function EndScreen({
               const qHasVerb = q.verb !== undefined;
               const isSyllable = !!q.syllable;
               return (
-                <div key={i} style={{
-                  display: 'flex', alignItems: 'center', gap: 10,
-                  padding: '11px 14px', borderRadius: 12,
+                <div key={i} data-testid="end-screen-answer-row" style={{
+                  display: 'flex', alignItems: 'center', gap: 9,
+                  padding: '8px 12px', borderRadius: 11,
                   background: ok ? 'rgba(52,211,153,0.07)' : 'rgba(248,113,113,0.07)',
                   border: `1px solid ${ok ? 'rgba(52,211,153,0.18)' : 'rgba(248,113,113,0.18)'}`,
                   animation: `slide-up 0.28s ease ${i * 40}ms both`,
                 }}>
                   {/* Check / Cross SVG */}
                   <div style={{
-                    width: 20, height: 20, borderRadius: '50%', flexShrink: 0,
+                    width: 18, height: 18, borderRadius: '50%', flexShrink: 0,
                     background: ok ? 'rgba(52,211,153,0.18)' : 'rgba(248,113,113,0.18)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                   }}>
@@ -484,7 +491,7 @@ export default function EndScreen({
                     )}
                   </div>
                   {isSyllable ? (
-                    <span style={{ fontSize: 13, fontFamily: 'var(--font-body)', fontWeight: 500, color: 'rgba(255,255,255,0.85)', flex: 1 }}>
+                    <span style={{ fontSize: 12.5, lineHeight: 1.35, fontFamily: 'var(--font-body)', fontWeight: 500, color: 'rgba(255,255,255,0.85)', flex: 1 }}>
                       <strong style={{ color: '#a78bfa', fontWeight: 700, textDecoration: 'underline', textDecorationColor: 'rgba(167,139,250,0.4)' }}>{q.syllable}</strong>
                       {' '}
                       <strong style={{ color: ok ? '#34d399' : '#f87171' }}>
@@ -492,7 +499,7 @@ export default function EndScreen({
                       </strong>
                     </span>
                   ) : (
-                    <span style={{ fontSize: 13, fontFamily: 'var(--font-body)', fontWeight: 500, color: 'rgba(255,255,255,0.85)', flex: 1 }}>
+                    <span style={{ fontSize: 12.5, lineHeight: 1.35, fontFamily: 'var(--font-body)', fontWeight: 500, color: 'rgba(255,255,255,0.85)', flex: 1 }}>
                       {q.before}
                       {qHasVerb && q.verb}
                       <strong style={{ color: ok ? '#34d399' : '#f87171', fontWeight: 700, textDecoration: 'underline', textDecorationColor: ok ? 'rgba(52,211,153,0.4)' : 'rgba(248,113,113,0.4)' }}>
@@ -502,7 +509,7 @@ export default function EndScreen({
                     </span>
                   )}
                   {!ok && (
-                    <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)', flexShrink: 0 }}>
+                    <span style={{ fontSize: 11.5, color: 'rgba(255,255,255,0.5)', flexShrink: 0 }}>
                       {'\u2192'} {answerLabel}
                     </span>
                   )}
@@ -512,11 +519,9 @@ export default function EndScreen({
             </div>
           </div>
         </div>
-        </div>
-      </div>
 
-      {/* Fixed CTA — always visible */}
-      <div style={ctaContainerStyle}>
+        {/* CTA — always visible inside the card */}
+        <div style={ctaContainerStyle}>
         <button
           onClick={onFinish}
           style={{
@@ -528,6 +533,8 @@ export default function EndScreen({
         >
           Continuer
         </button>
+        </div>
+      </div>
       </div>
 
       {/* Locked emotion purchase popup */}
@@ -625,30 +632,56 @@ const pageStyle = {
 
 const scrollAreaStyle = {
   flex: 1,
-  overflowY: 'auto',
+  overflowY: 'hidden',
   overflowX: 'hidden',
-  padding: '16px 16px 0',
+  padding: '16px',
   display: 'flex',
-  flexDirection: 'column',
   alignItems: 'center',
+  justifyContent: 'center',
   WebkitOverflowScrolling: 'touch',
 };
 
-const contentWrapperStyle = {
+const sessionCardStyle = {
   width: '100%',
-  maxWidth: 480,
-  paddingBottom: 100,
-  display: 'flex',
-  flexDirection: 'column',
-};
-
-const headerCardStyle = {
+  maxWidth: 520,
+  height: 'calc(100dvh - 32px)',
+  maxHeight: 860,
+  minHeight: 0,
   background: 'rgba(255,255,255,0.04)',
   border: '1px solid rgba(255,255,255,0.10)',
-  borderRadius: 20,
-  padding: '18px 20px 14px',
-  marginBottom: 12,
+  borderRadius: 24,
+  padding: '18px 20px 16px',
+  display: 'flex',
+  flexDirection: 'column',
+  boxSizing: 'border-box',
+  overflow: 'hidden',
   animation: 'fade-in 0.4s ease both',
+};
+
+const fixedCardContentStyle = {
+  flexShrink: 0,
+};
+
+const heroRowStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  gap: 14,
+};
+
+const sectionDividerStyle = {
+  height: 1,
+  flexShrink: 0,
+  background: 'rgba(255,255,255,0.08)',
+  margin: '14px 0 12px',
+};
+
+const recapScrollStyle = {
+  height: '100%',
+  minHeight: 0,
+  overflowY: 'auto',
+  overflowX: 'hidden',
+  paddingRight: 4,
+  WebkitOverflowScrolling: 'touch',
 };
 
 const mascotContainerStyle = {
@@ -666,6 +699,17 @@ const mascotContainerStyle = {
   animation: 'count-up 0.4s cubic-bezier(0.34,1.56,0.64,1) both',
 };
 
+const mascotCharacterSlotStyle = {
+  flexShrink: 0,
+  width: 68,
+  height: 68,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  overflow: 'visible',
+  animation: 'count-up 0.4s cubic-bezier(0.34,1.56,0.64,1) both',
+};
+
 const mascotFallbackStyle = {
   width: 68,
   height: 68,
@@ -674,6 +718,29 @@ const mascotFallbackStyle = {
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
+};
+
+const mascotSpriteStyle = {
+  width: 48,
+  height: 64,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  lineHeight: 0,
+  position: 'relative',
+};
+
+const mascotSpriteGlowStyle = {
+  position: 'absolute',
+  left: '50%',
+  top: '50%',
+  width: 52,
+  height: 52,
+  borderRadius: '50%',
+  transform: 'translate(-50%, -46%)',
+  background: 'radial-gradient(circle, rgba(196,181,253,0.38) 0%, rgba(96,165,250,0.20) 42%, rgba(96,165,250,0) 72%)',
+  filter: 'blur(4px)',
+  pointerEvents: 'none',
 };
 
 const lockedBubbleStyle = {
@@ -729,13 +796,6 @@ const mutedCoinStyle = {
   background: 'rgba(255,255,255,0.18)',
 };
 
-const recapCardStyle = {
-  background: 'rgba(255,255,255,0.04)',
-  border: '1px solid rgba(255,255,255,0.10)',
-  borderRadius: 16,
-  padding: '14px 16px',
-};
-
 const objectiveCardStyle = {
   background: 'rgba(255,255,255,0.04)',
   border: '1px solid rgba(255,255,255,0.10)',
@@ -769,12 +829,9 @@ const objectiveMessageStyle = {
 };
 
 const ctaContainerStyle = {
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  right: 0,
-  padding: '12px 16px 16px',
-  background: 'linear-gradient(to top, #1a1a2e 60%, transparent)',
+  flexShrink: 0,
+  paddingTop: 14,
+  background: 'linear-gradient(to top, rgba(30,30,46,0.98) 64%, rgba(30,30,46,0))',
   display: 'flex',
   justifyContent: 'center',
   pointerEvents: 'none',
@@ -783,7 +840,7 @@ const ctaContainerStyle = {
 
 const ctaButtonStyle = {
   width: '100%',
-  maxWidth: 480, // matches contentWrapperStyle
+  maxWidth: '100%',
   padding: '16px 24px',
   borderRadius: 9999,
   border: 'none',

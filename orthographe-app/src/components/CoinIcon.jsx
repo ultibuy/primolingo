@@ -21,13 +21,8 @@ export default function CoinIcon({ size = 24, animate = false, variant = 'gold' 
             <stop offset="60%" stopColor={isGold ? '#f5c842' : '#a1a1aa'} />
             <stop offset="100%" stopColor={isGold ? '#c8920a' : '#71717a'} />
           </radialGradient>
-          <filter id={`coinShadow${uid}`}>
-            <feDropShadow dx="0" dy="1" stdDeviation="1.5" floodColor="#000" floodOpacity="0.3" />
-          </filter>
         </defs>
-        <circle cx="20" cy="20" r="18" fill={`url(#coinOuter${uid})`} filter={`url(#coinShadow${uid})`} />
         <circle cx="20" cy="20" r="14" fill={`url(#coinInner${uid})`} />
-        <circle cx="20" cy="20" r="17" fill="none" stroke={isGold ? '#ffe680' : '#d4d4d8'} strokeWidth="0.8" opacity="0.6" />
         <circle cx="20" cy="20" r="14" fill="none" stroke={isGold ? '#d4940a' : '#71717a'} strokeWidth="0.6" opacity="0.5" />
         <text x="20" y="25.5" textAnchor="middle" fontSize="16" fontWeight="900"
           fill={isGold ? '#b8860b' : '#52525b'} opacity="0.4" fontFamily="serif">O</text>

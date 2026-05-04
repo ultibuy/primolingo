@@ -2,6 +2,15 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import { spawn } from 'node:child_process';
+import { readFileSync } from 'node:fs';
+import docsPlugin from './plugins/vite-plugin-docs.js';
+
+function getAppVersion() {
+  try {
+    const v = JSON.parse(readFileSync('docs/version.json', 'utf-8'));
+    return `${v.major}.${v.minor}.${String(v.patch).padStart(3, '0')}`;
+  } catch { return '0.0.000'; }
+}
 
 function devPlugin() {
   let child;
@@ -30,12 +39,16 @@ function devPlugin() {
 }
 
 export default defineConfig({
+  define: {
+    __APP_VERSION__: JSON.stringify(getAppVersion()),
+  },
   server: {
     proxy: {
       '/api': 'http://localhost:3001',
     },
   },
   plugins: [
+    docsPlugin(),
     devPlugin(),
     react(),
     VitePWA({

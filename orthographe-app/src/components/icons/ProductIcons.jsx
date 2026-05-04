@@ -336,55 +336,96 @@ export function EmotionSitIcon({ size = 46, color = 'var(--color-primary)' }) {
 
 // ─── Wave (Salut) ───────────────────────────────────────────────────────────
 
-export function EmotionWaveIcon({ size = 46, color = 'var(--color-primary)' }) {
+export function EmotionWaveIcon({ size = 46 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
-      <circle cx="23" cy="10" r="5" fill={color} opacity="0.7" />
-      <path d="M23 16v10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M23 26l-5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M23 26l5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Left arm down */}
-      <path d="M17 21l-3 5" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Right arm waving up */}
-      <path d="M29 20l4-6" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Wave lines */}
-      <path d="M35 11c1-1 2 0 1 1" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
-      <path d="M37 14c1-1 2 0 1 1" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.3" />
+    <svg width={size} height={size} viewBox="0 0 96 96" aria-hidden="true">
+      <defs>
+        <linearGradient id="emo-wave-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#c4b5fd"/>
+          <stop offset="1" stopColor="#a78bfa"/>
+        </linearGradient>
+      </defs>
+      {/* Face */}
+      <circle cx="44" cy="54" r="22" fill="url(#emo-wave-grad)"/>
+      {/* Eyes */}
+      <circle cx="36" cy="50" r="3" fill="#1e1e2e"/>
+      <circle cx="37.2" cy="48.8" r="1" fill="#fff"/>
+      <circle cx="52" cy="50" r="3" fill="#1e1e2e"/>
+      <circle cx="53.2" cy="48.8" r="1" fill="#fff"/>
+      {/* Smile */}
+      <path d="M36 60 Q44 68 52 60" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+      {/* Cheeks */}
+      <circle cx="28" cy="58" r="3" fill="#fbbf24" opacity="0.55"/>
+      <circle cx="60" cy="58" r="3" fill="#fbbf24" opacity="0.55"/>
+      {/* Arm raised waving */}
+      <path d="M64 46 L76 28" stroke="#fbbf24" strokeWidth="3" strokeLinecap="round"/>
+      <circle cx="78" cy="25" r="4.5" fill="#fbbf24"/>
+      {/* Wave motion lines */}
+      <path d="M84 18 Q88 23 84 28" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" fill="none" opacity="0.7"/>
+      <path d="M88 14 Q93 20 88 26" stroke="#fbbf24" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity="0.4"/>
+      {/* Other arm down */}
+      <path d="M24 60 L14 76" stroke="#fbbf24" strokeWidth="2.5" strokeLinecap="round"/>
     </svg>
   );
 }
 
 // ─── Kiss (Bisou) ───────────────────────────────────────────────────────────
 
-export function EmotionKissIcon({ size = 46, color = 'var(--color-primary)' }) {
+export function EmotionKissIcon({ size = 46 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
-      <circle cx="20" cy="12" r="5" fill={color} opacity="0.7" />
-      <path d="M20 18v8" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M20 26l-4 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M20 26l4 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M14 22l-2 3M26 21l3-2" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Heart */}
-      <path d="M33 10c-1-2-4-2-4 1 0 3 4 5 4 5s4-2 4-5c0-3-3-3-4-1z" fill="#f87171" opacity="0.7" />
+    <svg width={size} height={size} viewBox="0 0 96 96" aria-hidden="true">
+      <defs>
+        <linearGradient id="emo-kiss-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#c4b5fd"/>
+          <stop offset="1" stopColor="#a78bfa"/>
+        </linearGradient>
+      </defs>
+      {/* Face */}
+      <circle cx="44" cy="54" r="22" fill="url(#emo-kiss-grad)"/>
+      {/* Winking eye (left — closed arc) */}
+      <path d="M33 48 Q36 44 39 48" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+      {/* Open eye (right) */}
+      <circle cx="52" cy="48" r="3" fill="#1e1e2e"/>
+      <circle cx="53.2" cy="46.8" r="1" fill="#fff"/>
+      {/* Cheeks */}
+      <circle cx="28" cy="58" r="3" fill="#f87171" opacity="0.55"/>
+      <circle cx="60" cy="58" r="3" fill="#f87171" opacity="0.4"/>
+      {/* Puckered lips */}
+      <ellipse cx="41" cy="62" rx="4.5" ry="3.5" fill="#1e1e2e"/>
+      <ellipse cx="41" cy="62" rx="3" ry="2.2" fill="#f87171" opacity="0.7"/>
+      {/* Big heart */}
+      <path d="M70 24c-1-4-8-4-8 2 0 6 8 10 8 10s8-4 8-10c0-6-7-6-8-2z" fill="#f87171" opacity="0.9"/>
+      {/* Small hearts */}
+      <path d="M82 12c-.5-2-4-2-4 1s4 5 4 5 4-2 4-5c0-3-3.5-3-4-1z" fill="#f87171" opacity="0.5"/>
+      <path d="M62 12c-.4-1.5-3-1.5-3 1s3 3.5 3 3.5 3-1 3-3.5c0-2.5-2.6-2.5-3-1z" fill="#f87171" opacity="0.35"/>
     </svg>
   );
 }
 
 // ─── Clap (Bravo) ───────────────────────────────────────────────────────────
 
-export function EmotionClapIcon({ size = 46, color = 'var(--color-primary)' }) {
+export function EmotionClapIcon({ size = 46 }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 46 46" fill="none" aria-hidden="true">
-      <circle cx="23" cy="10" r="5" fill={color} opacity="0.7" />
-      <path d="M23 16v10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M23 26l-5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      <path d="M23 26l5 10" stroke={color} strokeWidth="2.5" strokeLinecap="round" />
-      {/* Hands together */}
-      <path d="M16 19l7 4 7-4" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-      {/* Clap lines */}
-      <line x1="19" y1="16" x2="17" y2="14" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
-      <line x1="23" y1="18" x2="23" y2="15.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
-      <line x1="27" y1="16" x2="29" y2="14" stroke={color} strokeWidth="1.5" strokeLinecap="round" opacity="0.5" />
+    <svg width={size} height={size} viewBox="0 0 96 96" aria-hidden="true">
+      <defs>
+        <linearGradient id="emo-clap-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#c4b5fd"/>
+          <stop offset="1" stopColor="#a78bfa"/>
+        </linearGradient>
+      </defs>
+      {/* Face */}
+      <circle cx="38" cy="44" r="22" fill="url(#emo-clap-grad)"/>
+      {/* Star eyes */}
+      <g transform="translate(30 41)"><path d="M0 -4.5 L1.2 -1.2 L4.5 -1 L1.5 1 L2.5 4.5 L0 2.5 L-2.5 4.5 L-1.5 1 L-4.5 -1 L-1.2 -1.2 Z" fill="#fbbf24"/></g>
+      <g transform="translate(46 41)"><path d="M0 -4.5 L1.2 -1.2 L4.5 -1 L1.5 1 L2.5 4.5 L0 2.5 L-2.5 4.5 L-1.5 1 L-4.5 -1 L-1.2 -1.2 Z" fill="#fbbf24"/></g>
+      {/* Big filled smile */}
+      <path d="M28 50 Q38 60 48 50 Q44 56 38 56 Q32 56 28 50 Z" fill="#1e1e2e"/>
+      {/* Cheeks */}
+      <circle cx="22" cy="50" r="3" fill="#fbbf24" opacity="0.55"/>
+      <circle cx="54" cy="50" r="3" fill="#fbbf24" opacity="0.55"/>
+      {/* Clapping hands (bottom) */}
+      <g transform="translate(26 78) rotate(-20)"><path d="M-7 -7 L5 -7 Q8 -7 8 -4 L8 6 Q8 9 5 9 L-7 9 Q-10 9 -10 6 L-10 -4 Q-10 -7 -7 -7 Z" fill="url(#emo-clap-grad)"/></g>
+      <g transform="translate(50 78) rotate(20)"><path d="M-5 -7 L7 -7 Q10 -7 10 -4 L10 6 Q10 9 7 9 L-5 9 Q-8 9 -8 6 L-8 -4 Q-8 -7 -5 -7 Z" fill="url(#emo-clap-grad)"/></g>
     </svg>
   );
 }
@@ -400,29 +441,27 @@ export function EmotionVictoryIcon({ size = 46 }) {
           <stop offset="1" stopColor="#a78bfa"/>
         </linearGradient>
       </defs>
-      <circle cx="48" cy="58" r="22" fill="url(#emo-vict-grad)"/>
-      <path d="M38 54 Q42 50 46 54" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-      <path d="M50 54 Q54 50 58 54" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-      <path d="M38 62 Q48 70 58 62" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
-      <circle cx="32" cy="62" r="3" fill="#fbbf24" opacity="0.55"/>
-      <circle cx="64" cy="62" r="3" fill="#fbbf24" opacity="0.55"/>
-      <g transform="translate(34 44) rotate(-25)">
-        <rect x="-3.5" y="-18" width="7" height="20" rx="3" fill="url(#emo-vict-grad)"/>
-        <circle cx="0" cy="-20" r="6" fill="url(#emo-vict-grad)"/>
-      </g>
-      <g transform="translate(62 44) rotate(25)">
-        <rect x="-3.5" y="-18" width="7" height="20" rx="3" fill="url(#emo-vict-grad)"/>
-        <circle cx="0" cy="-20" r="6" fill="url(#emo-vict-grad)"/>
-      </g>
-      <g transform="translate(16 22)">
-        <path d="M0 -5 L1.2 -1.2 L5 -1 L1.5 1.2 L2.5 5 L0 2.5 L-2.5 5 L-1.5 1.2 L-5 -1 L-1.2 -1.2 Z" fill="#fbbf24"/>
-      </g>
-      <g transform="translate(80 24) scale(0.8)">
-        <path d="M0 -5 L1.2 -1.2 L5 -1 L1.5 1.2 L2.5 5 L0 2.5 L-2.5 5 L-1.5 1.2 L-5 -1 L-1.2 -1.2 Z" fill="#fbbf24" opacity="0.9"/>
-      </g>
-      <g transform="translate(48 10) scale(0.6)">
-        <path d="M0 -5 L1.2 -1.2 L5 -1 L1.5 1.2 L2.5 5 L0 2.5 L-2.5 5 L-1.5 1.2 L-5 -1 L-1.2 -1.2 Z" fill="#fbbf24" opacity="0.8"/>
-      </g>
+      {/* Face */}
+      <circle cx="44" cy="58" r="22" fill="url(#emo-vict-grad)"/>
+      {/* Happy arc eyes */}
+      <path d="M34 52 Q37 47 40 52" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+      <path d="M48 52 Q51 47 54 52" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+      {/* Big smile */}
+      <path d="M33 64 Q44 74 55 64" stroke="#1e1e2e" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+      {/* Cheeks */}
+      <circle cx="28" cy="62" r="3" fill="#fbbf24" opacity="0.55"/>
+      <circle cx="60" cy="62" r="3" fill="#fbbf24" opacity="0.55"/>
+      {/* Both arms raised */}
+      <path d="M22 52 L8 32" stroke="#fbbf24" strokeWidth="3" strokeLinecap="round"/>
+      <circle cx="6" cy="29" r="4.5" fill="#fbbf24"/>
+      <path d="M66 52 L80 32" stroke="#fbbf24" strokeWidth="3" strokeLinecap="round"/>
+      <circle cx="82" cy="29" r="4.5" fill="#fbbf24"/>
+      {/* Impact lines */}
+      <path d="M38 26 L36 16" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" opacity="0.7"/>
+      <path d="M44 24 L44 13" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" opacity="0.55"/>
+      <path d="M50 26 L52 16" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" opacity="0.7"/>
+      {/* Star */}
+      <path d="M16 16 L17.2 19.8 L21 20 L17.5 22.2 L18.5 26 L16 23.5 L13.5 26 L14.5 22.2 L11 20 L14.8 19.8Z" fill="#fbbf24" opacity="0.75"/>
     </svg>
   );
 }

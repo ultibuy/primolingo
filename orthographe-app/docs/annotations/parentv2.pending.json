@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "x": 1059,
+    "y": 1235,
+    "text": "il y a un problème, ca affiche le bouton alors que je ne sus pas sur ios ou android",
+    "time": "04/05 13:28",
+    "domContext": {
+      "tag": "OL",
+      "text": "Rendez-vous sur primolingo.app dans Safari et connectez-vous avec votre compte parentDans la section « Gestion des enfants », appuyez sur « Ouvrir la "
+    }
+  }
+]

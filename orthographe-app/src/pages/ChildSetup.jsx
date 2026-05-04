@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import * as Sentry from '@sentry/react';
 import { useAuth } from '../contexts/AuthContext.jsx';
 import { getChild, createChild, updateChild } from '../services/store.js';
+import { captureException } from '../services/sentry.js';
+import posthog from '../services/analytics.js';
 
-const AVATARS = ['🦊', '🐱', '🦁', '🐸', '🐵', '🦄', '🐲', '🦅', '🐺', '🐼', '🦈', '🐙'];
+const AVATARS = ['🦊', '🐱', '🦁', '🐸', '🐵', '🦄', '🐲', '🦅', '🐺', '🐼', '🦈', '🐙', '🐴'];
 
 export default function ChildSetup() {
   const { childId } = useParams();
@@ -39,14 +40,16 @@ export default function ChildSetup() {
     try {
       if (isEdit) {
         await updateChild(user.uid, childId, { name: name.trim(), avatar });
+        posthog.capture('child_profile_updated', { child_id: childId, avatar });
         navigate('/parent');
       } else {
         const id = await createChild(user.uid, name.trim(), avatar);
+        posthog.capture('child_profile_created', { child_id: id, avatar });
         setNewChildId(id);
         setDone(true);
       }
     } catch (err) {
-      Sentry.captureException(err);
+      captureException(err);
     } finally {
       setSaving(false);
     }
@@ -129,21 +132,25 @@ export default function ChildSetup() {
 
 const containerStyle = {
   minHeight: '100vh',
-  background: 'linear-gradient(135deg, #1e1e2e 0%, #2d2b55 100%)',
+  backgroundColor: 'var(--color-bg1)',
+  backgroundImage: 'var(--app-star-field)',
+  backgroundSize: '620px 620px, 680px 680px, 560px 560px, 720px 720px, 640px 640px, 760px 760px, 600px 600px, cover',
+  backgroundPosition: 'center center',
+  backgroundAttachment: 'fixed',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   padding: '1rem',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  fontFamily: 'var(--font-body)',
 };
 
 const cardStyle = {
   width: 'min(480px, 100%)',
-  background: 'rgba(255,255,255,0.05)',
-  backdropFilter: 'blur(20px)',
-  WebkitBackdropFilter: 'blur(20px)',
-  border: '1px solid rgba(167,139,250,0.2)',
-  borderRadius: 24,
+  background: 'var(--glass-bg)',
+  backdropFilter: 'blur(var(--blur-md))',
+  WebkitBackdropFilter: 'blur(var(--blur-md))',
+  border: '1px solid var(--glass-border)',
+  borderRadius: 'var(--radius-lg)',
   padding: '2rem 1.75rem',
   display: 'flex',
   flexDirection: 'column',
@@ -153,20 +160,20 @@ const cardStyle = {
 const backBtnStyle = {
   background: 'none',
   border: 'none',
-  color: '#64748b',
+  color: 'var(--text-muted)',
   fontSize: '0.85rem',
   cursor: 'pointer',
   padding: 0,
   alignSelf: 'flex-start',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  fontFamily: 'var(--font-body)',
 };
 
 const titleStyle = {
   margin: 0,
   fontSize: '1.5rem',
   fontWeight: 900,
-  color: '#fff',
-  fontFamily: 'Outfit, sans-serif',
+  color: 'var(--text-white)',
+  fontFamily: 'var(--font-display)',
 };
 
 const formStyle = {
@@ -184,19 +191,19 @@ const fieldStyle = {
 const labelStyle = {
   fontSize: '0.85rem',
   fontWeight: 700,
-  color: '#94a3b8',
+  color: 'var(--text-light)',
   textTransform: 'uppercase',
   letterSpacing: '0.05em',
 };
 
 const inputStyle = {
   padding: '0.85rem 1rem',
-  borderRadius: 12,
-  border: '1px solid rgba(167,139,250,0.3)',
-  background: 'rgba(255,255,255,0.06)',
-  color: '#fff',
+  borderRadius: 'var(--radius-sm)',
+  border: '1px solid var(--glass-border)',
+  background: 'var(--glass-bg)',
+  color: 'var(--text-white)',
   fontSize: '1rem',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  fontFamily: 'var(--font-body)',
   outline: 'none',
 };
 
@@ -208,9 +215,9 @@ const avatarGridStyle = {
 
 const avatarBtnStyle = {
   aspectRatio: '1',
-  borderRadius: 12,
-  border: '2px solid rgba(255,255,255,0.08)',
-  background: 'rgba(255,255,255,0.04)',
+  borderRadius: 'var(--radius-sm)',
+  border: '2px solid var(--glass-border)',
+  background: 'var(--glass-bg)',
   fontSize: 24,
   cursor: 'pointer',
   display: 'flex',
@@ -219,49 +226,49 @@ const avatarBtnStyle = {
 };
 
 const avatarBtnActiveStyle = {
-  border: '2px solid #a78bfa',
+  border: '2px solid var(--color-primary)',
   background: 'rgba(167,139,250,0.15)',
 };
 
 const primaryBtnStyle = {
   width: '100%',
-  padding: '0.9rem',
-  borderRadius: 14,
+  padding: '12px 24px',
+  borderRadius: 'var(--radius-pill)',
   border: 'none',
-  background: 'linear-gradient(135deg, #7c3aed, #a78bfa)',
-  color: '#fff',
+  background: 'var(--gradient-brand)',
+  color: 'var(--text-white)',
   fontSize: '1rem',
   fontWeight: 800,
   cursor: 'pointer',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
-  boxShadow: '0 6px 20px rgba(124,58,237,0.3)',
+  fontFamily: 'var(--font-body)',
+  boxShadow: 'var(--shadow-glow)',
 };
 
 const secondaryBtnStyle = {
   width: '100%',
   padding: '0.75rem',
-  borderRadius: 14,
-  border: '1px solid rgba(255,255,255,0.12)',
-  background: 'rgba(255,255,255,0.05)',
-  color: '#94a3b8',
+  borderRadius: 'var(--radius-pill)',
+  border: '1px solid var(--glass-border)',
+  background: 'var(--glass-bg)',
+  color: 'var(--text-light)',
   fontSize: '0.9rem',
   fontWeight: 700,
   cursor: 'pointer',
-  fontFamily: 'Plus Jakarta Sans, sans-serif',
+  fontFamily: 'var(--font-body)',
 };
 
 const doneTitle = {
   margin: 0,
   fontSize: '1.5rem',
   fontWeight: 900,
-  color: '#fff',
-  fontFamily: 'Outfit, sans-serif',
+  color: 'var(--text-white)',
+  fontFamily: 'var(--font-display)',
   textAlign: 'center',
 };
 
 const doneSub = {
   margin: 0,
   fontSize: '0.95rem',
-  color: '#94a3b8',
+  color: 'var(--text-muted)',
   textAlign: 'center',
 };

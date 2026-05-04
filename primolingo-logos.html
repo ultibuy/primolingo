@@ -31,9 +31,9 @@
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
     gap: 24px;
-    max-width: 1280px;
+    max-width: 1320px;
     margin: 0 auto;
   }
   .card {
@@ -43,19 +43,64 @@
     box-shadow: 0 4px 24px rgba(50, 30, 90, 0.06), 0 1px 3px rgba(50, 30, 90, 0.04);
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
     border: 1px solid rgba(0,0,0,0.04);
   }
   .preview {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 170px;
+    height: 160px;
     border-radius: 16px;
     background: #faf9fc;
   }
   .preview.dark {
     background: #1e1e2e;
+  }
+  .icon-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, #f1eef7 0%, #e7e2ee 100%);
+  }
+  .icon-tile {
+    width: 84px;
+    height: 84px;
+    border-radius: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 6px 14px rgba(30, 30, 46, 0.18), inset 0 1px 0 rgba(255,255,255,0.2);
+    overflow: hidden;
+    position: relative;
+  }
+  .icon-tile.small {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(30, 30, 46, 0.15);
+  }
+  .icon-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    font-size: 12px;
+    color: #6b6b80;
+  }
+  .icon-meta .lbl {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 13px;
+    color: #1e1e2e;
+    letter-spacing: 0.01em;
+  }
+  .icon-stack {
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
   .meta {
     display: flex;
@@ -89,7 +134,6 @@
     width: 28px; height: 28px; border-radius: 8px;
     border: 1px solid rgba(0,0,0,0.06);
   }
-  /* Wordmark style for each card */
   .wm {
     font-family: 'Outfit', sans-serif;
     font-weight: 900;
@@ -100,11 +144,11 @@
 <body>
 
 <h1>PrimoLingo — 10 pistes de logo</h1>
-<p class="sub">10 directions visuelles distinctes pour app de grammaire/orthographe (8-14 ans)</p>
+<p class="sub">Pour chaque direction : logo complet + version app icon (84px et 52px)</p>
 
 <div class="grid">
 
-<!-- 1 - Bulle de dialogue chibi avec P -->
+<!-- ============ 1 - Speech buddy ============ -->
 <div class="card">
   <div class="preview">
     <svg width="280" height="140" viewBox="0 0 280 140">
@@ -114,28 +158,43 @@
           <stop offset="1" stop-color="#9B59FF"/>
         </linearGradient>
       </defs>
-      <!-- Bubble -->
-      <path d="M30 25 Q30 10 45 10 L115 10 Q130 10 130 25 L130 75 Q130 90 115 90 L70 90 L55 110 L60 90 L45 90 Q30 90 30 75 Z"
-            fill="url(#g1)" />
-      <!-- Eyes on bubble -->
+      <path d="M30 25 Q30 10 45 10 L115 10 Q130 10 130 25 L130 75 Q130 90 115 90 L70 90 L55 110 L60 90 L45 90 Q30 90 30 75 Z" fill="url(#g1)" />
       <circle cx="65" cy="42" r="5" fill="#fff"/>
       <circle cx="95" cy="42" r="5" fill="#fff"/>
       <circle cx="66" cy="44" r="2.5" fill="#1e1e2e"/>
       <circle cx="96" cy="44" r="2.5" fill="#1e1e2e"/>
-      <!-- Smile -->
       <path d="M70 60 Q80 70 90 60" stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none"/>
-      <!-- Cheeks -->
       <circle cx="55" cy="58" r="4" fill="#FFD1E0" opacity="0.7"/>
       <circle cx="105" cy="58" r="4" fill="#FFD1E0" opacity="0.7"/>
-      <!-- Wordmark -->
-      <text x="155" y="58" class="wm" font-size="26" font-family="Outfit" font-weight="900" fill="#1e1e2e">primo</text>
-      <text x="155" y="84" class="wm" font-size="26" font-family="Outfit" font-weight="900" fill="url(#g1)">lingo</text>
+      <text x="155" y="58" font-size="26" font-family="Outfit" font-weight="900" fill="#1e1e2e">primo</text>
+      <text x="155" y="84" font-size="26" font-family="Outfit" font-weight="900" fill="url(#g1)">lingo</text>
     </svg>
+  </div>
+  <div class="icon-row">
+    <div class="icon-stack">
+      <div class="icon-tile" style="background: linear-gradient(135deg, #FF6B9D 0%, #9B59FF 100%);">
+        <svg width="64" height="64" viewBox="0 0 100 100">
+          <path d="M22 30 Q22 18 34 18 L66 18 Q78 18 78 30 L78 60 Q78 72 66 72 L48 72 L36 86 L40 72 L34 72 Q22 72 22 60 Z" fill="#fff"/>
+          <circle cx="40" cy="42" r="4" fill="#1e1e2e"/>
+          <circle cx="60" cy="42" r="4" fill="#1e1e2e"/>
+          <path d="M42 54 Q50 62 58 54" stroke="#1e1e2e" stroke-width="3" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="icon-tile small" style="background: linear-gradient(135deg, #FF6B9D 0%, #9B59FF 100%);">
+        <svg width="40" height="40" viewBox="0 0 100 100">
+          <path d="M22 30 Q22 18 34 18 L66 18 Q78 18 78 30 L78 60 Q78 72 66 72 L48 72 L36 86 L40 72 L34 72 Q22 72 22 60 Z" fill="#fff"/>
+          <circle cx="40" cy="42" r="5" fill="#1e1e2e"/>
+          <circle cx="60" cy="42" r="5" fill="#1e1e2e"/>
+          <path d="M42 54 Q50 62 58 54" stroke="#1e1e2e" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+    </div>
+    <div class="icon-meta"><div class="lbl">App icon</div><div>iOS / Android</div></div>
   </div>
   <div class="meta">
     <div class="num">01 — Speech buddy</div>
     <div class="name">La bulle qui parle</div>
-    <div class="desc">Bulle BD personnifiée, immédiatement compréhensible (langue + parler). Émotionnel, kid-friendly, marche en favicon.</div>
+    <div class="desc">Bulle BD personnifiée, immédiatement compréhensible (langue + parler). Émotionnel, kid-friendly.</div>
     <div class="mono">
       <div class="swatch" style="background:#FF6B9D"></div>
       <div class="swatch" style="background:#9B59FF"></div>
@@ -144,7 +203,7 @@
   </div>
 </div>
 
-<!-- 2 - Lettre P mascotte -->
+<!-- ============ 2 - Letter P mascot ============ -->
 <div class="card">
   <div class="preview">
     <svg width="280" height="140" viewBox="0 0 280 140">
@@ -154,25 +213,39 @@
           <stop offset="1" stop-color="#3B7DFF"/>
         </linearGradient>
       </defs>
-      <!-- P shape -->
-      <path d="M40 100 L40 25 Q40 15 50 15 L80 15 Q105 15 105 40 Q105 65 80 65 L60 65"
-            fill="none" stroke="url(#g2)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
-      <!-- Eyes inside the P loop -->
+      <path d="M40 100 L40 25 Q40 15 50 15 L80 15 Q105 15 105 40 Q105 65 80 65 L60 65" fill="none" stroke="url(#g2)" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
       <circle cx="73" cy="38" r="3.5" fill="#1e1e2e"/>
       <circle cx="88" cy="38" r="3.5" fill="#1e1e2e"/>
-      <!-- Smile -->
       <path d="M73 48 Q80 54 88 48" stroke="#1e1e2e" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      <!-- Accent aigu chapeau -->
       <rect x="60" y="-2" width="14" height="6" rx="3" fill="#FFD93D" transform="rotate(-25 67 1)"/>
-      <!-- Wordmark -->
       <text x="130" y="60" font-size="26" font-family="Outfit" font-weight="900" fill="#1e1e2e">Primo</text>
       <text x="130" y="92" font-size="26" font-family="Outfit" font-weight="900" fill="url(#g2)">Lingo</text>
     </svg>
   </div>
+  <div class="icon-row">
+    <div class="icon-stack">
+      <div class="icon-tile" style="background: linear-gradient(180deg, #5BD3F5 0%, #3B7DFF 100%);">
+        <svg width="64" height="64" viewBox="0 0 100 100">
+          <path d="M30 88 L30 22 Q30 14 38 14 L60 14 Q80 14 80 36 Q80 58 60 58 L46 58" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="55" cy="34" r="2.8" fill="#1e1e2e"/>
+          <circle cx="68" cy="34" r="2.8" fill="#1e1e2e"/>
+          <path d="M55 42 Q61 47 68 42" stroke="#1e1e2e" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <rect x="46" y="0" width="12" height="5" rx="2.5" fill="#FFD93D" transform="rotate(-25 52 2.5)"/>
+        </svg>
+      </div>
+      <div class="icon-tile small" style="background: linear-gradient(180deg, #5BD3F5 0%, #3B7DFF 100%);">
+        <svg width="40" height="40" viewBox="0 0 100 100">
+          <path d="M30 88 L30 22 Q30 14 38 14 L60 14 Q80 14 80 36 Q80 58 60 58 L46 58" fill="none" stroke="#fff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="46" y="0" width="12" height="6" rx="3" fill="#FFD93D" transform="rotate(-25 52 3)"/>
+        </svg>
+      </div>
+    </div>
+    <div class="icon-meta"><div class="lbl">App icon</div><div>iOS / Android</div></div>
+  </div>
   <div class="meta">
     <div class="num">02 — Letter mascot</div>
     <div class="name">Le P à l'accent</div>
-    <div class="desc">La lettre P comme mascotte, accent aigu en chapeau (signature française). Très lisible petit.</div>
+    <div class="desc">Lettre P personnifiée, accent aigu en chapeau (signature française). Très lisible petit.</div>
     <div class="mono">
       <div class="swatch" style="background:#5BD3F5"></div>
       <div class="swatch" style="background:#3B7DFF"></div>
@@ -181,7 +254,7 @@
   </div>
 </div>
 
-<!-- 3 - Médaille Primo n°1 -->
+<!-- ============ 3 - Medal ============ -->
 <div class="card">
   <div class="preview">
     <svg width="280" height="140" viewBox="0 0 280 140">
@@ -191,27 +264,51 @@
           <stop offset="1" stop-color="#FF8A3D"/>
         </linearGradient>
       </defs>
-      <!-- Ribbon -->
       <path d="M50 8 L65 8 L65 55 L57 50 L49 55 L49 8 Z" fill="#FF6B9D" opacity="0.9"/>
       <path d="M65 8 L80 8 L81 55 L73 50 L65 55 Z" fill="#9B59FF" opacity="0.9"/>
-      <!-- Medal -->
       <circle cx="65" cy="80" r="40" fill="url(#g3)"/>
       <circle cx="65" cy="80" r="40" fill="none" stroke="#fff" stroke-width="3" opacity="0.4"/>
-      <!-- N°1 like text "1°" inside medal -->
       <text x="65" y="93" font-size="36" font-family="Fredoka" font-weight="700" fill="#fff" text-anchor="middle">1</text>
       <text x="84" y="78" font-size="14" font-family="Fredoka" font-weight="700" fill="#fff">er</text>
-      <!-- Stars -->
       <text x="38" y="60" font-size="14" fill="#fff">★</text>
       <text x="92" y="105" font-size="12" fill="#fff" opacity="0.8">★</text>
-      <!-- Wordmark -->
       <text x="135" y="76" font-size="26" font-family="Outfit" font-weight="900" fill="#1e1e2e">Primo</text>
       <text x="135" y="106" font-size="26" font-family="Outfit" font-weight="900" fill="url(#g3)">Lingo</text>
     </svg>
   </div>
+  <div class="icon-row">
+    <div class="icon-stack">
+      <div class="icon-tile" style="background: linear-gradient(180deg, #9B59FF 0%, #FF6B9D 100%);">
+        <svg width="64" height="64" viewBox="0 0 100 100">
+          <circle cx="50" cy="52" r="34" fill="url(#g3icon)"/>
+          <defs>
+            <linearGradient id="g3icon" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#FFD93D"/><stop offset="1" stop-color="#FF8A3D"/>
+            </linearGradient>
+          </defs>
+          <circle cx="50" cy="52" r="34" fill="none" stroke="#fff" stroke-width="2.5" opacity="0.5"/>
+          <text x="50" y="64" font-size="34" font-family="Fredoka" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+          <text x="68" y="48" font-size="12" font-family="Fredoka" font-weight="700" fill="#fff">er</text>
+        </svg>
+      </div>
+      <div class="icon-tile small" style="background: linear-gradient(180deg, #9B59FF 0%, #FF6B9D 100%);">
+        <svg width="40" height="40" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="34" fill="url(#g3icon2)"/>
+          <defs>
+            <linearGradient id="g3icon2" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#FFD93D"/><stop offset="1" stop-color="#FF8A3D"/>
+            </linearGradient>
+          </defs>
+          <text x="50" y="64" font-size="44" font-family="Fredoka" font-weight="700" fill="#fff" text-anchor="middle">1</text>
+        </svg>
+      </div>
+    </div>
+    <div class="icon-meta"><div class="lbl">App icon</div><div>iOS / Android</div></div>
+  </div>
   <div class="meta">
     <div class="num">03 — Champion</div>
     <div class="name">La médaille du premier</div>
-    <div class="desc">Joue sur "primo = premier". Achievement / récompense, parle directement à la gamification de l'app.</div>
+    <div class="desc">Joue sur "primo = premier". Achievement / récompense, parle à la gamification de l'app.</div>
     <div class="mono">
       <div class="swatch" style="background:#FFD93D"></div>
       <div class="swatch" style="background:#FF8A3D"></div>
@@ -220,7 +317,7 @@
   </div>
 </div>
 
-<!-- 4 - Hibou + livre -->
+<!-- ============ 4 - Owl ============ -->
 <div class="card">
   <div class="preview">
     <svg width="280" height="140" viewBox="0 0 280 140">
@@ -230,34 +327,54 @@
           <stop offset="1" stop-color="#3B7DFF"/>
         </linearGradient>
       </defs>
-      <!-- Owl body -->
       <ellipse cx="65" cy="62" rx="38" ry="42" fill="url(#g4)"/>
-      <!-- Belly -->
       <ellipse cx="65" cy="78" rx="22" ry="22" fill="#fff" opacity="0.2"/>
-      <!-- Ear tufts -->
       <path d="M37 28 L33 14 L48 24 Z" fill="url(#g4)"/>
       <path d="M93 28 L97 14 L82 24 Z" fill="url(#g4)"/>
-      <!-- Eyes -->
       <circle cx="52" cy="55" r="14" fill="#fff"/>
       <circle cx="78" cy="55" r="14" fill="#fff"/>
       <circle cx="52" cy="55" r="7" fill="#1e1e2e"/>
       <circle cx="78" cy="55" r="7" fill="#1e1e2e"/>
       <circle cx="55" cy="52" r="2.5" fill="#fff"/>
       <circle cx="81" cy="52" r="2.5" fill="#fff"/>
-      <!-- Beak -->
       <path d="M65 64 L60 72 L70 72 Z" fill="#FFB13D"/>
-      <!-- Book in wings -->
       <rect x="48" y="92" width="34" height="14" rx="2" fill="#FFD93D"/>
       <line x1="65" y1="92" x2="65" y2="106" stroke="#1e1e2e" stroke-width="1" opacity="0.3"/>
-      <!-- Wordmark -->
       <text x="125" y="62" font-size="26" font-family="Outfit" font-weight="900" fill="#1e1e2e">Primo</text>
       <text x="125" y="92" font-size="26" font-family="Outfit" font-weight="900" fill="url(#g4)">Lingo</text>
     </svg>
   </div>
+  <div class="icon-row">
+    <div class="icon-stack">
+      <div class="icon-tile" style="background: linear-gradient(135deg, #FFD93D 0%, #FFB13D 100%);">
+        <svg width="68" height="68" viewBox="0 0 100 100">
+          <ellipse cx="50" cy="52" rx="32" ry="36" fill="#7C5CFF"/>
+          <path d="M27 25 L23 12 L36 21 Z" fill="#7C5CFF"/>
+          <path d="M73 25 L77 12 L64 21 Z" fill="#7C5CFF"/>
+          <circle cx="40" cy="46" r="11" fill="#fff"/>
+          <circle cx="60" cy="46" r="11" fill="#fff"/>
+          <circle cx="40" cy="46" r="5.5" fill="#1e1e2e"/>
+          <circle cx="60" cy="46" r="5.5" fill="#1e1e2e"/>
+          <path d="M50 56 L46 62 L54 62 Z" fill="#FFB13D"/>
+        </svg>
+      </div>
+      <div class="icon-tile small" style="background: linear-gradient(135deg, #FFD93D 0%, #FFB13D 100%);">
+        <svg width="42" height="42" viewBox="0 0 100 100">
+          <ellipse cx="50" cy="52" rx="32" ry="36" fill="#7C5CFF"/>
+          <circle cx="40" cy="46" r="11" fill="#fff"/>
+          <circle cx="60" cy="46" r="11" fill="#fff"/>
+          <circle cx="40" cy="46" r="5.5" fill="#1e1e2e"/>
+          <circle cx="60" cy="46" r="5.5" fill="#1e1e2e"/>
+          <path d="M50 56 L46 62 L54 62 Z" fill="#FFB13D"/>
+        </svg>
+      </div>
+    </div>
+    <div class="icon-meta"><div class="lbl">App icon</div><div>iOS / Android</div></div>
+  </div>
   <div class="meta">
     <div class="num">04 — Wise mascot</div>
     <div class="name">Le hibou savant</div>
-    <div class="desc">Réutilise un perso de l'app comme mascotte de marque. Cohérent avec l'univers existant, attachant.</div>
+    <div class="desc">Réutilise un perso de l'app comme mascotte de marque. Cohérent, attachant.</div>
     <div class="mono">
       <div class="swatch" style="background:#7C5CFF"></div>
       <div class="swatch" style="background:#3B7DFF"></div>
@@ -266,7 +383,7 @@
   </div>
 </div>
 
-<!-- 5 - Étoile filante de lettres -->
+<!-- ============ 5 - Magic trail ============ -->
 <div class="card">
   <div class="preview dark">
     <svg width="280" height="140" viewBox="0 0 280 140">
@@ -276,26 +393,37 @@
           <stop offset="1" stop-color="#FFD93D"/>
         </linearGradient>
       </defs>
-      <!-- Trail -->
       <path d="M10 75 Q40 60 75 50" stroke="url(#g5)" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.7"/>
-      <!-- Floating letters in trail -->
       <text x="22" y="82" font-size="14" fill="#FF6B9D" font-family="Fredoka" font-weight="700" opacity="0.6">a</text>
       <text x="40" y="72" font-size="16" fill="#5BD3F5" font-family="Fredoka" font-weight="700" opacity="0.8">é</text>
       <text x="58" y="60" font-size="18" fill="#9B59FF" font-family="Fredoka" font-weight="700">b</text>
-      <!-- Star -->
-      <path d="M85 50 L93 35 L101 50 L117 53 L105 65 L108 81 L93 73 L78 81 L81 65 L69 53 Z"
-            fill="#FFD93D" stroke="#fff" stroke-width="1.5"/>
-      <circle cx="93" cy="55" r="3" fill="#1e1e2e"/>
-      <circle cx="93" cy="55" r="3" fill="#1e1e2e" transform="translate(8 0)"/>
-      <!-- Wordmark -->
+      <path d="M85 50 L93 35 L101 50 L117 53 L105 65 L108 81 L93 73 L78 81 L81 65 L69 53 Z" fill="#FFD93D" stroke="#fff" stroke-width="1.5"/>
       <text x="135" y="62" font-size="26" font-family="Outfit" font-weight="900" fill="#fff">Primo</text>
       <text x="135" y="92" font-size="26" font-family="Outfit" font-weight="900" fill="#FFD93D">Lingo</text>
     </svg>
   </div>
+  <div class="icon-row">
+    <div class="icon-stack">
+      <div class="icon-tile" style="background: linear-gradient(180deg, #2a1d52 0%, #1e1e2e 100%);">
+        <svg width="64" height="64" viewBox="0 0 100 100">
+          <path d="M10 65 Q30 55 48 48" stroke="#FFD93D" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
+          <text x="18" y="70" font-size="11" fill="#FF6B9D" font-family="Fredoka" font-weight="700" opacity="0.6">a</text>
+          <text x="32" y="60" font-size="12" fill="#5BD3F5" font-family="Fredoka" font-weight="700" opacity="0.8">é</text>
+          <path d="M58 48 L66 32 L74 48 L91 51 L78 64 L82 81 L66 72 L50 81 L54 64 L41 51 Z" fill="#FFD93D" stroke="#fff" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="icon-tile small" style="background: linear-gradient(180deg, #2a1d52 0%, #1e1e2e 100%);">
+        <svg width="40" height="40" viewBox="0 0 100 100">
+          <path d="M50 22 L60 44 L84 47 L66 64 L72 87 L50 75 L28 87 L34 64 L16 47 L40 44 Z" fill="#FFD93D" stroke="#fff" stroke-width="2"/>
+        </svg>
+      </div>
+    </div>
+    <div class="icon-meta"><div class="lbl">App icon</div><div>iOS / Android</div></div>
+  </div>
   <div class="meta">
     <div class="num">05 — Magic trail</div>
     <div class="name">L'étoile filante de lettres</div>
-    <div class="desc">Aventure + magie. Les lettres deviennent comètes. Très "jeu vidéo", bien sur fond sombre.</div>
+    <div class="desc">Aventure + magie. Les lettres deviennent comètes. Très "jeu vidéo", marche en sombre.</div>
     <div class="mono">
       <div class="swatch" style="background:#1e1e2e"></div>
       <div class="swatch" style="background:#FFD93D"></div>
@@ -304,7 +432,7 @@
   </div>
 </div>
 
-<!-- 6 - Crayon-baguette magique -->
+<!-- ============ 6 - Magic pencil ============ -->
 <div class="card">
   <div class="preview">
     <svg width="280" height="140" viewBox="0 0 280 140">
@@ -314,7 +442,6 @@
           <stop offset="1" stop-color="#FFB13D"/>
         </linearGradient>
       </defs>
-      <!-- Pencil body angled -->
       <g transform="rotate(-30 65 75)">
         <rect x="20" y="66" width="70" height="18" rx="3" fill="url(#g6)"/>
         <rect x="20" y="66" width="14" height="18" fill="#FFE7B0"/>
@@ -322,19 +449,54 @@
         <polygon points="90,66 110,75 90,84" fill="#FFE7B0"/>
         <polygon points="100,71 110,75 100,79" fill="#1e1e2e"/>
       </g>
-      <!-- Sparkles around tip -->
       <text x="100" y="40" font-size="18" fill="#FFD93D">✦</text>
       <text x="115" y="60" font-size="12" fill="#9B59FF">✦</text>
       <text x="120" y="32" font-size="10" fill="#5BD3F5">✦</text>
-      <!-- Wordmark -->
       <text x="140" y="62" font-size="26" font-family="Outfit" font-weight="900" fill="#1e1e2e">Primo</text>
       <text x="140" y="92" font-size="26" font-family="Outfit" font-weight="900" fill="url(#g6)">Lingo</text>
     </svg>
   </div>
+  <div class="icon-row">
+    <div class="icon-stack">
+      <div class="icon-tile" style="background: linear-gradient(135deg, #FFE3F0 0%, #FFD1A6 100%);">
+        <svg width="64" height="64" viewBox="0 0 100 100">
+          <g transform="rotate(-30 50 50)">
+            <rect x="14" y="42" width="60" height="16" rx="3" fill="url(#g6icon)"/>
+            <defs>
+              <linearGradient id="g6icon" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#FF6B9D"/><stop offset="1" stop-color="#FFB13D"/>
+              </linearGradient>
+            </defs>
+            <rect x="14" y="42" width="12" height="16" fill="#FFE7B0"/>
+            <rect x="8" y="44" width="6" height="12" rx="2" fill="#FF6B9D"/>
+            <polygon points="74,42 92,50 74,58" fill="#FFE7B0"/>
+            <polygon points="84,46 92,50 84,54" fill="#1e1e2e"/>
+          </g>
+          <text x="70" y="22" font-size="14" fill="#FFD93D">✦</text>
+          <text x="82" y="40" font-size="10" fill="#9B59FF">✦</text>
+        </svg>
+      </div>
+      <div class="icon-tile small" style="background: linear-gradient(135deg, #FFE3F0 0%, #FFD1A6 100%);">
+        <svg width="40" height="40" viewBox="0 0 100 100">
+          <g transform="rotate(-30 50 50)">
+            <rect x="18" y="42" width="58" height="16" rx="3" fill="url(#g6icon2)"/>
+            <defs>
+              <linearGradient id="g6icon2" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#FF6B9D"/><stop offset="1" stop-color="#FFB13D"/>
+              </linearGradient>
+            </defs>
+            <polygon points="76,42 92,50 76,58" fill="#FFE7B0"/>
+            <polygon points="86,46 92,50 86,54" fill="#1e1e2e"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="icon-meta"><div class="lbl">App icon</div><div>iOS / Android</div></div>
+  </div>
   <div class="meta">
     <div class="num">06 — Magic pencil</div>
     <div class="name">Le crayon magique</div>
-    <div class="desc">Crayon-baguette : on apprend à écrire mais avec de la magie. Universel, lisible, friendly.</div>
+    <div class="desc">Crayon-baguette : on apprend à écrire avec de la magie. Universel, lisible, friendly.</div>
     <div class="mono">
       <div class="swatch" style="background:#FF6B9D"></div>
       <div class="swatch" style="background:#FFB13D"></div>
@@ -343,7 +505,7 @@
   </div>
 </div>
 
-<!-- 7 - Couronne primo -->
+<!-- ============ 7 - Royal P ============ -->
 <div class="card">
   <div class="preview">
     <svg width="280" height="140" viewBox="0 0 280 140">
@@ -353,24 +515,50 @@
           <stop offset="1" stop-color="#FFA63D"/>
         </linearGradient>
       </defs>
-      <!-- Rounded square base -->
       <rect x="25" y="40" width="80" height="80" rx="22" fill="#9B59FF"/>
-      <!-- Crown -->
       <path d="M30 50 L42 22 L55 42 L65 18 L75 42 L88 22 L100 50 Z" fill="url(#g7)" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/>
       <circle cx="42" cy="22" r="4" fill="#FF6B9D"/>
       <circle cx="65" cy="18" r="4" fill="#5BD3F5"/>
       <circle cx="88" cy="22" r="4" fill="#FF6B9D"/>
-      <!-- P inside square -->
       <text x="65" y="100" font-size="48" font-family="Fredoka" font-weight="700" fill="#fff" text-anchor="middle">P</text>
-      <!-- Wordmark -->
       <text x="125" y="76" font-size="26" font-family="Outfit" font-weight="900" fill="#1e1e2e">Primo</text>
       <text x="125" y="106" font-size="26" font-family="Outfit" font-weight="900" fill="#9B59FF">Lingo</text>
     </svg>
   </div>
+  <div class="icon-row">
+    <div class="icon-stack">
+      <div class="icon-tile" style="background: #9B59FF;">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+          <path d="M10 35 L25 8 L38 28 L50 4 L62 28 L75 8 L90 35 Z" fill="url(#g7icon)" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="g7icon" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#FFD93D"/><stop offset="1" stop-color="#FFA63D"/>
+            </linearGradient>
+          </defs>
+          <circle cx="25" cy="8" r="3" fill="#FF6B9D"/>
+          <circle cx="50" cy="4" r="3" fill="#5BD3F5"/>
+          <circle cx="75" cy="8" r="3" fill="#FF6B9D"/>
+          <text x="50" y="86" font-size="58" font-family="Fredoka" font-weight="700" fill="#fff" text-anchor="middle">P</text>
+        </svg>
+      </div>
+      <div class="icon-tile small" style="background: #9B59FF;">
+        <svg width="50" height="50" viewBox="0 0 100 100">
+          <path d="M10 35 L25 8 L38 28 L50 4 L62 28 L75 8 L90 35 Z" fill="url(#g7icon2)" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="g7icon2" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#FFD93D"/><stop offset="1" stop-color="#FFA63D"/>
+            </linearGradient>
+          </defs>
+          <text x="50" y="86" font-size="58" font-family="Fredoka" font-weight="700" fill="#fff" text-anchor="middle">P</text>
+        </svg>
+      </div>
+    </div>
+    <div class="icon-meta"><div class="lbl">App icon</div><div>iOS / Android</div></div>
+  </div>
   <div class="meta">
     <div class="num">07 — Royal P</div>
     <div class="name">Le P couronné</div>
-    <div class="desc">Référence directe à "primo = premier" / royauté. Format app icon carré-arrondi prêt pour iOS/Android.</div>
+    <div class="desc">Référence directe à "primo = premier" / royauté. Le logo EST déjà l'app icon.</div>
     <div class="mono">
       <div class="swatch" style="background:#9B59FF"></div>
       <div class="swatch" style="background:#FFD93D"></div>
@@ -379,7 +567,7 @@
   </div>
 </div>
 
-<!-- 8 - Coeur accent aigu -->
+<!-- ============ 8 - Heart É ============ -->
 <div class="card">
   <div class="preview">
     <svg width="280" height="140" viewBox="0 0 280 140">
@@ -389,22 +577,44 @@
           <stop offset="1" stop-color="#FF3D7F"/>
         </linearGradient>
       </defs>
-      <!-- Heart -->
-      <path d="M65 102 C 65 102 25 78 25 50 C 25 35 38 25 50 25 C 58 25 65 32 65 32 C 65 32 72 25 80 25 C 92 25 105 35 105 50 C 105 78 65 102 65 102 Z"
-            fill="url(#g8)"/>
-      <!-- E with accent inside heart -->
+      <path d="M65 102 C 65 102 25 78 25 50 C 25 35 38 25 50 25 C 58 25 65 32 65 32 C 65 32 72 25 80 25 C 92 25 105 35 105 50 C 105 78 65 102 65 102 Z" fill="url(#g8)"/>
       <text x="65" y="74" font-size="42" font-family="Fredoka" font-weight="700" fill="#fff" text-anchor="middle">É</text>
-      <!-- Sparkle -->
       <text x="100" y="40" font-size="14" fill="#FFD93D">✦</text>
-      <!-- Wordmark -->
       <text x="125" y="62" font-size="26" font-family="Outfit" font-weight="900" fill="#1e1e2e">Primo</text>
       <text x="125" y="92" font-size="26" font-family="Outfit" font-weight="900" fill="url(#g8)">Lingo</text>
     </svg>
   </div>
+  <div class="icon-row">
+    <div class="icon-stack">
+      <div class="icon-tile" style="background: linear-gradient(180deg, #FFE0EC 0%, #FFC2D8 100%);">
+        <svg width="64" height="64" viewBox="0 0 100 100">
+          <path d="M50 88 C 50 88 14 66 14 42 C 14 28 26 18 38 18 C 44 18 50 26 50 26 C 50 26 56 18 62 18 C 74 18 86 28 86 42 C 86 66 50 88 50 88 Z" fill="url(#g8icon)"/>
+          <defs>
+            <linearGradient id="g8icon" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#FF6B9D"/><stop offset="1" stop-color="#FF3D7F"/>
+            </linearGradient>
+          </defs>
+          <text x="50" y="60" font-size="38" font-family="Fredoka" font-weight="700" fill="#fff" text-anchor="middle">É</text>
+        </svg>
+      </div>
+      <div class="icon-tile small" style="background: linear-gradient(180deg, #FFE0EC 0%, #FFC2D8 100%);">
+        <svg width="40" height="40" viewBox="0 0 100 100">
+          <path d="M50 88 C 50 88 14 66 14 42 C 14 28 26 18 38 18 C 44 18 50 26 50 26 C 50 26 56 18 62 18 C 74 18 86 28 86 42 C 86 66 50 88 50 88 Z" fill="url(#g8icon2)"/>
+          <defs>
+            <linearGradient id="g8icon2" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#FF6B9D"/><stop offset="1" stop-color="#FF3D7F"/>
+            </linearGradient>
+          </defs>
+          <text x="50" y="62" font-size="42" font-family="Fredoka" font-weight="700" fill="#fff" text-anchor="middle">É</text>
+        </svg>
+      </div>
+    </div>
+    <div class="icon-meta"><div class="lbl">App icon</div><div>iOS / Android</div></div>
+  </div>
   <div class="meta">
     <div class="num">08 — French love</div>
     <div class="name">Le cœur à l'accent</div>
-    <div class="desc">"On aime le français". L'accent aigu sur le É est le détail qui ancre la marque dans la langue française.</div>
+    <div class="desc">"On aime le français". L'accent aigu sur le É ancre la marque dans la langue.</div>
     <div class="mono">
       <div class="swatch" style="background:#FF6B9D"></div>
       <div class="swatch" style="background:#FF3D7F"></div>
@@ -413,7 +623,7 @@
   </div>
 </div>
 
-<!-- 9 - Fusée alphabet -->
+<!-- ============ 9 - Rocket ============ -->
 <div class="card">
   <div class="preview">
     <svg width="280" height="140" viewBox="0 0 280 140">
@@ -423,29 +633,58 @@
           <stop offset="1" stop-color="#3B7DFF"/>
         </linearGradient>
       </defs>
-      <!-- Rocket -->
       <g transform="rotate(-25 65 70)">
         <path d="M65 18 Q88 35 88 75 L42 75 Q42 35 65 18 Z" fill="url(#g9)"/>
         <circle cx="65" cy="50" r="10" fill="#fff"/>
         <circle cx="65" cy="50" r="6" fill="#1e1e2e"/>
         <path d="M42 75 L30 95 L52 80 Z" fill="#FF6B9D"/>
         <path d="M88 75 L100 95 L78 80 Z" fill="#FF6B9D"/>
-        <!-- Flames -->
         <path d="M52 78 Q56 95 60 78 Q63 92 67 78 Q70 95 74 78" fill="#FFD93D"/>
       </g>
-      <!-- Letter trail -->
       <text x="20" y="115" font-size="14" fill="#9B59FF" font-family="Fredoka" font-weight="700">a</text>
       <text x="35" y="125" font-size="12" fill="#FF6B9D" font-family="Fredoka" font-weight="700" opacity="0.7">b</text>
       <text x="48" y="118" font-size="10" fill="#5BD3F5" font-family="Fredoka" font-weight="700" opacity="0.5">c</text>
-      <!-- Wordmark -->
       <text x="135" y="62" font-size="26" font-family="Outfit" font-weight="900" fill="#1e1e2e">Primo</text>
       <text x="135" y="92" font-size="26" font-family="Outfit" font-weight="900" fill="url(#g9)">Lingo</text>
     </svg>
   </div>
+  <div class="icon-row">
+    <div class="icon-stack">
+      <div class="icon-tile" style="background: linear-gradient(180deg, #B7EAFF 0%, #5BD3F5 100%);">
+        <svg width="64" height="64" viewBox="0 0 100 100">
+          <g transform="rotate(-20 50 50)">
+            <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="url(#g9icon)"/>
+            <defs>
+              <linearGradient id="g9icon" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#FFE7B0"/>
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="40" r="9" fill="#3B7DFF"/>
+            <circle cx="50" cy="40" r="5" fill="#1e1e2e"/>
+            <path d="M30 65 L20 84 L38 70 Z" fill="#FF6B9D"/>
+            <path d="M70 65 L80 84 L62 70 Z" fill="#FF6B9D"/>
+            <path d="M40 68 Q44 85 48 68 Q51 82 55 68 Q58 85 62 68" fill="#FFD93D"/>
+          </g>
+        </svg>
+      </div>
+      <div class="icon-tile small" style="background: linear-gradient(180deg, #B7EAFF 0%, #5BD3F5 100%);">
+        <svg width="40" height="40" viewBox="0 0 100 100">
+          <g transform="rotate(-20 50 50)">
+            <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+            <circle cx="50" cy="40" r="9" fill="#3B7DFF"/>
+            <path d="M30 65 L20 84 L38 70 Z" fill="#FF6B9D"/>
+            <path d="M70 65 L80 84 L62 70 Z" fill="#FF6B9D"/>
+            <path d="M40 68 Q44 85 48 68 Q51 82 55 68 Q58 85 62 68" fill="#FFD93D"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="icon-meta"><div class="lbl">App icon</div><div>iOS / Android</div></div>
+  </div>
   <div class="meta">
     <div class="num">09 — Launch mode</div>
     <div class="name">La fusée des lettres</div>
-    <div class="desc">"Décoller en orthographe". Énergie, progression, vibe ed-tech moderne (Khan/Duolingo-coded).</div>
+    <div class="desc">"Décoller en orthographe". Énergie, progression, vibe ed-tech moderne.</div>
     <div class="mono">
       <div class="swatch" style="background:#5BD3F5"></div>
       <div class="swatch" style="background:#3B7DFF"></div>
@@ -454,7 +693,7 @@
   </div>
 </div>
 
-<!-- 10 - Wordmark pur typographique -->
+<!-- ============ 10 - Pure type ============ -->
 <div class="card">
   <div class="preview">
     <svg width="280" height="140" viewBox="0 0 280 140">
@@ -465,22 +704,33 @@
           <stop offset="1" stop-color="#FFB13D"/>
         </linearGradient>
       </defs>
-      <!-- primo -->
       <text x="140" y="65" font-size="34" font-family="Outfit" font-weight="900" fill="#1e1e2e" text-anchor="middle" letter-spacing="-1">primo</text>
-      <!-- lingo -->
       <text x="140" y="100" font-size="34" font-family="Outfit" font-weight="900" fill="url(#g10)" text-anchor="middle" letter-spacing="-1">lingo</text>
-      <!-- Accent aigu sur le i de primo -->
       <path d="M155 35 L162 28" stroke="#FFB13D" stroke-width="4" stroke-linecap="round"/>
-      <!-- Dot -->
       <circle cx="232" cy="100" r="5" fill="url(#g10)"/>
-      <!-- Underline mark -->
       <rect x="100" y="110" width="80" height="3" rx="1.5" fill="url(#g10)"/>
     </svg>
+  </div>
+  <div class="icon-row">
+    <div class="icon-stack">
+      <div class="icon-tile" style="background: linear-gradient(135deg, #7C5CFF 0%, #FF6B9D 50%, #FFB13D 100%);">
+        <svg width="64" height="64" viewBox="0 0 100 100">
+          <text x="50" y="68" font-size="58" font-family="Outfit" font-weight="900" fill="#fff" text-anchor="middle" letter-spacing="-3">pl</text>
+          <path d="M40 22 L48 14" stroke="#FFD93D" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="icon-tile small" style="background: linear-gradient(135deg, #7C5CFF 0%, #FF6B9D 50%, #FFB13D 100%);">
+        <svg width="40" height="40" viewBox="0 0 100 100">
+          <text x="50" y="70" font-size="62" font-family="Outfit" font-weight="900" fill="#fff" text-anchor="middle" letter-spacing="-4">pl</text>
+        </svg>
+      </div>
+    </div>
+    <div class="icon-meta"><div class="lbl">App icon</div><div>iOS / Android</div></div>
   </div>
   <div class="meta">
     <div class="num">10 — Pure type</div>
     <div class="name">Le wordmark</div>
-    <div class="desc">Pas d'icône, juste typographie. Accent aigu décoratif sur le "i". Plus mature, scalable, marche en header web et app store.</div>
+    <div class="desc">Pas d'icône, juste typo. Monogramme "pl" pour l'app icon. Mature, scalable.</div>
     <div class="mono">
       <div class="swatch" style="background:#7C5CFF"></div>
       <div class="swatch" style="background:#FF6B9D"></div>

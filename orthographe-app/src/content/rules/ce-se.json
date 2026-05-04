@@ -225,10 +225,10 @@
     {
       "id": "q022",
       "before": "",
-      "after": " jour, les vacances arrivent enfin.",
+      "after": " jour-là, les vacances ont enfin commencé.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "« Je me jour » est impossible → c'est 'ce' (pronom démonstratif neutre)."
+      "explanation": "« Je me jour-là » est impossible → c'est 'ce' (déterminant démonstratif)."
     },
     {
       "id": "q023",
@@ -336,11 +336,11 @@
     },
     {
       "id": "q036",
-      "before": "Sauriez-vous",
-      "after": " qui a volé le trésor ?",
+      "before": "Je ne comprends pas ",
+      "after": " qu'il essaie de me dire depuis tout à l'heure.",
       "answer": "ce",
-      "difficulty": 3,
-      "explanation": "« Ce qui a volé » : 'ce' est un pronom démonstratif neutre. Test : 'je me qui a volé' est impossible → c'est 'ce'."
+      "difficulty": 2,
+      "explanation": "On peut remplacer par 'cela' → 'Je ne comprends pas cela qu'il essaie...' (forme 'ce que', pronom démonstratif neutre). 'Se' est impossible car il n'y a pas de verbe pronominal."
     },
     {
       "id": "q037",
@@ -412,7 +412,7 @@
       "after": " battent à la récréation.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Pronom réfléchi : ils se battent = je me bats. Test : 'je me battent' (conjugaison différente mais structure fonctionne) → 'se'."
+      "explanation": "Test : 'je me bats' fonctionne (en gardant la même structure réfléchie avec 'je') → c'est 'se' (pronom réfléchi)."
     },
     {
       "id": "q046",
@@ -425,10 +425,10 @@
     {
       "id": "q047",
       "before": "Elle ",
-      "after": " plaît beaucoup à ses collègues.",
+      "after": " plaît à imaginer son avenir loin d'ici.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Pronom réfléchi : elle se plaît = je me plais. Test fonctionne → 'se'. (Signifie : elle aime cet endroit)"
+      "explanation": "Test : 'je me plais à imaginer' fonctionne → c'est 'se' (pronom réfléchi, locution 'se plaire à')."
     },
     {
       "id": "q048",
@@ -729,10 +729,10 @@
     {
       "id": "q085",
       "before": "Les animaux",
-      "after": " protègent lors du danger.",
+      "after": " réfugient dans leur terrier dès qu'un orage éclate.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'je me protège' fonctionne → 'se' est un pronom réfléchi."
+      "explanation": "Test : 'je me réfugie' fonctionne → c'est 'se' (pronom réfléchi, verbe 'se réfugier')."
     },
     {
       "id": "q086",
@@ -993,10 +993,10 @@
     {
       "id": "q118",
       "before": "Bien qu'il ",
-      "after": " sentît coupable, il continua son chemin.",
+      "after": " sente coupable, il continue son chemin sans hésiter.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Test : « je me sentisse » → fonctionne (subjonctif). C'est le pronom réfléchi se (il se sentît)."
+      "explanation": "Test : 'je me sente' (subjonctif) ou 'je me sens' (indicatif) fonctionne → c'est 'se' (pronom réfléchi)."
     },
     {
       "id": "q119",
@@ -1249,10 +1249,10 @@
     {
       "id": "q151",
       "before": "Marie ",
-      "after": " fait belle en cette robe rouge.",
+      "after": " fait belle dans sa nouvelle robe rouge.",
       "answer": "se",
       "difficulty": 2,
-      "explanation": "Test : Marie se fait belle = je me fais belle → 'se' pronom réfléchi (elle s'embellit)."
+      "explanation": "Test : 'je me fais belle' fonctionne → c'est 'se' (pronom réfléchi : elle s'embellit)."
     },
     {
       "id": "q152",
@@ -1337,10 +1337,10 @@
     {
       "id": "q163",
       "before": "Elle admirait",
-      "after": " miroir dans la salle de bain.",
+      "after": " tableau accroché dans le salon.",
       "answer": "ce",
       "difficulty": 1,
-      "explanation": "Test : 'Je me miroir' ✗ → C'est un déterminant démonstratif, donc 'ce'."
+      "explanation": "Test : 'je me tableau' ne fonctionne pas → c'est 'ce' (déterminant démonstratif)."
     },
     {
       "id": "q164",
@@ -1409,10 +1409,10 @@
     {
       "id": "q172",
       "before": "Les cuisiniers",
-      "after": " préparaient un repas exceptionnel.",
+      "after": " concentraient sur leur recette pendant le service.",
       "answer": "se",
       "difficulty": 1,
-      "explanation": "Test : 'Je me préparer' ✓ → Pronom réfléchi, donc 'se'."
+      "explanation": "Test : 'je me concentre' fonctionne → c'est 'se' (pronom réfléchi)."
     },
     {
       "id": "q173",
@@ -1617,10 +1617,10 @@
     {
       "id": "q199",
       "before": "Les nuages ",
-      "after": " forment en patterns étranges aujourd'hui.",
+      "after": " forment en motifs étranges au-dessus de la vallée.",
       "answer": "se",
       "difficulty": 3,
-      "explanation": "Test : 'je me forme' ✓ → Pronom réfléchi (action réfléchie du nuage). Réponse : se"
+      "explanation": "Test : 'je me forme' fonctionne → c'est 'se' (pronom réfléchi)."
     },
     {
       "id": "q200",

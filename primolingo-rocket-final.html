@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>PrimoLingo — Fusée + lettres / Homepage codes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;700;800;900&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* Brand sky (original) */
+    --sky-1: #5BD3F5;
+    --sky-2: #3B7DFF;
+    /* Homepage codes */
+    --bg-1: #1e1e2e;
+    --bg-2: #2d2b55;
+    --bg-3: #1a1a2e;
+    --primary: #a78bfa;
+    --primary-light: #c4b5fd;
+    --primary-dark: #7c3aed;
+    --gold: #fbbf24;
+    /* Common */
+    --pink: #FF6B9D;
+    --yellow: #FFD93D;
+    --dark: #1e1e2e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 40px 24px 80px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: linear-gradient(135deg, #f6f9ff 0%, #fdf6ff 100%);
+    color: var(--dark);
+  }
+  h1 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    text-align: center;
+    font-size: 38px;
+    margin: 0 0 6px;
+    letter-spacing: -0.02em;
+  }
+  .sub {
+    text-align: center;
+    color: #6b6b80;
+    margin-bottom: 56px;
+    font-size: 16px;
+  }
+  h2 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    margin: 56px auto 20px;
+    max-width: 1280px;
+    padding: 0 8px 8px;
+    border-bottom: 2px solid #e5e0f0;
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  h2 .h2-num {
+    color: var(--primary-dark);
+    font-size: 14px;
+    letter-spacing: 0.1em;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 18px rgba(50, 30, 90, 0.05), 0 1px 3px rgba(50, 30, 90, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 220px;
+    border-radius: 14px;
+    background: #faf9fc;
+    overflow: hidden;
+  }
+  .preview.tall { height: 240px; }
+  .label {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+  }
+  .hint {
+    font-size: 12px;
+    color: #6b6b80;
+    line-height: 1.45;
+  }
+  .row { display: flex; align-items: center; gap: 12px; }
+  .swatch {
+    width: 22px; height: 22px; border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .ios-icon { border-radius: 22.37%; overflow: hidden; }
+  .android-round { border-radius: 50%; overflow: hidden; }
+  .icon-set { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .icon-set .lbl { font-size: 10px; color: #9b9bb0; text-align: center; margin-top: 4px; }
+  .icon-set figure { display: flex; flex-direction: column; align-items: center; margin: 0; }
+
+  .home-mock {
+    background: linear-gradient(180deg, #2a1d52, #1e1e2e);
+    padding: 22px 24px;
+    border-radius: 28px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px 10px;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .home-app { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .home-app .tile { width: 50px; height: 50px; border-radius: 12px; background: rgba(255,255,255,0.08); }
+  .home-app .tile.real { box-shadow: 0 4px 12px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .home-app span { font-size: 9px; color: rgba(255,255,255,0.7); }
+</style>
+</head>
+<body>
+
+<h1>Fusée + lettres flottantes</h1>
+<p class="sub">Deux palettes : Sky (original) et Homepage codes (violet nuit + gold)</p>
+
+<!-- ============== A. Version SKY (original) ============== -->
+<h2><span class="h2-num">A</span>Version Sky — fusée + lettres derrière</h2>
+<div class="grid">
+
+  <!-- Big app icon SKY -->
+  <div class="card">
+    <div class="preview tall">
+      <div class="ios-icon" style="width: 200px; height: 200px; background: linear-gradient(180deg, #B7EAFF 0%, #5BD3F5 100%); position: relative;">
+        <svg width="200" height="200" viewBox="0 0 100 100">
+          <!-- Soft moon disc -->
+          <circle cx="50" cy="46" r="34" fill="#fff" opacity="0.35"/>
+          <!-- Floating letters BEHIND the rocket (in trail zone) -->
+          <text x="58" y="90" font-size="9" fill="#3B7DFF" font-family="Fredoka" font-weight="700" opacity="0.55">a</text>
+          <text x="68" y="84" font-size="8" fill="#FF6B9D" font-family="Fredoka" font-weight="700" opacity="0.5">é</text>
+          <text x="76" y="92" font-size="7" fill="#fff" font-family="Fredoka" font-weight="700" opacity="0.6">b</text>
+          <text x="48" y="94" font-size="6" fill="#fff" font-family="Fredoka" font-weight="700" opacity="0.4">c</text>
+          <text x="38" y="86" font-size="6" fill="#3B7DFF" font-family="Fredoka" font-weight="700" opacity="0.35">d</text>
+          <!-- Rocket -->
+          <g transform="rotate(-20 50 50)">
+            <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+            <circle cx="50" cy="40" r="9" fill="#3B7DFF"/>
+            <circle cx="50" cy="40" r="5" fill="#1e1e2e"/>
+            <path d="M30 65 L20 84 L38 70 Z" fill="#FF6B9D"/>
+            <path d="M70 65 L80 84 L62 70 Z" fill="#FF6B9D"/>
+            <path d="M40 68 Q44 85 48 68 Q51 82 55 68 Q58 85 62 68" fill="#FFD93D"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="label">App icon — Sky + lettres</div>
+    <div class="hint">Petites lettres pastel <strong>a, é, b, c, d</strong> dans la zone de traînée. Présence sans bruit visuel — restent secondaires à la fusée.</div>
+    <div class="row">
+      <div class="swatch" style="background:#B7EAFF"></div>
+      <div class="swatch" style="background:#5BD3F5"></div>
+      <div class="swatch" style="background:#3B7DFF"></div>
+      <div class="swatch" style="background:#FF6B9D"></div>
+      <div class="swatch" style="background:#FFD93D"></div>
+    </div>
+  </div>
+
+  <!-- Multi-size SKY -->
+  <div class="card">
+    <div class="preview tall">
+      <div class="icon-set">
+        <figure>
+          <div class="ios-icon" style="width: 120px; height: 120px; background: linear-gradient(180deg, #B7EAFF 0%, #5BD3F5 100%);">
+            <svg width="120" height="120" viewBox="0 0 100 100">
+              <circle cx="50" cy="46" r="34" fill="#fff" opacity="0.35"/>
+              <text x="58" y="90" font-size="9" fill="#3B7DFF" font-family="Fredoka" font-weight="700" opacity="0.55">a</text>
+              <text x="68" y="84" font-size="8" fill="#FF6B9D" font-family="Fredoka" font-weight="700" opacity="0.5">é</text>
+              <text x="38" y="86" font-size="6" fill="#3B7DFF" font-family="Fredoka" font-weight="700" opacity="0.35">d</text>
+              <g transform="rotate(-20 50 50)">
+                <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+                <circle cx="50" cy="40" r="9" fill="#3B7DFF"/>
+                <circle cx="50" cy="40" r="5" fill="#1e1e2e"/>
+                <path d="M30 65 L20 84 L38 70 Z" fill="#FF6B9D"/>
+                <path d="M70 65 L80 84 L62 70 Z" fill="#FF6B9D"/>
+                <path d="M40 68 Q44 85 48 68 Q51 82 55 68 Q58 85 62 68" fill="#FFD93D"/>
+              </g>
+            </svg>
+          </div>
+          <div class="lbl">120 px</div>
+        </figure>
+        <figure>
+          <div class="ios-icon" style="width: 64px; height: 64px; background: linear-gradient(180deg, #B7EAFF 0%, #5BD3F5 100%);">
+            <svg width="64" height="64" viewBox="0 0 100 100">
+              <text x="60" y="90" font-size="10" fill="#3B7DFF" font-family="Fredoka" font-weight="700" opacity="0.5">a</text>
+              <text x="38" y="86" font-size="8" fill="#FF6B9D" font-family="Fredoka" font-weight="700" opacity="0.45">é</text>
+              <g transform="rotate(-20 50 50)">
+                <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+                <circle cx="50" cy="40" r="9" fill="#3B7DFF"/>
+                <path d="M30 65 L20 84 L38 70 Z" fill="#FF6B9D"/>
+                <path d="M70 65 L80 84 L62 70 Z" fill="#FF6B9D"/>
+                <path d="M40 68 Q44 85 48 68 Q51 82 55 68 Q58 85 62 68" fill="#FFD93D"/>
+              </g>
+            </svg>
+          </div>
+          <div class="lbl">64 px</div>
+        </figure>
+        <figure>
+          <div class="ios-icon" style="width: 40px; height: 40px; background: linear-gradient(180deg, #B7EAFF 0%, #5BD3F5 100%);">
+            <svg width="40" height="40" viewBox="0 0 100 100">
+              <g transform="rotate(-20 50 50)">
+                <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+                <circle cx="50" cy="40" r="9" fill="#3B7DFF"/>
+                <path d="M30 65 L20 84 L38 70 Z" fill="#FF6B9D"/>
+                <path d="M70 65 L80 84 L62 70 Z" fill="#FF6B9D"/>
+                <path d="M40 68 Q44 85 48 68 Q51 82 55 68 Q58 85 62 68" fill="#FFD93D"/>
+              </g>
+            </svg>
+          </div>
+          <div class="lbl">40 px</div>
+        </figure>
+      </div>
+    </div>
+    <div class="label">Scale test — lettres disparaissent en petit</div>
+    <div class="hint">À 64 px les lettres restent visibles ; à 40 px elles sont retirées pour préserver la lisibilité de la fusée. Stratégie de scale.</div>
+  </div>
+
+  <!-- Logo full SKY -->
+  <div class="card">
+    <div class="preview">
+      <svg width="280" height="140" viewBox="0 0 280 140">
+        <defs>
+          <linearGradient id="skyG" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#5BD3F5"/><stop offset="1" stop-color="#3B7DFF"/>
+          </linearGradient>
+        </defs>
+        <!-- Floating letters -->
+        <text x="36" y="118" font-size="14" fill="#9B59FF" font-family="Fredoka" font-weight="700" opacity="0.7">a</text>
+        <text x="52" y="125" font-size="11" fill="#FF6B9D" font-family="Fredoka" font-weight="700" opacity="0.6">é</text>
+        <text x="70" y="115" font-size="10" fill="#5BD3F5" font-family="Fredoka" font-weight="700" opacity="0.5">b</text>
+        <text x="22" y="105" font-size="9" fill="#3B7DFF" font-family="Fredoka" font-weight="700" opacity="0.4">c</text>
+        <g transform="rotate(-25 65 70)">
+          <path d="M65 18 Q88 35 88 75 L42 75 Q42 35 65 18 Z" fill="url(#skyG)"/>
+          <circle cx="65" cy="50" r="10" fill="#fff"/>
+          <circle cx="65" cy="50" r="6" fill="#1e1e2e"/>
+          <path d="M42 75 L30 95 L52 80 Z" fill="#FF6B9D"/>
+          <path d="M88 75 L100 95 L78 80 Z" fill="#FF6B9D"/>
+          <path d="M52 78 Q56 95 60 78 Q63 92 67 78 Q70 95 74 78" fill="#FFD93D"/>
+        </g>
+        <text x="135" y="62" font-size="26" font-family="Outfit" font-weight="900" fill="#1e1e2e">Primo</text>
+        <text x="135" y="92" font-size="26" font-family="Outfit" font-weight="900" fill="url(#skyG)">Lingo</text>
+      </svg>
+    </div>
+    <div class="label">Logo horizontal — Sky + lettres</div>
+    <div class="hint">Lettres flottantes en bas, la fusée laisse derrière elle son alphabet.</div>
+  </div>
+
+</div>
+
+<!-- ============== B. Version HOMEPAGE CODES ============== -->
+<h2><span class="h2-num">B</span>Version Homepage codes — violet nuit + gold</h2>
+<div class="grid">
+
+  <!-- Big app icon NIGHT -->
+  <div class="card">
+    <div class="preview tall" style="background: linear-gradient(135deg, #f1eef9, #e8e3f5);">
+      <div class="ios-icon" style="width: 200px; height: 200px; background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%); position: relative;">
+        <svg width="200" height="200" viewBox="0 0 100 100">
+          <defs>
+            <linearGradient id="nightG" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#c4b5fd"/>
+              <stop offset="1" stop-color="#a78bfa"/>
+            </linearGradient>
+            <linearGradient id="nightFlame" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#fbbf24"/>
+              <stop offset="1" stop-color="#fb923c"/>
+            </linearGradient>
+          </defs>
+          <!-- Star field background -->
+          <circle cx="18" cy="22" r="0.6" fill="#fff" opacity="0.9"/>
+          <circle cx="82" cy="18" r="0.5" fill="#fff" opacity="0.7"/>
+          <circle cx="86" cy="38" r="0.7" fill="#fbbf24" opacity="0.9"/>
+          <circle cx="14" cy="52" r="0.5" fill="#fff" opacity="0.6"/>
+          <circle cx="22" cy="76" r="0.4" fill="#fff" opacity="0.5"/>
+          <circle cx="78" cy="72" r="0.6" fill="#fff" opacity="0.7"/>
+          <circle cx="90" cy="58" r="0.4" fill="#c4b5fd" opacity="0.8"/>
+          <!-- Cross sparkle -->
+          <g opacity="0.85" transform="translate(80 28)">
+            <path d="M0 -3 L0 3 M-3 0 L3 0" stroke="#fbbf24" stroke-width="0.6" stroke-linecap="round"/>
+          </g>
+          <g opacity="0.6" transform="translate(20 40)">
+            <path d="M0 -2 L0 2 M-2 0 L2 0" stroke="#fff" stroke-width="0.5" stroke-linecap="round"/>
+          </g>
+          <!-- Floating letters BEHIND the rocket -->
+          <text x="58" y="90" font-size="9" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.75">a</text>
+          <text x="68" y="84" font-size="8" fill="#c4b5fd" font-family="Fredoka" font-weight="700" opacity="0.7">é</text>
+          <text x="76" y="92" font-size="7" fill="#a78bfa" font-family="Fredoka" font-weight="700" opacity="0.8">b</text>
+          <text x="48" y="94" font-size="6" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.6">c</text>
+          <text x="38" y="86" font-size="6" fill="#c4b5fd" font-family="Fredoka" font-weight="700" opacity="0.55">d</text>
+          <!-- Rocket : white body, lavender window, gold flame -->
+          <g transform="rotate(-20 50 50)">
+            <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+            <!-- Body shadow / volume -->
+            <path d="M50 12 Q70 30 70 65 L60 65 Q60 30 50 12 Z" fill="url(#nightG)" opacity="0.25"/>
+            <circle cx="50" cy="40" r="9" fill="url(#nightG)"/>
+            <circle cx="50" cy="40" r="5" fill="#1e1e2e"/>
+            <circle cx="48" cy="38" r="1.5" fill="#fff" opacity="0.9"/>
+            <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+            <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+            <path d="M40 68 Q44 88 48 68 Q51 84 55 68 Q58 84 62 68 Q66 88 70 68" fill="url(#nightFlame)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="label">App icon — Homepage / Night sky</div>
+    <div class="hint">Reprend les codes du site : gradient <strong>#1e1e2e → #2d2b55</strong>, lavande <strong>#a78bfa</strong>, gold <strong>#fbbf24</strong>. Ciel étoilé en arrière-plan.</div>
+    <div class="row">
+      <div class="swatch" style="background:#1e1e2e"></div>
+      <div class="swatch" style="background:#2d2b55"></div>
+      <div class="swatch" style="background:#a78bfa"></div>
+      <div class="swatch" style="background:#c4b5fd"></div>
+      <div class="swatch" style="background:#fbbf24"></div>
+    </div>
+  </div>
+
+  <!-- Multi-size NIGHT -->
+  <div class="card">
+    <div class="preview tall" style="background: linear-gradient(135deg, #f1eef9, #e8e3f5);">
+      <div class="icon-set">
+        <figure>
+          <div class="ios-icon" style="width: 120px; height: 120px; background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);">
+            <svg width="120" height="120" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="nightG2" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+                <linearGradient id="nightFlame2" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb923c"/></linearGradient>
+              </defs>
+              <circle cx="82" cy="18" r="0.7" fill="#fff" opacity="0.7"/>
+              <circle cx="86" cy="38" r="0.9" fill="#fbbf24" opacity="0.9"/>
+              <circle cx="18" cy="52" r="0.6" fill="#fff" opacity="0.6"/>
+              <text x="58" y="90" font-size="9" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.75">a</text>
+              <text x="38" y="86" font-size="7" fill="#c4b5fd" font-family="Fredoka" font-weight="700" opacity="0.55">d</text>
+              <g transform="rotate(-20 50 50)">
+                <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+                <circle cx="50" cy="40" r="9" fill="url(#nightG2)"/>
+                <circle cx="50" cy="40" r="5" fill="#1e1e2e"/>
+                <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+                <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+                <path d="M40 68 Q44 88 48 68 Q51 84 55 68 Q58 84 62 68 Q66 88 70 68" fill="url(#nightFlame2)"/>
+              </g>
+            </svg>
+          </div>
+          <div class="lbl">120 px</div>
+        </figure>
+        <figure>
+          <div class="ios-icon" style="width: 64px; height: 64px; background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);">
+            <svg width="64" height="64" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="nightG3" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+                <linearGradient id="nightFlame3" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb923c"/></linearGradient>
+              </defs>
+              <text x="60" y="90" font-size="10" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.7">a</text>
+              <g transform="rotate(-20 50 50)">
+                <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+                <circle cx="50" cy="40" r="9" fill="url(#nightG3)"/>
+                <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+                <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+                <path d="M40 68 Q44 88 48 68 Q51 84 55 68 Q58 84 62 68 Q66 88 70 68" fill="url(#nightFlame3)"/>
+              </g>
+            </svg>
+          </div>
+          <div class="lbl">64 px</div>
+        </figure>
+        <figure>
+          <div class="ios-icon" style="width: 40px; height: 40px; background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);">
+            <svg width="40" height="40" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="nightG4" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+                <linearGradient id="nightFlame4" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb923c"/></linearGradient>
+              </defs>
+              <g transform="rotate(-20 50 50)">
+                <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+                <circle cx="50" cy="40" r="9" fill="url(#nightG4)"/>
+                <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+                <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+                <path d="M40 68 Q44 88 48 68 Q51 84 55 68 Q58 84 62 68 Q66 88 70 68" fill="url(#nightFlame4)"/>
+              </g>
+            </svg>
+          </div>
+          <div class="lbl">40 px</div>
+        </figure>
+      </div>
+    </div>
+    <div class="label">Scale test — Night sky</div>
+    <div class="hint">Étoiles + lettres en grand, fusée seule en petit. Le fond violet sombre garde sa profondeur même en favicon.</div>
+  </div>
+
+  <!-- Logo full NIGHT -->
+  <div class="card">
+    <div class="preview" style="background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 100%);">
+      <svg width="280" height="140" viewBox="0 0 280 140">
+        <defs>
+          <linearGradient id="nightFullG" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/>
+          </linearGradient>
+          <linearGradient id="nightFullHl" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#fbbf24"/>
+          </linearGradient>
+          <linearGradient id="nightFullFlame" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb923c"/>
+          </linearGradient>
+        </defs>
+        <!-- Stars -->
+        <circle cx="40" cy="22" r="0.8" fill="#fff" opacity="0.7"/>
+        <circle cx="220" cy="30" r="1" fill="#fbbf24" opacity="0.85"/>
+        <circle cx="240" cy="100" r="0.8" fill="#fff" opacity="0.6"/>
+        <circle cx="20" cy="58" r="0.8" fill="#c4b5fd" opacity="0.7"/>
+        <!-- Floating letters -->
+        <text x="36" y="118" font-size="14" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.85">a</text>
+        <text x="52" y="125" font-size="11" fill="#c4b5fd" font-family="Fredoka" font-weight="700" opacity="0.7">é</text>
+        <text x="70" y="115" font-size="10" fill="#a78bfa" font-family="Fredoka" font-weight="700" opacity="0.65">b</text>
+        <text x="22" y="105" font-size="9" fill="#fff" font-family="Fredoka" font-weight="700" opacity="0.5">c</text>
+        <!-- Rocket -->
+        <g transform="rotate(-25 65 70)">
+          <path d="M65 18 Q88 35 88 75 L42 75 Q42 35 65 18 Z" fill="#fff"/>
+          <path d="M65 18 Q88 35 88 75 L78 75 Q78 35 65 18 Z" fill="url(#nightFullG)" opacity="0.25"/>
+          <circle cx="65" cy="50" r="10" fill="url(#nightFullG)"/>
+          <circle cx="65" cy="50" r="6" fill="#1e1e2e"/>
+          <path d="M42 75 L30 95 L52 80 Z" fill="#a78bfa"/>
+          <path d="M88 75 L100 95 L78 80 Z" fill="#a78bfa"/>
+          <path d="M52 78 Q56 98 60 78 Q63 94 67 78 Q70 94 74 78 Q78 98 82 78" fill="url(#nightFullFlame)"/>
+        </g>
+        <text x="135" y="62" font-size="26" font-family="Outfit" font-weight="900" fill="#fff">Primo</text>
+        <text x="135" y="92" font-size="26" font-family="Outfit" font-weight="900" fill="url(#nightFullHl)">Lingo</text>
+      </svg>
+    </div>
+    <div class="label">Logo horizontal — Night sky</div>
+    <div class="hint">Cohérent avec le hero du site : highlight gradient violet → gold (cf. <code>heroHighlight</code>).</div>
+  </div>
+
+  <!-- Hero / splash -->
+  <div class="card" style="grid-column: span 2;">
+    <div class="preview" style="height: 280px; background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);">
+      <svg width="500" height="240" viewBox="0 0 500 240">
+        <defs>
+          <linearGradient id="heroR" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/>
+          </linearGradient>
+          <linearGradient id="heroHl" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#fbbf24"/>
+          </linearGradient>
+          <linearGradient id="heroFlame" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb923c"/>
+          </linearGradient>
+          <linearGradient id="heroTrail" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stop-color="#fbbf24" stop-opacity="0"/>
+            <stop offset="1" stop-color="#fbbf24" stop-opacity="0.55"/>
+          </linearGradient>
+        </defs>
+        <!-- Star field -->
+        <circle cx="40" cy="30" r="1.2" fill="#fff" opacity="0.85"/>
+        <circle cx="80" cy="70" r="0.8" fill="#fff" opacity="0.6"/>
+        <circle cx="420" cy="40" r="1" fill="#fbbf24" opacity="0.9"/>
+        <circle cx="460" cy="100" r="1.2" fill="#c4b5fd" opacity="0.8"/>
+        <circle cx="380" cy="200" r="0.8" fill="#fff" opacity="0.5"/>
+        <circle cx="60" cy="180" r="0.8" fill="#fff" opacity="0.5"/>
+        <circle cx="20" cy="120" r="1" fill="#a78bfa" opacity="0.7"/>
+        <g transform="translate(440 60)" opacity="0.95">
+          <path d="M0 -5 L0 5 M-5 0 L5 0" stroke="#fbbf24" stroke-width="1" stroke-linecap="round"/>
+        </g>
+        <g transform="translate(70 110)" opacity="0.7">
+          <path d="M0 -3 L0 3 M-3 0 L3 0" stroke="#fff" stroke-width="0.8" stroke-linecap="round"/>
+        </g>
+        <!-- Trail -->
+        <path d="M30 200 Q120 160 200 130" stroke="url(#heroTrail)" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <!-- Floating letters in trail -->
+        <text x="48" y="210" font-size="22" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.5">a</text>
+        <text x="80" y="195" font-size="20" fill="#c4b5fd" font-family="Fredoka" font-weight="700" opacity="0.65">é</text>
+        <text x="115" y="175" font-size="22" fill="#a78bfa" font-family="Fredoka" font-weight="700" opacity="0.85">b</text>
+        <text x="155" y="155" font-size="24" fill="#fff" font-family="Fredoka" font-weight="700" opacity="0.9">c</text>
+        <!-- Rocket -->
+        <g transform="rotate(-25 230 130)">
+          <path d="M230 60 Q272 88 272 168 L188 168 Q188 88 230 60 Z" fill="#fff"/>
+          <path d="M230 60 Q272 88 272 168 L256 168 Q256 88 230 60 Z" fill="url(#heroR)" opacity="0.25"/>
+          <circle cx="230" cy="115" r="18" fill="url(#heroR)"/>
+          <circle cx="230" cy="115" r="11" fill="#1e1e2e"/>
+          <circle cx="225" cy="111" r="4" fill="#fff" opacity="0.9"/>
+          <path d="M188 168 L168 200 L208 175 Z" fill="#a78bfa"/>
+          <path d="M272 168 L292 200 L252 175 Z" fill="#a78bfa"/>
+          <path d="M208 173 Q214 208 220 173 Q225 200 230 173 Q235 200 240 173 Q246 208 252 173" fill="url(#heroFlame)"/>
+        </g>
+        <!-- Wordmark -->
+        <text x="335" y="125" font-size="38" font-family="Outfit" font-weight="900" fill="#fff">Primo</text>
+        <text x="335" y="170" font-size="38" font-family="Outfit" font-weight="900" fill="url(#heroHl)">Lingo</text>
+        <text x="335" y="195" font-size="11" font-family="Outfit" font-weight="700" fill="#a78bfa" letter-spacing="2">L'AVENTURE DE L'ORTHOGRAPHE</text>
+      </svg>
+    </div>
+    <div class="label">Hero / splash version</div>
+    <div class="hint">Pour le splash screen mobile et le hero du site. Mêmes couleurs que la homepage actuelle, avec la baseline.</div>
+  </div>
+
+  <!-- Home screen mockup -->
+  <div class="card">
+    <div class="preview" style="background: #f1eef9; height: auto; padding: 20px;">
+      <div class="home-mock">
+        <div class="home-app"><div class="tile"></div><span>Photos</span></div>
+        <div class="home-app">
+          <div class="tile real" style="background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 100%);">
+            <svg width="46" height="46" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="mockG" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+                <linearGradient id="mockF" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb923c"/></linearGradient>
+              </defs>
+              <circle cx="82" cy="18" r="0.9" fill="#fbbf24"/>
+              <text x="60" y="90" font-size="10" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.7">a</text>
+              <g transform="rotate(-20 50 50)">
+                <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+                <circle cx="50" cy="40" r="9" fill="url(#mockG)"/>
+                <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+                <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+                <path d="M40 68 Q44 88 48 68 Q51 84 55 68 Q58 84 62 68 Q66 88 70 68" fill="url(#mockF)"/>
+              </g>
+            </svg>
+          </div>
+          <span>PrimoLingo</span>
+        </div>
+        <div class="home-app"><div class="tile"></div><span>Notes</span></div>
+        <div class="home-app"><div class="tile"></div><span>Maps</span></div>
+        <div class="home-app"><div class="tile"></div><span>Mail</span></div>
+        <div class="home-app"><div class="tile"></div><span>Calculator</span></div>
+        <div class="home-app"><div class="tile"></div><span>Music</span></div>
+        <div class="home-app"><div class="tile"></div><span>Settings</span></div>
+      </div>
+    </div>
+    <div class="label">Home screen — Night version</div>
+    <div class="hint">Le fond violet sombre la fait ressortir au milieu d'apps standard.</div>
+  </div>
+
+</div>
+
+<!-- ============== Comparaison côte à côte ============== -->
+<h2><span class="h2-num">C</span>Comparaison directe</h2>
+<div class="grid">
+  <div class="card">
+    <div class="preview tall" style="background: #faf9fc; gap: 24px;">
+      <div class="ios-icon" style="width: 140px; height: 140px; background: linear-gradient(180deg, #B7EAFF 0%, #5BD3F5 100%);">
+        <svg width="140" height="140" viewBox="0 0 100 100">
+          <text x="58" y="90" font-size="9" fill="#3B7DFF" font-family="Fredoka" font-weight="700" opacity="0.55">a</text>
+          <text x="68" y="84" font-size="8" fill="#FF6B9D" font-family="Fredoka" font-weight="700" opacity="0.5">é</text>
+          <text x="38" y="86" font-size="6" fill="#3B7DFF" font-family="Fredoka" font-weight="700" opacity="0.35">d</text>
+          <g transform="rotate(-20 50 50)">
+            <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+            <circle cx="50" cy="40" r="9" fill="#3B7DFF"/>
+            <circle cx="50" cy="40" r="5" fill="#1e1e2e"/>
+            <path d="M30 65 L20 84 L38 70 Z" fill="#FF6B9D"/>
+            <path d="M70 65 L80 84 L62 70 Z" fill="#FF6B9D"/>
+            <path d="M40 68 Q44 85 48 68 Q51 82 55 68 Q58 85 62 68" fill="#FFD93D"/>
+          </g>
+        </svg>
+      </div>
+      <div class="ios-icon" style="width: 140px; height: 140px; background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);">
+        <svg width="140" height="140" viewBox="0 0 100 100">
+          <defs>
+            <linearGradient id="cmpG" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#c4b5fd"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+            <linearGradient id="cmpF" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#fb923c"/></linearGradient>
+          </defs>
+          <circle cx="82" cy="18" r="0.7" fill="#fff" opacity="0.7"/>
+          <circle cx="86" cy="38" r="0.9" fill="#fbbf24" opacity="0.9"/>
+          <circle cx="18" cy="52" r="0.5" fill="#fff" opacity="0.6"/>
+          <text x="58" y="90" font-size="9" fill="#fbbf24" font-family="Fredoka" font-weight="700" opacity="0.75">a</text>
+          <text x="68" y="84" font-size="8" fill="#c4b5fd" font-family="Fredoka" font-weight="700" opacity="0.7">é</text>
+          <text x="38" y="86" font-size="6" fill="#c4b5fd" font-family="Fredoka" font-weight="700" opacity="0.55">d</text>
+          <g transform="rotate(-20 50 50)">
+            <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#fff"/>
+            <circle cx="50" cy="40" r="9" fill="url(#cmpG)"/>
+            <circle cx="50" cy="40" r="5" fill="#1e1e2e"/>
+            <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>
+            <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>
+            <path d="M40 68 Q44 88 48 68 Q51 84 55 68 Q58 84 62 68 Q66 88 70 68" fill="url(#cmpF)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="label">Sky vs Night — côte à côte</div>
+    <div class="hint">Sky = friendly day mode, plus doux pour enfants. Night = aligné homepage, plus premium / "aventure spatiale".</div>
+  </div>
+</div>
+
+</body>
+</html>

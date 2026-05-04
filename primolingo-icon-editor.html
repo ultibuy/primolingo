@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<title>PrimoLingo — Icon editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;700&family=Fredoka:wght@600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<script crossorigin src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+<script crossorigin src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.23.0/babel.min.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: linear-gradient(135deg, #f6f9ff 0%, #fdf6ff 100%);
+    color: #1e1e2e;
+    min-height: 100vh;
+    padding: 32px;
+  }
+  h1 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    text-align: center;
+    margin: 0 0 4px;
+    font-size: 30px;
+    letter-spacing: -0.02em;
+  }
+  .hint-top {
+    text-align: center;
+    color: #6b6b80;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  .layout {
+    display: flex;
+    gap: 28px;
+    max-width: 1320px;
+    margin: 0 auto;
+    align-items: flex-start;
+  }
+  .stage { flex: 0 0 auto; }
+  .icon-wrap {
+    width: 600px;
+    height: 600px;
+    border-radius: 22.37%;
+    overflow: hidden;
+    background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);
+    box-shadow: 0 30px 80px rgba(122, 92, 255, 0.35), 0 8px 20px rgba(30, 30, 46, 0.2);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+  }
+  .panel {
+    flex: 1;
+    background: #fff;
+    border-radius: 20px;
+    padding: 18px;
+    box-shadow: 0 4px 18px rgba(50, 30, 90, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 720px;
+    overflow: hidden;
+  }
+  .panel h2 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 16px;
+    margin: 0;
+  }
+  .panel-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn {
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 1px solid #e5e0f0;
+    background: #fff;
+    color: #1e1e2e;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .btn:hover { background: #faf9fc; }
+  .btn.primary { background: #7c3aed; color: #fff; border-color: #7c3aed; }
+  .btn.primary:hover { background: #6d28d9; }
+  .group-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9b8bff;
+    padding: 4px 10px;
+    background: #f5f2fc;
+  }
+  .item-list {
+    overflow-y: auto;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #f1eef7;
+    border-radius: 12px;
+  }
+  .item {
+    padding: 7px 12px;
+    border-bottom: 1px solid #f1eef7;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 13px;
+  }
+  .item:last-child { border-bottom: none; }
+  .item:hover { background: #faf9fc; }
+  .item.selected { background: #ede9fe; }
+  .item .swatch {
+    width: 14px; height: 14px; border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.06);
+    flex: 0 0 14px;
+  }
+  .item .name {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    flex: 1;
+  }
+  .item .coord {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #9b9bb0;
+  }
+  .code-area {
+    background: #1e1e2e;
+    color: #c4b5fd;
+    padding: 14px;
+    border-radius: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    line-height: 1.5;
+    overflow: auto;
+    max-height: 200px;
+    white-space: pre;
+    margin: 0;
+  }
+  .preview-mini-row {
+    display: flex; gap: 14px; justify-content: center; align-items: center;
+    margin-top: 18px;
+  }
+  .mini {
+    border-radius: 22.37%;
+    overflow: hidden;
+    background: linear-gradient(180deg, #1e1e2e 0%, #2d2b55 50%, #1a1a2e 100%);
+    box-shadow: 0 4px 12px rgba(30,30,46,0.2);
+  }
+</style>
+</head>
+<body>
+
+<h1>PrimoLingo — Icon editor</h1>
+<p class="hint-top">Glisse n'importe quel élément (lettres, étoiles, et chaque pièce de la fusée — dont chaque flamme).</p>
+
+<div id="root"></div>
+<div id="err" style="display:none;color:#b91c1c;background:#fee2e2;padding:14px;border-radius:10px;margin:20px auto;max-width:1000px;font-family:monospace;white-space:pre-wrap;"></div>
+
+<script>
+window.addEventListener('error', (e) => {
+  const el = document.getElementById('err');
+  if (el) {
+    el.style.display = 'block';
+    el.textContent = 'JS error: ' + (e.error && e.error.stack ? e.error.stack : e.message);
+  }
+});
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const root = document.getElementById('root');
+    const err = document.getElementById('err');
+    if (root && root.children.length === 0 && err) {
+      err.style.display = 'block';
+      err.textContent = 'Diagnostic — React: ' + (typeof React !== 'undefined') +
+                        ' / ReactDOM: ' + (typeof ReactDOM !== 'undefined') +
+                        ' / Babel: ' + (typeof Babel !== 'undefined') +
+                        '\nOuvre la console (Cmd+Opt+I) pour voir l\'erreur exacte.';
+    }
+  }, 1500);
+});
+</script>
+
+<script type="text/babel" data-presets="react">
+
+const { useState, useRef, useMemo } = React;
+
+// ============================================================
+// Rocket parts — native shapes, all rotated -20° around (50,50)
+// Each part is rendered with: <g transform="translate(x, y) rotate(rotation, 50, 50)">{shape}</g>
+// where (x, y) is a DRAG OFFSET added to the native position.
+// ============================================================
+const FLAME_PATHS = {
+  1: 'M40 68 Q44 88 48 68 Z',
+  2: 'M48 68 Q51 84 55 68 Z',
+  3: 'M55 68 Q58 84 62 68 Z',
+  4: 'M62 68 Q66 88 70 68 Z',
+};
+const FLAME_BOUNDS = {
+  1: { x: 38, y: 66, w: 12, h: 24 },
+  2: { x: 47, y: 66, w: 9, h: 20 },
+  3: { x: 54, y: 66, w: 9, h: 20 },
+  4: { x: 61, y: 66, w: 12, h: 24 },
+};
+
+// ============================================================
+// Initial elements
+// ============================================================
+const INITIAL = [
+  // Star field
+  { id: 's1', type: 'dot', x: 14, y: 18, r: 0.7, color: '#ffffff', opacity: 0.85, label: 'Etoile 1' },
+  { id: 's2', type: 'dot', x: 84, y: 14, r: 0.6, color: '#ffffff', opacity: 0.7, label: 'Etoile 2' },
+  { id: 's3', type: 'dot', x: 88, y: 34, r: 0.9, color: '#fbbf24', opacity: 0.95, label: 'Etoile gold' },
+  { id: 's4', type: 'dot', x: 12, y: 44, r: 0.55, color: '#ffffff', opacity: 0.6, label: 'Etoile 4' },
+  { id: 's5', type: 'dot', x: 92, y: 62, r: 0.55, color: '#c4b5fd', opacity: 0.85, label: 'Etoile lavande' },
+  { id: 's6', type: 'dot', x: 18, y: 68, r: 0.5, color: '#ffffff', opacity: 0.55, label: 'Etoile 6' },
+  { id: 'cross1', type: 'cross', x: 82, y: 24, size: 3, color: '#fbbf24', opacity: 0.95, label: 'Sparkle gold' },
+  { id: 'cross2', type: 'cross', x: 20, y: 30, size: 2, color: '#ffffff', opacity: 0.7, label: 'Sparkle blanc' },
+
+  // Letters
+  { id: 'L_e', type: 'letter', x: 44, y: 96, char: 'é', color: '#c4b5fd', size: 13, opacity: 0.9, label: 'Lettre e' },
+  { id: 'L_a', type: 'letter', x: 56, y: 92, char: 'a', color: '#fbbf24', size: 14, opacity: 0.95, label: 'Lettre a' },
+  { id: 'L_b', type: 'letter', x: 68, y: 92, char: 'b', color: '#ffffff', size: 15, opacity: 0.95, label: 'Lettre b' },
+  { id: 'L_c', type: 'letter', x: 80, y: 86, char: 'c', color: '#fbbf24', size: 13, opacity: 0.9, label: 'Lettre c' },
+  { id: 'L_d', type: 'letter', x: 88, y: 94, char: 'd', color: '#a78bfa', size: 12, opacity: 0.9, label: 'Lettre d' },
+
+  // Rocket parts (x, y are DRAG OFFSETS — start at 0)
+  { id: 'r_body', type: 'r-body', x: 0, y: 0, rotation: -20, label: 'Corps' },
+  { id: 'r_body_shadow', type: 'r-body-shadow', x: 0, y: 0, rotation: -20, label: 'Ombre corps' },
+  { id: 'r_hublot_outer', type: 'r-hublot-outer', x: 0, y: 0, rotation: -20, label: 'Hublot' },
+  { id: 'r_hublot_inner', type: 'r-hublot-inner', x: 0, y: 0, rotation: -20, label: 'Pupille' },
+  { id: 'r_fin_l', type: 'r-fin-l', x: 0, y: 0, rotation: -20, label: 'Aileron G' },
+  { id: 'r_fin_r', type: 'r-fin-r', x: 0, y: 0, rotation: -20, label: 'Aileron D' },
+  { id: 'r_flame1', type: 'r-flame', x: 0, y: 0, rotation: -20, flameIdx: 1, label: 'Flamme 1 (gauche)' },
+  { id: 'r_flame2', type: 'r-flame', x: 0, y: 0, rotation: -20, flameIdx: 2, label: 'Flamme 2' },
+  { id: 'r_flame3', type: 'r-flame', x: 0, y: 0, rotation: -20, flameIdx: 3, label: 'Flamme 3' },
+  { id: 'r_flame4', type: 'r-flame', x: 0, y: 0, rotation: -20, flameIdx: 4, label: 'Flamme 4 (droite)' },
+];
+
+const Z_ORDER = {
+  'dot': 0, 'cross': 0,
+  'letter': 1,
+  'r-body': 2, 'r-body-shadow': 3,
+  'r-hublot-outer': 4, 'r-hublot-inner': 5,
+  'r-fin-l': 6, 'r-fin-r': 7,
+  'r-flame': 8,
+};
+
+// ============================================================
+// Helpers
+// ============================================================
+function svgPoint(svg, clientX, clientY) {
+  const pt = svg.createSVGPoint();
+  pt.x = clientX;
+  pt.y = clientY;
+  return pt.matrixTransform(svg.getScreenCTM().inverse());
+}
+
+function rocketPartShape(el) {
+  switch (el.type) {
+    case 'r-body':
+      return {
+        inner: <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#ffffff" />,
+        bounds: { x: 28, y: 10, w: 44, h: 57 },
+      };
+    case 'r-body-shadow':
+      return {
+        inner: <path d="M50 12 Q70 30 70 65 L60 65 Q60 30 50 12 Z" fill="url(#rgrad)" opacity="0.25" />,
+        bounds: { x: 50, y: 10, w: 22, h: 57 },
+      };
+    case 'r-hublot-outer':
+      return {
+        inner: <circle cx="50" cy="40" r="9" fill="url(#rgrad)" />,
+        bounds: { x: 41, y: 31, w: 18, h: 18 },
+      };
+    case 'r-hublot-inner':
+      return {
+        inner: <circle cx="50" cy="40" r="5" fill="#1e1e2e" />,
+        bounds: { x: 45, y: 35, w: 10, h: 10 },
+      };
+    case 'r-fin-l':
+      return {
+        inner: <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa" />,
+        bounds: { x: 18, y: 63, w: 22, h: 23 },
+      };
+    case 'r-fin-r':
+      return {
+        inner: <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa" />,
+        bounds: { x: 60, y: 63, w: 22, h: 23 },
+      };
+    case 'r-flame':
+      return {
+        inner: <path d={FLAME_PATHS[el.flameIdx]} fill="url(#fgrad)" />,
+        bounds: FLAME_BOUNDS[el.flameIdx],
+      };
+    default:
+      return { inner: null, bounds: { x: 0, y: 0, w: 0, h: 0 } };
+  }
+}
+
+function rocketPartExportShape(el) {
+  switch (el.type) {
+    case 'r-body':         return '<path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#ffffff"/>';
+    case 'r-body-shadow':  return '<path d="M50 12 Q70 30 70 65 L60 65 Q60 30 50 12 Z" fill="url(#rgrad)" opacity="0.25"/>';
+    case 'r-hublot-outer': return '<circle cx="50" cy="40" r="9" fill="url(#rgrad)"/>';
+    case 'r-hublot-inner': return '<circle cx="50" cy="40" r="5" fill="#1e1e2e"/>';
+    case 'r-fin-l':        return '<path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa"/>';
+    case 'r-fin-r':        return '<path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa"/>';
+    case 'r-flame':        return '<path d="' + FLAME_PATHS[el.flameIdx] + '" fill="url(#fgrad)"/>';
+    default: return '';
+  }
+}
+
+function partSwatch(type) {
+  switch (type) {
+    case 'r-body': return '#ffffff';
+    case 'r-body-shadow': return '#c4b5fd';
+    case 'r-hublot-outer': return '#a78bfa';
+    case 'r-hublot-inner': return '#1e1e2e';
+    case 'r-fin-l':
+    case 'r-fin-r': return '#a78bfa';
+    case 'r-flame': return '#fbbf24';
+    default: return '#cccccc';
+  }
+}
+
+// ============================================================
+// Element renderer
+// ============================================================
+function ElementRender({ el, isSelected, onPointerDown }) {
+  const handle = (e) => onPointerDown(el.id, e);
+  const baseStyle = { cursor: 'grab' };
+
+  if (el.type === 'dot') {
+    return (
+      <g onPointerDown={handle} style={baseStyle}>
+        <circle cx={el.x} cy={el.y} r={Math.max(el.r * 4, 2)} fill="transparent" />
+        <circle cx={el.x} cy={el.y} r={el.r} fill={el.color} opacity={el.opacity} />
+        {isSelected && (
+          <circle cx={el.x} cy={el.y} r={el.r + 1.5} fill="none"
+                  stroke="#22d3ee" strokeWidth="0.4" strokeDasharray="0.8 0.6" />
+        )}
+      </g>
+    );
+  }
+
+  if (el.type === 'cross') {
+    return (
+      <g onPointerDown={handle} style={baseStyle} transform={'translate(' + el.x + ' ' + el.y + ')'}>
+        <circle cx="0" cy="0" r={el.size + 1} fill="transparent" />
+        <path d={'M0 -' + el.size + ' L0 ' + el.size + ' M-' + el.size + ' 0 L' + el.size + ' 0'}
+              stroke={el.color} strokeWidth="0.7" strokeLinecap="round" opacity={el.opacity} />
+        {isSelected && (
+          <circle cx="0" cy="0" r={el.size + 1.5} fill="none"
+                  stroke="#22d3ee" strokeWidth="0.4" strokeDasharray="0.8 0.6" />
+        )}
+      </g>
+    );
+  }
+
+  if (el.type === 'letter') {
+    return (
+      <g onPointerDown={handle} style={baseStyle}>
+        <rect x={el.x - 1} y={el.y - el.size + 1} width={el.size + 2} height={el.size + 2} fill="transparent" />
+        <text x={el.x} y={el.y} fontSize={el.size} fill={el.color}
+              fontFamily="Fredoka" fontWeight="700" opacity={el.opacity}>
+          {el.char}
+        </text>
+        {isSelected && (
+          <rect x={el.x - 1} y={el.y - el.size + 1.5} width={el.size + 2} height={el.size + 1}
+                fill="none" stroke="#22d3ee" strokeWidth="0.4" strokeDasharray="0.8 0.6" rx="1" />
+        )}
+      </g>
+    );
+  }
+
+  // Rocket part
+  if (el.type && el.type.startsWith('r-')) {
+    const { inner, bounds } = rocketPartShape(el);
+    const t = 'translate(' + el.x + ' ' + el.y + ') rotate(' + el.rotation + ' 50 50)';
+    return (
+      <g onPointerDown={handle} style={baseStyle} transform={t}>
+        <rect x={bounds.x} y={bounds.y} width={bounds.w} height={bounds.h} fill="transparent" />
+        {inner}
+        {isSelected && (
+          <rect x={bounds.x} y={bounds.y} width={bounds.w} height={bounds.h}
+                fill="none" stroke="#22d3ee" strokeWidth="0.5"
+                strokeDasharray="1 0.6" rx="1" />
+        )}
+      </g>
+    );
+  }
+
+  return null;
+}
+
+// ============================================================
+// Item row
+// ============================================================
+function Item({ el, isSelected, onItemClick }) {
+  let swatchColor;
+  if (el.type === 'letter') swatchColor = el.color;
+  else if (el.type === 'dot') swatchColor = el.color;
+  else if (el.type === 'cross') swatchColor = el.color;
+  else swatchColor = partSwatch(el.type);
+
+  const display = el.type === 'letter' ? '"' + el.char + '"' : el.label;
+  const coordText = (el.type && el.type.startsWith('r-'))
+    ? 'Δ ' + Math.round(el.x) + ', ' + Math.round(el.y)
+    : Math.round(el.x) + ', ' + Math.round(el.y);
+
+  return (
+    <li className={'item' + (isSelected ? ' selected' : '')} onClick={(e) => onItemClick(el.id, e)}>
+      <div className="swatch" style={{ background: swatchColor }} />
+      <div className="name">{display}</div>
+      <div className="coord">{coordText}</div>
+    </li>
+  );
+}
+
+// ============================================================
+// Main app
+// ============================================================
+function App() {
+  const [elements, setElements] = useState(INITIAL);
+  const [draggingId, setDraggingId] = useState(null);
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [showCode, setShowCode] = useState(false);
+  const svgRef = useRef(null);
+  // For multi-drag: stores starting positions of all selected items
+  const dragStartRef = useRef(null);
+
+  const isMod = (e) => e.shiftKey || e.metaKey || e.ctrlKey;
+
+  const handleSelect = (id, e) => {
+    if (isMod(e)) {
+      // Toggle in selection
+      setSelectedIds(prev =>
+        prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+      );
+    } else {
+      // Replace selection (unless already only this one selected)
+      setSelectedIds([id]);
+    }
+  };
+
+  const onElementPointerDown = (id, e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    // Compute new selection synchronously so the drag knows what to move
+    let nextSelection;
+    if (isMod(e)) {
+      nextSelection = selectedIds.includes(id)
+        ? selectedIds.filter(x => x !== id)
+        : [...selectedIds, id];
+    } else {
+      nextSelection = selectedIds.includes(id) ? selectedIds : [id];
+    }
+    setSelectedIds(nextSelection);
+
+    // Record starting positions for all elements that will move
+    const cur = svgPoint(svgRef.current, e.clientX, e.clientY);
+    const items = nextSelection
+      .map(sid => elements.find(x => x.id === sid))
+      .filter(Boolean)
+      .map(el => ({ id: el.id, x0: el.x, y0: el.y }));
+    dragStartRef.current = { mouse0: cur, items };
+    setDraggingId(id);
+  };
+
+  const onSvgPointerMove = (e) => {
+    if (!draggingId || !dragStartRef.current) return;
+    const cur = svgPoint(svgRef.current, e.clientX, e.clientY);
+    const dx = cur.x - dragStartRef.current.mouse0.x;
+    const dy = cur.y - dragStartRef.current.mouse0.y;
+    const items = dragStartRef.current.items;
+    setElements(prev => prev.map(el => {
+      const it = items.find(i => i.id === el.id);
+      if (!it) return el;
+      return { ...el, x: +(it.x0 + dx).toFixed(2), y: +(it.y0 + dy).toFixed(2) };
+    }));
+  };
+
+  const onSvgPointerUp = () => { setDraggingId(null); dragStartRef.current = null; };
+
+  const reset = () => { setElements(INITIAL); setSelectedIds([]); };
+
+  const selectGroup = (predicate) => {
+    setSelectedIds(elements.filter(predicate).map(e => e.id));
+  };
+  const selectAll = () => setSelectedIds(elements.map(e => e.id));
+  const deselectAll = () => setSelectedIds([]);
+
+  const sorted = useMemo(
+    () => [...elements].sort((a, b) => (Z_ORDER[a.type] || 0) - (Z_ORDER[b.type] || 0)),
+    [elements]
+  );
+
+  // Group elements by family for the panel
+  const grouped = useMemo(() => ({
+    stars: elements.filter(e => e.type === 'dot' || e.type === 'cross'),
+    letters: elements.filter(e => e.type === 'letter'),
+    rocket: elements.filter(e => e.type && e.type.startsWith('r-')),
+  }), [elements]);
+
+  const exportSnippet = useMemo(() => {
+    const lines = [];
+    lines.push('<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">');
+    lines.push('  <defs>');
+    lines.push('    <linearGradient id="rgrad" x1="0" x2="0" y1="0" y2="1">');
+    lines.push('      <stop offset="0" stop-color="#c4b5fd"/>');
+    lines.push('      <stop offset="1" stop-color="#a78bfa"/>');
+    lines.push('    </linearGradient>');
+    lines.push('    <linearGradient id="fgrad" x1="0" x2="0" y1="0" y2="1">');
+    lines.push('      <stop offset="0" stop-color="#fbbf24"/>');
+    lines.push('      <stop offset="1" stop-color="#fb923c"/>');
+    lines.push('    </linearGradient>');
+    lines.push('  </defs>');
+    sorted.forEach(el => {
+      if (el.type === 'dot') {
+        lines.push('  <circle cx="' + el.x + '" cy="' + el.y + '" r="' + el.r + '" fill="' + el.color + '" opacity="' + el.opacity + '"/>');
+      } else if (el.type === 'cross') {
+        lines.push('  <g transform="translate(' + el.x + ' ' + el.y + ')">');
+        lines.push('    <path d="M0 -' + el.size + ' L0 ' + el.size + ' M-' + el.size + ' 0 L' + el.size + ' 0" stroke="' + el.color + '" stroke-width="0.7" stroke-linecap="round" opacity="' + el.opacity + '"/>');
+        lines.push('  </g>');
+      } else if (el.type === 'letter') {
+        lines.push('  <text x="' + el.x + '" y="' + el.y + '" font-size="' + el.size + '" fill="' + el.color + '" font-family="Fredoka" font-weight="700" opacity="' + el.opacity + '">' + el.char + '</text>');
+      } else if (el.type && el.type.startsWith('r-')) {
+        lines.push('  <g transform="translate(' + el.x + ' ' + el.y + ') rotate(' + el.rotation + ' 50 50)">');
+        lines.push('    ' + rocketPartExportShape(el));
+        lines.push('  </g>');
+      }
+    });
+    lines.push('</svg>');
+    return lines.join('\n');
+  }, [sorted]);
+
+  const copyCode = async () => {
+    try { await navigator.clipboard.writeText(exportSnippet); }
+    catch (err) { /* ignore */ }
+  };
+
+  return (
+    <div>
+      <div className="layout">
+        <div className="stage">
+          <div className="icon-wrap">
+            <svg ref={svgRef} viewBox="0 0 100 100" width="600" height="600"
+                 onPointerMove={onSvgPointerMove}
+                 onPointerUp={onSvgPointerUp}
+                 onPointerLeave={onSvgPointerUp}
+                 onPointerDown={(e) => { if (!isMod(e)) setSelectedIds([]); }}>
+              <defs>
+                <linearGradient id="rgrad" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stopColor="#c4b5fd" />
+                  <stop offset="1" stopColor="#a78bfa" />
+                </linearGradient>
+                <linearGradient id="fgrad" x1="0" x2="0" y1="0" y2="1">
+                  <stop offset="0" stopColor="#fbbf24" />
+                  <stop offset="1" stopColor="#fb923c" />
+                </linearGradient>
+              </defs>
+              {sorted.map(el => (
+                <ElementRender key={el.id} el={el}
+                               isSelected={selectedIds.includes(el.id)}
+                               onPointerDown={onElementPointerDown} />
+              ))}
+            </svg>
+          </div>
+
+          <div className="preview-mini-row">
+            <MiniIcon size={120} elements={sorted} />
+            <MiniIcon size={88} elements={sorted} />
+            <MiniIcon size={56} elements={sorted} />
+            <MiniIcon size={40} elements={sorted} />
+          </div>
+        </div>
+
+        <div className="panel">
+          <h2>Éléments {selectedIds.length > 0 && <span style={{fontSize:12, fontWeight:600, color:'#7c3aed'}}>· {selectedIds.length} sélectionné{selectedIds.length > 1 ? 's' : ''}</span>}</h2>
+          <div className="panel-actions">
+            <button className="btn primary" onClick={copyCode}>Copier le SVG</button>
+            <button className="btn" onClick={() => setShowCode(s => !s)}>
+              {showCode ? 'Cacher le code' : 'Voir le code'}
+            </button>
+            <button className="btn" onClick={reset}>Reset</button>
+          </div>
+          <div className="panel-actions" style={{borderTop: '1px solid #f1eef7', paddingTop: 8}}>
+            <button className="btn" onClick={selectAll}>Tout</button>
+            <button className="btn" onClick={() => selectGroup(e => e.type === 'dot' || e.type === 'cross')}>★ Étoiles</button>
+            <button className="btn" onClick={() => selectGroup(e => e.type === 'letter')}>Aa Lettres</button>
+            <button className="btn" onClick={() => selectGroup(e => e.type && e.type.startsWith('r-'))}>🚀 Fusée</button>
+            <button className="btn" onClick={() => selectGroup(e => e.type === 'r-flame')}>🔥 Flammes</button>
+            <button className="btn" onClick={deselectAll}>Aucun</button>
+          </div>
+          <div style={{fontSize: 11, color: '#9b9bb0', padding: '0 4px'}}>
+            Astuce : ⌘/Ctrl/Shift + clic pour ajouter à la sélection · glisse n'importe lequel pour bouger tout le groupe.
+          </div>
+
+          <div className="group-title">Étoiles ({grouped.stars.length})</div>
+          <ul className="item-list">
+            {grouped.stars.map(el => (
+              <Item key={el.id} el={el} isSelected={selectedIds.includes(el.id)} onItemClick={handleSelect} />
+            ))}
+          </ul>
+
+          <div className="group-title">Lettres ({grouped.letters.length})</div>
+          <ul className="item-list">
+            {grouped.letters.map(el => (
+              <Item key={el.id} el={el} isSelected={selectedIds.includes(el.id)} onItemClick={handleSelect} />
+            ))}
+          </ul>
+
+          <div className="group-title">Fusée ({grouped.rocket.length})</div>
+          <ul className="item-list">
+            {grouped.rocket.map(el => (
+              <Item key={el.id} el={el} isSelected={selectedIds.includes(el.id)} onItemClick={handleSelect} />
+            ))}
+          </ul>
+
+          {showCode && <pre className="code-area">{exportSnippet}</pre>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ============================================================
+// Mini icons
+// ============================================================
+function MiniIcon({ size, elements }) {
+  return (
+    <div className="mini" style={{ width: size, height: size }}>
+      <svg viewBox="0 0 100 100" width={size} height={size}>
+        <defs>
+          <linearGradient id={'mini-rg-' + size} x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stopColor="#c4b5fd" />
+            <stop offset="1" stopColor="#a78bfa" />
+          </linearGradient>
+          <linearGradient id={'mini-fg-' + size} x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stopColor="#fbbf24" />
+            <stop offset="1" stopColor="#fb923c" />
+          </linearGradient>
+        </defs>
+        {elements.map(el => {
+          if (el.type === 'dot' && size >= 88)
+            return <circle key={el.id} cx={el.x} cy={el.y} r={el.r} fill={el.color} opacity={el.opacity} />;
+          if (el.type === 'cross' && size >= 88)
+            return (
+              <g key={el.id} transform={'translate(' + el.x + ' ' + el.y + ')'}>
+                <path d={'M0 -' + el.size + ' L0 ' + el.size + ' M-' + el.size + ' 0 L' + el.size + ' 0'}
+                      stroke={el.color} strokeWidth="0.7" strokeLinecap="round" opacity={el.opacity} />
+              </g>
+            );
+          if (el.type === 'letter' && size >= 56)
+            return (
+              <text key={el.id} x={el.x} y={el.y} fontSize={el.size} fill={el.color}
+                    fontFamily="Fredoka" fontWeight="700" opacity={el.opacity}>{el.char}</text>
+            );
+          if (el.type && el.type.startsWith('r-')) {
+            const t = 'translate(' + el.x + ' ' + el.y + ') rotate(' + el.rotation + ' 50 50)';
+            let inner = null;
+            if (el.type === 'r-body') inner = <path d="M50 12 Q70 30 70 65 L30 65 Q30 30 50 12 Z" fill="#ffffff" />;
+            else if (el.type === 'r-body-shadow') inner = <path d="M50 12 Q70 30 70 65 L60 65 Q60 30 50 12 Z" fill={'url(#mini-rg-' + size + ')'} opacity="0.25" />;
+            else if (el.type === 'r-hublot-outer') inner = <circle cx="50" cy="40" r="9" fill={'url(#mini-rg-' + size + ')'} />;
+            else if (el.type === 'r-hublot-inner') inner = <circle cx="50" cy="40" r="5" fill="#1e1e2e" />;
+            else if (el.type === 'r-fin-l') inner = <path d="M30 65 L20 84 L38 70 Z" fill="#a78bfa" />;
+            else if (el.type === 'r-fin-r') inner = <path d="M70 65 L80 84 L62 70 Z" fill="#a78bfa" />;
+            else if (el.type === 'r-flame') inner = <path d={FLAME_PATHS[el.flameIdx]} fill={'url(#mini-fg-' + size + ')'} />;
+            return <g key={el.id} transform={t}>{inner}</g>;
+          }
+          return null;
+        })}
+      </svg>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+</script>
+
+</body>
+</html>

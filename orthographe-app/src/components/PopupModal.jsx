@@ -63,9 +63,9 @@ export default function PopupModal({
 const overlayBaseStyle = {
   position: 'fixed',
   inset: 0,
-  background: 'rgba(0,0,0,0.64)',
-  backdropFilter: 'blur(8px)',
-  WebkitBackdropFilter: 'blur(8px)',
+  background: 'rgba(0,0,0,0.58)',
+  backdropFilter: 'blur(var(--blur-sm))',
+  WebkitBackdropFilter: 'blur(var(--blur-sm))',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -78,11 +78,11 @@ const panelBaseStyle = {
   width: 'min(420px, calc(100vw - 2rem))',
   maxHeight: 'calc(100vh - 2rem)',
   overflowY: 'auto',
-  borderRadius: 24,
+  borderRadius: 'var(--radius-lg)',
   padding: '1.45rem 1.35rem',
-  background: 'linear-gradient(180deg, rgba(var(--color-bg1-rgb),0.97), rgba(var(--color-bg2-rgb),0.94))',
-  border: '1px solid rgba(var(--color-accent-rgb),0.2)',
-  boxShadow: '0 20px 70px rgba(0,0,0,0.52)',
+  background: 'linear-gradient(180deg, rgba(var(--color-bg1-rgb),0.97), rgba(var(--color-bg2-rgb),0.92))',
+  border: '1px solid var(--glass-border)',
+  boxShadow: 'var(--shadow-lg)',
 };
 
 const modalShellBaseStyle = {

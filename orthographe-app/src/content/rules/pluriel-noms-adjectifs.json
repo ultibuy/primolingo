@@ -9,12 +9,12 @@
       "label": "s"
     },
     {
-      "id": "z",
-      "label": "z"
-    },
-    {
       "id": "x",
       "label": "x"
+    },
+    {
+      "id": "z",
+      "label": "z"
     }
   ],
   "decisionAxes": [
@@ -900,7 +900,7 @@
       "explanation": "« milieu » finit par -eu → pluriel en -x : « milieux »."
     },
     {
-      "before": "un manteau → des mante",
+      "before": "un manteau → des manteau",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -922,7 +922,7 @@
       ]
     },
     {
-      "before": "un chapeau → des chape",
+      "before": "un chapeau → des chapeau",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -944,7 +944,7 @@
       ]
     },
     {
-      "before": "un gâteau → des gâte",
+      "before": "un gâteau → des gâteau",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -966,7 +966,7 @@
       ]
     },
     {
-      "before": "un cadeau → des cade",
+      "before": "un cadeau → des cadeau",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -988,7 +988,7 @@
       ]
     },
     {
-      "before": "un tableau → des table",
+      "before": "un tableau → des tableau",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -1010,7 +1010,7 @@
       ]
     },
     {
-      "before": "un morceau → des morce",
+      "before": "un morceau → des morceau",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -1032,7 +1032,7 @@
       ]
     },
     {
-      "before": "un oiseau → des oise",
+      "before": "un oiseau → des oiseau",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -1054,7 +1054,7 @@
       ]
     },
     {
-      "before": "un couteau → des coute",
+      "before": "un couteau → des couteau",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -1076,7 +1076,7 @@
       ]
     },
     {
-      "before": "un anneau → des anne",
+      "before": "un anneau → des anneau",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -1098,7 +1098,7 @@
       ]
     },
     {
-      "before": "un château → des châte",
+      "before": "un château → des château",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -1120,7 +1120,7 @@
       ]
     },
     {
-      "before": "un carreau → des carre",
+      "before": "un carreau → des carreau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1142,7 +1142,7 @@
       ]
     },
     {
-      "before": "un hameau → des hame",
+      "before": "un hameau → des hameau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1164,7 +1164,7 @@
       ]
     },
     {
-      "before": "un rideau → des ride",
+      "before": "un rideau → des rideau",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -1186,7 +1186,7 @@
       ]
     },
     {
-      "before": "un flambeau → des flambe",
+      "before": "un flambeau → des flambeau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1208,7 +1208,7 @@
       ]
     },
     {
-      "before": "un berceau → des berce",
+      "before": "un berceau → des berceau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1230,7 +1230,7 @@
       ]
     },
     {
-      "before": "un agneau → des agne",
+      "before": "un agneau → des agneau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1252,7 +1252,7 @@
       ]
     },
     {
-      "before": "un veau → des ve",
+      "before": "un veau → des veau",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -1274,7 +1274,7 @@
       ]
     },
     {
-      "before": "un pinceau → des pince",
+      "before": "un pinceau → des pinceau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1296,7 +1296,7 @@
       ]
     },
     {
-      "before": "un bourreau → des bourre",
+      "before": "un bourreau → des bourreau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1318,7 +1318,7 @@
       ]
     },
     {
-      "before": "un troupeau → des troupe",
+      "before": "un troupeau → des troupeau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1340,7 +1340,7 @@
       ]
     },
     {
-      "before": "un niveau → des nive",
+      "before": "un niveau → des niveau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1362,7 +1362,7 @@
       ]
     },
     {
-      "before": "un moineau → des moine",
+      "before": "un moineau → des moineau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1384,7 +1384,7 @@
       ]
     },
     {
-      "before": "un cerveau → des cerve",
+      "before": "un cerveau → des cerveau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1406,7 +1406,7 @@
       ]
     },
     {
-      "before": "un rameau → des rame",
+      "before": "un rameau → des rameau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1428,7 +1428,7 @@
       ]
     },
     {
-      "before": "un créneau → des créne",
+      "before": "un créneau → des créneau",
       "after": "",
       "answer": "x",
       "difficulty": 3,
@@ -1450,7 +1450,7 @@
       ]
     },
     {
-      "before": "un sceau → des sce",
+      "before": "un sceau → des sceau",
       "after": "",
       "answer": "x",
       "difficulty": 3,
@@ -1472,7 +1472,7 @@
       ]
     },
     {
-      "before": "un bateau → des bate",
+      "before": "un bateau → des bateau",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -1494,7 +1494,7 @@
       ]
     },
     {
-      "before": "un peau → des pe",
+      "before": "une peau → des peau",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -1538,7 +1538,7 @@
       ]
     },
     {
-      "before": "un jeu → des je",
+      "before": "un jeu → des jeu",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -1560,7 +1560,7 @@
       ]
     },
     {
-      "before": "un feu → des fe",
+      "before": "un feu → des feu",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -1582,7 +1582,7 @@
       ]
     },
     {
-      "before": "un cheveu → des cheve",
+      "before": "un cheveu → des cheveu",
       "after": "",
       "answer": "x",
       "difficulty": 1,
@@ -1604,7 +1604,7 @@
       ]
     },
     {
-      "before": "un enjeu → des enje",
+      "before": "un enjeu → des enjeu",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1626,7 +1626,7 @@
       ]
     },
     {
-      "before": "un neveu → des neve",
+      "before": "un neveu → des neveu",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1648,7 +1648,7 @@
       ]
     },
     {
-      "before": "un aveu → des ave",
+      "before": "un aveu → des aveu",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1670,7 +1670,7 @@
       ]
     },
     {
-      "before": "un vœu → des vœ",
+      "before": "un vœu → des vœu",
       "after": "",
       "answer": "x",
       "difficulty": 3,
@@ -1692,11 +1692,11 @@
       ]
     },
     {
-      "before": "un pneu → des pne",
+      "before": "un pneu → des pneu",
       "after": "",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 3,
-      "explanation": "pneu : exception → pneus (mais accepté -x aussi). Ici on met -x selon la règle générale",
+      "explanation": "Exception : pneu → pneus (et non pneaux). -eu→x sauf pneu, bleu → -s.",
       "id": "q137",
       "choices": [
         {
@@ -1714,7 +1714,7 @@
       ]
     },
     {
-      "before": "un lieu → des lie",
+      "before": "un lieu → des lieu",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1736,11 +1736,11 @@
       ]
     },
     {
-      "before": "un bleu → des ble",
+      "before": "un bleu → des bleu",
       "after": "",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 2,
-      "explanation": "-eu → -eux au pluriel",
+      "explanation": "Exception : bleu → bleus (et non bleux). -eu→x sauf bleu, pneu → -s.",
       "id": "q139",
       "choices": [
         {
@@ -1758,7 +1758,7 @@
       ]
     },
     {
-      "before": "un étau → des éte",
+      "before": "un étau → des étau",
       "after": "",
       "answer": "x",
       "difficulty": 3,
@@ -1780,7 +1780,7 @@
       ]
     },
     {
-      "before": "un noyau → des noye",
+      "before": "un noyau → des noyau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1802,7 +1802,7 @@
       ]
     },
     {
-      "before": "un tuyau → des tuye",
+      "before": "un tuyau → des tuyau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
@@ -1824,11 +1824,11 @@
       ]
     },
     {
-      "before": "un landau → des lande",
+      "before": "un landau → des landau",
       "after": "",
-      "answer": "x",
+      "answer": "s",
       "difficulty": 3,
-      "explanation": "-au → -aux au pluriel",
+      "explanation": "Landau : exception, -au prend -s (landaus, pas landaux).",
       "id": "q143",
       "choices": [
         {
@@ -1846,7 +1846,7 @@
       ]
     },
     {
-      "before": "un préau → des préa",
+      "before": "un préau → des préau",
       "after": "",
       "answer": "x",
       "difficulty": 3,
@@ -3056,7 +3056,7 @@
       ]
     },
     {
-      "before": "un signal → des signal",
+      "before": "un signal → des signau",
       "after": "",
       "answer": "x",
       "difficulty": 3,
@@ -3078,7 +3078,7 @@
       "id": "q199"
     },
     {
-      "before": "un animal → des animal",
+      "before": "un animal → des animau",
       "after": "",
       "answer": "x",
       "difficulty": 2,
