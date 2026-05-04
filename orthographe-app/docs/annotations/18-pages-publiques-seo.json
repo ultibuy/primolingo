@@ -1,1 +1,57 @@
-[]
+[
+  {
+    "x": 357,
+    "y": 11806,
+    "text": "ajoute ici une section sur l'aperçu de l'app en partage SMS :  quelle image est utilsée",
+    "time": "04/05 10:44",
+    "domContext": {
+      "tag": "BODY",
+      "text": "PrimoLingo\n    Sommaire\n    ← PrécédentSuivant →\n  \n  Pages publiques et SEO\nDescription\nLes pages publiques permettent aux parents de découvrir Primo"
+    },
+    "response": "Section ajoutée dans la doc : elle précise que l’aperçu SMS utilise l’image Open Graph `public/og-image.png`, servie en prod à `https://www.primolingo.fr/og-image.png`, au format PNG 1200 x 630. La section mentionne aussi les balises `og:image`, `og:image:width` et `og:image:height`, ainsi que le fait que les pages SEO statiques gardent cette image tout en personnalisant titre, description, canonical et `og:url`."
+  },
+  {
+    "x": 720,
+    "y": 13001,
+    "text": "ne me mets pas les noms de fichier, mets moi juste l'image",
+    "time": "04/05 17:01",
+    "domContext": {
+      "tag": "TD",
+      "text": "Splash screen, stores"
+    },
+    "response": "Fait. La colonne « Fichier » a été retirée du tableau des icônes PWA — chaque ligne affiche directement l'image via ![](url)."
+  },
+  {
+    "x": 539,
+    "y": 13272,
+    "text": "pareil ici",
+    "time": "04/05 17:01",
+    "domContext": {
+      "tag": "TD",
+      "text": "Favicon navigateur (prod)"
+    },
+    "response": "Fait. Colonne « Fichier » retirée du tableau Favicon — l'image est affichée directement."
+  },
+  {
+    "x": 835,
+    "y": 13463,
+    "text": "pareil ici",
+    "time": "04/05 17:01",
+    "domContext": {
+      "tag": "TD",
+      "text": "1200×630"
+    },
+    "response": "Fait. Colonne « Fichier » retirée du tableau OG Image — l'image est affichée directement."
+  },
+  {
+    "x": 629,
+    "y": 13575,
+    "text": "enlève cette section",
+    "time": "04/05 17:02",
+    "domContext": {
+      "tag": "BODY",
+      "text": "PrimoLingo\n    Sommaire\n    ← PrécédentSuivant →\n  \n  Pages publiques et SEO\nDescription\nLes pages publiques permettent "
+    },
+    "response": "Fait. La section « Illustrations (landing page) » a été supprimée."
+  }
+]

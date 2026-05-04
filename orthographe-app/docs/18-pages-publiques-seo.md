@@ -72,6 +72,37 @@ Cette image est définie dans `index.html` via :
 
 Les pages SEO statiques générées conservent cette image Open Graph, tout en personnalisant le titre, la description, l'URL canonique et `og:url` selon la page partagée.
 
+## Assets statiques et PWA
+
+### Icônes PWA
+
+Les trois icônes déclarées dans le manifest sont générées à partir de `public/favicon.svg` (fusée blanche sur fond nuit, lettres a/é/b/c/d flottantes).
+
+| Taille | Usage | Aperçu |
+|--------|-------|--------|
+| 192×192 | Icône standard Android / navigateurs | ![icon-192](http://localhost:5173/icons/icon-192.png) |
+| 512×512 | Splash screen, stores | ![icon-512](http://localhost:5173/icons/icon-512.png) |
+| 512×512 maskable | Android adaptive icon (fond plein, safe zone 80%) | ![icon-512-maskable](http://localhost:5173/icons/icon-512-maskable.png) |
+
+Pour regénérer les icônes après modification du SVG : `node scripts/gen-pwa-icons.mjs`
+
+### Favicon
+
+| Usage | Aperçu |
+|-------|--------|
+| Favicon navigateur (prod) | ![favicon](http://localhost:5173/favicon.svg) |
+| Favicon en dev local (variante colorée pour distinguer) | ![favicon-dev](http://localhost:5173/favicon-dev.svg) |
+
+### Image Open Graph
+
+| Dimensions | Aperçu |
+|-----------|--------|
+| 1200×630 | ![og-image](http://localhost:5173/og-image.png) |
+
+## Voir aussi
+
+- [Inscription et connexion](./01-inscription-connexion.md)
+
 ## Règles
 
 | ID | Règle | Critère de succès |
@@ -82,48 +113,3 @@ Les pages SEO statiques générées conservent cette image Open Graph, tout en p
 | SEO04 | Le mini-quiz fonctionne de bout en bout | Démarrage, question 1, feedback, question 2, score, appel à l'inscription |
 | SEO05 | Les balises de référencement sont correctes | Titre, description, lien canonique et balises réseaux sociaux sont présents |
 | SEO06 | La navigation interne fonctionne | Clic carte mène à la page, fil d'ariane ramène à l'index, page inexistante redirige |
-
-## Assets statiques et PWA
-
-### Icônes PWA
-
-Les trois icônes déclarées dans le manifest sont générées à partir de `public/favicon.svg` (fusée blanche sur fond nuit, lettres a/é/b/c/d flottantes).
-
-| Fichier | Taille | Usage | Lien live |
-|---------|--------|-------|-----------|
-| `public/icons/icon-192.png` | 192×192 | Icône standard Android / navigateurs | [icon-192.png](http://localhost:5173/icons/icon-192.png) |
-| `public/icons/icon-512.png` | 512×512 | Splash screen, stores | [icon-512.png](http://localhost:5173/icons/icon-512.png) |
-| `public/icons/icon-512-maskable.png` | 512×512 | Android adaptive icon (fond plein, contenu dans la safe zone 80%) | [icon-512-maskable.png](http://localhost:5173/icons/icon-512-maskable.png) |
-
-Pour regénérer les icônes après modification du SVG : `node scripts/gen-pwa-icons.mjs`
-
-### Favicon
-
-| Fichier | Usage | Lien live |
-|---------|-------|-----------|
-| `public/favicon.svg` | Favicon navigateur (prod) | [favicon.svg](http://localhost:5173/favicon.svg) |
-| `public/favicon-dev.svg` | Favicon en dev local (variante colorée pour distinguer) | [favicon-dev.svg](http://localhost:5173/favicon-dev.svg) |
-
-### Image Open Graph
-
-| Fichier | Dimensions | Lien live |
-|---------|-----------|-----------|
-| `public/og-image.png` | 1200×630 | [og-image.png](http://localhost:5173/og-image.png) |
-
-### Illustrations (landing page)
-
-Visuels marketing utilisés dans `LandingPageV4.jsx` :
-
-| Fichier | Poids | Lien live |
-|---------|-------|-----------|
-| `public/illustrations/collectibles.png` | ~1.4 Mo | [collectibles.png](http://localhost:5173/illustrations/collectibles.png) |
-| `public/illustrations/dictee-mode.png` | ~2.3 Mo | [dictee-mode.png](http://localhost:5173/illustrations/dictee-mode.png) |
-| `public/illustrations/learning-schemas.png` | ~1.6 Mo | [learning-schemas.png](http://localhost:5173/illustrations/learning-schemas.png) |
-| `public/illustrations/ludique.png` | ~3.9 Mo | [ludique.png](http://localhost:5173/illustrations/ludique.png) |
-| `public/illustrations/revision-dates.png` | ~3.9 Mo | [revision-dates.png](http://localhost:5173/illustrations/revision-dates.png) |
-| `public/illustrations/themes.png` | ~1.0 Mo | [themes.png](http://localhost:5173/illustrations/themes.png) |
-| `public/illustrations/victory-anims.png` | ~1.0 Mo | [victory-anims.png](http://localhost:5173/illustrations/victory-anims.png) |
-
-## Voir aussi
-
-- [Inscription et connexion](./01-inscription-connexion.md)
