@@ -48,6 +48,15 @@ parseLocalDate(s)   // "YYYY-MM-DD" → Date locale (pas new Date(s) qui est UTC
 
 `updateStatsHistory(next, GRAMMAR_IDS)` doit être appelé **avant** chaque `persistProgress(next)` dans ChildApp. Oubli = graphiques parent silencieusement cassés.
 
+## Debugging
+
+1. Commencer par lire le code pour formuler des hypothèses
+2. Si le diagnostic n'est pas certain, ou si une tentative de fix échoue : consulter les logs avant de réessayer
+   - **Firebase Hosting** : `gcloud logging read 'resource.type="firebase_domain"' --project=orthographe-eabb9 --limit=20`
+   - **Sentry** : `scripts/sentry-check.sh`
+   - **Client** : demander à l'utilisateur DevTools → Network + Console
+3. Ne pas enchaîner les tentatives de fix sans données
+
 ## Commits
 
 Committer à la fin de chaque tâche demandée par l'utilisateur, une fois que ça fonctionne. Un commit par demande utilisateur, pas par fichier modifié. Message en anglais : `<type>: <description>` — ex: `fix: delta chart inflated by first history entry`. Types : `feat`, `fix`, `refactor`, `test`.
