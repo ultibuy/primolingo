@@ -1,58 +1,42 @@
 [
   {
-    "x": 394,
-    "y": 110,
-    "text": "Change en un générique \"Bonjour Parent\". Ensuite ajoute un petit message du genre \"Bienvenu dans l'espace parent de primolingo. Vous pourrez y configurer....\"",
-    "time": "04/05 12:46",
-    "domContext": { "tag": "SPAN", "text": "Bonjour, Debug 👋" },
-    "response": "Fait. Le greeting affiche maintenant « Bonjour 👋 » (générique, sans prénom) avec un message d'accueil : « Bienvenue dans l'espace parent de PrimoLingo. Vous pourrez y configurer les profils de vos enfants, suivre leur progression, gérer les images mystère et accéder à la partie enfant. »"
+    "x": 369,
+    "y": 135,
+    "text": "bonjour en plus gros et centré. Fais une énumération pour les fonctionnalité avec de la mise en forme gras pour lire vite",
+    "time": "04/05 12:55",
+    "domContext": { "tag": "DIV", "text": "Bonjour 👋" },
+    "response": "Fait. « Bonjour 👋 » en 1.6rem gras centré. En dessous, une liste avec emoji et gras pour lire vite : 👤 Configurer les profils / 📊 Suivre la progression / 🖼️ Gérer les images mystère / ▶️ Accéder à la partie enfant."
   },
   {
-    "x": 501,
-    "y": 674,
-    "text": "merger iphone/ipad",
-    "time": "04/05 12:48",
-    "domContext": { "tag": "DIV", "text": "Appareil de l'enfant💻 Ordinateur📱 iPhone📱 iPad📱 Android (smartphone)📱 Android (tablette)" },
-    "response": "Fait. iPhone et iPad fusionnés en un seul bouton « iPhone / iPad » avec les mêmes instructions (Safari → Partager → Sur l'écran d'accueil). Le sélecteur passe à 3 options : Ordinateur / iPhone·iPad / Android."
+    "x": 767,
+    "y": 357,
+    "text": "fais une vrai énum avec retour à la ligne",
+    "time": "04/05 12:56",
+    "domContext": { "tag": "P", "text": "Utile pour : 1) protéger la flamme de votre enfant (le nombre de jours consécutifs d'utilisation) quand il a une bonne raison de ne pas avoir joué (we" },
+    "response": "Fait. La description du code PIN est maintenant une vraie liste <ul> avec deux items distincts sur des lignes séparées : 1) Protéger la flamme... et 2) Restaurer la progression..."
   },
   {
-    "x": 755,
-    "y": 672,
-    "text": "merger les deux Android et appeler juste \"Android\"",
-    "time": "04/05 12:48",
-    "domContext": { "tag": "DIV", "text": "Appareil de l'enfant💻 Ordinateur📱 iPhone📱 iPad📱 Android (smartphone)📱 Android (tablette)" },
-    "response": "Fait. Smartphone Android et Tablette Android fusionnés en un seul bouton « Android » avec les mêmes instructions (Chrome → ⋮ → Ajouter à l'écran d'accueil). Le sélecteur est maintenant : 💻 Ordinateur / 📱 iPhone·iPad / 📱 Android."
+    "x": 924,
+    "y": 646,
+    "text": "une fois sur la partie enfant, il y a un bouton de retour sur la partie parent, mais elle nécessite un mot de passe pour fonctionner",
+    "time": "04/05 12:54",
+    "domContext": { "tag": "P", "text": "PrimoLingo est constituée de deux parties : ce tableau de bord parent (pour vous) et la partie enfant accessible via les boutons ci-dessous. Il n'y a " },
+    "response": "Fait. Une phrase ajoutée dans le préambule : « Depuis la partie enfant, un bouton permet de revenir sur ce tableau de bord — il nécessite votre code parental. »"
   },
   {
-    "x": 775,
-    "y": 746,
-    "text": "rajoute l'étape de se logguer sur l'app enfant avec le compte du parent. On arrive sur l'espace parent, on clique sur \"accéder à la partie enfant\" et on met en favori sur l'appareil de l'enfant. Ajouter en  amont un selecteur pour ordinateur, ipad, iphone, tablette android, smartphone android",
-    "time": "04/05 12:41",
-    "domContext": { "tag": "LI", "text": "Cliquez sur « Ouvrir la partie enfant » ci-dessous" },
-    "response": "Fait. Sélecteur d'appareils ajouté (3 options après fusion). Les instructions incluent maintenant l'étape de connexion en étape 1 : « Rendez-vous sur primolingo.app et connectez-vous avec votre compte parent », puis étape 2 « Cliquez sur Ouvrir la partie enfant dans Gestion des enfants », puis étape 3 selon l'appareil pour mettre en favori."
+    "x": 640,
+    "y": 786,
+    "text": "le selecteur de device ne concerne que la partie enfant. la partie parent on est dessus donc on sait quel device. puor la partie enfant, le device utilisé défini la pill active par défaut",
+    "time": "04/05 12:53",
+    "domContext": { "tag": "DIV", "text": "💻 Ordinateur📱 iPhone / iPad📱 Android" },
+    "response": "Fait. Le sélecteur de device a été déplacé à l'intérieur de la carte « Sur l'appareil de l'enfant » uniquement. La carte parent utilise detectPlatform() automatiquement sans sélecteur. La pill active par défaut correspond au device détecté de l'appareil courant."
   },
   {
-    "x": 868,
-    "y": 532,
-    "text": "remplace partout app enfant par \"partie enfant\", il n'y a pas d'app particulière. explique aussi ca en préembule, l'app est constituée de deux partie, le dash parents et la partie enfant accessible par les boutons ci-dessous",
-    "time": "04/05 12:41",
-    "domContext": { "tag": "STRONG", "text": "l'app enfant" },
-    "response": "Fait. Toutes les occurrences de « app enfant » remplacées par « partie enfant ». Le préambule explique : « PrimoLingo est constituée de deux parties : ce tableau de bord parent (pour vous) et la partie enfant accessible via les boutons ci-dessous. Il n'y a pas d'app séparée — tout se passe dans le navigateur. »"
-  },
-  {
-    "x": 493,
-    "y": 1033,
-    "text": "à mettre tout en bas cette section",
-    "time": "04/05 12:42",
-    "domContext": { "tag": "P", "text": "Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque j" },
-    "response": "Fait. La bibliothèque d'images mystère est maintenant tout en bas, à l'intérieur de la section « Gestion des enfants », après les panneaux par enfant."
-  },
-  {
-    "x": 576,
-    "y": 1942,
-    "text": "ca c'est une section dédiée, au meme niveau que mes enfants , qui s'appèlle gestion des enfants et dans l'aquell eil y a l'ajout, le CYA vers partie efnat,les suavegardes et l'image mystere;  L'autre section s'appelle \"le suivi des enfants\"",
-    "time": "04/05 12:43",
-    "domContext": { "tag": "DIV", "text": "Partie enfant" },
-    "response": "Fait. 1) « Mes enfants » renommée en « Suivi des enfants » (activité + graphiques + paramètres images). 2) Nouvelle section « Gestion des enfants » au même niveau : bouton + Ajouter un enfant, panneau par enfant avec CTA « Ouvrir la partie enfant » + sauvegardes, et bibliothèque d'images mystère en bas."
+    "x": 473,
+    "y": 1802,
+    "text": "ca remonte au dessus de suivi des enfants",
+    "time": "04/05 12:55",
+    "domContext": { "tag": "H2", "text": "Gestion des enfants" },
+    "response": "Fait. L'ordre des sections est maintenant : Mon compte → Accès enfant → Gestion des enfants → Suivi des enfants."
   }
 ]

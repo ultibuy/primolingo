@@ -500,13 +500,17 @@ const DEVICE_INSTRUCTIONS = {
 };
 
 function AccesEnfantSection() {
-  const [device, setDevice] = useState('desktop');
+  const [childDevice, setChildDevice] = useState('desktop');
+  const [parentDevice, setParentDevice] = useState('desktop');
 
   useEffect(() => {
-    setDevice(detectPlatform());
+    const detected = detectPlatform();
+    setParentDevice(detected); // parent is on this device right now
+    setChildDevice(detected);  // default child device to same, user can change
   }, []);
 
-  const instr = DEVICE_INSTRUCTIONS[device];
+  const childInstr = DEVICE_INSTRUCTIONS[childDevice];
+  const parentInstr = DEVICE_INSTRUCTIONS[parentDevice];
 
   return (
     <div style={{ display: 'grid', gap: '1.2rem' }}>
@@ -516,38 +520,16 @@ function AccesEnfantSection() {
           PrimoLingo est constituée de <strong style={{ color: '#fff' }}>deux parties</strong> : ce tableau de bord parent (pour vous) et la <strong style={{ color: '#fff' }}>partie enfant</strong> accessible via les boutons ci-dessous. Il n'y a pas d'app séparée — tout se passe dans le navigateur.
         </p>
         <p style={{ margin: '0.5rem 0 0', fontSize: '0.85rem', color: '#9ca3af', lineHeight: 1.6 }}>
+          Depuis la partie enfant, un bouton permet de revenir sur ce tableau de bord — il nécessite votre <strong style={{ color: '#d1d5db' }}>code parental</strong>.
+        </p>
+        <p style={{ margin: '0.5rem 0 0', fontSize: '0.85rem', color: '#9ca3af', lineHeight: 1.6 }}>
           Recommandé : mettre ce tableau de bord en favori sur votre appareil, et mettre la partie enfant en favori sur l'appareil de votre enfant.
         </p>
       </div>
 
-      {/* Device selector */}
-      <div>
-        <div style={{ fontSize: '0.72rem', fontWeight: 800, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.5rem' }}>
-          Appareil de l'enfant
-        </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-          {DEVICES.map(d => (
-            <button
-              key={d.id}
-              type="button"
-              onClick={() => setDevice(d.id)}
-              style={{
-                padding: '6px 12px', borderRadius: 'var(--radius-pill)',
-                border: `1px solid ${d.id === device ? 'rgba(96,205,255,0.5)' : 'rgba(255,255,255,0.1)'}`,
-                background: d.id === device ? 'rgba(96,205,255,0.12)' : 'rgba(255,255,255,0.04)',
-                color: d.id === device ? '#60cdff' : '#9ca3af',
-                fontSize: '0.78rem', fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--font-body)',
-              }}
-            >
-              {d.emoji} {d.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
       {/* Two-column cards */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1rem' }}>
-        {/* Card: parent device */}
+        {/* Card: parent device — no selector, auto-detected */}
         <div style={accessCardStyle('#a78bfa', 'rgba(167,139,250,0.08)')}>
           <div style={accessCardHeaderStyle}>
             <span style={{ fontSize: 22 }}>🖥️</span>
@@ -560,21 +542,40 @@ function AccesEnfantSection() {
             Mettez cette page en favori pour y revenir facilement.
           </p>
           <div style={{ fontSize: '0.78rem', color: '#9ca3af', lineHeight: 1.6, padding: '0.5rem 0.7rem', background: 'rgba(167,139,250,0.06)', borderRadius: 8, border: '1px solid rgba(167,139,250,0.12)' }}>
-            {instr.parentBookmark}
+            {parentInstr.parentBookmark}
           </div>
         </div>
 
-        {/* Card: child device */}
+        {/* Card: child device — with device selector */}
         <div style={accessCardStyle('#60cdff', 'rgba(96,205,255,0.08)')}>
           <div style={accessCardHeaderStyle}>
             <span style={{ fontSize: 22 }}>📱</span>
             <div>
               <div style={{ fontSize: '0.88rem', fontWeight: 800, color: '#fff' }}>Sur l'appareil de l'enfant</div>
-              <div style={{ fontSize: '0.75rem', color: '#9ca3af', marginTop: 2 }}>Partie enfant — {instr.label}</div>
+              <div style={{ fontSize: '0.75rem', color: '#9ca3af', marginTop: 2 }}>Partie enfant</div>
             </div>
           </div>
-          <ol style={{ margin: '0 0 0', paddingLeft: '1.1rem' }}>
-            {instr.steps.map((s, i) => (
+          {/* Device selector — inside child card only */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginBottom: '0.8rem' }}>
+            {DEVICES.map(d => (
+              <button
+                key={d.id}
+                type="button"
+                onClick={() => setChildDevice(d.id)}
+                style={{
+                  padding: '4px 10px', borderRadius: 'var(--radius-pill)',
+                  border: `1px solid ${d.id === childDevice ? 'rgba(96,205,255,0.5)' : 'rgba(255,255,255,0.1)'}`,
+                  background: d.id === childDevice ? 'rgba(96,205,255,0.12)' : 'rgba(255,255,255,0.03)',
+                  color: d.id === childDevice ? '#60cdff' : '#9ca3af',
+                  fontSize: '0.72rem', fontWeight: 700, cursor: 'pointer', fontFamily: 'var(--font-body)',
+                }}
+              >
+                {d.emoji} {d.label}
+              </button>
+            ))}
+          </div>
+          <ol style={{ margin: 0, paddingLeft: '1.1rem' }}>
+            {childInstr.steps.map((s, i) => (
               <li key={i} style={{ fontSize: '0.8rem', color: '#d1d5db', lineHeight: 1.65, marginBottom: '0.3rem' }}>{s}</li>
             ))}
           </ol>
@@ -833,13 +834,19 @@ export default function ParentDashboardV2() {
       <div style={contentStyle}>
 
         {/* Greeting */}
-        <div style={{ marginBottom: '2rem', padding: '1.2rem 1.4rem', background: 'rgba(167,139,250,0.05)', border: '1px solid rgba(167,139,250,0.12)', borderRadius: 'var(--radius-md)' }}>
-          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: 'var(--text-white)', marginBottom: '0.4rem' }}>
+        <div style={{ marginBottom: '2rem', padding: '1.4rem 1.6rem', background: 'rgba(167,139,250,0.05)', border: '1px solid rgba(167,139,250,0.12)', borderRadius: 'var(--radius-md)', textAlign: 'center' }}>
+          <div style={{ fontSize: '1.6rem', fontWeight: 900, color: 'var(--text-white)', marginBottom: '0.8rem', fontFamily: 'var(--font-display)' }}>
             Bonjour 👋
           </div>
-          <p style={{ margin: 0, fontSize: '0.88rem', color: '#9ca3af', lineHeight: 1.65 }}>
-            Bienvenue dans l'espace parent de PrimoLingo. Vous pourrez y configurer les profils de vos enfants, suivre leur progression, gérer les images mystère et accéder à la partie enfant.
+          <p style={{ margin: '0 0 0.75rem', fontSize: '0.88rem', color: '#9ca3af', lineHeight: 1.5 }}>
+            Bienvenue dans l'espace parent de PrimoLingo. Vous pouvez :
           </p>
+          <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'grid', gap: '0.35rem', textAlign: 'left', maxWidth: 380, marginInline: 'auto' }}>
+            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}>👤 <strong>Configurer</strong> les profils de vos enfants</li>
+            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}>📊 <strong>Suivre</strong> leur progression et activité</li>
+            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}>🖼️ <strong>Gérer</strong> les images mystère</li>
+            <li style={{ fontSize: '0.88rem', color: '#d1d5db', lineHeight: 1.5 }}>▶️ <strong>Accéder</strong> à la partie enfant</li>
+          </ul>
         </div>
 
         {/* ─ Section 1: Mon compte ─ */}
@@ -862,9 +869,14 @@ export default function ParentDashboardV2() {
                     {pin === undefined ? '…' : pin ? 'Défini' : 'Non défini'}
                   </span>
                 </div>
-                <p style={{ margin: '0 0 0.75rem', fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.7 }}>
-                  Utile pour : <strong style={{ color: '#d1d5db' }}>1) protéger la flamme</strong> de votre enfant (le nombre de jours consécutifs d'utilisation) quand il a une bonne raison de ne pas avoir joué (week-end familial, pas de possibilité de jouer, etc.) et <strong style={{ color: '#d1d5db' }}>2) restaurer la progression</strong> à un jour particulier en cas de besoin.
-                </p>
+                <ul style={{ margin: '0 0 0.75rem', padding: 0, listStyle: 'none', display: 'grid', gap: '0.4rem' }}>
+                  <li style={{ fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.6 }}>
+                    1) <strong style={{ color: '#d1d5db' }}>Protéger la flamme</strong> de votre enfant (le nombre de jours consécutifs d'utilisation) quand il a une bonne raison de ne pas avoir joué — week-end familial, pas de possibilité de jouer, etc.
+                  </li>
+                  <li style={{ fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.6 }}>
+                    2) <strong style={{ color: '#d1d5db' }}>Restaurer la progression</strong> à un jour particulier en cas de besoin.
+                  </li>
+                </ul>
                 <button type="button" onClick={handlePinManageClick} style={secBtnStyle}>
                   {pin ? 'Gérer le code' : 'Définir le code'}
                 </button>
@@ -880,36 +892,7 @@ export default function ParentDashboardV2() {
           <AccesEnfantSection />
         </section>
 
-        {/* ─ Section 3: Suivi des enfants ─ */}
-        <section style={sectionStyle}>
-          <h2 style={sectionTitleStyle}>Suivi des enfants</h2>
-
-          {loading ? (
-            <div style={{ textAlign: 'center', color: 'var(--color-primary)', padding: '3rem 0' }}>Chargement…</div>
-          ) : children.length === 0 ? (
-            <div style={{ textAlign: 'center', padding: '3rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
-              <div style={{ fontSize: 48 }}>👶</div>
-              <p style={{ color: '#94a3b8', fontSize: '1rem', margin: 0 }}>
-                Aucun enfant pour l'instant.<br />Ajoutez-en un dans « Gestion des enfants » ci-dessous.
-              </p>
-            </div>
-          ) : (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              {children.map(child => (
-                <ChildPanelV2
-                  key={child.id}
-                  child={child}
-                  uid={user.uid}
-                  parentImages={parentImages}
-                  isOpen={openChildIds.has(child.id)}
-                  onToggle={() => toggleChild(child.id)}
-                />
-              ))}
-            </div>
-          )}
-        </section>
-
-        {/* ─ Section 4: Gestion des enfants ─ */}
+        {/* ─ Section 3: Gestion des enfants ─ */}
         <section style={sectionStyle}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.2rem' }}>
             <h2 style={{ ...sectionTitleStyle, marginBottom: 0 }}>Gestion des enfants</h2>
@@ -930,6 +913,35 @@ export default function ParentDashboardV2() {
               navigate={navigate}
               refreshParentImages={refreshParentImages}
             />
+          )}
+        </section>
+
+        {/* ─ Section 4: Suivi des enfants ─ */}
+        <section style={sectionStyle}>
+          <h2 style={sectionTitleStyle}>Suivi des enfants</h2>
+
+          {loading ? (
+            <div style={{ textAlign: 'center', color: 'var(--color-primary)', padding: '3rem 0' }}>Chargement…</div>
+          ) : children.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '3rem 1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ fontSize: 48 }}>👶</div>
+              <p style={{ color: '#94a3b8', fontSize: '1rem', margin: 0 }}>
+                Aucun enfant pour l'instant.<br />Ajoutez-en un dans « Gestion des enfants » ci-dessus.
+              </p>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              {children.map(child => (
+                <ChildPanelV2
+                  key={child.id}
+                  child={child}
+                  uid={user.uid}
+                  parentImages={parentImages}
+                  isOpen={openChildIds.has(child.id)}
+                  onToggle={() => toggleChild(child.id)}
+                />
+              ))}
+            </div>
           )}
         </section>
 
