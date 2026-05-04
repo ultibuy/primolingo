@@ -6,7 +6,8 @@
  *   N15 — ReturnScreen : clic "Sauver la flamme" → retour au dashboard
  *   N23 — Dictée : niveaux HÉROS/LÉGENDE verrouillés sans couronne Aventurier
  *   N24 — EndScreen : la section pièces s'affiche après un quiz
- *   N25 — EndScreen : bannière "Prochain objectif" visible quand pas encore monté
+ *   E06 — EndScreen : bannière "Prochain objectif" visible quand pas encore monté
+ *   N25 — EndScreen : bonus de bienvenue +200 affiché à la première session
  *
  * Requiert : serveur dev sur http://localhost:5173
  * Lancer   : BASE_URL=http://localhost:5173 node tests/progression-flow.test.js
@@ -431,10 +432,10 @@ async function testEndScreenShowsCoins(page) {
   console.log('    ✓ Section pièces/objectif visible sur EndScreen');
 }
 
-// ── N25 — EndScreen : "Prochain objectif" visible quand pas encore monté ─────
+// ── E06 — EndScreen : "Prochain objectif" visible quand pas encore monté ─────
 
 async function testEndScreenShowsNextObjective(page) {
-  console.log('  [N25] EndScreen : "Prochain objectif" visible...');
+  console.log('  [E06] EndScreen : "Prochain objectif" visible...');
 
   // Niveau 1, 0 sessions above80 → cette session < 80% ne déclenche PAS de level-up
   // (même en debug où THRESHOLD=1, il faut au moins 1 session ≥80% pour monter)
@@ -515,6 +516,29 @@ async function testEndScreenShowsNextObjective(page) {
   console.log('    ✓ "Prochain objectif" visible sur EndScreen');
 }
 
+// ── N25 — EndScreen : bonus de bienvenue +200 à la première session ──────────
+
+async function testEndScreenWelcomeBonus(page) {
+  console.log('  [N25] EndScreen : bonus de bienvenue +200...');
+
+  await page.goto(`${BASE_URL}/debug/end-screen?case=welcome-bonus`, { waitUntil: 'networkidle', timeout: 15000 });
+  await page.waitForTimeout(1000);
+
+  const text = await page.evaluate(() => document.body.innerText);
+
+  // Must show "Bonus de bienvenue", not "Bonus du jour"
+  assert(text.includes('Bonus de bienvenue'), 'Expected "Bonus de bienvenue" on EndScreen');
+  assert(!text.includes('Bonus du jour'), 'Should NOT show "Bonus du jour" for welcome bonus');
+
+  // Must show +200
+  assert(text.includes('+200') || text.includes('200'), 'Expected +200 amount visible');
+
+  // Total should be 230 (30 quiz coins + 200 bonus)
+  assert(text.includes('230'), 'Expected total 230 (30 + 200)');
+
+  console.log('    ✓ Bonus de bienvenue +200 affiché correctement');
+}
+
 // ── main ─────────────────────────────────────────────────────────────────────
 
 async function run() {
@@ -534,6 +558,7 @@ async function run() {
     testDicteesAventurierAlwaysUnlocked,
     testEndScreenShowsCoins,
     testEndScreenShowsNextObjective,
+    testEndScreenWelcomeBonus,
   ];
 
   for (const test of tests) {

@@ -116,7 +116,8 @@ const testRegistry = [
   { id: 'N23', category: 'progression', rule: 'Dictée : niveau HÉROS verrouillé sans Aventurier', criteria: 'Le cadenas et le message "Débloque quand tous Aventurier en couronne" sont visibles', file: 'progression-flow.test.js', type: 'e2e', predeploy: false },
   { id: 'N23b', category: 'progression', rule: 'Dictée : niveau AVENTURIER toujours accessible', criteria: "L'onglet Aventurier est cliquable quel que soit le profil du joueur", file: 'progression-flow.test.js', type: 'e2e', predeploy: false },
   { id: 'N24', category: 'progression', rule: 'EndScreen : section pièces visible après quiz', criteria: "Le total de pièces (ex : \"30\") apparaît sur l'écran de fin", file: 'progression-flow.test.js', type: 'e2e', predeploy: false },
-  { id: 'N25', category: 'progression', rule: 'EndScreen : "Prochain objectif" visible', criteria: "La barre de niveau et le texte \"Prochain objectif\" s'affichent si pas de level-up", file: 'progression-flow.test.js', type: 'e2e', predeploy: false },
+  { id: 'E06', category: 'progression', rule: 'EndScreen : "Prochain objectif" visible', criteria: "La barre de niveau et le texte \"Prochain objectif\" s'affichent si pas de level-up", file: 'progression-flow.test.js', type: 'e2e', predeploy: false },
+  { id: 'N25', category: 'progression', rule: 'EndScreen : bonus de bienvenue +200', criteria: "Le texte \"Bonus de bienvenue\" et +200 s'affichent à la première session (pas \"Bonus du jour\")", file: 'progression-flow.test.js', type: 'e2e', predeploy: false },
   { id: 'N25b', category: 'progression', rule: 'EndScreen redesign : layout responsive', criteria: "Le cadre unique, le CTA fixe, le récap scrollable, les SVG de fallback et l'absence d'emojis sont vérifiés sur mobile et desktop", file: 'end-screen-redesign.test.js', type: 'e2e', predeploy: false },
 
   // ── PARENT — Multi-enfant, réglages, PIN ──
