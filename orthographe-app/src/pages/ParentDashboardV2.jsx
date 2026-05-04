@@ -707,12 +707,9 @@ function GestionEnfantsSection({ children, uid, parentImages, pin, navigate, ref
 
       {/* Bibliothèque images mystère */}
       <div>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.6rem' }}>
-          <span style={{ fontSize: '1.1rem' }}>🖼️</span>
-          <span style={{ fontSize: '0.95rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-display)' }}>Bibliothèque d'images mystère</span>
-        </div>
+        <h3 style={sectionTitleStyle}>Bibliothèque d'images mystère</h3>
         <p style={{ fontSize: '0.83rem', color: '#64748b', lineHeight: 1.7, margin: '0 0 0.9rem' }}>
-          Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque jour. Ajoutez vos propres photos ici (vacances, animaux, famille…), puis activez-les pour chaque enfant ci-dessous.
+          Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque jour. PrimoLingo inclut déjà un ensemble d'images pré-configurées. Vous pouvez aussi <strong style={{ color: '#9ca3af' }}>ajouter vos propres photos</strong> (vacances, animaux, famille…) selon les goûts de vos enfants, et choisir <strong style={{ color: '#9ca3af' }}>pour quel enfant</strong> chaque image apparaîtra.
         </p>
         <div style={libShellStyle}>
           <ImageLibraryWithRefresh uid={uid} onSaved={refreshParentImages} />
@@ -923,10 +920,7 @@ export default function ParentDashboardV2() {
           <span style={logoTitleStyle}>PrimoLingo</span>
           <span style={{ fontSize: '0.7rem', fontWeight: 700, color: '#a78bfa', marginLeft: 6, padding: '2px 8px', borderRadius: 99, background: 'rgba(167,139,250,0.15)', border: '1px solid rgba(167,139,250,0.25)' }}>v2 bêta</span>
         </div>
-        <div style={{ display: 'flex', gap: '0.6rem', alignItems: 'center', flexWrap: 'wrap' }}>
-          {reauthError && <span style={{ fontSize: '0.75rem', color: '#f87171' }}>{reauthError}</span>}
-          <button type="button" onClick={handleSignOut} style={logoutBtnStyle}>Déconnexion</button>
-        </div>
+        {reauthError && <span style={{ fontSize: '0.75rem', color: '#f87171' }}>{reauthError}</span>}
       </div>
 
       {/* ── Content ── */}
@@ -954,12 +948,15 @@ export default function ParentDashboardV2() {
 
           {/* Account info */}
           <div style={{ marginBottom: '1rem', padding: '0.65rem 0.9rem', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 10 }}>
-            <p style={{ margin: '0 0 0.4rem', fontSize: '0.68rem', fontWeight: 700, color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Compte connecté</p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
-            <span style={{ fontSize: '0.83rem', color: '#d1d5db', fontWeight: 600 }}>{user?.email || 'compte local'}</span>
-            <span style={{ fontSize: '0.72rem', color: '#64748b', padding: '2px 8px', borderRadius: 99, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
-              {user?.providerData?.[0]?.providerId === 'google.com' ? '🔵 Google' : user?.uid === 'localhost-dev' ? '🛠 Dev local' : '✉️ Email'}
-            </span>
+            <p style={{ margin: '0 0 0.5rem', fontSize: '0.95rem', fontWeight: 800, color: '#fff', fontFamily: 'var(--font-display)' }}>Compte connecté</p>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.6rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+                <span style={{ fontSize: '0.83rem', color: '#d1d5db', fontWeight: 600 }}>{user?.email || 'compte local'}</span>
+                <span style={{ fontSize: '0.72rem', color: '#64748b', padding: '2px 8px', borderRadius: 99, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                  {user?.providerData?.[0]?.providerId === 'google.com' ? '🔵 Google' : user?.uid === 'localhost-dev' ? '🛠 Dev local' : '✉️ Email'}
+                </span>
+              </div>
+              <button type="button" onClick={handleSignOut} style={logoutBtnStyle}>Déconnexion</button>
             </div>
           </div>
 
@@ -978,14 +975,14 @@ export default function ParentDashboardV2() {
                     {pin === undefined ? '…' : pin ? 'Défini' : 'Non défini'}
                   </span>
                 </div>
-                <ul style={{ margin: '0 0 0.75rem', padding: 0, listStyle: 'none', display: 'grid', gap: '0.4rem' }}>
-                  <li style={{ fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.6 }}>
-                    1) <strong style={{ color: '#d1d5db' }}>Protéger la flamme</strong> de votre enfant (le nombre de jours consécutifs d'utilisation) quand il a une bonne raison de ne pas avoir joué — week-end familial, pas de possibilité de jouer, etc.
+                <ol style={{ margin: '0 0 0.75rem', paddingLeft: '1.1rem' }}>
+                  <li style={{ fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.65, marginBottom: '0.3rem' }}>
+                    <strong style={{ color: '#d1d5db' }}>Protéger la flamme</strong> de votre enfant (le nombre de jours consécutifs d'utilisation) quand il a une bonne raison de ne pas avoir joué — week-end familial, pas de possibilité de jouer, etc.
                   </li>
-                  <li style={{ fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.6 }}>
-                    2) <strong style={{ color: '#d1d5db' }}>Restaurer la progression</strong> à un jour particulier en cas de besoin.
+                  <li style={{ fontSize: '0.83rem', color: '#9ca3af', lineHeight: 1.65 }}>
+                    <strong style={{ color: '#d1d5db' }}>Restaurer la progression</strong> à un jour particulier en cas de besoin.
                   </li>
-                </ul>
+                </ol>
                 <button type="button" onClick={handlePinManageClick} style={secBtnStyle}>
                   {pin ? 'Gérer le code' : 'Définir le code'}
                 </button>

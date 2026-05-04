@@ -1,138 +1,149 @@
 [
   {
-    "x": 1204,
-    "y": 30,
+    "x": 1204, "y": 30,
     "text": "devrait être dans le corps de la page",
     "time": "04/05 12:24",
     "domContext": { "tag": "SPAN", "text": "Bonjour, Debug 👋" },
     "response": "Fait. Le greeting \"Bonjour, [prénom] 👋\" a été retiré du header et placé dans le corps de la page, juste au-dessus de la première section."
   },
   {
-    "x": 690,
-    "y": 202,
+    "x": 690, "y": 202,
     "text": "dis \"Utile pour : 1) protéger la flamme de votre enfant (le nombre de jours consécutifs d'utilsiation) quand il a une bonne raison (week-end familial, pas de possbilité de jouer, etc..) et 2) restaurer la progression à un jour particulier en cas de besoin",
     "time": "04/05 12:24",
     "domContext": { "tag": "P", "text": "Protège la flamme : votre enfant le saisit pour récupérer sa série après une absence." },
     "response": "Fait. Le texte du code PIN a été réécrit avec les deux cas d'usage : 1) protéger la flamme quand l'enfant a une bonne raison de ne pas avoir joué (week-end familial, etc.) et 2) restaurer la progression à un jour particulier en cas de besoin."
   },
   {
-    "x": 550,
-    "y": 375,
+    "x": 550, "y": 375,
     "text": "explique mieux à quoi sert l'image mystère",
     "time": "04/05 12:26",
     "domContext": { "tag": "P", "text": "Ajoutez vos images ici, puis activez-les pour chaque enfant dans les paramètres ci-dessous." },
     "response": "Fait. Le texte explique maintenant le principe complet : « Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque jour. Ajoutez vos propres photos ici (vacances, animaux, famille…), puis activez-les pour chaque enfant dans la section Mes enfants ci-dessous. »"
   },
   {
-    "x": 390,
-    "y": 646,
+    "x": 390, "y": 646,
     "text": "remonte cette section juste en dessous du code",
     "time": "04/05 12:26",
     "domContext": { "tag": "H2", "text": "Accès enfant" },
     "response": "Fait. La section « Accès enfant » est maintenant placée juste après « Mon compte » (code PIN), avant la bibliothèque d'images mystère. L'ordre des sections est désormais : Mon compte → Accès enfant → Bibliothèque d'images mystère → Mes enfants."
   },
   {
-    "x": 615,
-    "y": 932,
+    "x": 615, "y": 932,
     "text": "",
     "time": "04/05 12:26",
     "domContext": { "tag": "BUTTON", "text": "Ouvrir le tableau de bord" },
     "response": "Commentaire vide. Le bouton « Ouvrir le tableau de bord » a été supprimé et remplacé par des instructions contextuelles (voir annotation 6)."
   },
   {
-    "x": 396,
-    "y": 980,
+    "x": 396, "y": 980,
     "text": "le CTA devrait être \"mettre en favoris\" et en dessous une explication contextuelle au device sur comment faire",
     "time": "04/05 12:26",
     "domContext": { "tag": "DIV", "text": "🖥️Sur votre appareilTableau de bord parentMarquez cette page en favori pour y accéder facilement.Ouvrir le tableau de bord" },
     "response": "Fait. La carte parent affiche maintenant des instructions contextuelles selon l'appareil détecté : sur iOS « Dans Safari : appuyez sur Partager → Ajouter aux favoris », sur Android « Dans Chrome : appuyez sur ⋮ → Ajouter aux favoris », sur desktop « Appuyez sur Ctrl+D (Windows) ou Cmd+D (Mac) ». Le bouton « Ouvrir le tableau de bord » a été supprimé."
   },
   {
-    "x": 989,
-    "y": 915,
+    "x": 989, "y": 915,
     "text": "1 ) cliquer sur le bouton \"ouvrir la partie enfant\", 2) la mettre en favoris pour que votre enfant puisse  y accéder facilement. ",
     "time": "04/05 12:27",
     "domContext": { "tag": "LI", "text": "Ouvre primolingo.app/play dans Chrome ou Edge" },
     "response": "Fait. Les instructions pour les 3 plateformes ont été mises à jour : étape 1) Cliquer sur « Ouvrir la partie enfant », étape 2) Mettre la page en favoris (instructions spécifiques à chaque plateforme), étape 3) L'enfant pourra y accéder facilement."
   },
   {
-    "x": 924,
-    "y": 1035,
+    "x": 924, "y": 1035,
     "text": "retirer le CTA et remplacer le par \"Ouvrir la partie enfant\"",
     "time": "04/05 12:28",
     "domContext": { "tag": "DIV", "text": "Partager l'app enfant" },
     "response": "Fait. Le bouton « Partager l'app enfant » a été remplacé par « Ouvrir la partie enfant » qui ouvre /play dans un nouvel onglet. Le partage via Web Share API a été supprimé."
   },
   {
-    "x": 666,
-    "y": 1781,
+    "x": 666, "y": 1781,
     "text": "retirer le CTA ici  et créer une section \"partie enfant\" par enfant au dessus",
     "time": "04/05 12:29",
     "domContext": { "tag": "DIV", "text": "Afficher les sauvegardes" },
     "response": "Fait. 1) Le bouton « Afficher les sauvegardes » a été supprimé — les sauvegardes se chargent automatiquement à l'ouverture du panneau. 2) Une section « Partie enfant » a été ajoutée par enfant juste au-dessus des sauvegardes, avec un texte explicatif et le bouton « Ouvrir la partie enfant » qui ouvre /play/:childId dans un nouvel onglet. Le bouton « Jouer avec X » en bas du panneau a été retiré."
   },
   {
-    "x": 607,
-    "y": 425,
+    "x": 607, "y": 425,
     "text": "ajoute un titre",
     "time": "04/05 13:01",
     "domContext": { "tag": "DIV", "text": "👤debug@test.com🛠 Dev local" },
     "response": "Fait. Un label « Compte connecté » en petites majuscules apparaît juste au-dessus du bandeau email/méthode de connexion."
   },
   {
-    "x": 640,
-    "y": 240,
+    "x": 640, "y": 240,
     "text": "supprimer les émoji et énumère, 1, 2, ...",
     "time": "04/05 13:01",
     "domContext": { "tag": "LI", "text": "📊 Suivre leur progression et activité" },
     "response": "Fait. Les emoji (👤📊🖼️▶️) ont été retirés et la liste non-ordonnée a été remplacée par un <ol> avec numérotation automatique 1, 2, 3, 4."
   },
   {
-    "x": 336,
-    "y": 496,
+    "x": 336, "y": 496,
     "text": "pas d'émoji",
     "time": "04/05 13:02",
     "domContext": { "tag": "DIV", "text": "🔒Code parental à 4 chiffresDéfini1) Protéger la flamme de votre enfant..." },
     "response": "Fait. L'emoji 🔒 a été retiré de la carte Code parental."
   },
   {
-    "x": 328,
-    "y": 885,
+    "x": 328, "y": 885,
     "text": "utilise notre étoile svg",
     "time": "04/05 13:03",
     "domContext": { "tag": "P", "text": "⭐ Recommandé : mettre ce tableau de bord en favori sur votre appareil..." },
     "response": "Fait. L'emoji ⭐ a été remplacé par le SVG étoile du projet (même forme dégradée orange→jaune que dans MiniQuiz), affiché en 16×16 px aligné sur la ligne de texte."
   },
   {
-    "x": 380,
-    "y": 411,
+    "x": 380, "y": 411,
     "text": "pas cohérnet avec le reste, les titres sont à l'intérieur des cadres partout ailleurs, fais le ici aussi",
     "time": "04/05 14:01",
     "domContext": { "tag": "P", "text": "Compte connecté" },
     "response": "Fait. Le label « Compte connecté » a été déplacé à l'intérieur du cadre, juste au-dessus de l'email, cohérent avec les autres sections."
   },
   {
-    "x": 652,
-    "y": 454,
+    "x": 652, "y": 454,
     "text": "enlève l'emoji",
     "time": "04/05 14:01",
     "domContext": { "tag": "DIV", "text": "👤debug@test.com🛠 Dev local" },
     "response": "Fait. L'emoji 👤 a été retiré du bandeau email."
   },
   {
-    "x": 1076,
-    "y": 2393,
+    "x": 1076, "y": 2393,
     "text": "enlève le bouton modifier",
     "time": "04/05 14:02",
     "domContext": { "tag": "DIV", "text": "Bonjour 👋Bienvenue dans l'espace parent de PrimoLingo. Vous pouvez :Configurer les profils de vos enfantsSuivre leur pr" },
     "response": "Fait. Le bouton crayon « Modifier le profil » a été retiré du header de chaque panneau enfant dans Suivi des enfants. L'édition du profil reste accessible via le bouton « ✏️ Modifier » dans la section Gestion des enfants."
   },
   {
-    "x": 994,
-    "y": 1398,
+    "x": 994, "y": 1398,
     "text": "le bouton modifier parait grisé, dégrise le mais garde le comme ca en secondary",
     "time": "04/05 14:02",
     "domContext": { "tag": "DIV", "text": "🐼Enfant-test✏️ Modifier" },
     "response": "Fait. La couleur du texte est passée de rgba(255,255,255,0.5) à rgba(255,255,255,0.75) et la bordure de rgba(255,255,255,0.1) à rgba(255,255,255,0.25) — bouton visible mais toujours en style secondaire."
+  },
+  {
+    "x": 386, "y": 424,
+    "text": "ce titre devrait être traité comme titre primaire, comme \"code parental\"",
+    "time": "04/05 15:01",
+    "domContext": { "tag": "P", "text": "Compte connecté" },
+    "response": "Fait. « Compte connecté » est maintenant en fontSize 0.95rem, fontWeight 800, color #fff et fontFamily display — même style que le titre « Code parental à 4 chiffres »."
+  },
+  {
+    "x": 653, "y": 548,
+    "text": "les autres énumérations sont en 1. avec retrait à la 2ème ligne, fais pareil que sur \"sur l'appareil de l'enfant\"",
+    "time": "04/05 15:01",
+    "domContext": { "tag": "LI", "text": "1) Protéger la flamme de votre enfant (le nombre de jours consécutifs d'utilisation) quand il a une bonne raison de ne p" },
+    "response": "Fait. La liste du code PIN est maintenant un <ol style={{ paddingLeft: '1.1rem' }}> avec des <li> sans préfixe manuel — même style que la liste de la carte « Sur l'appareil de l'enfant » : numérotation automatique + retrait hanging naturel."
+  },
+  {
+    "x": 432, "y": 1959,
+    "text": "enlève l'emoji et traite le titre comme \"Gestion des enfants\"",
+    "time": "04/05 15:02",
+    "domContext": { "tag": "SPAN", "text": "Bibliothèque d'images mystère" },
+    "response": "Fait. L'emoji 🖼️ a été retiré et le titre « Bibliothèque d'images mystère » est maintenant un <h3> avec sectionTitleStyle — même police, taille et graisse que « Gestion des enfants »."
+  },
+  {
+    "x": 871, "y": 2006,
+    "text": "explique qu'il y a déjà un ensemble d'image pré-configurées mais que le parent peut en ajouter en fonction des gouts des enfants et choisir pour quel enfant ces images apparaitront",
+    "time": "04/05 15:02",
+    "domContext": { "tag": "P", "text": "Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive" },
+    "response": "Fait. Le texte précise maintenant que PrimoLingo inclut des images pré-configurées, que le parent peut en ajouter selon les goûts de ses enfants, et choisir pour quel enfant chaque image apparaîtra."
   }
 ]
