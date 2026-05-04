@@ -2,7 +2,7 @@ import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyCeWSmdVeBBllYbz5TnoTK_rcpF4ybqG7Y',
-  authDomain: 'www.primolingo.fr',
+  authDomain: 'orthographe-eabb9.firebaseapp.com',
   projectId: 'orthographe-eabb9',
   storageBucket: 'orthographe-eabb9.firebasestorage.app',
   messagingSenderId: '970082314822',
