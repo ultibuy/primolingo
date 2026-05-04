@@ -1627,7 +1627,7 @@ export default function LandingPageV5() {
             <p style={css.heroDesc}>
               Les devoirs de français, c'est souvent recopier 10 fois le même mot ou la même règle — pénible, et oublié dès le contrôle passé. <strong style={{ color: "#a78bfa" }}>PrimoLingo</strong> remplace cette répétition mécanique par un système de révision adaptative : l'app détecte ce que votre enfant oublie et le lui repropose au bon moment. Résultat : les règles restent, durablement.
             </p>
-            <button style={css.heroCta} onClick={() => { posthog.capture('landing_cta_clicked', { location: 'hero' }); navigate('/login'); }}>
+            <button style={css.heroCta} onClick={() => { posthog.capture('landing_cta_clicked', { location: 'hero' }); navigate('/login?mode=register'); }}>
               Créer un compte gratuit →
             </button>
             <span style={css.heroCtaSub}>Connexion avec Google · Prêt en 10 secondes</span>
@@ -2240,7 +2240,7 @@ export default function LandingPageV5() {
             Créez un compte en 10 secondes et laissez votre enfant découvrir <strong style={{ color: "#a78bfa" }}>PrimoLingo</strong>.
             10 minutes par jour suffisent — mais il voudra en faire plus 😉
           </p>
-          <button style={css.heroCta} onClick={() => { posthog.capture('landing_cta_clicked', { location: 'final_cta' }); navigate('/login'); }}>
+          <button style={css.heroCta} onClick={() => { posthog.capture('landing_cta_clicked', { location: 'final_cta' }); navigate('/login?mode=register'); }}>
             Commencer gratuitement →
           </button>
         </section>

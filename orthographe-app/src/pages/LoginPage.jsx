@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import AppLogo from '../components/AppLogo.jsx';
 import { signInWithGoogle, signInWithEmail, createAccountWithEmail } from '../services/auth.js';
 import { captureException } from '../services/sentry.js';
@@ -7,9 +7,10 @@ import posthog from '../services/analytics.js';
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [mode, setMode] = useState('login'); // 'login' | 'register'
+  const [mode, setMode] = useState(searchParams.get('mode') === 'register' ? 'register' : 'login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

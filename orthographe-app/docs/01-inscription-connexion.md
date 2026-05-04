@@ -72,6 +72,7 @@ Quand le code est requis (récupération de flamme, retour parent), l'enfant voi
 | — | La session reste active tant que le parent ne se déconnecte pas | En revenant sur l'app, le parent est toujours connecté |
 | — | Le code parental est haché avant stockage | Aucun PIN en clair dans Firestore ou localStorage |
 | — | Les erreurs de connexion sont affichées en français | Mot de passe incorrect, compte inexistant, etc. |
+| — | Le CTA "Créer un compte gratuit" de la page d'accueil ouvre la page de connexion en mode inscription | L'URL est `/login?mode=register`, le bouton affiche "S'inscrire avec Google" et "Créer mon compte" |
 
 ## Voir aussi
 
