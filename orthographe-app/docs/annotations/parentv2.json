@@ -1,163 +1,266 @@
 [
   {
-    "x": 1204, "y": 30,
+    "x": 1204,
+    "y": 30,
     "text": "devrait être dans le corps de la page",
     "time": "04/05 12:24",
-    "domContext": { "tag": "SPAN", "text": "Bonjour, Debug 👋" },
+    "domContext": {
+      "tag": "SPAN",
+      "text": "Bonjour, Debug 👋"
+    },
     "response": "Fait. Le greeting \"Bonjour, [prénom] 👋\" a été retiré du header et placé dans le corps de la page, juste au-dessus de la première section."
   },
   {
-    "x": 690, "y": 202,
+    "x": 690,
+    "y": 202,
     "text": "dis \"Utile pour : 1) protéger la flamme de votre enfant (le nombre de jours consécutifs d'utilsiation) quand il a une bonne raison (week-end familial, pas de possbilité de jouer, etc..) et 2) restaurer la progression à un jour particulier en cas de besoin",
     "time": "04/05 12:24",
-    "domContext": { "tag": "P", "text": "Protège la flamme : votre enfant le saisit pour récupérer sa série après une absence." },
+    "domContext": {
+      "tag": "P",
+      "text": "Protège la flamme : votre enfant le saisit pour récupérer sa série après une absence."
+    },
     "response": "Fait. Le texte du code PIN a été réécrit avec les deux cas d'usage."
   },
   {
-    "x": 550, "y": 375,
+    "x": 550,
+    "y": 375,
     "text": "explique mieux à quoi sert l'image mystère",
     "time": "04/05 12:26",
-    "domContext": { "tag": "P", "text": "Ajoutez vos images ici, puis activez-les pour chaque enfant dans les paramètres ci-dessous." },
+    "domContext": {
+      "tag": "P",
+      "text": "Ajoutez vos images ici, puis activez-les pour chaque enfant dans les paramètres ci-dessous."
+    },
     "response": "Fait. Le texte explique maintenant le principe complet."
   },
   {
-    "x": 390, "y": 646,
+    "x": 390,
+    "y": 646,
     "text": "remonte cette section juste en dessous du code",
     "time": "04/05 12:26",
-    "domContext": { "tag": "H2", "text": "Accès enfant" },
+    "domContext": {
+      "tag": "H2",
+      "text": "Accès enfant"
+    },
     "response": "Fait. La section « Accès enfant » est maintenant placée juste après « Mon compte »."
   },
   {
-    "x": 615, "y": 932,
+    "x": 615,
+    "y": 932,
     "text": "",
     "time": "04/05 12:26",
-    "domContext": { "tag": "BUTTON", "text": "Ouvrir le tableau de bord" },
+    "domContext": {
+      "tag": "BUTTON",
+      "text": "Ouvrir le tableau de bord"
+    },
     "response": "Commentaire vide. Le bouton a été supprimé et remplacé par des instructions contextuelles."
   },
   {
-    "x": 396, "y": 980,
+    "x": 396,
+    "y": 980,
     "text": "le CTA devrait être \"mettre en favoris\" et en dessous une explication contextuelle au device sur comment faire",
     "time": "04/05 12:26",
-    "domContext": { "tag": "DIV", "text": "🖥️Sur votre appareilTableau de bord parentMarquez cette page en favori pour y accéder facilement.Ouvrir le tableau de bord" },
+    "domContext": {
+      "tag": "DIV",
+      "text": "🖥️Sur votre appareilTableau de bord parentMarquez cette page en favori pour y accéder facilement.Ouvrir le tableau de bord"
+    },
     "response": "Fait. La carte parent affiche maintenant des instructions contextuelles selon l'appareil détecté."
   },
   {
-    "x": 989, "y": 915,
+    "x": 989,
+    "y": 915,
     "text": "1 ) cliquer sur le bouton \"ouvrir la partie enfant\", 2) la mettre en favoris pour que votre enfant puisse  y accéder facilement. ",
     "time": "04/05 12:27",
-    "domContext": { "tag": "LI", "text": "Ouvre primolingo.app/play dans Chrome ou Edge" },
+    "domContext": {
+      "tag": "LI",
+      "text": "Ouvre primolingo.app/play dans Chrome ou Edge"
+    },
     "response": "Fait. Les instructions pour les 3 plateformes ont été mises à jour avec les étapes numérotées."
   },
   {
-    "x": 924, "y": 1035,
+    "x": 924,
+    "y": 1035,
     "text": "retirer le CTA et remplacer le par \"Ouvrir la partie enfant\"",
     "time": "04/05 12:28",
-    "domContext": { "tag": "DIV", "text": "Partager l'app enfant" },
+    "domContext": {
+      "tag": "DIV",
+      "text": "Partager l'app enfant"
+    },
     "response": "Fait. Le bouton « Partager l'app enfant » a été remplacé par « Ouvrir la partie enfant »."
   },
   {
-    "x": 666, "y": 1781,
+    "x": 666,
+    "y": 1781,
     "text": "retirer le CTA ici  et créer une section \"partie enfant\" par enfant au dessus",
     "time": "04/05 12:29",
-    "domContext": { "tag": "DIV", "text": "Afficher les sauvegardes" },
+    "domContext": {
+      "tag": "DIV",
+      "text": "Afficher les sauvegardes"
+    },
     "response": "Fait. Le bouton « Afficher les sauvegardes » a été supprimé et une section « Partie enfant » a été ajoutée par enfant."
   },
   {
-    "x": 607, "y": 425,
+    "x": 607,
+    "y": 425,
     "text": "ajoute un titre",
     "time": "04/05 13:01",
-    "domContext": { "tag": "DIV", "text": "👤debug@test.com🛠 Dev local" },
+    "domContext": {
+      "tag": "DIV",
+      "text": "👤debug@test.com🛠 Dev local"
+    },
     "response": "Fait. Un label « Compte connecté » a été ajouté."
   },
   {
-    "x": 640, "y": 240,
+    "x": 640,
+    "y": 240,
     "text": "supprimer les émoji et énumère, 1, 2, ...",
     "time": "04/05 13:01",
-    "domContext": { "tag": "LI", "text": "📊 Suivre leur progression et activité" },
+    "domContext": {
+      "tag": "LI",
+      "text": "📊 Suivre leur progression et activité"
+    },
     "response": "Fait. Les emoji ont été retirés et la liste remplacée par un <ol>."
   },
   {
-    "x": 336, "y": 496,
+    "x": 336,
+    "y": 496,
     "text": "pas d'émoji",
     "time": "04/05 13:02",
-    "domContext": { "tag": "DIV", "text": "🔒Code parental à 4 chiffresDéfini..." },
+    "domContext": {
+      "tag": "DIV",
+      "text": "🔒Code parental à 4 chiffresDéfini..."
+    },
     "response": "Fait. L'emoji 🔒 a été retiré."
   },
   {
-    "x": 328, "y": 885,
+    "x": 328,
+    "y": 885,
     "text": "utilise notre étoile svg",
     "time": "04/05 13:03",
-    "domContext": { "tag": "P", "text": "⭐ Recommandé : mettre ce tableau de bord en favori..." },
+    "domContext": {
+      "tag": "P",
+      "text": "⭐ Recommandé : mettre ce tableau de bord en favori..."
+    },
     "response": "Fait. L'emoji ⭐ a été remplacé par le SVG étoile du projet."
   },
   {
-    "x": 380, "y": 411,
+    "x": 380,
+    "y": 411,
     "text": "pas cohérnet avec le reste, les titres sont à l'intérieur des cadres partout ailleurs, fais le ici aussi",
     "time": "04/05 14:01",
-    "domContext": { "tag": "P", "text": "Compte connecté" },
+    "domContext": {
+      "tag": "P",
+      "text": "Compte connecté"
+    },
     "response": "Fait. Le label « Compte connecté » a été déplacé à l'intérieur du cadre."
   },
   {
-    "x": 652, "y": 454,
+    "x": 652,
+    "y": 454,
     "text": "enlève l'emoji",
     "time": "04/05 14:01",
-    "domContext": { "tag": "DIV", "text": "👤debug@test.com🛠 Dev local" },
+    "domContext": {
+      "tag": "DIV",
+      "text": "👤debug@test.com🛠 Dev local"
+    },
     "response": "Fait. L'emoji 👤 a été retiré."
   },
   {
-    "x": 1076, "y": 2393,
+    "x": 1076,
+    "y": 2393,
     "text": "enlève le bouton modifier",
     "time": "04/05 14:02",
-    "domContext": { "tag": "DIV", "text": "Bonjour 👋Bienvenue dans l'espace parent de PrimoLingo..." },
+    "domContext": {
+      "tag": "DIV",
+      "text": "Bonjour 👋Bienvenue dans l'espace parent de PrimoLingo..."
+    },
     "response": "Fait. Le bouton crayon « Modifier le profil » a été retiré du header de chaque panneau enfant dans Suivi des enfants."
   },
   {
-    "x": 994, "y": 1398,
+    "x": 994,
+    "y": 1398,
     "text": "le bouton modifier parait grisé, dégrise le mais garde le comme ca en secondary",
     "time": "04/05 14:02",
-    "domContext": { "tag": "DIV", "text": "🐼Enfant-test✏️ Modifier" },
+    "domContext": {
+      "tag": "DIV",
+      "text": "🐼Enfant-test✏️ Modifier"
+    },
     "response": "Fait. La couleur du texte est passée de 0.5 à 0.75 d'opacité et la bordure de 0.1 à 0.25."
   },
   {
-    "x": 386, "y": 424,
+    "x": 386,
+    "y": 424,
     "text": "ce titre devrait être traité comme titre primaire, comme \"code parental\"",
     "time": "04/05 15:01",
-    "domContext": { "tag": "P", "text": "Compte connecté" },
+    "domContext": {
+      "tag": "P",
+      "text": "Compte connecté"
+    },
     "response": "Fait. « Compte connecté » est maintenant en fontSize 0.95rem, fontWeight 800, color #fff et fontFamily display."
   },
   {
-    "x": 653, "y": 548,
+    "x": 653,
+    "y": 548,
     "text": "les autres énumérations sont en 1. avec retrait à la 2ème ligne, fais pareil que sur \"sur l'appareil de l'enfant\"",
     "time": "04/05 15:01",
-    "domContext": { "tag": "LI", "text": "1) Protéger la flamme de votre enfant..." },
+    "domContext": {
+      "tag": "LI",
+      "text": "1) Protéger la flamme de votre enfant..."
+    },
     "response": "Fait. La liste du code PIN est maintenant un <ol paddingLeft 1.1rem> avec des <li> sans préfixe manuel."
   },
   {
-    "x": 432, "y": 1959,
+    "x": 432,
+    "y": 1959,
     "text": "enlève l'emoji et traite le titre comme \"Gestion des enfants\"",
     "time": "04/05 15:02",
-    "domContext": { "tag": "SPAN", "text": "Bibliothèque d'images mystère" },
+    "domContext": {
+      "tag": "SPAN",
+      "text": "Bibliothèque d'images mystère"
+    },
     "response": "Fait. L'emoji 🖼️ a été retiré et le titre converti en <h3> avec sectionTitleStyle."
   },
   {
-    "x": 871, "y": 2006,
+    "x": 871,
+    "y": 2006,
     "text": "explique qu'il y a déjà un ensemble d'image pré-configurées mais que le parent peut en ajouter en fonction des gouts des enfants et choisir pour quel enfant ces images apparaitront",
     "time": "04/05 15:02",
-    "domContext": { "tag": "P", "text": "Une image mystère se révèle progressivement au fil des sessions..." },
+    "domContext": {
+      "tag": "P",
+      "text": "Une image mystère se révèle progressivement au fil des sessions..."
+    },
     "response": "Fait. Le texte précise maintenant que PrimoLingo inclut des images pré-configurées, que le parent peut en ajouter selon les goûts, et choisir pour quel enfant chaque image apparaîtra."
   },
   {
-    "x": 843, "y": 1199,
+    "x": 843,
+    "y": 1199,
     "text": "ajoute ici le bouton de partage si c'est bien un ios ou un android détectés",
     "time": "04/05 16:01",
-    "domContext": { "tag": "LI", "text": "Appuyez sur le bouton Partager (□↑), puis « Sur l'écran d'accueil »" },
+    "domContext": {
+      "tag": "LI",
+      "text": "Appuyez sur le bouton Partager (□↑), puis « Sur l'écran d'accueil »"
+    },
     "response": "Fait. Un bouton « ↗ Ouvrir / partager la partie enfant » apparaît sous les étapes quand iOS ou Android est sélectionné. Il invoque navigator.share() (Web Share API native) si disponible, ou copie l'URL dans le presse-papier en fallback. Après action, il passe en vert « ✓ Lien copié ! » pendant 3 s."
   },
   {
-    "x": 761, "y": 1650,
+    "x": 761,
+    "y": 1650,
     "text": "afficher 2 jours et un petit bouton \"voir plus\" en dessous",
     "time": "04/05 16:02",
-    "domContext": { "tag": "DIV", "text": "2026-05-049145 pièces · 0 joursRestaurer" },
+    "domContext": {
+      "tag": "DIV",
+      "text": "2026-05-049145 pièces · 0 joursRestaurer"
+    },
     "response": "Fait. Les sauvegardes n'affichent plus que les 2 plus récentes par défaut. Un bouton « ↓ Voir les N sauvegardes précédentes » apparaît en dessous s'il en existe davantage, et déploie toute la liste au clic."
+  },
+  {
+    "x": 1059,
+    "y": 1235,
+    "text": "il y a un problème, ca affiche le bouton alors que je ne sus pas sur ios ou android",
+    "time": "04/05 16:30",
+    "domContext": {
+      "tag": "OL",
+      "text": "Rendez-vous sur primolingo.app dans Safari et connectez-vous avec votre compte parentDans la section « Gestion des enfan"
+    },
+    "response": "Corrigé. Le problème venait de la détection : certains Mac rapportent navigator.maxTouchPoints > 1 (trackpad Force Touch), ce qui déclenchait faussement la détection iOS. La condition est maintenant >= 5, valeur propre aux vrais appareils iOS/iPadOS. Sur Mac desktop, le bouton ne s'affichera plus."
   }
 ]

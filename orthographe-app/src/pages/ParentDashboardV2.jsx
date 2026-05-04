@@ -44,7 +44,7 @@ const TILE_COUNT = 6;
 
 function detectPlatform() {
   const ua = navigator.userAgent;
-  if (/iPad|iPhone|iPod/.test(ua) || (/Mac/.test(ua) && navigator.maxTouchPoints > 1)) return 'ios';
+  if (/iPad|iPhone|iPod/.test(ua) || (/Mac/.test(ua) && navigator.maxTouchPoints >= 5)) return 'ios';
   if (/Android/.test(ua)) return 'android';
   return 'desktop';
 }
