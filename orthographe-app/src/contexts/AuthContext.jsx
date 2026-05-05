@@ -32,7 +32,26 @@ export function AuthProvider({ children }) {
     authPromiseRef.current = Promise.all([
       import('firebase/auth'),
       import('../services/firebase-auth.js'),
-    ]).then(([{ onAuthStateChanged }, { auth }]) => {
+    ]).then(([{ onAuthStateChanged, getRedirectResult }, { auth }]) => {
+      // Handle result of signInWithRedirect (iOS Safari flow)
+      getRedirectResult(auth).then(async (result) => {
+        if (result?.user) {
+          // ensureUserDoc after redirect
+          const { doc, getDoc, setDoc, serverTimestamp } = await import('firebase/firestore');
+          const { db } = await import('../services/firebase-db.js');
+          const userRef = doc(db, 'users', result.user.uid);
+          const snap = await getDoc(userRef);
+          if (!snap.exists()) {
+            await setDoc(userRef, {
+              email: result.user.email,
+              displayName: result.user.displayName,
+              createdAt: serverTimestamp(),
+              settings: { prodQuestionCount: 20 },
+            });
+          }
+        }
+      }).catch(() => {});
+
       unsubscribeRef.current = onAuthStateChanged(auth, (firebaseUser) => {
         import('../services/analytics.js').then(({ default: posthog }) => {
           if (firebaseUser) {

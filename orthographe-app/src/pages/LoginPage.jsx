@@ -20,8 +20,9 @@ export default function LoginPage() {
     setLoading(true);
     setError(null);
     try {
-      await (mode === 'register' ? signUpWithGoogle() : signInWithGoogle());
-      navigate('/parent');
+      const user = await (mode === 'register' ? signUpWithGoogle() : signInWithGoogle());
+      if (user) navigate('/parent');
+      // else: redirect flow initiated — page will reload, no navigate needed
     } catch (err) {
       posthog.capture('login_failed', { error_code: err?.code, method: 'google' });
       captureException(err);
