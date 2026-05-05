@@ -52,6 +52,14 @@ parseLocalDate(s)   // "YYYY-MM-DD" → Date locale (pas new Date(s) qui est UTC
 
 **Réutiliser avant de recréer.** Avant d'écrire un nouveau composant UI ou du style inline, chercher dans `src/components/` si un composant existant couvre le besoin. Si le besoin est proche, étendre le composant existant plutôt que d'en dupliquer le style à la main. Exemples clés : `UpdateBanner` pour les banners système, `PopupModal` pour les modales, `MotivationBanner` pour les messages de coaching.
 
+## Icônes SVG
+
+Règle absolue : tout SVG simple va dans `src/components/icons/ProductIcons.jsx`, même s'il n'est utilisé qu'à un seul endroit.
+
+- Props standard : `size` (number), `color` (string, défaut = token CSS)
+- Si le SVG a besoin d'un style layout (margin, opacity…), l'appliquer sur un `<span>` au site d'utilisation — pas dans l'icône elle-même
+- **Exception** : SVG avec animation CSS `@keyframes` ou logique conditionnelle interne → fichier dédié dans `src/components/`
+
 ## Comportement général
 
 Quand l'utilisateur pose une question (diagnostic, explication, "pourquoi..."), répondre uniquement — ne pas modifier de code sauf si l'utilisateur demande explicitement une action ou un fix.
