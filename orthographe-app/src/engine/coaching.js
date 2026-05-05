@@ -179,19 +179,6 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
-  // --- arc1.2: welcome bonus confirmed (first quiz succeeded) ---
-  if (allowed('arc1.2') && !isAlreadyShown(coaching, 'arc1.2')) {
-    if (firstQuizDone && totalSessions === 1) {
-      return msg('arc1.2', 'pieces',
-        '200 pièces de bienvenue reçues ! L\'aventure commence pour de vrai.',
-        '200 pièces de bienvenue',
-        '🎁',
-        null,
-        { oneShot: true }
-      );
-    }
-  }
-
   // --- arc1.3: failed first session (< 60%) ---
   if (allowed('arc1.3') && !isAlreadyShown(coaching, 'arc1.3')) {
     // Detect: first session ever done, but firstSession milestone not set (means score < 60%)
