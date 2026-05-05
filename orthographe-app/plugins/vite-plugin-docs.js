@@ -600,13 +600,25 @@ const VARIANT_COLORS = {
   pieces:    { accent: '#f5b400', secondary: '#f5b400' },
 };
 
-function renderInlineBanner(msg) {
+function renderInlineBanner(msg, compact = false) {
   const colors = VARIANT_COLORS[msg.variant] || VARIANT_COLORS.plain;
   const { accent, secondary } = colors;
   const svgIcon = msg.emoji ? getBannerSvg(msg.emoji, accent, secondary) : '';
   const text = msg.emphasis
     ? msg.message.replace(msg.emphasis, `<b style="color:${accent}">${msg.emphasis}</b>`)
     : msg.message;
+
+  if (compact) {
+    // Compact version for table cells — no margin, smaller icon, min-width
+    return `<div style="border-radius:10px;padding:8px 10px;border:1px solid ${accent}40;
+background:linear-gradient(90deg,${accent}1F 0%,${accent}0F 100%);
+display:flex;align-items:center;gap:8px;min-width:200px;
+font-family:'Plus Jakarta Sans',sans-serif;position:relative">
+<span style="position:absolute;top:2px;right:5px;font-size:8px;color:rgba(255,255,255,0.15);font-family:monospace">${msg.arcId}</span>
+<div style="width:30px;height:30px;display:flex;align-items:center;justify-content:center;flex-shrink:0">${svgIcon}</div>
+<div style="font-size:11px;font-weight:600;color:#fff;line-height:1.4;flex:1">${text}</div>
+</div>`;
+  }
 
   return `<div style="border-radius:14px;padding:12px 16px;border:1px solid ${accent}40;
 background:linear-gradient(90deg,${accent}1F 0%,${accent}0F 100%);
@@ -658,13 +670,19 @@ function injectInlineBanners(html) {
     byArc[m.arcId].push(m);
   }
 
-  // Replace each <img alt="arcX.Y" src="...coaching-arcX.Y.png"> with inline banner
-  return html.replace(/<p><img src="[^"]*coaching-(arc[\w.]+)\.png" alt="[^"]*"><\/p>/g, (match, arcId) => {
+  // Replace <p><img ...coaching-arcX.Y.png...></p> (standalone paragraphs)
+  html = html.replace(/<p><img src="[^"]*coaching-(arc[\w.]+)\.png" alt="[^"]*"><\/p>/g, (match, arcId) => {
     const msgs = byArc[arcId];
-    if (!msgs || msgs.length === 0) return match; // keep original if no data
-    // For duplicate arcIds (e.g. arc14.6 with 2 variants), render all
+    if (!msgs || msgs.length === 0) return match;
     return msgs.map(m => renderInlineBanner(m)).join('\n');
   });
+  // Replace bare <img ...coaching-arcX.Y.png...> (inside table cells)
+  html = html.replace(/<img src="[^"]*coaching-(arc[\w.]+)\.png" alt="[^"]*">/g, (match, arcId) => {
+    const msgs = byArc[arcId];
+    if (!msgs || msgs.length === 0) return match;
+    return msgs.map(m => renderInlineBanner(m, true)).join('\n');
+  });
+  return html;
 }
 
 function buildAnnotationOverlay(slug) {

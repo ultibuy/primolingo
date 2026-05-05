@@ -51,12 +51,12 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc1.1 | Fais ton premier quiz pour remporter 200 pièces de bienvenue. | `totalSessions === 0` · `!firstQuizDone` | ✱ | D | 1 |
-| arc1.3 | Zut il te fallait au moins 12/20 pour débloquer les 200 pièces. Elles t'attendent toujours ! | `totalSessions === 1` · `!firstQuizDone` (score < 60 %) | ✱ | D | 2 |
-| arc1.5 | C'est bon, tu peux débloquer le Panda — va faire un tour dans la boutique. | `coins >= 250` · `ownedChars === 0` | ✱ | D | 20 |
-| arc1.4 | Plus que N pièces pour débloquer le Panda Samouraï. | `200 ≤ coins < 250` · `ownedChars === 0` | ✱ | D | 21 |
-| arc1.7.streak5 | Plus que 2 jours pour atteindre 7 jours et empocher 100 pièces. | `streak === 5` | ✱ | D | 29 |
-| arc1.7.streak6 | Demain ta flamme passe à 7 jours — 100 pièces à la clé. | `streak === 6` | ✱ | D | 30 |
+| arc1.1 | ![arc1.1](screenshots/coaching-arc1.1.png) | Jamais fait de quiz · bonus 200 pièces pas encore obtenu | ✱ | D | 1 |
+| arc1.3 | ![arc1.3](screenshots/coaching-arc1.3.png) | 1 session faite · bonus 200 pièces non obtenu (score < 60 %) | ✱ | D | 2 |
+| arc1.5 | ![arc1.5](screenshots/coaching-arc1.5.png) | 250 pièces ou plus · aucun personnage possédé | ✱ | D | 20 |
+| arc1.4 | ![arc1.4](screenshots/coaching-arc1.4.png) | Entre 200 et 249 pièces · aucun personnage possédé | ✱ | D | 21 |
+| arc1.7.streak5 | ![arc1.7.streak5](screenshots/coaching-arc1.7.streak5.png) | Flamme exactement à 5 jours | ✱ | D | 29 |
+| arc1.7.streak6 | ![arc1.7.streak6](screenshots/coaching-arc1.7.streak6.png) | Flamme exactement à 6 jours | ✱ | D | 30 |
 
 ---
 
@@ -64,9 +64,9 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc2.1 | Belle session sur "…". Plus que 2 sessions à 16/20 pour passer Argent. | Règle level 1 · `guidedSessionsAbove80 === 1` | ✱ | D+E | 10 |
-| arc2.2 | Plus qu'une session à 16/20 et le mode direct est à toi sur "…". | Règle level 1 · `guidedSessionsAbove80 === 2` | ✱ | D+E | 11 |
-| arc2.4 | Le mode direct, c'est exigeant. Refais un guidé pour te remettre dedans. | Règle level 2 · session directe faite · 0 session ≥ 80 % | ✱ | D | 35 |
+| arc2.1 | ![arc2.1](screenshots/coaching-arc2.1.png) | Une règle niveau Argent · 1 session guidée ≥ 16/20 sur cette règle | ✱ | D+E | 10 |
+| arc2.2 | ![arc2.2](screenshots/coaching-arc2.2.png) | Une règle niveau Argent · 2 sessions guidées ≥ 16/20 sur cette règle | ✱ | D+E | 11 |
+| arc2.4 | ![arc2.4](screenshots/coaching-arc2.4.png) | Une règle niveau Argent · session directe faite · aucune ≥ 16/20 | ✱ | D | 35 |
 
 ---
 
@@ -74,9 +74,9 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc3.1 | 1 session directe validée sur "…". Plus que 2 pour décrocher ta couronne + 100 pièces. | Règle level 2 · `directSessionsAbove80 === 1` | ✱ | D+E | 8 |
-| arc3.2 | Plus qu'une session directe à 16/20 sur "…" et la couronne tombe. | Règle level 2 · `directSessionsAbove80 === 2` | ✱ | D+E | 9 |
-| arc3.4 | Tu as N couronnes. Et si tu attaquais une nouvelle règle ? | `crownCount >= 2` · `bronzeCount < 50 % des règles` | ✱ | D | 34 |
+| arc3.1 | ![arc3.1](screenshots/coaching-arc3.1.png) | Une règle niveau Argent · 1 session directe ≥ 16/20 | ✱ | D+E | 8 |
+| arc3.2 | ![arc3.2](screenshots/coaching-arc3.2.png) | Une règle niveau Argent · 2 sessions directes ≥ 16/20 | ✱ | D+E | 9 |
+| arc3.4 | ![arc3.4](screenshots/coaching-arc3.4.png) | 2 couronnes ou plus · moins de la moitié des règles au niveau Bronze | ✱ | D | 34 |
 
 ---
 
@@ -84,10 +84,10 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc4.8 | Ton diamant sur "…" se ternit — fais sa révision avant qu'il ne se brise. | Règle level 4 · révision en retard (`nextReviewDate < today`) | ✱ | D+E | 4 |
-| arc4.5 | Ta première révision diamant est prévue aujourd'hui. | Au moins une règle level 4 · `nextReviewDate === today` | ✱ | D+E | 5 |
-| arc4.1 | 18/20 en direct sur "…". 2 sessions consécutives encore à 18/20 et c'est le diamant. | Règle level 3 · `directConsecutiveAbove90 === 1` | ✱ | D+E | 6 |
-| arc4.2 | Plus qu'une session à 18/20 sur "…" et le diamant est à toi. | Règle level 3 · `directConsecutiveAbove90 === 2` | ✱ | D+E | 7 |
+| arc4.8 | ![arc4.8](screenshots/coaching-arc4.8.png) | Une règle Diamant · date de révision dépassée | ✱ | D+E | 4 |
+| arc4.5 | ![arc4.5](screenshots/coaching-arc4.5.png) | Une règle Diamant · révision prévue aujourd'hui | ✱ | D+E | 5 |
+| arc4.1 | ![arc4.1](screenshots/coaching-arc4.1.png) | Une règle Couronne · 1 session directe consécutive ≥ 18/20 | ✱ | D+E | 6 |
+| arc4.2 | ![arc4.2](screenshots/coaching-arc4.2.png) | Une règle Couronne · 2 sessions directes consécutives ≥ 18/20 | ✱ | D+E | 7 |
 
 ---
 
@@ -95,11 +95,11 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc5.8 | Plus que N h pour sauver ta flamme de X jours. | `streak > 0` · pas joué aujourd'hui · `hour >= 16` | ↩ | D+E | 3 |
-| arc5.1 | Ta flamme est lancée. Reviens demain, c'est tout. | `streak === 1` | ✱ | D | 32 |
-| arc5.2 | Deux jours d'affilée. Demain, palier "Sur la lancée". | `streak === 2` | ✱ | D | 33 |
-| arc5.3 | Demain ta flamme passe à 7 jours — 100 pièces. | `streak === 6` · pas joué aujourd'hui | ✱ | D | 31 |
-| arc5.9 | Flamme à 0. On redémarre aujourd'hui — un quiz, et c'est reparti. | `streak === 0` · ou `streak === 1` avec `longest > 1` | ✱ | D+E | 34 |
+| arc5.8 | ![arc5.8](screenshots/coaching-arc5.8.png) | Flamme active · pas joué aujourd'hui · après 16 h | ↩ | D+E | 3 |
+| arc5.1 | ![arc5.1](screenshots/coaching-arc5.1.png) | Flamme exactement à 1 jour | ✱ | D | 32 |
+| arc5.2 | ![arc5.2](screenshots/coaching-arc5.2.png) | Flamme exactement à 2 jours | ✱ | D | 33 |
+| arc5.3 | ![arc5.3](screenshots/coaching-arc5.3.png) | Flamme à 6 jours · pas encore joué aujourd'hui | ✱ | D | 31 |
+| arc5.9 | ![arc5.9](screenshots/coaching-arc5.9.png) | Flamme à 0 · ou flamme à 1 après en avoir eu une plus longue | ✱ | D+E | 34 |
 
 ---
 
@@ -107,10 +107,10 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc13.3 | N jours sans bouclier, c'est jouer avec le feu. 160 pièces et tu dors tranquille. | `streak >= 7` · `shields === 0` · `coins >= 160` | ✱ | D | 16 |
-| arc13.2 | Ta flamme de N jours vaut le coup d'être protégée — un bouclier pour 160 pièces. | `3 ≤ streak < 7` · `shields === 0` · `coins >= 160` | ✱ | D | 17 |
-| arc13.4 | Tu as 1 bouclier. À ta flamme de N jours, le second pour 160 pièces fait du bien. | `streak >= 14` · `shields === 1` · `coins >= 160` | ✱ | D | 18 |
-| arc13.1 | 160 pièces = 1 bouclier. Si tu rates un jour, ta flamme est sauvée. | `streak < 3` · `shields === 0` · `coins >= 160` | ✱ | D | 19 |
+| arc13.3 | ![arc13.3](screenshots/coaching-arc13.3.png) | Flamme ≥ 7 jours · 0 bouclier · 160 pièces ou plus | ✱ | D | 16 |
+| arc13.2 | ![arc13.2](screenshots/coaching-arc13.2.png) | Flamme entre 3 et 6 jours · 0 bouclier · 160 pièces ou plus | ✱ | D | 17 |
+| arc13.4 | ![arc13.4](screenshots/coaching-arc13.4.png) | Flamme ≥ 14 jours · 1 bouclier · 160 pièces ou plus | ✱ | D | 18 |
+| arc13.1 | ![arc13.1](screenshots/coaching-arc13.1.png) | Flamme < 3 jours · 0 bouclier · 160 pièces ou plus | ✱ | D | 19 |
 
 ---
 
@@ -118,18 +118,18 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc6.3 | 250 pièces — adopte le Panda Samouraï dans la boutique. | `coins >= 250` · `ownedChars === 0` | ✱ | D | 22 |
-| arc6.4 | Plus que N pièces pour adopter un 2e perso. | `450 ≤ coins < 500` · `ownedChars >= 1` | ✱ | D | 23 |
-| arc6.5 | 500 pièces — choisis ton 2e perso parmi 14. | `coins >= 500` · `ownedChars === 1` | ✱ | D | 24 |
-| arc6.7 | N pièces = 1 nouvelle émotion pour ton perso. | `coins >= emotionPrice` · perso possédé · 0 émotion sur ce perso | ✱ | D | 25 |
-| arc6.6 | 500 pièces — un nouveau perso à ajouter à ta collection. | `coins >= 500` · `ownedChars >= 2` | ✱ | D | 26 |
-| arc6.13 | Plus que N pièces. Une session à 16/20 = +20 pièces, vite ! | `coins < 30` · `streak > 0` | ✱ | D | 27 |
-| arc6.1 | 80 pièces — tu peux changer le thème de ton dashboard. | `coins >= 80` · aucun thème acheté | ✱ | D | 28 |
-| arc6.8 | 60 pièces = 1 morceau d'image mystère. | `coins >= 60` · aucun morceau encore dévoilé | ✱ | D | 36 |
-| arc6.10 | 190 pièces — débloque une animation de victoire. | `coins >= 190` · pas d'animation victoire | ✱ | D | 37 |
-| arc6.11 | 300 pièces — débloque un effet plein écran. | `coins >= 300` · pas d'animation entrée | ✱ | D | 38 |
-| arc6.12 | 320 pièces — un thème premium est à ta portée. | `coins >= 320` · pas de thème premium | ✱ | D | 39 |
-| arc6.9 | 2 morceaux dévoilés aujourd'hui. Reviens demain. | `daily.count >= 2` aujourd'hui | ✱ | D | 49 |
+| arc6.3 | ![arc6.3](screenshots/coaching-arc6.3.png) | 250 pièces ou plus · aucun personnage possédé | ✱ | D | 22 |
+| arc6.4 | ![arc6.4](screenshots/coaching-arc6.4.png) | Entre 450 et 499 pièces · au moins 1 personnage | ✱ | D | 23 |
+| arc6.5 | ![arc6.5](screenshots/coaching-arc6.5.png) | 500 pièces ou plus · exactement 1 personnage | ✱ | D | 24 |
+| arc6.7 | ![arc6.7](screenshots/coaching-arc6.7.png) | Assez de pièces pour une émotion · personnage sans aucune émotion | ✱ | D | 25 |
+| arc6.6 | ![arc6.6](screenshots/coaching-arc6.6.png) | 500 pièces ou plus · 2 personnages ou plus | ✱ | D | 26 |
+| arc6.13 | ![arc6.13](screenshots/coaching-arc6.13.png) | Moins de 30 pièces · flamme active | ✱ | D | 27 |
+| arc6.1 | ![arc6.1](screenshots/coaching-arc6.1.png) | 80 pièces ou plus · aucun thème acheté | ✱ | D | 28 |
+| arc6.8 | ![arc6.8](screenshots/coaching-arc6.8.png) | 60 pièces ou plus · aucun morceau d'image mystère dévoilé | ✱ | D | 36 |
+| arc6.10 | ![arc6.10](screenshots/coaching-arc6.10.png) | 190 pièces ou plus · aucune animation de victoire | ✱ | D | 37 |
+| arc6.11 | ![arc6.11](screenshots/coaching-arc6.11.png) | 300 pièces ou plus · aucune animation d'entrée | ✱ | D | 38 |
+| arc6.12 | ![arc6.12](screenshots/coaching-arc6.12.png) | 320 pièces ou plus · aucun thème premium | ✱ | D | 39 |
+| arc6.9 | ![arc6.9](screenshots/coaching-arc6.9.png) | 2 morceaux d'image mystère dévoilés aujourd'hui | ✱ | D | 49 |
 
 ---
 
@@ -137,8 +137,8 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc7.1 | Lundi : tu peux relancer le boost Double coins ×2 pour 5 sessions. | Lundi · `coins >= 100` · pas de boost actif | ✱ | D | 40 |
-| arc7.2 | Double coins actif — encore N sessions ×2. | Boost doubleCoins actif · sessions restantes > 0 | ↩ | D | 41 |
+| arc7.1 | ![arc7.1](screenshots/coaching-arc7.1.png) | Lundi · 100 pièces ou plus · aucun boost Double coins actif | ✱ | D | 40 |
+| arc7.2 | ![arc7.2](screenshots/coaching-arc7.2.png) | Boost Double coins actif avec des sessions restantes | ↩ | D | 41 |
 
 ---
 
@@ -146,7 +146,7 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc8.1 | Tu maîtrises les règles ? C'est le moment d'apprendre de nouveaux mots de vocabulaire. | Au moins une règle niveau bronze | ✱ | D | 42 |
+| arc8.1 | ![arc8.1](screenshots/coaching-arc8.1.png) | Au moins une règle au niveau Bronze ou au-dessus | ✱ | D | 42 |
 
 ---
 
@@ -154,7 +154,7 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc9.5 | Désolé pour ta flamme mais content de te revoir ! | `streak === 1` · `longest > 1` | ✱ | D+E | 43 |
+| arc9.5 | ![arc9.5](screenshots/coaching-arc9.5.png) | Flamme à 1 jour · flamme record plus longue dans le passé | ✱ | D+E | 43 |
 
 ---
 
@@ -162,10 +162,10 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc10.1 | Toutes tes règles ont leur couronne. Maintenant, vise les diamants. | Toutes les règles à level ≥ 3 | ✱ | D | 44 |
-| arc10.2 | Tous tes diamants sont en place. Légende. | Toutes les règles à level 4 | ✱ | D | 45 |
-| arc10.3 | 5 diamants vivants. Aucune révision en retard. | ≥ 5 règles level 4 · `nextReviewDate > today` · pas de révision due | ✱ | D | 46 |
-| arc10.4 | Aucune révision aujourd'hui. Profites-en pour apprendre de nouveaux mots. | ≥ 1 règle level 4 · aucune révision due | ✱ | D | 47 |
+| arc10.1 | ![arc10.1](screenshots/coaching-arc10.1.png) | Toutes les règles au niveau Couronne ou Diamant | ✱ | D | 44 |
+| arc10.2 | ![arc10.2](screenshots/coaching-arc10.2.png) | Toutes les règles au niveau Diamant | ✱ | D | 45 |
+| arc10.3 | ![arc10.3](screenshots/coaching-arc10.3.png) | 5 règles Diamant ou plus · toutes à jour · aucune révision due | ✱ | D | 46 |
+| arc10.4 | ![arc10.4](screenshots/coaching-arc10.4.png) | Au moins une règle Diamant · aucune révision due aujourd'hui | ✱ | D | 47 |
 
 ---
 
@@ -173,10 +173,10 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc11.1 | Premier morceau dévoilé. Encore 5 morceaux pour voir l'image complète. | `revealedCount === 1` sur une collection | ✱ | D | 48 |
-| arc11.2 | Moitié de l'image dévoilée. Plus que 3 morceaux et le mystère tombe. | `revealedCount === 3` sur une collection | ✱ | D | 48 |
-| arc11.3 | Plus qu'un morceau pour découvrir l'image entière. | `revealedCount === 5` sur une collection | ✱ | D | 48 |
-| arc11.4 | Image mystère complète. Bravo. Une nouvelle image t'attend dans la boutique. | `revealedCount >= 6` sur une collection | ✱ | D | 48 |
+| arc11.1 | ![arc11.1](screenshots/coaching-arc11.1.png) | Exactement 1 morceau dévoilé dans une collection | ✱ | D | 48 |
+| arc11.2 | ![arc11.2](screenshots/coaching-arc11.2.png) | Exactement 3 morceaux dévoilés dans une collection | ✱ | D | 48 |
+| arc11.3 | ![arc11.3](screenshots/coaching-arc11.3.png) | Exactement 5 morceaux dévoilés dans une collection | ✱ | D | 48 |
+| arc11.4 | ![arc11.4](screenshots/coaching-arc11.4.png) | 6 morceaux dévoilés ou plus (collection complète) | ✱ | D | 48 |
 
 ---
 
@@ -184,10 +184,10 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc12.2 | Émotion "X" débloquée pour ton perso. Maintenant il t'applaudit. | Première émotion boutique achetée | ✱ | D | 12 |
-| arc12.3 | Ton perso a N émotion(s) sur 7. Vise "victoire" — il s'active sur ≥ 18/20. | `1 ≤ ownedEmotions ≤ 2` sur un perso | ✱ | D | 13 |
-| arc12.4 | Ton perso a 4 émotions sur 7. Plus que 3 pour le compléter. | `ownedEmotions === 4` sur un perso | ✱ | D | 14 |
-| arc12.5 | Perso complet — toutes ses émotions sont à toi. N persos restants. | `ownedEmotions === 7` sur un perso | ✱ | D | 15 |
+| arc12.2 | ![arc12.2](screenshots/coaching-arc12.2.png) | Première émotion boutique achetée | ✱ | D | 12 |
+| arc12.3 | ![arc12.3](screenshots/coaching-arc12.3.png) | Un personnage avec 1 ou 2 émotions sur 7 | ✱ | D | 13 |
+| arc12.4 | ![arc12.4](screenshots/coaching-arc12.4.png) | Un personnage avec exactement 4 émotions sur 7 | ✱ | D | 14 |
+| arc12.5 | ![arc12.5](screenshots/coaching-arc12.5.png) | Un personnage avec les 7 émotions complètes | ✱ | D | 15 |
 
 ---
 
@@ -197,14 +197,14 @@ Ces messages sont évalués en **dernier** (priorité 50+). Ils ne s'affichent q
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc14.0a | N jours d'affilée ! Un seul quiz pour garder ta flamme et passer à N+1. | Pas joué aujourd'hui · `streak >= 1` · dernier arc affiché ≠ arc14.0a | ↩ | D | 51 |
-| arc14.0b | Fais ton quiz aujourd'hui pour débloquer le bonus du jour de 10 pièces d'or ! | Pas joué aujourd'hui · dernier arc affiché ≠ arc14.0b | ↩ | D | 52 |
-| arc14.5 | N quiz aujourd'hui — nouveau record sur X jours ! | `sessionsToday >= 4` · record battu sur 3j, 7j ou 30j | ↩ | D | 53 |
-| arc14.6 | Plus qu'1 (ou 2) quiz pour battre ton record de N sur X jours ! | `sessionsToday >= 3` · à 1 ou 2 du record | ↩ | D | 54 |
-| arc14.4 | N quiz aujourd'hui, c'est plus qu'hier (M). Belle progression ! | `sessionsToday >= 3` · `sessionsToday > yesterdaySessions > 0` | ↩ | D | 55 |
-| arc14.3 | 3e quiz aujourd'hui, tu es en feu ! Continue comme ça. | `sessionsToday === 3` | ↩ | D | 56 |
-| arc14.2 | Bravo pour ce 2e quiz ! Chaque session renforce ta mémoire. | `sessionsToday === 2` | ↩ | D | 57 |
-| arc14.1 | +1 jour ! Ta flamme est à N jours. Bien joué ! | `sessionsToday === 1` · `streak >= 2` | ↩ | D | 58 |
+| arc14.0a | ![arc14.0a](screenshots/coaching-arc14.0a.png) | Pas encore joué aujourd'hui · flamme active · dernier message affiché ≠ arc14.0a | ↩ | D | 51 |
+| arc14.0b | ![arc14.0b](screenshots/coaching-arc14.0b.png) | Pas encore joué aujourd'hui · dernier message affiché ≠ arc14.0b | ↩ | D | 52 |
+| arc14.5 | ![arc14.5](screenshots/coaching-arc14.5.png) | 4 sessions ou plus aujourd'hui · record battu sur 3, 7 ou 30 jours | ↩ | D | 53 |
+| arc14.6 | ![arc14.6](screenshots/coaching-arc14.6.png) | 3 sessions ou plus aujourd'hui · à 1 ou 2 sessions d'un record | ↩ | D | 54 |
+| arc14.4 | ![arc14.4](screenshots/coaching-arc14.4.png) | 3 sessions ou plus aujourd'hui · plus qu'hier · hier > 0 | ↩ | D | 55 |
+| arc14.3 | ![arc14.3](screenshots/coaching-arc14.3.png) | Exactement 3 sessions aujourd'hui | ↩ | D | 56 |
+| arc14.2 | ![arc14.2](screenshots/coaching-arc14.2.png) | Exactement 2 sessions aujourd'hui | ↩ | D | 57 |
+| arc14.1 | ![arc14.1](screenshots/coaching-arc14.1.png) | Exactement 1 session aujourd'hui · flamme ≥ 2 jours | ↩ | D | 58 |
 
 ---
 
