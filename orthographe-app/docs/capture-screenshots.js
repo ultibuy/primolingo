@@ -410,10 +410,38 @@ async function main() {
       localStorage.setItem(`local:onboardingWizard:${uid}`, JSON.stringify({
         completedSteps: [1, 2, 3, 4, 5], step4DeviceYes: true, dismissed: true,
       }));
+      // Set a PIN so the PIN setup modal doesn't appear
+      localStorage.setItem(`local:parentalPin:${uid}`, JSON.stringify({ hash: 'fakehash', salt: 'fakesalt' }));
+      // Ensure the default child exists with some progress
+      const childKey = `local:children:${uid}`;
+      if (!localStorage.getItem(childKey)) {
+        localStorage.setItem(childKey, JSON.stringify([{ id: 'local-child', name: 'Théo', avatar: '🦊' }]));
+      }
     }, UID);
     await p.goto(`${BASE}/parent`, { waitUntil: 'networkidle', timeout: 10000 }).catch(() => {});
-    await p.waitForTimeout(800);
+    await p.waitForTimeout(1200);
     await snap(p, 'parent-dashboard', { full: true });
+    await ctx.close(); }
+
+  // 16f2 — Gestion des enfants — PIN gate modal
+  { const ctx = await mobile(); const p = await ctx.newPage();
+    await p.goto(`${BASE}/login`, { waitUntil: 'networkidle' });
+    await p.evaluate((uid) => {
+      localStorage.setItem(`local:onboardingWizard:${uid}`, JSON.stringify({
+        completedSteps: [1, 2, 3, 4, 5], step4DeviceYes: true, dismissed: true,
+      }));
+      localStorage.setItem(`local:parentalPin:${uid}`, JSON.stringify({ hash: 'fakehash', salt: 'fakesalt' }));
+      localStorage.setItem(`local:children:${uid}`, JSON.stringify([{ id: 'local-child', name: 'Théo', avatar: '🦊' }]));
+    }, UID);
+    await p.goto(`${BASE}/parent`, { waitUntil: 'networkidle', timeout: 10000 }).catch(() => {});
+    await p.waitForTimeout(1200);
+    // Click "Gestion des enfants" to trigger PIN modal
+    const gestionHeader = p.locator('text=Gestion des enfants').first();
+    if (await gestionHeader.count() > 0) {
+      await gestionHeader.click({ timeout: 3000 }).catch(() => {});
+      await p.waitForTimeout(600);
+      await snap(p, '02-gestion-enfants-locked');
+    } else { console.log('  ⚠️  Gestion des enfants header not found'); }
     await ctx.close(); }
 
   // 16g — Parent dashboard with "first quiz" coaching nudge (child with 0 sessions)

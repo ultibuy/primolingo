@@ -18,7 +18,7 @@ function formatChildNames(list) {
 
 const STEP_TITLES = [
   'Configurez votre code secret',
-  'Ajoutez vos enfants',
+  'Ajouter un enfant',
   'Ajoutez cette page à vos favoris',
   'Configurez l\'app pour votre enfant',
   'C\'est tout bon',
@@ -45,7 +45,6 @@ export default function OnboardingWizard({
   // Step 2: Add child
   const [childName, setChildName] = useState('');
   const [childAvatar, setChildAvatar] = useState('🦊');
-  const [childSaving, setChildSaving] = useState(false);
   const [locallyAdded, setLocallyAdded] = useState([]); // children created in this wizard session
 
   // Step 4: Device config
@@ -106,17 +105,6 @@ export default function OnboardingWizard({
     }
   }, [pinSubStep, pinDraft, uid, onPinSaved]);
 
-  const handleAddChild = useCallback(async () => {
-    if (!childName.trim()) return;
-    setChildSaving(true);
-    const name = childName.trim();
-    await createChild(uid, name, childAvatar);
-    setChildSaving(false);
-    setLocallyAdded(prev => [...prev, { name: name.charAt(0).toUpperCase() + name.slice(1), avatar: childAvatar }]);
-    setChildName('');
-    setChildAvatar('🦊');
-  }, [uid, childName, childAvatar]);
-
   // Merge prop children with locally added ones (local-store doesn't have onSnapshot)
   const allChildren = [
     ...children.map(c => ({ name: c.name, avatar: c.avatar })),
@@ -126,7 +114,7 @@ export default function OnboardingWizard({
   // Can advance?
   const canNext =
     currentStep === 1 ? pinSaved :
-    currentStep === 2 ? allChildren.length > 0 :
+    currentStep === 2 ? childName.trim().length > 0 || allChildren.length > 0 :
     currentStep === 3 ? true :
     currentStep === 4 ? deviceChoice !== null :
     currentStep === 5 ? true :
@@ -208,19 +196,6 @@ export default function OnboardingWizard({
 
         {currentStep === 2 && (
           <div>
-            {allChildren.length > 0 && (
-              <div style={{ ...successBox, marginBottom: '1rem' }}>
-                <CheckIcon size={28} />
-                <p style={{ margin: '0.3rem 0 0', fontSize: '0.85rem', color: 'var(--color-green)', fontWeight: 700 }}>
-                  {allChildren.length} enfant{allChildren.length > 1 ? 's' : ''} ajouté{allChildren.length > 1 ? 's' : ''} : {formatChildNames(allChildren)}
-                </p>
-              </div>
-            )}
-            <p style={subtitleStyle}>
-              {allChildren.length > 0
-                ? 'Vous pouvez ajouter un autre enfant ou passer à l\'étape suivante.'
-                : 'Ajoutez au moins un enfant pour continuer.'}
-            </p>
             <div style={{ display: 'grid', gap: '0.65rem' }}>
               <div>
                 <div style={fieldLabel}>Prénom</div>
@@ -251,14 +226,6 @@ export default function OnboardingWizard({
                   ))}
                 </div>
               </div>
-              <button
-                type="button"
-                onClick={handleAddChild}
-                disabled={childSaving || !childName.trim()}
-                style={addChildBtnStyle(childSaving || !childName.trim())}
-              >
-                {childSaving ? 'Ajout…' : '+ Ajouter'}
-              </button>
             </div>
           </div>
         )}
@@ -415,14 +382,6 @@ const instructionList = {
   display: 'grid', gap: '0.5rem',
   fontSize: '0.85rem', color: '#d1d5db', lineHeight: 1.6,
 };
-
-const addChildBtnStyle = (disabled) => ({
-  border: '1px solid rgba(167,139,250,0.3)',
-  borderRadius: 'var(--radius-pill)', padding: '8px 16px',
-  background: 'rgba(167,139,250,0.12)', color: '#a78bfa',
-  fontSize: '0.85rem', fontWeight: 700, cursor: disabled ? 'default' : 'pointer',
-  fontFamily: 'var(--font-body)', opacity: disabled ? 0.5 : 1,
-});
 
 const nextBtnStyle = (disabled) => ({
   width: '100%', marginTop: '1.2rem',
