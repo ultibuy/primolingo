@@ -1,58 +1,42 @@
 [
   {
-    "x": 573,
-    "y": 2588,
-    "text": "Rajoute un tableau comme cleui du catalogue des messages qui récap  le top 25 des arcs par priorité. Change juste le contenu de la colonne \"arc\" pour mettre \"(thème) - arc\"",
-    "time": "05/05 13:36",
-    "response": "Fait — tableau Top 25 ajouté entre « Logique des priorités » et « Catalogue complet », avec colonne Arc au format (Thème) — arc et mêmes abbr tooltips que les tables catalogue.",
+    "x": 646,
+    "y": 2780,
+    "text": "réduis la largeur de cette colonne",
+    "time": "05/05 13:51",
+    "response": "Fait — la colonne Arc du Top 25 est maintenant contrainte à max-width:8rem avec word-break, via un wrapper .top25-wrap.",
     "done": true
   },
   {
-    "x": 1144,
-    "y": 2842,
-    "text": "passer en récurrent. doit rester affiché tant que le bonus de 200 n'est pas débloqué",
-    "time": "05/05 13:31",
-    "response": "Fait — arc1.1 passé en recurring (oneShot:false, recurring:true) dans coaching.js. Garde l'isAlreadyShown retiré. Doc : Type ↩, Cooldown 3 min.",
+    "x": 899,
+    "y": 5735,
+    "text": "supprime, redondant avec arc 1.5",
+    "time": "05/05 13:54",
+    "response": "Fait — arc6.3 supprimé de coaching.js et du doc. Arc1.5 (maxOccurrences:3) couvre le même cas avec une meilleure priorité.",
     "done": true
   },
   {
-    "x": 1141,
-    "y": 2957,
-    "text": "passer en récurrent. doit rester affiché tant que le bonus de 200 n'est pas débloqué",
-    "time": "05/05 13:31",
-    "response": "Fait — arc1.3 passé en recurring (oneShot:false, recurring:true) dans coaching.js. Doc : Type ↩, Cooldown 3 min.",
+    "x": 806,
+    "y": 8623,
+    "text": "Remplace \"*Reviens demain*, c'est tout\" par  \"*Bien joué !*\"",
+    "time": "05/05 13:56",
+    "response": "Fait — arc5.1 : texte \"Ta flamme est lancée. Bien joué !\" avec emphasis \"Bien joué !\". Mis à jour dans coaching.js et coaching-messages.json.",
     "done": true
   },
   {
-    "x": 1141,
-    "y": 3069,
-    "text": "3 occurrences ou condition plus vérifiée",
-    "time": "05/05 13:32",
-    "response": "Fait — arc1.4 limité à maxOccurrences:3 via isAtMaxOccurrences + shownCount. Doc : Type 3, Cooldown 3 min.",
+    "x": 787,
+    "y": 8684,
+    "text": "Remplace \"Deux jours d'affilée\". par \"Deux jours d'affilée, la classe ! \". ",
+    "time": "05/05 13:57",
+    "response": "Fait — arc5.2 : texte \"Deux jours d'affilée, la classe ! Demain, palier "Sur la lancée".\" avec emphasis \"la classe !\". Mis à jour dans coaching.js et coaching-messages.json.",
     "done": true
   },
   {
-    "x": 1141,
-    "y": 3179,
-    "text": "3 occurrences ou condition plus vérifiée",
-    "time": "05/05 13:32",
-    "response": "Fait — arc1.5 limité à maxOccurrences:3 via isAtMaxOccurrences + shownCount. Doc : Type 3, Cooldown 3 min.",
-    "done": true
-  },
-  {
-    "x": 1137,
-    "y": 3294,
-    "text": "3 occurrences ou condition plus vérifiée",
-    "time": "05/05 13:33",
-    "response": "Fait — arc1.7.streak5 limité à maxOccurrences:3 via isAtMaxOccurrences + shownCount. Doc : Type 3, Cooldown 3 min.",
-    "done": true
-  },
-  {
-    "x": 1144,
-    "y": 3382,
-    "text": "3 occurrences ou condition plus vérifiée",
-    "time": "05/05 13:33",
-    "response": "Fait — arc1.7.streak6 limité à maxOccurrences:3 via isAtMaxOccurrences + shownCount. Doc : Type 3, Cooldown 3 min.",
+    "x": 854,
+    "y": 8702,
+    "text": "ajoute arc 5.2a \"Trois jours d'affilée *Tu es en feu !*\"; les arcs 5.1, 5.2 et 5.2a prennent les prios 16,17,18. Les prios 16,17,18 deviennet 19, 20, 21. 19, 20, 21 actuelles deviennent 22, 23, 24, etc...",
+    "time": "05/05 13:58",
+    "response": "Fait — arc5.2a ajouté (streak===3, \"Trois jours d'affilée. Tu es en feu !\"). Arc5.1/5.2/5.2a placés aux prios 16/17/18 dans coaching.js. Toutes les prios 16+ décalées (+3), arc6.3 supprimé. Doc et coaching-messages.json mis à jour.",
     "done": true
   }
 ]

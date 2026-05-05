@@ -114,10 +114,6 @@ export function pickCoachingMessage(ctx) {
   // Cap check
   if (isCapReached(coaching, todayStr)) return null;
 
-  // 3-minute cooling between messages
-  const lastShownTs = coaching.lastShownTimestamp || 0;
-  if (Date.now() - lastShownTs < 3 * 60 * 1000) return null;
-
   const streak = progress.streak || {};
   const coins = progress.coins || 0;
   const shields = progress.shields || 0;
@@ -540,6 +536,45 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
+  // --- arc5.1: streak 1 ---
+  if (!isAlreadyShown(coaching, 'arc5.1')) {
+    if (streak.current === 1) {
+      return msg('arc5.1', 'flamme',
+        'Ta flamme est lancée. Bien joué !',
+        'Bien joué !',
+        '🔥',
+        null,
+        { oneShot: true }
+      );
+    }
+  }
+
+  // --- arc5.2: streak 2 ---
+  if (!isAlreadyShown(coaching, 'arc5.2')) {
+    if (streak.current === 2) {
+      return msg('arc5.2', 'flamme',
+        'Deux jours d\'affilée, la classe ! Demain, palier "Sur la lancée".',
+        'la classe !',
+        '🔥',
+        null,
+        { oneShot: true }
+      );
+    }
+  }
+
+  // --- arc5.2a: streak 3 ---
+  if (!isAlreadyShown(coaching, 'arc5.2a')) {
+    if (streak.current === 3) {
+      return msg('arc5.2a', 'flamme',
+        'Trois jours d\'affilée. Tu es en feu !',
+        'Tu es en feu !',
+        '🔥',
+        null,
+        { oneShot: true }
+      );
+    }
+  }
+
   // --- arc13.3: long flame, no shield (≥7 days) ---
   if (!isAlreadyShown(coaching, 'arc13.3')) {
     if (coins >= 160 && shields === 0 && streak.current >= 7) {
@@ -615,19 +650,6 @@ export function pickCoachingMessage(ctx) {
         '🪙',
         null,
         { oneShot: false, maxOccurrences: 3 }
-      );
-    }
-  }
-
-  // --- arc6.3: 250 coins, panda accessible ---
-  if (!isAlreadyShown(coaching, 'arc6.3')) {
-    if (coins >= 250 && ownedChars.length === 0) {
-      return msg('arc6.3', 'panda',
-        '250 pièces — adopte le Panda Samouraï dans la boutique, il vient avec ses 3 émotions de base.',
-        'Panda Samouraï',
-        '🛒',
-        { label: 'Boutique', action: 'openShop:persos' },
-        { oneShot: true }
       );
     }
   }
@@ -752,32 +774,6 @@ export function pickCoachingMessage(ctx) {
       return msg('arc5.3', 'flamme',
         'Demain ta flamme passe à 7 jours — 100 pièces.',
         '100 pièces',
-        '🔥',
-        null,
-        { oneShot: true }
-      );
-    }
-  }
-
-  // --- arc5.1: streak 1 ---
-  if (!isAlreadyShown(coaching, 'arc5.1')) {
-    if (streak.current === 1) {
-      return msg('arc5.1', 'flamme',
-        'Ta flamme est lancée. Reviens demain, c\'est tout.',
-        'Reviens demain',
-        '🔥',
-        null,
-        { oneShot: true }
-      );
-    }
-  }
-
-  // --- arc5.2: streak 2 ---
-  if (!isAlreadyShown(coaching, 'arc5.2')) {
-    if (streak.current === 2) {
-      return msg('arc5.2', 'flamme',
-        'Deux jours d\'affilée. Demain, palier "Sur la lancée".',
-        'palier "Sur la lancée"',
         '🔥',
         null,
         { oneShot: true }

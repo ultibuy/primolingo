@@ -168,6 +168,27 @@
     "emoji": "✅"
   },
   {
+    "arcId": "arc5.1",
+    "variant": "flamme",
+    "message": "Ta flamme est lancée. Bien joué !",
+    "emphasis": "Bien joué !",
+    "emoji": "🔥"
+  },
+  {
+    "arcId": "arc5.2",
+    "variant": "flamme",
+    "message": "Deux jours d'affilée, la classe ! Demain, palier \"Sur la lancée\".",
+    "emphasis": "la classe !",
+    "emoji": "🔥"
+  },
+  {
+    "arcId": "arc5.2a",
+    "variant": "flamme",
+    "message": "Trois jours d'affilée. Tu es en feu !",
+    "emphasis": "Tu es en feu !",
+    "emoji": "🔥"
+  },
+  {
     "arcId": "arc13.3",
     "variant": "flamme",
     "message": "12 jours sans bouclier, c'est jouer avec le feu. 160 pièces et tu dors tranquille.",
@@ -208,13 +229,6 @@
     "message": "Plus que 50 pièces pour débloquer le Panda Samouraï.",
     "emphasis": "50 pièces",
     "emoji": "🪙"
-  },
-  {
-    "arcId": "arc6.3",
-    "variant": "panda",
-    "message": "250 pièces — adopte le Panda Samouraï dans la boutique, il vient avec ses 3 émotions de base.",
-    "emphasis": "Panda Samouraï",
-    "emoji": "🛒"
   },
   {
     "arcId": "arc6.4",
@@ -277,20 +291,6 @@
     "variant": "flamme",
     "message": "Demain ta flamme passe à 7 jours — 100 pièces.",
     "emphasis": "100 pièces",
-    "emoji": "🔥"
-  },
-  {
-    "arcId": "arc5.1",
-    "variant": "flamme",
-    "message": "Ta flamme est lancée. Reviens demain, c'est tout.",
-    "emphasis": "Reviens demain",
-    "emoji": "🔥"
-  },
-  {
-    "arcId": "arc5.2",
-    "variant": "flamme",
-    "message": "Deux jours d'affilée. Demain, palier \"Sur la lancée\".",
-    "emphasis": "palier \"Sur la lancée\"",
     "emoji": "🔥"
   },
   {

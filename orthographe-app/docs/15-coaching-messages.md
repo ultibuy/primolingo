@@ -69,24 +69,28 @@ La hiérarchie repose sur trois axes : **urgence** (le message perd sa pertinenc
 | **4–7** | Progression vers Diamant | Un joueur en train de construire un Diamant est dans une dynamique active à ne pas interrompre. L'ordre interne reflète l'urgence : révision en retard (4) > révision due aujourd'hui (5) > progression en cours 1/3 (6) > 2/3 (7). |
 | **8–11** | Progression vers Couronne et Argent | Même logique que 4–7, mais les paliers inférieurs sont moins urgents. Couronne avant Argent car elle débouche sur le Diamant. |
 | **12–15** | Personnages et émotions | L'engagement boutique est récompensant mais pas critique. Placé après la progression académique pour ne pas la noyer. |
-| **16–19** | Bouclier | Protéger une flamme longue est important pour la rétention, mais c'est un achat — secondaire par rapport à la progression pédagogique. Les sous-priorités reflètent l'enjeu : longue flamme sans bouclier (16) > flamme moyenne (17) > suggestion du deuxième bouclier (18) > nouvelle flamme (19). |
-| **20–28** | Boutique — personnages et pièces | Nudges d'achat contextuels selon le solde. Moins urgents que tout ce qui précède. |
-| **29–33** | Jalons de flamme et streak | Messages motivationnels sur la série en cours (5 jours, 6 jours, J1, J2). Informatifs mais pas urgents — la flamme n'est pas en danger. |
-| **34–35** | Rebond après recul | Flamme tombée à 0 (arc5.9) et échec en mode direct (arc2.4) : messages de réconfort qui ne doivent pas écraser les messages de progression active, mais doivent passer avant la boutique secondaire. |
-| **36–49** | Boutique secondaire, boosts, maîtrise, images mystère | Arcs de découverte ou d'état avancé. Pertinents seulement quand tout le reste est silencieux. L'ordre interne à cette plage est arbitraire — aucun n'est plus urgent qu'un autre. |
-| **51–58** | Sessions du jour | Messages récurrents de fond (`arc14.x`). Affichés **uniquement si aucun arc 1–49 n'est éligible**. Ils constituent le plancher du système : il y a toujours quelque chose à dire sur l'activité du jour. |
+| **16–18** | Jalons de flamme (J1–J3) | Les jalons des premières flammes courtes (1, 2, 3 jours) sont maintenant prioritaires sur le bouclier : ils renforcent la boucle positive avant de parler d'achat. |
+| **19–22** | Bouclier | Protéger une flamme longue est important pour la rétention, mais c'est un achat — secondaire par rapport aux jalons. Les sous-priorités reflètent l'enjeu : longue flamme sans bouclier (19) > flamme moyenne (20) > suggestion du deuxième bouclier (21) > nouvelle flamme (22). |
+| **23–24** | Onboarding boutique | Nudges spécifiques au premier personnage (arc1.5, arc1.4). Prioritaires sur les autres nudges boutique. |
+| **25–33** | Boutique — personnages et pièces | Nudges d'achat contextuels selon le solde. Moins urgents que tout ce qui précède. Inclut les jalons de streak (31–33). |
+| **34–36** | Rebond après recul | Flamme tombée à 0 (arc5.9), développement couronne (arc3.4) et échec direct (arc2.4) : messages qui ne doivent pas écraser les messages de progression active. |
+| **37–50** | Boutique secondaire, boosts, maîtrise, images mystère | Arcs de découverte ou d'état avancé. Pertinents seulement quand tout le reste est silencieux. L'ordre interne à cette plage est arbitraire — aucun n'est plus urgent qu'un autre. |
+| **51–58** | Sessions du jour | Messages récurrents de fond (`arc14.x`). Affichés **uniquement si aucun arc 1–50 n'est éligible**. Ils constituent le plancher du système : il y a toujours quelque chose à dire sur l'activité du jour. |
 
-**Règle des messages récurrents (`↩`) :** ils ne respectent pas l'unicité — ils peuvent réapparaître à chaque ouverture du dashboard, sous réserve du cooldown de 3 minutes (`lastShownTimestamp`). Cela concerne arc1.1, arc1.3, arc5.8, arc7.2, et tous les arc14.x.
+**Règle des messages récurrents (`↩`) :** ils ne respectent pas l'unicité — ils restent affichés tant que leur condition est vraie et qu'ils gardent la plus haute priorité. Aucun cooldown. Cela concerne arc1.1, arc1.3, arc5.8, arc7.2, et tous les arc14.x.
 
 ---
 
 ## Top 25 des arcs par priorité
 
-| <abbr title="Thème fonctionnel et identifiant de l'arc">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot ou max N atteint · 3 min = cooldown global">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+<style>.top25-wrap td:first-child { white-space: normal; max-width: 8rem; word-break: break-word; }</style>
+<div class="top25-wrap">
+
+| <abbr title="Thème fonctionnel et identifiant de l'arc">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| Onboarding — arc1.1 | ![arc1.1](screenshots/coaching-arc1.1.png) | Jamais fait de quiz · bonus 200 pièces pas encore obtenu | ↩ | 3 min | 1 |
-| Onboarding — arc1.3 | ![arc1.3](screenshots/coaching-arc1.3.png) | 1 session faite · bonus 200 pièces non obtenu (score < 60 %) | ↩ | 3 min | 2 |
-| Flamme — arc5.8 | ![arc5.8](screenshots/coaching-arc5.8.png) | Flamme active · pas joué aujourd'hui · après 16 h | ↩ | 3 min | 3 |
+| Onboarding — arc1.1 | ![arc1.1](screenshots/coaching-arc1.1.png) | Jamais fait de quiz · bonus 200 pièces pas encore obtenu | ↩ | — | 1 |
+| Onboarding — arc1.3 | ![arc1.3](screenshots/coaching-arc1.3.png) | 1 session faite · bonus 200 pièces non obtenu (score < 60 %) | ↩ | — | 2 |
+| Flamme — arc5.8 | ![arc5.8](screenshots/coaching-arc5.8.png) | Flamme active · pas joué aujourd'hui · après 16 h | ↩ | — | 3 |
 | Diamant — arc4.8 | ![arc4.8](screenshots/coaching-arc4.8.png) | Une règle Diamant · date de révision dépassée | 1 | — | 4 |
 | Diamant — arc4.5 | ![arc4.5](screenshots/coaching-arc4.5.png) | Une règle Diamant · révision prévue aujourd'hui | 1 | — | 5 |
 | Diamant — arc4.1 | ![arc4.1](screenshots/coaching-arc4.1.png) | Une règle Couronne · 1 session directe consécutive ≥ 18/20 | 1 | — | 6 |
@@ -99,16 +103,18 @@ La hiérarchie repose sur trois axes : **urgence** (le message perd sa pertinenc
 | Personnages — arc12.3 | ![arc12.3](screenshots/coaching-arc12.3.png) | Un personnage avec 1 ou 2 émotions sur 7 | 1 | — | 13 |
 | Personnages — arc12.4 | ![arc12.4](screenshots/coaching-arc12.4.png) | Un personnage avec exactement 4 émotions sur 7 | 1 | — | 14 |
 | Personnages — arc12.5 | ![arc12.5](screenshots/coaching-arc12.5.png) | Un personnage avec les 7 émotions complètes | 1 | — | 15 |
-| Bouclier — arc13.3 | ![arc13.3](screenshots/coaching-arc13.3.png) | Flamme ≥ 7 jours · 0 bouclier · 160 pièces ou plus | 1 | — | 16 |
-| Bouclier — arc13.2 | ![arc13.2](screenshots/coaching-arc13.2.png) | Flamme entre 3 et 6 jours · 0 bouclier · 160 pièces ou plus | 1 | — | 17 |
-| Bouclier — arc13.4 | ![arc13.4](screenshots/coaching-arc13.4.png) | Flamme ≥ 14 jours · 1 bouclier · 160 pièces ou plus | 1 | — | 18 |
-| Bouclier — arc13.1 | ![arc13.1](screenshots/coaching-arc13.1.png) | Flamme < 3 jours · 0 bouclier · 160 pièces ou plus | 1 | — | 19 |
-| Onboarding — arc1.5 | ![arc1.5](screenshots/coaching-arc1.5.png) | 250 pièces ou plus · aucun personnage possédé | 3 | — | 20 |
-| Onboarding — arc1.4 | ![arc1.4](screenshots/coaching-arc1.4.png) | Entre 200 et 249 pièces · aucun personnage possédé | 3 | — | 21 |
-| Boutique — arc6.3 | ![arc6.3](screenshots/coaching-arc6.3.png) | 250 pièces ou plus · aucun personnage possédé | 1 | — | 22 |
-| Boutique — arc6.4 | ![arc6.4](screenshots/coaching-arc6.4.png) | Entre 450 et 499 pièces · au moins 1 personnage | 1 | — | 23 |
-| Boutique — arc6.5 | ![arc6.5](screenshots/coaching-arc6.5.png) | 500 pièces ou plus · exactement 1 personnage | 1 | — | 24 |
-| Boutique — arc6.7 | ![arc6.7](screenshots/coaching-arc6.7.png) | Assez de pièces pour une émotion · personnage sans aucune émotion | 1 | — | 25 |
+| Flamme — arc5.1 | ![arc5.1](screenshots/coaching-arc5.1.png) | Flamme exactement à 1 jour | 1 | — | 16 |
+| Flamme — arc5.2 | ![arc5.2](screenshots/coaching-arc5.2.png) | Flamme exactement à 2 jours | 1 | — | 17 |
+| Flamme — arc5.2a | ![arc5.2a](screenshots/coaching-arc5.2a.png) | Flamme exactement à 3 jours | 1 | — | 18 |
+| Bouclier — arc13.3 | ![arc13.3](screenshots/coaching-arc13.3.png) | Flamme ≥ 7 jours · 0 bouclier · 160 pièces ou plus | 1 | — | 19 |
+| Bouclier — arc13.2 | ![arc13.2](screenshots/coaching-arc13.2.png) | Flamme entre 3 et 6 jours · 0 bouclier · 160 pièces ou plus | 1 | — | 20 |
+| Bouclier — arc13.4 | ![arc13.4](screenshots/coaching-arc13.4.png) | Flamme ≥ 14 jours · 1 bouclier · 160 pièces ou plus | 1 | — | 21 |
+| Bouclier — arc13.1 | ![arc13.1](screenshots/coaching-arc13.1.png) | Flamme < 3 jours · 0 bouclier · 160 pièces ou plus | 1 | — | 22 |
+| Onboarding — arc1.5 | ![arc1.5](screenshots/coaching-arc1.5.png) | 250 pièces ou plus · aucun personnage possédé | 3 | — | 23 |
+| Onboarding — arc1.4 | ![arc1.4](screenshots/coaching-arc1.4.png) | Entre 200 et 249 pièces · aucun personnage possédé | 3 | — | 24 |
+| Boutique — arc6.4 | ![arc6.4](screenshots/coaching-arc6.4.png) | Entre 450 et 499 pièces · au moins 1 personnage | 1 | — | 25 |
+
+</div>
 
 ---
 
@@ -118,40 +124,40 @@ La hiérarchie repose sur trois axes : **urgence** (le message perd sa pertinenc
 
 ### Onboarding et bienvenue
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc1.1 | ![arc1.1](screenshots/coaching-arc1.1.png) | Jamais fait de quiz · bonus 200 pièces pas encore obtenu | ↩ | 3 min | 1 |
-| arc1.3 | ![arc1.3](screenshots/coaching-arc1.3.png) | 1 session faite · bonus 200 pièces non obtenu (score < 60 %) | ↩ | 3 min | 2 |
-| arc1.4 | ![arc1.4](screenshots/coaching-arc1.4.png) | Entre 200 et 249 pièces · aucun personnage possédé | 3 | — | 21 |
-| arc1.5 | ![arc1.5](screenshots/coaching-arc1.5.png) | 250 pièces ou plus · aucun personnage possédé | 3 | — | 20 |
-| arc1.7.streak5 | ![arc1.7.streak5](screenshots/coaching-arc1.7.streak5.png) | Flamme exactement à 5 jours | 3 | — | 29 |
-| arc1.7.streak6 | ![arc1.7.streak6](screenshots/coaching-arc1.7.streak6.png) | Flamme exactement à 6 jours | 3 | — | 30 |
+| arc1.1 | ![arc1.1](screenshots/coaching-arc1.1.png) | Jamais fait de quiz · bonus 200 pièces pas encore obtenu | ↩ | — | 1 |
+| arc1.3 | ![arc1.3](screenshots/coaching-arc1.3.png) | 1 session faite · bonus 200 pièces non obtenu (score < 60 %) | ↩ | — | 2 |
+| arc1.4 | ![arc1.4](screenshots/coaching-arc1.4.png) | Entre 200 et 249 pièces · aucun personnage possédé | 3 | — | 24 |
+| arc1.5 | ![arc1.5](screenshots/coaching-arc1.5.png) | 250 pièces ou plus · aucun personnage possédé | 3 | — | 23 |
+| arc1.7.streak5 | ![arc1.7.streak5](screenshots/coaching-arc1.7.streak5.png) | Flamme exactement à 5 jours | 3 | — | 31 |
+| arc1.7.streak6 | ![arc1.7.streak6](screenshots/coaching-arc1.7.streak6.png) | Flamme exactement à 6 jours | 3 | — | 32 |
 
 ---
 
 ### Progression vers Argent
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
 | arc2.1 | ![arc2.1](screenshots/coaching-arc2.1.png) | Une règle niveau Argent · 1 session guidée ≥ 16/20 sur cette règle | 1 | — | 10 |
 | arc2.2 | ![arc2.2](screenshots/coaching-arc2.2.png) | Une règle niveau Argent · 2 sessions guidées ≥ 16/20 sur cette règle | 1 | — | 11 |
-| arc2.4 | ![arc2.4](screenshots/coaching-arc2.4.png) | Une règle niveau Argent · session directe faite · aucune ≥ 16/20 | 1 | — | 35 |
+| arc2.4 | ![arc2.4](screenshots/coaching-arc2.4.png) | Une règle niveau Argent · session directe faite · aucune ≥ 16/20 | 1 | — | 36 |
 
 ---
 
 ### Progression vers Couronne
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
 | arc3.1 | ![arc3.1](screenshots/coaching-arc3.1.png) | Une règle niveau Argent · 1 session directe ≥ 16/20 | 1 | — | 8 |
 | arc3.2 | ![arc3.2](screenshots/coaching-arc3.2.png) | Une règle niveau Argent · 2 sessions directes ≥ 16/20 | 1 | — | 9 |
-| arc3.4 | ![arc3.4](screenshots/coaching-arc3.4.png) | 2 couronnes ou plus · moins de la moitié des règles au niveau Bronze | 1 | — | 34 |
+| arc3.4 | ![arc3.4](screenshots/coaching-arc3.4.png) | 2 couronnes ou plus · moins de la moitié des règles au niveau Bronze | 1 | — | 35 |
 
 ---
 
 ### Progression vers Diamant
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
 | arc4.1 | ![arc4.1](screenshots/coaching-arc4.1.png) | Une règle Couronne · 1 session directe consécutive ≥ 18/20 | 1 | — | 6 |
 | arc4.2 | ![arc4.2](screenshots/coaching-arc4.2.png) | Une règle Couronne · 2 sessions directes consécutives ≥ 18/20 | 1 | — | 7 |
@@ -162,96 +168,96 @@ La hiérarchie repose sur trois axes : **urgence** (le message perd sa pertinenc
 
 ### Flamme et série
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc5.1 | ![arc5.1](screenshots/coaching-arc5.1.png) | Flamme exactement à 1 jour | 1 | — | 32 |
-| arc5.2 | ![arc5.2](screenshots/coaching-arc5.2.png) | Flamme exactement à 2 jours | 1 | — | 33 |
-| arc5.3 | ![arc5.3](screenshots/coaching-arc5.3.png) | Flamme à 6 jours · pas encore joué aujourd'hui | 1 | — | 31 |
-| arc5.8 | ![arc5.8](screenshots/coaching-arc5.8.png) | Flamme active · pas joué aujourd'hui · après 16 h | ↩ | 3 min | 3 |
+| arc5.1 | ![arc5.1](screenshots/coaching-arc5.1.png) | Flamme exactement à 1 jour | 1 | — | 16 |
+| arc5.2 | ![arc5.2](screenshots/coaching-arc5.2.png) | Flamme exactement à 2 jours | 1 | — | 17 |
+| arc5.2a | ![arc5.2a](screenshots/coaching-arc5.2a.png) | Flamme exactement à 3 jours | 1 | — | 18 |
+| arc5.3 | ![arc5.3](screenshots/coaching-arc5.3.png) | Flamme à 6 jours · pas encore joué aujourd'hui | 1 | — | 33 |
+| arc5.8 | ![arc5.8](screenshots/coaching-arc5.8.png) | Flamme active · pas joué aujourd'hui · après 16 h | ↩ | — | 3 |
 | arc5.9 | ![arc5.9](screenshots/coaching-arc5.9.png) | Flamme à 0 · ou flamme à 1 après en avoir eu une plus longue | 1 | — | 34 |
 
 ---
 
 ### Bouclier
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc13.1 | ![arc13.1](screenshots/coaching-arc13.1.png) | Flamme < 3 jours · 0 bouclier · 160 pièces ou plus | 1 | — | 19 |
-| arc13.2 | ![arc13.2](screenshots/coaching-arc13.2.png) | Flamme entre 3 et 6 jours · 0 bouclier · 160 pièces ou plus | 1 | — | 17 |
-| arc13.3 | ![arc13.3](screenshots/coaching-arc13.3.png) | Flamme ≥ 7 jours · 0 bouclier · 160 pièces ou plus | 1 | — | 16 |
-| arc13.4 | ![arc13.4](screenshots/coaching-arc13.4.png) | Flamme ≥ 14 jours · 1 bouclier · 160 pièces ou plus | 1 | — | 18 |
+| arc13.1 | ![arc13.1](screenshots/coaching-arc13.1.png) | Flamme < 3 jours · 0 bouclier · 160 pièces ou plus | 1 | — | 22 |
+| arc13.2 | ![arc13.2](screenshots/coaching-arc13.2.png) | Flamme entre 3 et 6 jours · 0 bouclier · 160 pièces ou plus | 1 | — | 20 |
+| arc13.3 | ![arc13.3](screenshots/coaching-arc13.3.png) | Flamme ≥ 7 jours · 0 bouclier · 160 pièces ou plus | 1 | — | 19 |
+| arc13.4 | ![arc13.4](screenshots/coaching-arc13.4.png) | Flamme ≥ 14 jours · 1 bouclier · 160 pièces ou plus | 1 | — | 21 |
 
 ---
 
 ### Boutique et achats
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc6.1 | ![arc6.1](screenshots/coaching-arc6.1.png) | 80 pièces ou plus · aucun thème acheté | 1 | — | 28 |
-| arc6.3 | ![arc6.3](screenshots/coaching-arc6.3.png) | 250 pièces ou plus · aucun personnage possédé | 1 | — | 22 |
-| arc6.4 | ![arc6.4](screenshots/coaching-arc6.4.png) | Entre 450 et 499 pièces · au moins 1 personnage | 1 | — | 23 |
-| arc6.5 | ![arc6.5](screenshots/coaching-arc6.5.png) | 500 pièces ou plus · exactement 1 personnage | 1 | — | 24 |
-| arc6.6 | ![arc6.6](screenshots/coaching-arc6.6.png) | 500 pièces ou plus · 2 personnages ou plus | 1 | — | 26 |
-| arc6.7 | ![arc6.7](screenshots/coaching-arc6.7.png) | Assez de pièces pour une émotion · personnage sans aucune émotion | 1 | — | 25 |
-| arc6.8 | ![arc6.8](screenshots/coaching-arc6.8.png) | 60 pièces ou plus · aucun morceau d'image mystère dévoilé | 1 | — | 36 |
-| arc6.9 | ![arc6.9](screenshots/coaching-arc6.9.png) | 2 morceaux d'image mystère dévoilés aujourd'hui | 1 | — | 49 |
-| arc6.10 | ![arc6.10](screenshots/coaching-arc6.10.png) | 190 pièces ou plus · aucune animation de victoire | 1 | — | 37 |
-| arc6.11 | ![arc6.11](screenshots/coaching-arc6.11.png) | 300 pièces ou plus · aucune animation d'entrée | 1 | — | 38 |
-| arc6.12 | ![arc6.12](screenshots/coaching-arc6.12.png) | 320 pièces ou plus · aucun thème premium | 1 | — | 39 |
-| arc6.13 | ![arc6.13](screenshots/coaching-arc6.13.png) | Moins de 30 pièces · flamme active | 1 | — | 27 |
+| arc6.1 | ![arc6.1](screenshots/coaching-arc6.1.png) | 80 pièces ou plus · aucun thème acheté | 1 | — | 30 |
+| arc6.4 | ![arc6.4](screenshots/coaching-arc6.4.png) | Entre 450 et 499 pièces · au moins 1 personnage | 1 | — | 25 |
+| arc6.5 | ![arc6.5](screenshots/coaching-arc6.5.png) | 500 pièces ou plus · exactement 1 personnage | 1 | — | 26 |
+| arc6.6 | ![arc6.6](screenshots/coaching-arc6.6.png) | 500 pièces ou plus · 2 personnages ou plus | 1 | — | 28 |
+| arc6.7 | ![arc6.7](screenshots/coaching-arc6.7.png) | Assez de pièces pour une émotion · personnage sans aucune émotion | 1 | — | 27 |
+| arc6.8 | ![arc6.8](screenshots/coaching-arc6.8.png) | 60 pièces ou plus · aucun morceau d'image mystère dévoilé | 1 | — | 37 |
+| arc6.9 | ![arc6.9](screenshots/coaching-arc6.9.png) | 2 morceaux d'image mystère dévoilés aujourd'hui | 1 | — | 50 |
+| arc6.10 | ![arc6.10](screenshots/coaching-arc6.10.png) | 190 pièces ou plus · aucune animation de victoire | 1 | — | 38 |
+| arc6.11 | ![arc6.11](screenshots/coaching-arc6.11.png) | 300 pièces ou plus · aucune animation d'entrée | 1 | — | 39 |
+| arc6.12 | ![arc6.12](screenshots/coaching-arc6.12.png) | 320 pièces ou plus · aucun thème premium | 1 | — | 40 |
+| arc6.13 | ![arc6.13](screenshots/coaching-arc6.13.png) | Moins de 30 pièces · flamme active | 1 | — | 29 |
 
 ---
 
 ### Boosts
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc7.1 | ![arc7.1](screenshots/coaching-arc7.1.png) | Lundi · 100 pièces ou plus · aucun boost Double coins actif | 1 | — | 40 |
-| arc7.2 | ![arc7.2](screenshots/coaching-arc7.2.png) | Boost Double coins actif avec des sessions restantes | ↩ | 3 min | 41 |
+| arc7.1 | ![arc7.1](screenshots/coaching-arc7.1.png) | Lundi · 100 pièces ou plus · aucun boost Double coins actif | 1 | — | 41 |
+| arc7.2 | ![arc7.2](screenshots/coaching-arc7.2.png) | Boost Double coins actif avec des sessions restantes | ↩ | — | 42 |
 
 ---
 
 ### Dictée
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc8.1 | ![arc8.1](screenshots/coaching-arc8.1.png) | Au moins une règle au niveau Bronze ou au-dessus | 1 | — | 42 |
+| arc8.1 | ![arc8.1](screenshots/coaching-arc8.1.png) | Au moins une règle au niveau Bronze ou au-dessus | 1 | — | 43 |
 
 ---
 
 ### Retour après absence
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc9.5 | ![arc9.5](screenshots/coaching-arc9.5.png) | Flamme à 1 jour · flamme record plus longue dans le passé | 1 | — | 43 |
+| arc9.5 | ![arc9.5](screenshots/coaching-arc9.5.png) | Flamme à 1 jour · flamme record plus longue dans le passé | 1 | — | 44 |
 
 ---
 
 ### Maîtrise complète
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc10.1 | ![arc10.1](screenshots/coaching-arc10.1.png) | Toutes les règles au niveau Couronne ou Diamant | 1 | — | 44 |
-| arc10.2 | ![arc10.2](screenshots/coaching-arc10.2.png) | Toutes les règles au niveau Diamant | 1 | — | 45 |
-| arc10.3 | ![arc10.3](screenshots/coaching-arc10.3.png) | 5 règles Diamant ou plus · toutes à jour · aucune révision due | 1 | — | 46 |
-| arc10.4 | ![arc10.4](screenshots/coaching-arc10.4.png) | Au moins une règle Diamant · aucune révision due aujourd'hui | 1 | — | 47 |
+| arc10.1 | ![arc10.1](screenshots/coaching-arc10.1.png) | Toutes les règles au niveau Couronne ou Diamant | 1 | — | 45 |
+| arc10.2 | ![arc10.2](screenshots/coaching-arc10.2.png) | Toutes les règles au niveau Diamant | 1 | — | 46 |
+| arc10.3 | ![arc10.3](screenshots/coaching-arc10.3.png) | 5 règles Diamant ou plus · toutes à jour · aucune révision due | 1 | — | 47 |
+| arc10.4 | ![arc10.4](screenshots/coaching-arc10.4.png) | Au moins une règle Diamant · aucune révision due aujourd'hui | 1 | — | 48 |
 
 ---
 
 ### Images mystère
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc11.1 | ![arc11.1](screenshots/coaching-arc11.1.png) | Exactement 1 morceau dévoilé dans une collection | 1 | — | 48 |
-| arc11.2 | ![arc11.2](screenshots/coaching-arc11.2.png) | Exactement 3 morceaux dévoilés dans une collection | 1 | — | 48 |
-| arc11.3 | ![arc11.3](screenshots/coaching-arc11.3.png) | Exactement 5 morceaux dévoilés dans une collection | 1 | — | 48 |
-| arc11.4 | ![arc11.4](screenshots/coaching-arc11.4.png) | 6 morceaux dévoilés ou plus (collection complète) | 1 | — | 48 |
+| arc11.1 | ![arc11.1](screenshots/coaching-arc11.1.png) | Exactement 1 morceau dévoilé dans une collection | 1 | — | 49 |
+| arc11.2 | ![arc11.2](screenshots/coaching-arc11.2.png) | Exactement 3 morceaux dévoilés dans une collection | 1 | — | 49 |
+| arc11.3 | ![arc11.3](screenshots/coaching-arc11.3.png) | Exactement 5 morceaux dévoilés dans une collection | 1 | — | 49 |
+| arc11.4 | ![arc11.4](screenshots/coaching-arc11.4.png) | 6 morceaux dévoilés ou plus (collection complète) | 1 | — | 49 |
 
 ---
 
 ### Personnages et émotions
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
 | arc12.2 | ![arc12.2](screenshots/coaching-arc12.2.png) | Première émotion boutique achetée | 1 | — | 12 |
 | arc12.3 | ![arc12.3](screenshots/coaching-arc12.3.png) | Un personnage avec 1 ou 2 émotions sur 7 | 1 | — | 13 |
@@ -264,16 +270,16 @@ La hiérarchie repose sur trois axes : **urgence** (le message perd sa pertinenc
 
 Ces messages sont évalués en **dernier** (priorité 50+). Ils ne s'affichent que si aucun autre arc plus prioritaire n'est éligible.
 
-| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai minimum avant réaffichage · — = one-shot, ne réapparaît jamais · 3 min = cooldown global entre deux messages">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
+| <abbr title="Identifiant de l'arc dans coaching.js">Arc</abbr> | <abbr title="Texte affiché dans le bandeau de motivation">Aperçu</abbr> | <abbr title="Règle de déclenchement">Condition</abbr> | <abbr title="Nombre maximum d'affichages (one-shot) · ↩ = récurrent, peut réapparaître indéfiniment">Type</abbr> | <abbr title="Délai avant réaffichage · — = ne réapparaît jamais (one-shot ou max N atteint) · ↩ = réapparaît dès que la condition est vraie">Cooldown</abbr> | <abbr title="Rang dans pickCoachingMessage(), 1 = le plus prioritaire">Priorité</abbr> |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc14.0a | ![arc14.0a](screenshots/coaching-arc14.0a.png) | Pas encore joué aujourd'hui · flamme active · dernier message affiché ≠ arc14.0a | ↩ | 3 min | 51 |
-| arc14.0b | ![arc14.0b](screenshots/coaching-arc14.0b.png) | Pas encore joué aujourd'hui · dernier message affiché ≠ arc14.0b | ↩ | 3 min | 52 |
-| arc14.1 | ![arc14.1](screenshots/coaching-arc14.1.png) | Exactement 1 session aujourd'hui · flamme ≥ 2 jours | ↩ | 3 min | 58 |
-| arc14.2 | ![arc14.2](screenshots/coaching-arc14.2.png) | Exactement 2 sessions aujourd'hui | ↩ | 3 min | 57 |
-| arc14.3 | ![arc14.3](screenshots/coaching-arc14.3.png) | Exactement 3 sessions aujourd'hui | ↩ | 3 min | 56 |
-| arc14.4 | ![arc14.4](screenshots/coaching-arc14.4.png) | 3 sessions ou plus aujourd'hui · plus qu'hier · hier > 0 | ↩ | 3 min | 55 |
-| arc14.5 | ![arc14.5](screenshots/coaching-arc14.5.png) | 4 sessions ou plus aujourd'hui · record battu sur 3, 7 ou 30 jours | ↩ | 3 min | 53 |
-| arc14.6 | ![arc14.6](screenshots/coaching-arc14.6.png) | 3 sessions ou plus aujourd'hui · à 1 ou 2 sessions d'un record | ↩ | 3 min | 54 |
+| arc14.0a | ![arc14.0a](screenshots/coaching-arc14.0a.png) | Pas encore joué aujourd'hui · flamme active · dernier message affiché ≠ arc14.0a | ↩ | — | 51 |
+| arc14.0b | ![arc14.0b](screenshots/coaching-arc14.0b.png) | Pas encore joué aujourd'hui · dernier message affiché ≠ arc14.0b | ↩ | — | 52 |
+| arc14.1 | ![arc14.1](screenshots/coaching-arc14.1.png) | Exactement 1 session aujourd'hui · flamme ≥ 2 jours | ↩ | — | 58 |
+| arc14.2 | ![arc14.2](screenshots/coaching-arc14.2.png) | Exactement 2 sessions aujourd'hui | ↩ | — | 57 |
+| arc14.3 | ![arc14.3](screenshots/coaching-arc14.3.png) | Exactement 3 sessions aujourd'hui | ↩ | — | 56 |
+| arc14.4 | ![arc14.4](screenshots/coaching-arc14.4.png) | 3 sessions ou plus aujourd'hui · plus qu'hier · hier > 0 | ↩ | — | 55 |
+| arc14.5 | ![arc14.5](screenshots/coaching-arc14.5.png) | 4 sessions ou plus aujourd'hui · record battu sur 3, 7 ou 30 jours | ↩ | — | 53 |
+| arc14.6 | ![arc14.6](screenshots/coaching-arc14.6.png) | 3 sessions ou plus aujourd'hui · à 1 ou 2 sessions d'un record | ↩ | — | 54 |
 
 ---
 
