@@ -154,20 +154,8 @@ export function pickCoachingMessage(ctx) {
     };
   }
 
-  // Allowed arcs for endScreen trigger
-  const endScreenArcs = new Set([
-    'arc2.1', 'arc2.2', 'arc3.1', 'arc3.2',
-    'arc4.1', 'arc4.2', 'arc4.8',
-    'arc5.8', 'arc5.9', 'arc9.5',
-  ]);
-
-  function allowed(arcId) {
-    if (trigger === 'endScreen') return endScreenArcs.has(arcId);
-    return true; // dashboard: all arcs allowed
-  }
-
   // --- arc1.1: no sessions yet ---
-  if (allowed('arc1.1') && !isAlreadyShown(coaching, 'arc1.1')) {
+  if (!isAlreadyShown(coaching, 'arc1.1')) {
     if (!firstQuizDone && totalSessions === 0) {
       return msg('arc1.1', 'pieces',
         'Fais ton premier quiz pour remporter 200 pièces de bienvenue.',
@@ -180,7 +168,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc1.3: failed first session (< 60%) ---
-  if (allowed('arc1.3') && !isAlreadyShown(coaching, 'arc1.3')) {
+  if (!isAlreadyShown(coaching, 'arc1.3')) {
     // Detect: first session ever done, but firstSession milestone not set (means score < 60%)
     if (totalSessions === 1 && !firstQuizDone) {
       return msg('arc1.3', 'plain',
@@ -232,7 +220,7 @@ export function pickCoachingMessage(ctx) {
     // --- arc14: daily engagement — already played today ---
     if (todayDone && sessionsToday > 0) {
       // arc14.5: new daily record — pick the hardest record that was beaten
-      if (allowed('arc14.5') && sessionsToday >= 4) {
+      if (sessionsToday >= 4) {
         const beatenPeriod = (record30j > 0 && sessionsToday >= record30j) ? 30
           : (record7j > 0 && sessionsToday >= record7j) ? 7
           : (record3j > 0 && sessionsToday >= record3j) ? 3
@@ -249,7 +237,7 @@ export function pickCoachingMessage(ctx) {
       }
 
       // arc14.6: close to beating a record (1 or 2 away)
-      if (allowed('arc14.6') && sessionsToday >= 3) {
+      if (sessionsToday >= 3) {
         const candidates = [
           { period: 3, record: record3j },
           { period: 7, record: record7j },
@@ -288,7 +276,7 @@ export function pickCoachingMessage(ctx) {
       }
 
       // arc14.4: doing better than yesterday
-      if (allowed('arc14.4') && sessionsToday >= 3 && yesterdaySessions > 0 && sessionsToday > yesterdaySessions) {
+      if (sessionsToday >= 3 && yesterdaySessions > 0 && sessionsToday > yesterdaySessions) {
         return msg('arc14.4', 'flamme',
           `${sessionsToday} quiz aujourd'hui, c'est plus qu'hier (${yesterdaySessions}). Belle progression !`,
           `plus qu'hier`,
@@ -299,7 +287,7 @@ export function pickCoachingMessage(ctx) {
       }
 
       // arc14.3: third session
-      if (allowed('arc14.3') && sessionsToday === 3) {
+      if (sessionsToday === 3) {
         return msg('arc14.3', 'panda',
           '3e quiz aujourd\'hui, tu es en feu ! Continue comme ça.',
           '3e quiz',
@@ -310,7 +298,7 @@ export function pickCoachingMessage(ctx) {
       }
 
       // arc14.2: second session
-      if (allowed('arc14.2') && sessionsToday === 2) {
+      if (sessionsToday === 2) {
         return msg('arc14.2', 'panda',
           'Bravo pour ce 2e quiz ! Chaque session renforce ta mémoire.',
           '2e quiz',
@@ -321,7 +309,7 @@ export function pickCoachingMessage(ctx) {
       }
 
       // arc14.1: first session of the day — flame grew
-      if (allowed('arc14.1') && sessionsToday === 1 && streak.current >= 2) {
+      if (sessionsToday === 1 && streak.current >= 2) {
         return msg('arc14.1', 'flamme',
           `+1 jour ! Ta flamme est à ${streak.current} jours. Bien joué !`,
           `${streak.current} jours`,
@@ -336,7 +324,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc5.8: flame at risk (16h+, streak active, not played today) ---
-  if (allowed('arc5.8')) {
+  {
     const recurringOk = !wasShownWithin24h(coaching, 'arc5.8', todayStr);
     if (recurringOk && streak.current > 0 && streak.lastActiveDate !== todayStr && hour >= 16) {
       const hoursLeft = 23 - hour;
@@ -351,7 +339,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc4.8: diamond degrading (diamond health < 1.0 but > 0) ---
-  if (allowed('arc4.8') && !isAlreadyShown(coaching, 'arc4.8')) {
+  if (!isAlreadyShown(coaching, 'arc4.8')) {
     const degradingRule = findRule(rules, ruleProgress, (rp) => {
       if (!rp || rp.level < 4 || !rp.sm2) return false;
       const overdue = rp.sm2.nextReviewDate < todayStr;
@@ -369,7 +357,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc4.5: review due today ---
-  if (allowed('arc4.5') && !isAlreadyShown(coaching, 'arc4.5')) {
+  if (!isAlreadyShown(coaching, 'arc4.5')) {
     if (revisionsDueToday) {
       return msg('arc4.5', 'diamant',
         'Ta première révision diamant est prévue aujourd\'hui — fais-la pour que le diamant brille.',
@@ -382,7 +370,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc4.1: diamond 1/3 (consecutive ≥90%) ---
-  if (allowed('arc4.1') && !isAlreadyShown(coaching, 'arc4.1')) {
+  if (!isAlreadyShown(coaching, 'arc4.1')) {
     const rule41 = findRule(rules, ruleProgress, (rp) => {
       return rp && rp.level === 3 && (rp.directConsecutiveAbove90 || 0) === 1;
     });
@@ -398,7 +386,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc4.2: diamond 2/3 ---
-  if (allowed('arc4.2') && !isAlreadyShown(coaching, 'arc4.2')) {
+  if (!isAlreadyShown(coaching, 'arc4.2')) {
     const rule42 = findRule(rules, ruleProgress, (rp) => {
       return rp && rp.level === 3 && (rp.directConsecutiveAbove90 || 0) === 2;
     });
@@ -414,7 +402,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc3.1: crown 1/3 ---
-  if (allowed('arc3.1') && !isAlreadyShown(coaching, 'arc3.1')) {
+  if (!isAlreadyShown(coaching, 'arc3.1')) {
     const rule31 = findRule(rules, ruleProgress, (rp) => {
       return rp && rp.level === 2 && (rp.directSessionsAbove80 || 0) === 1;
     });
@@ -430,7 +418,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc3.2: crown 2/3 ---
-  if (allowed('arc3.2') && !isAlreadyShown(coaching, 'arc3.2')) {
+  if (!isAlreadyShown(coaching, 'arc3.2')) {
     const rule32 = findRule(rules, ruleProgress, (rp) => {
       return rp && rp.level === 2 && (rp.directSessionsAbove80 || 0) === 2;
     });
@@ -446,7 +434,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc2.1: silver 1/3 ---
-  if (allowed('arc2.1') && !isAlreadyShown(coaching, 'arc2.1')) {
+  if (!isAlreadyShown(coaching, 'arc2.1')) {
     const rule21 = findRule(rules, ruleProgress, (rp) => {
       return rp && rp.level === 1 && (rp.guidedSessionsAbove80 || 0) === 1;
     });
@@ -462,7 +450,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc2.2: silver 2/3 ---
-  if (allowed('arc2.2') && !isAlreadyShown(coaching, 'arc2.2')) {
+  if (!isAlreadyShown(coaching, 'arc2.2')) {
     const rule22 = findRule(rules, ruleProgress, (rp) => {
       return rp && rp.level === 1 && (rp.guidedSessionsAbove80 || 0) === 2;
     });
@@ -478,7 +466,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc12.2: first emotion unlocked ---
-  if (allowed('arc12.2') && !isAlreadyShown(coaching, 'arc12.2')) {
+  if (!isAlreadyShown(coaching, 'arc12.2')) {
     const firstEmoItem = shopOwned.find(id => {
       const parts = id.split('-');
       return parts.length === 3 && parts[0] === 'char' && SHOP_EMOTION_IDS.includes(parts[2]);
@@ -500,7 +488,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc12.3: 1-2 emotions ---
-  if (allowed('arc12.3') && !isAlreadyShown(coaching, 'arc12.3')) {
+  if (!isAlreadyShown(coaching, 'arc12.3')) {
     for (const charItemId of ownedChars) {
       const charId = charItemId.slice(5);
       const ownedEmos = getOwnedShopEmotions(shopOwned, charId);
@@ -517,7 +505,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc12.4: 4/7 emotions ---
-  if (allowed('arc12.4') && !isAlreadyShown(coaching, 'arc12.4')) {
+  if (!isAlreadyShown(coaching, 'arc12.4')) {
     for (const charItemId of ownedChars) {
       const charId = charItemId.slice(5);
       const ownedEmos = getOwnedShopEmotions(shopOwned, charId);
@@ -534,7 +522,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc12.5: char complete ---
-  if (allowed('arc12.5') && !isAlreadyShown(coaching, 'arc12.5')) {
+  if (!isAlreadyShown(coaching, 'arc12.5')) {
     for (const charItemId of ownedChars) {
       const charId = charItemId.slice(5);
       const ownedEmos = getOwnedShopEmotions(shopOwned, charId);
@@ -552,7 +540,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc13.3: long flame, no shield (≥7 days) ---
-  if (allowed('arc13.3') && !isAlreadyShown(coaching, 'arc13.3')) {
+  if (!isAlreadyShown(coaching, 'arc13.3')) {
     if (coins >= 160 && shields === 0 && streak.current >= 7) {
       return msg('arc13.3', 'flamme',
         `${streak.current} jours sans bouclier, c'est jouer avec le feu. 160 pièces et tu dors tranquille.`,
@@ -565,7 +553,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc13.2: medium flame, no shield (≥3 days) ---
-  if (allowed('arc13.2') && !isAlreadyShown(coaching, 'arc13.2')) {
+  if (!isAlreadyShown(coaching, 'arc13.2')) {
     if (coins >= 160 && shields === 0 && streak.current >= 3 && streak.current < 7) {
       return msg('arc13.2', 'flamme',
         `Ta flamme de ${streak.current} jours vaut le coup d'être protégée — un bouclier pour 160 pièces.`,
@@ -578,7 +566,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc13.4: second shield (≥14 days, 1 shield) ---
-  if (allowed('arc13.4') && !isAlreadyShown(coaching, 'arc13.4')) {
+  if (!isAlreadyShown(coaching, 'arc13.4')) {
     if (coins >= 160 && shields === 1 && streak.current >= 14) {
       return msg('arc13.4', 'flamme',
         `Tu as 1 bouclier. À ta flamme de ${streak.current} jours, le second pour 160 pièces fait du bien.`,
@@ -591,7 +579,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc13.1: first shield nudge (< 3 days) ---
-  if (allowed('arc13.1') && !isAlreadyShown(coaching, 'arc13.1')) {
+  if (!isAlreadyShown(coaching, 'arc13.1')) {
     if (coins >= 160 && shields === 0 && streak.current < 3) {
       return msg('arc13.1', 'flamme',
         '160 pièces = 1 bouclier. Si tu rates un jour, ta flamme est sauvée.',
@@ -604,7 +592,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc1.5: panda accessible (≥250 coins, no chars) ---
-  if (allowed('arc1.5') && !isAlreadyShown(coaching, 'arc1.5')) {
+  if (!isAlreadyShown(coaching, 'arc1.5')) {
     if (coins >= 250 && ownedChars.length === 0) {
       return msg('arc1.5', 'panda',
         'C\'est bon, tu peux débloquer le Panda — va faire un tour dans la boutique.',
@@ -617,7 +605,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc1.4: approaching panda (200-249 coins, no chars) ---
-  if (allowed('arc1.4') && !isAlreadyShown(coaching, 'arc1.4')) {
+  if (!isAlreadyShown(coaching, 'arc1.4')) {
     if (coins >= 200 && coins < 250 && ownedChars.length === 0) {
       const needed = 250 - coins;
       return msg('arc1.4', 'panda',
@@ -631,7 +619,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc6.3: 250 coins, panda accessible ---
-  if (allowed('arc6.3') && !isAlreadyShown(coaching, 'arc6.3')) {
+  if (!isAlreadyShown(coaching, 'arc6.3')) {
     if (coins >= 250 && ownedChars.length === 0) {
       return msg('arc6.3', 'panda',
         '250 pièces — adopte le Panda Samouraï dans la boutique, il vient avec ses 3 émotions de base.',
@@ -644,7 +632,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc6.4: 450-499 coins, 1+ char ---
-  if (allowed('arc6.4') && !isAlreadyShown(coaching, 'arc6.4')) {
+  if (!isAlreadyShown(coaching, 'arc6.4')) {
     if (coins >= 450 && coins < 500 && ownedChars.length >= 1) {
       const needed = 500 - coins;
       return msg('arc6.4', 'pieces',
@@ -658,7 +646,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc6.5: 500 coins, exactly 1 char ---
-  if (allowed('arc6.5') && !isAlreadyShown(coaching, 'arc6.5')) {
+  if (!isAlreadyShown(coaching, 'arc6.5')) {
     if (coins >= 500 && ownedChars.length === 1) {
       return msg('arc6.5', 'pieces',
         '500 pièces — choisis ton 2e perso parmi 14 (Dragon, Lion, Loup, Cosmonaute…).',
@@ -671,7 +659,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc6.7: enough coins for an emotion, has char, no shop emotions for most recent char ---
-  if (allowed('arc6.7') && !isAlreadyShown(coaching, 'arc6.7')) {
+  if (!isAlreadyShown(coaching, 'arc6.7')) {
     const emotionPrice = SHOP_EMOTIONS[0]?.price || 130;
     if (coins >= emotionPrice && ownedChars.length > 0) {
       // Find most recently purchased char (last char-X item in owned)
@@ -693,7 +681,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc6.6: 500+ coins, 2+ chars ---
-  if (allowed('arc6.6') && !isAlreadyShown(coaching, 'arc6.6')) {
+  if (!isAlreadyShown(coaching, 'arc6.6')) {
     if (coins >= 500 && ownedChars.length >= 2) {
       return msg('arc6.6', 'pieces',
         '500 pièces — un nouveau perso à ajouter à ta collection.',
@@ -706,7 +694,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc6.13: nearly broke ---
-  if (allowed('arc6.13') && !isAlreadyShown(coaching, 'arc6.13')) {
+  if (!isAlreadyShown(coaching, 'arc6.13')) {
     if (coins < 30 && streak.current > 0) {
       return msg('arc6.13', 'pieces',
         `Plus que ${coins} pièces. Une session à 16/20 = +20 pièces, vite !`,
@@ -719,7 +707,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc6.1: 80 coins, nothing bought (no themes) ---
-  if (allowed('arc6.1') && !isAlreadyShown(coaching, 'arc6.1')) {
+  if (!isAlreadyShown(coaching, 'arc6.1')) {
     const hasTheme = shopOwned.some(id => id.startsWith('theme-'));
     if (coins >= 80 && !hasTheme) {
       return msg('arc6.1', 'pieces',
@@ -733,7 +721,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc1.7: streak at 5 or 6 ---
-  if (allowed('arc1.7.streak5') && !isAlreadyShown(coaching, 'arc1.7.streak5')) {
+  if (!isAlreadyShown(coaching, 'arc1.7.streak5')) {
     if (streak.current === 5) {
       return msg('arc1.7.streak5', 'flamme',
         'Plus que 2 jours pour atteindre 7 jours et empocher 100 pièces.',
@@ -745,7 +733,7 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
-  if (allowed('arc1.7.streak6') && !isAlreadyShown(coaching, 'arc1.7.streak6')) {
+  if (!isAlreadyShown(coaching, 'arc1.7.streak6')) {
     if (streak.current === 6) {
       return msg('arc1.7.streak6', 'flamme',
         'Demain ta flamme passe à 7 jours — 100 pièces à la clé.',
@@ -758,7 +746,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc5.3: J6 with no play today ---
-  if (allowed('arc5.3') && !isAlreadyShown(coaching, 'arc5.3')) {
+  if (!isAlreadyShown(coaching, 'arc5.3')) {
     if (streak.current === 6 && !todayDone) {
       return msg('arc5.3', 'flamme',
         'Demain ta flamme passe à 7 jours — 100 pièces.',
@@ -771,7 +759,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc5.1: streak 1 ---
-  if (allowed('arc5.1') && !isAlreadyShown(coaching, 'arc5.1')) {
+  if (!isAlreadyShown(coaching, 'arc5.1')) {
     if (streak.current === 1) {
       return msg('arc5.1', 'flamme',
         'Ta flamme est lancée. Reviens demain, c\'est tout.',
@@ -784,7 +772,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc5.2: streak 2 ---
-  if (allowed('arc5.2') && !isAlreadyShown(coaching, 'arc5.2')) {
+  if (!isAlreadyShown(coaching, 'arc5.2')) {
     if (streak.current === 2) {
       return msg('arc5.2', 'flamme',
         'Deux jours d\'affilée. Demain, palier "Sur la lancée".',
@@ -797,7 +785,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc5.9: after streak reset ---
-  if (allowed('arc5.9') && !isAlreadyShown(coaching, 'arc5.9')) {
+  if (!isAlreadyShown(coaching, 'arc5.9')) {
     if (streak.current === 0 || (streak.current === 1 && (streak.longest || 0) > 1)) {
       return msg('arc5.9', 'flamme',
         'Flamme à 0. On redémarre aujourd\'hui — un quiz, et c\'est reparti.',
@@ -810,7 +798,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc3.4: 2 crowns, spread rules ---
-  if (allowed('arc3.4') && !isAlreadyShown(coaching, 'arc3.4')) {
+  if (!isAlreadyShown(coaching, 'arc3.4')) {
     const crownCount = Object.values(ruleProgress).filter(rp => (rp?.level || 0) >= 3).length;
     const totalRules = rules.length;
     const bronzeCount = Object.values(ruleProgress).filter(rp => (rp?.level || 0) >= 1).length;
@@ -827,7 +815,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc2.4: failed first direct ---
-  if (allowed('arc2.4') && !isAlreadyShown(coaching, 'arc2.4')) {
+  if (!isAlreadyShown(coaching, 'arc2.4')) {
     const failedDirect = findRule(rules, ruleProgress, (rp) => {
       return rp && rp.level === 2 && rp.directSessionsCompleted >= 1 &&
         (rp.directBestScore || 0) < 0.6 * 20; // rough proxy
@@ -849,7 +837,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc6.8: mystery image nudge ---
-  if (allowed('arc6.8') && !isAlreadyShown(coaching, 'arc6.8')) {
+  if (!isAlreadyShown(coaching, 'arc6.8')) {
     const mysteryImages = progress.shop?.mysteryImages;
     const hasAnyRevealed = mysteryImages?.collections
       ? Object.values(mysteryImages.collections).some(c => (c?.revealedCount || 0) > 0)
@@ -866,7 +854,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc6.10: victory animation ---
-  if (allowed('arc6.10') && !isAlreadyShown(coaching, 'arc6.10')) {
+  if (!isAlreadyShown(coaching, 'arc6.10')) {
     const hasVictoryAnim = shopOwned.some(id => id.startsWith('victory-'));
     if (!hasVictoryAnim && coins >= 190) {
       return msg('arc6.10', 'pieces',
@@ -880,7 +868,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc6.11: entrance animation ---
-  if (allowed('arc6.11') && !isAlreadyShown(coaching, 'arc6.11')) {
+  if (!isAlreadyShown(coaching, 'arc6.11')) {
     const hasEntranceAnim = shopOwned.some(id => id.startsWith('entrance-'));
     if (!hasEntranceAnim && coins >= 300) {
       return msg('arc6.11', 'pieces',
@@ -894,7 +882,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc6.12: premium theme ---
-  if (allowed('arc6.12') && !isAlreadyShown(coaching, 'arc6.12')) {
+  if (!isAlreadyShown(coaching, 'arc6.12')) {
     const hasPremiumTheme = shopOwned.some(id => id.startsWith('theme-aurora') || id.startsWith('theme-midnight'));
     if (!hasPremiumTheme && coins >= 320) {
       return msg('arc6.12', 'pieces',
@@ -908,7 +896,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc7.1: double coins available (Monday, ≥100 coins) ---
-  if (allowed('arc7.1') && !isAlreadyShown(coaching, 'arc7.1')) {
+  if (!isAlreadyShown(coaching, 'arc7.1')) {
     const dayOfWeek = parseLocalDate(todayStr).getDay(); // 0=Sun, 1=Mon
     const activeBoosts = progress.shop?.activeBoosts || {};
     const hasActiveDoubleCoins = activeBoosts.doubleCoins && (activeBoosts.doubleCoinsRemainingSessions || 0) > 0;
@@ -924,7 +912,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc7.2: double coins active (recurring) ---
-  if (allowed('arc7.2')) {
+  {
     const recurringOk = !wasShownWithin24h(coaching, 'arc7.2', todayStr);
     if (recurringOk) {
       const activeBoosts = progress.shop?.activeBoosts || {};
@@ -942,7 +930,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc8.1: discover dictees ---
-  if (allowed('arc8.1') && !isAlreadyShown(coaching, 'arc8.1')) {
+  if (!isAlreadyShown(coaching, 'arc8.1')) {
     const bronzeCount = Object.values(ruleProgress).filter(rp => (rp?.level || 0) >= 1).length;
     if (bronzeCount >= 1) {
       return msg('arc8.1', 'plain',
@@ -956,7 +944,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc9.5: post-return (first day back after a break) ---
-  if (allowed('arc9.5') && !isAlreadyShown(coaching, 'arc9.5')) {
+  if (!isAlreadyShown(coaching, 'arc9.5')) {
     if (streak.current === 1 && (streak.longest || 0) > 1) {
       return msg('arc9.5', 'flamme',
         'Désolé pour ta flamme mais content de te revoir ! Ça fait plaisir.',
@@ -969,7 +957,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc10.x: mastery ---
-  if (allowed('arc10.1') && !isAlreadyShown(coaching, 'arc10.1')) {
+  if (!isAlreadyShown(coaching, 'arc10.1')) {
     const totalRules = rules.length;
     const crownCount = Object.values(ruleProgress).filter(rp => (rp?.level || 0) >= 3).length;
     if (crownCount === totalRules && totalRules > 0) {
@@ -983,7 +971,7 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
-  if (allowed('arc10.2') && !isAlreadyShown(coaching, 'arc10.2')) {
+  if (!isAlreadyShown(coaching, 'arc10.2')) {
     const totalRules = rules.length;
     const diamondCount = Object.values(ruleProgress).filter(rp => (rp?.level || 0) >= 4).length;
     if (diamondCount === totalRules && totalRules > 0) {
@@ -997,7 +985,7 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
-  if (allowed('arc10.3') && !isAlreadyShown(coaching, 'arc10.3')) {
+  if (!isAlreadyShown(coaching, 'arc10.3')) {
     const diamondLiveCount = Object.values(ruleProgress).filter(rp => {
       if (!rp || (rp.level || 0) < 4 || !rp.sm2) return false;
       return rp.sm2.nextReviewDate > todayStr;
@@ -1013,7 +1001,7 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
-  if (allowed('arc10.4') && !isAlreadyShown(coaching, 'arc10.4')) {
+  if (!isAlreadyShown(coaching, 'arc10.4')) {
     const diamondCount = Object.values(ruleProgress).filter(rp => (rp?.level || 0) >= 4).length;
     if (diamondCount >= 1 && !revisionsDueToday) {
       return msg('arc10.4', 'diamant',
@@ -1031,7 +1019,7 @@ export function pickCoachingMessage(ctx) {
   for (const [colId, col] of Object.entries(mysteryCollections)) {
     const revealed = col?.revealedCount || 0;
 
-    if (allowed('arc11.1') && !isAlreadyShown(coaching, `arc11.1.${colId}`)) {
+    if (!isAlreadyShown(coaching, `arc11.1.${colId}`)) {
       if (revealed === 1) {
         return msg(`arc11.1.${colId}`, 'pieces',
           'Premier morceau dévoilé. Encore 5 morceaux pour voir l\'image complète.',
@@ -1043,7 +1031,7 @@ export function pickCoachingMessage(ctx) {
       }
     }
 
-    if (allowed('arc11.2') && !isAlreadyShown(coaching, `arc11.2.${colId}`)) {
+    if (!isAlreadyShown(coaching, `arc11.2.${colId}`)) {
       if (revealed === 3) {
         return msg(`arc11.2.${colId}`, 'pieces',
           'Moitié de l\'image dévoilée. Plus que 3 morceaux et le mystère tombe.',
@@ -1055,7 +1043,7 @@ export function pickCoachingMessage(ctx) {
       }
     }
 
-    if (allowed('arc11.3') && !isAlreadyShown(coaching, `arc11.3.${colId}`)) {
+    if (!isAlreadyShown(coaching, `arc11.3.${colId}`)) {
       if (revealed === 5) {
         return msg(`arc11.3.${colId}`, 'pieces',
           'Plus qu\'un morceau pour découvrir l\'image entière.',
@@ -1067,7 +1055,7 @@ export function pickCoachingMessage(ctx) {
       }
     }
 
-    if (allowed('arc11.4') && !isAlreadyShown(coaching, `arc11.4.${colId}`)) {
+    if (!isAlreadyShown(coaching, `arc11.4.${colId}`)) {
       if (revealed >= 6) {
         return msg(`arc11.4.${colId}`, 'pieces',
           'Image mystère complète. Bravo. Une nouvelle image t\'attend dans la boutique.',
@@ -1081,7 +1069,7 @@ export function pickCoachingMessage(ctx) {
   }
 
   // --- arc6.9: mystery daily limit ---
-  if (allowed('arc6.9') && !isAlreadyShown(coaching, 'arc6.9')) {
+  if (!isAlreadyShown(coaching, 'arc6.9')) {
     const daily = progress.shop?.mysteryImages?.daily;
     if (daily?.date === todayStr && (daily?.count || 0) >= 2) {
       return msg('arc6.9', 'pieces',
