@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { captureException } from '../services/sentry.js';
+import { WarningIcon } from './icons/ProductIcons.jsx';
 
 export default class ErrorBoundary extends Component {
   constructor(props) {
@@ -36,7 +37,7 @@ export default class ErrorBoundary extends Component {
           padding: '2.5rem 2rem',
           border: '1px solid rgba(255,255,255,0.1)',
         }}>
-          <div style={{ marginBottom: '1rem' }}><svg width="52" height="52" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L1.5 20.5h21L12 2z" fill="var(--color-orange,#fb923c)" opacity="0.15" stroke="var(--color-orange,#fb923c)" strokeWidth="1.5" strokeLinejoin="round"/><line x1="12" y1="9" x2="12" y2="14" stroke="var(--color-orange,#fb923c)" strokeWidth="2" strokeLinecap="round"/><circle cx="12" cy="17" r="1" fill="var(--color-orange,#fb923c)"/></svg></div>
+          <div style={{ marginBottom: '1rem' }}><WarningIcon size={52} /></div>
           <h1 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#e2e2e2', marginBottom: '0.5rem' }}>
             Oups, quelque chose a planté
           </h1>

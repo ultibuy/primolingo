@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
+import { SpeakerIcon } from './icons/ProductIcons.jsx';
 import ProgressBar from './ProgressBar.jsx';
 import EndScreen from './EndScreen.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
@@ -132,9 +133,7 @@ function MiniAudioButton({ word, audioUrl }) {
   return (
     <button type="button" onClick={speak} style={miniAudioStyle} aria-label={`Réécouter ${word}`}>
       <span style={miniAudioDotStyle}>
-        <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#1e1e2e" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-        </svg>
+        <SpeakerIcon size={9} />
       </span>
       écouter
     </button>

@@ -21,6 +21,7 @@ import {
 } from 'recharts';
 import { getToday } from '../engine/sm2.js';
 import { computeChartDeltas } from '../engine/stats.js';
+import { CheckmarkIcon } from './icons/ProductIcons.jsx';
 
 // ---------------------------------------------------------------------------
 // Colours
@@ -54,11 +55,7 @@ function sumThisWeek(data) {
 // SVG checkmark
 // ---------------------------------------------------------------------------
 function Checkmark() {
-  return (
-    <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ marginLeft: 5, flexShrink: 0 }}>
-      <path d="M2 6l3 3 5-5" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
+  return <span style={{ marginLeft: 5, flexShrink: 0, display: 'inline-flex' }}><CheckmarkIcon size={11} /></span>;
 }
 
 // ---------------------------------------------------------------------------

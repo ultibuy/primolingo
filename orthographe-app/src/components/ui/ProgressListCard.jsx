@@ -1,5 +1,6 @@
 import ActionButton from './ActionButton.jsx';
 import Panel from './Panel.jsx';
+import { LockIcon as LockIconBase } from '../icons/ProductIcons.jsx';
 
 export default function ProgressListCard({
   title,
@@ -82,19 +83,9 @@ export default function ProgressListCard({
 
 function LockIcon() {
   return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      style={{ width: 18, height: 18, flexShrink: 0, opacity: 0.42 }}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <rect x="5" y="10" width="14" height="10" rx="2" />
-      <path d="M8 10V7a4 4 0 0 1 8 0v3" />
-    </svg>
+    <span style={{ flexShrink: 0, opacity: 0.42, display: 'inline-flex' }}>
+      <LockIconBase size={18} />
+    </span>
   );
 }
 

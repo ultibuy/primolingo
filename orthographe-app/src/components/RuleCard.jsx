@@ -1,5 +1,5 @@
 import CoinIcon from './CoinIcon.jsx';
-import { CrownIcon } from './icons/ProductIcons.jsx';
+import { CrownIcon, ClockIcon, PlayIcon } from './icons/ProductIcons.jsx';
 import DiamondIcon from './DiamondIcon.jsx';
 import DiamondStatus from './DiamondStatus.jsx';
 import LevelPath from './LevelPath.jsx';
@@ -321,7 +321,7 @@ export default function RuleCard({
           border: '1px solid rgba(251,146,0,0.25)',
           marginBottom: '0.6rem',
         }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9.5" stroke="#fb923c" strokeWidth="1.8"/><path d="M12 7v5l3.5 2" stroke="#fb923c" strokeWidth="2" strokeLinecap="round"/></svg>
+          <ClockIcon size={14} color="#fb923c" />
           <span style={{ fontSize: '0.78rem', fontWeight: 700, color: '#fb923c' }}>
             Révision due
           </span>
@@ -455,7 +455,7 @@ export default function RuleCard({
           transition: 'all 0.15s ease',
         }}
       >
-        {level === 0 ? <><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{marginRight:'0.4rem',verticalAlign:'middle'}}><path d="M6 4l14 8-14 8V4z"/></svg></> : ''}
+        {level === 0 ? <><span style={{marginRight:'0.4rem',verticalAlign:'middle',display:'inline-flex'}}><PlayIcon size={12} /></span></> : ''}
         {buttonText}
       </button>
     </div>

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import FlameIcon from './FlameIcon.jsx';
 import DiamondIcon from './DiamondIcon.jsx';
 import DiamondStatus from './DiamondStatus.jsx';
-import { CrownIcon } from './icons/ProductIcons.jsx';
+import { CrownIcon, ArrowRightIcon } from './icons/ProductIcons.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
 import PinInput from './PinInput.jsx';
 
@@ -411,9 +411,7 @@ export default function ReturnScreen({
             <span style={{ fontSize: '0.9rem', color: '#f87171', fontWeight: 700 }}>
               Diamant brisé
             </span>
-            <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#f87171" strokeWidth="2">
-              <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <ArrowRightIcon size={16} color="#f87171" />
             <span style={{ fontSize: '0.9rem', color: '#fbbf24', fontWeight: 700 }}>
               Rétrogradé en couronne
             </span>
@@ -424,13 +422,9 @@ export default function ReturnScreen({
             gap: '0.5rem', marginBottom: '0.5rem',
           }}>
             <HealthBadge value={oldPct} />
-            <svg width={16} height={16} viewBox="0 0 24 24" fill="none" stroke="#6b7280" strokeWidth="2"
-              style={{
-                opacity: showDelta ? 1 : 0,
-                transition: 'opacity 0.4s ease',
-              }}>
-              <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <span style={{ opacity: showDelta ? 1 : 0, transition: 'opacity 0.4s ease', display: 'inline-flex' }}>
+              <ArrowRightIcon size={16} color="#6b7280" />
+            </span>
             <div style={{
               opacity: showDelta ? 1 : 0,
               transform: showDelta ? 'translateY(0)' : 'translateY(10px)',

@@ -1,13 +1,6 @@
 import { useState } from 'react';
 import PopupModal from './PopupModal.jsx';
-
-const BugIcon = ({ size = 14, color = '#9ca3af' }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M8 2l1.88 1.88M14.12 3.88L16 2M9 7.13v-1a3 3 0 0 1 6 0v1" />
-    <path d="M12 20c-3.3 0-6-2.7-6-6v-3a6 6 0 0 1 12 0v3c0 3.3-2.7 6-6 6z" />
-    <path d="M12 20v2M6 13H2M22 13h-4M6 17H3.5M20.5 17H18M6 9H4M20 9h-2" />
-  </svg>
-);
+import { BugIcon } from './icons/ProductIcons.jsx';
 
 function FlagModal({ message, onConfirm, onCancel }) {
   return (

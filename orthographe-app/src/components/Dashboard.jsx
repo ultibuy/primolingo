@@ -15,6 +15,7 @@ import {
   TrophyIcon, UnlockIcon, CheckIcon, WarningIcon,
   ExplosionIcon, StrengthIcon, TargetIcon,
   ChartMedalIcon, ChartTrophyIcon,
+  LockIcon, PencilIcon, OpenBookIcon, CartIcon,
 } from './icons/ProductIcons.jsx';
 import RewardAmount from './rewards/RewardAmount.jsx';
 import DebugTestPanel from './DebugTestPanel.jsx';
@@ -677,7 +678,7 @@ export default function Dashboard({
     : 'Allume la première flamme';
   const dashboardTabs = [
     { key: 'grammaire', label: 'Grammaire', icon: <PencilIcon /> },
-    { key: 'dictee', label: 'Vocabulaire', icon: <BookIcon /> },
+    { key: 'dictee', label: 'Vocabulaire', icon: <OpenBookIcon /> },
   ];
   const streakSupportText = streak > 0
     ? 'Ta flamme te donne des pièces aux paliers 7, 14, 30, 60 et 100 jours. Il faut au moins 60% de bonnes réponses pour valider un jour.'
@@ -977,7 +978,7 @@ export default function Dashboard({
               <span style={{ fontSize: '0.88rem', fontWeight: 800, color: 'var(--color-accent)' }}>
                 <AnimatedNumber value={coins} />
               </span>
-              <CartIcon />
+              <span style={{ marginLeft: '0.15rem', opacity: 0.55, display: 'inline-flex' }}><CartIcon /></span>
             </button>
           </div>
         </Panel>
@@ -2147,42 +2148,6 @@ function LevelBadge({ icon, count, color, label, compact = false, onClick }) {
   );
 }
 
-function PencilIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M12 20h9" />
-      <path d="M16.5 3.5a2.121 2.121 0 1 1 3 3L7 19l-4 1 1-4z" />
-    </svg>
-  );
-}
-
-function BookIcon() {
-  return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
-    </svg>
-  );
-}
-
-function CartIcon() {
-  return (
-    <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '0.15rem', opacity: 0.55 }}>
-      <circle cx="9" cy="20" r="1.4" />
-      <circle cx="18" cy="20" r="1.4" />
-      <path d="M2.5 3h2.2l2.5 12.2a2 2 0 0 0 2 1.6h8.5a2 2 0 0 0 1.9-1.4L21.5 8H6" />
-    </svg>
-  );
-}
-
-function LockIcon({ size = 14 }) {
-  return (
-    <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.3" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="5" y="10" width="14" height="10" rx="2" />
-      <path d="M8 10V7a4 4 0 0 1 8 0v3" />
-    </svg>
-  );
-}
 
 
 function DiamondSparkBadge() {
