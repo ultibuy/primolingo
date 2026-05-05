@@ -77,8 +77,8 @@ La hiérarchie repose sur trois axes : **urgence** (le message perd sa pertinenc
 |-----|--------|-----------|:----:|:-------:|:--------:|
 | arc1.1 | ![arc1.1](screenshots/coaching-arc1.1.png) | Jamais fait de quiz · bonus 200 pièces pas encore obtenu | ✱ | D | 1 |
 | arc1.3 | ![arc1.3](screenshots/coaching-arc1.3.png) | 1 session faite · bonus 200 pièces non obtenu (score < 60 %) | ✱ | D | 2 |
-| arc1.5 | ![arc1.5](screenshots/coaching-arc1.5.png) | 250 pièces ou plus · aucun personnage possédé | ✱ | D | 20 |
 | arc1.4 | ![arc1.4](screenshots/coaching-arc1.4.png) | Entre 200 et 249 pièces · aucun personnage possédé | ✱ | D | 21 |
+| arc1.5 | ![arc1.5](screenshots/coaching-arc1.5.png) | 250 pièces ou plus · aucun personnage possédé | ✱ | D | 20 |
 | arc1.7.streak5 | ![arc1.7.streak5](screenshots/coaching-arc1.7.streak5.png) | Flamme exactement à 5 jours | ✱ | D | 29 |
 | arc1.7.streak6 | ![arc1.7.streak6](screenshots/coaching-arc1.7.streak6.png) | Flamme exactement à 6 jours | ✱ | D | 30 |
 
@@ -108,10 +108,10 @@ La hiérarchie repose sur trois axes : **urgence** (le message perd sa pertinenc
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc4.8 | ![arc4.8](screenshots/coaching-arc4.8.png) | Une règle Diamant · date de révision dépassée | ✱ | D+E | 4 |
-| arc4.5 | ![arc4.5](screenshots/coaching-arc4.5.png) | Une règle Diamant · révision prévue aujourd'hui | ✱ | D+E | 5 |
 | arc4.1 | ![arc4.1](screenshots/coaching-arc4.1.png) | Une règle Couronne · 1 session directe consécutive ≥ 18/20 | ✱ | D+E | 6 |
 | arc4.2 | ![arc4.2](screenshots/coaching-arc4.2.png) | Une règle Couronne · 2 sessions directes consécutives ≥ 18/20 | ✱ | D+E | 7 |
+| arc4.5 | ![arc4.5](screenshots/coaching-arc4.5.png) | Une règle Diamant · révision prévue aujourd'hui | ✱ | D+E | 5 |
+| arc4.8 | ![arc4.8](screenshots/coaching-arc4.8.png) | Une règle Diamant · date de révision dépassée | ✱ | D+E | 4 |
 
 ---
 
@@ -119,10 +119,10 @@ La hiérarchie repose sur trois axes : **urgence** (le message perd sa pertinenc
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc5.8 | ![arc5.8](screenshots/coaching-arc5.8.png) | Flamme active · pas joué aujourd'hui · après 16 h | ↩ | D+E | 3 |
 | arc5.1 | ![arc5.1](screenshots/coaching-arc5.1.png) | Flamme exactement à 1 jour | ✱ | D | 32 |
 | arc5.2 | ![arc5.2](screenshots/coaching-arc5.2.png) | Flamme exactement à 2 jours | ✱ | D | 33 |
 | arc5.3 | ![arc5.3](screenshots/coaching-arc5.3.png) | Flamme à 6 jours · pas encore joué aujourd'hui | ✱ | D | 31 |
+| arc5.8 | ![arc5.8](screenshots/coaching-arc5.8.png) | Flamme active · pas joué aujourd'hui · après 16 h | ↩ | D+E | 3 |
 | arc5.9 | ![arc5.9](screenshots/coaching-arc5.9.png) | Flamme à 0 · ou flamme à 1 après en avoir eu une plus longue | ✱ | D+E | 34 |
 
 ---
@@ -131,10 +131,10 @@ La hiérarchie repose sur trois axes : **urgence** (le message perd sa pertinenc
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
-| arc13.3 | ![arc13.3](screenshots/coaching-arc13.3.png) | Flamme ≥ 7 jours · 0 bouclier · 160 pièces ou plus | ✱ | D | 16 |
-| arc13.2 | ![arc13.2](screenshots/coaching-arc13.2.png) | Flamme entre 3 et 6 jours · 0 bouclier · 160 pièces ou plus | ✱ | D | 17 |
-| arc13.4 | ![arc13.4](screenshots/coaching-arc13.4.png) | Flamme ≥ 14 jours · 1 bouclier · 160 pièces ou plus | ✱ | D | 18 |
 | arc13.1 | ![arc13.1](screenshots/coaching-arc13.1.png) | Flamme < 3 jours · 0 bouclier · 160 pièces ou plus | ✱ | D | 19 |
+| arc13.2 | ![arc13.2](screenshots/coaching-arc13.2.png) | Flamme entre 3 et 6 jours · 0 bouclier · 160 pièces ou plus | ✱ | D | 17 |
+| arc13.3 | ![arc13.3](screenshots/coaching-arc13.3.png) | Flamme ≥ 7 jours · 0 bouclier · 160 pièces ou plus | ✱ | D | 16 |
+| arc13.4 | ![arc13.4](screenshots/coaching-arc13.4.png) | Flamme ≥ 14 jours · 1 bouclier · 160 pièces ou plus | ✱ | D | 18 |
 
 ---
 
@@ -142,18 +142,18 @@ La hiérarchie repose sur trois axes : **urgence** (le message perd sa pertinenc
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
 |-----|--------|-----------|:----:|:-------:|:--------:|
+| arc6.1 | ![arc6.1](screenshots/coaching-arc6.1.png) | 80 pièces ou plus · aucun thème acheté | ✱ | D | 28 |
 | arc6.3 | ![arc6.3](screenshots/coaching-arc6.3.png) | 250 pièces ou plus · aucun personnage possédé | ✱ | D | 22 |
 | arc6.4 | ![arc6.4](screenshots/coaching-arc6.4.png) | Entre 450 et 499 pièces · au moins 1 personnage | ✱ | D | 23 |
 | arc6.5 | ![arc6.5](screenshots/coaching-arc6.5.png) | 500 pièces ou plus · exactement 1 personnage | ✱ | D | 24 |
-| arc6.7 | ![arc6.7](screenshots/coaching-arc6.7.png) | Assez de pièces pour une émotion · personnage sans aucune émotion | ✱ | D | 25 |
 | arc6.6 | ![arc6.6](screenshots/coaching-arc6.6.png) | 500 pièces ou plus · 2 personnages ou plus | ✱ | D | 26 |
-| arc6.13 | ![arc6.13](screenshots/coaching-arc6.13.png) | Moins de 30 pièces · flamme active | ✱ | D | 27 |
-| arc6.1 | ![arc6.1](screenshots/coaching-arc6.1.png) | 80 pièces ou plus · aucun thème acheté | ✱ | D | 28 |
+| arc6.7 | ![arc6.7](screenshots/coaching-arc6.7.png) | Assez de pièces pour une émotion · personnage sans aucune émotion | ✱ | D | 25 |
 | arc6.8 | ![arc6.8](screenshots/coaching-arc6.8.png) | 60 pièces ou plus · aucun morceau d'image mystère dévoilé | ✱ | D | 36 |
+| arc6.9 | ![arc6.9](screenshots/coaching-arc6.9.png) | 2 morceaux d'image mystère dévoilés aujourd'hui | ✱ | D | 49 |
 | arc6.10 | ![arc6.10](screenshots/coaching-arc6.10.png) | 190 pièces ou plus · aucune animation de victoire | ✱ | D | 37 |
 | arc6.11 | ![arc6.11](screenshots/coaching-arc6.11.png) | 300 pièces ou plus · aucune animation d'entrée | ✱ | D | 38 |
 | arc6.12 | ![arc6.12](screenshots/coaching-arc6.12.png) | 320 pièces ou plus · aucun thème premium | ✱ | D | 39 |
-| arc6.9 | ![arc6.9](screenshots/coaching-arc6.9.png) | 2 morceaux d'image mystère dévoilés aujourd'hui | ✱ | D | 49 |
+| arc6.13 | ![arc6.13](screenshots/coaching-arc6.13.png) | Moins de 30 pièces · flamme active | ✱ | D | 27 |
 
 ---
 
@@ -223,12 +223,12 @@ Ces messages sont évalués en **dernier** (priorité 50+). Ils ne s'affichent q
 |-----|--------|-----------|:----:|:-------:|:--------:|
 | arc14.0a | ![arc14.0a](screenshots/coaching-arc14.0a.png) | Pas encore joué aujourd'hui · flamme active · dernier message affiché ≠ arc14.0a | ↩ | D | 51 |
 | arc14.0b | ![arc14.0b](screenshots/coaching-arc14.0b.png) | Pas encore joué aujourd'hui · dernier message affiché ≠ arc14.0b | ↩ | D | 52 |
+| arc14.1 | ![arc14.1](screenshots/coaching-arc14.1.png) | Exactement 1 session aujourd'hui · flamme ≥ 2 jours | ↩ | D | 58 |
+| arc14.2 | ![arc14.2](screenshots/coaching-arc14.2.png) | Exactement 2 sessions aujourd'hui | ↩ | D | 57 |
+| arc14.3 | ![arc14.3](screenshots/coaching-arc14.3.png) | Exactement 3 sessions aujourd'hui | ↩ | D | 56 |
+| arc14.4 | ![arc14.4](screenshots/coaching-arc14.4.png) | 3 sessions ou plus aujourd'hui · plus qu'hier · hier > 0 | ↩ | D | 55 |
 | arc14.5 | ![arc14.5](screenshots/coaching-arc14.5.png) | 4 sessions ou plus aujourd'hui · record battu sur 3, 7 ou 30 jours | ↩ | D | 53 |
 | arc14.6 | ![arc14.6](screenshots/coaching-arc14.6.png) | 3 sessions ou plus aujourd'hui · à 1 ou 2 sessions d'un record | ↩ | D | 54 |
-| arc14.4 | ![arc14.4](screenshots/coaching-arc14.4.png) | 3 sessions ou plus aujourd'hui · plus qu'hier · hier > 0 | ↩ | D | 55 |
-| arc14.3 | ![arc14.3](screenshots/coaching-arc14.3.png) | Exactement 3 sessions aujourd'hui | ↩ | D | 56 |
-| arc14.2 | ![arc14.2](screenshots/coaching-arc14.2.png) | Exactement 2 sessions aujourd'hui | ↩ | D | 57 |
-| arc14.1 | ![arc14.1](screenshots/coaching-arc14.1.png) | Exactement 1 session aujourd'hui · flamme ≥ 2 jours | ↩ | D | 58 |
 
 ---
 
