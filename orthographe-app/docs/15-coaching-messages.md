@@ -47,6 +47,30 @@ Colonnes : **Aperçu** — texte affiché · **Condition** — règle de déclen
 
 ---
 
+### Logique des priorités
+
+`pickCoachingMessage()` évalue les arcs **dans l'ordre de leur priorité** et retourne le premier dont la condition est vraie. Un seul message s'affiche à la fois.
+
+La hiérarchie repose sur trois axes : **urgence** (le message perd sa pertinence si affiché trop tard), **valeur pédagogique** (apprendre > acheter), **rétention** (garder la flamme active > découverte boutique).
+
+| Plage | Catégorie | Logique |
+|-------|-----------|---------|
+| **1–2** | Onboarding absolu | L'enfant n'a encore jamais fini de quiz. Tout le reste est sans objet si ce cap n'est pas passé. Ces arcs s'auto-désactivent dès le premier quiz réussi. |
+| **3** | Urgence flamme (soir) | arc5.8 est le seul arc conditionné à l'heure (`>= 16h`). Si la flamme risque de mourir ce soir, c'est l'information la plus importante — elle disparaît à minuit. |
+| **4–7** | Progression vers Diamant | Un joueur en train de construire un Diamant est dans une dynamique active à ne pas interrompre. L'ordre interne reflète l'urgence : révision en retard (4) > révision due aujourd'hui (5) > progression en cours 1/3 (6) > 2/3 (7). |
+| **8–11** | Progression vers Couronne et Argent | Même logique que 4–7, mais les paliers inférieurs sont moins urgents. Couronne avant Argent car elle débouche sur le Diamant. |
+| **12–15** | Personnages et émotions | L'engagement boutique est récompensant mais pas critique. Placé après la progression académique pour ne pas la noyer. |
+| **16–19** | Bouclier | Protéger une flamme longue est important pour la rétention, mais c'est un achat — secondaire par rapport à la progression pédagogique. Les sous-priorités reflètent l'enjeu : longue flamme sans bouclier (16) > flamme moyenne (17) > suggestion du deuxième bouclier (18) > nouvelle flamme (19). |
+| **20–28** | Boutique — personnages et pièces | Nudges d'achat contextuels selon le solde. Moins urgents que tout ce qui précède. |
+| **29–33** | Jalons de flamme et streak | Messages motivationnels sur la série en cours (5 jours, 6 jours, J1, J2). Informatifs mais pas urgents — la flamme n'est pas en danger. |
+| **34–35** | Rebond après recul | Flamme tombée à 0 (arc5.9) et échec en mode direct (arc2.4) : messages de réconfort qui ne doivent pas écraser les messages de progression active, mais doivent passer avant la boutique secondaire. |
+| **36–49** | Boutique secondaire, boosts, maîtrise, images mystère | Arcs de découverte ou d'état avancé. Pertinents seulement quand tout le reste est silencieux. L'ordre interne à cette plage est arbitraire — aucun n'est plus urgent qu'un autre. |
+| **51–58** | Sessions du jour | Messages récurrents de fond (`arc14.x`). Affichés **uniquement si aucun arc 1–49 n'est éligible**. Ils constituent le plancher du système : il y a toujours quelque chose à dire sur l'activité du jour. |
+
+**Règle des messages récurrents (`↩`) :** ils ne respectent pas l'unicité — ils peuvent réapparaître à chaque ouverture du dashboard, sous réserve du cooldown de 3 minutes (`lastShownTimestamp`). Cela concerne arc5.8, arc7.2, et tous les arc14.x.
+
+---
+
 ### Onboarding et bienvenue
 
 | Arc | Aperçu | Condition | Type | Surface | Priorité |
