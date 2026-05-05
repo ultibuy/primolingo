@@ -332,11 +332,115 @@ async function main() {
     if (await banner.count() > 0) { await snap(p, 'coaching-bienvenue'); }
     await ctx.close(); }
 
-  // 16 — Parent
-  console.log('16 — Parent');
+  // 16 — Parent dashboard + wizard
+  console.log('16 — Parent dashboard + wizard');
+
+  // 16a — Wizard step 1 (PIN) : no wizard state in localStorage → wizard opens at step 1
   { const ctx = await mobile(); const p = await ctx.newPage();
+    await p.goto(`${BASE}/login`, { waitUntil: 'networkidle' });
+    await p.evaluate((uid) => {
+      // Ensure no wizard state so the wizard opens from scratch
+      localStorage.removeItem(`local:onboardingWizard:${uid}`);
+    }, UID);
     await p.goto(`${BASE}/parent`, { waitUntil: 'networkidle', timeout: 10000 }).catch(() => {});
-    if (p.url().includes('/parent')) { await snap(p, 'parent-dashboard', { full: true }); }
+    await p.waitForTimeout(800);
+    await snap(p, '02-wizard-step1-pin');
+    await ctx.close(); }
+
+  // 16b — Wizard step 2 (add children)
+  { const ctx = await mobile(); const p = await ctx.newPage();
+    await p.goto(`${BASE}/login`, { waitUntil: 'networkidle' });
+    await p.evaluate((uid) => {
+      localStorage.setItem(`local:onboardingWizard:${uid}`, JSON.stringify({
+        completedSteps: [1], step4DeviceYes: false, dismissed: false,
+      }));
+      localStorage.setItem(`local:parentalPin:${uid}`, JSON.stringify({ hash: 'x', salt: 'y' }));
+    }, UID);
+    await p.goto(`${BASE}/parent`, { waitUntil: 'networkidle', timeout: 10000 }).catch(() => {});
+    await p.waitForTimeout(800);
+    await snap(p, '02-wizard-step2-children');
+    await ctx.close(); }
+
+  // 16c — Wizard step 3 (bookmark parent page)
+  { const ctx = await mobile(); const p = await ctx.newPage();
+    await p.goto(`${BASE}/login`, { waitUntil: 'networkidle' });
+    await p.evaluate((uid) => {
+      localStorage.setItem(`local:onboardingWizard:${uid}`, JSON.stringify({
+        completedSteps: [1, 2], step4DeviceYes: false, dismissed: false,
+      }));
+    }, UID);
+    await p.goto(`${BASE}/parent`, { waitUntil: 'networkidle', timeout: 10000 }).catch(() => {});
+    await p.waitForTimeout(800);
+    await snap(p, '02-wizard-step3-bookmark');
+    await ctx.close(); }
+
+  // 16d — Wizard step 4 (device choice — same device, oui)
+  { const ctx = await mobile(); const p = await ctx.newPage();
+    await p.goto(`${BASE}/login`, { waitUntil: 'networkidle' });
+    await p.evaluate((uid) => {
+      localStorage.setItem(`local:onboardingWizard:${uid}`, JSON.stringify({
+        completedSteps: [1, 2, 3], step4DeviceYes: false, dismissed: false,
+      }));
+    }, UID);
+    await p.goto(`${BASE}/parent`, { waitUntil: 'networkidle', timeout: 10000 }).catch(() => {});
+    await p.waitForTimeout(800);
+    // Click "Oui" to show child links
+    const ouiBtn = p.locator('button', { hasText: 'Oui' });
+    if (await ouiBtn.count() > 0) { await ouiBtn.click().catch(() => {}); await p.waitForTimeout(400); }
+    await snap(p, '02-wizard-step4-device');
+    await ctx.close(); }
+
+  // 16e — Wizard step 5 (done)
+  { const ctx = await mobile(); const p = await ctx.newPage();
+    await p.goto(`${BASE}/login`, { waitUntil: 'networkidle' });
+    await p.evaluate((uid) => {
+      localStorage.setItem(`local:onboardingWizard:${uid}`, JSON.stringify({
+        completedSteps: [1, 2, 3, 4], step4DeviceYes: true, dismissed: false,
+      }));
+    }, UID);
+    await p.goto(`${BASE}/parent`, { waitUntil: 'networkidle', timeout: 10000 }).catch(() => {});
+    await p.waitForTimeout(800);
+    await snap(p, '02-wizard-step5-done');
+    await ctx.close(); }
+
+  // 16f — Parent dashboard (wizard dismissed, with children)
+  { const ctx = await mobile(); const p = await ctx.newPage();
+    await p.goto(`${BASE}/login`, { waitUntil: 'networkidle' });
+    await p.evaluate((uid) => {
+      localStorage.setItem(`local:onboardingWizard:${uid}`, JSON.stringify({
+        completedSteps: [1, 2, 3, 4, 5], step4DeviceYes: true, dismissed: true,
+      }));
+    }, UID);
+    await p.goto(`${BASE}/parent`, { waitUntil: 'networkidle', timeout: 10000 }).catch(() => {});
+    await p.waitForTimeout(800);
+    await snap(p, 'parent-dashboard', { full: true });
+    await ctx.close(); }
+
+  // 16g — Parent dashboard with "first quiz" coaching nudge (child with 0 sessions)
+  { const ctx = await mobile(); const p = await ctx.newPage();
+    await p.goto(`${BASE}/login`, { waitUntil: 'networkidle' });
+    await p.evaluate(({ pk, prog, uid }) => {
+      localStorage.setItem(pk, JSON.stringify(prog));
+      localStorage.setItem(`local:onboardingWizard:${uid}`, JSON.stringify({ dismissed: true }));
+    }, { pk: PROGRESS_KEY, prog: freshProgress(), uid: UID });
+    await p.goto(`${BASE}/parent`, { waitUntil: 'networkidle', timeout: 10000 }).catch(() => {});
+    await p.waitForTimeout(800);
+    await snap(p, 'parent-dashboard-coaching-nudge', { full: true });
+    await ctx.close(); }
+
+  // 16h — Bookmark banner on child space (opened from onboarding)
+  { const ctx = await mobile(); const p = await ctx.newPage();
+    await p.goto(`${BASE}/login`, { waitUntil: 'networkidle' });
+    await p.evaluate(({ pk, prog, tipKey }) => {
+      localStorage.setItem(pk, JSON.stringify(prog));
+      // Ensure banner not dismissed
+      localStorage.removeItem(tipKey);
+    }, { pk: PROGRESS_KEY, prog: freshProgress(), tipKey: `ortho_bookmark_tip:${CHILD}` });
+    await p.goto(`${BASE}/play/${CHILD}?from=onboarding`, { waitUntil: 'networkidle', timeout: 15000 });
+    await p.waitForTimeout(1500);
+    const banner = p.locator('text=favori');
+    if (await banner.count() > 0) { await snap(p, '02-bookmark-banner'); }
+    else { console.log('  ⚠️  Bookmark banner not found'); }
     await ctx.close(); }
 
   // 17 — PIN
