@@ -1,0 +1,22 @@
+[
+  {
+    "x": 657,
+    "y": 3250,
+    "text": "mets à jour cette section : sauver la flamme, accéder à la partie de gestion des enfants dans le dash parent",
+    "time": "05/05 13:39",
+    "domContext": {
+      "tag": "H3",
+      "text": "À quoi sert le code parental ?"
+    }
+  },
+  {
+    "x": 705,
+    "y": 3721,
+    "text": "supprime",
+    "time": "05/05 13:39",
+    "domContext": {
+      "tag": "P",
+      "text": ""
+    }
+  }
+]

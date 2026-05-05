@@ -366,99 +366,90 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
-  // --- arc4.1: diamond 1/3 (consecutive ≥90%) ---
+  // --- arc4.1: diamond 1/3 or 2/3 (consecutive ≥90%) — merged arc4.1 + arc4.2 ---
   if (!isAlreadyShown(coaching, 'arc4.1')) {
     const rule41 = findRule(rules, ruleProgress, (rp) => {
-      return rp && rp.level === 3 && (rp.directConsecutiveAbove90 || 0) === 1;
+      return rp && rp.level === 3 && (rp.directConsecutiveAbove90 || 0) >= 1 && (rp.directConsecutiveAbove90 || 0) <= 2;
     });
     if (rule41) {
-      return msg('arc4.1', 'diamant',
-        `18/20 en direct sur "${rule41.shortTitle || rule41.title}". 2 sessions consécutives encore à 18/20 minimum et c'est le diamant.`,
-        '2 sessions consécutives',
-        '💎',
-        null,
-        { oneShot: true }
-      );
+      const remaining = 3 - (ruleProgress[rule41.id].directConsecutiveAbove90 || 0);
+      const title = rule41.shortTitle || rule41.title;
+      if (remaining === 2) {
+        return msg('arc4.1', 'diamant',
+          `18/20 en direct sur "${title}". 2 sessions consécutives encore à 18/20 minimum et c'est le diamant.`,
+          '2 sessions consécutives',
+          '💎',
+          null,
+          { oneShot: true }
+        );
+      }
+      if (remaining === 1) {
+        return msg('arc4.1', 'diamant',
+          `Plus qu'une session à 18/20 sur "${title}" et le diamant est à toi. Concentration.`,
+          'une session à 18/20',
+          '💎',
+          null,
+          { oneShot: true }
+        );
+      }
     }
   }
 
-  // --- arc4.2: diamond 2/3 ---
-  if (!isAlreadyShown(coaching, 'arc4.2')) {
-    const rule42 = findRule(rules, ruleProgress, (rp) => {
-      return rp && rp.level === 3 && (rp.directConsecutiveAbove90 || 0) === 2;
-    });
-    if (rule42) {
-      return msg('arc4.2', 'diamant',
-        `Plus qu'une session à 18/20 sur "${rule42.shortTitle || rule42.title}" et le diamant est à toi. Concentration.`,
-        'une session à 18/20',
-        '💎',
-        null,
-        { oneShot: true }
-      );
-    }
-  }
-
-  // --- arc3.1: crown 1/3 ---
+  // --- arc3.1: crown 1/3 or 2/3 — merged arc3.1 + arc3.2 ---
   if (!isAlreadyShown(coaching, 'arc3.1')) {
     const rule31 = findRule(rules, ruleProgress, (rp) => {
-      return rp && rp.level === 2 && (rp.directSessionsAbove80 || 0) === 1;
+      return rp && rp.level === 2 && (rp.directSessionsAbove80 || 0) >= 1 && (rp.directSessionsAbove80 || 0) <= 2;
     });
     if (rule31) {
-      return msg('arc3.1', 'couronnes',
-        `1 session directe validée sur "${rule31.shortTitle || rule31.title}". Plus que 2 pour décrocher ta couronne + 100 pièces.`,
-        '2 pour décrocher ta couronne',
-        '👑',
-        null,
-        { oneShot: true }
-      );
+      const remaining = 3 - (ruleProgress[rule31.id].directSessionsAbove80 || 0);
+      const title = rule31.shortTitle || rule31.title;
+      if (remaining === 2) {
+        return msg('arc3.1', 'couronnes',
+          `1 session directe validée sur "${title}". Plus que 2 pour décrocher ta couronne + 100 pièces.`,
+          '2 pour décrocher ta couronne',
+          '👑',
+          null,
+          { oneShot: true }
+        );
+      }
+      if (remaining === 1) {
+        return msg('arc3.1', 'couronnes',
+          `Plus qu'une session directe à 16/20 sur "${title}" et la couronne tombe.`,
+          'une session directe à 16/20',
+          '👑',
+          null,
+          { oneShot: true }
+        );
+      }
     }
   }
 
-  // --- arc3.2: crown 2/3 ---
-  if (!isAlreadyShown(coaching, 'arc3.2')) {
-    const rule32 = findRule(rules, ruleProgress, (rp) => {
-      return rp && rp.level === 2 && (rp.directSessionsAbove80 || 0) === 2;
-    });
-    if (rule32) {
-      return msg('arc3.2', 'couronnes',
-        `Plus qu'une session directe à 16/20 sur "${rule32.shortTitle || rule32.title}" et la couronne tombe.`,
-        'une session directe à 16/20',
-        '👑',
-        null,
-        { oneShot: true }
-      );
-    }
-  }
-
-  // --- arc2.1: silver 1/3 ---
+  // --- arc2.1: silver 1/3 or 2/3 — merged arc2.1 + arc2.2 ---
   if (!isAlreadyShown(coaching, 'arc2.1')) {
     const rule21 = findRule(rules, ruleProgress, (rp) => {
-      return rp && rp.level === 1 && (rp.guidedSessionsAbove80 || 0) === 1;
+      return rp && rp.level === 1 && (rp.guidedSessionsAbove80 || 0) >= 1 && (rp.guidedSessionsAbove80 || 0) <= 2;
     });
     if (rule21) {
-      return msg('arc2.1', 'plain',
-        `Belle session sur "${rule21.shortTitle || rule21.title}". Plus que 2 sessions à 16/20 pour passer Argent.`,
-        '2 sessions à 16/20',
-        '📈',
-        null,
-        { oneShot: true }
-      );
-    }
-  }
-
-  // --- arc2.2: silver 2/3 ---
-  if (!isAlreadyShown(coaching, 'arc2.2')) {
-    const rule22 = findRule(rules, ruleProgress, (rp) => {
-      return rp && rp.level === 1 && (rp.guidedSessionsAbove80 || 0) === 2;
-    });
-    if (rule22) {
-      return msg('arc2.2', 'plain',
-        `Plus qu'une session à 16/20 et le mode direct est à toi sur "${rule22.shortTitle || rule22.title}".`,
-        'une session à 16/20',
-        '📈',
-        null,
-        { oneShot: true }
-      );
+      const remaining = 3 - (ruleProgress[rule21.id].guidedSessionsAbove80 || 0);
+      const title = rule21.shortTitle || rule21.title;
+      if (remaining === 2) {
+        return msg('arc2.1', 'plain',
+          `Belle session sur "${title}". Plus que 2 sessions à 16/20 pour passer Argent.`,
+          '2 sessions à 16/20',
+          '📈',
+          null,
+          { oneShot: true }
+        );
+      }
+      if (remaining === 1) {
+        return msg('arc2.1', 'plain',
+          `Plus qu'une session à 16/20 et le mode direct est à toi sur "${title}".`,
+          'une session à 16/20',
+          '📈',
+          null,
+          { oneShot: true }
+        );
+      }
     }
   }
 
@@ -484,31 +475,24 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
-  // --- arc12.3: 1-2 emotions ---
+  // --- arc12.3: 1-2 or 4 emotions — merged arc12.3 + arc12.4 ---
   if (!isAlreadyShown(coaching, 'arc12.3')) {
     for (const charItemId of ownedChars) {
       const charId = charItemId.slice(5);
       const ownedEmos = getOwnedShopEmotions(shopOwned, charId);
+      const charName = getCharName(charId);
       if (ownedEmos.length >= 1 && ownedEmos.length <= 2) {
         return msg('arc12.3', 'panda',
-          `Ton ${getCharName(charId)} a ${ownedEmos.length} émotion${ownedEmos.length > 1 ? 's' : ''} sur 7. Vise "victoire" — il s'active sur tes scores ≥ 18/20.`,
+          `Ton ${charName} a ${ownedEmos.length} émotion${ownedEmos.length > 1 ? 's' : ''} sur 7. Vise "victoire" — il s'active sur tes scores ≥ 18/20.`,
           '"victoire"',
           '📈',
           null,
           { oneShot: true }
         );
       }
-    }
-  }
-
-  // --- arc12.4: 4/7 emotions ---
-  if (!isAlreadyShown(coaching, 'arc12.4')) {
-    for (const charItemId of ownedChars) {
-      const charId = charItemId.slice(5);
-      const ownedEmos = getOwnedShopEmotions(shopOwned, charId);
       if (ownedEmos.length === 4) {
-        return msg('arc12.4', 'panda',
-          `Ton ${getCharName(charId)} a 4 émotions sur 7. Plus que 3 pour le compléter.`,
+        return msg('arc12.3', 'panda',
+          `Ton ${charName} a 4 émotions sur 7. Plus que 3 pour le compléter.`,
           '4 émotions sur 7',
           '📈',
           null,
@@ -536,7 +520,7 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
-  // --- arc5.1: streak 1 ---
+  // --- arc5.1: streak 1, 2, or 3 — merged arc5.1 + arc5.2 + arc5.2a ---
   if (!isAlreadyShown(coaching, 'arc5.1')) {
     if (streak.current === 1) {
       return msg('arc5.1', 'flamme',
@@ -547,12 +531,8 @@ export function pickCoachingMessage(ctx) {
         { oneShot: true }
       );
     }
-  }
-
-  // --- arc5.2: streak 2 ---
-  if (!isAlreadyShown(coaching, 'arc5.2')) {
     if (streak.current === 2) {
-      return msg('arc5.2', 'flamme',
+      return msg('arc5.1', 'flamme',
         'Deux jours d\'affilée, la classe ! Demain, palier "Sur la lancée".',
         'la classe !',
         '🔥',
@@ -560,42 +540,12 @@ export function pickCoachingMessage(ctx) {
         { oneShot: true }
       );
     }
-  }
-
-  // --- arc5.2a: streak 3 ---
-  if (!isAlreadyShown(coaching, 'arc5.2a')) {
     if (streak.current === 3) {
-      return msg('arc5.2a', 'flamme',
+      return msg('arc5.1', 'flamme',
         'Trois jours d\'affilée. Tu es en feu !',
         'Tu es en feu !',
         '🔥',
         null,
-        { oneShot: true }
-      );
-    }
-  }
-
-  // --- arc13.3: long flame, no shield (≥7 days) ---
-  if (!isAlreadyShown(coaching, 'arc13.3')) {
-    if (coins >= 160 && shields === 0 && streak.current >= 7) {
-      return msg('arc13.3', 'flamme',
-        `${streak.current} jours sans bouclier, c'est jouer avec le feu. 160 pièces et tu dors tranquille.`,
-        '160 pièces',
-        '🛡️',
-        { label: 'Acheter', action: 'openShop:boost' },
-        { oneShot: true }
-      );
-    }
-  }
-
-  // --- arc13.2: medium flame, no shield (≥3 days) ---
-  if (!isAlreadyShown(coaching, 'arc13.2')) {
-    if (coins >= 160 && shields === 0 && streak.current >= 3 && streak.current < 7) {
-      return msg('arc13.2', 'flamme',
-        `Ta flamme de ${streak.current} jours vaut le coup d'être protégée — un bouclier pour 160 pièces.`,
-        `flamme de ${streak.current} jours`,
-        '🔥',
-        { label: 'Acheter', action: 'openShop:boost' },
         { oneShot: true }
       );
     }
@@ -614,9 +564,27 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
-  // --- arc13.1: first shield nudge (< 3 days) ---
+  // --- arc13.1: shield nudge — merged arc13.3 + arc13.2 + arc13.1 ---
   if (!isAlreadyShown(coaching, 'arc13.1')) {
-    if (coins >= 160 && shields === 0 && streak.current < 3) {
+    if (coins >= 160 && shields === 0) {
+      if (streak.current >= 7) {
+        return msg('arc13.1', 'flamme',
+          `${streak.current} jours sans bouclier, c'est jouer avec le feu. 160 pièces et tu dors tranquille.`,
+          '160 pièces',
+          '🛡️',
+          { label: 'Acheter', action: 'openShop:boost' },
+          { oneShot: true }
+        );
+      }
+      if (streak.current >= 3) {
+        return msg('arc13.1', 'flamme',
+          `Ta flamme de ${streak.current} jours vaut le coup d'être protégée — un bouclier pour 160 pièces.`,
+          `flamme de ${streak.current} jours`,
+          '🔥',
+          { label: 'Acheter', action: 'openShop:boost' },
+          { oneShot: true }
+        );
+      }
       return msg('arc13.1', 'flamme',
         '160 pièces = 1 bouclier. Si tu rates un jour, ta flamme est sauvée.',
         '1 bouclier',
@@ -743,10 +711,10 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
-  // --- arc1.7: streak at 5 or 6 — max 3 occurrences ---
-  if (!isAtMaxOccurrences(coaching, 'arc1.7.streak5', 3)) {
+  // --- arc1.7: streak at 5 or 6 — merged arc1.7.streak5 + arc1.7.streak6 + arc5.3, max 3 occurrences ---
+  if (!isAtMaxOccurrences(coaching, 'arc1.7', 3)) {
     if (streak.current === 5) {
-      return msg('arc1.7.streak5', 'flamme',
+      return msg('arc1.7', 'flamme',
         'Plus que 2 jours pour atteindre 7 jours et empocher 100 pièces.',
         '100 pièces',
         '🔥',
@@ -754,29 +722,13 @@ export function pickCoachingMessage(ctx) {
         { oneShot: false, maxOccurrences: 3 }
       );
     }
-  }
-
-  if (!isAtMaxOccurrences(coaching, 'arc1.7.streak6', 3)) {
     if (streak.current === 6) {
-      return msg('arc1.7.streak6', 'flamme',
+      return msg('arc1.7', 'flamme',
         'Demain ta flamme passe à 7 jours — 100 pièces à la clé.',
         '100 pièces',
         '🔥',
         null,
         { oneShot: false, maxOccurrences: 3 }
-      );
-    }
-  }
-
-  // --- arc5.3: J6 with no play today ---
-  if (!isAlreadyShown(coaching, 'arc5.3')) {
-    if (streak.current === 6 && !todayDone) {
-      return msg('arc5.3', 'flamme',
-        'Demain ta flamme passe à 7 jours — 100 pièces.',
-        '100 pièces',
-        '🔥',
-        null,
-        { oneShot: true }
       );
     }
   }
