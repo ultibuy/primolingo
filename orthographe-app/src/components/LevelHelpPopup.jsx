@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import PopupCloseButton from './PopupCloseButton.jsx';
-import CrownIcon from './CrownIcon.jsx';
+import { CrownIcon } from './icons/ProductIcons.jsx';
 import DiamondIcon from './DiamondIcon.jsx';
 import { TrophyIcon, LockIcon } from './icons/ProductIcons.jsx';
 import RewardAmount from './rewards/RewardAmount.jsx';
@@ -210,7 +210,7 @@ function LevelIcon({ type, size = 40, color }) {
   switch (type) {
     case 'bronze':  return <TrophyIcon size={size} color={color || '#cd7f32'} />;
     case 'silver':  return <TrophyIcon size={size} color={color || '#c0c0c0'} />;
-    case 'crown':   return <CrownIcon size={size} animate={false} />;
+    case 'crown':   return <CrownIcon size={size} />;
     case 'diamond':  return <DiamondIcon size={size} animate />;
     case 'trophy':  return <TrophyIcon size={size} color={color || 'var(--color-gold)'} />;
     case 'lock':    return <LockIcon size={size} color={color || 'var(--text-muted)'} />;

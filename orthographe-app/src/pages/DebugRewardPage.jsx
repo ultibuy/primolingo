@@ -5,7 +5,7 @@
  */
 import { useSearchParams, Link } from 'react-router-dom';
 import { rewardFixtures, REWARD_FIXTURE_KEYS } from '../debug/rewardFixtures.js';
-import CrownIcon from '../components/CrownIcon.jsx';
+import { CrownIcon } from '../components/icons/ProductIcons.jsx';
 import DiamondIcon from '../components/DiamondIcon.jsx';
 import FlameIcon from '../components/FlameIcon.jsx';
 import ShieldIcon from '../components/ShieldIcon.jsx';
@@ -18,7 +18,7 @@ function OverlayIcon({ type }) {
   const s = 64;
   switch (type) {
     case 'flame':     return <FlameIcon size={s} intensity={2} />;
-    case 'crown':     return <CrownIcon size={s} animate={false} />;
+    case 'crown':     return <CrownIcon size={s} />;
     case 'diamond':   return <DiamondIcon size={s} animate />;
     case 'shield':    return <ShieldIcon size={s} />;
     case 'trophy':    return <TrophyIcon size={s} color="var(--color-gold)" />;

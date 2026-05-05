@@ -4,6 +4,53 @@
  * Colors default to design system tokens.
  */
 
+// ─── Crown ──────────────────────────────────────────────────────────────────
+
+export function CrownIcon({ size = 32, active = true }) {
+  const opacity = active ? 1 : 0.2;
+  return (
+    <div style={{ width: size, height: size, display: 'inline-flex', opacity }}>
+      <svg viewBox="0 0 48 40" width={size} height={size * 40 / 48}>
+        <defs>
+          <linearGradient id="crownGold" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#ffe066" />
+            <stop offset="40%" stopColor="#fbbf24" />
+            <stop offset="70%" stopColor="#d99e0b" />
+            <stop offset="100%" stopColor="#b8860b" />
+          </linearGradient>
+          <linearGradient id="crownShine" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="white" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="white" stopOpacity="0" />
+          </linearGradient>
+          <filter id="crownGlow">
+            <feDropShadow dx="0" dy="1" stdDeviation="2" floodColor="#fbbf24" floodOpacity={active ? 0.5 : 0} />
+          </filter>
+        </defs>
+        <rect x="6" y="28" width="36" height="8" rx="3" fill="url(#crownGold)" filter="url(#crownGlow)" />
+        <path d="M6 28 L2 12 L14 20 L24 6 L34 20 L46 12 L42 28 Z" fill="url(#crownGold)" filter="url(#crownGlow)" />
+        <path d="M6 28 L2 12 L14 20 L24 6 L34 20 L46 12 L42 28 Z" fill="url(#crownShine)" />
+        <circle cx="24" cy="22" r="3" fill="#ef4444" opacity="0.85" />
+        <circle cx="15" cy="25" r="2.2" fill="#3b82f6" opacity="0.8" />
+        <circle cx="33" cy="25" r="2.2" fill="#22c55e" opacity="0.8" />
+        {active && (
+          <>
+            <circle cx="24" cy="6" r="2" fill="#fff" opacity="0.7">
+              <animate attributeName="opacity" values="0.7;0.2;0.7" dur="2s" repeatCount="indefinite" />
+              <animate attributeName="r" values="2;3;2" dur="2s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="2" cy="12" r="1.5" fill="#ffe066" opacity="0.5">
+              <animate attributeName="opacity" values="0.5;0.1;0.5" dur="2.5s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="46" cy="12" r="1.5" fill="#ffe066" opacity="0.5">
+              <animate attributeName="opacity" values="0.1;0.5;0.1" dur="2.5s" repeatCount="indefinite" />
+            </circle>
+          </>
+        )}
+      </svg>
+    </div>
+  );
+}
+
 // ─── Trophy ──────────────────────────────────────────────────────────────────
 
 export function TrophyIcon({ size = 24, color = 'var(--color-gold)' }) {
@@ -51,6 +98,16 @@ export function CheckIcon({ size = 24, color = 'var(--color-green)' }) {
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
       <circle cx="12" cy="12" r="10" fill={color} opacity="0.15" />
       <path d="M7.5 12.5l3 3 6-6" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+    </svg>
+  );
+}
+
+// ─── Bookmark ────────────────────────────────────────────────────────────────
+
+export function BookmarkIcon({ size = 24, color = 'var(--color-primary)' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M6 2a2 2 0 0 0-2 2v17.5a.5.5 0 0 0 .8.4L12 16l7.2 5.9a.5.5 0 0 0 .8-.4V4a2 2 0 0 0-2-2H6Z" fill={color} />
     </svg>
   );
 }

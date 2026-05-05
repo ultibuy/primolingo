@@ -13,7 +13,7 @@
  * />
  */
 import CoinIcon from '../CoinIcon.jsx';
-import CrownIcon from '../CrownIcon.jsx';
+import { CrownIcon } from '../icons/ProductIcons.jsx';
 import DiamondIcon from '../DiamondIcon.jsx';
 import FlameIcon from '../FlameIcon.jsx';
 import ShieldIcon from '../ShieldIcon.jsx';
@@ -25,7 +25,7 @@ import RewardAmount from './RewardAmount.jsx';
 
 const ICON_MAP = {
   coins:     (s) => <CoinIcon size={s} />,
-  crown:     (s) => <CrownIcon size={s} animate={false} />,
+  crown:     (s) => <CrownIcon size={s} />,
   diamond:   (s) => <DiamondIcon size={s} animate />,
   flame:     (s) => <FlameIcon size={s} intensity={2} />,
   shield:    (s) => <ShieldIcon size={s} />,

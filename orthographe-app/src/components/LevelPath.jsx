@@ -1,4 +1,4 @@
-import CrownIcon from './CrownIcon.jsx';
+import { CrownIcon } from './icons/ProductIcons.jsx';
 import DiamondIcon from './DiamondIcon.jsx';
 import CharacterSprite from './CharacterSprite.jsx';
 
@@ -165,9 +165,9 @@ export default function LevelPath({ currentLevel, progress = 0, onNodeClick, onC
                   <path d="M5 12l5 5L19 7" stroke={level.color} strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               ) : level.icon === 'crown' ? (
-                <CrownIcon size={isCurrent ? 18 : 13} active={isCurrent} animate={false} />
+                <CrownIcon size={isCurrent ? 18 : 13} active={isCurrent} />
               ) : level.icon === 'diamond' ? (
-                <DiamondIcon size={isCurrent ? 18 : 13} active={isCurrent} animate={false} />
+                <DiamondIcon size={isCurrent ? 18 : 13} active={isCurrent} />
               ) : (
                 <span style={{
                   fontSize: isCurrent ? '0.65rem' : '0.55rem',

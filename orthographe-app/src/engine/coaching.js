@@ -140,10 +140,12 @@ export function pickCoachingMessage(ctx) {
 
   // Helper to build a message
   function msg(arcId, variant, copy, emphasis, emoji, cta, opts = {}) {
+    // French typography: non-breaking space before ? ! : ;
+    const safeCopy = copy.replace(/ ([?!;:])/g, '\u00a0$1');
     return {
       arcId,
       variant: variant || null,
-      copy,
+      copy: safeCopy,
       emphasis: emphasis || '',
       emoji: emoji || null,
       cta: cta || null,

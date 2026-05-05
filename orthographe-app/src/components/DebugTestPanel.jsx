@@ -7,7 +7,7 @@ import {
   TargetIcon, CoinsIcon, CharacterIcon, BookIcon, LockIcon,
   TrophyIcon, ChartMedalIcon, PaletteIcon, MotionIcon,
 } from './icons/ProductIcons.jsx';
-import CrownIcon from './CrownIcon.jsx';
+import { CrownIcon } from './icons/ProductIcons.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
 
 const CATEGORY_ICONS = {
@@ -19,7 +19,7 @@ const CATEGORY_ICONS = {
   lock: (s) => <LockIcon size={s} />,
   motion: (s) => <MotionIcon size={s} />,
   trophy: (s) => <TrophyIcon size={s} color="var(--color-gold)" />,
-  crown: (s) => <CrownIcon size={s} animate={false} />,
+  crown: (s) => <CrownIcon size={s} />,
   shield: (s) => <ShieldIcon size={s} />,
   palette: (s) => <PaletteIcon size={s} />,
 };

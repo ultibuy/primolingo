@@ -6,7 +6,7 @@
  * <RewardAmount value="+100" unit="crown" />
  */
 import CoinIcon from '../CoinIcon.jsx';
-import CrownIcon from '../CrownIcon.jsx';
+import { CrownIcon } from '../icons/ProductIcons.jsx';
 import DiamondIcon from '../DiamondIcon.jsx';
 import FlameIcon from '../FlameIcon.jsx';
 import ShieldIcon from '../ShieldIcon.jsx';
@@ -15,7 +15,7 @@ import { TrophyIcon } from '../icons/ProductIcons.jsx';
 const UNIT_CONFIG = {
   coins:   { Icon: CoinIcon, color: 'var(--color-gold)',    iconProps: { size: 22 } },
   score:   { Icon: null,     color: 'var(--color-green)' },
-  crown:   { Icon: CrownIcon, color: 'var(--color-gold)',   iconProps: { size: 22, animate: false } },
+  crown:   { Icon: CrownIcon, color: 'var(--color-gold)',   iconProps: { size: 22 } },
   diamond: { Icon: DiamondIcon, color: '#60a5fa',           iconProps: { size: 22, animate: false } },
   flame:   { Icon: FlameIcon, color: 'var(--color-orange)', iconProps: { size: 22, intensity: 1 } },
   shield:  { Icon: ShieldIcon, color: '#93c5fd',            iconProps: { size: 22 } },

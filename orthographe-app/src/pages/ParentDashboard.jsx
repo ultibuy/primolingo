@@ -7,7 +7,7 @@ import { captureException } from '../services/sentry.js';
 import posthog from '../services/analytics.js';
 import CoinIcon from '../components/CoinIcon.jsx';
 import FlameIcon from '../components/FlameIcon.jsx';
-import CrownIcon from '../components/CrownIcon.jsx';
+import { CrownIcon } from '../components/icons/ProductIcons.jsx';
 import AppLogo from '../components/AppLogo.jsx';
 import PinInput from '../components/PinInput.jsx';
 import PopupModal from '../components/PopupModal.jsx';
@@ -435,7 +435,7 @@ function ChildPanelV2({ child, uid, parentImages, isOpen, onToggle }) {
         {/* Stat chips */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexShrink: 0 }}>
           <span style={statChipStyle}><FlameIcon size={13} intensity={1} /> {streak}</span>
-          <span style={statChipStyle}><CrownIcon size={13} animate={false} /> {rulesDone}</span>
+          <span style={statChipStyle}><CrownIcon size={13} /> {rulesDone}</span>
           <span style={{ ...statChipStyle, display: 'inline-flex', alignItems: 'center', gap: 2 }}><CoinIcon size={13} /> {coins}</span>
         </div>
         <span style={{ color: 'rgba(255,255,255,0.35)', fontSize: 12, flexShrink: 0 }}>{isOpen ? '▲' : '▼'}</span>

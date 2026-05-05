@@ -1,5 +1,5 @@
 import CoinIcon from './CoinIcon.jsx';
-import CrownIcon from './CrownIcon.jsx';
+import { CrownIcon } from './icons/ProductIcons.jsx';
 import DiamondIcon from './DiamondIcon.jsx';
 import DiamondStatus from './DiamondStatus.jsx';
 import LevelPath from './LevelPath.jsx';
@@ -419,7 +419,7 @@ export default function RuleCard({
           textAlign: 'center',
           fontSize: '0.78rem', color: '#60a5fa', fontWeight: 600,
         }}>
-          <span style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: '0.3rem' }}><DiamondIcon size={16} animate={false} /></span>Maîtrisée — diamant brillant
+          <span style={{ display: 'inline-flex', verticalAlign: 'middle', marginRight: '0.3rem' }}><DiamondIcon size={16} /></span>Maîtrisée — diamant brillant
         </div>
       )}
 

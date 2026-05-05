@@ -7,7 +7,7 @@ import RuleCard from './RuleCard.jsx';
 import CoinIcon from './CoinIcon.jsx';
 import FlameIcon from './FlameIcon.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
-import CrownIcon from './CrownIcon.jsx';
+import { CrownIcon } from './icons/ProductIcons.jsx';
 import DiamondIcon from './DiamondIcon.jsx';
 import DiamondStatus from './DiamondStatus.jsx';
 import PopupCloseButton from './PopupCloseButton.jsx';
@@ -29,7 +29,7 @@ import { getDoubleCoinsBonusEarned, getDoubleCoinsRemainingSessions, getEquipped
 import { computeMaxDailyRecord } from '../engine/stats.js';
 import CharacterSprite from './CharacterSprite.jsx';
 import PinInput from './PinInput.jsx';
-import { verifyPin } from '../services/pin-crypto.js';
+import { verifyPin, hashPin } from '../services/pin-crypto.js';
 import { resolveCharacterMood, resolveShopCharacter, getCharacterForRule } from '../data/shopCharacters.js';
 import { allDictees, getDicteeWordsForLevel } from '../content/dicteesLoader.js';
 import { computeDefaultTab } from '../engine/defaultTab.js';
@@ -311,7 +311,7 @@ function OverlayIcon({ type }) {
   const s = 64;
   switch (type) {
     case 'flame':     return <FlameIcon size={s} intensity={2} />;
-    case 'crown':     return <CrownIcon size={s} animate={false} />;
+    case 'crown':     return <CrownIcon size={s} />;
     case 'diamond':   return <DiamondIcon size={s} animate />;
     case 'shield':    return <ShieldIcon size={s} />;
     case 'trophy':    return <TrophyIcon size={s} color="var(--color-gold)" />;
@@ -376,6 +376,7 @@ export default function Dashboard({
   onTabChange,
   onProgressChange,
   parentalPin,
+  onPinMigrate,
 }) {
   const navigate = useNavigate();
   const [overlay, setOverlay] = useState(null);
@@ -400,13 +401,8 @@ export default function Dashboard({
   const isDebug = isLocalhost();
 
   const handleParentReturn = useCallback(() => {
-    if (!parentalPin) {
-      navigate('/parent');
-      return;
-    }
-    setShowParentPin(true);
-    setParentPinError('');
-  }, [parentalPin, navigate]);
+    navigate('/parent');
+  }, [navigate]);
 
   const handleParentPinSubmit = useCallback(async (enteredPin) => {
     if (enteredPin.length !== 4) {
@@ -414,9 +410,15 @@ export default function Dashboard({
       return;
     }
 
-    const pinOk = parentalPin?.salt && parentalPin?.hash
-      ? await verifyPin(enteredPin, parentalPin.salt, parentalPin.hash)
-      : enteredPin === parentalPin;
+    const isLegacyPlainText = !(parentalPin?.salt && parentalPin?.hash);
+    const pinOk = isLegacyPlainText
+      ? enteredPin === parentalPin
+      : await verifyPin(enteredPin, parentalPin.salt, parentalPin.hash);
+
+    // Migrate legacy plain-text PIN to hashed on successful verification
+    if (pinOk && isLegacyPlainText) {
+      hashPin(enteredPin).then(pinData => onPinMigrate?.(pinData)).catch(() => {});
+    }
 
     if (!pinOk) {
       setParentPinError('Code incorrect.');
@@ -426,7 +428,7 @@ export default function Dashboard({
     setShowParentPin(false);
     setParentPinError('');
     navigate('/parent');
-  }, [parentalPin, navigate]);
+  }, [parentalPin, navigate, onPinMigrate]);
   const overlayTimeoutsRef = useRef([]);
   const [debugStreak, setDebugStreak] = useState(String(progress.streak?.current || 0));
   const [debugDate, setDebugDate] = useState(progress.streak?.lastActiveDate || '');
@@ -644,7 +646,7 @@ export default function Dashboard({
     },
     summary.couronne > 0 && {
       key: 'couronne',
-      icon: <CrownIcon size={isCompactLayout ? 13 : 14} active animate={false} />,
+      icon: <CrownIcon size={isCompactLayout ? 13 : 14} active />,
       count: summary.couronne,
       color: '#fbbf24',
       label: 'Couronne',
@@ -2186,7 +2188,7 @@ function LockIcon({ size = 14 }) {
 function DiamondSparkBadge() {
   return (
     <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center' }}>
-      <DiamondIcon size={14} active animate={false} />
+      <DiamondIcon size={14} active />
       <span style={{
         position: 'absolute', top: -3, right: -5,
         fontSize: '0.4rem',

@@ -3,7 +3,7 @@ import PopupModal from './PopupModal.jsx';
 import PinInput from './PinInput.jsx';
 import { hashPin } from '../services/pin-crypto.js';
 import { saveParentalPin, createChild, saveOnboardingWizard } from '../services/store.js';
-import { CheckIcon } from './icons/ProductIcons.jsx';
+import { CheckIcon, BookmarkIcon } from './icons/ProductIcons.jsx';
 import AppLogo from './AppLogo.jsx';
 import { slugify } from '../pages/ChildBySlug.jsx';
 
@@ -184,7 +184,7 @@ export default function OnboardingWizard({
               <div style={successBox}>
                 <CheckIcon size={32} />
                 <p style={{ margin: '0.5rem 0 0', fontSize: '0.88rem', color: 'var(--color-green)', fontWeight: 700 }}>
-                  Code secret défini !
+                  Code secret défini&nbsp;!
                 </p>
               </div>
             ) : (
@@ -265,10 +265,9 @@ export default function OnboardingWizard({
 
         {currentStep === 3 && (
           <div style={{ textAlign: 'center' }}>
-            <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true" style={{ marginBottom: '0.8rem' }}>
-              <path d="M6 2a2 2 0 0 0-2 2v17.5a.5.5 0 0 0 .8.4L12 16l7.2 5.9a.5.5 0 0 0 .8-.4V4a2 2 0 0 0-2-2H6Z" fill="var(--color-primary)" />
-            </svg>
+            <BookmarkIcon size={48} />
             <p style={{ ...subtitleStyle, maxWidth: 320, marginInline: 'auto' }}>
+              Cela vous permettra de la retrouver facilement.<br />
               Son adresse est <strong style={{ color: '#fff' }}>www.primolingo.fr/parent</strong>
             </p>
           </div>
@@ -277,7 +276,7 @@ export default function OnboardingWizard({
         {currentStep === 4 && (
           <div>
             <p style={subtitleStyle}>
-              Votre enfant utilisera-t-il <strong style={{ color: '#fff' }}>cet appareil</strong> pour jouer ?
+              Votre enfant utilisera-t-il <strong style={{ color: '#fff' }}>cet appareil</strong> pour jouer&nbsp;?
             </p>
             <div style={{ display: 'flex', gap: '0.6rem', marginBottom: '1.2rem' }}>
               {['oui', 'non'].map(val => (
@@ -308,7 +307,7 @@ export default function OnboardingWizard({
                       {allChildren.map(c => (
                         <li key={c.name}>
                           <a
-                            href={`/enfant/${slugify(c.name)}`}
+                            href={`/enfant/${slugify(c.name)}?from=onboarding`}
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{ color: 'var(--color-primary)', fontWeight: 700, textDecoration: 'underline', fontSize: '0.83rem' }}
@@ -321,9 +320,7 @@ export default function OnboardingWizard({
                   </li>
                   <li>
                     Une fois sur son espace, mettez-le en favori{' '}
-                    <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" style={{ verticalAlign: '-2px' }}>
-                      <path d="M6 2a2 2 0 0 0-2 2v17.5a.5.5 0 0 0 .8.4L12 16l7.2 5.9a.5.5 0 0 0 .8-.4V4a2 2 0 0 0-2-2H6Z" fill="var(--color-gold)" />
-                    </svg>
+                    <span style={{ verticalAlign: '-2px', display: 'inline-block' }}><BookmarkIcon size={14} color="var(--color-gold)" /></span>
                   </li>
                   <li>Revenez ici pour terminer</li>
                 </ol>
@@ -351,7 +348,7 @@ export default function OnboardingWizard({
               </p>
             ) : (
               <p style={{ fontSize: '1rem', color: '#fff', fontWeight: 700, marginTop: '1rem', lineHeight: 1.6 }}>
-                L'aventure PrimoLingo commence !
+                L'aventure PrimoLingo commence&nbsp;!
               </p>
             )}
           </div>

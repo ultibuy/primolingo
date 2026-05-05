@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import FlameIcon from './FlameIcon.jsx';
 import DiamondIcon from './DiamondIcon.jsx';
 import DiamondStatus from './DiamondStatus.jsx';
-import CrownIcon from './CrownIcon.jsx';
+import { CrownIcon } from './icons/ProductIcons.jsx';
 import ShieldIcon from './ShieldIcon.jsx';
 import PinInput from './PinInput.jsx';
 

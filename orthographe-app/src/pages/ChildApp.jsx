@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef, lazy, Suspense } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import VersionFooter from '../components/ui/VersionFooter.jsx';
 import '../index.css';
 import { captureException } from '../services/sentry.js';
@@ -7,8 +7,8 @@ import posthog from '../services/analytics.js';
 
 // Context
 import { useAuth } from '../contexts/AuthContext.jsx';
-import { getChild, loadParentalPin, updateChild } from '../services/store.js';
-import { verifyPin } from '../services/pin-crypto.js';
+import { getChild, loadParentalPin, saveParentalPin, updateChild } from '../services/store.js';
+import { verifyPin, hashPin } from '../services/pin-crypto.js';
 
 // Content
 import { allRules } from '../content/loader.js';
@@ -59,7 +59,7 @@ import DicteesPage from '../pages/DicteesPage.jsx';
 import DicteeQuizGuided from '../components/DicteeQuizGuided.jsx';
 import DicteeQuizReconstruct from '../components/DicteeQuizReconstruct.jsx';
 import CoinIcon from '../components/CoinIcon.jsx';
-import { GiftIcon } from '../components/icons/ProductIcons.jsx';
+import { GiftIcon, BookmarkIcon } from '../components/icons/ProductIcons.jsx';
 import RewardAmount from '../components/rewards/RewardAmount.jsx';
 import PopupModal from '../components/PopupModal.jsx';
 import AppLoadingScreen from '../components/AppLoadingScreen.jsx';
@@ -348,9 +348,12 @@ function createDefaultRuleProgress() {
 // ---------------------------------------------------------------------------
 export default function ChildApp({ childIdOverride }) {
   const params = useParams();
+  const [searchParams] = useSearchParams();
   const childId = childIdOverride || params.childId;
   const { user } = useAuth();
   const uid = user?.uid;
+
+  const fromOnboarding = searchParams.get('from') === 'onboarding';
 
   const [progress, setProgress] = useState(null);
   const [childName, setChildName] = useState('');
@@ -909,9 +912,15 @@ export default function ChildApp({ childIdOverride }) {
     }
 
     // parentalPin is { salt, hash } — verify with crypto
-    const pinOk = parentalPin?.salt && parentalPin?.hash
-      ? await verifyPin(enteredPin, parentalPin.salt, parentalPin.hash)
-      : enteredPin === parentalPin; // fallback for legacy plain-text pins
+    const isLegacyPlainText = !(parentalPin?.salt && parentalPin?.hash);
+    const pinOk = isLegacyPlainText
+      ? enteredPin === parentalPin
+      : await verifyPin(enteredPin, parentalPin.salt, parentalPin.hash);
+
+    // Migrate legacy plain-text PIN to hashed on successful verification
+    if (pinOk && isLegacyPlainText && uid) {
+      hashPin(enteredPin).then(pinData => saveParentalPin(uid, pinData)).catch(() => {});
+    }
 
     if (!pinOk) {
       const failedAttempts = (lockout.failedAttempts || 0) + 1;
@@ -978,9 +987,9 @@ export default function ChildApp({ childIdOverride }) {
             closeButtonProps={{ size: 38 }}
           >
               <div style={{ marginBottom: '0.3rem', display: 'flex', justifyContent: 'center' }}><GiftIcon size={40} color="var(--color-primary)" /></div>
-              <div style={firstQuizBonusKickerStyle}>{isWelcome ? 'Bienvenue !' : 'Bonus du jour'}</div>
+              <div style={firstQuizBonusKickerStyle}>{isWelcome ? 'Bienvenue\u00a0!' : 'Bonus du jour'}</div>
               <div style={firstQuizBonusTitleStyle}>
-                {isWelcome ? 'Bonus de bienvenue : ' : 'Bonus de '}<RewardAmount value={bonusAmount} unit="coins" size="md" /> disponible !
+                {isWelcome ? 'Bonus de bienvenue\u00a0: ' : 'Bonus de '}<RewardAmount value={bonusAmount} unit="coins" size="md" /> disponible&nbsp;!
               </div>
               <div style={{ fontSize: '0.9rem', lineHeight: 1.55, color: '#cbd5e1' }}>
                 {isWelcome
@@ -1204,13 +1213,72 @@ export default function ChildApp({ childIdOverride }) {
         initialTab={dashboardTab}
         onTabChange={setDashboardTab}
         parentalPin={parentalPin}
+        onPinMigrate={uid ? (pinData) => saveParentalPin(uid, pinData) : undefined}
         onProgressChange={(next) => {
           setProgress(next);
           persistProgress(next);
         }}
       />
       <VersionFooter />
+      {fromOnboarding && <OnboardingBookmarkBanner childName={childName} storageKey={`ortho_bookmark_tip:${childId}`} />}
     </>
+  );
+}
+
+function OnboardingBookmarkBanner({ childName, storageKey }) {
+  const [visible, setVisible] = useState(() => !window.localStorage.getItem(storageKey));
+
+  if (!visible) return null;
+
+  return (
+    <div style={{
+      position: 'fixed', bottom: 16, left: 12, right: 12, zIndex: 9998,
+      padding: '14px 16px', display: 'flex', alignItems: 'center', gap: 12,
+      fontFamily: 'Outfit, sans-serif',
+      background: 'rgba(20, 15, 40, 0.95)',
+      backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+      border: '1px solid rgba(167,139,250,0.3)',
+      borderRadius: 14, color: '#fff',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.4)',
+      animation: 'bookmarkBannerSlide 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)',
+    }}>
+      <div style={{
+        width: 40, height: 40, borderRadius: 10, flexShrink: 0,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        background: 'rgba(167,139,250,0.15)',
+      }}>
+        <BookmarkIcon size={20} color="#a78bfa" />
+      </div>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontSize: '0.88rem', fontWeight: 800, marginBottom: 2 }}>
+          {childName ? `Espace de jeu de ${childName}` : 'Espace de jeu'}
+        </div>
+        <div style={{ fontSize: '0.78rem', color: '#c4b5fd', lineHeight: 1.4 }}>
+          {childName
+            ? `Mettez cette page en favori pour que ${childName} puisse y accéder facilement.`
+            : 'Mettez cette page en favori pour y accéder facilement.'}
+        </div>
+      </div>
+      <button
+        type="button"
+        onClick={() => { window.localStorage.setItem(storageKey, '1'); setVisible(false); }}
+        style={{
+          padding: '8px 16px', borderRadius: 10, flexShrink: 0,
+          background: 'rgba(167,139,250,0.2)',
+          border: '1px solid rgba(167,139,250,0.4)',
+          fontSize: '0.82rem', fontWeight: 700, color: '#a78bfa',
+          cursor: 'pointer', fontFamily: 'inherit',
+        }}
+      >
+        Compris
+      </button>
+      <style>{`
+        @keyframes bookmarkBannerSlide {
+          from { transform: translateY(20px); opacity: 0; }
+          to { transform: translateY(0); opacity: 1; }
+        }
+      `}</style>
+    </div>
   );
 }
 

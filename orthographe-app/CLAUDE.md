@@ -48,6 +48,14 @@ parseLocalDate(s)   // "YYYY-MM-DD" → Date locale (pas new Date(s) qui est UTC
 
 `updateStatsHistory(next, GRAMMAR_IDS)` doit être appelé **avant** chaque `persistProgress(next)` dans ChildApp. Oubli = graphiques parent silencieusement cassés.
 
+## Réutilisation des composants
+
+**Réutiliser avant de recréer.** Avant d'écrire un nouveau composant UI ou du style inline, chercher dans `src/components/` si un composant existant couvre le besoin. Si le besoin est proche, étendre le composant existant plutôt que d'en dupliquer le style à la main. Exemples clés : `UpdateBanner` pour les banners système, `PopupModal` pour les modales, `MotivationBanner` pour les messages de coaching.
+
+## Comportement général
+
+Quand l'utilisateur pose une question (diagnostic, explication, "pourquoi..."), répondre uniquement — ne pas modifier de code sauf si l'utilisateur demande explicitement une action ou un fix.
+
 ## Debugging
 
 1. Commencer par lire le code pour formuler des hypothèses
