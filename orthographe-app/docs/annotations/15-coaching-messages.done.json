@@ -1,134 +1,58 @@
 [
   {
-    "x": 1441,
-    "y": 303,
-    "text": "",
-    "time": "03/05 22:21",
-    "domContext": {
-      "tag": "DIV",
-      "text": "✓✓✓✓✓✓✓✓✓✓1112"
-    },
-    "response": "Pin vide — rien à traiter."
+    "x": 573,
+    "y": 2588,
+    "text": "Rajoute un tableau comme cleui du catalogue des messages qui récap  le top 25 des arcs par priorité. Change juste le contenu de la colonne \"arc\" pour mettre \"(thème) - arc\"",
+    "time": "05/05 13:36",
+    "response": "Fait — tableau Top 25 ajouté entre « Logique des priorités » et « Catalogue complet », avec colonne Arc au format (Thème) — arc et mêmes abbr tooltips que les tables catalogue.",
+    "done": true
   },
   {
-    "x": 556,
-    "y": 432,
-    "text": "il manque l'emoji coeur dans cette liste ainsi que la piece de puzzle",
-    "time": "03/05 22:21",
-    "domContext": {
-      "tag": "P",
-      "text": "Chaque message de coaching utilise une icone SVG adaptee au contexte. Les icones sont definies dans MotivationBanner.jsx via le composant BannerSvgIco"
-    },
-    "response": "Les deux sont déjà dans la galerie : ❤️ Cœur et 🧩 Puzzle font partie de ICON_GALLERY_ITEMS dans vite-plugin-docs.js. La galerie est générée dynamiquement via generateIconGallery()."
+    "x": 1144,
+    "y": 2842,
+    "text": "passer en récurrent. doit rester affiché tant que le bonus de 200 n'est pas débloqué",
+    "time": "05/05 13:31",
+    "response": "Fait — arc1.1 passé en recurring (oneShot:false, recurring:true) dans coaching.js. Garde l'isAlreadyShown retiré. Doc : Type ↩, Cooldown 3 min.",
+    "done": true
   },
   {
-    "x": 456,
-    "y": 1171,
-    "text": "change le texte : \"Zut il te fallait au moins 12/20 pour débloquer les 200 pièces. Elles t'attendent toujours ! + svg pièces",
-    "time": "03/05 22:26",
-    "domContext": {
-      "tag": "DIV",
-      "text": "Pas grave, le bonus de 200 pièces t'attend dès que tu finis une session avec au moins 12/20."
-    },
-    "response": "Déjà fait lors de la session précédente. coaching.js et coaching-messages.json ont le texte « Zut il te fallait au moins 12/20 pour débloquer les 200 pièces. Elles t'attendent toujours ! » avec emoji 🪙."
+    "x": 1141,
+    "y": 2957,
+    "text": "passer en récurrent. doit rester affiché tant que le bonus de 200 n'est pas débloqué",
+    "time": "05/05 13:31",
+    "response": "Fait — arc1.3 passé en recurring (oneShot:false, recurring:true) dans coaching.js. Doc : Type ↩, Cooldown 3 min.",
+    "done": true
   },
   {
-    "x": 707,
-    "y": 1417,
-    "text": "icone piece ici",
-    "time": "03/05 21:53",
-    "domContext": {
-      "tag": "DIV",
-      "text": "Plus que 50 pièces pour débloquer le Panda Samouraï."
-    },
-    "response": "Fait. arc1.4 : emoji 🐼 → 🪙 (pièce)."
+    "x": 1141,
+    "y": 3069,
+    "text": "3 occurrences ou condition plus vérifiée",
+    "time": "05/05 13:32",
+    "response": "Fait — arc1.4 limité à maxOccurrences:3 via isAtMaxOccurrences + shownCount. Doc : Type 3, Cooldown 3 min.",
+    "done": true
   },
   {
-    "x": 375,
-    "y": 1883,
-    "text": "ca devrait être en vert. maj en prod et la doc",
-    "time": "03/05 22:27",
-    "domContext": {
-      "tag": "DIV",
-      "text": "arc2.1\n\nBelle session sur \"a / à / as\". Plus que 2 sessions à 16/20 pour passer Argent."
-    },
-    "response": "Déjà en vert. arc2.1 utilise le variant 'plain' (accent #48bb78 vert) et l'emoji '📈' dans coaching.js et coaching-messages.json — mis à jour en session précédente."
+    "x": 1141,
+    "y": 3179,
+    "text": "3 occurrences ou condition plus vérifiée",
+    "time": "05/05 13:32",
+    "response": "Fait — arc1.5 limité à maxOccurrences:3 via isAtMaxOccurrences + shownCount. Doc : Type 3, Cooldown 3 min.",
+    "done": true
   },
   {
-    "x": 374,
-    "y": 5365,
-    "text": "un puzzle avec ? ici",
-    "time": "03/05 22:28",
-    "domContext": {
-      "tag": "DIV",
-      "text": "arc6.8\n\n60 pièces = 1 morceau d'image mystère. Découvre ton image cachée morceau par morceau."
-    },
-    "response": "arc6.8 utilise déjà l'emoji 🧩 (puzzle+?). Le point du ? est maintenant explicite grâce au fix de l'annotation 8."
+    "x": 1137,
+    "y": 3294,
+    "text": "3 occurrences ou condition plus vérifiée",
+    "time": "05/05 13:33",
+    "response": "Fait — arc1.7.streak5 limité à maxOccurrences:3 via isAtMaxOccurrences + shownCount. Doc : Type 3, Cooldown 3 min.",
+    "done": true
   },
   {
-    "x": 1453,
-    "y": 6285,
-    "text": "",
-    "time": "03/05 22:21",
-    "domContext": {
-      "tag": "DIV",
-      "text": "✓✓✓✓✓✓✓✓✓101112"
-    },
-    "response": "Pin vide — rien à traiter."
-  },
-  {
-    "x": 368,
-    "y": 6410,
-    "text": "ca devrait être en vert ici et en prod",
-    "time": "03/05 22:29",
-    "domContext": {
-      "tag": "DIV",
-      "text": "arc8.1\n\nTu maîtrises les règles ? C'est le moment d'apprendre de nouveaux mots de vocabulaire."
-    },
-    "response": "Déjà en vert. arc8.1 a le variant 'plain' (accent #48bb78 vert) et l'emoji '📈' dans coaching.js et coaching-messages.json — mis à jour en session précédente."
-  },
-  {
-    "x": 368,
-    "y": 6867,
-    "text": "icone check mark",
-    "time": "03/05 21:50",
-    "domContext": {
-      "tag": "DIV",
-      "text": "arc10.4\n\nAucune révision aujourd'hui. Profites-en pour apprendre de nouveaux mots de vocabulaire."
-    },
-    "response": "Fait. arc10.4 : emoji 🎧 → ✅ (check circle)."
-  },
-  {
-    "x": 736,
-    "y": 7077,
-    "text": "utilise le svg ux-designer/puzzle-piece-outline.svg pour 11.1, 11.,2, 11.3",
-    "time": "03/05 21:48",
-    "domContext": {
-      "tag": "DIV",
-      "text": "arc11.1\n\nPremier morceau dévoilé. Encore 5 morceaux pour voir l'image complète."
-    },
-    "response": "Fait. arc11.1, 11.2, 11.3 utilisent maintenant l'emoji 🧩 avec le SVG puzzle piece de ux-designer/puzzle-piece-outline.svg (viewBox 640×640 dans getBannerSvg, stroke couleur accent)."
-  },
-  {
-    "x": 359,
-    "y": 7081,
-    "text": "repars du fichier svg avec le point d'interrogation, la le point manque et utile ce nouveau svg partout à la palce de la pièece de puzzle",
-    "time": "03/05 22:22",
-    "domContext": {
-      "tag": "DIV",
-      "text": "arc11.1\n\nPremier morceau dévoilé. Encore 5 morceaux pour voir l'image complète."
-    },
-    "response": "Fait. Le point du ? était sub-pixel à l'affichage (viewBox 640 → 34px : dot fonte ~1px). Ajout d'un <circle cx=\"300\" cy=\"400\" r=\"45\"> explicite (~2.4px à l'affichage) dans ux-designer/puzzle-piece-outline.svg et dans getBannerSvg '🧩' de vite-plugin-docs.js. Utilisé pour arc6.8, arc11.1, 11.2, 11.3."
-  },
-  {
-    "x": 685,
-    "y": 7455,
-    "text": "utilise plutot l'icone check mark",
-    "time": "03/05 21:49",
-    "domContext": {
-      "tag": "DIV",
-      "text": "Image mystère complète. Bravo. Une nouvelle image t'attend dans la boutique."
-    },
-    "response": "Fait. arc11.4 : emoji 🎁 → ✅ (check circle)."
+    "x": 1144,
+    "y": 3382,
+    "text": "3 occurrences ou condition plus vérifiée",
+    "time": "05/05 13:33",
+    "response": "Fait — arc1.7.streak6 limité à maxOccurrences:3 via isAtMaxOccurrences + shownCount. Doc : Type 3, Cooldown 3 min.",
+    "done": true
   }
 ]

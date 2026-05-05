@@ -40,6 +40,7 @@ export function createDefaultCoaching() {
   return {
     shown: {},             // { 'arc1.1': '2026-04-28', ... }
     lastShownByArc: {},    // { 'arc5.8': '2026-04-27', ... }
+    shownCount: {},        // { 'arc1.4': 2 } — pour les arcs à maxOccurrences
     dailyShownCount: { date: null, count: 0 },
     lastBannerArc: null,
   };
@@ -84,6 +85,10 @@ function getCharName(charId) {
 
 function isAlreadyShown(coaching, arcId) {
   return !!(coaching?.shown?.[arcId]);
+}
+
+function isAtMaxOccurrences(coaching, arcId, max) {
+  return (coaching?.shownCount?.[arcId] || 0) >= max;
 }
 
 function wasShownWithin24h() {
@@ -151,34 +156,30 @@ export function pickCoachingMessage(ctx) {
       cta: cta || null,
       oneShot: opts.oneShot !== false,
       recurring: opts.recurring === true,
+      maxOccurrences: opts.maxOccurrences || null,
     };
   }
 
-  // --- arc1.1: no sessions yet ---
-  if (!isAlreadyShown(coaching, 'arc1.1')) {
-    if (!firstQuizDone && totalSessions === 0) {
-      return msg('arc1.1', 'pieces',
-        'Fais ton premier quiz pour remporter 200 pièces de bienvenue.',
-        '200 pièces de bienvenue',
-        '🎁',
-        null,
-        { oneShot: true }
-      );
-    }
+  // --- arc1.1: no sessions yet (recurring until bonus obtained) ---
+  if (!firstQuizDone && totalSessions === 0) {
+    return msg('arc1.1', 'pieces',
+      'Fais ton premier quiz pour remporter 200 pièces de bienvenue.',
+      '200 pièces de bienvenue',
+      '🎁',
+      null,
+      { oneShot: false, recurring: true }
+    );
   }
 
-  // --- arc1.3: failed first session (< 60%) ---
-  if (!isAlreadyShown(coaching, 'arc1.3')) {
-    // Detect: first session ever done, but firstSession milestone not set (means score < 60%)
-    if (totalSessions === 1 && !firstQuizDone) {
-      return msg('arc1.3', 'plain',
-        'Zut il te fallait au moins 12/20 pour débloquer les 200 pièces. Elles t\'attendent toujours !',
-        '200 pièces',
-        '🪙',
-        null,
-        { oneShot: true }
-      );
-    }
+  // --- arc1.3: failed first session (< 60%) — recurring until bonus obtained ---
+  if (totalSessions === 1 && !firstQuizDone) {
+    return msg('arc1.3', 'plain',
+      'Zut il te fallait au moins 12/20 pour débloquer les 200 pièces. Elles t\'attendent toujours !',
+      '200 pièces',
+      '🪙',
+      null,
+      { oneShot: false, recurring: true }
+    );
   }
 
   function pickDailyEngagementMessage() {
@@ -591,21 +592,21 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
-  // --- arc1.5: panda accessible (≥250 coins, no chars) ---
-  if (!isAlreadyShown(coaching, 'arc1.5')) {
+  // --- arc1.5: panda accessible (≥250 coins, no chars) — max 3 occurrences ---
+  if (!isAtMaxOccurrences(coaching, 'arc1.5', 3)) {
     if (coins >= 250 && ownedChars.length === 0) {
       return msg('arc1.5', 'panda',
         'C\'est bon, tu peux débloquer le Panda — va faire un tour dans la boutique.',
         'débloquer le Panda',
         '🛒',
         { label: 'Boutique', action: 'openShop:persos' },
-        { oneShot: true }
+        { oneShot: false, maxOccurrences: 3 }
       );
     }
   }
 
-  // --- arc1.4: approaching panda (200-249 coins, no chars) ---
-  if (!isAlreadyShown(coaching, 'arc1.4')) {
+  // --- arc1.4: approaching panda (200-249 coins, no chars) — max 3 occurrences ---
+  if (!isAtMaxOccurrences(coaching, 'arc1.4', 3)) {
     if (coins >= 200 && coins < 250 && ownedChars.length === 0) {
       const needed = 250 - coins;
       return msg('arc1.4', 'panda',
@@ -613,7 +614,7 @@ export function pickCoachingMessage(ctx) {
         `${needed} pièces`,
         '🪙',
         null,
-        { oneShot: true }
+        { oneShot: false, maxOccurrences: 3 }
       );
     }
   }
@@ -720,27 +721,27 @@ export function pickCoachingMessage(ctx) {
     }
   }
 
-  // --- arc1.7: streak at 5 or 6 ---
-  if (!isAlreadyShown(coaching, 'arc1.7.streak5')) {
+  // --- arc1.7: streak at 5 or 6 — max 3 occurrences ---
+  if (!isAtMaxOccurrences(coaching, 'arc1.7.streak5', 3)) {
     if (streak.current === 5) {
       return msg('arc1.7.streak5', 'flamme',
         'Plus que 2 jours pour atteindre 7 jours et empocher 100 pièces.',
         '100 pièces',
         '🔥',
         null,
-        { oneShot: true }
+        { oneShot: false, maxOccurrences: 3 }
       );
     }
   }
 
-  if (!isAlreadyShown(coaching, 'arc1.7.streak6')) {
+  if (!isAtMaxOccurrences(coaching, 'arc1.7.streak6', 3)) {
     if (streak.current === 6) {
       return msg('arc1.7.streak6', 'flamme',
         'Demain ta flamme passe à 7 jours — 100 pièces à la clé.',
         '100 pièces',
         '🔥',
         null,
-        { oneShot: true }
+        { oneShot: false, maxOccurrences: 3 }
       );
     }
   }
@@ -1105,6 +1106,7 @@ export function markCoachingShown(progress, msg, todayStr) {
     // Defensive: coaching may exist but be partial (e.g. from old data)
     if (!next.coaching.shown) next.coaching.shown = {};
     if (!next.coaching.lastShownByArc) next.coaching.lastShownByArc = {};
+    if (!next.coaching.shownCount) next.coaching.shownCount = {};
     if (!next.coaching.dailyShownCount) next.coaching.dailyShownCount = { date: null, count: 0 };
   }
 
@@ -1114,6 +1116,11 @@ export function markCoachingShown(progress, msg, todayStr) {
 
   if (msg.recurring) {
     next.coaching.lastShownByArc[msg.arcId] = todayStr;
+  }
+
+  if (msg.maxOccurrences) {
+    if (!next.coaching.shownCount) next.coaching.shownCount = {};
+    next.coaching.shownCount[msg.arcId] = (next.coaching.shownCount[msg.arcId] || 0) + 1;
   }
 
   // Increment daily count
