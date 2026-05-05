@@ -1297,32 +1297,7 @@ export default function ParentDashboard() {
           </CollapsibleSection>
         </section>
 
-        {/* ─ Bibliothèque d'images mystère ─ */}
-        <section style={sectionStyle}>
-          <CollapsibleSection title="Bibliothèque d'images mystère" open={imagesOpen} onToggle={() => setImagesOpen(o => !o)}>
-            <p style={{ fontSize: '0.83rem', color: '#64748b', lineHeight: 1.7, margin: '0 0 0.9rem' }}>
-              Une image mystère se révèle progressivement au fil des sessions, case par case — c'est la récompense visuelle qui motive votre enfant à jouer chaque jour. PrimoLingo inclut déjà un ensemble d'images pré-configurées. Vous pouvez aussi <strong style={{ color: '#9ca3af' }}>ajouter vos propres photos</strong> (vacances, animaux, famille…) selon les goûts de vos enfants, et choisir <strong style={{ color: '#9ca3af' }}>pour quel enfant</strong> chaque image apparaîtra.
-            </p>
-            <div style={libShellStyle}>
-              <ImageLibraryWithRefresh uid={user.uid} onSaved={refreshParentImages} />
-            </div>
-            {children.length > 0 && parentImages.length > 0 && (
-              <div style={{ marginTop: '1.2rem', display: 'grid', gap: '0.75rem' }}>
-                <div style={{ fontSize: '0.72rem', fontWeight: 800, color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-                  Images activées par enfant
-                </div>
-                {children.map(child => (
-                  <div key={child.id} style={{ background: 'var(--glass-bg)', border: '1px solid var(--glass-border)', borderRadius: 10, padding: '0.75rem 0.9rem' }}>
-                    <div style={{ fontSize: '0.82rem', fontWeight: 700, color: '#d1d5db', marginBottom: '0.5rem' }}>
-                      {child.avatar || '🦊'} {child.name}
-                    </div>
-                    <ChildSettings uid={user.uid} childId={child.id} parentImages={parentImages} />
-                  </div>
-                ))}
-              </div>
-            )}
-          </CollapsibleSection>
-        </section>
+        {/* ─ Bibliothèque d'images mystère ─ (masquée temporairement) */}
 
         {/* ─ Section 5: Mon compte ─ */}
         <section style={sectionStyle}>
